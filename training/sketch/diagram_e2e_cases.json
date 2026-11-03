@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "instructions": "Assess each requested action separately using the turn details and the before/after drawings. Record right, wrong, asked, or not_done; record unrequested executed actions as extras. A wire is reader intent, not proof of an executed change. If a prerequisite was not done, mark the dependent action not_done with its dependency; do not attribute a nonexistent target to a wrong execution without evidence. Questions require a correct answer, not a drawing change. Unsupported language should be identified as not understood without guessing; classify any unrequested execution as an extra. Preserve this fixture after the run. The semantic gold describes the intended graph outcome, not an exact SOP wire schema; retain and inspect the raw SOP fields separately. The unsupported-language case is a negative control and contributes no requested action to the denominator.",
+  "cases": [
+    {
+      "id": "create_alpha",
+      "text": "Please add a red circle called E2EAlpha to the diagram.",
+      "actions": [
+        {
+          "id": "a1",
+          "action": "create",
+          "name": "E2EAlpha",
+          "shape": "circle",
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "id": "create_beta",
+      "text": "Add a blue rectangle named E2EBeta as well.",
+      "actions": [
+        {
+          "id": "a2",
+          "action": "create",
+          "name": "E2EBeta",
+          "shape": "rectangle",
+          "color": "blue"
+        }
+      ]
+    },
+    {
+      "id": "connect",
+      "text": "Draw an arrow from E2EAlpha to E2EBeta.",
+      "actions": [
+        {
+          "id": "a3",
+          "action": "connect",
+          "from": "E2EAlpha",
+          "to": "E2EBeta",
+          "arrow": "forward",
+          "depends_on": [
+            "a1",
+            "a2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recolor",
+      "text": "Make E2EAlpha green, please.",
+      "actions": [
+        {
+          "id": "a4",
+          "action": "set",
+          "target": "E2EAlpha",
+          "color": "green",
+          "depends_on": [
+            "a1"
+          ],
+          "property": "color"
+        }
+      ]
+    },
+    {
+      "id": "move",
+      "text": "Place E2EBeta below E2EAlpha.",
+      "actions": [
+        {
+          "id": "a5",
+          "action": "move",
+          "target": "E2EBeta",
+          "relative_to": "E2EAlpha",
+          "position": "below",
+          "depends_on": [
+            "a1",
+            "a2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rename",
+      "text": "Rename E2EBeta to E2EGamma.",
+      "actions": [
+        {
+          "id": "a6",
+          "action": "rename",
+          "depends_on": [
+            "a2"
+          ],
+          "target": "E2EBeta",
+          "name": "E2EGamma"
+        }
+      ]
+    },
+    {
+      "id": "label",
+      "text": "Give E2EGamma the label Review queue.",
+      "actions": [
+        {
+          "id": "a7",
+          "action": "label",
+          "target": "E2EGamma",
+          "label": "Review queue",
+          "depends_on": [
+            "a6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pronoun",
+      "text": "Make that shape yellow.",
+      "actions": [
+        {
+          "id": "a8",
+          "action": "set",
+          "target": "E2EGamma",
+          "property": "color",
+          "color": "yellow",
+          "depends_on": [
+            "a6",
+            "a7"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layout",
+      "text": "Arrange E2EAlpha and E2EGamma in a row.",
+      "actions": [
+        {
+          "id": "a9",
+          "action": "layout",
+          "targets": [
+            "E2EAlpha",
+            "E2EGamma"
+          ],
+          "layout": "row",
+          "depends_on": [
+            "a1",
+            "a6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "text": "Is there a path from Start to Done?",
+      "actions": [
+        {
+          "id": "a10",
+          "action": "question",
+          "question": "path",
+          "from": "Start",
+          "to": "Done",
+          "answer": true
+        }
+      ]
+    },
+    {
+      "id": "unsupported",
+      "text": "Make the diagram feel more optimistic about next quarter.",
+      "actions": [],
+      "expectedNoMutation": true,
+      "expectedExplanation": "Explain that the request could not be mapped to diagram operations."
+    }
+  ]
+}

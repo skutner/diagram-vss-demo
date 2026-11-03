@@ -160,7 +160,7 @@ const SAME_AS = { position2: 'position', anchor2: 'anchor', region: 'position' }
 const cutOf = async (m, text) => { if (!m || !m.cut) throw new Error('The loaded neural model has no span head (cut).'); return (await m.cut(text)).map(({ c0, c1 }) => ({ c0, c1 })); };
 const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 const KIND_OF = act => own(ACTION, act) ? 'command' : own(ASK, act) ? 'question' : act === 'fact' || act === 'rule' || act === 'none' ? act : null;
-function create(engine, rulesFormalize) {
+function create(engine, rulesFormalize, options = {}) {
   const L = engine.legend;
   const st = { models: null, strategy: 'finetuned', protoCache: new Map(), calls: 0 };
 
@@ -302,8 +302,12 @@ function create(engine, rulesFormalize) {
     let cutP = st.models.cutProbs && segs.length ? st.models.cutProbs(text) : null, cutFrom = cutP ? (cutBy === 'model' ? 'model' : 'bert cutter') : null;
     if (!cutP && segs.length && opts && opts.signals && st.models.cut && st.models.cutProbs) { await st.models.cut(text); st.calls++; cutP = st.models.cutProbs(text); cutFrom = 'cut head (extra call)'; }
     const nodes = [], analyses = [], notRequest = [], notes = []; let n = 0, m = 0;
+    const cutInfo = !given && st.models.cutInfo ? st.models.cutInfo(text) : null;
+    const unread = cutInfo && cutInfo.truncated ? [text.slice(cutInfo.unreadFrom)] : [];
+    if (unread.length) notes.push('Message token limit reached; the remaining text was not read.');
     segs.forEach((seg, si) => {
       const R = reads[si], id = 'n' + (++n), a = { id, src: seg.src, rules: null, keys: {} };
+      if (R.truncated) a.truncated = true;
       const cl = actFrom(R.acts); a.kind = cl.kind; if (cl.act) a.act = cl.act;
       const type = a.kind.value, act = a.act ? a.act.value : null, actKey = a.act ? (type === 'command' ? 'action' : 'ask') : null;
       if (type === 'none') { notRequest.push(seg.src); analyses.push(a); return; }
@@ -332,11 +336,12 @@ function create(engine, rulesFormalize) {
     const joint = { text, reads, cut: cutP, cutFrom, reader: st.models.reader, unk: st.models.unk };
     // units: the units read, as character offsets (the BERT cutter's when cutBy is 'model'): the demo gives them to the other readers for
     // SOP-BERT's votes and VSS-BERT (ui.js crossReads), as vss-composer.js cutUnits "bert" would (c1 > c0), without another call
-    return { nodes, notes, rulesNodes: [], analyses, cutBy, joint, units: units.filter(u => u.c1 > u.c0).map(u => ({ c0: u.c0, c1: u.c1, src: text.slice(u.c0, u.c1) })), ms: Date.now() - t0, calls: st.calls };
+    return { nodes, notes, unread, rulesNodes: [], analyses, cutBy, joint, units: units.filter(u => u.c1 > u.c0).map(u => ({ c0: u.c0, c1: u.c1, src: text.slice(u.c0, u.c1) })), ms: Date.now() - t0, calls: st.calls };
   }
 
   async function formalize(input, ctx, opts) {
-    if (!st.models) throw new K.SOPError('The neural models are not loaded yet. Open the SOP-BERT tab and load them.');
+    if (!st.models) throw new K.SOPError('The neural models are not loaded yet.');
+    if (options.requireJoint && (!st.models.read || !st.models.cut || !st.models.reader)) throw new K.SOPError('This reader requires its own trained joint model and cut head.');
     if (st.strategy === 'finetuned' && st.models.read) return formalizeJoint(input, ctx || {}, opts);   // SOP-BERT: no Rules reader
     // the earlier pair (act classifier + extractive QA) and the baselines: the Rules reader's cut and references, until the pair is removed
     const t0 = Date.now(); st.calls = 0;
@@ -449,7 +454,7 @@ function create(engine, rulesFormalize) {
     return { rows, rules: sum('rules'), neural: sum('neural') };
   }
 
-  return { formalize, bench, state: st, setModels(m) { st.models = m; ACTIVE = m; st.protoCache.clear(); },
+  return { formalize, bench, state: st, setModels(m) { st.models = m; if (options.activateCut !== false) ACTIVE = m; st.protoCache.clear(); },
     /** the BERT cut of a message (character offsets [{c0, c1}]) and whether the loaded model has the span head */
     cut: text => cutOf(st.models, text), canCut: () => !!(st.models && st.models.cut), setStrategy(s) { st.strategy = s; }, BENCH, FRAMES, WORDING };
 }
@@ -467,24 +472,33 @@ const softmax = a => { const m = Math.max(...a), e = a.map(x => Math.exp(x - m))
 function makeReader(T, tokenizer, model) {
   const R = model.config && model.config.reader;
   if (!R) throw new Error('This model has no "reader" in its config.json: not a joint model (training/neural/finetune_roles.py).');
-  const nA = R.acts.length, nT = R.tags.length, maxlen = R.max_length || 128, offs = [];
-  const cutLen = R.cut ? R.cut.max_length || 512 : 0;   // R.cut: the span head over the whole message (output cut_logits: O / B / I per word)
+  const modern = R.tokenization === 'wordwise-bpe-prefix-space-v1';
+  const nA = R.acts.length, nT = R.tags.length, maxlen = modern ? Math.min(R.max_length || 128, 128) : R.max_length || 128, offs = [];
+  const cutLen = R.cut ? modern ? Math.min(R.cut.max_length || 512, 512) : R.cut.max_length || 512 : 0;   // R.cut: the span head over the whole message (output cut_logits: O / B / I per word)
   let o = nA; for (const [, vals] of R.classes) { offs.push(o); o += vals.length; }
   const sp = tokenizer.encode('');   // [CLS] [SEP]
   if (sp.length !== 2) throw new Error(`The tokenizer adds ${sp.length} special tokens to a text; 2 ([CLS] [SEP]) are expected.`);
+  if (R.tokenization && !modern) throw new Error('Unsupported reader tokenization: ' + R.tokenization);
+  const pad = modern ? tokenizer.pad_token_id : 0;
+  if (modern && (!Number.isInteger(pad) || pad < 0 || !sp.every(Number.isInteger))) throw new Error('The tokenizer must declare valid special and padding IDs.');
   function prep(text, limit) {
     const ws = wordsOf(text), ids = [sp[0]], first = new Map(), pieces = [];   // pieces[i]: every word piece of word i (the words reached)
+    let unreadFrom = null;
     for (let i = 0; i < ws.length && ids.length < limit - 1; i++) {   // truncation as in training: at most limit - 2 word pieces
-      const p = tokenizer.encode(ws[i].w, { add_special_tokens: false }); pieces[i] = p;
+      const p = tokenizer.encode((modern && i ? ' ' : '') + ws[i].w, { add_special_tokens: false });
+      if (modern && (!p.length || ids.length + p.length + 1 > limit)) { unreadFrom = ws[i].start; break; }
+      pieces[i] = p;
       for (let j = 0; j < p.length && ids.length < limit - 1; j++) { if (j === 0) first.set(i, ids.length); ids.push(p[j]); }
     }
+    if (modern && unreadFrom == null && first.size < ws.length) unreadFrom = ws[first.size].start;
     ids.push(sp[1]);
-    return { text: String(text), ws, ids, first, pieces };
+    return { text: String(text), ws, ids, first, pieces, truncated: modern && unreadFrom != null, unreadFrom };
   }
   /** one model call over a batch of prepared texts (padded; the attention mask hides the padding) */
   async function run(ps) {
     const B = ps.length, n = Math.max(...ps.map(p => p.ids.length));
     const ids = new BigInt64Array(B * n), mask = new BigInt64Array(B * n);
+    if (pad) ids.fill(BigInt(pad));
     ps.forEach((p, b) => p.ids.forEach((x, i) => { ids[b * n + i] = BigInt(x); mask[b * n + i] = 1n; }));
     return { out: await model({ input_ids: new T.Tensor('int64', ids, [B, n]), attention_mask: new T.Tensor('int64', mask, [B, n]) }), n };
   }
@@ -509,7 +523,7 @@ function makeReader(T, tokenizer, model) {
       else { list.push({ i, j: i + 1, p: probs[i] }); cur = k; }
     });
     for (const k of Object.keys(spans)) spans[k] = spans[k].map(s => ({ text: String(text).slice(ws[s.i].start, ws[s.j - 1].end), start: ws[s.i].start, end: ws[s.j - 1].end, score: s.p }));
-    const res = { words: ws.map(w => w.w), ids, acts, classes, tags, spans };
+    const res = { words: ws.map(w => w.w), ids, acts, classes, tags, spans, ...(modern ? { truncated: p.truncated, unreadFrom: p.unreadFrom } : {}) };
     /* the head logits of this call, for the fitted confidence (docs/js/neural-confidence.js; training/sketch/precision_bert_collect.mjs
        reads the same numbers): seq = the request's row of seq_logits (act, then the class heads), tok[i] = the token_logits of word i's
        first word piece (null: the word is beyond the truncation), pieces[i] = the word pieces of word i. Not enumerable: no copy, no JSON. */
@@ -529,23 +543,40 @@ function makeReader(T, tokenizer, model) {
   async function cut(text) {
     if (!cutLen) throw new Error('This model has no span head (config.json reader.cut): retrain with training/neural/finetune_roles.py.');
     const p = prep(text, cutLen), { out, n } = await run([p]), cl = out.cut_logits.data, spans = [], words = [];
-    let cur = null;
+    let cur = null, unreadFrom = p.unreadFrom;
     p.ws.forEach((w, i) => {
       const t = p.first.get(i); let tag = 'O', pr = 1;
       if (t != null) { const q = softmax(Array.from(cl.slice(t * 3, t * 3 + 3))); let bi = 0; q.forEach((x, k) => { if (x > q[bi]) bi = k; }); tag = 'OBI'[bi]; pr = q[bi]; words.push({ start: w.start, end: w.end, pO: q[0], pB: q[1], pI: q[2] }); }
-      else words.push({ start: w.start, end: w.end, pO: 1, pB: 0, pI: 0 });   // beyond the truncation: outside every request
+      else {
+        words.push({ start: w.start, end: w.end, pO: 1, pB: 0, pI: 0 });   // beyond the truncation: outside every request
+        if (modern && p.truncated && cur) { unreadFrom = Math.min(unreadFrom, cur.c0); spans.pop(); }
+      }
       if (tag === 'O') { cur = null; return; }
       if (tag === 'I' && cur) { cur.c1 = w.end; cur.score = Math.min(cur.score, pr); }
       else { cur = { c0: w.start, c1: w.end, score: pr }; spans.push(cur); }
     });
-    lastCut = { text: String(text), words };
+    lastCut = { text: String(text), words, truncated: p.truncated, unreadFrom };
     return spans;
   }
   /** cutProbs(text): the cut head's [{start, end, pO, pB, pI}] per word of text, from the last cut() of exactly this text (the BERT cutter's
       call, or the reader's own), else null; no model call */
   const cutProbs = text => lastCut && lastCut.text === String(text) ? lastCut.words : null;
   const unk = tokenizer.model && tokenizer.model.unk_token_id != null ? tokenizer.model.unk_token_id : tokenizer.unk_token_id;   // [UNK]
-  return { read, readMany, act: async text => (await read(text)).acts, reader: R, unk, ...(cutLen ? { cut, cutProbs } : {}) };
+  const cutInfo = text => lastCut && lastCut.text === String(text) ? { truncated: lastCut.truncated, unreadFrom: lastCut.unreadFrom } : null;
+  return { read, readMany, prepare: prep, act: async text => (await read(text)).acts, reader: R, unk, ...(cutLen ? { cut, cutProbs, cutInfo } : {}) };
+}
+
+/** ModernBERT's own confidence: missing calibration/thresholds and truncated requests always hold, even at execute all. */
+function gateReader(NC, spec, result, level = 'cost') {
+  const valid = spec && Number.isFinite(NC.threshold(spec, 'cost'));
+  const g = NC.gate(valid ? spec : null, result, valid ? level : 'cost');
+  g.safe = valid ? NC.threshold(spec, 'cost') : NaN;
+  for (const [index, unit] of (result.analyses || []).entries()) if (unit.truncated && !g.units.some(u => u.unit === unit)) g.units.push({ index, unit, src: unit.src, conf: NaN, execute: false, sure: false, nodes: [], reasons: [], dependsOn: [] });
+  for (const u of g.units) if (u.unit.truncated) { u.execute = u.sure = false; u.blocked = true; u.reasons = [{ group: 'limit', pull: 0, text: 'the request exceeds the token limit and was not fully read' }]; }
+  for (const u of g.units) if (u.dependsOn.some(d => g.units.some(x => x.unit === d && !x.execute))) { u.execute = false; u.reasons.push({ group: 'depends', pull: 0, text: 'it uses a request that was not done' }); }
+  const run = new Set(g.units.filter(u => u.execute).flatMap(u => u.nodes));
+  g.executed = (result.nodes || []).filter(n => !n.unit || run.has(n)); g.held = g.units.filter(u => !u.execute);
+  return g;
 }
 
 /* ---------------- Transformers.js loader (browser only) ---------------- */
@@ -559,7 +590,7 @@ const QA_MODEL = 'qa-distilbert-squad';
    batched call). When versions.json lists neural/sop-bert, the demo loads it alone; until then the pair above. */
 const READER_MODEL = 'sop-bert';
 /* model id (of the form <owner>/<name>, as transformers.js requires) -> folder under docs/model/neural/ */
-const OURS = { 'ours/sop-bert': 'sop-bert', 'ours/act-distilbert': 'act-distilbert', 'ours/act-deberta-xsmall': 'act-deberta-xsmall', 'ours/qa-distilbert-squad': 'qa-distilbert-squad' };
+const OURS = { 'ours/modernbert': 'modernbert', 'ours/sop-bert': 'sop-bert', 'ours/act-distilbert': 'act-distilbert', 'ours/act-deberta-xsmall': 'act-deberta-xsmall', 'ours/qa-distilbert-squad': 'qa-distilbert-squad' };
 const MODELS = {
   reader: 'ours/' + READER_MODEL, act: 'ours/' + ACT_MODEL, qa: 'ours/' + QA_MODEL,
   /* baselines of the headless comparison (training/laptop: neural_score.mjs, zs_check.mjs, zs_eval.mjs); the demo never loads them */
@@ -568,11 +599,13 @@ const MODELS = {
   qaHF: 'Xenova/distilbert-base-cased-distilled-squad'
 };
 const NAMES = {
+  'ours/modernbert': 'ModernBERT',
   'ours/sop-bert': 'SOP-BERT', 'ours/act-distilbert': 'DistilBERT act classifier', 'ours/act-deberta-xsmall': 'DeBERTa-v3 xsmall act classifier', 'ours/qa-distilbert-squad': 'DistilBERT SQuAD',
   'Xenova/nli-deberta-v3-xsmall': 'DeBERTa-v3 xsmall (zero-shot NLI)', 'Xenova/distilbert-base-uncased-mnli': 'DistilBERT MNLI (zero-shot NLI)', 'Xenova/all-MiniLM-L6-v2': 'MiniLM-L6', 'Xenova/distilbert-base-cased-distilled-squad': 'DistilBERT SQuAD'
 };
 /* what each model of ours is, in words (the act models' base model, data and held-out accuracy are read from their README.md: status()) */
 const ABOUT = {
+  'ours/modernbert': 'ModernBERT fine-tuned on diagram requests with its own action, role, value, name and cut heads',
   'ours/sop-bert': 'DistilBERT fine-tuned on our requests — cuts the message, reads the action, the values, the names and the descriptions',
   'ours/act-distilbert': 'reads the act of one request (the action of a command, the ask of a question, or fact / rule); fine-tuned on our annotated requests',
   'ours/act-deberta-xsmall': 'reads the act of one request (the action of a command, the ask of a question, or fact / rule); fine-tuned on our annotated requests',
@@ -620,7 +653,15 @@ const urlOf = (id, f) => `${MODEL_ROOT}neural/${OURS[id]}/${f}?v=${encodeURIComp
 const storeKey = (id, f) => OURS[id] && MODEL_ROOT ? urlOf(id, f) : keyOf(id, f);
 const dtypeOf = id => DTYPES[id] || DTYPE;
 const ONNX = { fp32: 'model.onnx', int8: 'model_int8.onnx', q8: 'model_quantized.onnx' };   // src/utils/dtypes.js DEFAULT_DTYPE_SUFFIX_MAPPING
-const filesOf = id => ['config.json', 'tokenizer.json', 'tokenizer_config.json', 'onnx/' + ONNX[dtypeOf(id)]];
+const CONFIGS = {};
+const filesOf = id => {
+  const graph = 'onnx/' + ONNX[dtypeOf(id)], files = ['config.json', 'tokenizer.json', 'tokenizer_config.json', graph];
+  const count = CONFIGS[id] && CONFIGS[id]['transformers.js_config'] && CONFIGS[id]['transformers.js_config'].use_external_data_format;
+  if (Number.isInteger(count) && count > 0) for (let i = 0; i < count; i++) files.push(graph + '_data' + (i ? '_' + i : ''));
+  // The sizes manifest is also available before config.json has been fetched (cache pruning/size hints).
+  for (const f of Object.keys(NSIZES['neural/' + OURS[id]] || {})) if (f.startsWith(graph + '_data') && /^_data(?:_[1-9]\d*)?$/.test(f.slice(graph.length)) && !files.includes(f)) files.push(f);
+  return files;
+};
 /** the bytes the browser downloads for a model of ours (the files it loads), from versions.json "sizes"; null when unknown */
 function bytesOf(id) {
   const sz = NSIZES['neural/' + OURS[id]]; if (!sz) return null;
@@ -628,11 +669,11 @@ function bytesOf(id) {
   return t;
 }
 /** the models the demo loads: [the joint model] when versions.json lists it, else [act classifier, answer model] */
-const modelsFor = () => NVERS['neural/' + READER_MODEL] ? [MODELS.reader] : [MODELS.act, MODELS.qa];
+const modelsFor = (readerName = READER_MODEL) => readerName === 'modernbert' ? ['ours/modernbert'] : NVERS['neural/' + READER_MODEL] ? [MODELS.reader] : [MODELS.act, MODELS.qa];
 const BITS = { q8: '8-bit', int8: '8-bit', fp32: '32-bit' };
-const dtypeText = () => { const [a, b] = modelsFor().map(dtypeOf); return b == null || a === b ? `${BITS[a]} files` : `classifier ${BITS[a]}, answers ${BITS[b]} files`; };
+const dtypeText = readerName => { const [a, b] = modelsFor(readerName).map(dtypeOf); return b == null || a === b ? `${BITS[a]} files` : `classifier ${BITS[a]}, answers ${BITS[b]} files`; };
 /** the exact URLs the browser fetches for the demo's models */
-const urlsFor = () => modelsFor().flatMap(id => filesOf(id).map(f => urlOf(id, f)));
+const urlsFor = readerName => modelsFor(readerName).flatMap(id => filesOf(id).map(f => urlOf(id, f)));
 /** first lines of an act model's README.md (finetune.py writes it): base model, data, held-out act accuracy */
 function readmeFacts(text) {
   const m = (re) => { const x = text.match(re); return x ? x[1] : null; };
@@ -640,33 +681,44 @@ function readmeFacts(text) {
 }
 /** Are our models published on this site? {published, missing: [why per folder], error (versions.json unreadable), info: id -> {version, bytes, readme}}.
     Read once per page (the promise is kept); a failure to read versions.json is an error, not "not published". */
-let statusP = null;
-function status() {
-  return statusP || (statusP = (async () => {
+const statusPromises = new Map();
+function status(readerName = READER_MODEL) {
+  if (statusPromises.has(readerName)) return statusPromises.get(readerName);
+  const pending = (async () => {
     await loadVersions();
-    if (versError) { statusP = null; return { published: false, missing: [], error: versError, info: {} }; }
+    if (versError) { statusPromises.delete(readerName); return { published: false, missing: [], error: versError, info: {} }; }
     const missing = [], info = {};
-    for (const id of modelsFor()) {
+    for (const id of modelsFor(readerName)) {
       const folder = OURS[id], v = NVERS['neural/' + folder];
       if (!v) { missing.push(`docs/model/neural/${folder}/ (not in versions.json)`); continue; }
       try {
-        const r = await fetch(urlOf(id, 'config.json'), { method: 'HEAD' });
+        const r = await fetch(urlOf(id, 'config.json'));
         if (!r.ok) { missing.push(`docs/model/neural/${folder}/config.json (HTTP ${r.status})`); continue; }
-      } catch (e) { statusP = null; return { published: false, missing: [], error: `${urlOf(id, 'config.json')}: ${e && e.message || e}`, info: {} }; }
+        CONFIGS[id] = await r.json();
+        if (readerName === 'modernbert') {
+          const cfg = CONFIGS[id];
+          if (cfg.model_type !== 'modernbert' || cfg.reader?.tokenization !== 'wordwise-bpe-prefix-space-v1' || !cfg.reader?.cut) { missing.push(`docs/model/neural/${folder}/config.json (not the trained ModernBERT reader contract)`); continue; }
+          for (const file of filesOf(id)) {
+            const size = NSIZES['neural/' + folder]?.[file];
+            if (!Number.isFinite(size) || size <= 0) missing.push(`docs/model/neural/${folder}/${file} (missing size manifest)`);
+          }
+        }
+      } catch (e) { statusPromises.delete(readerName); return { published: false, missing: [], error: `${urlOf(id, 'config.json')}: ${e && e.message || e}`, info: {} }; }
       const sz = NSIZES['neural/' + folder] || {};
       info[id] = { version: v, bytes: bytesOf(id), readme: sz['README.md'] != null ? urlOf(id, 'README.md') : null, facts: null };
-      if (id === modelsFor()[0] && info[id].readme) try { const r = await fetch(info[id].readme); if (r.ok) info[id].facts = readmeFacts(await r.text()); } catch (e) { /* facts stay unknown */ }
+      if (id === modelsFor(readerName)[0] && info[id].readme) try { const r = await fetch(info[id].readme); if (r.ok) info[id].facts = readmeFacts(await r.text()); } catch (e) { /* facts stay unknown */ }
     }
     return { published: !missing.length, missing, error: null, info };
-  })());
+  })();
+  statusPromises.set(readerName, pending); return pending;
 }
 /** true when every file of the demo's models is already in this browser's transformers.js cache (nothing to download) */
-async function cached() {
+async function cached(readerName) {
   try {
     await loadVersions();
     if (typeof caches === 'undefined' || !(await caches.has(CACHE))) return false;
     const c = await caches.open(CACHE);
-    for (const id of modelsFor()) for (const f of filesOf(id)) if (!(await c.match(storeKey(id, f)))) return false;
+    for (const id of modelsFor(readerName)) for (const f of filesOf(id)) if (!(await c.match(storeKey(id, f)))) return false;
     return true;
   } catch (e) { return false; }
 }
@@ -701,7 +753,8 @@ function makeCache() {
 async function pruneStale() {
   try {
     if (typeof caches === 'undefined' || !(await caches.has(CACHE))) return 0;
-    const c = await caches.open(CACHE), cur = new Set(modelsFor().flatMap(id => filesOf(id).map(f => storeKey(id, f))));
+    const keep = [...modelsFor(), ...(['sop-bert', 'modernbert'].filter(name => NVERS['neural/' + name]).flatMap(name => ['ours/' + name]))];
+    const c = await caches.open(CACHE), cur = new Set(keep.flatMap(id => filesOf(id).map(f => storeKey(id, f))));
     const prefixes = [`${MODEL_ROOT}neural/`, ...Object.keys(REVISIONS).map(id => `${HF}${id}/resolve/`)];
     let n = 0;
     for (const req of await c.keys()) if (!cur.has(req.url) && prefixes.some(p => req.url.startsWith(p))) { await c.delete(req); n++; }
@@ -710,15 +763,16 @@ async function pruneStale() {
 }
 /** the URL of the fitted confidence of the joint model (docs/js/neural-confidence.js; training/sketch/PRECISION_BERT.md), with its version
     from versions.json: docs/model/confidence/sop-bert.json?v=<version> (null outside the browser) */
-async function confidenceUrl() {
+async function confidenceUrl(readerName = READER_MODEL) {
   if (!MODEL_ROOT) return null;
   await loadVersions();
-  return `${MODEL_ROOT}confidence/${READER_MODEL}.json?v=${encodeURIComponent(NVERS['confidence/' + READER_MODEL + '.json'] || 'unversioned')}`;
+  return `${MODEL_ROOT}confidence/${readerName}.json?v=${encodeURIComponent(NVERS['confidence/' + readerName + '.json'] || 'unversioned')}`;
 }
 const looksNetwork = e => /failed to fetch|networkerror|load failed|network|dynamically imported module|importing a module script failed|err_|timeout|cors/i.test(String(e && e.message || e)) || (e && e.name === 'TypeError' && /fetch/i.test(String(e.message)));
 /** load the demo's model(s) (status() must say published); the `m` object create() takes */
-async function load(onProgress) {
-  const s = await status();
+async function load(onProgress, readerName = READER_MODEL) {
+  const selected = modelsFor(readerName);
+  const s = await status(readerName);
   if (!s.published) throw Object.assign(new Error(s.error || 'The neural model is not published yet: ' + s.missing.join(', ')), { unpublished: !s.error, network: !!s.error });
   let T;
   try { T = await import(LIB); }
@@ -732,10 +786,10 @@ async function load(onProgress) {
   const open = new Set();   // files asked for and not finished: transformers.js loads them in parallel, so a failure names no single file
   const track = e => { if (e && e.name && e.file) { const u = OURS[e.name] ? urlOf(e.name, e.file) : keyOf(e.name, e.file); if (e.status === 'initiate') open.add(u); else if (e.status === 'done') open.delete(u); } if (onProgress) onProgress(e); };
   const build = async device => {
-    if (modelsFor()[0] === MODELS.reader) {   // the joint model: tokenizer + model, decoded by makeReader
-      const id = MODELS.reader, tokenizer = await T.AutoTokenizer.from_pretrained(id, { revision: revOf(id), progress_callback: track });
+    if (readerName === 'modernbert' || selected[0] === MODELS.reader) {   // each joint reader owns its tokenizer, model and cut
+      const id = selected[0], tokenizer = await T.AutoTokenizer.from_pretrained(id, { revision: revOf(id), progress_callback: track });
       const model = await T.AutoModel.from_pretrained(id, { device, dtype: dtypeOf(id), revision: revOf(id), progress_callback: track });
-      const m = Object.assign({ device, dtype: dtypeOf(id), dtypeText: dtypeText(), qaModel: id, enumModel: id, actModel: id }, makeReader(T, tokenizer, model));
+      const m = Object.assign({ device, dtype: dtypeOf(id), dtypeText: dtypeText(readerName), qaModel: id, enumModel: id, actModel: id }, makeReader(T, tokenizer, model));
       open.clear();
       await m.read('draw a circle');   // the first inference: a device that fails here fails now, not on a message
       return m;
@@ -761,7 +815,7 @@ async function load(onProgress) {
   }
 }
 
-return { NEXT_CONTEXT, cut: (text, ctx) => cutOf(ACTIVE, text), canCut: () => !!(ACTIVE && ACTIVE.cut), create, load, status, cached, confidenceUrl, modelsFor, urlsFor, bytesOf, revOf, dtypeOf, dtypeText, makeReader, wordsOf, KIND_OF, MODELS, OURS, NAMES, ABOUT, ACT_MODEL, QA_MODEL, READER_MODEL, DTYPE };
+return { NEXT_CONTEXT, cut: (text, ctx) => cutOf(ACTIVE, text), canCut: () => !!(ACTIVE && ACTIVE.cut), create, load, status, cached, confidenceUrl, modelsFor, urlsFor, filesOf, bytesOf, revOf, dtypeOf, dtypeText, makeReader, gateReader, wordsOf, KIND_OF, MODELS, OURS, NAMES, ABOUT, ACT_MODEL, QA_MODEL, READER_MODEL, DTYPE };
 })();
 if (typeof module !== 'undefined') module.exports = NeuralKit;
 /*NEURAL-END*/

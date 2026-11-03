@@ -5,7 +5,7 @@ const $ = s => document.querySelector(s);
 const NS = 'http://www.w3.org/2000/svg';
 const svg = $('#canvas'), layer = $('#layer'), framesG = $('#frames'), msgs = $('#msgs');
 const escH = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-// Three readers turn each message into SOP wires, and a fourth tab combines two of them. Each has its own system (world, engine, undo/redo),
+// Four readers turn each message into SOP wires, and VSS-BERT combines two of them. Each has its own system (world, engine, undo/redo),
 // changed only by its own readings; the canvas shows the active tab's world. Every message goes to every reader that is loaded. The tab of the
 // neural reader is labelled SOP-BERT (its id stays 'neural'); VSS-BERT (id 'combined') is the combined reader of VSS and SOP-BERT (see the
 // "VSS-BERT" block below; training/sketch/combine/COMBINED_READER.md).
@@ -13,12 +13,14 @@ const escH = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;
 // readers voting) was removed then: VSS-BERT measured better (test part cost score 34.8 against 31.8, confidently wrong 1.8% against 2.6%).
 // READERS is the order of the tabs, of the lines of a reply and of the details; READ_ORDER is the order in which they read a message
 // (VSS-BERT reuses the readings of VSS and SOP-BERT, so it reads last).
-const READERS = [['combined', 'VSS-BERT'], ['rules', 'Rules'], ['vss', 'VSS'], ['neural', 'SOP-BERT']].map(([id, label]) => Object.assign({ id, label, last: [], pending: null, held: [], focusCell: null, reads: 0, lastRead: null }, K.createSystem()));
+const READERS = [['combined', 'VSS-BERT'], ['rules', 'Rules'], ['vss', 'VSS'], ['neural', 'SOP-BERT'], ['modernbert', 'ModernBERT']].map(([id, label]) => Object.assign({ id, label, last: [], pending: null, held: [], focusCell: null, reads: 0, lastRead: null }, K.createSystem()));
 const RD = Object.fromEntries(READERS.map(r => [r.id, r]));
-const READ_ORDER = ['rules', 'vss', 'neural', 'combined'].map(id => RD[id]);
+const READ_ORDER = ['rules', 'vss', 'neural', 'combined', 'modernbert'].map(id => RD[id]);
 const sys = RD.rules, engine = sys.engine;          // the legend, plugins and SOP rendering are the same in every reader; the Rules system serves them
 let cur = RD.combined, world = cur.world;            // the active tab
 const neural = NeuralKit.create(RD.neural.engine, RD.neural.formalize);
+const modernbert = NeuralKit.create(RD.modernbert.engine, RD.modernbert.formalize, { activateCut: false, requireJoint: true });
+const modern = { state: 'checking', models: null, status: null, error: null, bytes: 0, ms: 0, progress: { L: 0, T: 0 }, fromCache: false, token: 0, conf: { spec: null, error: null, url: null } };
 let models = null, queue = Promise.resolve();
 // the VSS formalizer reads through the composer (docs/model/micro/registry.json: 9 micro-worlds, CandidateRouter, event hint;
 // training/sketch/COMBINED.md).
@@ -106,6 +108,22 @@ let neuralGate = NON_DEFAULT.includes(store.get(NGATE_KEY)) ? store.get(NGATE_KE
 let ncNow = null;   // the module once loaded (the settings render synchronously)
 const ncP = import(new URL('js/neural-confidence.js', document.baseURI).href).then(m => { ncNow = m; return m; }).catch(e => { console.error(e); return null; });
 const nconf = { spec: null, error: null, url: null };
+const MGATE_KEY = 'sop.modernbert.gate';
+let modernGate = NON_DEFAULT.includes(store.get(MGATE_KEY)) ? store.get(MGATE_KEY) : 'cost';
+async function modernSpec() {
+  const NC = await ncP; if (!NC) throw new Error('The neural confidence decoder could not be loaded');
+  const c = modern.conf; c.url = await NeuralKit.confidenceUrl('modernbert');
+  try {
+    const spec = await NC.load(c.url);
+    if (!Number.isFinite(NC.threshold(spec, 'cost'))) throw new Error('ModernBERT has no finite cost-10 confidence threshold');
+    c.spec = spec; c.error = null; return spec;
+  } catch (e) { c.spec = null; c.error = e; throw e; }
+}
+GATES.modernbert = async n => {
+  const NC = await ncP; if (!NC) throw new Error('ModernBERT confidence decoder is unavailable; nothing was executed');
+  let spec = null; try { spec = await modernSpec(); } catch (e) { console.error(e); }
+  return NeuralKit.gateReader(NC, spec, n, modernGate);
+};
 /** the confidence file (loaded once; a failure is kept in nconf.error and tried again on the next message) */
 async function neuralSpec() {
   const NC = await ncP; if (!NC) throw new Error('docs/js/neural-confidence.js could not be loaded');
@@ -407,11 +425,11 @@ const canvasNames = rd => rd.world.state.shapes.map(s => s.name).concat((rd.worl
 //  - the BERT cut: the units of SOP-BERT's own reading (neural.js result.units, no model call), read by VSS and by the Rules; VSS-BERT
 //    reuses this VSS reading with SOP-BERT's own reading, so the BERT cutter runs once per message.
 // Each partner reads with its own tab's drawing (its names and last shapes, as when it read the message itself).
-const OWN_CUT = { rules: 'rules', vss: 'vss', neural: 'bert', combined: 'bert' };
+const OWN_CUT = { rules: 'rules', vss: 'vss', neural: 'bert', combined: 'bert', modernbert: 'modernbert' };
 let VF = null;
 const vfP = import(new URL('js/vss-formalizer.js', document.baseURI).href).then(m => { VF = m; return m; }).catch(e => { console.error(e); return null; });
 const cutStrategies = () => VF ? VF.CUT_STRATEGIES : [{ id: 'rules', label: 'Rules segmenter' }, { id: 'vss', label: 'VSS cutter' }, { id: 'bert', label: 'BERT cutter' }];
-const cutLabel = id => (cutStrategies().find(x => x.id === id) || { label: id }).label;
+const cutLabel = id => id === 'modernbert' ? 'ModernBERT cutter' : (cutStrategies().find(x => x.id === id) || { label: id }).label;
 /** the cut a tab's own reading used: its own cutter, or for SOP-BERT without a cut head the whole message */
 const cutOfRead = (rd, r) => rd.id === 'neural' && r.neural && r.neural.cutBy !== 'model' ? 'the whole message (no cut head)' : OWN_CUT[rd.id];
 /** the readings of the other readers on the VSS and the BERT cut (see above), made once per message (rec.crossP) -> {vss: {units, sop, rules,
@@ -887,9 +905,10 @@ function sysNote(text) { const d = document.createElement('div'); d.className = 
 function typing() { const d = document.createElement('div'); d.className = 'b bot'; d.innerHTML = '<div class="typing" aria-label="Thinking"><i></i><i></i><i></i></div>'; msgs.appendChild(d); scrollDown(); return d; }
 function setStatus(t) { $('#status').textContent = t; }
 const fmtMs = ms => ms < 10 ? ms.toFixed(1) + ' ms' : Math.round(ms) + ' ms';
-const isReady = rd => rd.id === 'rules' || (rd.id === 'vss' ? vssState === 'ready' : rd.id === 'neural' ? !!models && nState === 'ready' : isReady(RD.vss) && isReady(RD.neural));
+const isReady = rd => rd.id === 'rules' || (rd.id === 'modernbert' ? !!modern.models && modern.state === 'ready' : rd.id === 'vss' ? vssState === 'ready' : rd.id === 'neural' ? !!models && nState === 'ready' : isReady(RD.vss) && isReady(RD.neural));
 /** what a reader that is not loaded says instead of an answer */
 function offText(rd) {
+  if (rd.id === 'modernbert') return { unpublished: 'not available (the trained ModernBERT model is not published yet)', failed: 'not available (loading failed; see ModernBERT › Settings)' }[modern.state] || 'still loading, did not read this';
   if (rd.id === 'combined') { const wait = [RD.vss, RD.neural].filter(x => !isReady(x)); return `waits for ${listing(wait.map(x => x.label))} (it combines the readings of VSS and SOP-BERT)`; }
   if (rd.id === 'vss') return vssState === 'failed' ? 'not available (it could not be loaded)' : 'still loading, did not read this';
   return { unpublished: 'not available (the neural model is not published yet)', failed: 'not available (loading failed; see SOP-BERT › Settings)' }[nState] || 'still loading, did not read this';
@@ -1033,6 +1052,7 @@ async function doAnyway(rid, turn, idx) {
   const key = `${rid}:${turn}:${idx}`, mark = () => markHeld(key, 'done anyway'), pend = (rd.held || []).find(p => p.turn === turn && p.index === idx);
   if (pend && pend.state === 'superseded') { markHeld(key, 'superseded'); return; }
   if (!h || h.doneAnyway) { mark(); return; }
+  if (h.blocked) return;
   const env = r.env || (r.env = Object.assign({}, r.result ? r.result.env : {}));
   const own = new Set(h.nodes.map(n => n.id)), refsOf = v => K.isRef(v) ? [v.ref] : Array.isArray(v) ? v.flatMap(refsOf) : [];
   const need = [...new Set(h.nodes.flatMap(n => Object.values(n.args).flatMap(refsOf)).filter(x => !own.has(x)))];
@@ -1262,7 +1282,7 @@ async function readPart(rd, text, rec, pk) {
     else if (rd.id === 'rules') { const f = rd.formalize(text, ctx); r.ms = performance.now() - t0; r.rulesRes = f; r.nodes = f.nodes; r.notes = f.notes; }
     else if (rd.id === 'vss') { const v = await window.VSSFormalizer.formalize(text, ctx, rd.formalize, VSS_OPTS); r.ms = performance.now() - t0; r.vss = v; r.nodes = v.nodes; r.notes = v.notes; }
     else if (rd.id === 'combined') { const c = await combinedRead(rd, text, rec, ctx); r.ms = c.ms; r.combined = c; r.nodes = c.nodes; r.notes = c.notes; }
-    else { const n = await neural.formalize(text, ctx, { signals: true }); r.ms = performance.now() - t0; r.neural = n; r.nodes = n.nodes; r.notes = n.notes.filter(x => !/couldn't find an action/.test(x)); }
+    else { const n = await (rd.id === 'modernbert' ? modernbert : neural).formalize(text, ctx, { signals: true }); r.ms = performance.now() - t0; r.neural = n; r.nodes = n.nodes; r.notes = n.notes.filter(x => !/couldn't find an action/.test(x)); }
     if (!pk && !rec.raw) r.cutBy = cutOfRead(rd, r);   // each tab's own cutter (see "cutting")
   } catch (e) { r.error = e; r.ms = performance.now() - t0; return { text: `The ${rd.label} reader failed: ${e.message}`, err: true, ms: r.ms }; }
   return null;
@@ -1289,10 +1309,13 @@ async function doPart0(rd, text, rec, pk, pend) {
   // the parts no reading took: the Rules reader's "couldn't find an action in …" and the VSS reader's "Ignored (not understood): “…”, “…”"
   const unread = notes.filter(n => /couldn't find an action/.test(n)).map(n => (n.match(/in "(.*)"\.?$/) || [])[1]).filter(Boolean)
     .concat(notes.filter(n => /^Ignored \(not understood\):/.test(n)).flatMap(n => [...n.matchAll(/“([^”]*)”/g)].map(m => m[1])).filter(u => u.trim().split(/\s+/).length > 1));   // a one-word unit ("and") stays in the details only
+  if (r.neural && r.neural.unread) unread.push(...r.neural.unread);
+  const unreadWords = u => r.neural?.unread?.includes(u) ? `I did not read “${u}”: the message exceeds the token limit. Send that part as a separate message.` : `I didn’t understand “${u}”.`;
   // the requests not executed, as the chat says them (clarify.js; see heldHTML); the numbers stay in the details (gateHTML)
   const opts = clarifyOpts(r);
   const held = r.gate ? r.gate.held.map(h => {
     const input = clarifyInput(r, h), view = CLm ? CLm.heldView(input, opts) : { src: h.src, reasons: h.reasons.map(x => x.text), line: null, runs: null, anyway: null, canAnyway: true, edit: null };
+    if (h.blocked) { view.canAnyway = false; view.reasons = h.reasons.map(x => x.text); }
     if (h.destructive) destructiveView(view, h);
     h.clar = { input, opts, view };
     return { reader: rd.id, turn: rec.id, index: h.index, view };
@@ -1300,10 +1323,11 @@ async function doPart0(rd, text, rec, pk, pend) {
   // the reply's line: what was done; the requests not executed are rendered under it (botBubble, heldHTML)
   const withHeld = o => held.length ? Object.assign(o, { held, text: o.text && o.text !== 'Done.' ? o.text : '' }) : o;
   if (!nodes.length && held.length) {
-    const sub = unread.length ? unread.map(u => `I didn’t understand “${u}”.`).join(' ') : null;
+    const sub = unread.length ? unread.map(unreadWords).join(' ') : null;
     return withHeld({ text: '', sub, ms });
   }
   if (!nodes.length) {
+    if (rd.id === 'modernbert' && r.neural?.unread?.length) return { text: unread.map(unreadWords).join(' '), ms };
     r.error = new K.SOPError('No wires.');
     // the engine's question stays open when nothing was read (CLARIFY_DESIGN.md 4.5): a name still answers it
     const ask = pend && !pk ? ` Write one of the names to answer the question: ${listing(pend.candidates)}.` : '';
@@ -1322,7 +1346,7 @@ async function doPart0(rd, text, rec, pk, pend) {
     const e = er.error;
     if (e instanceof K.Clarify && !clar) { clar = e; rd.pending = pendingOf(er, nodes, result, overrides); } else if (!(e instanceof K.Clarify)) problems.push(e.message + (er.dependents.length ? ` (so I also skipped ${er.dependents.length} step${er.dependents.length > 1 ? 's' : ''} that needed it)` : ''));
   }
-  for (const u of unread) asks.push(`I didn’t understand “${u}”. Could you say it another way?`);
+  for (const u of unread) asks.push(unreadWords(u) + (r.neural?.unread?.includes(u) ? '' : ' Could you say it another way?'));
   const anyDone = result.steps.some(st => !st.error && !st.skipped && st.node.type !== 'mention');
   if (!anyDone && !clar && !problems.length && !asks.length) return withHeld({ text: 'Done.', ms });
   const highlight = { shapes: [], edges: [] }, touched = [];
@@ -1736,6 +1760,10 @@ function loadRowsHTML() {
 }
 function renderCard() {
   const c = $('#loadov'); if (!c) return;
+  if (cur.id === 'modernbert' && sub === 'drawing' && !isReady(cur)) {
+    c.hidden = false; c.classList.remove('out');
+    c.innerHTML = `<div class="lo-card" role="status"><h2>ModernBERT</h2>${modernBoxHTML()}<button type="button" class="btn" data-modern-settings>Open ModernBERT Settings</button></div>`; return;
+  }
   const show = !lo.dismissed && sub === 'drawing' && (cur.id === 'combined' ? !lo.done : cur.id !== 'rules' && !isReady(cur));
   if (!show) {
     if (c.hidden || c.classList.contains('out')) return;
@@ -1806,8 +1834,48 @@ function neuralBoxHTML() {
 let nRaf = 0;
 function refreshReaders() {   // every place that shows a reader's state
   updateTabs(); loadProgress(); setStatus(idleStatus());
+  // ModernBERT loads independently after the original readers' first check has completed.
+  if (cur.id === 'modernbert') renderCard();
   const box = $('#nm-box'); if (box) box.innerHTML = neuralBoxHTML();
+  const modernBox = $('#modern-box'); if (modernBox) modernBox.innerHTML = modernBoxHTML();
 }
+
+function modernBoxHTML() {
+  if (modern.state === 'checking') return '<p>Checking whether the trained ModernBERT model is published…</p>';
+  if (modern.state === 'unpublished') return `<p>The trained ModernBERT model is not published yet.</p><div class="note">${(modern.status?.missing || []).map(escH).join('<br>')}</div>`;
+  if (modern.state === 'failed') return `<p>ModernBERT could not be loaded.</p>${errHTML(modern.error)}<button type="button" class="btn" data-modern-retry>Try again</button>`;
+  if (modern.state === 'loading') return `<p>Loading ModernBERT on the CPU (WASM)… ${modern.progress.T ? `${mb(modern.progress.L)} of ${mb(modern.progress.T)}` : ''}</p>`;
+  return `<p>Ready: ModernBERT on the CPU (WASM, 8-bit files), ${mb(modern.bytes)}, loaded in ${(modern.ms / 1000).toFixed(1)} s${modern.fromCache ? ' from the browser cache' : ''}.</p>`;
+}
+async function checkModern() {
+  const token = ++modern.token, t0 = performance.now(), files = {};
+  modern.models = null; modernbert.setModels(null); modern.state = 'checking'; modern.error = null; refreshReaders();
+  try {
+    const status = await NeuralKit.status('modernbert'); if (token !== modern.token) return;
+    modern.status = status;
+    if (status.error) throw new Error(status.error);
+    if (!status.published) { modern.state = 'unpublished'; refreshReaders(); return; }
+    modern.fromCache = await NeuralKit.cached('modernbert'); if (token !== modern.token) return;
+    modern.state = 'loading'; refreshReaders();
+    const m = await NeuralKit.load(e => {
+      if (token !== modern.token || !e?.file) return;
+      if (e.status === 'progress') files[e.file] = [e.loaded || 0, e.total || 0];
+      if (e.status === 'done' && files[e.file]) files[e.file][0] = files[e.file][1];
+      const values = Object.values(files); modern.progress = { L: values.reduce((s, x) => s + x[0], 0), T: values.reduce((s, x) => s + x[1], 0) };
+      refreshReaders();
+    }, 'modernbert');
+    if (token !== modern.token) return;
+    modernbert.setModels(m); modern.models = m; modern.bytes = NeuralKit.bytesOf('ours/modernbert') || modern.progress.T; modern.ms = performance.now() - t0;
+    try { await modernSpec(); } catch (e) { console.error(e); }
+    modern.state = 'ready'; adoptRules(RD.modernbert);
+    sysNote(`ModernBERT reader ready on the CPU (WASM), ${mb(modern.bytes)}.` + (modern.conf.spec ? '' : ' Its confidence is unavailable, so every request is held.'));
+  } catch (e) { if (token !== modern.token) return; modern.state = e.unpublished ? 'unpublished' : 'failed'; modern.error = e; }
+  refreshReaders(); if (cur.id === 'modernbert' && sub === 'settings') renderSub();
+}
+document.addEventListener('click', ev => {
+  if (ev.target.closest('[data-modern-retry]') && modern.state !== 'loading') checkModern();
+  if (ev.target.closest('[data-modern-settings]')) setSub('settings');
+});
 /** when the page opens: is our model published? then it loads (from the browser cache when it is there) */
 async function checkNeural() {
   const tok = ++nToken; models = null; neural.setModels(null); nState = 'checking'; nError = null; refreshReaders();
@@ -1862,6 +1930,10 @@ function renderSub() {
 function setSub(k) { if (k === sub || !SUBS.some(x => x[0] === k)) return; sub = k; renderSub(); renderCard(); if (k === 'drawing') renderCanvas(); }
 subbar.addEventListener('click', ev => { const b = ev.target.closest('[data-sub]'); if (b) setSub(b.dataset.sub); });
 rpanel.addEventListener('change', ev => {   // SOP-BERT › Settings: the level of the neural gate (GATES.neural)
+  if (ev.target.name === 'modern-gate') {
+    modernGate = NON_DEFAULT.includes(ev.target.value) ? ev.target.value : 'cost'; store.set(MGATE_KEY, modernGate === 'cost' ? null : modernGate);
+    sysNote(`ModernBERT now ${gateDoes(modernGate)}.`); renderGateBadges(); if (sub === 'settings') renderSub(); return;
+  }
   if (ev.target.name !== 'neural-gate') return;
   const l = NON_DEFAULT.includes(ev.target.value) ? ev.target.value : 'cost'; neuralGate = l === 'cost' ? null : l; store.set(NGATE_KEY, neuralGate);
   sysNote(`SOP-BERT now ${gateDoes(l)}.`); renderGateBadges();
@@ -1880,7 +1952,7 @@ rpanel.addEventListener('click', ev => { const h = ev.target.closest('[data-help
 /* A tab that is not at its safety threshold says so all the time (owner's session 2026-11-03: VSS-BERT had been left on "execute all" in that
    browser and nothing on the screen showed it): an amber badge per such tab in the chat's header, "VSS-BERT: execute all", which opens that
    tab's Settings, and "Back to the safety threshold", which sets every tab back to its default level in one click. */
-const gateTabs = () => [['combined', combGate], ['vss', vssGate], ['neural', neuralGate || 'cost']];
+const gateTabs = () => [['combined', combGate], ['vss', vssGate], ['neural', neuralGate || 'cost'], ['modernbert', modernGate]];
 function renderGateBadges() {
   const box = $('#gate-badges'); if (!box) return;
   const off = gateTabs().filter(([id, l]) => l !== GATE_DEFAULT && RD[id]);
@@ -1894,6 +1966,7 @@ $('#gate-badges').addEventListener('click', ev => {
   if (ev.target.closest('#gate-reset')) {
     const was = gateTabs().filter(([, l]) => l !== GATE_DEFAULT).map(([id]) => RD[id].label);
     combGate = 'cost'; store.set(CGATE_KEY, null); vssGate = GATE_DEFAULT; store.set(GATE_KEY, null); neuralGate = null; store.set(NGATE_KEY, null);
+    modernGate = 'cost'; store.set(MGATE_KEY, null);
     sysNote(`${listing(was)} ${was.length > 1 ? 'are' : 'is'} back at the safety threshold: ${gateDoes('cost')}.`);
     renderGateBadges(); if (sub === 'settings') renderSub();
   }
@@ -1931,6 +2004,19 @@ function readerFacts(rd) {
 }
 const sharedNote = `<p class="intro">SOP Lang (the commands every reader writes) and the engine’s capabilities are the same for every reader. Help explains both: <button type="button" class="btn" data-help="sop-lang">SOP Lang</button> <button type="button" class="btn" data-help="capabilities">Capabilities</button> <button type="button" class="btn" data-help="architecture">How it works inside</button></p>`;
 function renderReaderSettings(rd) {
+  if (rd.id === 'modernbert') {
+    const spec = modern.conf.spec, NC = ncNow;
+    const row = level => {
+      const x = spec?.levels_out_of_fold?.[level];
+      return { level, num: x ? { right: x.heldout_oof_coverage, wrong: Number.isFinite(x.heldout_oof_precision) ? 1 - x.heldout_oof_precision : NaN, asked: x.heldout_oof_asked } : null,
+        acts: level === 'all' ? '' : NC && spec && Number.isFinite(NC.threshold(spec, level)) ? `acts from confidence ${NC.threshold(spec, level).toFixed(4)}` : 'confidence unavailable: every request is held' };
+    };
+    return `<h3 class="sub">ModernBERT reader</h3>${readerFacts(rd)}<div id="modern-box">${modernBoxHTML()}</div>
+      <p class="intro">An independent ModernBERT diagram parser with its own trained action, role, value, name and cut heads. It reads into its own drawing and uses only its own confidence. Its settings do not change SOP-BERT, the votes or VSS-BERT.</p>
+      <p class="note">Model <code>neural/modernbert</code>${modern.status?.info?.['ours/modernbert'] ? `, version <code>${escH(modern.status.info['ours/modernbert'].version)}</code>` : ''}. Confidence <code>confidence/modernbert.json</code>${modern.conf.url ? ` (<a href="${escH(modern.conf.url)}" target="_blank" rel="noopener">source</a>)` : ''}. ${modern.conf.error ? escH(modern.conf.error.message) + '. Every request is held.' : spec ? 'Loaded.' : 'Not loaded.'}</p>
+      <p class="note">Requests are limited to 128 pieces and messages to 512. A request that exceeds the limit is held; an omitted message suffix is reported as unread. Missing confidence or a missing safety threshold holds every request, including at Execute all.</p>
+      ${levelTableHTML('modern-gate', modernGate, GATE_LEVELS.map(row))}${sharedNote}`;
+  }
   if (rd.id === 'combined') return combinedSettingsHTML() + sharedNote;
   if (rd.id === 'rules') return `<h3 class="sub">Rules reader</h3>${readerFacts(rd)}
   <p class="intro">Hand-written code (<code>docs/js/logic.js</code>, ${mb(rulesBytes())}): it cuts the message into requests, finds the action by its cue words and answers the SOP Lang questions from the words around it. Nothing to download and nothing to choose; it reads every message at once.</p>${sharedNote}`;
@@ -2141,6 +2227,7 @@ queue.then(() => { READERS.forEach(rd => { rd.world.undoStack = []; }); renderSo
 DocsKit.init({ env: helpEnv, say: t => submit(t, undefined, { via: 'help' }), onPlug: (name, on) => { setPlug(name, on); if (!sheet.hidden && sheetTab === 'plugins') sbody.innerHTML = renderPlugins(); } });
 ensureVSS();              // same site: no button, no question
 checkNeural();            // our neural model loads by itself (from the browser cache when it is there)
+checkModern();
 /* a read-only summary for the browser tests and the console (training/sketch/test_scenes_menu.py): nothing here changes the page.
    turn(): the number of messages so far; view(): 'auto' | 'focus' | 'all'; steps(after): per tab, the messages after turn `after` that it
    did fully (executed every request it read, no engine error, nothing held), partly (executed something, held or failed something else) or
