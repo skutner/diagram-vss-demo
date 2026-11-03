@@ -32,10 +32,17 @@ class DeviceTests(unittest.TestCase):
              mock.patch.object(torch.cuda, "get_device_properties", return_value=props), \
              mock.patch.object(torch.cuda, "get_device_capability", return_value=(8, 6)), \
              mock.patch.object(torch.cuda, "set_per_process_memory_fraction") as fraction:
-            self.assertEqual(backend.configure()["cuda_allocator_limit"], 4*trainer.GIB)
-            fraction.assert_called_once_with(4/6, 0)
-            props.uuid = UUID[:-1] + "2"
-            with self.assertRaisesRegex(RuntimeError, "physical UUID mismatch"): backend.configure()
+            for actual in (UUID, UUID.removeprefix("GPU-")):
+                with self.subTest(actual=actual):
+                    props.uuid = actual; fraction.reset_mock()
+                    self.assertEqual(backend.configure()["cuda_allocator_limit"], 4*trainer.GIB)
+                    self.assertEqual(backend.identity["gpu_uuid"], UUID)
+                    fraction.assert_called_once_with(4/6, 0)
+            for actual in (UUID[:-1] + "2", UUID[4:-1] + "2", "not-a-uuid", "GPU-not-a-uuid"):
+                with self.subTest(rejected=actual):
+                    props.uuid = actual; fraction.reset_mock()
+                    with self.assertRaisesRegex(RuntimeError, "physical UUID"): backend.configure()
+                    fraction.assert_not_called()
 
     def test_cuda_dispatch_never_uses_mps(self):
         b = trainer.Backend("cuda", {"gpu_uuid": UUID})

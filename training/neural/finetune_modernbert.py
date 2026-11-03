@@ -19,6 +19,7 @@ import re
 import subprocess
 import sys
 import time
+import uuid as uuidlib
 import xml.etree.ElementTree as ET
 
 import numpy as np
@@ -126,6 +127,13 @@ class Backend:
                 raise RuntimeError("Exactly one native visible CUDA GPU is required")
             props = torch.cuda.get_device_properties(0)
             actual = str(props.uuid)
+            try:
+                raw = actual.removeprefix("GPU-")
+                parsed = uuidlib.UUID(raw)
+                if raw.lower() != str(parsed): raise ValueError("Noncanonical UUID representation")
+                actual = "GPU-" + str(parsed)
+            except ValueError:
+                raise RuntimeError("Invalid CUDA physical UUID: " + actual) from None
             if actual != self.identity["gpu_uuid"]: raise RuntimeError("CUDA physical UUID mismatch: " + actual)
             if props.total_memory < 4 * GIB: raise RuntimeError("GPU total memory is below allocator cap")
             torch.backends.cuda.matmul.allow_tf32 = False
