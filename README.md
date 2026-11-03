@@ -1,5 +1,11 @@
 # diagram-vss-demo
 
+[Open this fork's diagram demo](https://skutner.github.io/diagram-vss-demo/).
+The existing four-reader live baseline and per-action drawings are recorded in
+[the E2E report](reports/diagram-e2e-baseline.md). A fifth ModernBERT reader is
+being trained under [the registered plan](training/neural/MODERNBERT_PLAN.md);
+its completed model and live comparison remain pending.
+
 **SOP Sketchpad**: a diagram editor you talk to in English, in the browser, with no server. Every message is formalized into SOP Lang
 wires by each of three readers (the table under "The readers"), and the same engine and the same Datalog reasoner run the wires,
 whichever reader wrote them.

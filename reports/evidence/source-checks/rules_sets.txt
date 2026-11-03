@@ -1,0 +1,5 @@
+hand: rules 39/40
+blind: rules 53/60
+seen: rules 300/300
+new_identities: rules 300/300
+heldout_formulations: rules 299/300

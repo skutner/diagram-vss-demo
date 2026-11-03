@@ -1,0 +1,7 @@
+{
+  "reason": "Resource stop: {\"rss\": 352288768, \"available\": 2145796096, \"mps_allocated\": 2405285632, \"mps_driver\": 3511730176}",
+  "elapsed": 26.541973459010478,
+  "request_pos": 17,
+  "accumulated": 1,
+  "uncertain_transition": false
+}

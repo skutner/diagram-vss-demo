@@ -1,0 +1,13 @@
+test_cuda_allocator_exact_fraction_and_no_mps_configuration (__main__.DeviceTests.test_cuda_allocator_exact_fraction_and_no_mps_configuration) ... ok
+test_cuda_dispatch_never_uses_mps (__main__.DeviceTests.test_cuda_dispatch_never_uses_mps) ... ok
+test_exact_resource_boundaries (__main__.DeviceTests.test_exact_resource_boundaries) ... ok
+test_health_fails_closed_before_allocation (__main__.DeviceTests.test_health_fails_closed_before_allocation) ... ok
+test_mock_cuda_rng_error_keeps_durable_checkpoint (__main__.DeviceTests.test_mock_cuda_rng_error_keeps_durable_checkpoint) ... ok
+test_resume_rejection_preserves_metadata_before_build (__main__.DeviceTests.test_resume_rejection_preserves_metadata_before_build) ... ok
+test_two_process_lock_contention_and_release (__main__.DeviceTests.test_two_process_lock_contention_and_release) ... ok
+test_uuid_selection_before_initialization (__main__.DeviceTests.test_uuid_selection_before_initialization) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.461s
+
+OK

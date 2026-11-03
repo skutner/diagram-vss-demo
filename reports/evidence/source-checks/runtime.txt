@@ -1,0 +1,17 @@
+✔ private reader models never replace or clear the legacy global cutter (10.242ms)
+✔ prefix-space IDs, actual pad/mask, first indices and complete-word truncation (3.61975ms)
+✔ missing confidence and missing cost10 threshold hold at execute all; truncation cannot be forced (0.73475ms)
+✔ message truncation removes the final possibly incomplete request and reports its original suffix (1.289542ms)
+✔ unpublished ModernBERT refuses loading without choosing legacy classifier or QA (2.474ms)
+✔ external chunks participate in status, URLs, bytes and cached checks (1.538083ms)
+✔ cache pruning retains the union of both readers and all chunks (0.801375ms)
+✔ ModernBERT card refreshes progress and terminal states after legacy loading is complete (2.236209ms)
+✔ real pinned tokenizer agrees exactly with Python fixtures, including Unicode and caps (194.760709ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 342.60075

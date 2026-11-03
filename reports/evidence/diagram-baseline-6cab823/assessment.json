@@ -1,0 +1,471 @@
+{
+  "scope": "Independent assessment of reused direct live four-reader baseline; no new live actions, no fifth-reader validation",
+  "raw_record_sha256": "68eb1f0c53b567b3115af6ea61c47c2f6dff7617993e1d81884df592d0593dd9",
+  "fixture_sha256": "c81167e8bb6ff0a8c693317b11ca5d1e72f781bb7851ba28b7448c0edff89f3f",
+  "deployed_source": "6cab8231d2e92d0161fad43a03f56896806fd35e",
+  "identity_evidence": "reused parent live GET/build evidence; source-side hashes personally recomputed",
+  "summary": {
+    "rules": {
+      "right": 9,
+      "asked": 0,
+      "not_done": 1,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "vss": {
+      "right": 8,
+      "asked": 2,
+      "not_done": 0,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "neural": {
+      "right": 7,
+      "asked": 3,
+      "not_done": 0,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "combined": {
+      "right": 3,
+      "asked": 3,
+      "not_done": 4,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    }
+  },
+  "actions": [
+    {
+      "reader": "rules",
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EAlpha created as red circle; rendered body matches.",
+      "first_cause": null
+    },
+    {
+      "reader": "vss",
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EAlpha created as red circle; rendered body matches.",
+      "first_cause": null
+    },
+    {
+      "reader": "neural",
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EAlpha created as red circle; rendered body matches.",
+      "first_cause": null
+    },
+    {
+      "reader": "combined",
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct create proposal held at .898 < .9488; start-of-request uncertainty.",
+      "first_cause": "confidence"
+    },
+    {
+      "reader": "rules",
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta created as blue rectangle; rendered body matches.",
+      "first_cause": null
+    },
+    {
+      "reader": "vss",
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta created as blue rectangle; rendered body matches.",
+      "first_cause": null
+    },
+    {
+      "reader": "neural",
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta created as blue rectangle; rendered body matches.",
+      "first_cause": null
+    },
+    {
+      "reader": "combined",
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta created as blue rectangle; rendered body matches.",
+      "first_cause": null
+    },
+    {
+      "reader": "rules",
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Rendered arrow added; SOP endpoints E2EAlpha to E2EBeta and forward direction.",
+      "first_cause": null
+    },
+    {
+      "reader": "vss",
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Rendered arrow added; SOP endpoints E2EAlpha to E2EBeta and forward direction.",
+      "first_cause": null
+    },
+    {
+      "reader": "neural",
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Rendered arrow added; SOP endpoints E2EAlpha to E2EBeta and forward direction.",
+      "first_cause": null
+    },
+    {
+      "reader": "combined",
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct dispatched wire; engine rejects missing E2EAlpha because a1 was held; no scene change.",
+      "first_cause": "previous_missing_object"
+    },
+    {
+      "reader": "rules",
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EAlpha alone changes red to green in SOP and SVG.",
+      "first_cause": null
+    },
+    {
+      "reader": "vss",
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EAlpha alone changes red to green in SOP and SVG.",
+      "first_cause": null
+    },
+    {
+      "reader": "neural",
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EAlpha alone changes red to green in SOP and SVG.",
+      "first_cause": null
+    },
+    {
+      "reader": "combined",
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct dispatched wire; engine rejects missing E2EAlpha because a1 was held; no scene change.",
+      "first_cause": "previous_missing_object"
+    },
+    {
+      "reader": "rules",
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta moved to (80,376), below E2EAlpha at (80,70).",
+      "first_cause": null
+    },
+    {
+      "reader": "vss",
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta moved to (80,376), below E2EAlpha at (80,70).",
+      "first_cause": null
+    },
+    {
+      "reader": "neural",
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta moved to (80,376), below E2EAlpha at (80,70).",
+      "first_cause": null
+    },
+    {
+      "reader": "combined",
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct dispatched wire; engine rejects missing E2EAlpha because a1 was held; no scene change.",
+      "first_cause": "previous_missing_object"
+    },
+    {
+      "reader": "rules",
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta replaced by E2EGamma; body preserved and any existing arrow reference updated.",
+      "first_cause": null
+    },
+    {
+      "reader": "vss",
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta replaced by E2EGamma; body preserved and any existing arrow reference updated.",
+      "first_cause": null
+    },
+    {
+      "reader": "neural",
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta replaced by E2EGamma; body preserved and any existing arrow reference updated.",
+      "first_cause": null
+    },
+    {
+      "reader": "combined",
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EBeta replaced by E2EGamma; body preserved and any existing arrow reference updated.",
+      "first_cause": null
+    },
+    {
+      "reader": "rules",
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Label was parsed as set targeting E2EGamma and a shape showing Review queue; resolver rejects the nonexistent label mention; no change.",
+      "first_cause": "rules_parse"
+    },
+    {
+      "reader": "vss",
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "VSS proposed set without a label, not the requested label action; confidence .174 holds it.",
+      "first_cause": "action_reading_then_confidence"
+    },
+    {
+      "reader": "neural",
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct label proposal held; SOP .477 or Combined .752. Combined also has an incorrect VSS set candidate at .024; both held.",
+      "first_cause": "confidence"
+    },
+    {
+      "reader": "combined",
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct label proposal held; SOP .477 or Combined .752. Combined also has an incorrect VSS set candidate at .024; both held.",
+      "first_cause": "confidence"
+    },
+    {
+      "reader": "rules",
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Existing E2EGamma alone changes blue to yellow despite preceding failed label; no prerequisite object missing.",
+      "first_cause": null
+    },
+    {
+      "reader": "vss",
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Reader recognized set but asks which target shape; no executable wire. Not a reader formalization error.",
+      "first_cause": "context_resolution"
+    },
+    {
+      "reader": "neural",
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct context-filled yellow E2EGamma proposal held; SOP .487 or Combined .366; referent confidence.",
+      "first_cause": "confidence"
+    },
+    {
+      "reader": "combined",
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct context-filled yellow E2EGamma proposal held; SOP .487 or Combined .366; referent confidence.",
+      "first_cause": "confidence"
+    },
+    {
+      "reader": "rules",
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Both requested shapes move to row at (41,103) and (162,103).",
+      "first_cause": null
+    },
+    {
+      "reader": "vss",
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Both requested shapes move to row at (41,103) and (162,103).",
+      "first_cause": null
+    },
+    {
+      "reader": "neural",
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct row proposal held at .947 < .9551; action prior and target confidence.",
+      "first_cause": "confidence"
+    },
+    {
+      "reader": "combined",
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct dispatched wire; engine rejects missing E2EAlpha because a1 was held; no scene change.",
+      "first_cause": "previous_missing_object"
+    },
+    {
+      "reader": "rules",
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Yes with Start\u2192Process\u2192Check\u2192Done, independently supported by three directed graph edges; no mutation.",
+      "first_cause": null
+    },
+    {
+      "reader": "vss",
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Yes with Start\u2192Process\u2192Check\u2192Done, independently supported by three directed graph edges; no mutation.",
+      "first_cause": null
+    },
+    {
+      "reader": "neural",
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Yes with Start\u2192Process\u2192Check\u2192Done, independently supported by three directed graph edges; no mutation.",
+      "first_cause": null
+    },
+    {
+      "reader": "combined",
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Yes with Start\u2192Process\u2192Check\u2192Done, independently supported by three directed graph edges; no mutation.",
+      "first_cause": null
+    }
+  ],
+  "negative_control": [
+    {
+      "reader": "rules",
+      "no_sop_or_rendered_shape_edge_mutation": true,
+      "extras": 0
+    },
+    {
+      "reader": "vss",
+      "no_sop_or_rendered_shape_edge_mutation": true,
+      "extras": 0
+    },
+    {
+      "reader": "neural",
+      "no_sop_or_rendered_shape_edge_mutation": true,
+      "extras": 0
+    },
+    {
+      "reader": "combined",
+      "no_sop_or_rendered_shape_edge_mutation": true,
+      "extras": 0
+    }
+  ],
+  "limits": [
+    "10 requested actions per reader, dependent chain, narrow literal sample; no general precision or quality claim",
+    "All model evaluation data is allowed training data; no unseen/hidden claim",
+    "No ModernBERT fifth-reader readiness, training success or later gate verified",
+    "No new build/regression/live run: bounded scope is assessment of frozen existing capture"
+  ]
+}

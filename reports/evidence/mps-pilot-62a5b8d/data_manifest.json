@@ -1,0 +1,34 @@
+{
+  "messages": 24698,
+  "requests": 54584,
+  "extra_dirs": [
+    "llm_train/opus_train_a",
+    "llm_train/opus_train_b",
+    "llm_train/opus_train_c",
+    "llm_train/opus_train_d",
+    "llm_train/opus_gen_1",
+    "llm_train/opus_gen_2",
+    "llm_train/synth_rules",
+    "llm_train/synth_rules_ops",
+    "llm_train/synth_rules_ext",
+    "llm_train/ops_formulations",
+    "llm_train/opus_ext_1",
+    "llm_train/synth_combo"
+  ],
+  "files": {
+    "coverage.json": "d5ed1f70714b87fff30dc5f6bf25402902b38578d6c479e362eebf6b0a6d9cd3",
+    "cut_eval_sample1000.jsonl": "038401927d529e3872365c95dc7ec2b443b5171b18ccc67c0669945552957cc1",
+    "cut_heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cut_train.jsonl": "57d3fd9b57cbc4c9ec5efe2acb6fc9dc13899cf8ca7746c58d5ac3f47c468e59",
+    "eval_blind.jsonl": "eb312953a12cf76e1473b465a9523caf26c8d0639c4af066b3604ca812b6a4b0",
+    "eval_broad.jsonl": "5f13b2e7d767f282cca15a54f9152370e7de1f47e803ae642af60673dd5a3f7a",
+    "eval_hand.jsonl": "7f9ec9415f0e809c258c11a949d26115bf56f82b2d9dcc2a8f8447c9a8c142ee",
+    "eval_heldout_formulations.jsonl": "7bb572336913d6e150075a5322bc330600018bc342aae0fbe645ca04b5b622cc",
+    "eval_new_identities.jsonl": "2b168253ce192c8aa53c6be86dc39a8b5045f46dc8816f42564f73f7ee4f394f",
+    "eval_sample1000.jsonl": "167030207130c112c63ce5b740e3b135f3face5fcf31849d4da67c44cc853c03",
+    "eval_seen.jsonl": "2e10e7f1742376bab2115e780604aeac316262404876907c3122b4447263ae54",
+    "heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reader.json": "97de6db28305638602147577a65362399f61e2595ea58ef7715f73146c29d1eb",
+    "train.jsonl": "d42b251ad421ca2b7c294091669cbfb6299b9199b303fe5df753c49f0f990ea9"
+  }
+}

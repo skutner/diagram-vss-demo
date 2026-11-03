@@ -1,0 +1,17 @@
+regress: per gold request, right / wrong / not done (%) + extra
+                       gold  Rules                     VSS                       
+sample (1000 msgs)     4858   69.1/15.5/ 15.4 +769      77.7/ 9.3/ 13.0 +470     
+short: templates*      1140   98.9/ 0.4/  0.8 +4        78.5/ 7.6/ 13.9 +69      
+short: llm_short       3000   72.4/ 5.6/ 22.0 +374      71.1/ 8.6/ 20.3 +442     
+  * templates are written or generated from the rules' own templates (they favour the Rules); llm_short: the VSS cutter trained on them
+VSS gated at the cost-score threshold (t = 0.8718, docs/model/confidence/vss.json: fitted on the fresh2 + short3 calibration part, out-of-fold; VSS alone, without the votes the demo adds when SOP-BERT is loaded): precision of execution / right / asked / unread (%) / executed wrong (%) + extras executed
+sample (1000 msgs)            97.9 /  7.8 / 79.1 / 13.0 / 0.1 +5
+short: templates*             99.4 / 14.0 / 72.1 / 13.9 / 0.0 +1
+short: llm_short              97.0 / 10.6 / 69.1 / 20.3 / 0.0 +9
+cost score at the gate above (the cost-score threshold) (right - 10 x (executed wrong + extras executed), per 100 requested actions; 0 = asks everything):
+sample (1000 msgs)               5.8
+short: templates*               13.1
+short: llm_short                 7.6
+rules sets (score_rules): hand 39/40 blind 53/60 seen 300/300 new_identities 300/300 heldout_formulations 299/300
+test_diagram_ops: PASS (359/359 passed)
+test_editor_history: PASS (all passed)

@@ -1,0 +1,23 @@
+collect: precision_bert_collect.mjs on 9 sample folders, LIMIT=1 -> /var/folders/52/8wpccsvx135gqhwprc2f387c0000gn/T/nc-TCZ1Zy/collect.jsonl
+sample: 9 messages, 33 produced requests; max |min over recorded heads (rounded logits) - confSop| = 6.87e-5
+composer: cutter /Users/danielsava/.cache/diagram-vss-modernbert/baseline/docs/model/micro/cutter_worlds8s.json · worlds shapes [create,set,resize,fact,rule], links [connect,disconnect,reverse], position [move,swap,arrange,align,distribute,toFront,toBack], layout [improve,respace,snap,fit,flip,sort,groupBy,equalize,straighten,untangle], graphq [check,connected,path,reachable,cycle,exists], questions [count,list,extreme,nearest,describe,neighbors,degree,property,members,groupOf], manage [delete,duplicate,rename,label,group,ungroup], history [undo,redo,forget], help [help]
+composer v2: router cutter (top 3 of 9 cutter worlds) · fewest words not understood · ties and gaps: context filler /Users/danielsava/.cache/diagram-vss-modernbert/baseline/docs/model/context/weights.json margin 0
+event hint: mode H1 · event cutter /Users/danielsava/.cache/diagram-vss-modernbert/baseline/docs/model/micro/cutter_events8.json
+ok   same number of produced requests (scripts 33, browser code 33)
+ok   at least 20 produced requests compared (20 of 9 messages' 33)
+ok   act equal on 20 / 20
+ok   max |signal difference| = 0
+ok   max |confidence difference| (scripts vs browser code) = 0.00e+0
+ok   decisions agree at cost1 (threshold 0.3927): 20 / 20 (executed 19)
+ok   decisions agree at cost2 (threshold 0.7687): 20 / 20 (executed 17)
+ok   decisions agree at cost5 (threshold 0.8497): 20 / 20 (executed 17)
+ok   decisions agree at cost (threshold 0.8809): 20 / 20 (executed 15)
+ok   decisions agree at cost20 (threshold 0.9609): 20 / 20 (executed 7)
+ok   decisions agree at 95 (threshold 0.8809): 20 / 20 (executed 15)
+ok   decisions agree at 97 (threshold 0.9598): 20 / 20 (executed 7)
+ok   BERT cutter path (units given, cut head output reused): max |confidence difference| = 0.00e+0, one model call per message
+ok   units from another cut with opts.signals: the cut head runs once more and its output is read
+ok   every request not executed has its reasons in words (11 / 11)
+model: docs/model/neural/sop-bert (versions.json fd69a08c3b); confidence: docs/model/confidence/sop-bert.json
+PASS
+libc++abi: terminating due to uncaught exception of type std::__1::system_error: mutex lock failed: Invalid argument

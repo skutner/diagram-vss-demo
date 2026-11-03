@@ -1,0 +1,12 @@
+UTC 2026-11-03T16:40:46Z
+62a5b8d77f46b2e309fb429db72f89635614be98
+Traceback (most recent call last):
+  File "/Users/danielsava/browserLLM/diagram-vss-demo/training/neural/finetune_modernbert.py", line 287, in <module>
+    if __name__ == "__main__": main()
+                               ^^^^^^
+  File "/Users/danielsava/browserLLM/diagram-vss-demo/training/neural/finetune_modernbert.py", line 224, in main
+    m = check_resources(elapsed(), state["update"] < 8)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/danielsava/browserLLM/diagram-vss-demo/training/neural/finetune_modernbert.py", line 98, in check_resources
+    raise RuntimeError("Resource stop: " + json.dumps(m))
+RuntimeError: Resource stop: {"rss": 352288768, "available": 2145796096, "mps_allocated": 2405285632, "mps_driver": 3511730176}

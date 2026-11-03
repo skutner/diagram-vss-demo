@@ -108,3 +108,51 @@ color, position, connection, layout, questions, references and unsupported conte
 Record intended actions separately from each reader's wires, holds, executed
 changes and rendered SVG/SOP. Honest abstention is an outcome. Save screenshots
 and actual artifact versions. If training or deployment remains unfinished, say so.
+
+## CUDA follow-up after the incomplete MPS pilot
+
+The native MPS attempt at `62a5b8d77f46b2e309fb429db72f89635614be98` stopped
+after 17 request/cut pairs and one optimizer update, after 26.54 seconds, when
+available host memory was 2,145,796,096 bytes, below the fixed 2 GiB guard. The
+eight-update feasibility criterion was not reached. Its checkpoint and evidence
+are preserved. The settings and guard are not relaxed for another Mac attempt.
+
+Daniel said he will restore Apparatus's GPU and report when it is ready. A new
+CUDA run requires that confirmation, a fresh healthy recovery status, the expected
+RTX 3060 Laptop GPU identity, and no foreign compute workload. This plan authorizes
+no reboot, GPU reset, driver change or interruption of other work.
+
+Use the existing training loop with explicit `--device mps|cuda`, defaulting to
+MPS. Introduce backend helpers for synchronization, memory and RNG. CUDA must make
+no MPS calls, have no CPU fallback, and use exactly one visible GPU selected by
+physical UUID. Hold a nonblocking task-owned advisory lock keyed by that UUID for
+the entire process. Record identity, driver, capability, memory and CUDA versions.
+
+Use a new, initially empty CUDA run directory and seed 0. Do not resume the MPS
+checkpoint across backends. Preserve every training setting above, including
+FP32, eager attention, gradient checkpointing, both microbatches of 1, accumulation
+16, one epoch and all pilot/wall limits. Set matmul precision to highest and
+disable TF32. Apply a CUDA allocator limit of 4 GiB divided by total device memory;
+keep the same host/RSS guards. Report allocated, reserved, peaks and free/total
+GPU memory separately. The allocator cap does not cover every process GPU byte.
+
+Use isolated Python 3.12 and Torch 2.15.0+cu132 with the same dependency pins.
+The verified official wheel is
+`torch-2.15.0+cu132-cp312-cp312-manylinux_2_28_x86_64.whl`, SHA256
+`84936484ed0a2e55fc89f29c7e580be2eff4fb4c9c2c46c88849cf8062281f96`.
+Driver compatibility and native kernels still require checks after recovery.
+[Official wheel index](https://download.pytorch.org/whl/cu132/torch/).
+
+Checkpoint identity includes backend, physical UUID, package/build versions and
+all existing source/data/settings fields. Validate resume identity before changing
+run metadata or restoring tensors. Preserve the reviewed recovery transaction
+boundaries. CPU/Python/NumPy RNG and the selected backend RNG must be restored.
+
+Offline device tests must cover dispatch, exact memory boundaries, UUID lock
+contention and cross-backend resume rejection. Required native CUDA probes must
+exercise FP32 forward/backward, masks, allocator limits and dropout/RNG checkpoint
+continuation. Skips are not passes. Then run a fresh eight-update pilot, exactly
+128 request and 128 cut microbatches. Continue the same checkpoint/schedule only
+after its measured resource, gradient and projected four-hour checks pass. A
+negative CUDA pilot is preserved without parameter tuning. All original export,
+calibration, quality and five-reader live gates still apply.

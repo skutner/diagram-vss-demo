@@ -1,0 +1,6 @@
+### Result
+{"modernTab":"ModernBERT","matchingMessage":["ModernBERT","ModernBERT reader","ModernBERT","The trained ModernBERT model is not published yet.","docs/model/neural/modernbert/ (not in versions.json)","Open ModernBERT Settings","VSS-BERT is not ready yet, so here is what Rules made of it."],"legacyReady":true}
+### Ran Playwright code
+```js
+await (async page=>{await page.locator("[data-rtab=modernbert]").click();await page.locator("[data-sub=drawing]").click();const result={modernTab:await page.locator("[data-rtab=modernbert]").innerText(),loadingCards:await page.locator(".loadcard,.load-card,#load-card").allTextContents(),body:await page.locator("body").innerText()};await page.locator("[data-rtab=combined]").click();return {modernTab:result.modernTab,matchingMessage:result.body.split("\n").filter(x=>/ModernBERT|not published|unpublished|not ready|unavailable/i.test(x)),legacyReady:await page.locator("[data-rtab=combined]").evaluate(e=>!e.classList.contains("off"))}})(page);
+```

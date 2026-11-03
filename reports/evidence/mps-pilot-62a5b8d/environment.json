@@ -1,0 +1,72 @@
+{
+  "base": "answerdotai/ModernBERT-base",
+  "revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+  "settings": {
+    "seed": 0,
+    "epochs": 1,
+    "lr": 3e-05,
+    "weight_decay": 0.01,
+    "warmup": 0.06,
+    "accumulation": 16,
+    "microbatch": 1,
+    "cut_microbatch": 1,
+    "clip": 1.0,
+    "dtype": "float32"
+  },
+  "data": {
+    "messages": 24698,
+    "requests": 54584,
+    "extra_dirs": [
+      "llm_train/opus_train_a",
+      "llm_train/opus_train_b",
+      "llm_train/opus_train_c",
+      "llm_train/opus_train_d",
+      "llm_train/opus_gen_1",
+      "llm_train/opus_gen_2",
+      "llm_train/synth_rules",
+      "llm_train/synth_rules_ops",
+      "llm_train/synth_rules_ext",
+      "llm_train/ops_formulations",
+      "llm_train/opus_ext_1",
+      "llm_train/synth_combo"
+    ],
+    "files": {
+      "coverage.json": "d5ed1f70714b87fff30dc5f6bf25402902b38578d6c479e362eebf6b0a6d9cd3",
+      "cut_eval_sample1000.jsonl": "038401927d529e3872365c95dc7ec2b443b5171b18ccc67c0669945552957cc1",
+      "cut_heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cut_train.jsonl": "57d3fd9b57cbc4c9ec5efe2acb6fc9dc13899cf8ca7746c58d5ac3f47c468e59",
+      "eval_blind.jsonl": "eb312953a12cf76e1473b465a9523caf26c8d0639c4af066b3604ca812b6a4b0",
+      "eval_broad.jsonl": "5f13b2e7d767f282cca15a54f9152370e7de1f47e803ae642af60673dd5a3f7a",
+      "eval_hand.jsonl": "7f9ec9415f0e809c258c11a949d26115bf56f82b2d9dcc2a8f8447c9a8c142ee",
+      "eval_heldout_formulations.jsonl": "7bb572336913d6e150075a5322bc330600018bc342aae0fbe645ca04b5b622cc",
+      "eval_new_identities.jsonl": "2b168253ce192c8aa53c6be86dc39a8b5045f46dc8816f42564f73f7ee4f394f",
+      "eval_sample1000.jsonl": "167030207130c112c63ce5b740e3b135f3face5fcf31849d4da67c44cc853c03",
+      "eval_seen.jsonl": "2e10e7f1742376bab2115e780604aeac316262404876907c3122b4447263ae54",
+      "heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reader.json": "97de6db28305638602147577a65362399f61e2595ea58ef7715f73146c29d1eb",
+      "train.jsonl": "d42b251ad421ca2b7c294091669cbfb6299b9199b303fe5df753c49f0f990ea9"
+    }
+  },
+  "tokenization": "wordwise-bpe-prefix-space-v1",
+  "device": "mps",
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "python": "3.12.13 (main, Mar 25 2026, 03:16:06) [Clang 22.1.1 ]",
+  "versions": {
+    "torch": "2.15.0",
+    "transformers": "4.57.6",
+    "tokenizers": "0.22.2",
+    "numpy": "2.5.4",
+    "onnx": "1.23.2",
+    "onnxruntime": "1.29.0",
+    "psutil": "7.2.2"
+  },
+  "mps_recommended": 12713115648,
+  "mps_allocator_limit": 4294967296,
+  "sources": {
+    "finetune_modernbert.py": "e3cbc3da7f96ff0d2c5ffc6039c9766a07689139bb0659497b3cf7d10e7e7248",
+    "modernbert_tokenization.py": "98f760e6382b6544d52f743cfdbc3cef2f360887ccb04a2e50f4871bc3036757",
+    "finetune_roles.py": "cc9f1352439bc319180b3098b941f7b5812b494287cb92ba99bbb2214894f51c",
+    "make_roles.py": "36082dba6fd0f76528bcf4af06d917ef3f543ac5ee4218c6c648b38f0958ed51",
+    "make_data.py": "940d8d15a94fc824d57bb9db96d7681ed52e3693aca3b1b7346c4ef04b504d67"
+  }
+}

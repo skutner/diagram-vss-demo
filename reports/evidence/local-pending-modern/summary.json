@@ -1,0 +1,38 @@
+{
+  "status": "captured; assessment pending",
+  "cases": 11,
+  "legacyStatesIdentical": 44,
+  "recordPath": "/tmp/diagram-e2e-20261103170510571.json",
+  "tabs": [
+    {
+      "id": "combined",
+      "text": "VSS-BERT",
+      "off": false,
+      "selected": "true"
+    },
+    {
+      "id": "rules",
+      "text": "Rules",
+      "off": false,
+      "selected": "false"
+    },
+    {
+      "id": "vss",
+      "text": "VSS",
+      "off": false,
+      "selected": "false"
+    },
+    {
+      "id": "neural",
+      "text": "SOP-BERT",
+      "off": false,
+      "selected": "false"
+    },
+    {
+      "id": "modernbert",
+      "text": "ModernBERT",
+      "off": true,
+      "selected": "false"
+    }
+  ]
+}

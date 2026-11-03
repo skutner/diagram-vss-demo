@@ -108,5 +108,33 @@ class Contract(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "exceeds 90 MiB"):
                 pack_external(source, p / "too_small.onnx", chunk_bytes=1024)
 
+    def test_export_cut_drops_open_truncated_span(self):
+        import numpy as np
+        from export_modernbert import decoded
+        from finetune_roles import Layout
+        layout = Layout({"acts": ["create"], "tags": ["O"], "classes": []})
+        p = prepare(self.tok, "word " * 600, 512)
+        count = len(p["first"])
+        self.assertTrue(p["truncated"])
+        cases = [
+            (["B"] + ["I"] * (count - 1), [], 0),
+            (["B", "I"] + ["O"] * (count - 3) + ["B"], [[0, 9]], p["ws"][count - 1]["start"]),
+            (["B", "I"] + ["O"] * (count - 3) + ["I"], [[0, 9]], p["ws"][count - 1]["start"]),
+            (["B", "I"] + ["O"] * (count - 2), [[0, 9]], p["unreadFrom"]),
+            (["B", "I", "O", "B"] + ["I"] * (count - 4), [[0, 9]], 15),
+        ]
+        for tags, spans, unread in cases:
+            cut = np.zeros((1, len(p["ids"]), 3), dtype=np.float32)
+            for i, tag in enumerate(tags): cut[0, p["first"][i], "OBI".index(tag)] = 10
+            out = decoded((np.zeros((1, len(p["ids"]), 1)), np.zeros((1, 1)), cut), p, layout)
+            self.assertEqual(out["cut"], spans)
+            self.assertEqual(out["cutInfo"], {"truncated": True, "unreadFrom": unread})
+        p = prepare(self.tok, "word word word", 512)
+        cut = np.zeros((1, len(p["ids"]), 3))
+        for i, token in p["first"].items(): cut[0, token, 1 if i == 0 else 2] = 10
+        out = decoded((np.zeros((1, len(p["ids"]), 1)), np.zeros((1, 1)), cut), p, layout)
+        self.assertEqual(out["cut"], [[0, 14]])
+        self.assertEqual(out["cutInfo"], {"truncated": False, "unreadFrom": None})
+
 
 if __name__ == "__main__": unittest.main()
