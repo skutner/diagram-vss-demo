@@ -52,6 +52,7 @@ T.env.allowLocalModels = true; T.env.localModelPath = path.join(ROOT, "docs/mode
 const dtype = NeuralKit.dtypeOf("ours/sop-bert");
 const tokenizer = await T.AutoTokenizer.from_pretrained("sop-bert", { local_files_only: true });
 const model = await T.AutoModel.from_pretrained("sop-bert", { device: "cpu", dtype, local_files_only: true });
+try {
 let calls = 0;
 const counted = async (inp) => { calls++; return model(inp); };
 counted.config = model.config;
@@ -111,5 +112,8 @@ check("units from another cut with opts.signals: the cut head runs once more and
   for (const rec of recs.slice(0, 40)) { const r = rows.get(rec.id); const g = NC.gate(spec, await neural.formalize(r.text, { names: (r.names || []).slice(), last: [] }, { update: nextContext }), NC.defaultLevel(spec)); for (const u of g.held) { held++; if (u.reasons.length && u.reasons.every((x) => x.text && !/undefined|NaN|\[object/.test(x.text))) said++; } }
   check(`every request not executed has its reasons in words (${said} / ${held})`, held > 0 && said === held); }
 console.log(`model: docs/model/neural/sop-bert (versions.json ${JSON.parse(readFileSync(path.join(ROOT, "docs/model/versions.json"), "utf8")).files["neural/sop-bert"]}); confidence: ${path.relative(ROOT, SPEC_PATH)}`);
+} finally {
+  await model.dispose();
+}
 console.log(fails ? `FAIL (${fails})` : "PASS");
-process.exit(fails ? 1 : 0);
+process.exitCode = fails ? 1 : 0;

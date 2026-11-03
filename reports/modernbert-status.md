@@ -26,10 +26,15 @@ checks leave the full-sized trained artifact and native CUDA checks pending.
 
 The canonical Rules/VSS regression completed with Python 3.12 and matched the
 baseline table, including 359 diagram-operation checks and the history checks.
-The existing native SOP-BERT confidence checker printed matching assertions, then
-aborted with exit 134 during native teardown on both unchanged baseline and
-candidate. It is recorded as an unresolved check, rather than a passing command.
-The live browser baseline uses WASM and completed its capture without failures.
+The existing native SOP-BERT confidence checker initially printed matching
+assertions, then aborted with exit 134 during native teardown on both baseline
+and candidate. The failure evidence is retained. A subsequent reviewed cleanup
+fix awaits disposal and lets Node terminate naturally. Its 20-request case exits
+0, its deliberately insufficient 34-request case exits 1, and a cleanup rejection
+prints no success footer. Assertions and failure counting are unchanged.
+[Positive check](evidence/native-confidence-cleanup/native-confidence.txt),
+[negative check](evidence/native-confidence-cleanup/native-confidence-negative.txt),
+and [footer probe](evidence/native-confidence-cleanup/footer-probe.json).
 
 ## Training state
 
@@ -38,12 +43,14 @@ The native MPS attempt at `62a5b8d` stopped at the unchanged host-memory guard a
 complete. The checkpoint remains in the task cache and the
 [failure evidence](evidence/mps-pilot-62a5b8d/stopped.json) is preserved.
 
-Daniel will report when Apparatus's GPU is restored. A subsequent health check
-still reported `gpu_recovery_action: Reset` and error readings, despite an empty
-GPU process list. Native CUDA allocation and training have not been attempted.
-The reviewed CUDA implementation uses a fresh seed-0 run and preserves the MPS
-evidence. The [CUDA follow-up plan](../training/neural/MODERNBERT_PLAN.md#cuda-follow-up-after-the-incomplete-mps-pilot)
-requires readiness confirmation and a healthy driver before allocation.
+Daniel rebooted Apparatus and authorized checking and continuing. The post-reboot
+check reported `gpu_recovery_action: None`, normal temperature and no compute
+workload. An isolated CUDA environment is being installed, with the source pinned
+to `1527372` and verified data and pretrained-weight hashes. Native CUDA allocation
+and training remain gated on the required kernel probe. The reviewed CUDA
+implementation uses a fresh seed-0 run and preserves the MPS evidence.
+The [CUDA follow-up plan](../training/neural/MODERNBERT_PLAN.md#cuda-follow-up-after-the-incomplete-mps-pilot)
+records the resource and continuation checks.
 
 ## Remaining sequence
 

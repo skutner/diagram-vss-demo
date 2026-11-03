@@ -1,0 +1,20 @@
+[
+  {
+    "name": "success",
+    "exit": 0,
+    "stdout": "PASS",
+    "rejected": false
+  },
+  {
+    "name": "failed assertion",
+    "exit": 1,
+    "stdout": "FAIL (1)",
+    "rejected": false
+  },
+  {
+    "name": "rejecting disposal",
+    "exit": 1,
+    "stdout": "",
+    "rejected": true
+  }
+]
