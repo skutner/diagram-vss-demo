@@ -1,0 +1,18 @@
+{
+  "research_cutoff": "2026-11-04",
+  "status": "blocked_public_source_access",
+  "access_error": "Permission denied: webfetch",
+  "eligible_artifacts": [],
+  "near_miss_exclusions": [],
+  "attempted_metadata_urls": [
+    "https://huggingface.co/api/models?author=LiquidAI&search=LFM2&limit=100&sort=lastModified&direction=-1",
+    "https://huggingface.co/api/models?author=google&search=gemma&limit=100&sort=lastModified&direction=-1",
+    "https://huggingface.co/api/models?author=microsoft&search=Phi&limit=100&sort=lastModified&direction=-1",
+    "https://huggingface.co/api/models?search=SmolLM3&limit=10",
+    "https://huggingface.co/api/models?author=HuggingFaceTB&search=SmolLM2&limit=100"
+  ],
+  "artifact_sizes_revisions_hashes_and_licenses": "unverified",
+  "browser_and_native_runtime_tests": "not_run",
+  "model_downloads": "not_attempted",
+  "limitation": "No artifact qualifies without primary metadata for every required file and an immutable revision. Empty arrays indicate missing evidence, not that no candidates exist."
+}

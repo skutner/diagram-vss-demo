@@ -1,0 +1,63 @@
+{
+  "cutoff": "2026-11-04",
+  "evidence_type": "Public package-file listings and repository metadata; no model downloads or inference",
+  "sizes": "raw bytes; not compressed HTTP transfer sizes or peak RAM",
+  "wllama": {
+    "version": "3.8.1",
+    "npm_gitHead": "b68fd6427063266176bb0054befe9ff70b3258f1",
+    "github_tag_commit": "7ed17361caf221a84aa1e80ca85a3d6324f3af85",
+    "llama_cpp_commit": "46ca246de9bb1c35269722a6240d37d9dfd79cad",
+    "generated_engine_label": "b11364-46ca246",
+    "npm_integrity": "sha512-Pl7BEJhPU8OHnV/yhn3DFZYhLLOdSHh+4TND79WCftHnlUAdQPAsyc/CfIOY+4mVxvf5VW3Xw3Uf7BBfotS1gw==",
+    "listing": "https://data.jsdelivr.com/v1/package/npm/@wllama/wllama@3.8.1/flat",
+    "assets": [
+      {"url": "https://cdn.jsdelivr.net/npm/@wllama/wllama@3.8.1/esm/index.min.js", "bytes": 331458, "sha256_base64_from_listing": "g0176WMXIkjK8TxvKueGAJtD7f7vyF7q3CBgnoRH0Rg=", "role": "Choose minified main JS; worker code embedded"},
+      {"url": "https://cdn.jsdelivr.net/npm/@wllama/wllama@3.8.1/esm/index.js", "bytes": 382633, "sha256_base64_from_listing": "5VBnU+QaWcEfYfLFJCIEW+n8duMqfkfwN6qtXfTscj4=", "role": "Alternative unminified JS; do not also count minified JS"},
+      {"url": "https://cdn.jsdelivr.net/npm/@wllama/wllama@3.8.1/esm/wasm/wllama.wasm", "bytes": 8763949, "sha256_base64_from_listing": "VR8TQ5Nm7/EeBXsbkf5Gp/2sKdVtZzctTF8ZpUnf5ww=", "role": "Modern JSPI/MEMORY64 build; same asset for single/multithread CPU and WebGPU"}
+    ],
+    "compat_listing": "https://data.jsdelivr.com/v1/package/npm/@wllama/wllama-compat@3.8.1/flat",
+    "compat_assets": [
+      {"url": "https://cdn.jsdelivr.net/npm/@wllama/wllama-compat@3.8.1/wasm/wllama.js", "bytes": 171615, "sha256_base64_from_listing": "JknutAiYiEHDcuVIBa36Ja7V0C+FDAmt14wvOsDz/OE=", "role": "Additional glue on compat path only; main JS still needed"},
+      {"url": "https://cdn.jsdelivr.net/npm/@wllama/wllama-compat@3.8.1/wasm/wllama.wasm", "bytes": 16005007, "sha256_base64_from_listing": "LbP2fQvMGc348U8SnkbKtpG/+JiVSAj4otxMWG61u2g=", "role": "Compat alternative WASM; Asyncify, no MEMORY64"}
+    ],
+    "modern_minified_path_bytes": 9095407,
+    "compat_minified_path_bytes": 16508080,
+    "both_paths_eager_bytes": 25272029,
+    "separate_single_multi_wasms_required": false,
+    "separate_worker_js_required_modern": false
+  },
+  "transformers_production_representative": {
+    "version": "3.8.1",
+    "gitHead": "2ec882e739e4cb461f8d440d4d7394cbf5372429",
+    "ort_web_dependency": "1.22.0-dev.20250409-89f8206ba4",
+    "listing": "https://data.jsdelivr.com/v1/package/npm/@huggingface/transformers@3.8.1/flat",
+    "assets": [
+      {"path": "dist/transformers.min.js", "bytes": 888173, "sha256_base64_from_listing": "qlACtw54l5jaJj9fmcYr0+j80MEZJYpJPEDBgGSDZfo="},
+      {"path": "dist/ort-wasm-simd-threaded.jsep.mjs", "bytes": 44484, "sha256_base64_from_listing": "CPuG7EM8eL+wMsXYSmi46OWo2BJo+jniQxQXmldnpbk="},
+      {"path": "dist/ort-wasm-simd-threaded.jsep.wasm", "bytes": 21596019, "sha256_base64_from_listing": "xGZV6KlK/EUzjUyyuEBHX4jlAS1SRQmRblBQecAL+jk="}
+    ],
+    "representative_set_bytes": 22528676
+  },
+  "latest_stable_metadata": {
+    "transformers_js": {"version": "4.3.2", "tag_commit": "028721487d55aac3c7f6bad8d87d1b3511a1027c", "ort_web_dependency": "1.31.0-dev.20260914-8d85527a0", "source": "https://registry.npmjs.org/@huggingface/transformers/4.3.2"},
+    "ort_web": {"version": "1.31.1", "tag_commit": "6af1a932e2286d5c58166085d24c68783033edee", "source": "https://registry.npmjs.org/onnxruntime-web/1.31.1"}
+  },
+  "webllm_representative": {
+    "version": "0.2.87",
+    "tag_commit": "6897fadc2bed9a5a7940265dd80220f83ca184e7",
+    "runtime_build_dependency": "0.28.0-dev1",
+    "xgrammar_build_dependency": "0.1.27",
+    "listing": "https://data.jsdelivr.com/v1/package/npm/@mlc-ai/web-llm@0.2.87/flat",
+    "js": {"url": "https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.87/lib/index.js", "bytes": 6814447, "sha256_base64_from_listing": "O/9MVc0vAgBxFRc0G6vOvnqRqO+FuYNCBDn88mg1pnQ="},
+    "library_affecting_commit": "146ed9cd4b4062e967b017fd2291f7106b50599f",
+    "library_directory": "web-llm-models/v0_2_87/base",
+    "model_specific_runtime_choices": [
+      {"filename": "Qwen3-0.6B-q4f16_1_cs1k-webgpu.wasm", "bytes": 6561594, "git_blob_sha": "bccc95f5fa0cac4a5bfa7a6305c6195eea23f7f7"},
+      {"filename": "Qwen3-0.6B-q4f32_1_cs1k-webgpu.wasm", "bytes": 6440711, "git_blob_sha": "cd72c228d406519f4c2e461112e6c3f0377994e7"}
+    ],
+    "library_listing": "https://api.github.com/repos/mlc-ai/binary-mlc-llm-libs/contents/web-llm-models/v0_2_87/base",
+    "js_plus_qwen3_q4f16_library_bytes": 13376041,
+    "complete_fetch_inventory_verified": false,
+    "cpu_inference_support_established": false
+  }
+}

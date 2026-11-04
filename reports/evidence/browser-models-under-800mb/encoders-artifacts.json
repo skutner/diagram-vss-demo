@@ -1,0 +1,85 @@
+{
+  "as_of_utc": "2026-11-04T08:00:00Z",
+  "method": "Hugging Face API tree recursive expanded at immutable commit; sizes are publisher metadata, not downloaded or independently hashed. Resolve URL is https://huggingface.co/{repo}/resolve/{revision}/{path}. Git blob IDs are Git object hashes; lfs_sha256 is the advertised LFS content hash, not a local verification. MB=1000000 bytes, MiB=1048576 bytes.",
+  "scope": "Each proposed model-file inventory conservatively includes listed tokenizer auxiliaries. Runtime libraries, app, supervised heads and any newly exported task graph are NOT included or sized; actual graph external references and loader downloads except Ettin's declared one-shard configuration are not inspected. These are not verified complete end-to-end browser downloads; strict 800000000-byte eligibility is provisional until runtime and task export are frozen and summed. No runtime tested.",
+  "candidates": [
+    {
+      "name": "Ettin 68m supervised base recommendation; no browser export located",
+      "repo": "jhu-clsp/ettin-encoder-68m", "revision": "ac19ae4bc51093b31c475665ac872a936d056cc2", "revision_date": "2025-07-18T14:09:39Z",
+      "tree_api": "https://huggingface.co/api/models/jhu-clsp/ettin-encoder-68m/tree/ac19ae4bc51093b31c475665ac872a936d056cc2?recursive=true&expand=true",
+      "browser_bundle": "NOT VERIFIED; source repository has no ONNX export; other publishers not exhaustively searched", "source_dtype": "float32 per config", "native_source_bundle_bytes": 276023908, "native_source_bundle_MB": 276.023908, "native_source_bundle_MiB": 263.236912,
+      "files": [
+        {"path":"config.json","bytes":1239,"git_blob":"b8f534110f9388ee7e9054dfeb71e26a86356cd3"},
+        {"path":"pytorch_model.bin","bytes":273868198,"git_blob":"a6bc6d1bf1eda46c1737adb9286be01696c55c4f","lfs_sha256":"97ef650cbe35e69c363f28edbbc30be68912130d6a909de3a05714bd7bb1217d"},
+        {"path":"special_tokens_map.json","bytes":694,"git_blob":"6bf65ea14185a88eef7e24b41c86a953a58dcbad"},
+        {"path":"tokenizer.json","bytes":2132967,"git_blob":"de3f3e316b66f3885df49ab2c0fff3e477ff1680"},
+        {"path":"tokenizer_config.json","bytes":20810,"git_blob":"d78aa50c890c167d8700301e5580164466e51fa5"}
+      ]
+    },
+    {
+      "name": "Ettin 32m published fill-mask export",
+      "source": {"repo":"jhu-clsp/ettin-encoder-32m","revision":"1b8ba06455dd44f80fc9c1ca9e22806157a57379","revision_date":"2025-07-18T14:04:36Z","native_weight_file":"pytorch_model.bin","native_weight_bytes":128345969,"dtype":"float32 per config"},
+      "repo":"onnx-community/ettin-encoder-32m-ONNX","revision":"37b0e13e959679e9bd8a5cf4b7b49eda17cd5042","revision_date":"2025-12-07T20:35:52Z",
+      "tree_api":"https://huggingface.co/api/models/onnx-community/ettin-encoder-32m-ONNX/tree/37b0e13e959679e9bd8a5cf4b7b49eda17cd5042?recursive=true&expand=true",
+      "artifact_type":"published masked-LM graph; not diagram heads", "quantization":"model_quantized filename; exact stored tensor dtypes, operators and arithmetic not inspected", "quantized_model_inventory_bytes":38816451,"quantized_model_inventory_MB":38.816451,"quantized_model_inventory_MiB":37.018252,"fp32_model_inventory_bytes":134635205,"fp32_model_inventory_MB":134.635205,"fp32_model_inventory_MiB":128.398137,
+      "files":[
+        {"path":"config.json","bytes":1881,"git_blob":"d9c55cf913e2bcd10429946822a0863f1b0a1b1d","use":"both"},
+        {"path":"tokenizer.json","bytes":2128614,"git_blob":"695dc19b96be8e5b3d7d7d75665ba7ead2f3a17a","use":"both"},
+        {"path":"tokenizer_config.json","bytes":387,"git_blob":"3af6ecb050c97566dd0cb5c2b9807c2ec642d598","use":"both"},
+        {"path":"onnx/model_quantized.onnx","bytes":332289,"lfs_sha256":"77485a799b456335947993ab72b49fbfbbd7ebf510b39cd29dfd2fbe8376d4ad","use":"quantized"},
+        {"path":"onnx/model_quantized.onnx_data","bytes":36353280,"lfs_sha256":"f0c2bab7757383c2419091338b4bd08dfab6cf123604675a8c1d25e2f93b755d","use":"quantized"},
+        {"path":"onnx/model.onnx","bytes":83459,"lfs_sha256":"556fa7ce1a5a9b47bb250abc10a4ee956e49f3489c6737b1a9d038237acdf4eb","use":"fp32"},
+        {"path":"onnx/model.onnx_data","bytes":132420864,"lfs_sha256":"165bce27fa06137972f9e1188e7c1949d1e1522170e99d7a66cb09fdfa31cb8f","use":"fp32"}
+      ]
+    },
+    {
+      "name":"DeBERTa-v3-small community export",
+      "source":{"repo":"microsoft/deberta-v3-small","revision":"a36c739020e01763fe789b4b85e2df55d6180012","revision_date":"2022-09-26T08:59:13Z","native_weight_file":"pytorch_model.bin","native_weight_bytes":286059269,"dtype":"not independently verified"},
+      "repo":"onnx-community/deberta-v3-small","revision":"cd592b4177c55afa3068f2316f0096a3b687f996","revision_date":"2024-10-08T13:54:56Z",
+      "tree_api":"https://huggingface.co/api/models/onnx-community/deberta-v3-small/tree/cd592b4177c55afa3068f2316f0096a3b687f996?recursive=true&expand=true",
+      "quantization":"quantized filename; actual operators and arithmetic not inspected","quantized_model_inventory_bytes":172822157,"quantized_model_inventory_MB":172.822157,"quantized_model_inventory_MiB":164.816052,"fp32_model_inventory_bytes":596874342,"fp32_model_inventory_MB":596.874342,"fp32_model_inventory_MiB":569.223730,
+      "files":[
+        {"path":"config.json","bytes":785,"git_blob":"433052c6d5fa0ac2e9f24c19c853c1a7355f9ca7","use":"both"},
+        {"path":"tokenizer.json","bytes":8656624,"git_blob":"12cc2e86bad0e731393847b017b32a7405ebd4f8","use":"both"},
+        {"path":"tokenizer_config.json","bytes":1284,"git_blob":"13d6406af565bd9e59dd649afd4c2b48bddb6a4c","use":"both"},
+        {"path":"special_tokens_map.json","bytes":286,"git_blob":"2c9cb07c8fdeeb5ac3ceafb170592e990b204dcd","use":"both"},
+        {"path":"added_tokens.json","bytes":23,"git_blob":"8ee2b3623dc526b123cde0aaa401755b82299af2","use":"both"},
+        {"path":"spm.model","bytes":2464616,"lfs_sha256":"c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd","use":"both"},
+        {"path":"onnx/model_quantized.onnx","bytes":161698539,"lfs_sha256":"6885e9c1e863dc1efa883ebc440aefb37c6424cde8c449cbd0645d29c8178081","use":"quantized"},
+        {"path":"onnx/model.onnx","bytes":585750724,"lfs_sha256":"4f7388bb5928d1dd072f225a0454ef5a23ffb5e7c246c7526b16a0f62ec86577","use":"fp32"}
+      ]
+    },
+    {
+      "name":"NeoBERT community export",
+      "source":{"repo":"chandar-lab/NeoBERT","revision":"5424c8efeea6491b151d62dee55a752165407430","revision_date":"2025-03-25T13:40:50Z","native_weight_file":"model.safetensors","native_weight_bytes":980567608,"dtype":"float32 per config"},
+      "repo":"onnx-community/NeoBERT-ONNX","revision":"051788e9abded35be24438c658cde1564e62d6ad","revision_date":"2025-07-01T03:27:39Z",
+      "tree_api":"https://huggingface.co/api/models/onnx-community/NeoBERT-ONNX/tree/051788e9abded35be24438c658cde1564e62d6ad?recursive=true&expand=true",
+      "quantization":"quantized filename; actual operators and arithmetic not inspected","quantized_model_inventory_bytes":224115138,"quantized_model_inventory_MB":224.115138,"quantized_model_inventory_MiB":213.732851,"fp32_model_inventory_bytes":888889259,"fp32_model_inventory_MB":888.889259,"fp32_model_inventory_MiB":847.710856,
+      "files":[
+        {"path":"config.json","bytes":698,"git_blob":"33fc8579a5a4a78ae2683e2a9824e747f556b23e","use":"both"},
+        {"path":"tokenizer.json","bytes":711396,"git_blob":"688882a79f44442ddc1f60d70334a7ff5df0fb47","use":"both"},
+        {"path":"tokenizer_config.json","bytes":1313,"git_blob":"f8885393481ade2500beb6704b2dbd2025a6dcec","use":"both"},
+        {"path":"special_tokens_map.json","bytes":125,"git_blob":"a8b3208c2884c4efb86e49300fdd3dc877220cdf","use":"both"},
+        {"path":"vocab.txt","bytes":231508,"git_blob":"fb140275c155a9c7c5a3b3e0e77a9e839594a938","use":"both"},
+        {"path":"onnx/model_quantized.onnx","bytes":223170098,"lfs_sha256":"77c6612cb5b0188660167340605e8b193871b67610e1b072f00518930ae2a582","use":"quantized"},
+        {"path":"onnx/model.onnx","bytes":887944219,"lfs_sha256":"80142477a450cc7422ea8231a283185d24476e59e4915a270fd5a61fce1cbd44","use":"fp32"}
+      ]
+    },
+    {
+      "name":"all-MiniLM-L6-v2 sentence-embedding export; compact control",
+      "source":{"repo":"sentence-transformers/all-MiniLM-L6-v2","revision":"1110a243fdf4706b3f48f1d95db1a4f5529b4d41","revision_date":"2026-06-01T06:29:13Z","native_weight_file":"model.safetensors","native_weight_bytes":90868376,"dtype":"not independently verified"},
+      "repo":"Xenova/all-MiniLM-L6-v2","revision":"751bff37182d3f1213fa05d7196b954e230abad9","revision_date":"2025-07-22T16:42:24Z",
+      "tree_api":"https://huggingface.co/api/models/Xenova/all-MiniLM-L6-v2/tree/751bff37182d3f1213fa05d7196b954e230abad9?recursive=true&expand=true",
+      "quantization":"quantized filename; actual operators and arithmetic not inspected","quantized_model_inventory_bytes":23916680,"quantized_model_inventory_MB":23.916680,"quantized_model_inventory_MiB":22.808723,"fp32_model_inventory_bytes":91331916,"fp32_model_inventory_MB":91.331916,"fp32_model_inventory_MiB":87.100903,
+      "files":[
+        {"path":"config.json","bytes":650,"git_blob":"72147e4ff4426ebedbfa2146c4a0999def51a313","use":"both"},
+        {"path":"tokenizer.json","bytes":711661,"git_blob":"c17ed520ed8438736732a54957a69306b8822215","use":"both"},
+        {"path":"tokenizer_config.json","bytes":366,"git_blob":"37fca74771bc76a8e01178ce3a6055a0995f8093","use":"both"},
+        {"path":"special_tokens_map.json","bytes":125,"git_blob":"a8b3208c2884c4efb86e49300fdd3dc877220cdf","use":"both"},
+        {"path":"vocab.txt","bytes":231508,"git_blob":"fb140275c155a9c7c5a3b3e0e77a9e839594a938","use":"both"},
+        {"path":"onnx/model_quantized.onnx","bytes":22972370,"lfs_sha256":"afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1","use":"quantized"},
+        {"path":"onnx/model.onnx","bytes":90387606,"lfs_sha256":"759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e","use":"fp32"}
+      ]
+    }
+  ]
+}
