@@ -357,7 +357,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 0.88re
         <p id="verdict" class="verdict" aria-live="polite"></p>
       </div>
     </div>
-    <figcaption>The fingerprints are real: this page uses the recipe in <code>docs/js/vss/stars.js</code> and matches its output exactly. The sentence, the slot keys and the scoring are a simplified sketch. It assumes the ideal case, where each word’s address equals its slot key. In VSS the route book computes each address from the word’s kind and its neighbours, and training pulls it toward that key. The 0.05 line mirrors the cut-off the real reader applies to its own margin.</figcaption>
+    <figcaption>The fingerprints are real: this page uses the recipe in <code>docs/js/vss/stars.js</code> and matches its output exactly. The sentence, the slot keys and the scoring are a simplified sketch. It assumes the ideal case, where each word’s address equals its slot key. In VSS the route book computes each address from the word’s kind and its neighbours, and training pulls it toward that key. Under a margin of 0.05 the real reader marks its reading “abstain”; whether the request then runs is decided by the 14-signal confidence described below.</figcaption>
   </figure>
 
   <div class="prose">
@@ -566,7 +566,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 0.88re
     <li><strong>Its own margin says little.</strong> Used alone as a confidence, the margin separated right from wrong readings with an AUROC of about 0.58, barely above a coin flip (0.5). The 14-signal confidence reaches 0.779 out-of-fold on its calibration set. The 0.05 abstain cut-off on the margin was stated, not fitted.</li>
     <li><strong>One request at a time.</strong> Long input blurs the single state vector, so everything depends on the cutter. A bad cut carries through to the reading.</li>
     <li><strong>New writers hurt.</strong> On text from a writer it had never seen, the earlier VSS went from 3.4% to 7.3% wrong among executed actions.</li>
-    <li><strong>The docs have drifted.</strong> <code>VSS_READER_SPEC.md</code> says the <code>llm_bench/sonnet</code> and <code>llm_bench/haiku</code> test sets are never used for anything else, yet labelled versions of them now sit in the training folder list (<code>front.py</code>, lines 707 to 710). The held-out sets in use today are <code>fresh2</code> and <code>short3</code>.</li>
+    <li><strong>The spec is out of date on test sets.</strong> <code>VSS_READER_SPEC.md</code> still says the <code>llm_bench/sonnet</code> and <code>llm_bench/haiku</code> test sets are never used for anything else. Since the owner’s decision of 2026-11-01 (<code>AGENTS.md</code>) there is no hidden test set, and labelled versions of those messages are now training data (<code>front.py</code>, lines 707 to 710). The test figures on this page come from the test part of <code>fresh2</code> and <code>short3</code>, which is in no training folder list.</li>
     <li><strong>Training logs are missing.</strong> The run logs named in the nine worlds’ <code>BUILD.json</code> files are not in <code>training/sketch/runs/</code>, which holds logs of the previous seven-world version, so the training time of the shipped worlds is not recorded.</li>
     <li><strong>The research numbers are synthetic.</strong> The 1.000 against 0.215 result on new names comes from template-generated test worlds. It shows a property of the design, not the quality of the diagram reader.</li>
   </ul>
@@ -706,7 +706,7 @@ footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 0.88re
     });
     const gap = scored[0].v - scored[1].v, vd = $("verdict");
     if (scored[0].c !== s.filler) { vd.className = "verdict bad"; vd.innerHTML = `<b>Wrong word on top.</b> “${scored[0].c}” beats “${s.filler}”; the gap is ${gap.toFixed(3)}.`; }
-    else if (gap < 0.05) { vd.className = "verdict hold"; vd.innerHTML = `<b>Unsure, would ask.</b> “${s.filler}” leads by only ${gap.toFixed(3)}, under 0.05.`; }
+    else if (gap < 0.05) { vd.className = "verdict hold"; vd.innerHTML = `<b>Unsure.</b> “${s.filler}” leads by only ${gap.toFixed(3)}, under the 0.05 margin where VSS marks a reading “abstain”.`; }
     else { vd.className = "verdict go"; vd.innerHTML = `<b>Sure.</b> “${s.filler}” leads by ${gap.toFixed(3)}.`; }
   }
   function drawHero() { drawStrip($("hero-band"), word("red"), 1024); }

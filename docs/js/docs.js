@@ -24,6 +24,10 @@ const GROUPS = [
   { title: 'Why VSS-BERT', pages: ((root.DocsConcepts && root.DocsConcepts.pages) || []).map(p => ({ id: p.id, title: p.title, lead: p.lead, render: () => p.html })) },
   { title: 'How it works inside', pages: ((root.DocsArch && root.DocsArch.pages) || []).map(p => ({ id: p.id, title: p.title, lead: p.lead, render: () => p.html })) }
 ];
+/* sidebar links that are not help pages: other pages of the site, listed at the end of their group. They open in a new tab (show() gives every
+   link that does not start with # target=_blank) and are not part of Previous / Next or of the page routes.
+   vss-explainer.html: the illustrated, plain-language explainer of the VSS reader (2026-11-04). */
+const EXTRA_LINKS = { 'How it works inside': [{ href: 'vss-explainer.html', title: 'VSS, illustrated', note: 'Opens the illustrated explainer of the VSS reader in a new tab' }] };
 const FLAT = [];
 GROUPS.forEach(g => g.pages.forEach(p => { p.group = g.title; FLAT.push(p); }));
 const BY = Object.fromEntries(FLAT.map(p => [p.id, p]));
@@ -58,7 +62,9 @@ function els() {
 
 const CREDIT = (root.HelpKit && root.HelpKit.CREDIT) || '';
 function navHTML(cur) {
-  return GROUPS.map(g => `<div class="dn-group"><p class="dn-title">${esc(g.title)}</p><ul>${g.pages.map(p => `<li><a href="#help/${p.id}"${p.id === cur ? ' aria-current="page"' : ''}>${esc(p.title)}</a></li>`).join('')}</ul></div>`).join('')
+  return GROUPS.map(g => `<div class="dn-group"><p class="dn-title">${esc(g.title)}</p><ul>${g.pages.map(p => `<li><a href="#help/${p.id}"${p.id === cur ? ' aria-current="page"' : ''}>${esc(p.title)}</a></li>`).join('')}`
+      + (EXTRA_LINKS[g.title] || []).map(x => `<li><a href="${esc(x.href)}" title="${esc(x.note)}">${esc(x.title)}<span aria-hidden="true"> ↗</span></a></li>`).join('')
+      + `</ul></div>`).join('')
     + (CREDIT ? `<p class="dn-credit" style="margin:18px 10px 0;font-size:12.5px;line-height:1.45;color:var(--muted)">${CREDIT.replace(/<a /g, '<a style="display:inline;padding:0;font-size:inherit;color:var(--link);text-decoration:underline;white-space:nowrap" ')}</p>` : '');
 }
 function pageHTML(p, missing) {
