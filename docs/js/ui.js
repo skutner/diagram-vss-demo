@@ -13,7 +13,7 @@ const escH = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;
 // readers voting) was removed then: VSS-BERT measured better (test part cost score 34.8 against 31.8, confidently wrong 1.8% against 2.6%).
 // READERS is the order of the tabs, of the lines of a reply and of the details; READ_ORDER is the order in which they read a message
 // (VSS-BERT reuses the readings of VSS and SOP-BERT, so it reads last).
-const READERS = [['combined', 'VSS-BERT'], ['rules', 'Rules'], ['vss', 'VSS'], ['neural', 'SOP-BERT'], ['modernbert', 'ModernBERT']].map(([id, label]) => Object.assign({ id, label, last: [], pending: null, held: [], focusCell: null, reads: 0, lastRead: null }, K.createSystem()));
+const READERS = [['combined', 'VSS-BERT'], ['rules', 'Rules'], ['vss', 'VSS'], ['neural', 'SOP-BERT'], ['modernbert', 'ModernBERT'], ['qwen', 'Qwen3']].map(([id, label]) => Object.assign({ id, label, last: [], pending: null, held: [], focusCell: null, reads: 0, lastRead: null }, K.createSystem()));
 const RD = Object.fromEntries(READERS.map(r => [r.id, r]));
 const READ_ORDER = ['rules', 'vss', 'neural', 'combined', 'modernbert'].map(id => RD[id]);
 const sys = RD.rules, engine = sys.engine;          // the legend, plugins and SOP rendering are the same in every reader; the Rules system serves them
@@ -124,6 +124,91 @@ GATES.modernbert = async n => {
   let spec = null; try { spec = await modernSpec(); } catch (e) { console.error(e); }
   return NeuralKit.gateReader(NC, spec, n, modernGate);
 };
+/* ---------------- Qwen3 (experimental; training/qwen/QWEN3_PLAN.md) ----------------
+   An opt-in sixth reader: Qwen3-0.6B Q8_0 run by wllama 3.8.1 on the CPU, one thread, in its own worker (docs/js/qwen-reader.js,
+   qwen-worker.js, qwen-contract.js). It loads only when the user presses Load Qwen3 on its tab, or when the page URL's models parameter
+   lists qwen (?models=...,qwen); the five other readers start as before either way. It reads each message after they have replied, in a
+   queue of its own (qwenJob), into its own drawing: nothing waits for it, and it takes no part in the votes, VSS-BERT or another reader's
+   gate. Every change to its drawing goes through that queue: messages (SOP Lang and toolbar turns too), Do it anyway, the Rules drawing it
+   starts from, a scenario's new area and the capability switches; it is not a target of "align", and its drawing cannot be dragged while
+   it is reading. A message sent while it is not loaded is not read by it. It has no calibrated confidence threshold, so its gate holds
+   every request (QM.qwenGate); Do it anyway runs one validated reading. */
+const QWEN_URL = (() => { try { return (new URL(location.href).searchParams.get('models') || '').split(',').map(x => x.trim()).includes('qwen'); } catch (e) { return false; } })();
+let QM = null, qwen = null, qwenQ = Promise.resolve(), qwenQueued = 0, qwenDone = 0, qwenNoted = false;
+const qwenReady = () => !!qwen && qwen.isReady();
+const qwenState = () => qwen ? qwen.S.state : 'idle';
+/** run fn after every earlier Qwen job (one serial executor for every change to Qwen's drawing) */
+function qwenJob(fn) {
+  qwenQueued++; refreshQwen();
+  const p = qwenQ.then(fn).catch(e => { console.error(e); }).finally(() => { qwenQueued--; refreshQwen(); });
+  qwenQ = p; return p;
+}
+/** a copy of a reader's drawing now, applied later in Qwen's queue (copyDrawing reads the source when it runs) */
+function drawingOf(rd) { const c = x => JSON.parse(JSON.stringify(x)); return { state: c(rd.world.state), undo: c(rd.world.undoStack), redo: c(rd.world.redoStack), last: rd.last.slice(), focusCell: rd.focusCell && Object.assign({}, rd.focusCell) }; }
+function setDrawing(rd, d) { rd.world.restore(d.state); rd.world.undoStack = d.undo; rd.world.redoStack = d.redo; rd.last = d.last; rd.focusCell = d.focusCell; rd.pending = null; rd.held = []; }
+/** the reader object without loading the model (Clear cache on a tab that never loaded it) */
+async function loadReaderOnly() {
+  try { if (!QM) QM = await import(new URL('js/qwen-reader.js', document.baseURI).href); } catch (e) { console.error(e); return; }
+  if (!qwen) qwen = QM.createQwenReader({ engine: RD.qwen.engine, serialize: K.serialize, base: document.baseURI, next: NeuralKit.NEXT_CONTEXT, onChange: () => refreshQwen() });
+}
+async function loadQwen() {
+  try { if (!QM) QM = await import(new URL('js/qwen-reader.js', document.baseURI).href); }
+  catch (e) { console.error(e); sysNote('Qwen3 could not be loaded: docs/js/qwen-reader.js failed (' + (e && e.message || e) + ').'); return; }
+  if (!qwen) qwen = QM.createQwenReader({ engine: RD.qwen.engine, serialize: K.serialize, base: document.baseURI, next: NeuralKit.NEXT_CONTEXT, onChange: () => refreshQwen() });
+  if (qwen.S.state === 'loading' || qwen.S.state === 'ready') return;
+  sysNote('Loading Qwen3 (experimental): a 639 MB model from Hugging Face (from this browser’s cache when it is there), checked against its SHA-256, run on the CPU in one thread. It reads into its own tab and executes nothing by itself.');
+  refreshReaders();
+  await qwen.load();
+  if (qwen.S.state === 'ready') {
+    // it starts from the Rules drawing when it has read nothing yet: taken now, in the main queue's order, applied in its own queue
+    queue = queue.then(() => { const d = drawingOf(RD.rules); qwenJob(() => { if (!RD.qwen.reads) { setDrawing(RD.qwen, d); if (cur === RD.qwen) renderCanvas(); } updateTabs(); }); });
+    const i = qwen.S.info || {};
+    sysNote(`Qwen3 ready on the CPU (one thread), ${mb(i.bytes || 0)}${i.source === 'cache' ? ' from this browser’s cache' : ''}, in ${(qwen.S.loadMs / 1000).toFixed(0)} s. It reads every message after the other tabs and replies when it is done; it holds every request (no calibrated threshold yet).`);
+  } else sysNote('Qwen3 could not be loaded: ' + (qwen.S.error && qwen.S.error.message || 'unknown error') + '.');
+  refreshReaders();
+}
+GATES.qwen = (q, rec) => QM ? QM.qwenGate(q, rec.text) : null;
+/** Qwen reads one message (or runs one SOP Lang turn) in its queue: its own pending question, readPart / doPart as every reader, its reply */
+async function qwenRead(rec, text) {
+  const rd = RD.qwen;
+  if (!qwenReady()) { rec.off.qwen = `${offText(rd)} (it was not ready when its turn came)`; rec.qwenEnd = 'not read'; qwenDone++; refreshQwenTurn(rec); return; }
+  rec.qwenStart = performance.now(); rec.off.qwen = 'reading…'; refreshQwenTurn(rec);
+  const pend = rd.pending; rd.pending = null;
+  // a reply to Qwen's own question (the same rule as run(), applied when its turn comes: Qwen's question may be several messages old)
+  const want = text.toLowerCase().replace(/^(?:i\s+mean|use|the\s+one\s+(?:named|called))\s+/, '').replace(/[.!]+$/, '').trim();
+  const pick = !rec.raw && pend && pend.candidates.find(c => c.toLowerCase() === want), pk = pick ? { pend, pick } : null;
+  const line = (await readPart(rd, text, rec, pk)) || await doPart(rd, text, rec, pk, pend);
+  rec.ran.push('qwen'); rec.qwenEnd = 'done'; rec.qwenMs = performance.now() - rec.qwenStart; delete rec.off.qwen; qwenDone++;
+  rec.qwenLine = { text: line.text || '', sub: line.sub || null, err: !!line.err, held: (line.held || []).map(h => ({ index: h.index, src: h.view.src, reasons: h.view.reasons, line: h.view.line, canAnyway: h.view.canAnyway !== false })) };
+  if (chatTabs.has('qwen') || cur === rd) botBubble({ lines: [Object.assign(line, { rd })], chips: line.chips || [], turn: rec.id, tag: rec.raw ? (rec.button ? 'button' : 'SOP Lang') : null });
+  if (cur === rd) { if (line.highlight) flash(line.highlight); else renderCanvas(); }
+  updateTabs(); refreshQwenTurn(rec);
+}
+/** the details of a turn that is open in the sheet are drawn again when Qwen's part of it changes */
+function refreshQwenTurn(rec) { if (!sheet.hidden && sheetKind === 'turn' && sheetTurn === rec.id) renderSheet(); }
+function refreshQwen() { refreshReaders(); }
+function qwenBoxHTML() {
+  const S = qwen ? qwen.S : { state: 'idle' }, pc = (a, b) => b ? ` ${mb(a)} of ${mb(b)}` : '';
+  if (S.state === 'idle') return '<p>Not loaded. Qwen3-0.6B (Q8_0, 639 MB from Hugging Face, kept in this browser’s cache) runs on the CPU in one thread through wllama 3.8.1. Loading takes minutes: the download, a SHA-256 check, the start and a first check that reads one sentence; on a slow computer a message then takes a minute or more.</p><div class="acts"><button type="button" class="btn solid" data-qwen="load">Load Qwen3</button> <button type="button" class="btn" data-qwen="clear">Clear its cache</button></div>';
+  if (S.state === 'loading') {
+    const st = { prepare: 'Checking the fixed prompt against the legend…', download: 'Downloading the model' + pc(S.progress.done, S.progress.total) + '…', verify: 'Checking the cached model’s SHA-256' + pc(S.progress.done, S.progress.total) + '…', start: 'Starting the runtime…', check: 'First check: reading one sentence (it also prepares the fixed prompt; this is the slow part)…' }[S.stage] || 'Loading…';
+    return `<p>${escH(st)}</p>${S.progress.total && (S.stage === 'download' || S.stage === 'verify') ? `<div class="prog"><div style="width:${(S.progress.done / S.progress.total * 100).toFixed(1)}%"></div></div>` : ''}<button type="button" class="btn" data-qwen="stop">Stop</button>`;
+  }
+  if (S.state === 'failed') return `<p>Qwen3 could not be loaded or was stopped:</p>${errHTML(S.error)}<div class="acts"><button type="button" class="btn solid" data-qwen="load">Try again</button> <button type="button" class="btn" data-qwen="clear">Clear its cache</button></div>`;
+  const i = S.info || {};
+  return `<p>Ready: Qwen3-0.6B Q8_0 on the CPU, ${i.threads} thread, ${mb(i.bytes || 0)}${i.source === 'cache' ? ' from this browser’s cache' : ''}, loaded in ${(S.loadMs / 1000).toFixed(0)} s.${qwenQueued ? ` Reading: ${qwenQueued} message${qwenQueued === 1 ? '' : 's'} in its queue.` : ''}</p><div class="acts">${qwenQueued || S.busy ? '<button type="button" class="btn" data-qwen="stop">Stop</button> ' : ''}<button type="button" class="btn" data-qwen="unload">Unload</button> <button type="button" class="btn" data-qwen="clear">Unload and clear its cache</button></div>`;
+}
+document.addEventListener('click', async ev => {
+  const b = ev.target.closest('[data-qwen]'); if (!b) return;
+  const what = b.dataset.qwen;
+  if (what === 'load') { loadQwen(); return; }
+  if (what === 'clear' && !qwen) { await loadReaderOnly(); }
+  if (!qwen) return;
+  if (what === 'stop') { qwen.stop('stopped by you'); sysNote('Qwen3 stopped: the request it was reading is held, and the messages in its queue are not read. Press Try again to load it again.'); }
+  if (what === 'unload') { await qwen.unload(); sysNote('Qwen3 unloaded: its memory is freed; its drawing stays. Messages are not read by it until it is loaded again.'); }
+  if (what === 'clear') { try { await qwen.clearCache(); sysNote('Qwen3 unloaded and its cached model deleted from this browser.'); } catch (e) { sysNote('Qwen3’s cache could not be cleared: ' + (e && e.message || e)); } }
+  refreshReaders(); if (sub === 'settings') renderSub();
+});
 /** the confidence file (loaded once; a failure is kept in nconf.error and tried again on the next message) */
 async function neuralSpec() {
   const NC = await ncP; if (!NC) throw new Error('docs/js/neural-confidence.js could not be loaded');
@@ -425,11 +510,11 @@ const canvasNames = rd => rd.world.state.shapes.map(s => s.name).concat((rd.worl
 //  - the BERT cut: the units of SOP-BERT's own reading (neural.js result.units, no model call), read by VSS and by the Rules; VSS-BERT
 //    reuses this VSS reading with SOP-BERT's own reading, so the BERT cutter runs once per message.
 // Each partner reads with its own tab's drawing (its names and last shapes, as when it read the message itself).
-const OWN_CUT = { rules: 'rules', vss: 'vss', neural: 'bert', combined: 'bert', modernbert: 'modernbert' };
+const OWN_CUT = { rules: 'rules', vss: 'vss', neural: 'bert', combined: 'bert', modernbert: 'modernbert', qwen: 'qwen' };
 let VF = null;
 const vfP = import(new URL('js/vss-formalizer.js', document.baseURI).href).then(m => { VF = m; return m; }).catch(e => { console.error(e); return null; });
 const cutStrategies = () => VF ? VF.CUT_STRATEGIES : [{ id: 'rules', label: 'Rules segmenter' }, { id: 'vss', label: 'VSS cutter' }, { id: 'bert', label: 'BERT cutter' }];
-const cutLabel = id => id === 'modernbert' ? 'ModernBERT cutter' : (cutStrategies().find(x => x.id === id) || { label: id }).label;
+const cutLabel = id => id === 'modernbert' ? 'ModernBERT cutter' : id === 'qwen' ? 'Qwen3’s own quotes' : (cutStrategies().find(x => x.id === id) || { label: id }).label;
 /** the cut a tab's own reading used: its own cutter, or for SOP-BERT without a cut head the whole message */
 const cutOfRead = (rd, r) => rd.id === 'neural' && r.neural && r.neural.cutBy !== 'model' ? 'the whole message (no cut head)' : OWN_CUT[rd.id];
 /** the readings of the other readers on the VSS and the BERT cut (see above), made once per message (rec.crossP) -> {vss: {units, sop, rules,
@@ -697,6 +782,7 @@ function flash(h) {
 function svgPt(ev) { const p = svg.createSVGPoint(); p.x = ev.clientX; p.y = ev.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); }
 svg.addEventListener('pointerdown', ev => {
   const g = ev.target.closest && ev.target.closest('.shp'); if (!g) return;
+  if (cur.id === 'qwen' && (qwenQueued || (qwen && qwen.S.busy))) { if (!qwenNoted) { qwenNoted = true; sysNote('Qwen3 is reading: its drawing can be moved by hand when its queue is empty.'); } return; }
   const s = world.find(g.dataset.name); if (!s || s.layer === 'background') return;   // the background stays put
   const p = svgPt(ev); drag = { name: s.name, before: world.snapshot(), dx: s.x - p.x, dy: s.y - p.y, cell: K.cellOf(s.x, s.y), moved: false };
   svg.setPointerCapture(ev.pointerId); ev.preventDefault();
@@ -905,19 +991,21 @@ function sysNote(text) { const d = document.createElement('div'); d.className = 
 function typing() { const d = document.createElement('div'); d.className = 'b bot'; d.innerHTML = '<div class="typing" aria-label="Thinking"><i></i><i></i><i></i></div>'; msgs.appendChild(d); scrollDown(); return d; }
 function setStatus(t) { $('#status').textContent = t; }
 const fmtMs = ms => ms < 10 ? ms.toFixed(1) + ' ms' : Math.round(ms) + ' ms';
-const isReady = rd => rd.id === 'rules' || (rd.id === 'modernbert' ? !!modern.models && modern.state === 'ready' : rd.id === 'vss' ? vssState === 'ready' : rd.id === 'neural' ? !!models && nState === 'ready' : isReady(RD.vss) && isReady(RD.neural));
+const isReady = rd => rd.id === 'rules' || (rd.id === 'qwen' ? qwenReady() : rd.id === 'modernbert' ? !!modern.models && modern.state === 'ready' : rd.id === 'vss' ? vssState === 'ready' : rd.id === 'neural' ? !!models && nState === 'ready' : isReady(RD.vss) && isReady(RD.neural));
 /** what a reader that is not loaded says instead of an answer */
 function offText(rd) {
+  if (rd.id === 'qwen') return { idle: 'not loaded (experimental: Load Qwen3 on its tab)', loading: 'still loading, did not read this', failed: 'not available (it failed or was stopped; see Qwen3 › Settings)' }[qwenState()] || 'not ready, did not read this';
   if (rd.id === 'modernbert') return { unpublished: 'not available (the trained ModernBERT model is not published yet)', failed: 'not available (loading failed; see ModernBERT › Settings)' }[modern.state] || 'still loading, did not read this';
   if (rd.id === 'combined') { const wait = [RD.vss, RD.neural].filter(x => !isReady(x)); return `waits for ${listing(wait.map(x => x.label))} (it combines the readings of VSS and SOP-BERT)`; }
   if (rd.id === 'vss') return vssState === 'failed' ? 'not available (it could not be loaded)' : 'still loading, did not read this';
   return { unpublished: 'not available (the neural model is not published yet)', failed: 'not available (loading failed; see SOP-BERT › Settings)' }[nState] || 'still loading, did not read this';
 }
-const idleStatus = () => 'reads with ' + listing(READERS.filter(isReady).map(r => r.label));
+const idleStatus = () => 'reads with ' + listing(READERS.filter(isReady).map(r => r.label)) + (qwenQueued ? `; Qwen3 is reading (${qwenQueued} in its queue)` : '');
 msgs.addEventListener('click', ev => {
   const p = ev.target.closest('[data-pick]'); if (p) { submit(p.dataset.pick, undefined, { via: 'chip' }); return; }
   const a = ev.target.closest('[data-anyway]');
-  if (a) { const [rid, turn, idx] = a.dataset.anyway.split(':'); a.disabled = true; queue = queue.then(() => doAnyway(rid, +turn, +idx)).catch(e => { console.error(e); botBubble({ text: 'Something went wrong: ' + e.message, err: true }); }); return; }
+  if (a) { const [rid, turn, idx] = a.dataset.anyway.split(':'); a.disabled = true; const job = () => doAnyway(rid, +turn, +idx).catch(e => { console.error(e); botBubble({ text: 'Something went wrong: ' + e.message, err: true }); });
+    if (rid === 'qwen') qwenJob(job); else queue = queue.then(job); return; }
   // Edit: the clearer command into the message box, not sent; the first ‹placeholder› is selected, so typing replaces it
   const ed = ev.target.closest('[data-edit]');
   if (ed) { { const [r0, t0, i0] = ed.dataset.edit.split(':'); pendingEdit = { turn: +t0, reader: r0, index: +i0, suggested: ed.dataset.text || '' }; collectEvent(+t0, { kind: 'edit', reader: r0, index: +i0, suggested: ed.dataset.text || '' }); }
@@ -981,7 +1069,7 @@ async function run(text, sop, meta) {
   const id = ++turnSeq, rec = { id, time: clock(), text, typed, spell: sp, spellOff: !raw && !spellEnabled, raw, sop: sop || text, button: !!sop, readers: {}, off: {}, ran: [] }; history.push(rec);
   if (rec.raw) { try { K.parse(rec.sop); } catch (e) { rec.error = e; botBubble({ text: e.message, err: true, turn: id, tag: 'SOP Lang' }); return; } }
   // the readers that read this message are fixed now: one that finishes loading meanwhile starts from the Rules drawing instead
-  const live = READERS.filter(isReady);
+  const live = READERS.filter(rd => isReady(rd) && rd.id !== 'qwen'), qwenLive = qwenReady();   // Qwen3 reads in its own queue (qwenRead)
   // a reply to a question ("which Hub?") goes to the readers that asked it; the others have nothing to choose
   const want = text.toLowerCase().replace(/^(?:i\s+mean|use|the\s+one\s+(?:named|called))\s+/, '').replace(/[.!]+$/, '').trim();
   const picks = new Map(live.map(rd => [rd, rd.pending && rd.pending.candidates.find(c => c.toLowerCase() === want)]));
@@ -1005,6 +1093,8 @@ async function run(text, sop, meta) {
     if (x.ran) rec.ran.push(x.rd.id);
     parts.push(Object.assign(p, { rd: x.rd }));
   }
+  if (qwenLive) { rec.off.qwen = 'waiting for its turn (Qwen3 reads in its own queue)'; if (chatTabs.has('qwen')) parts.push({ rd: RD.qwen, text: 'Reading this; Qwen3 replies in a message of its own when it is done.' }); }
+  else { rec.off.qwen = offText(RD.qwen); if (chatTabs.has('qwen')) parts.push({ rd: RD.qwen, off: rec.off.qwen }); }
   setStatus(idleStatus());
   parts.sort((a, b) => READERS.indexOf(a.rd) - READERS.indexOf(b.rd));   // the order of the tabs
   const shown = chatLines(parts);   // the chat shows the chosen tabs' lines (see CHAT_KEY); the details show every reader
@@ -1014,6 +1104,7 @@ async function run(text, sop, meta) {
   fitHint();
   updateTabs(); renderSopBar();
   afterTurn(rec, parts, shown, meta, namesBefore);
+  if (qwenLive) qwenJob(() => qwenRead(rec, text));
 }
 /** the words of a reader's line of the reply (its text, then the requests it did not do): read aloud and kept with the collected entry */
 function replyWords(p) {
@@ -1282,7 +1373,9 @@ async function readPart(rd, text, rec, pk) {
     else if (rd.id === 'rules') { const f = rd.formalize(text, ctx); r.ms = performance.now() - t0; r.rulesRes = f; r.nodes = f.nodes; r.notes = f.notes; }
     else if (rd.id === 'vss') { const v = await window.VSSFormalizer.formalize(text, ctx, rd.formalize, VSS_OPTS); r.ms = performance.now() - t0; r.vss = v; r.nodes = v.nodes; r.notes = v.notes; }
     else if (rd.id === 'combined') { const c = await combinedRead(rd, text, rec, ctx); r.ms = c.ms; r.combined = c; r.nodes = c.nodes; r.notes = c.notes; }
-    else { const n = await (rd.id === 'modernbert' ? modernbert : neural).formalize(text, ctx, { signals: true }); r.ms = performance.now() - t0; r.neural = n; r.nodes = n.nodes; r.notes = n.notes.filter(x => !/couldn't find an action/.test(x)); }
+    else if (rd.id === 'qwen') { if (!qwen) throw new Error('Qwen3 is not loaded'); const q = await qwen.formalize(text, ctx); r.ms = performance.now() - t0; r.qwen = q; r.nodes = q.nodes; r.notes = q.notes; }
+    else if (rd.id === 'neural' || rd.id === 'modernbert') { const n = await (rd.id === 'modernbert' ? modernbert : neural).formalize(text, ctx, { signals: true }); r.ms = performance.now() - t0; r.neural = n; r.nodes = n.nodes; r.notes = n.notes.filter(x => !/couldn't find an action/.test(x)); }
+    else throw new Error(`no reader is defined for the tab ${rd.id}`);
     if (!pk && !rec.raw) r.cutBy = cutOfRead(rd, r);   // each tab's own cutter (see "cutting")
   } catch (e) { r.error = e; r.ms = performance.now() - t0; return { text: `The ${rd.label} reader failed: ${e.message}`, err: true, ms: r.ms }; }
   return null;
@@ -1300,8 +1393,9 @@ async function doPart0(rd, text, rec, pk, pend) {
   try {
     // the gate (see GATES): the requests this reader is not sure of are not executed; the reply lists them with Do it anyway and Edit;
     // then the name rule (holdNamed)
-    const gf = !pk && !rec.raw ? GATES[rd.id] : null, gsrc = rd.id === 'vss' ? r.vss : rd.id === 'combined' ? r.combined : r.neural;
+    const gf = !pk && !rec.raw ? GATES[rd.id] : null, gsrc = rd.id === 'vss' ? r.vss : rd.id === 'combined' ? r.combined : rd.id === 'qwen' ? r.qwen : r.neural;
     if (gf && gsrc) { const g = await gf(gsrc, rec, r); if (g) { holdNamed(g, r.names); r.gate = g; r.allNodes = r.nodes; r.nodes = g.executed; } }
+    if (rd.id === 'qwen' && !pk && !rec.raw && !r.gate) throw new Error('its gate is not available, so nothing it read was executed');
     if (!pk && !rec.raw) holdDestructiveIn(rd, r, text);   // destructive requests: cautious by design (logic.js holdDestructive)
   } catch (e) { r.error = e; return { text: `The ${rd.label} reader failed: ${e.message}`, err: true, ms: r.ms }; }
   const ms = r.ms, nodes = r.nodes, notes = r.notes, world = rd.world, engine = rd.engine;
@@ -1384,13 +1478,14 @@ function turnHTML(r) {
   return READERS.map(rd => {
     const x = r.readers[rd.id];
     if (!x) return `<section class="rdsec"><div class="minihead">${escH(rd.label)} <span>${escH(r.off[rd.id] || 'did not read this')}</span></div></section>`;
-    let h = `<div class="minihead">${escH(rd.label)} <span>${x.ms != null ? 'formalized in ' + fmtMs(x.ms) : r.raw ? 'SOP Lang, nothing to formalize' : 'your choice from the question'}${x.neural ? ` · ${x.neural.calls} model calls` : ''}${x.cutBy ? ` · cut by: ${escH(cutLabel(x.cutBy))}` : ''}</span></div>`;
+    let h = `<div class="minihead">${escH(rd.label)} <span>${x.ms != null ? 'formalized in ' + fmtMs(x.ms) : r.raw ? 'SOP Lang, nothing to formalize' : 'your choice from the question'}${x.neural ? ` · ${x.neural.calls} model calls` : x.qwen ? ' · 1 model call' : ''}${x.cutBy ? ` · cut by: ${escH(cutLabel(x.cutBy))}` : ''}</span></div>`;
     if (x.nodes && x.nodes.length) h += `<pre class="sop">${r.raw ? `<span class="cm"># ${r.button ? 'toolbar button, sent as SOP Lang' : 'typed as SOP Lang'}</span>\n` : ''}${x.nodes.map(hlNode).join('\n')}</pre>`;
     (x.notes || []).forEach(n => { h += `<div class="note">${escH(n)}</div>`; });
     if (x.gate) h += gateHTML(x, rd);
     if (x.vss) h += vssHTML(x.vss);
     if (x.neural) h += neuralHTML(x.neural);
     if (x.combined) h += combinedHTML(x.combined);
+    if (x.qwen) h += qwenHTML(x.qwen);
     if (x.result) h += x.result.steps.map(stepHTML).join('');
     for (const a of x.anyway || []) h += `<div class="note">Done anyway: “${escH(a.src)}”</div><pre class="sop">${a.nodes.map(hlNode).join('\n')}</pre>` + a.result.steps.map(stepHTML).join('');
     const err = x.error && x.error.message !== 'No wires.' ? x.error : x.result && !x.result.ok ? x.result.error : null;
@@ -1479,6 +1574,20 @@ function vssHTML(v) {
       <div class="note">normalized: <code>${escH(c.normalized)}</code> · status <b>${escH(c.vss.status)}</b> · residual ${(+c.vss.residual).toFixed(3)}${c.vss.unplaced && c.vss.unplaced.length ? ' · unplaced: ' + escH(c.vss.unplaced.join(' ')) : ''}</div>
       ${ms ? `<div class="note">margins: ${escH(ms)}</div>` : ''}<pre class="sop">${escH(c.vss.sop)}</pre></div></details>`;
   }
+  return h;
+}
+/** Qwen3's part of a message's details: what it wrote, how it was checked, its score, the tokens and the settings the runtime used */
+function qwenHTML(q) {
+  const f = x => Number.isFinite(x) ? x.toFixed(3) : '–', u = q.usage, t = q.timings, st = q.settings;
+  let h = `<div class="note">Qwen3 output (${escH(q.finish || 'no finish')})${u ? `: ${u.prompt_tokens} prompt tokens (${u.prompt_tokens_details ? u.prompt_tokens_details.cached_tokens : 0} from the runtime's cache), ${u.completion_tokens} generated` : ''}${t ? `; prompt ${(t.prompt_ms / 1000).toFixed(1)} s, generation ${(t.predicted_ms / 1000).toFixed(1)} s (${f(t.predicted_per_second)} tokens/s)` : ''}; ${(q.ms / 1000).toFixed(1)} s in all.</div>`;
+  if (q.error) h += `<div class="errt">${escH(q.error.message)}</div>`;
+  h += `<pre class="sop">${escH(q.rawShown || '(nothing)')}</pre>`;
+  h += `<div class="note">Checks: ${q.ok ? 'the whole output passed' : '<b>the output failed</b>: ' + escH(q.errors.join('; '))}.</div>`;
+  if (q.requests && q.requests.length) h += `<ul class="units">${q.requests.map(r => { const sc = (q.scores || [])[r.index];
+    return `<li><code>${escH(r.id)}</code> ${escH(String(r.do))} <span class="src">“${escH(r.src)}”</span>${r.span ? ` [${r.span[0]}, ${r.span[1]})` : ''} → ${r.blocked ? `<b>cannot run</b>: ${escH(r.errors.join('; '))}` : 'checked'}${sc ? ` · score ${f(sc.min)}${sc.weakest ? ` (weakest: ${escH(sc.weakest)})` : ''}${sc.missing ? ` · ${escH(sc.missing)}` : ''}` : ''}</li>`; }).join('')}</ul>`;
+  if (q.notUnderstood && q.notUnderstood.length) h += `<div class="note">Not understood, by its own reading: ${q.notUnderstood.map(x => `“${escH(x.src)}”${x.error ? ` (${escH(x.error)})` : ''}`).join(', ')}</div>`;
+  if (st) h += `<div class="note">Runtime settings: temperature ${escH(String(st.temperature))}, seed ${escH(String(st.seed))}, token probabilities ${st.post_sampling_probs ? 'after' : 'before'} sampling (n_probs ${escH(String(st.n_probs))}), chat format ${escH(String(st.chat_format))}, at most ${escH(String(st.n_predict))} tokens.</div>`;
+  h += `<div class="note">Prompt SHA-256 <code>${escH(String(q.promptSha || '').slice(0, 16))}…</code>; the rendered prompt (${q.renderedPromptChars || '?'} characters) ends with <code>${escH(JSON.stringify(q.renderedPromptTail ? q.renderedPromptTail.slice(-60) : ''))}</code>. The message as given: <code>${escH(q.userContent || '')}</code></div>`;
   return h;
 }
 function neuralHTML(n) {
@@ -1598,12 +1707,14 @@ async function startScript(name, turns, how, opts) {
   player.stop = true; await queue; player.playing = false;
   closeSheet();
   const fixed = renamedForCanvas(turns);
-  for (const rd of READERS) {   // every reader's drawing gets the new area
+  const newArea = rd => {   // every reader's drawing gets the new area (Qwen3's in its queue, before the scenario's messages)
     const w = rd.world;
     if (w.state.shapes.length) { const before = w.snapshot(); w.newFrame(name); w.commit(before); }
     else { w.state.frame = { x: 0, y: 0 }; w.state.frames = [{ x: 0, y: 0, title: name }]; }
     rd.focusCell = Object.assign({}, w.state.frame);
-  }
+  };
+  for (const rd of READERS) if (rd.id !== 'qwen') newArea(rd);
+  qwenJob(() => { newArea(RD.qwen); if (cur === RD.qwen) renderCanvas(); });
   setShowNames(opts && opts.names === false ? false : namesPref);
   view = 'focus'; zv.k = 1; zv.dx = 0; zv.dy = 0;
   const ren = Object.entries(fixed.map).map(([a, b]) => `${a} → ${b}`);
@@ -1641,7 +1752,7 @@ function copyDrawing(src, dst) {
 function adoptRules(rd) { queue = queue.then(() => { if (!rd.reads) { copyDrawing(RD.rules, rd); if (rd === cur) renderCanvas(); } updateTabs(); renderSopBar(); }); return queue; }
 function alignDrawings() {
   queue = queue.then(() => {
-    const src = cur, to = READERS.filter(rd => rd !== src && isReady(rd));
+    const src = cur, to = READERS.filter(rd => rd !== src && isReady(rd) && rd.id !== 'qwen');   // Qwen3's drawing changes only in its own queue
     for (const rd of to) copyDrawing(src, rd);
     sysNote(`Drawings aligned: ${to.map(rd => rd.label).join(' and ') || 'no other reader'} now ${to.length > 1 ? 'have' : 'has'} the ${src.label} drawing and its undo history.`);
     renderCanvas(); updateTabs(); renderSopBar();
@@ -1664,7 +1775,7 @@ function tabTitle(rd) {
 function updateTabs() {
   renderSub();
   const keep = rtabs.scrollLeft;
-  rtabs.innerHTML = READERS.map(rd => `<button type="button" role="tab" class="rtab${isReady(rd) ? '' : ' off'}" data-rtab="${rd.id}" aria-selected="${rd === cur}" title="${escH(tabTitle(rd))}">${escH(rd.label)}${differs(rd) ? `<i class="dot" aria-label="differs from ${escH(cur.label)}"></i>` : ''}${!isReady(rd) && ((rd.id !== 'neural' && vssState === 'loading') || (rd.id !== 'vss' && (nState === 'loading' || nState === 'checking'))) ? '<i class="spin" aria-hidden="true"></i>' : ''}</button>`).join('');
+  rtabs.innerHTML = READERS.map(rd => `<button type="button" role="tab" class="rtab${isReady(rd) ? '' : ' off'}" data-rtab="${rd.id}" aria-selected="${rd === cur}" title="${escH(tabTitle(rd))}">${escH(rd.label)}${differs(rd) ? `<i class="dot" aria-label="differs from ${escH(cur.label)}"></i>` : ''}${!isReady(rd) && (rd.id === 'qwen' ? qwenState() === 'loading' : ((rd.id !== 'neural' && vssState === 'loading') || (rd.id !== 'vss' && (nState === 'loading' || nState === 'checking')))) ? '<i class="spin" aria-hidden="true"></i>' : ''}</button>`).join('');
   rtabs.scrollLeft = keep; activeTabInView();
 }
 /** on a narrow screen the tab strip scrolls sideways: the active tab is scrolled into view (after a render and a resize) */
@@ -1686,7 +1797,7 @@ rtabs.addEventListener('keydown', ev => {
 /* the align tool: shown when another loaded reader's drawing differs from the one on screen; copies this drawing to them */
 function renderSopBar() {
   const b = $('#align-btn'); if (!b) return;
-  b.hidden = !READERS.some(differs);
+  b.hidden = !READERS.filter(rd => rd.id !== 'qwen').some(differs);
   b.title = b.ariaLabel = `Copy this ${cur.label} drawing and its undo history to the other tabs`;
 }
 $('#align-btn').addEventListener('click', alignDrawings);
@@ -1760,6 +1871,10 @@ function loadRowsHTML() {
 }
 function renderCard() {
   const c = $('#loadov'); if (!c) return;
+  if (cur.id === 'qwen' && sub === 'drawing' && !isReady(cur)) {
+    c.hidden = false; c.classList.remove('out');
+    c.innerHTML = `<div class="lo-card" role="status"><h2>Qwen3 (experimental)</h2>${qwenBoxHTML()}<p class="note">Its drawing is below this card; it changes only through what Qwen3 reads.</p></div>`; return;
+  }
   if (cur.id === 'modernbert' && sub === 'drawing' && !isReady(cur)) {
     c.hidden = false; c.classList.remove('out');
     c.innerHTML = `<div class="lo-card" role="status"><h2>ModernBERT</h2>${modernBoxHTML()}<button type="button" class="btn" data-modern-settings>Open ModernBERT Settings</button></div>`; return;
@@ -1835,7 +1950,8 @@ let nRaf = 0;
 function refreshReaders() {   // every place that shows a reader's state
   updateTabs(); loadProgress(); setStatus(idleStatus());
   // ModernBERT loads independently after the original readers' first check has completed.
-  if (cur.id === 'modernbert') renderCard();
+  if (cur.id === 'modernbert' || cur.id === 'qwen') renderCard();
+  const qbox = $('#qwen-box'); if (qbox) qbox.innerHTML = qwenBoxHTML();
   const box = $('#nm-box'); if (box) box.innerHTML = neuralBoxHTML();
   const modernBox = $('#modern-box'); if (modernBox) modernBox.innerHTML = modernBoxHTML();
 }
@@ -2000,10 +2116,20 @@ function gateSettingsHTML() {
 /** what every reader's Settings subtab starts with: its drawing and what it has read */
 function readerFacts(rd) {
   const S = rd.world.state, n = S.shapes.length, m = S.edges.length, u = rd.world.undoStack.length;
-  return `<table class="kv"><tr><td>State</td><td>${escH(isReady(rd) ? 'ready' : offText(rd).replace(/, did not read this$/, '').replace(/ \(see SOP-BERT › Settings\)$/, '').replace(/; see SOP-BERT › Settings\)$/, ')'))}</td></tr><tr><td>Messages read</td><td>${rd.reads}</td></tr><tr><td>Its drawing</td><td>${n} shape${n === 1 ? '' : 's'} · ${m} link${m === 1 ? '' : 's'} · ${u} step${u === 1 ? '' : 's'} to undo</td></tr><tr><td>Requests cut by</td><td>${escH(cutLabel(OWN_CUT[rd.id]))} (its own cutter: the cut its confidence was fitted on)</td></tr></table>`;
+  return `<table class="kv"><tr><td>State</td><td>${escH(isReady(rd) ? 'ready' : offText(rd).replace(/, did not read this$/, '').replace(/ \(see SOP-BERT › Settings\)$/, '').replace(/; see SOP-BERT › Settings\)$/, ')'))}</td></tr><tr><td>Messages read</td><td>${rd.reads}</td></tr><tr><td>Its drawing</td><td>${n} shape${n === 1 ? '' : 's'} · ${m} link${m === 1 ? '' : 's'} · ${u} step${u === 1 ? '' : 's'} to undo</td></tr><tr><td>Requests cut by</td><td>${escH(cutLabel(OWN_CUT[rd.id]))} (${rd.id === 'qwen' ? 'the words it quotes for each request; no confidence is fitted' : 'its own cutter: the cut its confidence was fitted on'})</td></tr></table>`;
 }
 const sharedNote = `<p class="intro">SOP Lang (the commands every reader writes) and the engine’s capabilities are the same for every reader. Help explains both: <button type="button" class="btn" data-help="sop-lang">SOP Lang</button> <button type="button" class="btn" data-help="capabilities">Capabilities</button> <button type="button" class="btn" data-help="architecture">How it works inside</button></p>`;
 function renderReaderSettings(rd) {
+  if (rd.id === 'qwen') {
+    const S = qwen ? qwen.S : null, R = S && S.reader, i = S && S.info, ck = S && S.check;
+    return `<h3 class="sub">Qwen3 reader (experimental)</h3>${readerFacts(rd)}<div id="qwen-box">${qwenBoxHTML()}</div>
+      <p class="intro">Qwen3-0.6B, a general instruction model, not trained on this editor: it is given the legend (every action, question, key and value) and two annotated messages, and writes its requests as JSON that a grammar keeps to the form. Before anything runs, the whole output is checked: the form, every act, key and value against the legend, the quoted words against the message, the names against the drawing and the request, the references and their order. It reads into its own drawing and takes no part in the votes or in VSS-BERT.</p>
+      <p class="intro"><b>When Qwen3 acts: never by itself.</b> A threshold would have to be chosen on calibration messages by the rule the other readers follow (the cost score, out of fold); no such readings of Qwen3 exist yet, so every request is held, at every level, and says why. Do it anyway runs one checked reading (a request that failed the checks cannot run). Its score (the weakest field's mean token log-probability, from the model's own probabilities before the grammar) is shown in the details; it is a ranking number, not a probability of being right.</p>
+      <table class="kv"><tr><td>Model</td><td><code>${escH(R ? R.model.repo + '/' + R.model.file : 'Qwen/Qwen3-0.6B-GGUF/Qwen3-0.6B-Q8_0.gguf')}</code>${R ? `, revision <code>${escH(R.model.revision.slice(0, 12))}</code>, ${R.model.bytes.toLocaleString('en')} bytes, SHA-256 <code>${escH(R.model.sha256.slice(0, 16))}…</code>` : ''}${i ? ` (checked in this browser${i.source === 'cache' ? ', from its cache' : ''})` : ''}</td></tr>
+      <tr><td>Runtime</td><td>wllama 3.8.1 (llama.cpp ${escH(i && i.libllama || 'b11364-46ca246')}), WASM, CPU only (no GPU layers), ${i ? i.threads : 1} thread${i ? `, ${i.multithread ? 'multi-threaded' : 'single-threaded'}` : ''}; thinking off by the chat template's own switch</td></tr>
+      ${R ? `<tr><td>Prompt</td><td>${R.prompt_chars.toLocaleString('en')} characters, SHA-256 <code>${escH(R.prompt_sha256.slice(0, 16))}…</code>; examples ${escH(R.examples.map(e => e.id).join(', '))}</td></tr>` : ''}
+      ${ck ? `<tr><td>First check</td><td>“${escH(ck.sentence)}” read in ${(ck.ms / 1000).toFixed(0)} s${ck.usage ? ` (${ck.usage.prompt_tokens} prompt tokens, ${ck.usage.completion_tokens} generated)` : ''}: ${ck.ok ? 'passed' : 'failed'}</td></tr>` : ''}</table>${sharedNote}`;
+  }
   if (rd.id === 'modernbert') {
     const spec = modern.conf.spec, NC = ncNow;
     const row = level => {
@@ -2088,7 +2214,8 @@ function helpEnv() {
 }
 /** a capability switch (Settings › Capabilities or Help › Capabilities): the same for every reader */
 function setPlug(name, on) {
-  for (const rd of READERS) rd.engine.plugin(name).enabled = on;
+  for (const rd of READERS) if (rd.id !== 'qwen') rd.engine.plugin(name).enabled = on;
+  qwenJob(() => { RD.qwen.engine.plugin(name).enabled = on; });
   const p = engine.plugin(name); sysNote(`${(HelpKit.CAPS[p.name] || p).t || p.title} switched ${p.enabled ? 'on' : 'off'} for every reader`);
 }
 /** ⋮ › Settings: the replies in the chat, the collected requests, the spell checker (it acts before every reader) */
@@ -2228,12 +2355,25 @@ DocsKit.init({ env: helpEnv, say: t => submit(t, undefined, { via: 'help' }), on
 ensureVSS();              // same site: no button, no question
 checkNeural();            // our neural model loads by itself (from the browser cache when it is there)
 checkModern();
+if (QWEN_URL) loadQwen();   // opt-in (see the Qwen3 block): the URL lists qwen
 /* a read-only summary for the browser tests and the console (training/sketch/test_scenes_menu.py): nothing here changes the page.
    turn(): the number of messages so far; view(): 'auto' | 'focus' | 'all'; steps(after): per tab, the messages after turn `after` that it
    did fully (executed every request it read, no engine error, nothing held), partly (executed something, held or failed something else) or
    not at all; area(id): the shapes of that tab's current area (its focus cell) and those whose body leaves the area's 800 x 500 canvas */
 window.SketchpadInfo = Object.freeze({
   turn: () => turnSeq, view: () => view, names: () => showNames,
+  /** Qwen3's part of one turn: its reply line, its wires (those executed and all it read), the gate and the evidence of the reading */
+  qwenTurn(id) {
+    const rec = history.find(x => x.id === id), r = rec && rec.readers.qwen; if (!rec) return null;
+    const ser = ns => (ns || []).map(n => K.serialize(n));
+    return JSON.parse(JSON.stringify({ end: rec.qwenEnd || null, off: rec.off.qwen || null, ms: rec.qwenMs || null, line: rec.qwenLine || null, raw: rec.raw,
+      executed: r ? ser(r.nodes) : [], read: r ? ser(r.allNodes || r.nodes) : [], notes: r ? r.notes : [], error: r && r.error ? r.error.message : null,
+      gate: r && r.gate ? { label: r.gate.label, units: r.gate.units.map(u => ({ index: u.index, src: u.src, execute: u.execute, blocked: !!u.blocked, score: u.score, reasons: u.reasons.map(x => x.text), nodes: ser(u.nodes) })) } : null,
+      steps: r && r.result ? r.result.steps.map(st => ({ wire: K.serialize(st.node), error: st.error ? st.error.message : null, skipped: st.skipped || null, answer: st.answer || null, patches: st.patches.length })) : [],
+      evidence: r && r.qwen && r.qwen.qwen ? Object.assign({}, r.qwen.qwen, { tokens: undefined, tokenCount: (r.qwen.qwen.tokens || []).length }) : null }));
+  },
+  /** Qwen3's state (training/sketch/diagram_e2e_live6.mjs): loaded or not, its queue, the turns it has finished, the load evidence */
+  qwen: () => { const S = qwen ? qwen.S : null; return JSON.parse(JSON.stringify({ state: qwenState(), ready: qwenReady(), queued: qwenQueued, done: qwenDone, busy: !!(S && S.busy), stage: S && S.stage, progress: S && S.progress, error: S && S.error ? S.error.message : null, loadMs: S && S.loadMs, info: S && S.info ? Object.assign({}, S.info, { chatTemplate: undefined, chatTemplateChars: (S.info.chatTemplate || '').length }) : null, check: S && S.check, promptSha: S && S.promptSha, turns: history.filter(r => r.qwenEnd).map(r => ({ turn: r.id, end: r.qwenEnd, ms: r.qwenMs })) })); },
   steps(after) {
     const out = {};
     for (const rd of READERS) {

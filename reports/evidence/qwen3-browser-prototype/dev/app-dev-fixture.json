@@ -1,0 +1,30 @@
+{
+ "version": 1,
+ "instructions": "development run before publishing: annotated training messages, not the frozen fixture",
+ "cases": [
+  {
+   "id": "th-0101",
+   "text": "stick a rectangle called Cache to the right of Api",
+   "actions": [],
+   "source": "training/sketch/llm_train/haiku_short/msg_02.jsonl"
+  },
+  {
+   "id": "th-0102",
+   "text": "new orange circle named Metrics, top right",
+   "actions": [],
+   "source": "training/sketch/llm_train/haiku_short/msg_02.jsonl"
+  },
+  {
+   "id": "th-0103",
+   "text": "I'd like three small blue squares sitting above Db",
+   "actions": [],
+   "source": "training/sketch/llm_train/haiku_short/msg_02.jsonl"
+  },
+  {
+   "id": "th-0104",
+   "text": "add a star labelled 'Hot path' near Cache",
+   "actions": [],
+   "source": "training/sketch/llm_train/haiku_short/msg_02.jsonl"
+  }
+ ]
+}

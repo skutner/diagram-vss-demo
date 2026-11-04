@@ -1,0 +1,362 @@
+ok   create X below A, above B: no unmet constraint
+ok     ... is X below A, above B? (check question)
+ok   move X below A, above B: holds
+ok   create X left of C, below A: no unmet constraint
+ok     ... is X left of C, below A? (check question)
+ok   move X left of C, below A: holds
+ok   create X right of Y, top left region: no unmet constraint
+ok     ... is X right of Y, top left region? (check question)
+ok   move X right of Y, top left region: holds
+ok   create X between A and C, top region: no unmet constraint
+ok     ... is X between A and C, top region? (check question)
+ok   move X between A and C, top region: holds
+ok   create X near C, bottom right region: no unmet constraint
+ok     ... is X near C, bottom right region? (check question)
+ok   move X near C, bottom right region: holds
+ok   create X above B, right of A, left region: no unmet constraint
+ok     ... is X above B, right of A, left region? (check question)
+ok   move X above B, right of A, left region: holds
+ok   two shapes with the same two constraints do not overlap
+ok     ... and both satisfy them
+ok   left of A and right of C (impossible): drawn, the answer names 'right of C'
+ok     ... the first relation holds
+ok   single position keeps its place (here: the same as the duplicated constraint would give, both below A)
+ok   list: shapes below A and above B (C at y 250 is too)
+ok   count: shapes left of C and in the top left
+ok   fact 'X is below A and above B' makes it true
+ok   group A, B, Y as Pipeline
+ok   what is in Pipeline
+ok   which group is B in
+ok   which group is C in
+ok   list groups
+ok   move Pipeline right by 100: every member moves by the same amount
+ok     ... C does not move
+ok   move Pipeline left of C: the layout inside the group is kept
+ok     ... and the group is left of C (a group is an anchor too: is C right of Pipeline?)
+ok   undo: back to the previous place
+ok   redo
+ok   send Pipeline to the back: its members are first in the stacking order
+ok   make Pipeline red: all members
+ok   duplicate Pipeline: 3 new shapes and a new group
+ok   delete Pipeline: its shapes and the group are gone
+ok   undo the delete: shapes and group are back
+ok   align Pipeline vertically: one x
+ok   rename the group
+ok   rename a member: the group follows
+ok   ungroup Y (a member): Y leaves the group
+ok   delete a member: the group keeps the rest
+ok   ungroup Flow: no groups, shapes stay
+ok   a group cannot take a shape's name
+ok   a shape is in one group at a time
+ok   world write-back has the group wire
+ok   rules reader: group A, B and C as Pipeline                         @s1 command action=group name=Pipeline target=A,B,C
+ok   rules reader: Group A, B and C (as Flow)                           @s1 command action=group name=Flow target=A,B,C
+ok   rules reader: put A and C together                                 @s1 command action=group target=A,C
+ok   rules reader: bundle Y and C into a group called Side              @s1 command action=group name=Side target=Y,C
+ok   rules reader: add C to Pipeline                                    @s1 command action=group name=Pipeline target=C,Pipeline
+ok   rules reader: take B out of Pipeline                               @s1 command action=ungroup target=B
+ok   rules reader: ungroup Pipeline                                     @s1 command action=ungroup target=Pipeline
+ok   rules reader: split Pipeline up                                    @s1 command action=ungroup target=Pipeline
+ok   rules reader: break up the Pipeline group                          @s1 command action=ungroup target=Pipeline
+ok   rules reader: what is in Pipeline?                                 @s1 question ask=members target=Pipeline
+ok   rules reader: what does Pipeline contain?                          @s1 question ask=members target=Pipeline
+ok   rules reader: which group is A in?                                 @s1 question ask=groupOf target=A
+ok   rules reader: what groups are there?                               @s1 question ask=list kind=group
+ok   rules reader: move Pipeline below C                                @s1 command action=move target=Pipeline position=below anchor=C
+ok   rules reader: delete Pipeline                                      @s1 command action=delete target=Pipeline
+ok   rules reader: duplicate Pipeline                                   @s1 command action=duplicate target=Pipeline
+ok   rules reader: bring Pipeline to the front                          @s1 command action=toFront target=Pipeline
+ok   rules reader: draw a red star below A but above B                  @s1 command action=create shape=star color=red position=below anchor=A position2=above anchor2=B
+ok   rules reader: draw a star named T top left, right of Y             @s1 command action=create shape=star name=T position=rightOf anchor=Y region=topLeft
+ok   rules reader: add a triangle between A and C, near the top         @s1 command action=create shape=triangle position=between anchor=A,C region=top
+ok   rules reader: move Y below A and also left of C                    @s1 command action=move target=Y position=below anchor=A position2=leftOf anchor2=C
+ok   rules reader: move Y above B but below A                           @s1 command action=move target=Y position=above anchor=B position2=below anchor2=A
+ok   rules reader: is Y below A and above B?                            @s1 question ask=check target=Y position=below anchor=A position2=above anchor2=B
+ok   rules reader: which shapes are left of C and in the top left?      @s1 question ask=list position=leftOf anchor=C region=topLeft
+ok   rules reader: Y is right of A and below C                          @s1 fact target=Y position=rightOf anchor=A position2=below anchor2=C
+ok   rules reader: move Y below A                                       @s1 command action=move target=Y position=below anchor=A
+ok   rules reader: draw a circle in the top left                        @s1 command action=create shape=circle position=topLeft
+ok   kind change: change the shape of Box to a star
+ok     ... Box is now a star, Hub unchanged
+ok   kind change: transform Box into a hexagon
+ok     ... Box is now a hexagon, Hub unchanged
+ok   kind change: convert Box to a square
+ok     ... Box is now a square, Hub unchanged
+ok   kind change: reshape Box as a rectangle
+ok     ... Box is now a rectangle, Hub unchanged
+ok   kind change: Box should be a diamond instead
+ok     ... Box is now a diamond, Hub unchanged
+ok   kind change: swap Box's shape for a circle
+ok     ... Box is now a circle, Hub unchanged
+ok   kind change: turn Box into a big red circle
+ok     ... Box is now a circle, Hub unchanged
+ok   kind change: make all the squares circles
+ok     ... both squares are circles
+ok   kind change: change Hub and Box into triangles
+ok     ... both are triangles
+ok   label the arrow Process -> Check: set
+ok     ... the shapes keep their labels
+ok   ends given the other way round: the arrow between them is relabeled (replace)
+ok   what does the arrow from Process to Check say
+ok   undo: the previous label is back
+ok   redo
+ok   label="" removes the label
+ok     ... and the question says so
+ok   undo the removal
+ok   no such arrow: says so, changes nothing
+ok   a shape that does not exist: says so
+ok   no label text: asks for it
+ok   one end matching two arrows: asks which one, changes nothing
+ok   one end matching one arrow: labeled
+ok   arrows both ways: from/to picks the direction, the answer names the other one
+ok   the drawing written back as SOP carries the label
+ok   an end given by a description (the red circle)
+ok   a shape: label="" removes its label too
+ok   rules reader: label the arrow between Process and Check as SomeName   
+ok   rules reader: label the arrow from Process to Check "yes"             
+ok   rules reader: label the line from Process to Check as needs review    
+ok   rules reader: name the link Process–Check Valid                       
+ok   rules reader: name the link Process-Check Valid                       
+ok   rules reader: put the label "ok" on the arrow from Process to Check   
+ok   rules reader: add the label "go" to the arrow from Start to Process   
+ok   rules reader: write "no" on the arrow from Check to Done              
+ok   rules reader: call the arrow from Start to Process "begin"            
+ok   rules reader: change the label of the arrow from Process to Check to "valid"
+ok   rules reader: make the arrow from Process to Check say "yes"          
+ok   rules reader: label the Process→Check arrow "x"                       
+ok   rules reader: label the arrow from Process as "out"                   
+ok   rules reader: label the arrow into Done "in"                          
+ok   rules reader: remove the label of the arrow between Process and Check 
+ok   rules reader: unlabel the arrow from Start to Process                 
+ok   rules reader: what does the arrow from Process to Check say?          
+ok   rules reader: what is the label of the arrow between Process and Check?
+ok   rules reader: what does the link Process–Check say?                   
+ok   rules reader: draw an arrow from Start to Done labeled "skip"         
+ok   rules reader: add an arrow from Start to Done with the label "skip"   
+ok   rules reader: connect Start to Done with a red arrow labeled "skip"   
+ok   rules reader: delete the arrow between Start and Process              
+ok   rules reader: remove the label of Done                                
+ok   rules reader: delete Done's label                                     
+ok   rules reader: unlabel Done                                            
+ok   end to end: label the arrow between Process and Check as SomeName
+ok   end to end: replace
+ok   end to end: what does the arrow from Process to Check say
+ok   end to end: remove
+ok   end to end: undo the removal
+ok   end to end: label the arrow between Start and Done (none): says so
+ok   rules reader: label the shape Process as "Great"              
+ok   rules reader: label the box Process "Great"                   
+ok   rules reader: label the circle named A "go"                   
+ok   rules reader: label the node Process as Great                 
+ok   rules reader: move the box Process below A                    
+ok   rules reader: move the node B next to the shape Process       
+ok   rules reader: make the circle named B red                     
+ok   rules reader: make the shape Process a circle                 
+ok   rules reader: delete the shape Process                        
+ok   rules reader: connect the node A to the box Process           
+ok   rules reader: rename the shape Process to Step                
+ok   rules reader: draw a circle named Hub next to the box Process 
+ok   rules reader: where is the shape Process?                     
+ok   rules reader: what color is the circle called A?              
+ok   rules reader: is the box Process red?                         
+ok   rules reader: the shape Process is red                        
+ok   rules reader: move the circle called Foo up                   
+ok   rules reader: make the shape a circle                         
+ok   rules reader: draw a shape                                    
+ok   rules reader: draw a red circle named Hub                     
+ok   rules reader: add a box called Store below the box Process    
+ok   rules reader: make the shape bigger                           
+ok   rules reader: make all shapes blue                            
+ok   rules reader: label the shape "hi"                            
+ok   end to end: label the shape Process as "Great" (with several shapes on the canvas)
+ok   end to end: draw a shape still draws one
+ok   rules reader: add 3 triangles in a circle layout              
+ok   rules reader: draw four squares in a row                      
+ok   rules reader: add 5 red stars arranged in a grid              
+ok   rules reader: add 6 dots as a ring                            
+ok   rules reader: add 3 hexagons side by side                     
+ok   rules reader: add 4 diamonds stacked                          
+ok   rules reader: draw 3 circles in a line                        
+ok   rules reader: add three small squares in a row below Process  
+ok   rules reader: draw a circle                                   
+ok   rules reader: add 3 circles in a row                          
+ok   rules reader: put 4 stars around Hub                          
+ok   rules reader: arrange everything in a circle                  
+ok   row: 4 squares, one y, distinct x, no overlap
+ok   column: one x, distinct y
+ok   grid of 5: 2 rows, 3 columns
+ok   circle of 6 triangles: all triangles, about the same distance from their centre
+ok   row below Process: all below it, one y
+ok   one undo removes the whole row
+ok   rules reader: align all horizontally                              
+ok   rules reader: arrange all in a circle                             
+ok   rules reader: arrange them all in a row                           
+ok   rules reader: distribute everything evenly                        
+ok   rules reader: make the whole diagram blue                         
+ok   rules reader: line up all of them                                 
+ok   rules reader: tidy up the diagram                                 
+ok   rules reader: arrange the whole diagram in a grid                 
+ok   rules reader: make all red                                        
+ok   rules reader: make all circles red                                
+ok   rules reader: move Db to the center of the diagram                
+ok   rules reader: forget all rules                                    
+ok   rules reader: remove all connections                              
+ok   rules reader: make the circles red and arrange them all in a row  
+ok   rules reader: tie Db to Billing and Billing to Queue              
+ok   rules reader: attach Jupiter to Pluto, Pluto to Comet             
+ok   rules reader: hook Hr and Coo to Ceo                              
+ok   rules reader: connect Api and Db                                  
+ok   rules reader: wire Web to Api, then Api to Cache and Api to Db    
+ok   rules reader: what does the ellipse point to?                     
+ok   rules reader: is Kafka part of any group?                         
+ok   rules reader: what's written on Crab?                             
+ok   rules reader: draw a star labeled cold                            
+ok   rules reader: make Salt smaller, and then label it "end"          
+ok   rules reader: put the label "retry" on each indigo box            
+ok   rules reader: add a title "Q3" at the top                         
+ok   rules reader: how many boxes along the left edge?                 
+ok   rules reader: is there a connection between Scene2 and Climax?    
+ok   rules reader: hook C to X, then G to E                            
+ok   rules reader: Set K to orange, Z to pink.                         
+ok   rules reader: Q right under B                                     
+ok   rules reader: A circle near B                                     
+ok   rules reader: can you make Lead normal and Manager big            
+ok   rules reader: now please create a black ellipse and a hexagon     
+ok   rules reader: paint Ab, Bc and Cd red                             
+ok   rules reader: change the shape of S3 and Bucket to a triangle     
+ok   rules reader: remove all the labels on the arrows                 
+ok   rules reader: The labels on Gate→Ramp and Ramp→Runway: remove them both
+ok   rules reader: what does the arrow between Icu and Ward say? and can you delete that label
+ok   rules reader: what's the arrow between Spark and Lake say? rename it to "parquet"
+ok   rules reader: connect Plan to Work and label it "approved"        
+ok   rules reader: connect Plan to Work and make it red                
+ok   rules reader: clean up please                                     
+ok   rules reader: tighten it up                                       
+ok   rules reader: write "Decisions" in big bold letters               
+ok   rules reader: write "START HERE" above Room1                      
+ok   rules reader: write "x" on Room1                                  
+ok   rules reader: add a big title Roadmap                             
+ok   rules reader: add a title Roadmap                                 
+ok   rules reader: add a heading Q3 plan at the top                    
+ok   rules reader: add a caption Draft under Done                      
+ok   rules reader: add big text Hello                                  
+ok   rules reader: add a note saying check later                       
+ok   rules reader: add a red title: Sales and Marketing                
+ok   rules reader: add a caption Draft on Done                         
+ok   rules reader: add the text Cargo to the Barge                     
+ok   rules reader: add a title to Process                              
+ok   rules reader: make the title bigger                               
+ok   rules reader: Put Title right of Logo                             
+ok   rules reader: tidy this up and add a big title Services           
+ok   rules reader: make the heading red                                
+ok   rules reader: clear arrow label check done                        
+ok   rules reader: sketch a sunrise of Autumn, Design and Support thanks
+ok   rules reader: flip Cat and Dog                                    
+ok   rules reader: reverse that                                        
+ok   rules reader: Decision tree for the hiring flow.                  
+ok   rules reader: which shapes can be reached from the rect?          
+ok   rules reader: Deelte Db                                           
+ok   rules reader: Brong Hero in front                                 
+ok   rules reader: Spice rack. Make Salt white.                        
+ok   no pattern word or legend cue is corrected by the spelling step
+ok   distribute 4 shapes vertically that do not fit between the extremes: no overlap (name tags included)
+ok     ... equal gaps of at least 16 px between neighbours (the span widened)
+ok     ... the reply says how far apart
+ok   distribute 3 shapes horizontally with room between the ends: the ends stay, the middle one is centred in the gap
+ok   9 huge circles cannot stand one above the other on the canvas: nothing moves, the reply says why
+ok   distribute 2 shapes: needs three
+ok   align R and T (one above the other) in a row: one y, pushed apart, no overlap
+ok   align 8 large boxes in one row (too wide for the canvas): the reply says they do not fit
+ok   remove every arrow label when one arrow has a label: singular reply
+ok   label every arrow: plural reply
+ok   label every arrow when only one differs: singular reply
+ok   remove two arrow labels: plural reply
+ok   delete by its text (the whole text: target="Order flow") deletes MainTitle
+ok   delete by its text (any case: target="order FLOW") deletes MainTitle
+ok   delete by its text (the words as two names: target=Order,flow) deletes MainTitle
+ok   delete by its text (without the space: target=Orderflow) deletes MainTitle
+ok   delete by its text (one word of two: target=Order) deletes MainTitle
+ok   delete by its text (one letter off: target="Ordr flow") deletes MainTitle
+ok   a shape's label names it: move Validate -> Process moves
+ok   connect Start to "ok?" (Check's label) -> Start → Check
+ok   a mention by its text (label=) resolves to MainTitle
+ok   a name wins over a text: 'review' is the group Review (not the caption '2 · review')
+ok   two items show the same text: it asks which one, nothing is deleted
+ok   a reference no item shows: the usual answer
+ok   one word of a long text is not a match ('Make' is not 'Make the payment and ship it')
+ok   a new shape may take a name that is also a word of a text (names are not resolved by text on create)
+ok   'the boxes' (shape=rectangle, all): the ordinary rectangles only, never the panels
+ok   'the background boxes' (layer=background): the background only
+ok   'the zones' (layer=zone): both zones
+ok   layer=item with a kind: the ordinary items of that kind
+ok   'the text Order flow' (shape=text label=...): the title
+ok   'everything' (no kind, no layer) still means everything, panels included
+ok   no ordinary rectangle left: it says the panels are left out and how to mean them, deletes nothing
+ok   count rectangles: the panels are not counted
+ok   count zones
+ok   is there a text saying 'order flow'?
+ok   rules: 'delete the background boxes' -> layer=background
+ok   rules: 'Delete background boxes' (no article) -> layer=background
+ok   rules: 'remove the zones' -> layer=zone
+ok   rules: 'make the panels blue' -> layer=zone
+ok   rules: 'send Start to the background' stays a z-order
+ok   rules: a shape named Lane is a name, not a layer
+ok   rules: 'delete the title Order flow' -> mention label=
+ok   rules: 'delete "order flow"' -> mention label= (not forget, not without a target)
+ok   rules: a quoted text without the canvas texts -> mention label=
+ok   rules: a quoted name -> the name
+ok   rules: 'delete Order flow' (the words of a canvas text, both COMMON) -> mention label=
+ok   rules: 'Delete Orderflow' (joined by the recognizer) -> the text
+ok   rules: 'move Order flow to the top' is a move, not a layout of the flow
+ok   rules: 'add a title Order flow' still writes a new text
+ok   rules: 'put the label "ok" on the arrow ...' still labels
+ok   engine: the reading of 'delete "order flow"' deletes the title and nothing else, keeps the rules
+ok   (b) 'delete the circles': held, lists Start and Done
+ok   (c) ... says exactly what Do it anyway removes, links included
+ok       ... the dry run changed nothing (shapes, undo history)
+ok   (b) a description that removes one item is not held by (b)
+ok   (b) named shapes are not a description: not held (the Rules)
+ok   (a) a delete at confidence 0.5, safety threshold 0.9 (level execute all): held with the reason
+ok   (a) the same at 0.95: executed
+ok   (a) 'forget' read at 0.0005 (the session's 'delete "order flow"'): held
+ok   (a) disconnect below the threshold: held
+ok   (a) an ungroup that removes a group: held below the threshold
+ok   a request that removes nothing is not affected
+ok   'Clear the canvas' (the Rules): not held by (b), everything is listed
+ok   'Clear the canvas' below the safety threshold: held by (a)
+ok   'Clear the canvas' at or above it: executed
+ok   'Clear the canvas' then 'undo': empty, then everything is back
+ok   a later request that uses the held description's wires is held too
+ok   1. 'draw a sun': a large gold circle named Sun in the top right
+ok   1. what is stated wins (orange, bottom left)
+ok   1. 'a cloud' twice: white ellipses at the top, Cloud and Cloud2, not overlapping
+ok   1. 'the sky': a light-blue background panel across the top
+ok   1. 'ground': a brown background panel across the bottom; grass green
+ok   5. a colour for a known noun by its name: Lake is blue
+ok   5. a rule (from now on) comes before the noun's colour
+ok   2. two circles inside Head: small (a fifth of Head), inside it, side by side, not overlapping
+ok   2. one more inside Head: inside, a third of its size at most, not on the eyes
+ok   2. ... 'is it inside Head?' holds
+ok   3. a triangle on House: touching its top edge, centred, the house's width
+ok   3. ... 'is Roof on House?' holds
+ok   3. a roof 'on top of' (above) a box: touching it, its width too
+ok   3. 'above' keeps its gap for anything but a roof
+ok   4. new shapes do not overlap existing ones
+ok   rules: 'draw a sun' -> object=sun
+ok   rules: 'draw two small circles inside Head' -> position=inside
+ok   rules: 'draw a triangle on House' -> position=onTop
+ok   rules: 'draw a triangle on top of House' stays above (the annotation's form)
+ok   1. restyling a panel with items on it does not move it
+ok   2. restyling an item that touches another does not move it
+ok   2. ... nor a part of a character (an eye on a face)
+ok   3. a stated gap of 4 px right of Hen is kept
+ok   4. duplicate keeps an explicit width and height
+ok   5. align the bottoms: May and Jun keep their x
+ok   5. ... and their bottoms are level
+ok   6. a template on a full canvas is drawn on the visible canvas, not in a new frame
+ok   7. check with a group as target: Intake is left of Review
+ok   7. ... and its colour is checked on every member
+ok   8. a zone and a 60 by 250 box created without a shape word are rectangles
+
+359/359 passed
+exit 0

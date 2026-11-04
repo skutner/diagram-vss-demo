@@ -1,0 +1,436 @@
+{
+ "about": "Fixed inputs of the experimental Qwen3 reader (training/qwen/QWEN3_PLAN.md). Written by training/qwen/make_reader.mjs; do not edit by hand.",
+ "model": {
+  "repo": "Qwen/Qwen3-0.6B-GGUF",
+  "file": "Qwen3-0.6B-Q8_0.gguf",
+  "revision": "23749fefcc72300e3a2ad315e1317431b06b590a",
+  "url": "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/23749fefcc72300e3a2ad315e1317431b06b590a/Qwen3-0.6B-Q8_0.gguf",
+  "bytes": 639446688,
+  "sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031",
+  "license": "Apache-2.0",
+  "expect": {
+   "architecture": "qwen3",
+   "name": "Qwen3 0.6B Instruct",
+   "n_vocab": 151936,
+   "n_layer": 28,
+   "eos": 151645,
+   "file_type": "7",
+   "chat_template_sha256": "57f1fd00f0013a2be96aa79b857391f27e23df5b5f847072b524c897e24d0361"
+  }
+ },
+ "runtime": {
+  "package": "@wllama/wllama",
+  "version": "3.8.1",
+  "npm_integrity": "sha512-Pl7BEJhPU8OHnV/yhn3DFZYhLLOdSHh+4TND79WCftHnlUAdQPAsyc/CfIOY+4mVxvf5VW3Xw3Uf7BBfotS1gw==",
+  "git_head": "b68fd6427063266176bb0054befe9ff70b3258f1",
+  "libllama": "b11364-46ca246",
+  "files": {
+   "vendor/wllama-3.8.1/index.min.js": "834d7be963172248caf13c6f2ae786009b43edfeefc85eeadc20609e8447d118",
+   "vendor/wllama-3.8.1/wllama.wasm": "551f13439366eff11e057b1b91fe46a7fdac29d56d67372d4c5f19a549dfe70c"
+  }
+ },
+ "load": {
+  "n_gpu_layers": 0,
+  "n_threads": 1,
+  "n_ctx": 6144,
+  "n_batch": 512,
+  "n_parallel": 1,
+  "jinja": true,
+  "seed": 0
+ },
+ "request": {
+  "temperature": 0,
+  "seed": 0,
+  "max_tokens": 2048,
+  "chat_template_kwargs": {
+   "enable_thinking": false
+  },
+  "cache_prompt": true,
+  "logprobs": true,
+  "top_logprobs": 1,
+  "post_sampling_probs": false,
+  "verbose": true,
+  "return_tokens": true
+ },
+ "time_limit_ms": 1800000,
+ "check_sentence": "Draw a small circle.",
+ "act_keys": {
+  "create": [
+   "anchor",
+   "anchor2",
+   "at",
+   "axis",
+   "color",
+   "count",
+   "fill",
+   "items",
+   "items2",
+   "label",
+   "layer",
+   "layout",
+   "linked",
+   "name",
+   "outline",
+   "parents",
+   "position",
+   "position2",
+   "region",
+   "scheme",
+   "shape",
+   "size",
+   "template",
+   "title"
+  ],
+  "delete": [
+   "target"
+  ],
+  "move": [
+   "anchor",
+   "anchor2",
+   "at",
+   "direction",
+   "distance",
+   "position",
+   "position2",
+   "region",
+   "target"
+  ],
+  "set": [
+   "arrow",
+   "color",
+   "fill",
+   "from",
+   "kind",
+   "outline",
+   "quantifier",
+   "shape",
+   "size",
+   "style",
+   "target",
+   "to"
+  ],
+  "resize": [
+   "from",
+   "kind",
+   "quantifier",
+   "target",
+   "to"
+  ],
+  "rename": [
+   "name",
+   "target"
+  ],
+  "label": [
+   "from",
+   "kind",
+   "label",
+   "quantifier",
+   "target",
+   "to"
+  ],
+  "duplicate": [
+   "count",
+   "target"
+  ],
+  "swap": [
+   "target"
+  ],
+  "connect": [
+   "arrow",
+   "color",
+   "from",
+   "label",
+   "pairing",
+   "style",
+   "to"
+  ],
+  "disconnect": [
+   "from",
+   "quantifier",
+   "to"
+  ],
+  "align": [
+   "axis",
+   "direction",
+   "target"
+  ],
+  "distribute": [
+   "axis",
+   "target"
+  ],
+  "toFront": [
+   "target"
+  ],
+  "toBack": [
+   "target"
+  ],
+  "arrange": [
+   "anchor",
+   "axis",
+   "direction",
+   "layout",
+   "target",
+   "template",
+   "title"
+  ],
+  "group": [
+   "name",
+   "target"
+  ],
+  "ungroup": [
+   "target"
+  ],
+  "improve": [
+   "target"
+  ],
+  "respace": [
+   "comparison",
+   "distance",
+   "scale",
+   "target"
+  ],
+  "snap": [
+   "distance",
+   "target"
+  ],
+  "fit": [
+   "position",
+   "target"
+  ],
+  "flip": [
+   "axis",
+   "target"
+  ],
+  "sort": [
+   "layout",
+   "property",
+   "superlative",
+   "target"
+  ],
+  "groupBy": [
+   "property",
+   "target"
+  ],
+  "equalize": [
+   "anchor",
+   "property",
+   "target"
+  ],
+  "straighten": [
+   "target"
+  ],
+  "untangle": [
+   "target"
+  ],
+  "reverse": [
+   "from",
+   "quantifier",
+   "target",
+   "to"
+  ],
+  "undo": [],
+  "redo": [],
+  "forget": [],
+  "count": [
+   "anchor",
+   "anchor2",
+   "color",
+   "kind",
+   "linked",
+   "notColor",
+   "position",
+   "position2",
+   "shape"
+  ],
+  "list": [
+   "anchor",
+   "color",
+   "kind",
+   "notColor",
+   "position",
+   "region",
+   "shape"
+  ],
+  "exists": [
+   "anchor",
+   "color",
+   "kind",
+   "notColor",
+   "position",
+   "shape"
+  ],
+  "property": [
+   "from",
+   "property",
+   "target",
+   "to"
+  ],
+  "check": [
+   "anchor",
+   "anchor2",
+   "color",
+   "comparison",
+   "notColor",
+   "position",
+   "position2",
+   "shape",
+   "size",
+   "target"
+  ],
+  "describe": [
+   "target"
+  ],
+  "neighbors": [
+   "target"
+  ],
+  "connected": [
+   "anchor",
+   "target"
+  ],
+  "degree": [
+   "target"
+  ],
+  "nearest": [
+   "anchor",
+   "color",
+   "shape",
+   "superlative"
+  ],
+  "extreme": [
+   "shape",
+   "superlative"
+  ],
+  "path": [
+   "from",
+   "to"
+  ],
+  "reachable": [
+   "from"
+  ],
+  "cycle": [],
+  "rules": [],
+  "members": [
+   "target"
+  ],
+  "groupOf": [
+   "target"
+  ],
+  "help": [
+   "about",
+   "aspect",
+   "topic"
+  ],
+  "fact": [
+   "anchor",
+   "anchor2",
+   "color",
+   "linked",
+   "position",
+   "position2",
+   "shape",
+   "size",
+   "target"
+  ],
+  "rule": [
+   "color",
+   "shape",
+   "size"
+  ]
+ },
+ "desc_keys": [
+  "color",
+  "notColor",
+  "quantifier",
+  "recency",
+  "shape"
+ ],
+ "act_keys_source": "docs/model/neural/sop-bert/config.json reader.act_keys (neural/sop-bert version fd69a08c3b)",
+ "examples": [
+  {
+   "id": "ot-0601",
+   "source": "training/sketch/llm_train/opus_train_c/msg_01.jsonl",
+   "names": [
+    "Triage",
+    "Intake",
+    "Discharge"
+   ],
+   "text": "Put a red diamond between Intake and Triage.",
+   "output": {
+    "requests": [
+     {
+      "id": "r1",
+      "text": "Put a red diamond between Intake and Triage",
+      "do": "create",
+      "args": {
+       "shape": "diamond",
+       "color": "red",
+       "position": "between",
+       "anchor": [
+        {
+         "name": "Intake"
+        },
+        {
+         "name": "Triage"
+        }
+       ]
+      }
+     }
+    ],
+    "not_understood": []
+   }
+  },
+  {
+   "id": "ot-0602",
+   "source": "training/sketch/llm_train/opus_train_c/msg_01.jsonl",
+   "names": [
+    "Dock1",
+    "Dock2",
+    "Staging"
+   ],
+   "text": "Dock2 is way too close to Staging. Scoot it right by 120 pixels, and while you're at it make Dock1 navy. Which shape is the leftmost now?",
+   "output": {
+    "requests": [
+     {
+      "id": "r1",
+      "text": "Scoot it right by 120 pixels",
+      "do": "move",
+      "args": {
+       "target": [
+        {
+         "name": "Dock2"
+        }
+       ],
+       "direction": "right",
+       "distance": 120
+      }
+     },
+     {
+      "id": "r2",
+      "text": "make Dock1 navy",
+      "do": "set",
+      "args": {
+       "color": "navy",
+       "target": [
+        {
+         "name": "Dock1"
+        }
+       ]
+      }
+     },
+     {
+      "id": "r3",
+      "text": "Which shape is the leftmost",
+      "do": "extreme",
+      "args": {
+       "superlative": "leftmost"
+      }
+     }
+    ],
+    "not_understood": []
+   }
+  }
+ ],
+ "prompt_sha256": "1d11a4c2ded0583bf0cf9c60943e7d7e5a9cc144ccf5b0eafeca8ea1e3e71a25",
+ "schema_sha256": "0c5b7f3214435c8680b2dbd8eb006b515755bdaf2c267e91e0c9cb8725516d1b",
+ "prompt_chars": 7103
+}

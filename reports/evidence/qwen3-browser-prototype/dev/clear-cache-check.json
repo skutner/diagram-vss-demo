@@ -1,0 +1,14 @@
+{
+ "before": {
+  "qwen3-reader": [
+   [
+    "stand-in.gguf",
+    1048576
+   ]
+  ]
+ },
+ "state": "idle",
+ "after": {},
+ "note": "SOP-BERT reader ready: SOP-BERT on the CPU, 68.7 MB, 8.3 s. It starts from the Rules drawing.",
+ "about": "training/qwen/clear_cache_check.cjs: a 1 MB stand-in file (not the model) in the reader cache folder of a fresh profile; Clear its cache pressed on the idle Qwen3 card; the folder is gone afterwards. The note is the last system line of the chat at that moment."
+}

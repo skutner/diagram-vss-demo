@@ -1,0 +1,63 @@
+{
+ "url": "http://127.0.0.1:8670/index.html?models=rules,vss,neural,combined,modernbert,qwen",
+ "local": true,
+ "harness": "training/sketch/diagram_e2e_live6.mjs",
+ "harness_sha256": "37617ca3ef5856762f07c4f9bcfcc663280abb5fe5ddd8ed0f8747f77d42df4e",
+ "fixture_sha256": "c81167e8bb6ff0a8c693317b11ca5d1e72f781bb7851ba28b7448c0edff89f3f",
+ "record_sha256": "9c7961981a10dae12254d1219ba9d5f40ffd27ca2c445038c3066eb9cfd6d016",
+ "started": "2026-11-04T10:02:23.117Z",
+ "finished": "2026-11-04T10:17:07.360Z",
+ "status": "captured; assessment pending",
+ "failures": [],
+ "hardware": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "logical_cpus": 4,
+  "mem_total_kib": 16477348,
+  "os": "Ubuntu 24.04.5 LTS",
+  "kernel": "6.18.44-fc-v233",
+  "node": "v22.23.4",
+  "virtualization": "docker"
+ },
+ "browser": {
+  "version": "153.0.8010.12",
+  "headless": true,
+  "viewport": "1400x900",
+  "device_scale_factor": 2,
+  "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+  "hc": 4,
+  "coi": false,
+  "deviceMemory": 16,
+  "heap": {
+   "used": 86400000,
+   "total": 91700000,
+   "limit": 3760000000
+  }
+ },
+ "screenshots": {
+  "rules": {
+   "file": "rules.png",
+   "sha256": "8c777584317736ccae9ba0a7b6305c8a83036f5a839fc6ade68a204b6fc88701"
+  },
+  "vss": {
+   "file": "vss.png",
+   "sha256": "5737e435bdc0c115c61c0064acaec48af229e3f2c2cb24bea1bb12826b684449"
+  },
+  "neural": {
+   "file": "neural.png",
+   "sha256": "8aaf57213e4c42af74ec4d35dff6c0d7f951a0fdeea51130619eaee2f6eed97c"
+  },
+  "combined": {
+   "file": "combined.png",
+   "sha256": "698f27da912fe4ffdeb1f025d774fd6a25477d23437ce303a78a9ac88449e387"
+  },
+  "modernbert": {
+   "file": "modernbert.png",
+   "sha256": "cb58d6b2d65ac0ab790d3fb4c442e6c73686a6a9d31bdc20bd5850adc7929a80"
+  },
+  "qwen": {
+   "file": "qwen.png",
+   "sha256": "714e4c870c01d1fb16bb642143fef2cdca2a4a39782cbbac2d3417361a76414d"
+  }
+ },
+ "profile_fresh": true
+}

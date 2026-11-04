@@ -1,0 +1,9 @@
+{
+ "about": "Development measurement (local headless Chromium 153, cloud VM, wllama 3.8.1, the pinned GGUF, n_gpu_layers 0, 1 thread, n_ctx 4096 in this scratch harness): one 41-token prompt (system 'Write JSON only.' and a short user message), no prompt cache, temperature 0. Three request variants to separate the cost of the grammar and of the token probabilities from the cost of a long context.",
+ "runs": [
+  { "variant": "json_schema grammar (49,387-character GBNF, not lazy) + logprobs (pre-sampling, n_probs 1)", "prompt_tokens": 41, "prompt_ms": 7896.9, "generated_tokens": 85, "generation_ms": 37983.1, "ms_per_generated_token": 452.2 },
+  { "variant": "json_schema grammar only", "prompt_tokens": 41, "prompt_ms": 8270.1, "generated_tokens": 85, "generation_ms": 37995.6, "ms_per_generated_token": 452.3 },
+  { "variant": "logprobs only (no grammar)", "prompt_tokens": 41, "prompt_ms": 8616.1, "generated_tokens": 26, "generation_ms": 10919.9, "ms_per_generated_token": 436.8 }
+ ],
+ "compare": "With the reader's 1,805-token fixed prompt in context (standalone-check.json) generation took 1,098-1,251 ms per token: the long context, not the grammar or the probabilities, is what makes generation slow here."
+}

@@ -1,0 +1,801 @@
+{
+ "steps": [
+  {
+   "text": "stick a rectangle called Cache to the right of Api",
+   "ms": 98042.79999999981,
+   "qwen": {
+    "ok": true,
+    "errors": [],
+    "fenced": false,
+    "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"stick a rectangle called Cache to the right of Api\", \"do\": \"create\", \"args\": {\"shape\": \"rectangle\", \"name\": \"Cache\", \"position\": \"right\", \"anchor\": [{\"name\": \"Api\"}]}}], \"not_understood\": []}",
+    "rawShown": "{\"requests\": [{\"id\": \"r1\", \"text\": \"stick a rectangle called Cache to the right of Api\", \"do\": \"create\", \"args\": {\"shape\": \"rectangle\", \"name\": \"Cache\", \"position\": \"right\", \"anchor\": [{\"name\": \"Api\"}]}}], \"not_understood\": []}",
+    "finish": "stop",
+    "reasoning": "",
+    "error": null,
+    "requests": [
+     {
+      "index": 0,
+      "id": "r1",
+      "src": "stick a rectangle called Cache to the right of Api",
+      "span": [
+       0,
+       50
+      ],
+      "do": "create",
+      "type": "command",
+      "args": {
+       "shape": "rectangle",
+       "name": "Cache",
+       "position": "right",
+       "anchor": [
+        {
+         "name": "Api"
+        }
+       ]
+      },
+      "errors": [],
+      "blocked": false,
+      "raw": {
+       "id": "r1",
+       "text": "stick a rectangle called Cache to the right of Api",
+       "do": "create",
+       "args": {
+        "shape": "rectangle",
+        "name": "Cache",
+        "position": "right",
+        "anchor": [
+         {
+          "name": "Api"
+         }
+        ]
+       }
+      }
+     }
+    ],
+    "notUnderstood": [],
+    "scores": [
+     {
+      "fields": [
+       {
+        "name": "do",
+        "mean": -0.22113308310508728,
+        "n": 1
+       },
+       {
+        "name": "shape",
+        "mean": -0.0277758683077991,
+        "n": 2
+       },
+       {
+        "name": "name",
+        "mean": -0.18153518618782982,
+        "n": 2
+       },
+       {
+        "name": "position",
+        "mean": -0.008713934010302182,
+        "n": 2
+       },
+       {
+        "name": "anchor[0].name",
+        "mean": -0.002708265338393782,
+        "n": 3
+       },
+       {
+        "name": "end",
+        "mean": -0.06841171201085672,
+        "n": 2
+       }
+      ],
+      "min": -0.22113308310508728,
+      "weakest": "do",
+      "missing": null
+     }
+    ],
+    "promptSha": "1d11a4c2ded0583bf0cf9c60943e7d7e5a9cc144ccf5b0eafeca8ea1e3e71a25",
+    "userContent": "Names on the canvas: Api\nMessage: stick a rectangle called Cache to the right of Api",
+    "renderedPromptTail": "\":\"leftmost\"}}],\"not_understood\":[]}<|im_end|>\n<|im_start|>user\nNames on the canvas: Api\nMessage: stick a rectangle called Cache to the right of Api<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+    "renderedPromptChars": 7286,
+    "tokens": [
+     4913,
+     36242,
+     788,
+     61753,
+     307,
+     788,
+     330,
+     81,
+     16,
+     497,
+     330,
+     1318,
+     788,
+     330,
+     29033,
+     264,
+     22756,
+     2598,
+     19479,
+     311,
+     279,
+     1290,
+     315,
+     13443,
+     497,
+     330,
+     2982,
+     788,
+     330,
+     3182,
+     497,
+     330,
+     2116,
+     788,
+     5212,
+     12231,
+     788,
+     330,
+     55316,
+     497,
+     330,
+     606,
+     788,
+     330,
+     8233,
+     497,
+     330,
+     3487,
+     788,
+     330,
+     1291,
+     497,
+     330,
+     17109,
+     788,
+     61753,
+     606,
+     788,
+     330,
+     6563,
+     9207,
+     60,
+     3417,
+     1125,
+     330,
+     1921,
+     58228,
+     51684,
+     788,
+     3056,
+     92,
+     151645
+    ],
+    "usage": {
+     "completion_tokens": 72,
+     "prompt_tokens": 1809,
+     "total_tokens": 1881,
+     "prompt_tokens_details": {
+      "cached_tokens": 1786
+     }
+    },
+    "timings": {
+     "cache_n": 1786,
+     "prompt_n": 23,
+     "prompt_ms": 19887.099,
+     "prompt_per_token_ms": 864.6564782608694,
+     "prompt_per_second": 1.156528662124124,
+     "predicted_n": 72,
+     "predicted_ms": 78094.201,
+     "predicted_per_token_ms": 1099.918323943662,
+     "predicted_per_second": 0.9091584149762925
+    },
+    "settings": {
+     "seed": 0,
+     "temperature": 0,
+     "top_k": 40,
+     "top_p": 0.949999988079071,
+     "min_p": 0.05000000074505806,
+     "samplers": [
+      "penalties",
+      "dry",
+      "top_n_sigma",
+      "top_k",
+      "typ_p",
+      "top_p",
+      "min_p",
+      "xtc",
+      "temperature"
+     ],
+     "n_probs": 1,
+     "post_sampling_probs": false,
+     "n_predict": 2048,
+     "chat_format": "peg-native",
+     "reasoning_format": "deepseek",
+     "backend_sampling": false
+    },
+    "ms": 98041.20000000019,
+    "logs": []
+   },
+   "nodes": [
+    "@r1 command action=create shape=rectangle name=Cache position=right anchor=Api"
+   ],
+   "analyses": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "stick a rectangle called Cache to the right of Api",
+     "span": [
+      0,
+      50
+     ],
+     "blocked": false,
+     "errors": [],
+     "score": -0.22113308310508728,
+     "weakest": "do"
+    }
+   ],
+   "notes": [],
+   "gate": [
+    {
+     "index": 0,
+     "src": "stick a rectangle called Cache to the right of Api",
+     "execute": false,
+     "blocked": false,
+     "conf": null,
+     "reasons": [
+      "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+     ]
+    }
+   ]
+  },
+  {
+   "text": "I'd like three small blue squares sitting above Db",
+   "ms": 147778.7000000002,
+   "qwen": {
+    "ok": true,
+    "errors": [],
+    "fenced": false,
+    "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"I'd like three small blue squares sitting above Db\", \"do\": \"create\", \"args\": {\"shape\": \"square\", \"kind\": \"shape\", \"color\": \"blue\", \"position\": \"above\", \"notColor\": \"blue\"}}, {\"id\": \"r2\", \"text\": \"sitting above Db\", \"do\": \"label\", \"args\": {\"target\": [{\"name\": \"Db\"}], \"position\": \"above\"}}], \"not_understood\": []}",
+    "rawShown": "{\"requests\": [{\"id\": \"r1\", \"text\": \"I'd like three small blue squares sitting above Db\", \"do\": \"create\", \"args\": {\"shape\": \"square\", \"kind\": \"shape\", \"color\": \"blue\", \"position\": \"above\", \"notColor\": \"blue\"}}, {\"id\": \"r2\", \"text\": \"sitting above Db\", \"do\": \"label\", \"args\": {\"target\": [{\"name\": \"Db\"}], \"position\": \"above\"}}], \"not_understood\": []}",
+    "finish": "stop",
+    "reasoning": "",
+    "error": null,
+    "requests": [
+     {
+      "index": 0,
+      "id": "r1",
+      "src": "I'd like three small blue squares sitting above Db",
+      "span": [
+       0,
+       50
+      ],
+      "do": "create",
+      "type": "command",
+      "args": {
+       "shape": "square",
+       "kind": "shape",
+       "color": "blue",
+       "position": "above",
+       "notColor": "blue"
+      },
+      "errors": [
+       "it uses kind, which create does not take",
+       "it uses notColor, which create does not take",
+       "it has the same color and notColor",
+       "position above needs an anchor (relative to which shape?)"
+      ],
+      "blocked": true,
+      "raw": {
+       "id": "r1",
+       "text": "I'd like three small blue squares sitting above Db",
+       "do": "create",
+       "args": {
+        "shape": "square",
+        "kind": "shape",
+        "color": "blue",
+        "position": "above",
+        "notColor": "blue"
+       }
+      }
+     },
+     {
+      "index": 1,
+      "id": "r2",
+      "src": "sitting above Db",
+      "span": null,
+      "do": "label",
+      "type": "command",
+      "args": {
+       "target": [
+        {
+         "name": "Db"
+        }
+       ],
+       "position": "above"
+      },
+      "errors": [
+       "its words \u201csitting above Db\u201d are not in the message",
+       "it uses position, which label does not take",
+       "position above needs an anchor (relative to which shape?)"
+      ],
+      "blocked": true,
+      "raw": {
+       "id": "r2",
+       "text": "sitting above Db",
+       "do": "label",
+       "args": {
+        "target": [
+         {
+          "name": "Db"
+         }
+        ],
+        "position": "above"
+       }
+      }
+     }
+    ],
+    "notUnderstood": [],
+    "scores": [
+     {
+      "fields": [
+       {
+        "name": "do",
+        "mean": -0.034536633640527725,
+        "n": 1
+       },
+       {
+        "name": "shape",
+        "mean": -0.0061430661007761955,
+        "n": 2
+       },
+       {
+        "name": "kind",
+        "mean": -0.27039454132318497,
+        "n": 2
+       },
+       {
+        "name": "color",
+        "mean": -0.09991536499001086,
+        "n": 2
+       },
+       {
+        "name": "position",
+        "mean": -1.3129477798938751,
+        "n": 2
+       },
+       {
+        "name": "notColor",
+        "mean": -3.1899724811276733,
+        "n": 3
+       },
+       {
+        "name": "end",
+        "mean": -0.4156331866979599,
+        "n": 2
+       }
+      ],
+      "min": -3.1899724811276733,
+      "weakest": "notColor",
+      "missing": null
+     },
+     {
+      "fields": [
+       {
+        "name": "do",
+        "mean": -0.28182700276374817,
+        "n": 1
+       },
+       {
+        "name": "target[0].name",
+        "mean": -0.2675293672946282,
+        "n": 3
+       },
+       {
+        "name": "position",
+        "mean": -0.7197770159691572,
+        "n": 2
+       },
+       {
+        "name": "end",
+        "mean": -0.229299895465374,
+        "n": 2
+       }
+      ],
+      "min": -0.7197770159691572,
+      "weakest": "position",
+      "missing": null
+     }
+    ],
+    "promptSha": "1d11a4c2ded0583bf0cf9c60943e7d7e5a9cc144ccf5b0eafeca8ea1e3e71a25",
+    "userContent": "Names on the canvas: Db\nMessage: I'd like three small blue squares sitting above Db",
+    "renderedPromptTail": "e\":\"leftmost\"}}],\"not_understood\":[]}<|im_end|>\n<|im_start|>user\nNames on the canvas: Db\nMessage: I'd like three small blue squares sitting above Db<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+    "renderedPromptChars": 7285,
+    "tokens": [
+     4913,
+     36242,
+     788,
+     61753,
+     307,
+     788,
+     330,
+     81,
+     16,
+     497,
+     330,
+     1318,
+     788,
+     330,
+     40,
+     4172,
+     1075,
+     2326,
+     2613,
+     6303,
+     31340,
+     11699,
+     3403,
+     11988,
+     497,
+     330,
+     2982,
+     788,
+     330,
+     3182,
+     497,
+     330,
+     2116,
+     788,
+     5212,
+     12231,
+     788,
+     330,
+     37476,
+     497,
+     330,
+     15314,
+     788,
+     330,
+     12231,
+     497,
+     330,
+     3423,
+     788,
+     330,
+     12203,
+     497,
+     330,
+     3487,
+     788,
+     330,
+     48432,
+     497,
+     330,
+     1921,
+     1636,
+     788,
+     330,
+     12203,
+     9207,
+     2137,
+     5212,
+     307,
+     788,
+     330,
+     81,
+     17,
+     497,
+     330,
+     1318,
+     788,
+     330,
+     82,
+     14810,
+     3403,
+     11988,
+     497,
+     330,
+     2982,
+     788,
+     330,
+     1502,
+     497,
+     330,
+     2116,
+     788,
+     5212,
+     5657,
+     788,
+     61753,
+     606,
+     788,
+     330,
+     7994,
+     9207,
+     1125,
+     330,
+     3487,
+     788,
+     330,
+     48432,
+     9207,
+     72441,
+     330,
+     1921,
+     58228,
+     51684,
+     788,
+     3056,
+     92,
+     151645
+    ],
+    "usage": {
+     "completion_tokens": 116,
+     "prompt_tokens": 1809,
+     "total_tokens": 1925,
+     "prompt_tokens_details": {
+      "cached_tokens": 1786
+     }
+    },
+    "timings": {
+     "cache_n": 1786,
+     "prompt_n": 23,
+     "prompt_ms": 18477.401,
+     "prompt_per_token_ms": 803.3652608695653,
+     "prompt_per_second": 1.2447638063383482,
+     "predicted_n": 116,
+     "predicted_ms": 129260.699,
+     "predicted_per_token_ms": 1124.0060782608696,
+     "predicted_per_second": 0.8896749042027075
+    },
+    "settings": {
+     "seed": 0,
+     "temperature": 0,
+     "top_k": 40,
+     "top_p": 0.949999988079071,
+     "min_p": 0.05000000074505806,
+     "samplers": [
+      "penalties",
+      "dry",
+      "top_n_sigma",
+      "top_k",
+      "typ_p",
+      "top_p",
+      "min_p",
+      "xtc",
+      "temperature"
+     ],
+     "n_probs": 1,
+     "post_sampling_probs": false,
+     "n_predict": 2048,
+     "chat_format": "peg-native",
+     "reasoning_format": "deepseek",
+     "backend_sampling": false
+    },
+    "ms": 147777.10000000056,
+    "logs": []
+   },
+   "nodes": [],
+   "analyses": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "I'd like three small blue squares sitting above Db",
+     "span": [
+      0,
+      50
+     ],
+     "blocked": true,
+     "errors": [
+      "it uses kind, which create does not take",
+      "it uses notColor, which create does not take",
+      "it has the same color and notColor",
+      "position above needs an anchor (relative to which shape?)"
+     ],
+     "score": -3.1899724811276733,
+     "weakest": "notColor"
+    },
+    {
+     "id": "r2",
+     "do": "label",
+     "src": "sitting above Db",
+     "span": null,
+     "blocked": true,
+     "errors": [
+      "its words \u201csitting above Db\u201d are not in the message",
+      "it uses position, which label does not take",
+      "position above needs an anchor (relative to which shape?)"
+     ],
+     "score": -0.7197770159691572,
+     "weakest": "position"
+    }
+   ],
+   "notes": [],
+   "gate": [
+    {
+     "index": 0,
+     "src": "I'd like three small blue squares sitting above Db",
+     "execute": false,
+     "blocked": true,
+     "conf": null,
+     "reasons": [
+      "it uses kind, which create does not take",
+      "it uses notColor, which create does not take",
+      "it has the same color and notColor"
+     ]
+    },
+    {
+     "index": 1,
+     "src": "sitting above Db",
+     "execute": false,
+     "blocked": true,
+     "conf": null,
+     "reasons": [
+      "its words \u201csitting above Db\u201d are not in the message",
+      "it uses position, which label does not take",
+      "position above needs an anchor (relative to which shape?)"
+     ]
+    }
+   ]
+  }
+ ],
+ "load1": {
+  "state": "ready",
+  "error": null,
+  "info": {
+   "runtime": {
+    "js": {
+     "bytes": 331458,
+     "sha256": "834d7be963172248caf13c6f2ae786009b43edfeefc85eeadc20609e8447d118"
+    },
+    "wasm": {
+     "bytes": 8763949,
+     "sha256": "551f13439366eff11e057b1b91fe46a7fdac29d56d67372d4c5f19a549dfe70c"
+    }
+   },
+   "source": "network",
+   "cached": true,
+   "note": null,
+   "sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031",
+   "bytes": 639446688,
+   "downloadMs": 10590.5,
+   "hashMs": 0,
+   "initMs": 9878.799999999814,
+   "totalMs": 20637.799999999814,
+   "multithread": false,
+   "threads": 1,
+   "libllama": "b11364-46ca246",
+   "ctx": {
+    "n_vocab": 151936,
+    "n_ctx": 6144,
+    "n_batch": 512,
+    "n_layer": 28,
+    "n_ctx_train": 40960,
+    "token_eos": 151645,
+    "token_eot": 151645,
+    "eog": [
+     128247,
+     151643,
+     151645,
+     151662,
+     151663,
+     151664
+    ],
+    "add_bos": false
+   },
+   "meta": {
+    "architecture": "qwen3",
+    "name": "Qwen3 0.6B Instruct",
+    "file_type": "7",
+    "tokenizer": "gpt2",
+    "pre": "qwen2"
+   },
+   "chatTemplate": "4100 chars",
+   "webgpu": true,
+   "logs": [
+    [
+     "log",
+     "ggml_webgpu: Failed to get an adapter: WebGPU not available on this browser (requestAdapter returned null)"
+    ],
+    [
+     "warn",
+     "load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden"
+    ]
+   ]
+  },
+  "check": {
+   "sentence": "Draw a small circle.",
+   "ms": 434248.9000000004,
+   "ok": true,
+   "problems": [],
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Draw a small circle.\", \"do\": \"create\", \"args\": {\"shape\": \"circle\", \"color\": \"blue\", \"position\": \"center\"}}], \"not_understood\": []}",
+   "usage": {
+    "completion_tokens": 55,
+    "prompt_tokens": 1805,
+    "total_tokens": 1860,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    }
+   },
+   "timings": {
+    "cache_n": 0,
+    "prompt_n": 1805,
+    "prompt_ms": 373944.8,
+    "prompt_per_token_ms": 207.17163434903046,
+    "prompt_per_second": 4.826915630328327,
+    "predicted_n": 55,
+    "predicted_ms": 60204,
+    "predicted_per_token_ms": 1114.888888888889,
+    "predicted_per_second": 0.8969503687462628
+   },
+   "tail": "treme\",\"args\":{\"superlative\":\"leftmost\"}}],\"not_understood\":[]}<|im_end|>\n<|im_start|>user\nNames on the canvas: (none)\nMessage: Draw a small circle.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "settings": {
+    "seed": 0,
+    "temperature": 0,
+    "top_k": 40,
+    "top_p": 0.949999988079071,
+    "min_p": 0.05000000074505806,
+    "samplers": [
+     "penalties",
+     "dry",
+     "top_n_sigma",
+     "top_k",
+     "typ_p",
+     "top_p",
+     "min_p",
+     "xtc",
+     "temperature"
+    ],
+    "n_probs": 1,
+    "post_sampling_probs": false,
+    "n_predict": 2048,
+    "chat_format": "peg-native",
+    "reasoning_format": "deepseek",
+    "backend_sampling": false
+   },
+   "requests": [
+    {
+     "do": "create",
+     "blocked": false,
+     "errors": [],
+     "score": -1.072817612439394
+    }
+   ]
+  },
+  "loadMs": 454907.2000000002,
+  "promptSha": "1d11a4c2ded0583bf0cf9c60943e7d7e5a9cc144ccf5b0eafeca8ea1e3e71a25",
+  "ms": 454907.5999999996
+ },
+ "unload": {
+  "state": "idle",
+  "ms": 6.2000000001862645
+ },
+ "cache": {
+  "files": [
+   {
+    "name": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031.json",
+    "bytes": 184
+   },
+   {
+    "name": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031.gguf",
+    "bytes": 639446688
+   }
+  ],
+  "bytes": 639446872,
+  "verified": true,
+  "estimate": {
+   "quota": 11376865850,
+   "usage": 639447610,
+   "usageDetails": {
+    "fileSystem": 639447610
+   }
+  },
+  "persisted": false
+ },
+ "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+ "hc": 4,
+ "coi": false,
+ "modelUrlReplacedByLocalCopy": 1,
+ "console": [],
+ "profile": "<scratch>/prof2",
+ "about": "Development check after the SOP Lang key-order change (training/qwen/browser_check.cjs --no-reload): the two training messages th-0101 and th-0103 that showed the missing name and count; the model URL replaced by a local copy of the same file."
+}

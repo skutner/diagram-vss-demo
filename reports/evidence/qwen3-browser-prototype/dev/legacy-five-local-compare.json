@@ -1,0 +1,9 @@
+{
+ "reference": "reports/evidence/diagram-five-101edd9/record.json",
+ "record": "<scratch>/local5b/record.json",
+ "compared": 60,
+ "equal": 60,
+ "after_turn_compared": 55,
+ "after_turn_equal": 55,
+ "diffs": []
+}

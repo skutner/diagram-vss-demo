@@ -1,0 +1,21 @@
+[
+ {
+  "id": "th-0001",
+  "text": "drop a gray hexagon called Switch right under Router",
+  "names": [
+   "Router"
+  ],
+  "last": []
+ },
+ {
+  "id": "ot-0603",
+  "text": "Okay, quick rework of the day-one board before the vendor call. Keynote stays where it is, but I need a gold star labeled \"Sponsors\" above it. Then Lunch should be an ellipse, not whatever it is now. Panel and Closing need to swap places because the speaker moved her flight. Hook Keynote to Panel to Lunch to Closing in a chain with dashed lines. Actually, make the Lunch ellipse orange too. Is Panel connected to Closing directly? And how many stars are on the board after this? Thanks, the venue people are waiting on me.",
+  "names": [
+   "Keynote",
+   "Lunch",
+   "Panel",
+   "Closing"
+  ],
+  "last": []
+ }
+]
