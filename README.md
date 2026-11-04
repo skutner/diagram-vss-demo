@@ -59,6 +59,8 @@ Open it: `docs/` is the whole application (GitHub Pages from `/docs`, or `npx se
 
 Working rules for this repository (scope, data, fairness): `AGENTS.md`. The VSS reader's design: `training/sketch/VSS_READER_SPEC.md`.
 
+Codex setup: [portable instructions, agent profiles and skills](.codex/README.md), including the steps and limitations for Codex Cloud.
+
 Help: the ? button above the drawing opens it full screen (deep links such as `index.html#help/sop-lang`). How it works inside (every component, model, data set, training run and measurement, with file paths and sizes): the Help pages under "How it works inside", also as one page, `docs/architecture.html` ([on the site](https://ml-circuits-research.github.io/diagram-vss-demo/architecture.html)).
 
 ## Layout

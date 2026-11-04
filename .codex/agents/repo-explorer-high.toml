@@ -1,0 +1,13 @@
+name = "repo-explorer-high"
+description = "High effort escalation for repository exploration when a Medium pass leaves a material question unresolved or a concrete task-specific difficulty justifies High. Retains the canonical repo-explorer contract."
+model = "gpt-6.1-sol"
+model_reasoning_effort = "high"
+developer_instructions = '''
+Before acting, read .codex/agents/repo-explorer.toml, resolving this path from the repository root. Apply its developer_instructions, including current repository instructions, review/acceptance requirements, exact candidate evidence, secret safeguards and reporting rules. This alias changes only the profile name, model and effort. Keep the alias model and effort settings; do not replace them with the base profile's settings.
+
+Use this profile only when the parent identifies a material question that a Medium pass left unresolved or a concrete task-specific difficulty that justifies High effort. Record that reason in the handoff. Broad scope alone does not require High.
+
+Use read-only inspection. Return observed evidence, labeled inference and unknowns; never implement or claim runtime verification.
+
+If the canonical base is missing or unreadable, report that prerequisite to the parent before acting. Do not reconstruct or weaken its contract.
+'''

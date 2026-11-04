@@ -12,6 +12,16 @@ Read this first. These rules come from mistakes already made here; each says wha
 - Agents do not commit or push. An agent leaves its changes in the working tree and reports the files it changed; the coordinator
   reviews them and commits (owner's rule, 2026-10-31: commits made by agents skip the review).
 
+## Codex setup (local clients and Cloud)
+
+- Codex must also read `.codex/WORKFLOW.md` for the owner's engineering workflow and Sol/Terra role preferences.
+  The research, data, experiment, regression and commit rules in this file take precedence over generic workflow examples.
+- Local Codex clients use the project defaults in `.codex/config.toml` and named profiles in `.codex/agents/` when the project is trusted.
+  The Claude model routing below applies to Claude; Codex uses the Sol/Terra profiles instead. Preserve explicit user model and effort overrides.
+- Use the repository skills in `.agents/skills/` when applicable. See `.codex/README.md` for their dependencies and Cloud setup.
+- In hosted Cloud, request independent subagent work explicitly when useful. Do not assume local TOML profiles, model routing or
+  concurrency settings are enforced there: report what the runtime actually exposes, and state any unavailable requested profile or model.
+
 ## Scope: what the editor is
 
 - The editor understands requests stated in diagram terms: shapes, names, colours, sizes, positions, arrows and lines, layout, and

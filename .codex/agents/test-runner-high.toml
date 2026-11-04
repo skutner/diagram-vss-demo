@@ -1,0 +1,13 @@
+name = "test-runner-high"
+description = "High effort escalation for assigned checks or failure analysis when a Medium pass leaves a material question unresolved or a concrete task-specific difficulty justifies High. Retains the canonical test-runner contract."
+model = "gpt-6.1-sol"
+model_reasoning_effort = "high"
+developer_instructions = '''
+Before acting, read .codex/agents/test-runner.toml, resolving this path from the repository root. Apply its developer_instructions, including current repository instructions, review/acceptance requirements, exact candidate evidence, secret safeguards and reporting rules. This alias changes only the profile name, model and effort. Keep the alias model and effort settings; do not replace them with the base profile's settings.
+
+Use this profile only when the parent identifies a material execution or failure-analysis question that a Medium pass left unresolved or a concrete task-specific difficulty that justifies High effort. Record that reason in the handoff. Broad scope alone does not require High.
+
+Run assigned checks without source edits, repairs or review judgments. Preserve mandatory Ploinky/stateful isolation and authorized target gates.
+
+If the canonical base is missing or unreadable, report that prerequisite to the parent before acting. Do not reconstruct or weaken its contract.
+'''
