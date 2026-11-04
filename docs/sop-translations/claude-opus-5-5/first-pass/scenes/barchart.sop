@@ -1,0 +1,192 @@
+# SOP Lang of the scene "Ice cream bar chart" (docs/js/scenes-extra.js, id barchart), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: I want an infographic of ice cream sales, as a bar chart made of shapes.
+#! noop: states the goal; the next messages say which shapes to draw
+#! note: the editor has no bar chart form among its templates; the chart is drawn shape by shape by the following messages
+
+## turn 3
+# input: Y axis: a thin black rectangle, 4 wide and 330 tall, at 100,255. Call it AxisY.
+@c1 command action=create shape=rectangle color=black width=4 height=330 at=100,255 name=AxisY
+
+## turn 4
+# input: X axis: black rectangle 560 x 4 at 380,440, named AxisX
+@c1 command action=create shape=rectangle color=black width=560 height=4 at=380,440 name=AxisX
+
+## turn 5
+# input: Jan bar: rectangle 60 wide, 100 tall, at 160,370, named Jan
+@c1 command action=create shape=rectangle width=60 height=100 at=160,370 name=Jan
+
+## turn 6
+# input: Feb: 60 by 150 rectangle at 260,345, Feb
+@c1 command action=create shape=rectangle width=60 height=150 at=260,345 name=Feb
+
+## turn 7
+# input: March is a 60 by 200 rectangle at 360,320 called Mar
+@c1 command action=create shape=rectangle width=60 height=200 at=360,320 name=Mar
+
+## turn 8
+# input: Apr, a 60 by 250 rectangle, at 460,295
+#! resolved: "Apr," is read as the shape's name, as in the messages before it; messages 10 and 13 refer to it as Apr
+@c1 command action=create shape=rectangle width=60 height=250 at=460,295 name=Apr
+
+## turn 9
+# input: and May, the peak: 60 by 300 rectangle centred at 560,270
+#! resolved: "May" is read as the shape's name; messages 10 and 13 refer to it as May
+@c1 command action=create shape=rectangle width=60 height=300 at=560,270 name=May
+
+## turn 10
+# input: Paint Jan blue, Feb teal, Mar green, Apr orange and May red
+@c1 command action=set target=Jan color=blue
+@c2 command action=set target=Feb color=teal
+@c3 command action=set target=Mar color=green
+@c4 command action=set target=Apr color=orange
+@c5 command action=set target=May color=red
+
+## turn 11
+# input: write the values on the bars: Jan "120"
+@c1 command action=label target=Jan label="120"
+
+## turn 12
+# input: Feb "190", Mar "260"
+@c1 command action=label target=Feb label="190"
+@c2 command action=label target=Mar label="260"
+
+## turn 13
+# input: Apr gets "350" and May "400"
+@c1 command action=label target=Apr label="350"
+@c2 command action=label target=May label="400"
+
+## turn 14
+# input: Month names under the axis: small text "Jan" at 160,458
+@c1 command action=create shape=text label="Jan" size=small at=160,458
+
+## turn 15
+# input: then small "Feb" at 260,458, small "Mar" at 360,458
+@c1 command action=create shape=text label="Feb" size=small at=260,458
+@c2 command action=create shape=text label="Mar" size=small at=360,458
+
+## turn 16
+# input: small "Apr" at 460,458 and small "May" at 560,458
+@c1 command action=create shape=text label="Apr" size=small at=460,458
+@c2 command action=create shape=text label="May" size=small at=560,458
+
+## turn 17
+# input: Big title at 310,60: "Ice cream sales 2026", navy, huge
+@c1 command action=create shape=text label="Ice cream sales 2026" color=navy size=huge at=310,60
+
+## turn 18
+# input: Is May bigger than Apr?
+@q1 question ask=check target=May comparison=bigger anchor=Apr
+
+## turn 19
+# input: which bar is the biggest?
+#! resolved: "bar" -> the five bars Jan, Feb, Mar, Apr, May
+@q1 question ask=extreme superlative=biggest target=Jan,Feb,Mar,Apr,May
+
+## turn 20
+# input: Add a gold star named Best 20 px above May
+@c1 command action=create shape=star color=gold name=Best position=above anchor=May distance=20
+
+## turn 21
+# input: dashed arrow from Jan to May labeled "growing!"
+@c1 command action=connect from=Jan to=May style=dashed label="growing!"
+
+## turn 22
+# input: make that arrow orange
+#! resolved: "that arrow" -> the arrow Jan → May of the previous message
+@c1 command action=set from=Jan to=May color=orange
+
+## turn 23
+# input: Now a June bar too: 60 by 260 rectangle named Jun right of May, 40 px gap
+@c1 command action=create shape=rectangle width=60 height=260 name=Jun position=rightOf anchor=May distance=40
+
+## turn 24
+# input: paint Jun magenta
+@c1 command action=set target=Jun color=magenta
+
+## turn 25
+# input: move Jun down 20 so its bottom lines up with the others
+@c1 command action=move target=Jun direction=down distance=20
+
+## turn 26
+# input: label Jun "330"
+@c1 command action=label target=Jun label="330"
+
+## turn 27
+# input: write "Jun" under it, small, at 660,458
+@c1 command action=create shape=text label="Jun" size=small at=660,458
+
+## turn 28
+# input: how many rectangles are there now, axes included?
+#! note: the two axes are ordinary rectangles, so a count of the rectangles includes them
+@q1 question ask=count shape=rectangle
+
+## turn 29
+# input: List the red shapes.
+@q1 question ask=list shape=any color=red
+
+## turn 30
+# input: Put a small gray circle in the top left as a logo, call it Logo
+@c1 command action=create shape=circle size=small color=gray position=topLeft name=Logo
+
+## turn 31
+# input: Text "units sold, thousands", small and gray, at 200,110
+@c1 command action=create shape=text label="units sold, thousands" size=small color=gray at=200,110
+
+## turn 32
+# input: Which shape is closest to Best?
+@q1 question ask=nearest superlative=closest shape=any anchor=Best
+
+## turn 33
+# input: group the six bars as Bars
+#! resolved: "the six bars" -> Jan, Feb, Mar, Apr, May, Jun
+@c1 command action=group target=Jan,Feb,Mar,Apr,May,Jun name=Bars
+
+## turn 34
+# input: move the title 10 px up
+#! resolved: "the title" -> the text "Ice cream sales 2026"
+@m1 mention shape=text label="Ice cream sales 2026"
+@c1 command action=move target=$m1 direction=up distance=10
+
+## turn 35
+# input: Is Jun right of May?
+@q1 question ask=check target=Jun position=rightOf anchor=May
+
+## turn 36
+# input: Move Best 40 px to the right
+@c1 command action=move target=Best direction=right distance=40
+
+## turn 37
+# input: Take the arrow from Jan to May away, it's too busy
+@c1 command action=disconnect from=Jan to=May
+
+## turn 38
+# input: What color is Mar?
+@q1 question ask=property property=color target=Mar
+
+## turn 39
+# input: Change Mar to lime
+@c1 command action=set target=Mar color=lime
+
+## turn 40
+# input: hmm, no, green was better. Undo.
+@c1 command action=undo
+
+## turn 41
+# input: delete Logo
+@c1 command action=delete target=Logo
+
+## turn 42
+# input: describe Jun
+@q1 question ask=describe target=Jun
+
+## turn 43
+# input: Nice chart!
+#! noop: a compliment; nothing to draw or answer

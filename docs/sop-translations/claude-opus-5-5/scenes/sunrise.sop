@@ -1,0 +1,189 @@
+# SOP Lang of the scene "Sunrise of hope" (docs/js/scenes-extra.js, id sunrise), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: I want to draw a sunrise, something hopeful for a friend who's going through a hard time.
+#! noop: says what the scene will be; the next messages draw it part by part (not the ready-made "sunrise" form)
+
+## turn 3
+# input: Sky first: a light orange rectangle, 780 by 300, at the top of the canvas, background, called Dawn
+@c1 command action=create shape=rectangle color=orange fill=light layer=background width=780 height=300 position=top name=Dawn
+
+## turn 4
+# input: the sea under it: a light blue rectangle zone, 780 by 180, in the bottom part, named Sea
+@c1 command action=create shape=rectangle color=blue fill=light layer=zone width=780 height=180 position=bottom name=Sea
+
+## turn 5
+# input: A huge gold circle sitting on the horizon in the middle, call it Sun
+#! resolved: "sitting on the horizon in the middle" -> position=onTop anchor=Sea: touching the top edge of the sea, centred on it
+@c1 command action=create shape=circle size=huge color=gold position=onTop anchor=Sea name=Sun
+
+## turn 6
+# input: make the sun a little bigger
+@c1 command action=resize target=Sun scale=1.25
+
+## turn 7
+# input: five small yellow triangles in a row above the sun, the rays
+@c1 command action=create count=5 shape=triangle size=small color=yellow layout=row position=above anchor=Sun
+
+## turn 8
+# input: give the rays an orange outline
+#! resolved: "the rays" -> every small yellow triangle: the five of the previous message
+@m1 mention quantifier=all shape=triangle size=small color=yellow
+@c1 command action=set target=$m1 outline=orange
+
+## turn 9
+# input: Write "after every night" at the top, large and white
+@c1 command action=create shape=text label="after every night" size=large color=white position=top
+
+## turn 10
+# input: "comes the morning" just below that text, large, white
+#! resolved: "that text" -> the text "after every night"
+@m1 mention shape=text label="after every night"
+@c1 command action=create shape=text label="comes the morning" size=large color=white position=below anchor=$m1
+
+## turn 11
+# input: make both lines navy, white doesn't show on orange
+#! resolved: "both lines" -> every white text: the two lines of the previous messages
+@m1 mention quantifier=all shape=text color=white
+@c1 command action=set target=$m1 color=navy
+
+## turn 12
+# input: a small boat on the sea: a brown rectangle named Hull in the bottom left
+@c1 command action=create shape=rectangle size=small color=brown name=Hull position=bottomLeft
+
+## turn 13
+# input: and a white triangle named Sail right above the hull, 0 px gap
+#! approx: "right above the hull, 0 px gap" -> position=onTop anchor=Hull: touching the hull's top edge
+@c1 command action=create shape=triangle color=white name=Sail position=onTop anchor=Hull
+
+## turn 14
+# input: group Hull and Sail as Boat
+@c1 command action=group target=Hull,Sail name=Boat
+
+## turn 15
+# input: move Boat a bit to the right
+#! approx: "a bit" -> distance=20: a small step (the engine's default step is 80 px)
+@c1 command action=move target=Boat direction=right distance=20
+
+## turn 16
+# input: Two seagulls: a tiny black triangle Gull1 30 px left of Sun and a tiny black triangle Gull2 30 px right of Sun
+@c1 command action=create shape=triangle size=tiny color=black name=Gull1 position=leftOf anchor=Sun distance=30
+@c2 command action=create shape=triangle size=tiny color=black name=Gull2 position=rightOf anchor=Sun distance=30
+
+## turn 17
+# input: put the gulls 40 px higher
+@c1 command action=move target=Gull1,Gull2 direction=up distance=40
+
+## turn 18
+# input: Is Gull1 left of Gull2?
+@q1 question ask=check target=Gull1 position=leftOf anchor=Gull2
+
+## turn 19
+# input: three light blue ovals on the sea for waves, in a row below the sun
+#! approx: "light blue" -> color=blue: the legend has no light shades for an item
+@c1 command action=create count=3 shape=ellipse color=blue layout=row position=below anchor=Sun
+
+## turn 20
+# input: make the waves white
+#! resolved: "the waves" -> every blue ellipse: the three of the previous message
+@m1 mention quantifier=all shape=ellipse color=blue
+@c1 command action=set target=$m1 color=white
+
+## turn 21
+# input: draw a dashed white line from Sun to Hull, a path of light
+@c1 command action=connect from=Sun to=Hull style=dashed arrow=none color=white
+
+## turn 22
+# input: label that line "hope"
+#! resolved: "that line" -> the line Sun → Hull of the previous message
+@c1 command action=label from=Sun to=Hull label="hope"
+
+## turn 23
+# input: Which shapes are white on the sea?
+@q1 question ask=list shape=any color=white position=inside anchor=Sea
+
+## turn 24
+# input: a small lighthouse on the right: a red rectangle named Tower on the right side
+#! note: "small" describes the lighthouse; the tower keeps the default size (the scene later calls it tall, bigger than the hull)
+@c1 command action=create shape=rectangle color=red name=Tower position=right
+
+## turn 25
+# input: lamp on top: tiny yellow circle 2 px above Tower, called Lamp
+@c1 command action=create shape=circle size=tiny color=yellow position=above anchor=Tower distance=2 name=Lamp
+
+## turn 26
+# input: connect Lamp to Sun with a dotted yellow line
+@c1 command action=connect from=Lamp to=Sun style=dotted arrow=none color=yellow
+
+## turn 27
+# input: Tower plus Lamp make one group, Lighthouse
+@c1 command action=group target=Tower,Lamp name=Lighthouse
+
+## turn 28
+# input: Is Lighthouse right of Boat?
+@q1 question ask=check target=Lighthouse position=rightOf anchor=Boat
+
+## turn 29
+# input: make Tower the same size as Hull
+#! resolved: "the same size as Hull" -> size=small, the size Hull was drawn with (turn 12)
+@c1 command action=set target=Tower size=small
+
+## turn 30
+# input: undo, it looked better tall
+@c1 command action=undo
+
+## turn 31
+# input: how many triangles are there with the gulls?
+@q1 question ask=count shape=triangle
+
+## turn 32
+# input: a little pink heart for my friend: a tiny pink diamond between Boat and Sun, named Love
+@c1 command action=create shape=diamond size=tiny color=pink position=between anchor=Boat,Sun name=Love
+
+## turn 33
+# input: bring Love to the front
+@c1 command action=toFront target=Love
+
+## turn 34
+# input: Which shape is closest to Love?
+@q1 question ask=nearest superlative=closest shape=any anchor=Love
+
+## turn 35
+# input: make the sun orange
+@c1 command action=set target=Sun color=orange
+
+## turn 36
+# input: hmm no, back to gold, undo
+@c1 command action=undo
+
+## turn 37
+# input: move the second text line 10 px down
+#! resolved: "the second text line" -> the text "comes the morning"
+@m1 mention shape=text label="comes the morning"
+@c1 command action=move target=$m1 direction=down distance=10
+
+## turn 38
+# input: Is Sun bigger than Tower?
+@q1 question ask=check target=Sun comparison=bigger anchor=Tower
+
+## turn 39
+# input: which shape is the largest in the picture?
+@q1 question ask=extreme superlative=biggest shape=any
+
+## turn 40
+# input: Write "for Ana" in the bottom right, small, gray
+@c1 command action=create shape=text label="for Ana" size=small color=gray position=bottomRight
+
+## turn 41
+# input: What is connected to Sun?
+@q1 question ask=neighbors target=Sun
+
+## turn 42
+# input: That's it. I hope it makes her smile.
+#! noop: a closing remark; nothing to draw or answer

@@ -1,0 +1,227 @@
+# SOP Lang of the scene "Farm" (docs/js/scenes-extra.js, id farm), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Let's draw a farm. Start with a pale cyan rectangle as the sky background, 780 wide and 250 tall, centred at 400,135, and call it Sky.
+@c1 command action=create shape=rectangle color=cyan fill=light layer=background width=780 height=250 at=400,135 name=Sky
+
+## turn 3
+# input: Now the grass: a light green rectangle zone named Grass, 780 by 230, at 400,375.
+@c1 command action=create shape=rectangle color=green fill=light layer=zone width=780 height=230 at=400,375 name=Grass
+
+## turn 4
+# input: Put a large gold circle in the top right for the sun and name it Sun.
+@c1 command action=create shape=circle size=large color=gold position=topRight name=Sun
+
+## turn 5
+# input: huge red square at 170,330, call it Walls
+@c1 command action=create shape=square size=huge color=red at=170,330 name=Walls
+
+## turn 6
+# input: Next a huge brown triangle named Roof at 170,204, that's the barn roof.
+@c1 command action=create shape=triangle size=huge color=brown name=Roof at=170,204
+
+## turn 7
+# input: small navy rectangle for the door at 170,362, named Door
+@c1 command action=create shape=rectangle size=small color=navy at=170,362 name=Door
+
+## turn 8
+# input: Write "BARN" on the roof please
+@c1 command action=label target=Roof label="BARN"
+
+## turn 9
+# input: group Walls, Roof and Door as Barn
+@c1 command action=group target=Walls,Roof,Door name=Barn
+
+## turn 10
+# input: Next to the barn I want a silo: a gray rectangle 50 wide and 150 tall, called Silo, right of Barn.
+@c1 command action=create shape=rectangle color=gray width=50 height=150 name=Silo position=rightOf anchor=Barn
+
+## turn 11
+# input: Could you add a small gray circle named Dome 10 px above Silo?
+@c1 command action=create shape=circle size=small color=gray name=Dome position=above anchor=Silo distance=10
+
+## turn 12
+# input: how many rectangles are there now?
+#! note: a description by kind leaves the background and zone panels (Sky, Grass) out, as the engine does for every reader
+@q1 question ask=count shape=rectangle
+
+## turn 13
+# input: Time for the cow. Big white oval with a black outline at 480,370, name it Cow.
+@c1 command action=create shape=ellipse size=large color=white outline=black at=480,370 name=Cow
+
+## turn 14
+# input: and a small white circle for its head at 566,340, call that one CowHead
+@c1 command action=create shape=circle size=small color=white at=566,340 name=CowHead
+
+## turn 15
+# input: Put a tiny black circle named Spot1 at 455,355 and another tiny black circle, Spot2, at 505,385.
+@c1 command action=create shape=circle size=tiny color=black name=Spot1 at=455,355
+@c2 command action=create shape=circle size=tiny color=black name=Spot2 at=505,385
+
+## turn 16
+# input: bundle Cow, CowHead, Spot1 and Spot2 into a group called Bessie
+@c1 command action=group target=Cow,CowHead,Spot1,Spot2 name=Bessie
+
+## turn 17
+# input: shift Bessie 30 pixels to the left
+@c1 command action=move target=Bessie direction=left distance=30
+
+## turn 18
+# input: Add a light blue ellipse zone called Pond in the bottom right, 170 by 70.
+@c1 command action=create shape=ellipse color=blue fill=light layer=zone width=170 height=70 position=bottomRight name=Pond
+
+## turn 19
+# input: tiny yellow circle named Duck at 690,425
+@c1 command action=create shape=circle size=tiny color=yellow name=Duck at=690,425
+
+## turn 20
+# input: Its beak: a tiny orange triangle at 712,422. Call it Beak.
+@c1 command action=create shape=triangle size=tiny color=orange at=712,422 name=Beak
+
+## turn 21
+# input: Group the duck and its beak as Ducky.
+#! resolved: "the duck and its beak" -> Duck, Beak: the names the two previous messages gave them
+@c1 command action=group target=Duck,Beak name=Ducky
+
+## turn 22
+# input: There's a tree on the far left too, a large green circle at 55,215 called Leaves.
+@c1 command action=create shape=circle size=large color=green at=55,215 name=Leaves
+
+## turn 23
+# input: Trunk goes at 55,285: small brown rectangle, name Trunk.
+@c1 command action=create shape=rectangle size=small color=brown at=55,285 name=Trunk
+
+## turn 24
+# input: Let's make Leaves and Trunk one group, TreeA.
+@c1 command action=group target=Leaves,Trunk name=TreeA
+
+## turn 25
+# input: white oval cloud in the sky at 330,70, name it Cloud
+@c1 command action=create shape=ellipse color=white at=330,70 name=Cloud
+
+## turn 26
+# input: duplicate Cloud
+@c1 command action=duplicate target=Cloud
+
+## turn 27
+# input: move the copy up by 15
+#! resolved: "the copy" -> the white ellipse drawn last (the copy of Cloud, named by the engine)
+@m1 mention shape=ellipse color=white recency=newest
+@c1 command action=move target=$m1 direction=up distance=15
+
+## turn 28
+# input: rename it Cloud2
+#! resolved: "it" -> the copy of Cloud, the white ellipse drawn last
+@m1 mention shape=ellipse color=white recency=newest
+@c1 command action=rename target=$m1 name=Cloud2
+
+## turn 29
+# input: Along the bottom left, five tiny brown squares in a row for the fence.
+@c1 command action=create count=5 shape=square size=tiny color=brown layout=row position=bottomLeft
+
+## turn 30
+# input: join them in a chain with plain brown lines
+#! resolved: "them" -> every tiny brown square: the five fence squares of the previous message (the canvas was cleared at the start)
+@m1 mention quantifier=all shape=square size=tiny color=brown
+@c1 command action=connect from=$m1 pairing=chain arrow=none color=brown
+
+## turn 31
+# input: What colour is the roof?
+@q1 question ask=property property=color target=Roof
+
+## turn 32
+# input: Hmm, change the roof to gray, red and brown together look odd.
+@c1 command action=set target=Roof color=gray
+
+## turn 33
+# input: drag Cloud2 to 660,95 so it covers part of the sun
+@c1 command action=move target=Cloud2 at=660,95
+
+## turn 34
+# input: bring Cloud2 to the front
+@c1 command action=toFront target=Cloud2
+
+## turn 35
+# input: Is the sun still right of the barn?
+@q1 question ask=check target=Sun position=rightOf anchor=Barn
+
+## turn 36
+# input: I need a hen: small white circle named Hen, below Silo.
+@c1 command action=create shape=circle size=small color=white name=Hen position=below anchor=Silo
+
+## turn 37
+# input: Hen gets an orange beak too, a tiny orange triangle called HenBeak at 2 o'clock... no, just put it right of Hen, 4 px away.
+@c1 command action=create shape=triangle size=tiny color=orange name=HenBeak position=rightOf anchor=Hen distance=4
+
+## turn 38
+# input: group Hen and HenBeak as Chick
+@c1 command action=group target=Hen,HenBeak name=Chick
+
+## turn 39
+# input: Write the title "Sunny Acres" at the top, large and dark green.
+#! approx: "dark green" -> color=green: the legend has no dark shades
+@c1 command action=create shape=text label="Sunny Acres" size=large color=green position=top
+
+## turn 40
+# input: oops I meant navy for the title, not green
+#! resolved: "the title" -> the text "Sunny Acres"
+@m1 mention shape=text label="Sunny Acres"
+@c1 command action=set target=$m1 color=navy
+
+## turn 41
+# input: three tiny gold stars in a row above Silo, like a sign of good luck
+@c1 command action=create count=3 shape=star size=tiny color=gold layout=row position=above anchor=Silo
+
+## turn 42
+# input: Actually delete the stars, too much.
+#! resolved: "the stars" -> every tiny gold star: the three of the previous message
+@m1 mention quantifier=all shape=star size=tiny color=gold
+@c1 command action=delete target=$m1
+
+## turn 43
+# input: how many groups do I have?
+@q1 question ask=count kind=group
+
+## turn 44
+# input: Which shapes are in Bessie?
+@q1 question ask=members target=Bessie
+
+## turn 45
+# input: Put a small yellow hexagon called Hay between Barn and Bessie.
+@c1 command action=create shape=hexagon size=small color=yellow name=Hay position=between anchor=Barn,Bessie
+
+## turn 46
+# input: make that a bit bigger
+#! resolved: "that" -> Hay, made by the previous message
+@c1 command action=resize target=Hay scale=1.25
+
+## turn 47
+# input: Is Hay a hexagon?
+@q1 question ask=check target=Hay shape=hexagon
+
+## turn 48
+# input: Add a dashed brown arrow from Hen to Hay, the hen walks to the hay.
+@c1 command action=connect from=Hen to=Hay style=dashed color=brown
+
+## turn 49
+# input: label that arrow "lunch"
+#! resolved: "that arrow" -> the arrow Hen → Hay of the previous message
+@c1 command action=label from=Hen to=Hay label="lunch"
+
+## turn 50
+# input: What is the leftmost shape?
+@q1 question ask=extreme superlative=leftmost shape=any
+
+## turn 51
+# input: Can the hen get from Hen to Hay along the arrows?
+@q1 question ask=path from=Hen to=Hay
+
+## turn 52
+# input: Thanks, that's the farm!
+#! noop: thanks and a closing remark; nothing to draw or answer

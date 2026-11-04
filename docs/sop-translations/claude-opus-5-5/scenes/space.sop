@@ -1,0 +1,208 @@
+# SOP Lang of the scene "Space station" (docs/js/scenes-extra.js, id space), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Space station scene! Background: dark navy rectangle, 780 by 480, at 400,250, background layer, called Space.
+@c1 command action=create shape=rectangle color=navy layer=background width=780 height=480 at=400,250 name=Space
+
+## turn 3
+# input: Big gray hexagon in the middle, name it Core.
+@c1 command action=create shape=hexagon size=large color=gray position=center name=Core
+
+## turn 4
+# input: Label Core "ORBITAL 7"
+@c1 command action=label target=Core label="ORBITAL 7"
+
+## turn 5
+# input: Add a blue rectangle 120 by 40 left of Core called PanelL
+@c1 command action=create shape=rectangle color=blue width=120 height=40 position=leftOf anchor=Core name=PanelL
+
+## turn 6
+# input: and a blue rectangle 120 by 40 on the right side of Core, PanelR
+@c1 command action=create shape=rectangle color=blue width=120 height=40 position=rightOf anchor=Core name=PanelR
+
+## turn 7
+# input: attach both panels to Core with plain lines
+#! resolved: "both panels" -> PanelL, PanelR
+@c1 command action=connect from=PanelL,PanelR to=Core arrow=none
+
+## turn 8
+# input: Make PanelL cyan, no wait, both panels
+@c1 command action=set target=PanelL,PanelR color=cyan
+
+## turn 9
+# input: Put a small white triangle on top of Core for the dish, name it Dish.
+@c1 command action=create shape=triangle size=small color=white position=onTop anchor=Core name=Dish
+
+## turn 10
+# input: Dock: medium teal square under Core.
+#! note: "Dock:" is taken as the square's name: the later messages call it Dock
+@c1 command action=create shape=square size=medium color=teal position=below anchor=Core name=Dock
+
+## turn 11
+# input: join Dock to Core with a gray line
+@c1 command action=connect from=Dock to=Core arrow=none color=gray
+
+## turn 12
+# input: Now the planet: huge orange circle at 110,410, call it PlanetBall.
+@c1 command action=create shape=circle size=huge color=orange at=110,410 name=PlanetBall
+
+## turn 13
+# input: Ring around it: orange ellipse, outline only, 190 by 44, at 110,410, named Ring.
+@c1 command action=create shape=ellipse color=orange fill=none width=190 height=44 at=110,410 name=Ring
+
+## turn 14
+# input: bring PlanetBall in front of the ring
+#! approx: "in front of the ring" -> action=toFront: the legend brings a shape to the front of every shape, not of one
+@c1 command action=toFront target=PlanetBall
+
+## turn 15
+# input: Group PlanetBall and Ring, call it Planet.
+@c1 command action=group target=PlanetBall,Ring name=Planet
+
+## turn 16
+# input: Is PlanetBall in the bottom left?
+@q1 question ask=check target=PlanetBall position=bottomLeft
+
+## turn 17
+# input: Rocket on the left: white rectangle 40 by 90 at 120,150 named Hull
+@c1 command action=create shape=rectangle color=white width=40 height=90 at=120,150 name=Hull
+
+## turn 18
+# input: red nose cone, small triangle at 120,82, call it Nose
+@c1 command action=create shape=triangle size=small color=red at=120,82 name=Nose
+
+## turn 19
+# input: tiny orange star for the flame at 120,213 called Flame
+@c1 command action=create shape=star size=tiny color=orange at=120,213 name=Flame
+
+## turn 20
+# input: Hull, Nose, Flame: group them as Rocket
+@c1 command action=group target=Hull,Nose,Flame name=Rocket
+
+## turn 21
+# input: The rocket is coming in to dock: dashed arrow from Nose to Dock, label it "docking"
+@c1 command action=connect from=Nose to=Dock style=dashed label="docking"
+
+## turn 22
+# input: How many connections does Core have?
+@q1 question ask=degree target=Core
+
+## turn 23
+# input: What is connected to Dock?
+@q1 question ask=neighbors target=Dock
+
+## turn 24
+# input: Sprinkle six tiny yellow stars in a grid in the top right.
+@c1 command action=create count=6 shape=star size=tiny color=yellow layout=grid position=topRight
+
+## turn 25
+# input: One more star, a small white one, at 300,60.
+@c1 command action=create shape=star size=small color=white at=300,60
+
+## turn 26
+# input: Moon: small gray circle named Moon at 560,80
+@c1 command action=create shape=circle size=small color=gray name=Moon at=560,80
+
+## turn 27
+# input: Which shape is closest to the moon?
+@q1 question ask=nearest superlative=closest shape=any anchor=Moon
+
+## turn 28
+# input: astronaut! small white circle named Helmet at 680,346
+@c1 command action=create shape=circle size=small color=white name=Helmet at=680,346
+
+## turn 29
+# input: suit: white rectangle 40 by 50 at 680,400, name Suit
+@c1 command action=create shape=rectangle color=white width=40 height=50 at=680,400 name=Suit
+
+## turn 30
+# input: Please group Helmet and Suit and name the group Astro.
+@c1 command action=group target=Helmet,Suit name=Astro
+
+## turn 31
+# input: dotted line from Suit to Dock, that's the tether
+@c1 command action=connect from=Suit to=Dock style=dotted arrow=none
+
+## turn 32
+# input: Give the helmet a cyan outline
+@c1 command action=set target=Helmet outline=cyan
+
+## turn 33
+# input: Move Astro up 40
+@c1 command action=move target=Astro direction=up distance=40
+
+## turn 34
+# input: Is Helmet above Suit?
+@q1 question ask=check target=Helmet position=above anchor=Suit
+
+## turn 35
+# input: swap PanelL and PanelR
+@c1 command action=swap target=PanelL,PanelR
+
+## turn 36
+# input: What color is PanelR?
+@q1 question ask=property property=color target=PanelR
+
+## turn 37
+# input: Write "Day 214 in orbit" in the bottom right
+@c1 command action=create shape=text label="Day 214 in orbit" position=bottomRight
+
+## turn 38
+# input: make that text cyan and small
+#! resolved: "that text" -> the text "Day 214 in orbit" of the previous message
+@m1 mention shape=text label="Day 214 in orbit"
+@c1 command action=set target=$m1 color=cyan size=small
+
+## turn 39
+# input: Add a tiny red circle as a beacon, 20 px above Dish.
+@c1 command action=create shape=circle size=tiny color=red position=above anchor=Dish distance=20
+
+## turn 40
+# input: rename it Beacon
+#! resolved: "it" -> the tiny red circle drawn last (the beacon of the previous message, named by the engine)
+@m1 mention shape=circle size=tiny color=red recency=newest
+@c1 command action=rename target=$m1 name=Beacon
+
+## turn 41
+# input: connect Beacon to Dish with a line
+@c1 command action=connect from=Beacon to=Dish arrow=none
+
+## turn 42
+# input: how many stars are there?
+@q1 question ask=count shape=star
+
+## turn 43
+# input: delete the white star
+@m1 mention shape=star color=white
+@c1 command action=delete target=$m1
+
+## turn 44
+# input: Which shape is the biggest? I bet it's the planet.
+@q1 question ask=extreme superlative=biggest shape=any
+
+## turn 45
+# input: Remove the label from the docking arrow
+#! resolved: "the docking arrow" -> the arrow Nose → Dock labeled "docking"
+@c1 command action=label from=Nose to=Dock label=""
+
+## turn 46
+# input: Turn the dish into a diamond
+@c1 command action=set target=Dish shape=diamond
+
+## turn 47
+# input: Are there any cycles in these connections?
+@q1 question ask=cycle
+
+## turn 48
+# input: Undo the diamond
+@c1 command action=undo
+
+## turn 49
+# input: Done, the station looks great.
+#! noop: a closing remark; nothing to draw or answer

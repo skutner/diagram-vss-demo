@@ -1,0 +1,6 @@
+# SOP Lang of the scenario "One star" (docs/js/scenarios.js, id star), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Draw a huge gold star in the center.
+@c1 command action=create shape=star size=huge color=gold position=center

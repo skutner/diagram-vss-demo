@@ -1,0 +1,201 @@
+# SOP Lang of the scene "Underwater reef" (docs/js/scenes-extra.js, id reef), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Underwater reef. A light blue rectangle as the background, 780 by 480, at 400,250, call it Water.
+@c1 command action=create shape=rectangle color=blue fill=light layer=background width=780 height=480 at=400,250 name=Water
+
+## turn 3
+# input: hmm, more turquoise. change Water to teal
+@c1 command action=set target=Water color=teal
+
+## turn 4
+# input: sand along the bottom: light yellow rectangle zone, 780 wide, 90 tall, at 400,445, named Sand
+@c1 command action=create shape=rectangle color=yellow fill=light layer=zone width=780 height=90 at=400,445 name=Sand
+
+## turn 5
+# input: Our fish is called Finn. Medium orange oval at 300,200, name it FinnBody.
+#! note: "Our fish is called Finn" names the fish as a whole: the group of message 8; the oval itself is FinnBody
+@c1 command action=create shape=ellipse size=medium color=orange at=300,200 name=FinnBody
+
+## turn 6
+# input: tail: small orange triangle at 232,200, Tail
+@c1 command action=create shape=triangle size=small color=orange at=232,200 name=Tail
+
+## turn 7
+# input: a tiny black circle named Eye at 322,190
+@c1 command action=create shape=circle size=tiny color=black name=Eye at=322,190
+
+## turn 8
+# input: group FinnBody, Tail and Eye into Finn
+@c1 command action=group target=FinnBody,Tail,Eye name=Finn
+
+## turn 9
+# input: Jellyfish up top: medium purple circle at 620,110, named Jelly.
+@c1 command action=create shape=circle size=medium color=purple at=620,110 name=Jelly
+
+## turn 10
+# input: Under it, 5 px below Jelly, put three tiny purple triangles in a row for the tentacles.
+@c1 command action=create count=3 shape=triangle size=tiny color=purple layout=row position=below anchor=Jelly distance=5
+
+## turn 11
+# input: Group Jelly and those three triangles as Jellyfish.
+#! resolved: "those three triangles" -> every tiny purple triangle: the three tentacles of the previous message
+@m1 mention quantifier=all shape=triangle size=tiny color=purple
+@c1 command action=group target=Jelly,$m1 name=Jellyfish
+
+## turn 12
+# input: Can you make Finn a friend? Duplicate Finn.
+@c1 command action=duplicate target=Finn
+
+## turn 13
+# input: move the copy down 110 pixels
+#! resolved: "the copy" -> Finn2: a copied group is a new group named after the original with a 2 (the reply of message 12 says so, and message 14 calls it Finn2)
+@c1 command action=move target=Finn2 direction=down distance=110
+
+## turn 14
+# input: What's in Finn2?
+@q1 question ask=members target=Finn2
+
+## turn 15
+# input: Bubbles! four tiny white circles in a column at 380,110
+@c1 command action=create count=4 shape=circle size=tiny color=white layout=column at=380,110
+
+## turn 16
+# input: crab on the sand: small red ellipse at 220,440 named CrabBody
+@c1 command action=create shape=ellipse size=small color=red at=220,440 name=CrabBody
+
+## turn 17
+# input: Two claws, tiny red circles: ClawL at 170,430, ClawR, a tiny red circle too, at 270,430
+@c1 command action=create shape=circle size=tiny color=red name=ClawL at=170,430
+@c2 command action=create shape=circle size=tiny color=red name=ClawR at=270,430
+
+## turn 18
+# input: group CrabBody, ClawL and ClawR, call it Crab
+@c1 command action=group target=CrabBody,ClawL,ClawR name=Crab
+
+## turn 19
+# input: Is CrabBody below Jelly?
+@q1 question ask=check target=CrabBody position=below anchor=Jelly
+
+## turn 20
+# input: Treasure chest: brown rectangle 90 by 50 at 640,435, ChestBox
+@c1 command action=create shape=rectangle color=brown width=90 height=50 at=640,435 name=ChestBox
+
+## turn 21
+# input: With a tiny gold square on it as the lock, at 640,435, named Lock.
+@c1 command action=create shape=square size=tiny color=gold at=640,435 name=Lock
+
+## turn 22
+# input: make a group Chest out of ChestBox and Lock
+@c1 command action=group target=ChestBox,Lock name=Chest
+
+## turn 23
+# input: Which group is Lock in?
+@q1 question ask=groupOf target=Lock
+
+## turn 24
+# input: draw a dashed arrow from FinnBody to ChestBox and write "treasure!" on it
+@c1 command action=connect from=FinnBody to=ChestBox style=dashed label="treasure!"
+
+## turn 25
+# input: small orange star at 420,450 for a starfish, name it Starfish
+@c1 command action=create shape=star size=small color=orange at=420,450 name=Starfish
+
+## turn 26
+# input: medium gray hexagon called Rock at 520,440
+@c1 command action=create shape=hexagon size=medium color=gray name=Rock at=520,440
+
+## turn 27
+# input: Is Rock near Starfish?
+@q1 question ask=check target=Rock position=near anchor=Starfish
+
+## turn 28
+# input: seaweed: a thin green rectangle 14 by 110 at 60,370, Weed1
+@c1 command action=create shape=rectangle color=green width=14 height=110 at=60,370 name=Weed1
+
+## turn 29
+# input: And another green rectangle, a bit shorter, 14 by 80, at 100,385, Weed2.
+@c1 command action=create shape=rectangle color=green width=14 height=80 at=100,385 name=Weed2
+
+## turn 30
+# input: group Weed1 and Weed2 as Kelp
+@c1 command action=group target=Weed1,Weed2 name=Kelp
+
+## turn 31
+# input: Large pink triangle at 745,395 called Coral
+@c1 command action=create shape=triangle size=large color=pink at=745,395 name=Coral
+
+## turn 32
+# input: coral should be magenta
+@c1 command action=set target=Coral color=magenta
+
+## turn 33
+# input: add a magenta star above ChestBox
+@c1 command action=create shape=star color=magenta position=above anchor=ChestBox
+
+## turn 34
+# input: How many ellipses are there? Fish bodies count too.
+@q1 question ask=count shape=ellipse
+
+## turn 35
+# input: which shapes are pink in my reef?
+@q1 question ask=list shape=any color=pink
+
+## turn 36
+# input: What is near the chest?
+#! resolved: "the chest" -> the group Chest
+@q1 question ask=list shape=any position=near anchor=Chest
+
+## turn 37
+# input: Title "Coral Cove" in the top left, big and white
+@c1 command action=create shape=text label="Coral Cove" size=large color=white position=topLeft
+
+## turn 38
+# input: Move it 20 px to the right
+#! resolved: "it" -> the title "Coral Cove" of the previous message
+@m1 mention shape=text label="Coral Cove"
+@c1 command action=move target=$m1 direction=right distance=20
+
+## turn 39
+# input: Finn should swim in front of everything else
+@c1 command action=toFront target=Finn
+
+## turn 40
+# input: Is the starfish orange?
+@q1 question ask=check target=Starfish color=orange
+
+## turn 41
+# input: the starfish should be gold actually
+@c1 command action=set target=Starfish color=gold
+
+## turn 42
+# input: make the bubbles a little bigger
+#! resolved: "the bubbles" -> every tiny white circle: the four bubbles of message 15
+@m1 mention quantifier=all shape=circle size=tiny color=white
+@c1 command action=resize target=$m1 scale=1.25
+
+## turn 43
+# input: Delete Weed2.
+@c1 command action=delete target=Weed2
+
+## turn 44
+# input: Undo, keep the seaweed.
+@c1 command action=undo
+
+## turn 45
+# input: What's the topmost shape? Probably a bubble.
+@q1 question ask=extreme superlative=topmost shape=any
+
+## turn 46
+# input: Which shape is farthest from Rock?
+@q1 question ask=nearest superlative=farthest shape=any anchor=Rock
+
+## turn 47
+# input: Lovely reef, thank you!
+#! noop: thanks and a closing remark; nothing to draw or answer

@@ -1,0 +1,179 @@
+# SOP Lang of the scene "Living room" (docs/js/scenes-extra.js, id living), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: I'm drawing my living room. Wall first: a faint orange rectangle in the background, 780 by 330, at 400,175, named Wall.
+@c1 command action=create shape=rectangle color=orange fill=faint layer=background width=780 height=330 at=400,175 name=Wall
+
+## turn 3
+# input: Floor: light brown rectangle zone, 780 x 150, centered at 400,415. Call it Floor.
+@c1 command action=create shape=rectangle color=brown fill=light layer=zone width=780 height=150 at=400,415 name=Floor
+
+## turn 4
+# input: Window on the left wall, a light cyan rectangle 160 by 110 at 150,140 with a white outline, named Window
+#! approx: "light cyan" -> color=cyan: the legend has no light shades for an item (fill=light is kept for panels and zones)
+@c1 command action=create shape=rectangle color=cyan outline=white width=160 height=110 at=150,140 name=Window
+
+## turn 5
+# input: the sofa: big green rectangle, 220 wide and 70 tall, at 330,380 - Sofa
+@c1 command action=create shape=rectangle size=large color=green width=220 height=70 at=330,380 name=Sofa
+
+## turn 6
+# input: armrests please: green rectangles 30 by 60, ArmL at 190,385 and another green 30 by 60 rectangle ArmR at 470,385
+@c1 command action=create shape=rectangle color=green width=30 height=60 name=ArmL at=190,385
+@c2 command action=create shape=rectangle color=green width=30 height=60 name=ArmR at=470,385
+
+## turn 7
+# input: Put Sofa, ArmL and ArmR together in a group called Couch.
+@c1 command action=group target=Sofa,ArmL,ArmR name=Couch
+
+## turn 8
+# input: Hang a clock: medium white circle at 520,110, label it "12", name Clock
+@c1 command action=create shape=circle size=medium color=white at=520,110 label="12" name=Clock
+
+## turn 9
+# input: Picture frame next to the clock, a gold rectangle 90 by 70 at 360,130, Frame
+#! note: "next to the clock" is left out: the message gives the exact place (at 360,130)
+@c1 command action=create shape=rectangle color=gold width=90 height=70 at=360,130 name=Frame
+
+## turn 10
+# input: is the frame left of the clock?
+@q1 question ask=check target=Frame position=leftOf anchor=Clock
+
+## turn 11
+# input: Floor lamp: brown rectangle, 10 wide 150 tall, at 580,340, name LampPole
+@c1 command action=create shape=rectangle color=brown width=10 height=150 at=580,340 name=LampPole
+
+## turn 12
+# input: yellow triangle for the shade, small, at 580,252, LampShade
+@c1 command action=create shape=triangle size=small color=yellow at=580,252 name=LampShade
+
+## turn 13
+# input: lamp group = LampPole + LampShade, call it FloorLamp
+@c1 command action=group target=LampPole,LampShade name=FloorLamp
+
+## turn 14
+# input: TV: black rectangle 150 by 90 at 700,300, named Tv
+@c1 command action=create shape=rectangle color=black width=150 height=90 at=700,300 name=Tv
+
+## turn 15
+# input: a brown stand under it: rectangle 100 by 40 at 700,385, TvStand
+#! note: "under it" is left out: the message gives the exact place (at 700,385, under Tv)
+@c1 command action=create shape=rectangle color=brown width=100 height=40 at=700,385 name=TvStand
+
+## turn 16
+# input: oval rug on the floor, light red, 260 by 50, at 330,455, name it Rug
+#! approx: "light red" -> color=red: the legend has no light shades for an item (fill=light is kept for panels and zones)
+@c1 command action=create shape=ellipse color=red width=260 height=50 at=330,455 name=Rug
+
+## turn 17
+# input: little gray cat on the floor: small gray oval at 525,445, CatBody
+@c1 command action=create shape=ellipse size=small color=gray at=525,445 name=CatBody
+
+## turn 18
+# input: its head is a tiny gray circle at 568,432, called CatHead
+@c1 command action=create shape=circle size=tiny color=gray at=568,432 name=CatHead
+
+## turn 19
+# input: group the cat: CatBody and CatHead as Whiskers
+@c1 command action=group target=CatBody,CatHead name=Whiskers
+
+## turn 20
+# input: Potted plant in the corner: small brown square at 60,420 named Pot
+@c1 command action=create shape=square size=small color=brown at=60,420 name=Pot
+
+## turn 21
+# input: and a medium green star 6 px above the pot for the leaves, Leaves
+@c1 command action=create shape=star size=medium color=green name=Leaves position=above anchor=Pot distance=6
+
+## turn 22
+# input: How many rectangles do I have?
+#! note: a description by kind leaves the background and zone panels (Wall, Floor) out, as the engine does for every reader
+@q1 question ask=count shape=rectangle
+
+## turn 23
+# input: make the TV navy, black is too harsh
+@c1 command action=set target=Tv color=navy
+
+## turn 24
+# input: What's the color of the Tv now?
+@q1 question ask=property property=color target=Tv
+
+## turn 25
+# input: Write "Home sweet home" on the wall at 300,50
+@c1 command action=create shape=text label="Home sweet home" at=300,50
+
+## turn 26
+# input: Make that text purple and large.
+#! resolved: "that text" -> the text "Home sweet home" of the previous message
+@m1 mention shape=text label="Home sweet home"
+@c1 command action=set target=$m1 color=purple size=large
+
+## turn 27
+# input: Bring Couch to the front.
+@c1 command action=toFront target=Couch
+
+## turn 28
+# input: Is there anything between Couch and Tv?
+@q1 question ask=exists shape=any position=between anchor=Couch,Tv
+
+## turn 29
+# input: Turn the clock into a hexagon
+@c1 command action=set target=Clock shape=hexagon
+
+## turn 30
+# input: no wait, keep it round, undo
+@c1 command action=undo
+
+## turn 31
+# input: connect TvStand to Tv with a short plain line
+#! note: "short" is not written: a line joins the two shapes where they are
+@c1 command action=connect from=TvStand to=Tv arrow=none
+
+## turn 32
+# input: Which shapes are in Whiskers?
+@q1 question ask=members target=Whiskers
+
+## turn 33
+# input: nudge Whiskers 15 px left
+@c1 command action=move target=Whiskers direction=left distance=15
+
+## turn 34
+# input: shrink the plant leaves
+#! resolved: "the plant leaves" -> Leaves
+@c1 command action=resize target=Leaves scale=0.67
+
+## turn 35
+# input: Is Rug bigger than Clock?
+@q1 question ask=check target=Rug comparison=bigger anchor=Clock
+
+## turn 36
+# input: Add a small yellow circle as a glow, 6 px right of LampShade
+@c1 command action=create shape=circle size=small color=yellow position=rightOf anchor=LampShade distance=6
+
+## turn 37
+# input: delete that glow, it looks weird
+#! resolved: "that glow" -> the small yellow circle drawn last (the previous message's glow, named by the engine)
+@m1 mention shape=circle size=small color=yellow recency=newest
+@c1 command action=delete target=$m1
+
+## turn 38
+# input: Which shape is the rightmost?
+@q1 question ask=extreme superlative=rightmost shape=any
+
+## turn 39
+# input: Describe Window.
+@q1 question ask=describe target=Window
+
+## turn 40
+# input: Is CatBody right of Sofa?
+@q1 question ask=check target=CatBody position=rightOf anchor=Sofa
+
+## turn 41
+# input: That's my living room!
+#! noop: a closing remark; nothing to draw or answer

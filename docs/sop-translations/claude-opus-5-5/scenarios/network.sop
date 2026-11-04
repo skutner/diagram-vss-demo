@@ -1,0 +1,87 @@
+# SOP Lang of the scenario "Office network" (docs/js/scenarios.js, id network), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Draw a large white ellipse named Internet on the left, labeled "Internet".
+@c1 command action=create shape=ellipse size=large color=white name=Internet label="Internet" position=left
+
+## turn 2
+# input: Add a red hexagon named Firewall right of Internet labeled "FW" and connect Internet to it with a two-way arrow.
+@c1 command action=create shape=hexagon color=red name=Firewall label="FW" position=rightOf anchor=Internet
+@c2 command action=connect from=Internet to=Firewall arrow=both
+
+## turn 3
+# input: Add a purple hexagon named Router right of Firewall labeled "core" and connect Firewall to Router with a two-way arrow.
+@c1 command action=create shape=hexagon color=purple name=Router label="core" position=rightOf anchor=Firewall
+@c2 command action=connect from=Firewall to=Router arrow=both
+
+## turn 4
+# input: From now on, rectangles are teal.
+@r1 rule shape=rectangle color=teal
+
+## turn 5
+# input: Add a rectangle named SwitchA at 520, 150 labeled "switch A". Add a rectangle named SwitchB at 520, 350 labeled "switch B".
+@c1 command action=create shape=rectangle name=SwitchA label="switch A" at=520,150
+@c2 command action=create shape=rectangle name=SwitchB label="switch B" at=520,350
+
+## turn 6
+# input: Connect Router to SwitchA and SwitchB.
+@c1 command action=connect from=Router to=SwitchA,SwitchB
+
+## turn 7
+# input: Add a small blue square named Laptop at 690, 90 labeled "laptop". Add a small blue square named Printer below Laptop labeled "printer".
+@c1 command action=create shape=square size=small color=blue name=Laptop label="laptop" at=690,90
+@c2 command action=create shape=square size=small color=blue name=Printer label="printer" position=below anchor=Laptop
+
+## turn 8
+# input: Add a small green square named Server at 690, 300 labeled "db". Add a small green square named Backup at 690, 440 labeled "backup".
+@c1 command action=create shape=square size=small color=green name=Server label="db" at=690,300
+@c2 command action=create shape=square size=small color=green name=Backup label="backup" at=690,440
+
+## turn 9
+# input: Connect SwitchA to Laptop and Printer. Connect SwitchB to Server and Backup.
+@c1 command action=connect from=SwitchA to=Laptop,Printer
+@c2 command action=connect from=SwitchB to=Server,Backup
+
+## turn 10
+# input: Connect Server to Backup with a dashed red arrow labeled "nightly".
+@c1 command action=connect from=Server to=Backup style=dashed color=red label="nightly"
+
+## turn 11
+# input: Make all squares a bit bigger.
+#! resolved: "all squares" -> Laptop, Printer, Server, Backup: the four squares this scenario drew, by name, so that squares in other areas are not changed
+@c1 command action=resize target=Laptop,Printer,Server,Backup scale=1.25
+
+## turn 12
+# input: Printer is gray.
+@f1 fact target=Printer color=gray
+
+## turn 13
+# input: Move Router up by 30.
+@c1 command action=move target=Router direction=up distance=30
+
+## turn 14
+# input: Is there a path from Internet to Backup?
+@q1 question ask=path from=Internet to=Backup
+
+## turn 15
+# input: Can I get from Laptop to Server?
+@q1 question ask=path from=Laptop to=Server
+
+## turn 16
+# input: What can be reached from SwitchB?
+@q1 question ask=reachable from=SwitchB
+
+## turn 17
+# input: Which shape has the most connections?
+#! scope: every shape of the canvas, not only this network
+@q1 question ask=extreme superlative=mostConnected shape=any
+
+## turn 18
+# input: How many connections are there?
+#! scope: counts the connections of the whole canvas (the opening drawing's arrows too), not only this network's
+@q1 question ask=count kind=edge
+
+## turn 19
+# input: Describe Router.
+@q1 question ask=describe target=Router

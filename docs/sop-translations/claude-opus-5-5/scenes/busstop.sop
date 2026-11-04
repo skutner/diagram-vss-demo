@@ -1,0 +1,97 @@
+# SOP Lang of the scene "Bus stop" (docs/js/scenes-extra.js, id busstop), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Street scene. A faint gray rectangle background, 780 by 480, at 400, 250, called Street.
+@c1 command action=create shape=rectangle color=gray fill=faint layer=background width=780 height=480 at=400,250 name=Street
+
+## turn 3
+# input: The road: a black rectangle zone named Road, 780 wide and 110 tall, at 400, 435.
+@c1 command action=create shape=rectangle color=black layer=zone width=780 height=110 at=400,435 name=Road
+
+## turn 4
+# input: Draw a blue rectangle named Bus, 200 wide and 70 tall, at 300, 330.
+@c1 command action=create shape=rectangle color=blue name=Bus width=200 height=70 at=300,330
+
+## turn 5
+# input: Wheel1, a tiny black circle at 240, 372, and Wheel2, a tiny black circle at 360, 372.
+@c1 command action=create shape=circle size=tiny color=black name=Wheel1 at=240,372
+@c2 command action=create shape=circle size=tiny color=black name=Wheel2 at=360,372
+
+## turn 6
+# input: group Bus, Wheel1 and Wheel2 as Coach
+@c1 command action=group target=Bus,Wheel1,Wheel2 name=Coach
+
+## turn 7
+# input: Bus stop sign: a small red circle named Sign at 520, 240.
+@c1 command action=create shape=circle size=small color=red name=Sign at=520,240
+
+## turn 8
+# input: its pole: a gray rectangle 8 wide and 80 tall named Pole, two px below Sign
+@c1 command action=create shape=rectangle color=gray width=8 height=80 name=Pole position=below anchor=Sign distance=2
+
+## turn 9
+# input: Group Sign and Pole as Stop.
+@c1 command action=group target=Sign,Pole name=Stop
+
+## turn 10
+# input: Three small yellow squares in a row above Bus.
+@c1 command action=create count=3 shape=square size=small color=yellow layout=row position=above anchor=Bus
+
+## turn 11
+# input: how many yellow squares are there on the street?
+#! note: "on the street" is the whole drawing (the canvas was cleared at the start)
+@q1 question ask=count shape=square color=yellow
+
+## turn 12
+# input: Add a large white ellipse named Cloud in the top left.
+@c1 command action=create shape=ellipse size=large color=white name=Cloud position=topLeft
+
+## turn 13
+# input: and a medium white ellipse Cloud2 right of Cloud, thirty px away
+@c1 command action=create shape=ellipse size=medium color=white name=Cloud2 position=rightOf anchor=Cloud distance=30
+
+## turn 14
+# input: Sun: a medium yellow circle in the top right, named Sun.
+@c1 command action=create shape=circle size=medium color=yellow position=topRight name=Sun
+
+## turn 15
+# input: Is Cloud2 left of Sun?
+@q1 question ask=check target=Cloud2 position=leftOf anchor=Sun
+
+## turn 16
+# input: a person waiting: a small orange circle named Head at 640, 270
+@c1 command action=create shape=circle size=small color=orange name=Head at=640,270
+
+## turn 17
+# input: Body: an orange rectangle 20 wide and 50 tall named Body 2 px below Head
+@c1 command action=create shape=rectangle color=orange width=20 height=50 name=Body position=below anchor=Head distance=2
+
+## turn 18
+# input: group Head and Body as Rider
+@c1 command action=group target=Head,Body name=Rider
+
+## turn 19
+# input: Make Cloud2 gray, it's going to rain.
+@c1 command action=set target=Cloud2 color=gray
+
+## turn 20
+# input: which shape sits highest on the street?
+@q1 question ask=extreme superlative=topmost shape=any
+
+## turn 21
+# input: Connect Head to Sign with a dotted line.
+@c1 command action=connect from=Head to=Sign style=dotted arrow=none
+
+## turn 22
+# input: Write "Route 7" above Coach, small.
+@c1 command action=create shape=text label="Route 7" size=small position=above anchor=Coach
+
+## turn 23
+# input: Thanks!
+#! noop: thanks; nothing to draw or answer

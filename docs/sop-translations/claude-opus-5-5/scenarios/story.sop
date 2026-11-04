@@ -1,0 +1,63 @@
+# SOP Lang of the scenario "Edit session" (docs/js/scenarios.js, id story), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Draw a blue circle named A and a red square named B right of it.
+@c1 command action=create shape=circle color=blue name=A
+@c2 command action=create shape=square color=red name=B position=rightOf anchor=A
+
+## turn 2
+# input: Add a green triangle named C below A and connect A to it.
+@c1 command action=create shape=triangle color=green name=C position=below anchor=A
+@c2 command action=connect from=A to=C
+
+## turn 3
+# input: Connect B to C with a dashed line.
+@c1 command action=connect from=B to=C style=dashed arrow=none
+
+## turn 4
+# input: Actually make A orange and give it a black border.
+@c1 command action=set target=A color=orange outline=black
+
+## turn 5
+# input: Rename C to Leaf.
+@c1 command action=rename target=C name=Leaf
+
+## turn 6
+# input: Swap A and B.
+@c1 command action=swap target=A,B
+
+## turn 7
+# input: Undo.
+@c1 command action=undo
+
+## turn 8
+# input: Duplicate B.
+@c1 command action=duplicate target=B
+
+## turn 9
+# input: What is connected to Leaf?
+@q1 question ask=neighbors target=Leaf
+
+## turn 10
+# input: Is A left of B?
+@q1 question ask=check target=A position=leftOf anchor=B
+
+## turn 11
+# input: Add two small pink stars above A.
+@c1 command action=create count=2 shape=star size=small color=pink position=above anchor=A
+
+## turn 12
+# input: Delete the pink stars.
+#! scope: "the pink stars" is a description: every pink star of the canvas matches, also one drawn in another area
+@m1 mention quantifier=all shape=star color=pink
+@c1 command action=delete target=$m1
+
+## turn 13
+# input: Arrange everything in a grid.
+@c1 command action=arrange layout=grid
+
+## turn 14
+# input: Describe the diagram.
+#! scope: describes every shape of the canvas, not only this area
+@q1 question ask=describe

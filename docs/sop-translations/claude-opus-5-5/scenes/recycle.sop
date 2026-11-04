@@ -1,0 +1,205 @@
+# SOP Lang of the scene "Recycling cycle" (docs/js/scenes-extra.js, id recycle), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Infographic: how plastic recycling works. Background: faint green rectangle 780 x 480 in the center, background layer, named Bg.
+@c1 command action=create shape=rectangle color=green fill=faint layer=background width=780 height=480 position=center name=Bg
+
+## turn 3
+# input: five medium green hexagons arranged in a circle in the middle
+@c1 command action=create count=5 shape=hexagon size=medium color=green layout=circle position=center
+
+## turn 4
+# input: label the steps: hexagon1 "Collect"
+#! note: hexagon1 … hexagon5 are written as the message writes them: the names the engine gives the five hexagons of turn 3 on a first play (no mention can pick the 2nd, 3rd or 4th of them); its counters survive a clear, so on a replay these names do not exist
+@c1 command action=label target=hexagon1 label="Collect"
+
+## turn 5
+# input: hexagon2 "Sort", hexagon3 "Wash"
+@c1 command action=label target=hexagon2 label="Sort"
+@c2 command action=label target=hexagon3 label="Wash"
+
+## turn 6
+# input: hexagon4 gets "Melt" and hexagon5 "Make"
+@c1 command action=label target=hexagon4 label="Melt"
+@c2 command action=label target=hexagon5 label="Make"
+
+## turn 7
+# input: connect hexagon1, hexagon2, hexagon3, hexagon4 and hexagon5 one after the other
+@c1 command action=connect from=hexagon1,hexagon2,hexagon3,hexagon4,hexagon5 pairing=chain
+
+## turn 8
+# input: and close the loop with an arrow from hexagon5 back to hexagon1
+@c1 command action=connect from=hexagon5 to=hexagon1
+
+## turn 9
+# input: make every arrow teal and dashed
+@c1 command action=set kind=edge quantifier=all color=teal style=dashed
+
+## turn 10
+# input: the loop arrow should be solid though
+#! resolved: "the loop arrow" -> the arrow hexagon5 → hexagon1 of turn 8
+@c1 command action=set from=hexagon5 to=hexagon1 style=solid
+
+## turn 11
+# input: a small lime star in the middle, named Core
+@c1 command action=create shape=star size=small color=lime position=center name=Core
+
+## turn 12
+# input: Title "Plastic: round and round" at the top, large, dark green
+#! approx: "dark green" -> color=green: the legend has no dark shades
+@c1 command action=create shape=text label="Plastic: round and round" size=large color=green position=top
+
+## turn 13
+# input: Fact panel on the right side: a light yellow rectangle zone, 200 by 260, named Facts
+@c1 command action=create shape=rectangle color=yellow fill=light layer=zone width=200 height=260 position=right name=Facts
+
+## turn 14
+# input: label Facts "9% recycled"
+@c1 command action=label target=Facts label="9% recycled"
+
+## turn 15
+# input: add a small text "1 bottle = 450 years" below Facts
+@c1 command action=create shape=text label="1 bottle = 450 years" size=small position=below anchor=Facts
+
+## turn 16
+# input: make hexagon1 orange, it's where it all starts
+@c1 command action=set target=hexagon1 color=orange
+
+## turn 17
+# input: rename hexagon1 to Collect
+@c1 command action=rename target=hexagon1 name=Collect
+
+## turn 18
+# input: and hexagon5 to Make
+@c1 command action=rename target=hexagon5 name=Make
+
+## turn 19
+# input: Can you reach Make starting from Collect?
+@q1 question ask=path from=Collect to=Make
+
+## turn 20
+# input: Does it loop? Are there any cycles?
+@q1 question ask=cycle
+
+## turn 21
+# input: three small blue rectangles in a row at the bottom for the stats
+@c1 command action=create count=3 shape=rectangle size=small color=blue layout=row position=bottom
+
+## turn 22
+# input: label them "Paper 68%", "Glass 31%" and "Plastic 9%"
+#! resolved: "them" -> the three blue rectangles of the previous message, in their order in the row: the one drawn first, the one between the two others, the one drawn last
+@m1 mention shape=rectangle color=blue recency=oldest
+@m2 mention shape=rectangle color=blue recency=newest
+@m3 mention shape=rectangle color=blue position=between anchor=$m1,$m2
+@c1 command action=label target=$m1 label="Paper 68%"
+@c2 command action=label target=$m3 label="Glass 31%"
+@c3 command action=label target=$m2 label="Plastic 9%"
+
+## turn 23
+# input: the plastic one should be red
+#! resolved: "the plastic one" -> the rectangle labeled "Plastic 9%"
+@m1 mention shape=rectangle label="Plastic 9%"
+@c1 command action=set target=$m1 color=red
+
+## turn 24
+# input: Is rectangle3 right of rectangle1?
+#! resolved: "rectangle3", "rectangle1" -> the stat boxes labeled "Plastic 9%" and "Paper 68%" (the names the engine gave the third and the first box on a first play; its counters survive a clear, so a replay names them otherwise)
+@m1 mention shape=rectangle label="Plastic 9%"
+@m2 mention shape=rectangle label="Paper 68%"
+@q1 question ask=check target=$m1 position=rightOf anchor=$m2
+
+## turn 25
+# input: group the three stat boxes as Stats
+#! resolved: "the three stat boxes" -> every small rectangle: the three of turn 21 (the zone Facts and the background are not small items)
+@m1 mention quantifier=all shape=rectangle size=small
+@c1 command action=group target=$m1 name=Stats
+
+## turn 26
+# input: move Stats a bit to the left
+#! approx: "a bit" -> distance=20: a small step (the engine's default step is 80 px)
+@c1 command action=move target=Stats direction=left distance=20
+
+## turn 27
+# input: how many hexagons are there in the ring?
+@q1 question ask=count shape=hexagon
+
+## turn 28
+# input: which hexagon is closest to Core?
+@q1 question ask=nearest superlative=closest shape=hexagon anchor=Core
+
+## turn 29
+# input: Put a small gray circle named Bin left of Collect
+@c1 command action=create shape=circle size=small color=gray name=Bin position=leftOf anchor=Collect
+
+## turn 30
+# input: dotted arrow from Bin to Collect
+@c1 command action=connect from=Bin to=Collect style=dotted
+
+## turn 31
+# input: turn the bin into a square
+@c1 command action=set target=Bin shape=square
+
+## turn 32
+# input: Which shapes are connected to Collect?
+@q1 question ask=neighbors target=Collect
+
+## turn 33
+# input: Is Facts on the right?
+@q1 question ask=check target=Facts position=right
+
+## turn 34
+# input: make the title navy
+#! resolved: "the title" -> the text "Plastic: round and round"
+@m1 mention shape=text label="Plastic: round and round"
+@c1 command action=set target=$m1 color=navy
+
+## turn 35
+# input: and huge
+#! resolved: the title (the text "Plastic: round and round") of the previous message
+@m1 mention shape=text label="Plastic: round and round"
+@c1 command action=set target=$m1 size=huge
+
+## turn 36
+# input: too big, undo
+@c1 command action=undo
+
+## turn 37
+# input: remove the dashes from all the arrows
+#! repair: review: the first pass made every arrow solid with one wire (kind=edge), which also turned Bin's dotted arrow solid; now only the four dashed arrows of the ring lose their dashes
+#! resolved: "all the arrows" (with dashes) -> the four dashed arrows of the ring: Collect → hexagon2 → hexagon3 → hexagon4 → Make (the loop arrow is already solid, Bin's arrow is dotted)
+@c1 command action=set from=Collect to=hexagon2 style=solid
+@c2 command action=set from=hexagon2 to=hexagon3 style=solid
+@c3 command action=set from=hexagon3 to=hexagon4 style=solid
+@c4 command action=set from=hexagon4 to=Make style=solid
+
+## turn 38
+# input: how many arrows are there after all that?
+@q1 question ask=count kind=edge
+
+## turn 39
+# input: Which shape has the most connections in the cycle?
+#! resolved: "in the cycle" -> shape=hexagon: the five hexagons of the ring
+@q1 question ask=extreme superlative=mostConnected shape=hexagon
+
+## turn 40
+# input: describe Core
+@q1 question ask=describe target=Core
+
+## turn 41
+# input: delete Core, the middle looks better empty
+@c1 command action=delete target=Core
+
+## turn 42
+# input: Stats on top, please
+#! note: "on top" read as the front of the drawing order (bring to front); it could also mean the top of the canvas
+@c1 command action=toFront target=Stats
+
+## turn 43
+# input: Good, ready for the school fair.
+#! noop: a closing remark; nothing to draw or answer

@@ -1,0 +1,118 @@
+# SOP Lang of the scene "Harbour at dusk" (docs/js/scenes-extra.js, id harbour), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: New picture: a harbour at dusk. Draw a faint orange rectangle as the background, 780 wide and 230 tall, at 400, 120, and name it Sky.
+@c1 command action=create shape=rectangle color=orange fill=faint layer=background width=780 height=230 at=400,120 name=Sky
+
+## turn 3
+# input: Water next: a light blue rectangle zone named Sea, 780 by 250, at 400, 370.
+@c1 command action=create shape=rectangle color=blue fill=light layer=zone width=780 height=250 at=400,370 name=Sea
+
+## turn 4
+# input: Put a large yellow circle named Sun at 620, 150.
+@c1 command action=create shape=circle size=large color=yellow name=Sun at=620,150
+
+## turn 5
+# input: Draw a brown rectangle named Pier at 150, 300, 220 wide and 30 tall.
+@c1 command action=create shape=rectangle color=brown name=Pier at=150,300 width=220 height=30
+
+## turn 6
+# input: A small gray square named Hut at (110, 258).
+@c1 command action=create shape=square size=small color=gray name=Hut at=110,258
+
+## turn 7
+# input: Roof for it: a tiny red triangle named Roof, 2 px above Hut.
+@c1 command action=create shape=triangle size=tiny color=red name=Roof position=above anchor=Hut distance=2
+
+## turn 8
+# input: Now the boat. Add a medium white ellipse named Boat at 480, 340.
+@c1 command action=create shape=ellipse size=medium color=white name=Boat at=480,340
+
+## turn 9
+# input: and a small white triangle named Sail 4 px above Boat
+@c1 command action=create shape=triangle size=small color=white name=Sail position=above anchor=Boat distance=4
+
+## turn 10
+# input: How many triangles are on the picture so far?
+@q1 question ask=count shape=triangle
+
+## turn 11
+# input: Buoy1: a tiny red circle at 360, 430.
+@c1 command action=create shape=circle size=tiny color=red name=Buoy1 at=360,430
+
+## turn 12
+# input: Buoy2, a tiny red circle at 420, 450, and Buoy3, another tiny red circle at 300, 455.
+@c1 command action=create shape=circle size=tiny color=red name=Buoy2 at=420,450
+@c2 command action=create shape=circle size=tiny color=red name=Buoy3 at=300,455
+
+## turn 13
+# input: Group Buoy1, Buoy2 and Buoy3 as Buoys.
+@c1 command action=group target=Buoy1,Buoy2,Buoy3 name=Buoys
+
+## turn 14
+# input: Lighthouse on the right: a white rectangle named Tower, 30 wide and 120 tall, at 740, 300.
+@c1 command action=create shape=rectangle color=white name=Tower width=30 height=120 at=740,300
+
+## turn 15
+# input: Lamp on top: a tiny yellow circle named Lamp 2 px above Tower.
+@c1 command action=create shape=circle size=tiny color=yellow name=Lamp position=above anchor=Tower distance=2
+
+## turn 16
+# input: Hmm, make the lamp orange instead.
+@c1 command action=set target=Lamp color=orange
+
+## turn 17
+# input: Add a tiny black triangle named Gull at (300, 90).
+@c1 command action=create shape=triangle size=tiny color=black name=Gull at=300,90
+
+## turn 18
+# input: Put a second tiny black triangle, Gull2, forty px right of Gull.
+@c1 command action=create shape=triangle size=tiny color=black name=Gull2 position=rightOf anchor=Gull distance=40
+
+## turn 19
+# input: Is Gull2 right of Gull?
+@q1 question ask=check target=Gull2 position=rightOf anchor=Gull
+
+## turn 20
+# input: Connect Pier to Boat with a dashed line.
+@c1 command action=connect from=Pier to=Boat style=dashed arrow=none
+
+## turn 21
+# input: Draw a navy diamond named Rock at 560, 455.
+@c1 command action=create shape=diamond color=navy name=Rock at=560,455
+
+## turn 22
+# input: Rock is too dark, make it gray.
+@c1 command action=set target=Rock color=gray
+
+## turn 23
+# input: Which shape is closest to Boat?
+@q1 question ask=nearest superlative=closest shape=any anchor=Boat
+
+## turn 24
+# input: Write "Harbour" in large letters at 400, 40.
+@c1 command action=create shape=text label="Harbour" size=large at=400,40
+
+## turn 25
+# input: move the title down by 10
+#! resolved: "the title" -> the text "Harbour" of the previous message
+@m1 mention shape=text label="Harbour"
+@c1 command action=move target=$m1 direction=down distance=10
+
+## turn 26
+# input: Hut and Roof belong together, make them a group called Cabin.
+@c1 command action=group target=Hut,Roof name=Cabin
+
+## turn 27
+# input: Which shapes are in Buoys?
+@q1 question ask=members target=Buoys
+
+## turn 28
+# input: Thanks, it looks calm now.
+#! noop: thanks and a closing remark; nothing to draw or answer

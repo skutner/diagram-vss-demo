@@ -1,0 +1,191 @@
+# SOP Lang of the scene "Apartment floor plan" (docs/js/scenes-extra.js, id floorplan), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Floor plan of my apartment. Start with a faint gray rectangle as the background, 780 by 460, at 400,260, named Outline.
+@c1 command action=create shape=rectangle color=gray fill=faint layer=background width=780 height=460 at=400,260 name=Outline
+
+## turn 3
+# input: Living room zone: light orange rectangle 360 by 220 at 210,150, call it Living
+@c1 command action=create shape=rectangle color=orange fill=light layer=zone width=360 height=220 at=210,150 name=Living
+
+## turn 4
+# input: kitchen zone to its right, a light yellow rectangle, 190 x 220, centred at 495,150. Name: Kitchen.
+@c1 command action=create shape=rectangle color=yellow fill=light layer=zone width=190 height=220 at=495,150 name=Kitchen
+
+## turn 5
+# input: Bath: a light cyan rectangle zone, 170 by 220, at 685,150, named Bath
+@c1 command action=create shape=rectangle color=cyan fill=light layer=zone width=170 height=220 at=685,150 name=Bath
+
+## turn 6
+# input: bedroom is under the living room: light purple rectangle zone, 360 x 210, at 210,375, called Bedroom
+@c1 command action=create shape=rectangle color=purple fill=light layer=zone width=360 height=210 at=210,375 name=Bedroom
+
+## turn 7
+# input: and the hall: light gray zone rectangle 370 by 210 at 585,375, Hall
+@c1 command action=create shape=rectangle color=gray fill=light layer=zone width=370 height=210 at=585,375 name=Hall
+
+## turn 8
+# input: Put small captions in each room: "Living" at 75,58
+@c1 command action=create shape=text label="Living" size=small at=75,58
+
+## turn 9
+# input: "Kitchen" at 455,46 in small letters
+@c1 command action=create shape=text label="Kitchen" size=small at=455,46
+
+## turn 10
+# input: and a small "Bath" near the top of the bath, at 625,58
+@c1 command action=create shape=text label="Bath" size=small at=625,58
+
+## turn 11
+# input: small "Bedroom" at 75,288 and small "Hall" at 430,288
+@c1 command action=create shape=text label="Bedroom" size=small at=75,288
+@c2 command action=create shape=text label="Hall" size=small at=430,288
+
+## turn 12
+# input: make all the captions gray
+#! resolved: "all the captions" -> every text: the five captions of messages 8-11 (the canvas was cleared at the start)
+@m1 mention quantifier=all shape=text
+@c1 command action=set target=$m1 color=gray
+
+## turn 13
+# input: sofa in the living room: gray rectangle 140 by 50 at 160,205, name Sofa
+@c1 command action=create shape=rectangle color=gray width=140 height=50 at=160,205 name=Sofa
+
+## turn 14
+# input: TV unit opposite it, a black rectangle 120 by 20 at 160,95, TvUnit
+@c1 command action=create shape=rectangle color=black width=120 height=20 at=160,95 name=TvUnit
+
+## turn 15
+# input: coffee table between them, small brown ellipse named CoffeeTable at 160,150
+@c1 command action=create shape=ellipse size=small color=brown name=CoffeeTable at=160,150
+
+## turn 16
+# input: Kitchen: a white square called Fridge at 560,90
+@c1 command action=create shape=square color=white name=Fridge at=560,90
+
+## turn 17
+# input: Stove: small black square at 450,90, named Stove
+@c1 command action=create shape=square size=small color=black at=450,90 name=Stove
+
+## turn 18
+# input: round dining table, medium brown circle at 495,170, name it Table
+@c1 command action=create shape=circle size=medium color=brown at=495,170 name=Table
+
+## turn 19
+# input: 4 tiny brown squares around the table... no, just 2, in a row below Table, 6 px away
+@c1 command action=create count=2 shape=square size=tiny color=brown layout=row position=below anchor=Table distance=6
+
+## turn 20
+# input: Bathtub: white ellipse 120 by 50 at 685,100, Tub
+@c1 command action=create shape=ellipse color=white width=120 height=50 at=685,100 name=Tub
+
+## turn 21
+# input: and a small white circle for the toilet at 650,210, named Toilet
+@c1 command action=create shape=circle size=small color=white at=650,210 name=Toilet
+
+## turn 22
+# input: Bed: blue rectangle 160 by 110 at 200,395, name it Bed
+@c1 command action=create shape=rectangle color=blue width=160 height=110 at=200,395 name=Bed
+
+## turn 23
+# input: two small white rectangles on the bed for pillows: Pillow1 at 160,355 and Pillow2, a small white rectangle as well, at 240,355
+@c1 command action=create shape=rectangle size=small color=white name=Pillow1 at=160,355
+@c2 command action=create shape=rectangle size=small color=white name=Pillow2 at=240,355
+
+## turn 24
+# input: Wardrobe: brown rectangle 50 by 150 at 345,385
+#! resolved: "Wardrobe:" is read as the shape's name: message 28 groups it by that name
+@c1 command action=create shape=rectangle color=brown width=50 height=150 at=345,385 name=Wardrobe
+
+## turn 25
+# input: Front door: small brown rectangle at 690,455, labelled "door", named FrontDoor
+@c1 command action=create shape=rectangle size=small color=brown at=690,455 label="door" name=FrontDoor
+
+## turn 26
+# input: How many rectangles are there?
+#! note: a description by kind leaves the background and zone panels (Outline and the five rooms) out, as the engine does for every reader
+@q1 question ask=count shape=rectangle
+
+## turn 27
+# input: group Living, Sofa, TvUnit, CoffeeTable and its caption text1 as LivingSet
+#! note: text1 is the name the engine gave the caption "Living", as the message writes it
+@c1 command action=group target=Living,Sofa,TvUnit,CoffeeTable,text1 name=LivingSet
+
+## turn 28
+# input: group Bed, Pillow1, Pillow2 and Wardrobe, call it Sleep
+@c1 command action=group target=Bed,Pillow1,Pillow2,Wardrobe name=Sleep
+
+## turn 29
+# input: Which group is Pillow2 in?
+@q1 question ask=groupOf target=Pillow2
+
+## turn 30
+# input: draw a dotted arrow from FrontDoor to Sofa, label "way in"
+@c1 command action=connect from=FrontDoor to=Sofa style=dotted label="way in"
+
+## turn 31
+# input: and a dotted arrow from FrontDoor to Bed too
+@c1 command action=connect from=FrontDoor to=Bed style=dotted
+
+## turn 32
+# input: Is there a path from FrontDoor to Bed?
+@q1 question ask=path from=FrontDoor to=Bed
+
+## turn 33
+# input: the fridge should be gray, white is hard to see
+@c1 command action=set target=Fridge color=gray
+
+## turn 34
+# input: What color is the Fridge?
+@q1 question ask=property property=color target=Fridge
+
+## turn 35
+# input: Is Stove left of Fridge?
+@q1 question ask=check target=Stove position=leftOf anchor=Fridge
+
+## turn 36
+# input: Swap Stove and Fridge, I want the fridge near the wall
+@c1 command action=swap target=Stove,Fridge
+
+## turn 37
+# input: Shoe rack in the hall: small gray hexagon 30 px left of FrontDoor, name it Shoes
+@c1 command action=create shape=hexagon size=small color=gray position=leftOf anchor=FrontDoor distance=30 name=Shoes
+
+## turn 38
+# input: which shapes are near FrontDoor?
+@q1 question ask=list shape=any position=near anchor=FrontDoor
+
+## turn 39
+# input: Add a title "Flat 4B, 62 m2" at 560,470 in navy... actually bottom left is better
+@c1 command action=create shape=text label="Flat 4B, 62 m2" color=navy position=bottomLeft
+
+## turn 40
+# input: Make the pillows pink.
+#! resolved: "the pillows" -> Pillow1, Pillow2
+@c1 command action=set target=Pillow1,Pillow2 color=pink
+
+## turn 41
+# input: undo, pink pillows clash with the blue bed
+@c1 command action=undo
+
+## turn 42
+# input: Which is the biggest shape in the flat?
+@q1 question ask=extreme superlative=biggest shape=any
+
+## turn 43
+# input: count the circles in the plan
+@q1 question ask=count shape=circle
+
+## turn 44
+# input: Describe Bedroom.
+@q1 question ask=describe target=Bedroom
+
+## turn 45
+# input: That's the whole flat, thanks.
+#! noop: a closing remark and thanks; nothing to draw or answer

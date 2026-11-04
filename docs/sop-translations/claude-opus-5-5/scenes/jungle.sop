@@ -1,0 +1,201 @@
+# SOP Lang of the scene "Jungle Race board game" (docs/js/scenes-extra.js, id jungle), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Let's design a board game called Jungle Race. Start with a light green rectangle as the background, 780 by 480, centred, named Jungle.
+@c1 command action=create shape=rectangle color=green fill=light layer=background width=780 height=480 position=center name=Jungle
+
+## turn 3
+# input: nine medium white squares in a 3 by 3 grid in the center for the board
+@c1 command action=create count=9 shape=square size=medium color=white layout=grid position=center
+
+## turn 4
+# input: number them: square1 "1"
+#! note: square1 … square9 are the names the engine gave the nine squares, as the messages write them
+@c1 command action=label target=square1 label="1"
+
+## turn 5
+# input: square2 "2", square3 "3"
+@c1 command action=label target=square2 label="2"
+@c2 command action=label target=square3 label="3"
+
+## turn 6
+# input: square4 gets "4", square5 "5", square6 "6"
+@c1 command action=label target=square4 label="4"
+@c2 command action=label target=square5 label="5"
+@c3 command action=label target=square6 label="6"
+
+## turn 7
+# input: and the last row: square7 "7", square8 "8", square9 "9"
+@c1 command action=label target=square7 label="7"
+@c2 command action=label target=square8 label="8"
+@c3 command action=label target=square9 label="9"
+
+## turn 8
+# input: Make square9 gold, it's the finish
+@c1 command action=set target=square9 color=gold
+
+## turn 9
+# input: square1 is the start, color it lime
+@c1 command action=set target=square1 color=lime
+
+## turn 10
+# input: Ladder! green arrow from square2 to square7, labelled "ladder"
+@c1 command action=connect from=square2 to=square7 color=green label="ladder"
+
+## turn 11
+# input: and a snake: dashed red arrow from square8 to square3, write "snake" on it
+@c1 command action=connect from=square8 to=square3 style=dashed color=red label="snake"
+
+## turn 12
+# input: Pawns: a small red circle named RedPawn left of square4
+@c1 command action=create shape=circle size=small color=red name=RedPawn position=leftOf anchor=square4
+
+## turn 13
+# input: and a small blue circle BluePawn below RedPawn
+@c1 command action=create shape=circle size=small color=blue name=BluePawn position=below anchor=RedPawn
+
+## turn 14
+# input: Dice: a white square with "6" on it, in the top right, called Dice
+@c1 command action=create shape=square color=white label="6" position=topRight name=Dice
+
+## turn 15
+# input: give the dice a black outline
+@c1 command action=set target=Dice outline=black
+
+## turn 16
+# input: Title "Jungle Race" at the top, large, dark green
+#! approx: "dark green" -> color=green: the legend has no dark shades
+@c1 command action=create shape=text label="Jungle Race" size=large color=green position=top
+
+## turn 17
+# input: Is there a path from square2 to square7?
+@q1 question ask=path from=square2 to=square7
+
+## turn 18
+# input: how many squares are there with the dice?
+#! note: the dice is a square too, so a count of the squares includes it
+@q1 question ask=count shape=square
+
+## turn 19
+# input: group all nine board squares as Board
+#! resolved: "all nine board squares" -> square1 … square9, the names the messages gave them (a mention of the squares would also take the dice)
+@c1 command action=group target=square1,square2,square3,square4,square5,square6,square7,square8,square9 name=Board
+
+## turn 20
+# input: move Board 40 px to the right
+@c1 command action=move target=Board direction=right distance=40
+
+## turn 21
+# input: Is RedPawn left of Board?
+@q1 question ask=check target=RedPawn position=leftOf anchor=Board
+
+## turn 22
+# input: Put a small yellow star between RedPawn and BluePawn as a bonus
+@c1 command action=create shape=star size=small color=yellow position=between anchor=RedPawn,BluePawn
+
+## turn 23
+# input: Actually make the bonus a hexagon
+#! resolved: "the bonus" -> the small yellow star of the previous message
+@m1 mention shape=star size=small color=yellow recency=newest
+@c1 command action=set target=$m1 shape=hexagon
+
+## turn 24
+# input: swap RedPawn and BluePawn
+@c1 command action=swap target=RedPawn,BluePawn
+
+## turn 25
+# input: A second dice next to the first one: duplicate Dice
+@c1 command action=duplicate target=Dice
+
+## turn 26
+# input: label the copy "3"
+#! resolved: "the copy" -> the white square drawn last (the copy of Dice, named by the engine)
+@m1 mention shape=square color=white recency=newest
+@c1 command action=label target=$m1 label="3"
+
+## turn 27
+# input: which shape is the topmost?
+@q1 question ask=extreme superlative=topmost shape=any
+
+## turn 28
+# input: Hmm, the snake should be dotted, not dashed
+#! resolved: "the snake" -> the arrow square8 → square3
+@c1 command action=set from=square8 to=square3 style=dotted
+
+## turn 29
+# input: remove the label of the ladder
+#! resolved: "the ladder" -> the arrow square2 → square7
+@c1 command action=label from=square2 to=square7 label=""
+
+## turn 30
+# input: what is the color of square9?
+@q1 question ask=property property=color target=square9
+
+## turn 31
+# input: Treasure: tiny gold diamond right of square6 with a 20 px gap, named Gem
+@c1 command action=create shape=diamond size=tiny color=gold name=Gem position=rightOf anchor=square6 distance=20
+
+## turn 32
+# input: connect Gem to square6 with a dotted line
+@c1 command action=connect from=Gem to=square6 style=dotted arrow=none
+
+## turn 33
+# input: make the pawns the same size as Gem
+#! resolved: "the pawns" -> RedPawn, BluePawn
+@c1 command action=equalize property=size target=RedPawn,BluePawn anchor=Gem
+
+## turn 34
+# input: Undo, they're too small now
+@c1 command action=undo
+
+## turn 35
+# input: Rules box: light gray rectangle zone, 160 by 120, in the bottom left, named RulesBox
+@c1 command action=create shape=rectangle color=gray fill=light layer=zone width=160 height=120 position=bottomLeft name=RulesBox
+
+## turn 36
+# input: write "roll, move, climb!" just above RulesBox, small
+@c1 command action=create shape=text label="roll, move, climb!" size=small position=above anchor=RulesBox
+
+## turn 37
+# input: group RulesBox with that text as Rules
+#! resolved: "that text" -> the text "roll, move, climb!" of the previous message
+@m1 mention shape=text label="roll, move, climb!"
+@c1 command action=group target=RulesBox,$m1 name=Rules
+
+## turn 38
+# input: Which shapes are near Dice?
+@q1 question ask=list shape=any position=near anchor=Dice
+
+## turn 39
+# input: how many arrows are on the board?
+@q1 question ask=count kind=edge
+
+## turn 40
+# input: Which is the rightmost shape on the board?
+#! note: "on the board" is read as the whole drawing (the game), as in the message before it
+@q1 question ask=extreme superlative=rightmost shape=any
+
+## turn 41
+# input: Delete the second dice
+#! resolved: "the second dice" -> the white square drawn last (the copy of Dice, labelled "3")
+@m1 mention shape=square color=white recency=newest
+@c1 command action=delete target=$m1
+
+## turn 42
+# input: bring the pawns to the front
+#! resolved: "the pawns" -> RedPawn, BluePawn
+@c1 command action=toFront target=RedPawn,BluePawn
+
+## turn 43
+# input: Describe square1.
+@q1 question ask=describe target=square1
+
+## turn 44
+# input: Game board ready, let's play!
+#! noop: a closing remark; nothing to draw or answer

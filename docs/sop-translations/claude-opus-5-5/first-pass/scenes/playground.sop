@@ -1,0 +1,186 @@
+# SOP Lang of the scene "Playground" (docs/js/scenes-extra.js, id playground), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Playground drawing for the school newsletter. Grass background: a light green rectangle, 780 by 480, centred, background layer, named Grass.
+@c1 command action=create shape=rectangle color=green fill=light layer=background width=780 height=480 position=center name=Grass
+
+## turn 3
+# input: sandbox: a light yellow rectangle zone, 200 by 110, in the bottom left, named Sandbox
+@c1 command action=create shape=rectangle color=yellow fill=light layer=zone width=200 height=110 position=bottomLeft name=Sandbox
+
+## turn 4
+# input: Slide: a large red triangle in the center, named Slide
+@c1 command action=create shape=triangle size=large color=red position=center name=Slide
+
+## turn 5
+# input: a ladder next to it: a thin gray rectangle, 14 by 90, left of Slide with a 16 px gap, called Ladder
+@c1 command action=create shape=rectangle color=gray width=14 height=90 position=leftOf anchor=Slide distance=16 name=Ladder
+
+## turn 6
+# input: group Slide and Ladder as SlideSet
+@c1 command action=group target=Slide,Ladder name=SlideSet
+
+## turn 7
+# input: Swings on the right: a brown rectangle 160 by 12 for the top bar, in the top right, named SwingBar
+@c1 command action=create shape=rectangle color=brown width=160 height=12 position=topRight name=SwingBar
+
+## turn 8
+# input: two small blue squares below SwingBar, those are the seats
+@c1 command action=create count=2 shape=square size=small color=blue position=below anchor=SwingBar
+
+## turn 9
+# input: hang the seats from the bar with plain lines
+#! resolved: "the seats" -> every small blue square: the two seats of the previous message (the canvas was cleared at the start); "the bar" -> SwingBar
+@m1 mention quantifier=all shape=square size=small color=blue
+@c1 command action=connect from=SwingBar to=$m1 arrow=none
+
+## turn 10
+# input: group SwingBar and both seats as Swings
+#! resolved: "both seats" -> every small blue square: the two seats
+@m1 mention quantifier=all shape=square size=small color=blue
+@c1 command action=group target=SwingBar,$m1 name=Swings
+
+## turn 11
+# input: a kid on the slide: small pink circle named Kid1 above Slide
+@c1 command action=create shape=circle size=small color=pink name=Kid1 position=above anchor=Slide
+
+## turn 12
+# input: another kid near the sandbox, small orange circle, Kid2
+@c1 command action=create shape=circle size=small color=orange name=Kid2 position=near anchor=Sandbox
+
+## turn 13
+# input: a ball: tiny red circle between Kid2 and Slide, named Ball
+@c1 command action=create shape=circle size=tiny color=red name=Ball position=between anchor=Kid2,Slide
+
+## turn 14
+# input: kite in the sky: a small purple diamond in the top left, named Kite
+@c1 command action=create shape=diamond size=small color=purple position=topLeft name=Kite
+
+## turn 15
+# input: string from Kite to Kid2, dotted line
+@c1 command action=connect from=Kite to=Kid2 style=dotted arrow=none
+
+## turn 16
+# input: a large green circle named Crown left of SwingBar for a tree
+@c1 command action=create shape=circle size=large color=green name=Crown position=leftOf anchor=SwingBar
+
+## turn 17
+# input: and its trunk, a brown rectangle named Stem 2 px below Crown
+@c1 command action=create shape=rectangle color=brown name=Stem position=below anchor=Crown distance=2
+
+## turn 18
+# input: Crown and Stem belong together: make them a group called Tree
+@c1 command action=group target=Crown,Stem name=Tree
+
+## turn 19
+# input: bench: a brown rectangle, 120 by 24, at the bottom, named Bench
+@c1 command action=create shape=rectangle color=brown width=120 height=24 position=bottom name=Bench
+
+## turn 20
+# input: three tiny yellow stars in a row above Bench, flowers
+@c1 command action=create count=3 shape=star size=tiny color=yellow layout=row position=above anchor=Bench
+
+## turn 21
+# input: how many circles are there on the playground?
+@q1 question ask=count shape=circle
+
+## turn 22
+# input: Is Ball between Kid2 and Slide?
+@q1 question ask=check target=Ball position=between anchor=Kid2,Slide
+
+## turn 23
+# input: make the ball bigger, it's a beach ball
+@c1 command action=resize target=Ball
+
+## turn 24
+# input: Title "Recess!" at the top, large, navy
+@c1 command action=create shape=text label="Recess!" size=large color=navy position=top
+
+## turn 25
+# input: Is Kite left of Tree?
+@q1 question ask=check target=Kite position=leftOf anchor=Tree
+
+## turn 26
+# input: move Kite a bit down
+#! approx: "a bit" -> distance=20: no amount is said; the engine's own default (80 px) is more than "a bit"
+@c1 command action=move target=Kite direction=down distance=20
+
+## turn 27
+# input: Which shapes are near Bench?
+@q1 question ask=list position=near anchor=Bench shape=any
+
+## turn 28
+# input: make the seats the same size as Ball
+#! resolved: "the seats" -> every small blue square: the two seats
+@m1 mention quantifier=all shape=square size=small color=blue
+@c1 command action=equalize property=size target=$m1 anchor=Ball
+
+## turn 29
+# input: undo, the seats look too small
+@c1 command action=undo
+
+## turn 30
+# input: Make Kid1 yellow
+@c1 command action=set target=Kid1 color=yellow
+
+## turn 31
+# input: the slide should be orange
+@c1 command action=set target=Slide color=orange
+
+## turn 32
+# input: What color is Slide?
+@q1 question ask=property property=color target=Slide
+
+## turn 33
+# input: fence: five tiny brown squares in a row in the bottom right
+@c1 command action=create count=5 shape=square size=tiny color=brown layout=row position=bottomRight
+
+## turn 34
+# input: connect the fence posts in a chain with brown lines
+#! resolved: "the fence posts" -> every tiny brown square: the five of the previous message
+@m1 mention quantifier=all shape=square size=tiny color=brown
+@c1 command action=connect from=$m1 pairing=chain arrow=none color=brown
+
+## turn 35
+# input: how many squares are on the canvas?
+@q1 question ask=count shape=square
+
+## turn 36
+# input: which group is Stem in?
+@q1 question ask=groupOf target=Stem
+
+## turn 37
+# input: move Swings 30 px down
+@c1 command action=move target=Swings direction=down distance=30
+
+## turn 38
+# input: Is there a path from Kite to Kid2?
+@q1 question ask=path from=Kite to=Kid2
+
+## turn 39
+# input: Which shape is farthest from the sandbox?
+@q1 question ask=nearest superlative=farthest anchor=Sandbox shape=any
+
+## turn 40
+# input: bring Kid1 to the front
+@c1 command action=toFront target=Kid1
+
+## turn 41
+# input: delete one of the flowers, the last star
+#! resolved: "the last star" -> the tiny yellow star drawn last (the flowers are unnamed)
+@m1 mention shape=star size=tiny color=yellow recency=newest
+@c1 command action=delete target=$m1
+
+## turn 42
+# input: Describe Ball.
+@q1 question ask=describe target=Ball
+
+## turn 43
+# input: Perfect for the newsletter.
+#! noop: a closing remark; nothing to draw or answer

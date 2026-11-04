@@ -1,0 +1,100 @@
+# SOP Lang of the scene "Garden plan" (docs/js/scenes-extra.js, id garden), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Garden plan. A light green rectangle zone, 780 wide, 480 tall, at 400, 250, named Lawn.
+@c1 command action=create shape=rectangle color=green fill=light layer=zone width=780 height=480 at=400,250 name=Lawn
+
+## turn 3
+# input: Draw a brown rectangle named Bed1 at (150, 110), 160 by 60.
+@c1 command action=create shape=rectangle color=brown name=Bed1 at=150,110 width=160 height=60
+
+## turn 4
+# input: Bed2: a brown rectangle 160 by 60, 40 px right of Bed1.
+@c1 command action=create shape=rectangle color=brown width=160 height=60 name=Bed2 position=rightOf anchor=Bed1 distance=40
+
+## turn 5
+# input: and Bed3 the same way, a brown rectangle 160 by 60 forty px right of Bed2
+@c1 command action=create shape=rectangle color=brown width=160 height=60 name=Bed3 position=rightOf anchor=Bed2 distance=40
+
+## turn 6
+# input: Four tiny red circles in a row below Bed1.
+@c1 command action=create count=4 shape=circle size=tiny color=red layout=row position=below anchor=Bed1
+
+## turn 7
+# input: Pond: a blue ellipse 140 wide and 80 tall at 600, 330, named Pond.
+@c1 command action=create shape=ellipse color=blue width=140 height=80 at=600,330 name=Pond
+
+## turn 8
+# input: Put a medium gray hexagon named Bench at 250, 400.
+@c1 command action=create shape=hexagon size=medium color=gray name=Bench at=250,400
+
+## turn 9
+# input: A small green triangle named Bush 20 px left of Pond.
+@c1 command action=create shape=triangle size=small color=green name=Bush position=leftOf anchor=Pond distance=20
+
+## turn 10
+# input: another small green triangle Bush2 20 px right of Pond
+@c1 command action=create shape=triangle size=small color=green name=Bush2 position=rightOf anchor=Pond distance=20
+
+## turn 11
+# input: Group Bush and Bush2 as Hedge.
+@c1 command action=group target=Bush,Bush2 name=Hedge
+
+## turn 12
+# input: How many triangles do I have in the garden?
+#! note: "in the garden" is the whole drawing (the canvas was cleared at the start)
+@q1 question ask=count shape=triangle
+
+## turn 13
+# input: Path: connect Bench to Pond with a dashed line.
+@c1 command action=connect from=Bench to=Pond style=dashed arrow=none
+
+## turn 14
+# input: Make Bed2 orange.
+@c1 command action=set target=Bed2 color=orange
+
+## turn 15
+# input: Is Bed3 right of Bed2?
+@q1 question ask=check target=Bed3 position=rightOf anchor=Bed2
+
+## turn 16
+# input: a tiny yellow star named Flower at (420, 250)
+@c1 command action=create shape=star size=tiny color=yellow name=Flower at=420,250
+
+## turn 17
+# input: move Flower ten px down
+@c1 command action=move target=Flower direction=down distance=10
+
+## turn 18
+# input: What color is the pond?
+@q1 question ask=property property=color target=Pond
+
+## turn 19
+# input: Delete Flower, it looks lonely.
+@c1 command action=delete target=Flower
+
+## turn 20
+# input: a small white square named Shed in the bottom left
+@c1 command action=create shape=square size=small color=white name=Shed position=bottomLeft
+
+## turn 21
+# input: Write "My garden" at 400, 30 in large letters
+@c1 command action=create shape=text label="My garden" size=large at=400,30
+
+## turn 22
+# input: Which shape is nearest to Shed?
+@q1 question ask=nearest superlative=closest shape=any anchor=Shed
+
+## turn 23
+# input: Pond goes on top of everything.
+@c1 command action=toFront target=Pond
+
+## turn 24
+# input: That's it for today.
+#! noop: a closing remark; nothing to draw or answer

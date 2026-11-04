@@ -1,0 +1,185 @@
+# SOP Lang of the scene "Card for Grandma" (docs/js/scenes-extra.js, id grancard), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: A card for Grandma. Background: a light pink rectangle, 780 by 480, in the center, named Card, background layer.
+@c1 command action=create shape=rectangle color=pink fill=light layer=background width=780 height=480 position=center name=Card
+
+## turn 3
+# input: Heart time: a large red circle at 360,220, named LobeL
+@c1 command action=create shape=circle size=large color=red at=360,220 name=LobeL
+
+## turn 4
+# input: a second large red circle, LobeR, at 440,220
+@c1 command action=create shape=circle size=large color=red name=LobeR at=440,220
+
+## turn 5
+# input: and a huge red diamond at 400,290 for the point, named Tip
+@c1 command action=create shape=diamond size=huge color=red at=400,290 name=Tip
+
+## turn 6
+# input: group LobeL, LobeR and Tip as Heart
+@c1 command action=group target=LobeL,LobeR,Tip name=Heart
+
+## turn 7
+# input: write "Thank you, Grandma" at the top in large magenta letters
+@c1 command action=create shape=text label="Thank you, Grandma" size=large color=magenta position=top
+
+## turn 8
+# input: Me on the left: a small yellow circle named MyHead, left of Heart with a 60 px gap
+@c1 command action=create shape=circle size=small color=yellow name=MyHead position=leftOf anchor=Heart distance=60
+
+## turn 9
+# input: my body: an orange rectangle MyBody 2 px below MyHead
+@c1 command action=create shape=rectangle color=orange name=MyBody position=below anchor=MyHead distance=2
+
+## turn 10
+# input: Grandma on the right side of the heart: a small white circle named GranHead, 60 px gap
+@c1 command action=create shape=circle size=small color=white name=GranHead position=rightOf anchor=Heart distance=60
+
+## turn 11
+# input: her body, a purple rectangle called GranBody, directly below GranHead with a 2 px gap
+@c1 command action=create shape=rectangle color=purple name=GranBody position=below anchor=GranHead distance=2
+
+## turn 12
+# input: group MyHead and MyBody as Me
+@c1 command action=group target=MyHead,MyBody name=Me
+
+## turn 13
+# input: and GranHead with GranBody as Gran
+@c1 command action=group target=GranHead,GranBody name=Gran
+
+## turn 14
+# input: dotted arrows from MyBody and GranBody to Tip
+@c1 command action=connect from=MyBody,GranBody to=Tip style=dotted
+
+## turn 15
+# input: label the arrow from GranBody to Tip "love"
+@c1 command action=label from=GranBody to=Tip label="love"
+
+## turn 16
+# input: Is MyHead left of GranHead?
+@q1 question ask=check target=MyHead position=leftOf anchor=GranHead
+
+## turn 17
+# input: five small pink stars in a row below the heart
+#! resolved: "the heart" -> the group Heart
+@c1 command action=create count=5 shape=star size=small color=pink layout=row position=below anchor=Heart
+
+## turn 18
+# input: make them gold, like little flowers
+#! resolved: "them" -> every small pink star: the five stars of the previous message (the canvas was cleared at the start)
+@m1 mention quantifier=all shape=star size=small color=pink
+@c1 command action=set target=$m1 color=gold
+
+## turn 19
+# input: a sun in the top right: medium yellow circle named Sun
+@c1 command action=create shape=circle size=medium color=yellow name=Sun position=topRight
+
+## turn 20
+# input: and a tiny white oval cloud near Sun
+@c1 command action=create shape=ellipse size=tiny color=white position=near anchor=Sun
+
+## turn 21
+# input: Is Tip in the center?
+@q1 question ask=check target=Tip position=center
+
+## turn 22
+# input: make GranBody pink, her favourite colour
+@c1 command action=set target=GranBody color=pink
+
+## turn 23
+# input: how many circles do we have on the card?
+@q1 question ask=count shape=circle
+
+## turn 24
+# input: bring the two lobes to the front
+#! resolved: "the two lobes" -> LobeL, LobeR
+@c1 command action=toFront target=LobeL,LobeR
+
+## turn 25
+# input: add a small purple hexagon near MyBody, a present for her
+@c1 command action=create shape=hexagon size=small color=purple position=near anchor=MyBody
+
+## turn 26
+# input: Which shapes are pink?
+#! note: "shapes" leaves the background panel Card out, as the engine does for every reader
+@q1 question ask=list color=pink shape=any
+
+## turn 27
+# input: a tiny red diamond above MyHead
+@c1 command action=create shape=diamond size=tiny color=red position=above anchor=MyHead
+
+## turn 28
+# input: and the same tiny red diamond above GranHead
+@c1 command action=create shape=diamond size=tiny color=red position=above anchor=GranHead
+
+## turn 29
+# input: make both tiny diamonds magenta
+#! resolved: "both tiny diamonds" -> every tiny diamond: the two of the two previous messages
+@m1 mention quantifier=all shape=diamond size=tiny
+@c1 command action=set target=$m1 color=magenta
+
+## turn 30
+# input: what is near Sun?
+@q1 question ask=list position=near anchor=Sun
+
+## turn 31
+# input: Write "with love, Mia" under Me, small
+@c1 command action=create shape=text label="with love, Mia" size=small position=below anchor=Me
+
+## turn 32
+# input: Is the cloud white?
+#! resolved: "the cloud" -> the tiny ellipse drawn near Sun (unnamed; the only tiny ellipse)
+@m1 mention shape=ellipse size=tiny
+@q1 question ask=check target=$m1 color=white
+
+## turn 33
+# input: delete the cloud
+#! resolved: "the cloud" -> the tiny ellipse drawn near Sun (unnamed; the only tiny ellipse)
+@m1 mention shape=ellipse size=tiny
+@c1 command action=delete target=$m1
+
+## turn 34
+# input: move Gran 20 px to the right
+@c1 command action=move target=Gran direction=right distance=20
+
+## turn 35
+# input: Describe Tip.
+@q1 question ask=describe target=Tip
+
+## turn 36
+# input: how many groups are there?
+@q1 question ask=count kind=group
+
+## turn 37
+# input: which group is MyBody in?
+@q1 question ask=groupOf target=MyBody
+
+## turn 38
+# input: Who is connected to Tip?
+@q1 question ask=neighbors target=Tip
+
+## turn 39
+# input: Make the title navy, no, keep it magenta but huge
+#! resolved: "the title" -> the text "Thank you, Grandma"; the self-correction keeps magenta, so only the size changes
+@m1 mention shape=text label="Thank you, Grandma"
+@c1 command action=set target=$m1 size=huge
+
+## turn 40
+# input: Is Sun bigger than MyHead?
+@q1 question ask=check target=Sun comparison=bigger anchor=MyHead
+
+## turn 41
+# input: undo the title size
+#! resolved: "the title size" -> the last change, the title made huge two messages before (the question in between changed nothing)
+@c1 command action=undo
+
+## turn 42
+# input: Lovely, Grandma will cry.
+#! noop: a closing remark; nothing to draw or answer

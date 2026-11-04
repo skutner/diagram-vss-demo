@@ -1,0 +1,34 @@
+# SOP Lang of the scenario "Org chart" (docs/js/scenarios.js, id org), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Draw a large navy rectangle named CEO at the top, labeled "CEO".
+@c1 command action=create shape=rectangle size=large color=navy name=CEO label="CEO" position=top
+
+## turn 2
+# input: Add a teal rectangle named CTO below CEO labeled "CTO". Add a teal rectangle named CFO left of CTO labeled "CFO". Add a teal rectangle named COO right of CTO labeled "COO".
+@c1 command action=create shape=rectangle color=teal name=CTO label="CTO" position=below anchor=CEO
+@c2 command action=create shape=rectangle color=teal name=CFO label="CFO" position=leftOf anchor=CTO
+@c3 command action=create shape=rectangle color=teal name=COO label="COO" position=rightOf anchor=CTO
+
+## turn 3
+# input: Connect CEO to CTO, CFO and COO with plain lines.
+@c1 command action=connect from=CEO to=CTO,CFO,COO arrow=none
+
+## turn 4
+# input: Add a small gray rectangle named Dev below CTO labeled "Dev". Add a small gray rectangle named Ops right of Dev labeled "Ops".
+@c1 command action=create shape=rectangle size=small color=gray name=Dev label="Dev" position=below anchor=CTO
+@c2 command action=create shape=rectangle size=small color=gray name=Ops label="Ops" position=rightOf anchor=Dev
+
+## turn 5
+# input: Connect CTO to Dev and Ops with plain lines.
+@c1 command action=connect from=CTO to=Dev,Ops arrow=none
+
+## turn 6
+# input: What is connected to CTO?
+@q1 question ask=neighbors target=CTO
+
+## turn 7
+# input: Which shape has the most connections?
+#! scope: every shape of the canvas, not only this chart
+@q1 question ask=extreme superlative=mostConnected shape=any

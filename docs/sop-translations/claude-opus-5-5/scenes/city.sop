@@ -1,0 +1,217 @@
+# SOP Lang of the scene "City street at night" (docs/js/scenes-extra.js, id city), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: City street at night. First a faint navy background rectangle over the whole canvas, 780 by 480, centred at 400,250, named Night.
+@c1 command action=create shape=rectangle color=navy fill=faint layer=background width=780 height=480 at=400,250 name=Night
+
+## turn 3
+# input: road: light gray rectangle zone, 780 x 110, at 400,430, name Road
+@c1 command action=create shape=rectangle color=gray fill=light layer=zone width=780 height=110 at=400,430 name=Road
+
+## turn 4
+# input: Please write MAIN ST on the road.
+@c1 command action=label target=Road label="MAIN ST"
+
+## turn 5
+# input: Tall indigo rectangle for the first building: 120 wide, 250 high, at 90,240. Name it Tower1.
+@c1 command action=create shape=rectangle color=indigo width=120 height=250 at=90,240 name=Tower1
+
+## turn 6
+# input: four tiny yellow squares in a grid at 90,200 for its windows
+@c1 command action=create count=4 shape=square size=tiny color=yellow layout=grid at=90,200
+
+## turn 7
+# input: Then group Tower1 with those four windows and call the group Block1.
+#! resolved: "those four windows" -> every tiny yellow square: the four of the previous message (the canvas was cleared at the start)
+@m1 mention quantifier=all shape=square size=tiny color=yellow
+@c1 command action=group target=Tower1,$m1 name=Block1
+
+## turn 8
+# input: Second building, a teal rectangle named Tower2, 110 by 190, centred on 240,270.
+@c1 command action=create shape=rectangle color=teal name=Tower2 width=110 height=190 at=240,270
+
+## turn 9
+# input: Label Tower2 "HOTEL".
+@c1 command action=label target=Tower2 label="HOTEL"
+
+## turn 10
+# input: Is Tower2 smaller than Tower1?
+@q1 question ask=check target=Tower2 comparison=smaller anchor=Tower1
+
+## turn 11
+# input: Lamp post: a gray rectangle 12 wide and 130 tall at 380,305, call it Pole.
+@c1 command action=create shape=rectangle color=gray width=12 height=130 at=380,305 name=Pole
+
+## turn 12
+# input: stick a small yellow circle on top at 380,220 and name it Bulb
+@c1 command action=create shape=circle size=small color=yellow at=380,220 name=Bulb
+
+## turn 13
+# input: Bulb and Pole together, as a group named Lamp.
+@c1 command action=group target=Bulb,Pole name=Lamp
+
+## turn 14
+# input: Moon in the top right corner, medium white circle called Moon.
+@c1 command action=create shape=circle size=medium color=white position=topRight name=Moon
+
+## turn 15
+# input: a scatter of stars: five tiny white stars in a row at the top
+@c1 command action=create count=5 shape=star size=tiny color=white layout=row position=top
+
+## turn 16
+# input: hmm make the stars gold instead
+#! resolved: "the stars" -> every tiny white star: the five of the previous message
+@m1 mention quantifier=all shape=star size=tiny color=white
+@c1 command action=set target=$m1 color=gold
+
+## turn 17
+# input: Traffic light time. A black rectangle 36 by 96 at 470,250, named Signal.
+@c1 command action=create shape=rectangle color=black width=36 height=96 at=470,250 name=Signal
+
+## turn 18
+# input: Red circle, tiny, at 470,220, call it RedLight
+@c1 command action=create shape=circle size=tiny color=red at=470,220 name=RedLight
+
+## turn 19
+# input: then a tiny yellow circle, AmberLight, at 470,250
+@c1 command action=create shape=circle size=tiny color=yellow name=AmberLight at=470,250
+
+## turn 20
+# input: and the tiny green one, GreenLight, at 470,280
+@c1 command action=create shape=circle size=tiny color=green name=GreenLight at=470,280
+
+## turn 21
+# input: Group Signal, RedLight, AmberLight and GreenLight; name it TrafficLight.
+@c1 command action=group target=Signal,RedLight,AmberLight,GreenLight name=TrafficLight
+
+## turn 22
+# input: Car: a red rectangle, 140 by 50, at 580,405. Name it CarBody.
+@c1 command action=create shape=rectangle color=red width=140 height=50 at=580,405 name=CarBody
+
+## turn 23
+# input: Two tiny black circles for wheels: Wheel1 at 540,435 and Wheel2, also tiny and black, a circle at 620,435.
+@c1 command action=create shape=circle size=tiny color=black name=Wheel1 at=540,435
+@c2 command action=create shape=circle size=tiny color=black name=Wheel2 at=620,435
+
+## turn 24
+# input: Put CarBody and both wheels in one group, Car.
+#! resolved: "both wheels" -> Wheel1, Wheel2
+@c1 command action=group target=CarBody,Wheel1,Wheel2 name=Car
+
+## turn 25
+# input: Bring the car to the front.
+#! resolved: "the car" -> the group Car
+@c1 command action=toFront target=Car
+
+## turn 26
+# input: slide Car 60 px to the left
+@c1 command action=move target=Car direction=left distance=60
+
+## turn 27
+# input: Where is CarBody now?
+@q1 question ask=property property=position target=CarBody
+
+## turn 28
+# input: Bus stop on the right: gray rectangle, 10 wide 100 tall, at 720,320, called StopPole.
+@c1 command action=create shape=rectangle color=gray width=10 height=100 at=720,320 name=StopPole
+
+## turn 29
+# input: Small red hexagon labeled STOP right at 720,255. Its name is StopSign.
+@c1 command action=create shape=hexagon size=small color=red label="STOP" at=720,255 name=StopSign
+
+## turn 30
+# input: make a group BusStop out of StopPole and StopSign
+@c1 command action=group target=StopPole,StopSign name=BusStop
+
+## turn 31
+# input: Now a little person: small pink circle for the head at 330,300, name Head.
+@c1 command action=create shape=circle size=small color=pink at=330,300 name=Head
+
+## turn 32
+# input: body: blue rectangle 30 x 56 at 330,352, call it Torso
+@c1 command action=create shape=rectangle color=blue width=30 height=56 at=330,352 name=Torso
+
+## turn 33
+# input: Head and Torso are one person, group them as Walker.
+@c1 command action=group target=Head,Torso name=Walker
+
+## turn 34
+# input: Draw a dotted arrow from Torso to StopPole, that's where he is walking.
+@c1 command action=connect from=Torso to=StopPole style=dotted
+
+## turn 35
+# input: Label the arrow "to the bus".
+#! resolved: "the arrow" -> the arrow Torso → StopPole of the previous message
+@c1 command action=label from=Torso to=StopPole label="to the bus"
+
+## turn 36
+# input: How many circles are on the canvas?
+@q1 question ask=count shape=circle
+
+## turn 37
+# input: which shapes are gold?
+@q1 question ask=list shape=any color=gold
+
+## turn 38
+# input: the moon looks too big, shrink it
+@c1 command action=resize target=Moon scale=0.67
+
+## turn 39
+# input: Is Moon right of Signal?
+@q1 question ask=check target=Moon position=rightOf anchor=Signal
+
+## turn 40
+# input: Put a small gray oval near the moon, a cloud.
+@c1 command action=create shape=ellipse size=small color=gray position=near anchor=Moon
+
+## turn 41
+# input: Delete the oval, it's a clear night.
+#! resolved: "the oval" -> the small gray ellipse of the previous message
+@m1 mention shape=ellipse size=small color=gray
+@c1 command action=delete target=$m1
+
+## turn 42
+# input: copy Bulb
+@c1 command action=duplicate target=Bulb
+
+## turn 43
+# input: put the copy at 640,300
+#! resolved: "the copy" -> the small yellow circle drawn last (the copy of Bulb, named by the engine)
+@m1 mention shape=circle size=small color=yellow recency=newest
+@c1 command action=move target=$m1 at=640,300
+
+## turn 44
+# input: Give it a post too: gray rectangle 12 by 100 at 640,372, named Pole2.
+@c1 command action=create shape=rectangle color=gray width=12 height=100 at=640,372 name=Pole2
+
+## turn 45
+# input: Put the title "Night Shift" at the top, in white.
+@c1 command action=create shape=text label="Night Shift" color=white position=top
+
+## turn 46
+# input: make the title huge
+#! resolved: "the title" -> the text "Night Shift"
+@m1 mention shape=text label="Night Shift"
+@c1 command action=set target=$m1 size=huge
+
+## turn 47
+# input: Undo that, huge looks silly over the stars.
+@c1 command action=undo
+
+## turn 48
+# input: Is there a path from Torso to StopPole?
+@q1 question ask=path from=Torso to=StopPole
+
+## turn 49
+# input: Describe CarBody.
+@q1 question ask=describe target=CarBody
+
+## turn 50
+# input: nice, I'm happy with the street
+#! noop: a closing remark; nothing to draw or answer

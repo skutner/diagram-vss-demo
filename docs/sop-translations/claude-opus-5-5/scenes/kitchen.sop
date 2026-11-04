@@ -1,0 +1,105 @@
+# SOP Lang of the scene "Kitchen plan" (docs/js/scenes-extra.js, id kitchen), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Kitchen time. Floor first: a pale yellow rectangle in the background, 780 wide and 480 tall, at 400, 250, named Floor.
+@c1 command action=create shape=rectangle color=yellow fill=light layer=background width=780 height=480 at=400,250 name=Floor
+
+## turn 3
+# input: Counter along the top: a gray rectangle 500 wide and 50 tall at 330, 60, called Counter.
+@c1 command action=create shape=rectangle color=gray width=500 height=50 at=330,60 name=Counter
+
+## turn 4
+# input: Sink: a pale blue square named Sink at 650, 60.
+#! approx: "pale blue" -> color=blue: the legend has no pale shades for an item (fill=light is kept for panels and zones)
+@c1 command action=create shape=square color=blue name=Sink at=650,60
+
+## turn 5
+# input: Stove, a black square, 70 by 70, at 520, 170, name it Stove.
+@c1 command action=create shape=square color=black width=70 height=70 at=520,170 name=Stove
+
+## turn 6
+# input: Fridge: white rectangle 60 wide, 110 tall, at 740, 190, named Fridge
+@c1 command action=create shape=rectangle color=white width=60 height=110 at=740,190 name=Fridge
+
+## turn 7
+# input: The table goes in the middle: a large brown circle named Table at 330, 290.
+@c1 command action=create shape=circle size=large color=brown name=Table at=330,290
+
+## turn 8
+# input: Chair1: a small orange square 20 px left of Table.
+@c1 command action=create shape=square size=small color=orange name=Chair1 position=leftOf anchor=Table distance=20
+
+## turn 9
+# input: Chair2, another small orange square, twenty px right of Table
+@c1 command action=create shape=square size=small color=orange name=Chair2 position=rightOf anchor=Table distance=20
+
+## turn 10
+# input: Chair3: small orange square 16 px below Table
+@c1 command action=create shape=square size=small color=orange name=Chair3 position=below anchor=Table distance=16
+
+## turn 11
+# input: group Table, Chair1, Chair2 and Chair3 as Dining
+@c1 command action=group target=Table,Chair1,Chair2,Chair3 name=Dining
+
+## turn 12
+# input: how many squares are in the kitchen?
+@q1 question ask=count shape=square
+
+## turn 13
+# input: Window on the left wall: a light cyan rectangle 30 wide and 150 tall at 40, 250, called Window
+#! approx: "light cyan" -> color=cyan: the legend has no light shades for an item (fill=light is kept for panels and zones)
+@c1 command action=create shape=rectangle color=cyan width=30 height=150 at=40,250 name=Window
+
+## turn 14
+# input: Is Stove above Table?
+@q1 question ask=check target=Stove position=above anchor=Table
+
+## turn 15
+# input: make the fridge gray, white looks odd on the floor
+@c1 command action=set target=Fridge color=gray
+
+## turn 16
+# input: Put a tiny green circle named Plant at (80, 450).
+@c1 command action=create shape=circle size=tiny color=green name=Plant at=80,450
+
+## turn 17
+# input: and a second tiny green circle, Plant2, 30 px right of Plant
+@c1 command action=create shape=circle size=tiny color=green name=Plant2 position=rightOf anchor=Plant distance=30
+
+## turn 18
+# input: Rename Plant2 to Herb.
+@c1 command action=rename target=Plant2 name=Herb
+
+## turn 19
+# input: Which shape is largest here?
+@q1 question ask=extreme superlative=biggest shape=any
+
+## turn 20
+# input: Draw a 120 x 40 gray rectangle named Shelf at 160, 170.
+@c1 command action=create shape=rectangle color=gray width=120 height=40 name=Shelf at=160,170
+
+## turn 21
+# input: Connect Sink to Stove with an arrow labelled "pot".
+@c1 command action=connect from=Sink to=Stove label="pot"
+
+## turn 22
+# input: delete Herb
+@c1 command action=delete target=Herb
+
+## turn 23
+# input: undo that, I want the herb back
+@c1 command action=undo
+
+## turn 24
+# input: Are Sink and Stove connected?
+@q1 question ask=connected target=Sink,Stove
+
+## turn 25
+# input: Done, nice kitchen.
+#! noop: a closing remark; nothing to draw or answer

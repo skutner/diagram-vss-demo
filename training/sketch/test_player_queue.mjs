@@ -25,6 +25,8 @@ function harness() {
     $: selector => selector === '#sc-delay' ? { value: '0' } : bar,
     sbody: { addEventListener(type, fn) { handlers.examples = fn; } },
     closeSheet() {}, setShowNames() {}, sysNote() {}, renderCanvas() {}, qwenJob() {}, RD: {}, SavedReaderKit: {},
+    // the Claude Opus 5.5 tab's hooks in the same code (its manifest, its renames): resolved at once, they change no ordering
+    OPUS: { id: 'claude-opus-5-5' }, trNow: async () => null, trMapSync: () => ({}),
     async run(text, sop, meta) { calls.push({ text, meta }); }
   };
   vm.createContext(context);

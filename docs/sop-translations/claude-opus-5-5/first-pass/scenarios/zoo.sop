@@ -1,0 +1,22 @@
+# SOP Lang of the scenario "Shape zoo" (docs/js/scenarios.js, id zoo), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Draw a red circle, an orange square, a yellow rectangle, a green triangle, a teal diamond, a blue ellipse, a purple hexagon and a pink star.
+@c1 command action=create shape=circle color=red
+@c2 command action=create shape=square color=orange
+@c3 command action=create shape=rectangle color=yellow
+@c4 command action=create shape=triangle color=green
+@c5 command action=create shape=diamond color=teal
+@c6 command action=create shape=ellipse color=blue
+@c7 command action=create shape=hexagon color=purple
+@c8 command action=create shape=star color=pink
+
+## turn 2
+# input: Arrange everything in a row.
+@c1 command action=arrange layout=row
+
+## turn 3
+# input: How many shapes are there?
+#! scope: counts the shapes of the whole canvas (every area, the opening drawing's items too), not only the eight of this scenario
+@q1 question ask=count shape=any

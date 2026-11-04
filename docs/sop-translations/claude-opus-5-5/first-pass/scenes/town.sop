@@ -1,0 +1,191 @@
+# SOP Lang of the scene "Town map" (docs/js/scenes-extra.js, id town), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: I'm making a little map of our town, Riverton. Background: a faint lime rectangle covering the canvas, 780 by 480, at 400,250, called Land.
+@c1 command action=create shape=rectangle color=lime fill=faint layer=background width=780 height=480 at=400,250 name=Land
+
+## turn 3
+# input: Town hall goes in the middle: a large gray square named Hall, labelled "Town Hall".
+@c1 command action=create shape=square size=large color=gray name=Hall label="Town Hall" position=center
+
+## turn 4
+# input: Put the market on its left, a yellow diamond named Market.
+#! resolved: "its left" -> left of Hall, the town hall of the previous message
+@c1 command action=create shape=diamond color=yellow name=Market position=leftOf anchor=Hall
+
+## turn 5
+# input: School is to the right of Hall, about 120 px away, medium blue rectangle, name School
+@c1 command action=create shape=rectangle size=medium color=blue name=School position=rightOf anchor=Hall distance=120
+
+## turn 6
+# input: Library: purple square just above the school
+#! note: "Library:" names the shape (later messages call it Library)
+@c1 command action=create shape=square color=purple name=Library position=above anchor=School
+
+## turn 7
+# input: and the hospital under the town hall, a red rectangle called Hospital
+@c1 command action=create shape=rectangle color=red name=Hospital position=below anchor=Hall
+
+## turn 8
+# input: Station in the bottom left corner, medium orange hexagon, named Station
+@c1 command action=create shape=hexagon size=medium color=orange name=Station position=bottomLeft
+
+## turn 9
+# input: roads now: connect Hall to Market, School and Hospital with plain gray lines
+@c1 command action=connect from=Hall to=Market,School,Hospital arrow=none color=gray
+
+## turn 10
+# input: School to Library as well, same gray line
+@c1 command action=connect from=School to=Library arrow=none color=gray
+
+## turn 11
+# input: a dotted black line from Station to Market for the railway
+@c1 command action=connect from=Station to=Market style=dotted arrow=none color=black
+
+## turn 12
+# input: Is there a path from Station to Library?
+@q1 question ask=path from=Station to=Library
+
+## turn 13
+# input: Park: light green ellipse zone, 200 by 120, in the top left, named Park
+@c1 command action=create shape=ellipse color=green fill=light layer=zone width=200 height=120 position=topLeft name=Park
+
+## turn 14
+# input: Four tiny green circles in a grid in the top left, those are the trees in the park
+@c1 command action=create count=4 shape=circle size=tiny color=green layout=grid position=topLeft
+
+## turn 15
+# input: the lake: light blue ellipse zone in the bottom right, 180 x 90, call it Lake
+@c1 command action=create shape=ellipse color=blue fill=light layer=zone width=180 height=90 position=bottomRight name=Lake
+
+## turn 16
+# input: three small brown squares in a row below Library for houses
+@c1 command action=create count=3 shape=square size=small color=brown layout=row position=below anchor=Library
+
+## turn 17
+# input: What's next to Hall?
+#! note: "next to" read as the shapes near Hall on the map (position=near), not its connections
+@q1 question ask=list shape=any position=near anchor=Hall
+
+## turn 18
+# input: group Hall, School and Library together and call it Downtown
+@c1 command action=group target=Hall,School,Library name=Downtown
+
+## turn 19
+# input: Which group holds School?
+@q1 question ask=groupOf target=School
+
+## turn 20
+# input: Compass: a small black star in the top right, label it "N"
+#! note: "Compass:" names the shape (a later message calls it the compass)
+@c1 command action=create shape=star size=small color=black name=Compass label="N" position=topRight
+
+## turn 21
+# input: make the compass smaller
+@c1 command action=resize target=Compass scale=0.67
+
+## turn 22
+# input: Put a title "Riverton" at the top
+@c1 command action=create shape=text label="Riverton" position=top
+
+## turn 23
+# input: make it navy and huge
+#! resolved: "it" -> the title "Riverton" of the previous message
+@m1 mention shape=text label="Riverton"
+@c1 command action=set target=$m1 color=navy size=huge
+
+## turn 24
+# input: Is School right of Hall?
+@q1 question ask=check target=School position=rightOf anchor=Hall
+
+## turn 25
+# input: the market should be the same size as the library
+@c1 command action=equalize property=size target=Market anchor=Library
+
+## turn 26
+# input: make the hospital bigger, it's the main one
+@c1 command action=resize target=Hospital
+
+## turn 27
+# input: Draw a red arrow from Station to Hospital labelled "ambulance"
+@c1 command action=connect from=Station to=Hospital color=red label="ambulance"
+
+## turn 28
+# input: how many squares are on the map?
+@q1 question ask=count shape=square
+
+## turn 29
+# input: small brown rectangle between Hall and Lake for the bridge, call it Bridge
+@c1 command action=create shape=rectangle size=small color=brown name=Bridge position=between anchor=Hall,Lake
+
+## turn 30
+# input: connect Bridge to Lake and to Hall with gray lines
+@c1 command action=connect from=Bridge to=Lake,Hall arrow=none color=gray
+
+## turn 31
+# input: What is connected to Hall?
+@q1 question ask=neighbors target=Hall
+
+## turn 32
+# input: Which shape is closest to Station?
+@q1 question ask=nearest superlative=closest shape=any anchor=Station
+
+## turn 33
+# input: move Station a bit up
+#! approx: "a bit" -> distance=30: no distance is said, and the engine's default step (80 px) is more than a bit
+@c1 command action=move target=Station direction=up distance=30
+
+## turn 34
+# input: rename Market to Bazaar, that's what locals call it
+@c1 command action=rename target=Market name=Bazaar
+
+## turn 35
+# input: Is Bazaar left of Hall?
+@q1 question ask=check target=Bazaar position=leftOf anchor=Hall
+
+## turn 36
+# input: Swap Library and School
+@c1 command action=swap target=Library,School
+
+## turn 37
+# input: oops, swap them back
+#! resolved: "them" -> Library and School, swapped by the previous message
+@c1 command action=swap target=Library,School
+
+## turn 38
+# input: paint the houses orange
+#! resolved: "the houses" -> every small brown square: the three houses of turn 16 (the canvas was cleared at the start)
+@m1 mention quantifier=all shape=square size=small color=brown
+@c1 command action=set target=$m1 color=orange
+
+## turn 39
+# input: Which shapes are orange?
+@q1 question ask=list shape=any color=orange
+
+## turn 40
+# input: Is there any star on the map?
+@q1 question ask=exists shape=star
+
+## turn 41
+# input: bring the title to the front
+#! resolved: "the title" -> the text "Riverton"
+@m1 mention shape=text label="Riverton"
+@c1 command action=toFront target=$m1
+
+## turn 42
+# input: How many connections does Hall have?
+@q1 question ask=degree target=Hall
+
+## turn 43
+# input: Describe the map.
+@q1 question ask=describe
+
+## turn 44
+# input: That's Riverton!
+#! noop: a closing remark; nothing to draw or answer

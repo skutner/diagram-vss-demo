@@ -1,0 +1,38 @@
+# SOP Lang of the scenario "Player state machine" (docs/js/scenarios.js, id states), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Draw a gray ellipse named Idle on the left, labeled "idle".
+@c1 command action=create shape=ellipse color=gray name=Idle label="idle" position=left
+
+## turn 2
+# input: Add a green ellipse named Playing right of Idle labeled "playing". Add a yellow ellipse named Paused below Playing labeled "paused". Add a red ellipse named Ended right of Playing labeled "ended".
+@c1 command action=create shape=ellipse color=green name=Playing label="playing" position=rightOf anchor=Idle
+@c2 command action=create shape=ellipse color=yellow name=Paused label="paused" position=below anchor=Playing
+@c3 command action=create shape=ellipse color=red name=Ended label="ended" position=rightOf anchor=Playing
+
+## turn 3
+# input: Connect Idle to Playing with an arrow labeled "play".
+@c1 command action=connect from=Idle to=Playing label="play"
+
+## turn 4
+# input: Connect Playing to Paused with an arrow labeled "pause". Connect Paused to Playing with a dashed arrow labeled "resume".
+@c1 command action=connect from=Playing to=Paused label="pause"
+@c2 command action=connect from=Paused to=Playing style=dashed label="resume"
+
+## turn 5
+# input: Connect Playing to Ended with an arrow labeled "finish".
+@c1 command action=connect from=Playing to=Ended label="finish"
+
+## turn 6
+# input: What can be reached from Idle?
+@q1 question ask=reachable from=Idle
+
+## turn 7
+# input: Are there any cycles?
+#! scope: looks for cycles in the arrows of the whole canvas, not only this state machine
+@q1 question ask=cycle
+
+## turn 8
+# input: Is there a path from Ended to Idle?
+@q1 question ask=path from=Ended to=Idle

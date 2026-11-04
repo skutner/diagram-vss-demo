@@ -13,9 +13,12 @@ const escH = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;
 // readers voting) was removed then: VSS-BERT measured better (test part cost score 34.8 against 31.8, confidently wrong 1.8% against 2.6%).
 // READERS is the order of the tabs, of the lines of a reply and of the details; READ_ORDER is the order in which they read a message
 // (VSS-BERT reuses the readings of VSS and SOP-BERT, so it reads last).
-const READERS = [['combined', 'VSS-BERT'], ['rules', 'Rules'], ['vss', 'VSS'], ['neural', 'SOP-BERT'], ['modernbert', 'ModernBERT'], ['qwen', 'Qwen3'], ['saved', 'gpt-6.1-sol']].map(([id, label]) => Object.assign({ id, label, last: [], pending: null, held: [], focusCell: null, reads: 0, lastRead: null }, K.createSystem()));
+// OPUS: the tab of the saved SOP Lang translations written by Claude Opus 5.5 (see "Saved translations of Claude Opus 5.5" below), after the
+// gpt-6.1-sol tab; it is named after the model that wrote them (docs/sop-translations/<model>/manifest.json, model.name; test_saved_sop.mjs).
+const OPUS = { id: 'claude-opus-5-5', label: 'Claude Opus 5.5', dir: 'sop-translations/claude-opus-5-5/' };
+const READERS = [['combined', 'VSS-BERT'], ['rules', 'Rules'], ['vss', 'VSS'], ['neural', 'SOP-BERT'], ['modernbert', 'ModernBERT'], ['qwen', 'Qwen3'], ['saved', 'gpt-6.1-sol'], [OPUS.id, OPUS.label]].map(([id, label]) => Object.assign({ id, label, last: [], pending: null, held: [], focusCell: null, reads: 0, lastRead: null }, K.createSystem()));
 const RD = Object.fromEntries(READERS.map(r => [r.id, r]));
-const READ_ORDER = ['rules', 'vss', 'neural', 'combined', 'modernbert', 'saved'].map(id => RD[id]);
+const READ_ORDER = ['rules', 'vss', 'neural', 'combined', 'modernbert', 'saved', OPUS.id].map(id => RD[id]);
 const sys = RD.rules, engine = sys.engine;          // the legend, plugins and SOP rendering are the same in every reader; the Rules system serves them
 let cur = RD.combined, world = cur.world;            // the active tab
 const neural = NeuralKit.create(RD.neural.engine, RD.neural.formalize);
@@ -213,6 +216,122 @@ document.addEventListener('click', async ev => {
   if (what === 'clear') { try { await qwen.clearCache(); sysNote('Qwen3 unloaded and its cached model deleted from this browser.'); } catch (e) { sysNote('Qwen3’s cache could not be cleared: ' + (e && e.message || e)); } }
   refreshReaders(); if (sub === 'settings') renderSub();
 });
+/* ---------------- Saved translations of Claude Opus 5.5 (the tab OPUS; docs/sop-translations/claude-opus-5-5/README.md) ----------------
+   Not a reader: the generation model wrote every built-in example (the quick examples, the scenarios, the scenes) as SOP Lang once, offline
+   (the .sop files and manifest.json of its folder); this tab plays those saved programs through its own engine, into its own drawing. A
+   message gets its program only by where it came from: the quick example or the turn of the scenario or scene played from the + menu
+   (rec.example = {example, turn, original, map}, made in run() from the occurrence the example buttons and the player send, meta.saved
+   {exampleId, turn, original}, and from meta.opusMap), never by its text (the same words occur in different examples). The program runs
+   when the example's text in this page is the text that was translated; the names a played example renames to avoid clashes
+   (renamedForCanvas: the effective names every reading tab reads) are applied to its name-valued keys only, plus a rename of any name its
+   programs create that only this tab's own drawing already has (trRenames; saved-sop.js renameNodes). An engine question raised by a saved program ("Which green circle?") is not left open: this tab takes no reply, so a typed
+   name never chooses what runs here. Anything else (a typed message, an edited copy,
+   your own script, a missing or stale translation) is not played, and the reply says why; a turn the model wrote as a no-op or as
+   unsupported says so. No confidence and no gate: a saved program is played as written, like a message typed as SOP Lang (the destructive
+   policy of the reading tabs does not apply; README.md lists the turns concerned). SOP Lang messages and the toolbar run here as in every
+   tab. It never copies another tab's drawing, and Align neither copies into it nor from it. */
+let SS = null, trM = null, trErr = null, trP = null, trLast = null;
+const trCount = { played: 0, noop: 0, unsupported: 0, unavailable: 0 };
+const ssP = import(new URL('js/saved-sop.js', document.baseURI).href).then(m => { SS = m; return m; }).catch(e => { console.error(e); trErr = e; return null; });
+/** the manifest of the saved translations (fetched once, revalidated; a failure is kept in trErr and tried again on the next message) */
+function trManifest() {
+  if (!trP) trP = (async () => {
+    const m = await ssP; if (!m) throw trErr || new Error('docs/js/saved-sop.js could not be loaded');
+    const limit = new Promise((_, no) => setTimeout(() => no(new Error('the saved translations did not load within 30 s')), 30000));   // never holds the message queue longer
+    trM = await Promise.race([m.load(new URL(OPUS.dir + 'manifest.json', document.baseURI).href), limit]); trErr = null;
+    if (trM.model.name !== OPUS.label) console.warn(`the saved translations are by ${trM.model.name}, the tab says ${OPUS.label}`);
+    return trM;
+  })().catch(e => { trP = null; trErr = e; throw e; });
+  return trP;
+}
+/** the saved translation of one message -> {state: play | noop | unsupported | unavailable, reason, entry, prov, nodes, renamed, notes} */
+async function trRead(rec) {
+  if (!rec.example) { const m = await ssP; return { state: 'unavailable', reason: m ? m.lookup(null, null).reason : 'this tab plays only the saved translations of the built-in examples', entry: null, prov: null, nodes: [], renamed: [], notes: [] }; }   // nothing to fetch
+  const M = await trManifest(), prov = rec.example, L = SS.lookup(M, prov);
+  const s = { state: L.state, reason: L.reason, entry: L.entry, prov, nodes: [], renamed: [], notes: [] };
+  if (L.state !== 'play') return s;
+  const R = SS.renameNodes(K.parse(L.program), prov.map || {});
+  for (const n of R.nodes) if (n.type === 'question' && n.args.ask === 'help') Object.defineProperty(n, 'src', { value: rec.text, enumerable: false, configurable: true });   // the help world reads the question's words
+  s.nodes = R.nodes; s.renamed = R.renamed;
+  const N = L.entry.notes || {};
+  for (const u of N.unsupported || []) s.notes.push(`Not translated (SOP Lang cannot express it): ${u}`);
+  for (const a of N.approx || []) s.notes.push(`Approximated: ${a}`);
+  for (const r of N.resolved || []) s.notes.push(`Reference: ${r}`);
+  for (const c of N.scope || []) s.notes.push(`Scope: ${c}`);
+  return s;
+}
+/** the renames of a played example for this tab's programs: the effective names of the text (textMap: renamedForCanvas, the same for every
+ *  reading tab), plus, for each name the example's saved programs create (create, duplicate, rename, group), a rename when this tab's own
+ *  drawing already has that name (it keeps shapes the reading tabs deleted, and it does not count in the text's renames) */
+function trRenames(exampleKey, textMap, M, turn) {
+  const lc = x => String(x).toLowerCase(), W = RD[OPUS.id].world, out = {}, low = new Map();
+  for (const [a, b] of Object.entries(textMap || {})) { low.set(lc(a), b); if (a !== b) out[a] = b; }
+  const made = new Set();
+  for (const e of (M && M.entries || []).filter(x => x.example === exampleKey && (turn == null || x.turn === turn))) {   // a quick example: its own turn
+    let ns = []; try { ns = K.parse(e.program); } catch (x) { ns = []; }
+    for (const n of ns) if (n.type === 'command' && ['create', 'duplicate', 'rename', 'group'].includes(n.args.action) && typeof n.args.name === 'string') made.add(n.args.name);
+  }
+  const used = new Set(Object.values(out).map(lc)), own = new Set([...made].map(lc)), taken = n => W.find(n) || W.findGroup(n);
+  for (const n of made) {
+    if (!taken(low.get(lc(n)) || n)) continue;
+    let k = 2; while (taken(n + k) || own.has(lc(n + k)) || used.has(lc(n + k)) || low.has(lc(n + k))) k++;
+    out[n] = n + k; used.add(lc(n + k));
+  }
+  return out;
+}
+/** the manifest, loaded or failed (never throws): awaited with the gpt-6.1-sol tab's savedLoad, before the player's run-token check */
+// (after a failed load it does not wait again: an example click never waits on this tab's file twice; its messages still retry)
+const trNow = () => trM ? Promise.resolve(trM) : trErr ? Promise.resolve(null) : trManifest().catch(e => { console.error(e); return null; });
+/** this tab's renames for a played example (see trRenames), synchronous: with the manifest when it has loaded (else the text's renames) */
+function trMapSync(exampleId, textMap) {
+  const id = String(exampleId || ''), q = id.match(/^quick:(\d+)$/), key = q ? 'quick' : id.replace(/^(?:scenario|scene):/, '');
+  return trRenames(key, textMap, trM, q ? +q[1] + 1 : undefined);
+}
+/** the reply line of a message the saved translations do not play (no program, a no-op, unsupported, or not an example) */
+function trLine(s, ms) {
+  if (s.state === 'noop') return { text: `Nothing to do: ${s.reason} (the saved translation is a no-op).`, ms };
+  if (s.state === 'unsupported') return { text: `Not done: the saved translation marks this as something SOP Lang cannot express: ${s.reason}.`, ms };
+  return { text: `Not played: ${s.reason}.`, ms };
+}
+/** the details of a message in this tab: where the program came from, the text translated and the text played, the renames */
+function trHTML(s, rec) {
+  const e = s.entry, p = s.prov, M = trM;
+  let h = '';
+  if (p) h += `<div class="note">Built-in example <code>${escH(`${p.example}#${p.turn}`)}</code>. The text that was translated: <span class="src">“${escH(e ? e.input : p.original)}”</span>${rec.typed !== (e ? e.input : p.original) ? `; the text sent (after the scenario's renames): <span class="src">“${escH(rec.typed)}”</span>` : ''}. The program is chosen by the example and the turn, not by the words.</div>`;
+  h += `<div class="note">${s.state === 'play' ? 'Played the saved program' : s.state === 'direct' ? 'The example is SOP Lang itself; it ran as written' : s.state === 'sop' ? 'SOP Lang' : s.state === 'noop' ? 'The saved translation is a no-op' : s.state === 'unsupported' ? 'The saved translation marks this as unsupported' : 'Not played'}${s.reason ? `: ${escH(s.reason)}` : ''}.</div>`;
+  if (s.renamed && s.renamed.length) h += `<div class="note">Renamed to avoid clashes with the canvas (name-valued keys only): ${escH(s.renamed.map(r => `@${r.wire} ${r.key}: ${r.from} → ${r.to}`).join('; '))}.</div>`;
+  if (e) {
+    const where = `${OPUS.dir}${e.file}, lines ${+e.lines[0]}–${+e.lines[1]}`;
+    h += `<div class="note">Saved translation <code>${escH(where)}</code> (${escH(e.status)}${e.status === 'direct' ? ': not generated' : `; written by ${escH(M ? M.model.name : OPUS.label)} on ${escH(e.generated || '?')} from the source at ${escH(String(e.source_revision || '').slice(0, 7))}`}).${e.repaired ? ` Changed after the first pass (first-pass/${escH(e.file)}): ${escH(e.repairs.join('; '))}.` : ''}</div>`;
+    for (const k of ['direct', 'noop', 'unsupported', 'approx', 'resolved', 'scope', 'note']) for (const t of (e.notes || {})[k] || []) h += `<div class="note">${escH(k)}: ${escH(t)}</div>`;
+  }
+  return h;
+}
+/** the facts table and the explanation of the tab's Settings */
+function trSettingsHTML(rd) {
+  if (!trM && !trErr) trManifest().then(() => { if (sub === 'settings' && cur === rd) renderSub(); }, () => { if (sub === 'settings' && cur === rd) renderSub(); });
+  const M = trM, I = M && M.inventory, C = M && M.coverage, pc = (a, b) => b ? ` (${(a / b * 100).toFixed(1)}%)` : '';
+  const facts = M ? `<table class="kv"><tr><td>Generation model</td><td>${escH(M.model.name)} (<code>${escH(M.model.id)}</code>)</td></tr>
+    <tr><td>Generated</td><td>${escH(M.generated)}, offline, from the examples' source at <code>${escH(M.source.revision.slice(0, 12))}</code></td></tr>
+    <tr><td>Examples</td><td>${escH(I.quick)} quick examples, ${escH(I.scenarios)} scenarios (${escH(I.scenario_turns)} messages), ${escH(I.scenes)} scenes (${escH(I.scene_turns)} messages): ${escH(I.occurrences)} messages</td></tr>
+    <tr><td>Saved programs</td><td>${escH(C.entries)} of ${escH(I.occurrences)}${pc(C.entries, I.occurrences)}: ${escH(C.executable)} executable, ${escH(C.partly)} partly (a part SOP Lang cannot express), ${escH(C.noop)} no-op, ${escH(C.unsupported)} unsupported, ${escH(C.direct)} already SOP Lang; ${escH(C.repaired)} changed after the first pass</td></tr>
+    <tr><td>Played here</td><td>${trCount.played} played, ${trCount.noop} no-op, ${trCount.unsupported} unsupported, ${trCount.unavailable} not played</td></tr>
+    <tr><td>Files</td><td><a href="${escH(OPUS.dir)}README.md" target="_blank" rel="noopener">README</a> · <a href="${escH(OPUS.dir)}CONVENTIONS.md" target="_blank" rel="noopener">conventions</a> · <a href="${escH(OPUS.dir)}manifest.json" target="_blank" rel="noopener">manifest.json</a> · the programs: <code>${escH(OPUS.dir)}quick.sop, scenarios/*.sop, scenes/*.sop</code></td></tr></table>`
+    : `<p class="note">${trErr ? `The saved translations could not be loaded (${escH(trErr.message || trErr)}): nothing is played.` : 'Loading the saved translations…'}</p>`;
+  return `<h3 class="sub">${escH(OPUS.label)}: saved example translations</h3>${readerFacts(rd)}
+  <p class="intro"><b>Not live inference.</b> ${escH(OPUS.label)} wrote every built-in example (the quick examples, the scenarios and the scenes of the + menu) as SOP Lang once, offline, before this page was published. Nothing is downloaded to run a model and no service is called: this tab plays those saved programs through the same engine as every tab, into its own drawing, with its own undo history and replies. It does not read anything you type: a typed message, an edited copy of a scenario, your own script or a file gets “Not played”, and so does a message whose saved translation is missing or was made for a different text.</p>
+  <p class="intro">A message is matched by where it came from (the quick example or the turn of the scenario played from the menu), not by its words. A scenario drawn in a new area may rename the names that clash with the canvas (Stop → Stop2, for every tab); the same renames are applied to the saved program's names (never to its labels), and a name only this tab still has is renamed for it alone. There is no confidence and no gate: a saved program runs as written, like a message typed as SOP Lang, so the cautious rule for deleting requests of the reading tabs does not apply here. A turn the model found nothing to do in, or could not express in SOP Lang, says so. <b>details</b> under a reply shows the program, the file and lines it comes from and every note the model wrote with it.</p>
+  ${facts}${sharedNote}`;
+}
+/** the facts of a tab (SketchpadInfo.translationTurn): what the saved translations did with one message */
+function trTurnInfo(id) {
+  const rec = history.find(x => x.id === id), r = rec && rec.readers[OPUS.id]; if (!rec) return null;
+  const s = r && r.tr, ser = ns => (ns || []).map(n => K.serialize(n));
+  return JSON.parse(JSON.stringify({ example: rec.example || null, typed: rec.typed, raw: rec.raw, state: s ? s.state : r && r.error ? 'error' : rec.raw ? 'sop' : null, reason: s ? s.reason : null,
+    entry: s && s.entry ? { id: s.entry.id, file: s.entry.file, lines: s.entry.lines, status: s.entry.status } : null, renamed: s ? s.renamed : [], executed: r ? ser(r.nodes) : [],
+    line: r && r.line ? r.line : null, error: r && r.error ? r.error.message : null,
+    steps: r && r.result ? r.result.steps.map(st => ({ wire: K.serialize(st.node), error: st.error ? st.error.message : null, skipped: st.skipped || null, answer: st.answer || null, patches: st.patches.length })) : [] }));
+}
 /** the confidence file (loaded once; a failure is kept in nconf.error and tried again on the next message) */
 async function neuralSpec() {
   const NC = await ncP; if (!NC) throw new Error('docs/js/neural-confidence.js could not be loaded');
@@ -514,11 +633,11 @@ const canvasNames = rd => rd.world.state.shapes.map(s => s.name).concat((rd.worl
 //  - the BERT cut: the units of SOP-BERT's own reading (neural.js result.units, no model call), read by VSS and by the Rules; VSS-BERT
 //    reuses this VSS reading with SOP-BERT's own reading, so the BERT cutter runs once per message.
 // Each partner reads with its own tab's drawing (its names and last shapes, as when it read the message itself).
-const OWN_CUT = { rules: 'rules', vss: 'vss', neural: 'bert', combined: 'bert', modernbert: 'modernbert', qwen: 'qwen' };
+const OWN_CUT = { rules: 'rules', vss: 'vss', neural: 'bert', combined: 'bert', modernbert: 'modernbert', qwen: 'qwen', [OPUS.id]: 'opus' };
 let VF = null;
 const vfP = import(new URL('js/vss-formalizer.js', document.baseURI).href).then(m => { VF = m; return m; }).catch(e => { console.error(e); return null; });
 const cutStrategies = () => VF ? VF.CUT_STRATEGIES : [{ id: 'rules', label: 'Rules segmenter' }, { id: 'vss', label: 'VSS cutter' }, { id: 'bert', label: 'BERT cutter' }];
-const cutLabel = id => id === 'modernbert' ? 'ModernBERT cutter' : id === 'qwen' ? 'Qwen3’s own quotes' : (cutStrategies().find(x => x.id === id) || { label: id }).label;
+const cutLabel = id => id === 'modernbert' ? 'ModernBERT cutter' : id === 'qwen' ? 'Qwen3’s own quotes' : id === 'opus' ? 'nothing: one saved program per message' : (cutStrategies().find(x => x.id === id) || { label: id }).label;
 /** the cut a tab's own reading used: its own cutter, or for SOP-BERT without a cut head the whole message */
 const cutOfRead = (rd, r) => rd.id === 'neural' && r.neural && r.neural.cutBy !== 'model' ? 'the whole message (no cut head)' : OWN_CUT[rd.id];
 /** the readings of the other readers on the VSS and the BERT cut (see above), made once per message (rec.crossP) -> {vss: {units, sop, rules,
@@ -974,7 +1093,7 @@ const chatTabs = (() => { const ids = String(store.get(CHAT_KEY) || '').split(',
 function chatLines(parts) {
   const chosen = parts.filter(p => chatTabs.has(p.rd.id));
   if (chosen.some(p => !p.off)) return { lines: chosen, note: null };
-  const others = parts.filter(p => !chatTabs.has(p.rd.id) && !p.off && p.rd.id !== 'saved');
+  const others = parts.filter(p => !chatTabs.has(p.rd.id) && !p.off && p.rd.id !== 'saved' && p.rd.id !== OPUS.id);
   if (!others.length) return { lines: chosen, note: null };
   return { lines: others, note: `${listing(chosen.map(p => p.rd.label))} ${chosen.length === 1 ? 'is' : 'are'} not ready yet, so here is what ${listing(others.map(p => p.rd.label))} made of it.` };
 }
@@ -995,7 +1114,7 @@ function sysNote(text) { const d = document.createElement('div'); d.className = 
 function typing() { const d = document.createElement('div'); d.className = 'b bot'; d.innerHTML = '<div class="typing" aria-label="Thinking"><i></i><i></i><i></i></div>'; msgs.appendChild(d); scrollDown(); return d; }
 function setStatus(t) { $('#status').textContent = t; }
 const fmtMs = ms => ms < 10 ? ms.toFixed(1) + ' ms' : Math.round(ms) + ' ms';
-const isReady = rd => rd.id === 'rules' || rd.id === 'saved' || (rd.id === 'qwen' ? qwenReady() : rd.id === 'modernbert' ? !!modern.models && modern.state === 'ready' : rd.id === 'vss' ? vssState === 'ready' : rd.id === 'neural' ? !!models && nState === 'ready' : isReady(RD.vss) && isReady(RD.neural));
+const isReady = rd => rd.id === 'rules' || rd.id === 'saved' || rd.id === OPUS.id || (rd.id === 'qwen' ? qwenReady() : rd.id === 'modernbert' ? !!modern.models && modern.state === 'ready' : rd.id === 'vss' ? vssState === 'ready' : rd.id === 'neural' ? !!models && nState === 'ready' : isReady(RD.vss) && isReady(RD.neural));
 /** what a reader that is not loaded says instead of an answer */
 function offText(rd) {
   if (rd.id === 'saved') return saved.info().error ? 'saved translations unavailable: ' + saved.info().error : 'saved example translations; no live inference';
@@ -1005,7 +1124,7 @@ function offText(rd) {
   if (rd.id === 'vss') return vssState === 'failed' ? 'not available (it could not be loaded)' : 'still loading, did not read this';
   return { unpublished: 'not available (the neural model is not published yet)', failed: 'not available (loading failed; see SOP-BERT › Settings)' }[nState] || 'still loading, did not read this';
 }
-const idleStatus = () => 'reads with ' + listing(READERS.filter(isReady).map(r => r.label)) + (qwenQueued ? `; Qwen3 is reading (${qwenQueued} in its queue)` : '');
+const idleStatus = () => 'reads with ' + listing(READERS.filter(rd => isReady(rd) && rd.id !== OPUS.id).map(r => r.label)) + (qwenQueued ? `; Qwen3 is reading (${qwenQueued} in its queue)` : '');
 msgs.addEventListener('click', ev => {
   const p = ev.target.closest('[data-pick]'); if (p) { submit(p.dataset.pick, undefined, { via: 'chip' }); return; }
   const a = ev.target.closest('[data-anyway]');
@@ -1074,14 +1193,18 @@ async function run(text, sop, meta) {
   meBubble(typed, sp, meta);
   const namesBefore = canvasNames(RD.combined);   // the drawing the chat speaks for, before the message (the collected entry's `names`)
   const id = ++turnSeq, rec = { id, time: clock(), text, typed, spell: sp, spellOff: !raw && !spellEnabled, raw, sop: sop || text, button: !!sop, savedSource, readers: {}, off: {}, ran: [] }; history.push(rec);
+  // the occurrence for the Claude Opus 5.5 tab (see "Saved translations of Claude Opus 5.5"): example id and 1-based turn, the source text and
+  // its renames; only a built-in example played from the menu has one
+  if (savedSource && typeof savedSource.exampleId === 'string') { const [kind, eid] = savedSource.exampleId.split(':');
+    rec.example = { example: kind === 'quick' ? 'quick' : eid, turn: kind === 'quick' ? +eid + 1 : savedSource.turn + 1, original: savedSource.original, map: Object.assign({}, (meta && meta.opusMap) || {}) }; }
   if (rec.raw) { try { K.parse(rec.sop); } catch (e) { rec.error = e; botBubble({ text: e.message, err: true, turn: id, tag: 'SOP Lang' }); return; } }
   // the readers that read this message are fixed now: one that finishes loading meanwhile starts from the Rules drawing instead
   const live = READERS.filter(rd => isReady(rd) && rd.id !== 'qwen'), qwenLive = qwenReady();   // Qwen3 reads in its own queue (qwenRead)
   // a reply to a question ("which Hub?") goes to the readers that asked it; the others have nothing to choose
   const want = text.toLowerCase().replace(/^(?:i\s+mean|use|the\s+one\s+(?:named|called))\s+/, '').replace(/[.!]+$/, '').trim();
-  const picks = new Map(live.map(rd => [rd, rd.pending && rd.pending.candidates.find(c => c.toLowerCase() === want)]));
+  const picks = new Map(live.map(rd => [rd, rd.id !== OPUS.id && rd.pending && rd.pending.candidates.find(c => c.toLowerCase() === want)]));   // the Claude Opus 5.5 tab takes no reply
   const anyPick = [...picks.values()].some(Boolean);
-  const wait = live.length > 1 ? typing() : null; if (wait) setStatus('typing…');
+  const wait = live.filter(rd => rd.id !== OPUS.id).length > 1 ? typing() : null; if (wait) setStatus('typing…');
   // first every reader reads (formalizes) the message with its own cutter (READ_ORDER; see "cutting"), then the other readers' readings of
   // the VSS and the BERT cut are made (crossReads, before VSS-BERT reads: it reuses them), then each one's gate and engine run: the gates
   // of VSS and SOP-BERT use the readings of the other two readers on their own cut (see GATES)
@@ -1090,7 +1213,7 @@ async function run(text, sop, meta) {
     if (!live.includes(rd)) { rec.off[rd.id] = offText(rd); plan.push({ rd, line: { off: rec.off[rd.id] } }); continue; }
     const pend = rd.pending; rd.pending = null;
     if (rd.id === 'saved') { plan.push({ rd, ran: true, line: await savedPart(rd, rec) }); continue; }
-    if (anyPick && !picks.get(rd)) { plan.push({ rd, ran: true, line: { text: 'No question was open here; nothing to choose.' } }); continue; }
+    if (anyPick && !picks.get(rd) && rd.id !== OPUS.id) { plan.push({ rd, ran: true, line: { text: 'No question was open here; nothing to choose.' } }); continue; }   // the Claude Opus 5.5 tab answers by where the message came from
     const pk = picks.get(rd) ? { pend, pick: picks.get(rd) } : null;
     plan.push({ rd, ran: true, pk, pend, line: await readPart(rd, text, rec, pk) });
   }
@@ -1098,7 +1221,7 @@ async function run(text, sop, meta) {
   const parts = [];
   for (const x of plan) {
     const p = x.line || await doPart(x.rd, text, rec, x.pk, x.pend);
-    if (x.ran) rec.ran.push(x.rd.id);
+    if (x.ran && !(x.rd.id === OPUS.id && x.line)) rec.ran.push(x.rd.id);   // the Claude Opus 5.5 tab: only when it played the message
     parts.push(Object.assign(p, { rd: x.rd }));
   }
   if (qwenLive) { rec.off.qwen = 'waiting for its turn (Qwen3 reads in its own queue)'; if (chatTabs.has('qwen')) parts.push({ rd: RD.qwen, text: 'Reading this; Qwen3 replies in a message of its own when it is done.' }); }
@@ -1106,6 +1229,10 @@ async function run(text, sop, meta) {
   setStatus(idleStatus());
   parts.sort((a, b) => READERS.indexOf(a.rd) - READERS.indexOf(b.rd));   // the order of the tabs
   const shown = chatLines(parts);   // the chat shows the chosen tabs' lines (see CHAT_KEY); the details show every reader
+  { const sv = parts.find(p => p.rd.id === OPUS.id), r = rec.readers[OPUS.id];
+    if (sv && r && r.tr && r.tr.state === 'play' && r.tr.entry && (r.tr.entry.notes.unsupported || []).length) sv.sub = [sv.sub, `Not translated (SOP Lang cannot express it): ${r.tr.entry.notes.unsupported.join('; ')}.`].filter(Boolean).join(' ');
+    if (sv && r) r.line = { text: sv.off || sv.text || '', sub: sv.sub || null, err: !!sv.err };
+    if (cur.id === OPUS.id && sv && !shown.lines.includes(sv)) shown.lines.push(sv); }   // the Claude Opus 5.5 tab, while it is open, as Qwen3's
   botBubble({ lines: shown.lines, sub: shown.note, chips: [...new Set(shown.lines.flatMap(p => p.chips || []))], turn: id, tag: rec.button ? 'button' : rec.raw ? 'SOP Lang' : null, replace: wait });
   const mine = parts.find(p => p.rd === cur);
   if (mine && mine.highlight) flash(mine.highlight); else renderCanvas();
@@ -1126,7 +1253,7 @@ function afterTurn(rec, parts, shown, meta, namesBefore) {
     const via = (meta && meta.via) || 'other';
     const vb = parts.find(p => p.rd.id === 'combined'), reply = replyWords(vb && !vb.off ? vb : shown.lines[0]);
     if (collector && !rec.raw && via !== 'start')
-      collector.add(CollectKit.buildEntry(rec, { session: SESSION, names: namesBefore, source: Object.assign({ via }, meta || {}), models: modelStamps, reply, tab: cur.id }));
+      collector.add(CollectKit.buildEntry(rec, { session: SESSION, names: namesBefore, source: Object.assign({ via }, meta || {}, { opusMap: undefined }), models: modelStamps, reply, tab: cur.id }));
     // an undo right after a message: the toolbar button, or an undo that VSS-BERT executed
     const vr = rec.readers.combined, undid = rec.raw ? (rec.button && /\baction=undo\b/.test(rec.sop) ? 'button' : null)
       : vr && (vr.nodes || []).some(n => n.type === 'command' && n.args && n.args.action === 'undo') ? 'message' : null;
@@ -1397,11 +1524,19 @@ async function readPart(rd, text, rec, pk) {
   const t0 = performance.now();
   try {
     if (pk) { r.nodes = pk.pend.nodes; r.overrides = Object.assign({}, pk.pend.overrides, { [pk.pend.wire]: [pk.pick] }); }
-    else if (rec.raw) r.nodes = K.parse(rec.sop);   // SOP: nothing to formalize, no time
+    else if (rec.raw) { r.nodes = K.parse(rec.sop);   // SOP: nothing to formalize, no time
+      if (rd.id === OPUS.id && rec.example) { const note = M => { const L = SS.lookup(M, rec.example), d = L.state === 'play' && L.entry.status === 'direct';
+          r.tr = { state: d ? 'direct' : 'sop', reason: d ? null : `it ran as SOP Lang, as in every tab; ${L.reason || 'its saved entry is not marked as SOP Lang'}`, entry: L.entry, prov: rec.example, nodes: [], renamed: [], notes: [] }; };
+        if (trM && SS) note(trM); else trManifest().then(note).catch(e => console.error(e)); } }
     else if (rd.id === 'rules') { const f = rd.formalize(text, ctx); r.ms = performance.now() - t0; r.rulesRes = f; r.nodes = f.nodes; r.notes = f.notes; }
     else if (rd.id === 'vss') { const v = await window.VSSFormalizer.formalize(text, ctx, rd.formalize, VSS_OPTS); r.ms = performance.now() - t0; r.vss = v; r.nodes = v.nodes; r.notes = v.notes; }
     else if (rd.id === 'combined') { const c = await combinedRead(rd, text, rec, ctx); r.ms = c.ms; r.combined = c; r.nodes = c.nodes; r.notes = c.notes; }
     else if (rd.id === 'qwen') { if (!qwen) throw new Error('Qwen3 is not loaded'); const q = await qwen.formalize(text, ctx); r.ms = performance.now() - t0; r.qwen = q; r.nodes = q.nodes; r.notes = q.notes; }
+    else if (rd.id === OPUS.id) {   // the saved translation of a built-in example (see "Saved translations of Claude Opus 5.5"); nothing is read
+      const sv = await trRead(rec); r.ms = performance.now() - t0; r.tr = sv; r.nodes = sv.nodes; r.notes = sv.notes; if (sv.state === 'play') trLast = { turn: rec.id, saved: sv };
+      if (sv.state !== 'play') { trCount[sv.state === 'noop' || sv.state === 'unsupported' ? sv.state : 'unavailable']++; r.line = trLine(sv, r.ms); return r.line; }
+      trCount.played++;
+    }
     else if (rd.id === 'neural' || rd.id === 'modernbert') { const n = await (rd.id === 'modernbert' ? modernbert : neural).formalize(text, ctx, { signals: true }); r.ms = performance.now() - t0; r.neural = n; r.nodes = n.nodes; r.notes = n.notes.filter(x => !/couldn't find an action/.test(x)); }
     else throw new Error(`no reader is defined for the tab ${rd.id}`);
     if (!pk && !rec.raw) r.cutBy = cutOfRead(rd, r);   // each tab's own cutter (see "cutting")
@@ -1466,7 +1601,8 @@ async function doPart0(rd, text, rec, pk, pend) {
   let clar = null;
   for (const er of result.errors || []) {
     const e = er.error;
-    if (e instanceof K.Clarify && !clar) { clar = e; rd.pending = pendingOf(er, nodes, result, overrides); } else if (!(e instanceof K.Clarify)) problems.push(e.message + (er.dependents.length ? ` (so I also skipped ${er.dependents.length} step${er.dependents.length > 1 ? 's' : ''} that needed it)` : ''));
+    // (the Claude Opus 5.5 tab takes no reply: it never keeps the question open)
+    if (e instanceof K.Clarify && !clar) { clar = e; if (rd.id !== OPUS.id) rd.pending = pendingOf(er, nodes, result, overrides); } else if (!(e instanceof K.Clarify)) problems.push(e.message + (er.dependents.length ? ` (so I also skipped ${er.dependents.length} step${er.dependents.length > 1 ? 's' : ''} that needed it)` : ''));
   }
   for (const u of unread) asks.push(unreadWords(u) + (r.neural?.unread?.includes(u) ? '' : ' Could you say it another way?'));
   const anyDone = result.steps.some(st => !st.error && !st.skipped && st.node.type !== 'mention');
@@ -1484,6 +1620,7 @@ async function doPart0(rd, text, rec, pk, pend) {
   const did = anyDone ? summarize(result) : '';
   const tail = problems.concat(asks).join(' ');
   const examples = [...new Set(result.steps.flatMap(st => st.examples || []))];   // a help answer's example sentences: buttons that send them
+  if (clar && rd.id === OPUS.id) return { text: (did && did !== 'Done.' ? did + ' ' : '') + clar.message.replace(/ Reply with a name\.$/, '') + ' The saved program cannot choose, and this tab takes no reply: that step was not done.', sub: [tail, odd.join(' ')].filter(Boolean).join(' ') || null, err: !did, ms, highlight };
   if (clar) return withHeld({ text: (did && did !== 'Done.' ? did + ' ' : '') + clar.message.replace(/ Reply with a name\.$/, ''), sub: [tail, odd.join(' ')].filter(Boolean).join(' ') || null, chips: clar.candidates, ms, highlight });
   if (problems.length && !anyDone) return withHeld({ text: problems.join(' '), sub: [asks.join(' '), odd.join(' ')].filter(Boolean).join(' ') || null, err: true, ms, highlight });
   return withHeld({ text: did || 'Done.', sub: [tail, odd.join(' ')].filter(Boolean).join(' ') || null, ms, highlight, chips: examples.length ? examples : undefined });
@@ -1508,7 +1645,7 @@ function turnHTML(r) {
     if (!x) return `<section class="rdsec"><div class="minihead">${escH(rd.label)} <span>${escH(r.off[rd.id] || 'did not read this')}</span></div></section>`;
     const preExisting = x.saved?.provenance?.kind === 'pre-existing-sop' || (r.raw && r.savedSource);
     const source = preExisting ? 'pre-existing SOP example' : r.button ? 'toolbar button, sent as SOP Lang' : 'direct SOP input';
-    const reading = x.saved ? x.saved.status === 'direct-input' ? 'direct SOP input, not generated' : preExisting ? 'saved playback · pre-existing SOP example · no live inference' : 'saved example playback · no live inference'
+    const reading = rd.id === OPUS.id && x.tr && !r.raw ? 'saved translation, nothing read' : x.saved ? x.saved.status === 'direct-input' ? 'direct SOP input, not generated' : preExisting ? 'saved playback · pre-existing SOP example · no live inference' : 'saved example playback · no live inference'
       : x.ms != null ? 'formalized in ' + fmtMs(x.ms) : r.raw ? preExisting ? 'pre-existing SOP example, nothing to formalize' : 'SOP Lang, nothing to formalize' : 'your choice from the question';
     let h = `<div class="minihead">${escH(rd.label)} <span>${reading}${x.neural ? ` · ${x.neural.calls} model calls` : x.qwen ? ' · 1 model call' : ''}${x.cutBy ? ` · cut by: ${escH(cutLabel(x.cutBy))}` : ''}</span></div>`;
     if (x.nodes && x.nodes.length) h += `<pre class="sop">${r.raw ? `<span class="cm"># ${source}</span>\n` : ''}${x.nodes.map(hlNode).join('\n')}</pre>`;
@@ -1518,12 +1655,13 @@ function turnHTML(r) {
     if (x.neural) h += neuralHTML(x.neural);
     if (x.combined) h += combinedHTML(x.combined);
     if (x.qwen) { try { h += qwenHTML(x.qwen.qwen); } catch (e) { console.error(e); h += `<div class="errt">Qwen3’s evidence could not be shown: ${escH(e.message)}</div>`; } }   // x.qwen: the reading; .qwen: its evidence
+    if (rd.id === OPUS.id && x.tr) h += trHTML(x.tr, r);
     if (x.saved) h += `<div class="note">Saved translation: ${escH(x.saved.status)}${x.saved.reason ? ' · ' + escH(x.saved.reason) : ''}</div><pre class="sop">${escH(JSON.stringify(x.saved, null, 2))}</pre>`;
     if (x.result) h += x.result.steps.map(stepHTML).join('');
     for (const a of x.anyway || []) h += `<div class="note">Done anyway: “${escH(a.src)}”</div><pre class="sop">${a.nodes.map(hlNode).join('\n')}</pre>` + a.result.steps.map(stepHTML).join('');
     const err = x.error && x.error.message !== 'No wires.' ? x.error : x.result && !x.result.ok ? x.result.error : null;
     if (err) h += `<div class="errt">${escH(err.message)}</div>`;
-    if (!x.nodes || !x.nodes.length) h += '<div class="note">No wires were produced.</div>';
+    if ((!x.nodes || !x.nodes.length) && !(rd.id === OPUS.id && x.tr)) h += '<div class="note">No wires were produced.</div>';
     return `<section class="rdsec">${h}</section>`;
   }).join('');
 }
@@ -1664,7 +1802,7 @@ $('#open-settings').addEventListener('click', () => openSheet('settings', 'setti
 $('#help-btn').addEventListener('click', () => { closeSheet(); DocsKit.open('start'); });
 /** open a help page from anywhere in the app (a button with data-help="<page>") */
 function openHelp(id) { if (!sheet.hidden) closeSheet(); DocsKit.open(id); }
-$('#open-examples').addEventListener('click', () => openSheet('examples'));
+$('#open-examples').addEventListener('click', () => { openSheet('examples'); trManifest().catch(() => {}); });   // the Claude Opus 5.5 translations load while the menu is open
 function renderSheet(focus) {
   if (sheetKind === 'examples') sbody.innerHTML = renderExamples();
   else if (sheetKind === 'turn') { if (focus) sheetTurn = focus; sbody.innerHTML = renderTurn(sheetTurn); }
@@ -1694,7 +1832,7 @@ function renderExamples() {
 const player = { name: '', turns: [], original: [], exampleId: null, token: 0, i: 0, playing: false, stop: false, busy: false, delay: 400 };
 function deactivatePlayer(busy = false) {
   const token = player.token + 1;
-  Object.assign(player, { name: '', turns: [], original: [], exampleId: null, token, i: 0, playing: false, stop: true, busy });
+  Object.assign(player, { name: '', turns: [], original: [], exampleId: null, opusMap: null, token, i: 0, playing: false, stop: true, busy });
   renderPlayer();
   return token;
 }
@@ -1702,13 +1840,13 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const parseScript = txt => txt.split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('//'));
 function renamedForCanvas(turns, savedEntry) {
   if (savedEntry) {
-    const occupied = READERS.flatMap(rd => rd.world.state.shapes.map(s => s.name).concat((rd.world.state.groups || []).map(g => g.name)));
+    const occupied = READERS.filter(rd => rd.id !== OPUS.id).flatMap(rd => rd.world.state.shapes.map(s => s.name).concat((rd.world.state.groups || []).map(g => g.name)));
     const map = SavedReaderKit.allocate(savedEntry.names, occupied, SavedReaderKit.families(savedEntry));
     return { map, turns: turns.map((t, i) => t.startsWith('@') ? SavedReaderKit.bindNodes(savedEntry.turns[i].nodes, map).map(K.serialize).join('\n') : SavedReaderKit.bindText(t, map)) };
   }
   const declared = new Set(); turns.forEach(t => (t.match(/\b(?:named|called)\s+([A-Za-z_][\w-]*)/g) || []).forEach(m => declared.add(m.split(/\s+/).pop())));
   const map = {};
-  const taken = n => READERS.some(rd => rd.world.find(n));
+  const taken = n => READERS.some(rd => rd.id !== OPUS.id && rd.world.find(n));
   for (const n of declared) if (taken(n)) { let k = 2; while (taken(n + k) || declared.has(n + k)) k++; map[n] = n + k; }
   const keys = Object.keys(map); if (!keys.length) return { turns, map };
   const re = new RegExp(`\\b(${keys.join('|')})\\b`, 'g');
@@ -1734,7 +1872,7 @@ async function nextPlayer(token) {
   const i = player.i++, text = player.turns[i], original = player.original[i], exampleId = player.exampleId;
   player.busy = true; renderPlayer();
   const meta = { via: 'script' };
-  if (exampleId) meta.saved = { exampleId, turn: i, original, runToken: token };
+  if (exampleId) { meta.saved = { exampleId, turn: i, original, runToken: token }; meta.opusMap = player.opusMap; }
   await submit(text, undefined, meta);
   if (token === player.token) { player.busy = false; renderPlayer(); }
 }
@@ -1746,7 +1884,7 @@ async function startScript(name, turns, how, opts) {
   const token = deactivatePlayer(true), delay = +(($('#sc-delay') || {}).value ?? 400);
   closeSheet();
   const original = turns.slice(), exampleId = opts && opts.exampleId;
-  let fixed;
+  let fixed, opusMap = null;
   const newArea = rd => {   // every reader's drawing gets the new area (Qwen3's in its queue, before the scenario's messages)
     const w = rd.world;
     if (w.state.shapes.length) { const before = w.snapshot(); w.newFrame(name); w.commit(before); }
@@ -1755,8 +1893,9 @@ async function startScript(name, turns, how, opts) {
   };
   // New area, allocation and saved context capture are one queue operation. A replaced run cannot capture the replacement's context.
   queue = queue.then(async () => {
-    await savedLoad; if (token !== player.token) return;
+    await savedLoad; await trNow(); if (token !== player.token) return;
     fixed = renamedForCanvas(original, exampleId && saved.entry(exampleId));
+    if (exampleId) opusMap = trMapSync(exampleId, fixed.map);   // the Claude Opus 5.5 tab's renames, before the new area (as the text's)
     for (const rd of READERS) if (rd.id !== 'qwen') newArea(rd);
     qwenJob(() => { newArea(RD.qwen); if (cur === RD.qwen) renderCanvas(); });
     saved.invalidate();
@@ -1768,7 +1907,7 @@ async function startScript(name, turns, how, opts) {
   const ren = Object.entries(fixed.map).filter(([a, b]) => a !== b).map(([a, b]) => `${a} → ${b}`);
   sysNote(`Scenario: ${name}` + (ren.length ? ` · renamed ${ren.join(', ')} to avoid clashes` : ''));
   renderCanvas();
-  Object.assign(player, { name, turns: fixed.turns, original, exampleId, delay, i: 0, busy: false });
+  Object.assign(player, { name, turns: fixed.turns, original, exampleId, opusMap, delay, i: 0, busy: false });
   renderPlayer();
   if (how === 'play') playRest(token);
 }
@@ -1801,8 +1940,8 @@ function copyDrawing(src, dst) {
 function adoptRules(rd) { if (rd.id === 'saved') return queue; queue = queue.then(() => { if (!rd.reads) { copyDrawing(RD.rules, rd); if (rd === cur) renderCanvas(); } updateTabs(); renderSopBar(); }); return queue; }
 function alignDrawings() {
   queue = queue.then(() => {
-    if (cur.id === 'saved') return;
-    const src = cur, to = READERS.filter(rd => rd !== src && isReady(rd) && rd.id !== 'qwen' && rd.id !== 'saved');
+    if (cur.id === 'saved' || cur.id === OPUS.id) return;
+    const src = cur, to = READERS.filter(rd => rd !== src && isReady(rd) && rd.id !== 'qwen' && rd.id !== 'saved' && rd.id !== OPUS.id);
     for (const rd of to) copyDrawing(src, rd);
     sysNote(`Drawings aligned: ${to.map(rd => rd.label).join(' and ') || 'no other reader'} now ${to.length > 1 ? 'have' : 'has'} the ${src.label} drawing and its undo history.`);
     renderCanvas(); updateTabs(); renderSopBar();
@@ -1847,7 +1986,7 @@ rtabs.addEventListener('keydown', ev => {
 /* the align tool: shown when another loaded reader's drawing differs from the one on screen; copies this drawing to them */
 function renderSopBar() {
   const b = $('#align-btn'); if (!b) return;
-  b.hidden = cur.id === 'saved' || !READERS.filter(rd => rd.id !== 'qwen' && rd.id !== 'saved').some(differs);
+  b.hidden = cur.id === 'saved' || cur.id === OPUS.id || !READERS.filter(rd => rd.id !== 'qwen' && rd.id !== 'saved' && rd.id !== OPUS.id).some(differs);
   b.title = b.ariaLabel = `Copy this ${cur.label} drawing and its undo history to the other tabs`;
 }
 $('#align-btn').addEventListener('click', alignDrawings);
@@ -2166,10 +2305,11 @@ function gateSettingsHTML() {
 /** what every reader's Settings subtab starts with: its drawing and what it has read */
 function readerFacts(rd) {
   const S = rd.world.state, n = S.shapes.length, m = S.edges.length, u = rd.world.undoStack.length;
-  return `<table class="kv"><tr><td>State</td><td>${escH(isReady(rd) ? 'ready' : offText(rd).replace(/, did not read this$/, '').replace(/ \(see SOP-BERT › Settings\)$/, '').replace(/; see SOP-BERT › Settings\)$/, ')'))}</td></tr><tr><td>Messages read</td><td>${rd.reads}</td></tr><tr><td>Its drawing</td><td>${n} shape${n === 1 ? '' : 's'} · ${m} link${m === 1 ? '' : 's'} · ${u} step${u === 1 ? '' : 's'} to undo</td></tr><tr><td>Requests cut by</td><td>${escH(cutLabel(OWN_CUT[rd.id]))} (${rd.id === 'qwen' ? 'the words it quotes for each request; no confidence is fitted' : 'its own cutter: the cut its confidence was fitted on'})</td></tr></table>`;
+  return `<table class="kv"><tr><td>State</td><td>${escH(isReady(rd) ? 'ready' : offText(rd).replace(/, did not read this$/, '').replace(/ \(see SOP-BERT › Settings\)$/, '').replace(/; see SOP-BERT › Settings\)$/, ')'))}</td></tr><tr><td>Messages read</td><td>${rd.reads}</td></tr><tr><td>Its drawing</td><td>${n} shape${n === 1 ? '' : 's'} · ${m} link${m === 1 ? '' : 's'} · ${u} step${u === 1 ? '' : 's'} to undo</td></tr><tr><td>Requests cut by</td><td>${escH(cutLabel(OWN_CUT[rd.id]))} (${rd.id === 'qwen' ? 'the words it quotes for each request; no confidence is fitted' : rd.id === OPUS.id ? 'written offline by the generation model, played as saved; no confidence' : 'its own cutter: the cut its confidence was fitted on'})</td></tr></table>`;
 }
 const sharedNote = `<p class="intro">SOP Lang (the commands every reader writes) and the engine’s capabilities are the same for every reader. Help explains both: <button type="button" class="btn" data-help="sop-lang">SOP Lang</button> <button type="button" class="btn" data-help="capabilities">Capabilities</button> <button type="button" class="btn" data-help="architecture">How it works inside</button></p>`;
 function renderReaderSettings(rd) {
+  if (rd.id === OPUS.id) return trSettingsHTML(rd);
   if (rd.id === 'saved') return `<h3 class="sub">gpt-6.1-sol saved examples</h3><p class="intro">These are saved example translations generated by gpt-6.1-sol, not live inference. Use the unchanged built-in Examples buttons or player. Custom or edited scripts have no saved translation. Direct SOP input runs as your input. No model download or confidence gate is used.</p><p class="intro">Each example uses this tab’s own drawing and history. Global clear, defaults and questions use the current drawing; earlier drawings can change answers. Changing the drawing or history outside a running example makes its later saved turns unavailable. Partial and unsupported translations say why. Message details show the original and effective input, saved and bound SOP, provenance, repairs and engine results.</p><pre class="sop">${escH(JSON.stringify(saved.info(), null, 2))}</pre>${sharedNote}`;
   if (rd.id === 'qwen') {
     const S = qwen ? qwen.S : null, R = S && S.reader, i = S && S.info, ck = S && S.check;
@@ -2230,12 +2370,12 @@ sbody.addEventListener('click', async ev => {
     const exampleId = q.dataset.example, original = q.dataset.quick, token = deactivatePlayer(true);
     closeSheet();
     queue = queue.then(async () => {
-      await savedLoad; if (token !== player.token) return;
-      const entry = saved.entry(exampleId), fixed = renamedForCanvas([original], entry);
+      await savedLoad; await trNow(); if (token !== player.token) return;
+      const entry = saved.entry(exampleId), fixed = renamedForCanvas([original], entry), opusMap = trMapSync(exampleId, fixed.map);
       saved.invalidate();
       try { await saved.begin(exampleId, [original], fixed.turns, fixed.map, token); } catch (e) { console.error(e); }
       if (token !== player.token) return;
-      await run(fixed.turns[0], undefined, { via: 'example', saved: { exampleId, turn: 0, original, runToken: token } });
+      await run(fixed.turns[0], undefined, { via: 'example', saved: { exampleId, turn: 0, original, runToken: token }, opusMap });
       if (token === player.token) player.busy = false;
     }).catch(e => { console.error(e); }); return;
   }
@@ -2307,7 +2447,9 @@ function renderWorld(rd) {
   for (const r of S.rules) { const a = {}; ['shape', 'size', 'color', 'outline'].forEach(k => { if (r[k]) a[k] = r[k]; }); lines.push(hlNode({ id: r.id, type: 'rule', args: a })); }
   for (const g of S.groups || []) lines.push(hlNode({ id: g.name, type: 'group', args: { members: g.members.map(m => ({ ref: m })) } }));
   if (!lines.length) lines.push('<span class="cm"># empty</span>');
-  return `${isReady(rd) ? '' : `<p class="intro">This reader is ${escH(offText(rd).replace(/, did not read this$/, '').replace(/ \(see SOP-BERT › Settings\)$/, ''))}; its Settings subtab shows how to load it.</p>`}<p class="intro">The ${escH(rd.label)} reader’s drawing, written back as SOP Lang wires. This is what a backend such as Datalog, Prolog or Z3 would receive after lowering. ${w.undoStack.length} step${w.undoStack.length === 1 ? '' : 's'} can be undone.</p><pre class="sop">${lines.join('\n')}</pre>`;
+  const last = rd.id === OPUS.id && trLast ? (() => { const sv = trLast.saved, e = sv.entry;
+    return `<h3 class="sub">The last saved program it played</h3><p class="intro">Message ${trLast.turn}, built-in example <code>${escH(sv.prov.example + '#' + sv.prov.turn)}</code>, from <code>${escH(`${OPUS.dir}${e.file}`)}</code>, lines ${+e.lines[0]}–${+e.lines[1]}${sv.renamed.length ? `, with the scenario's renames (${escH([...new Set(sv.renamed.map(r => `${r.from} → ${r.to}`))].join(', '))})` : ''}:</p><pre class="sop">${sv.nodes.map(hlNode).join('\n')}</pre><h3 class="sub">Its drawing</h3>`; })() : '';
+  return `${last}${isReady(rd) ? '' : `<p class="intro">This reader is ${escH(offText(rd).replace(/, did not read this$/, '').replace(/ \(see SOP-BERT › Settings\)$/, ''))}; its Settings subtab shows how to load it.</p>`}<p class="intro">The ${escH(rd.label)} reader’s drawing, written back as SOP Lang wires. This is what a backend such as Datalog, Prolog or Z3 would receive after lowering. ${w.undoStack.length} step${w.undoStack.length === 1 ? '' : 's'} can be undone.</p><pre class="sop">${lines.join('\n')}</pre>`;
 }
 
 /* ---------------- composer ---------------- */
@@ -2426,6 +2568,11 @@ if (QWEN_URL) loadQwen();   // opt-in (see the Qwen3 block): the URL lists qwen
 window.SketchpadInfo = Object.freeze({
   turn: () => turnSeq, view: () => view, names: () => showNames,
   saved: () => saved.info(),
+  /** the Claude Opus 5.5 tab's part of one turn, and its manifest and counts (training/sop-translations/test_saved_sop_ui.mjs) */
+  translationTurn: id => trTurnInfo(id),
+  translations: () => JSON.parse(JSON.stringify({ id: OPUS.id, label: OPUS.label, loaded: !!trM, error: trErr ? String(trErr.message || trErr) : null, model: trM ? trM.model : null, coverage: trM ? trM.coverage : null, count: trCount })),
+  /** a tab's drawing (its shapes, edges, groups, rules and undo depth), for comparing tabs */
+  drawing: id => { const rd = RD[id]; if (!rd) return null; const S = rd.world.state; return JSON.parse(JSON.stringify({ shapes: S.shapes, edges: S.edges, groups: S.groups || [], rules: S.rules, frame: S.frame, undo: rd.world.undoStack.length, redo: rd.world.redoStack.length })); },
   world: id => RD[id] ? JSON.parse(JSON.stringify({ state: RD[id].world.snapshot(), undo: RD[id].world.undoStack, redo: RD[id].world.redoStack, last: RD[id].last, pending: RD[id].pending, held: RD[id].held, focusCell: RD[id].focusCell })) : null,
   savedTurn(id) {
     const rec = history.find(x => x.id === id), r = rec && rec.readers.saved;

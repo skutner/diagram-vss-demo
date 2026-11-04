@@ -1,0 +1,39 @@
+# SOP Lang of the scenario "Login flowchart" (docs/js/scenarios.js, id login), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Draw a blue circle named Begin on the left, labeled "start".
+@c1 command action=create shape=circle color=blue name=Begin label="start" position=left
+
+## turn 2
+# input: Add a rectangle named Form to the right of Begin labeled "Enter password" and connect Begin to it.
+@c1 command action=create shape=rectangle name=Form label="Enter password" position=rightOf anchor=Begin
+@c2 command action=connect from=Begin to=Form
+
+## turn 3
+# input: Add a yellow diamond named Valid right of Form labeled "valid?" and connect Form to it.
+@c1 command action=create shape=diamond color=yellow name=Valid label="valid?" position=rightOf anchor=Form
+@c2 command action=connect from=Form to=Valid
+
+## turn 4
+# input: Put a green rectangle named Home right of Valid labeled "Dashboard". Connect Valid to Home with an arrow labeled "yes".
+@c1 command action=create shape=rectangle color=green name=Home label="Dashboard" position=rightOf anchor=Valid
+@c2 command action=connect from=Valid to=Home label="yes"
+
+## turn 5
+# input: Put a red rectangle named Error below Valid labeled "Show error". Connect Valid to Error with a dashed arrow labeled "no".
+@c1 command action=create shape=rectangle color=red name=Error label="Show error" position=below anchor=Valid
+@c2 command action=connect from=Valid to=Error style=dashed label="no"
+
+## turn 6
+# input: Connect Error to Form with a dotted arrow labeled "retry".
+@c1 command action=connect from=Error to=Form style=dotted label="retry"
+
+## turn 7
+# input: Is there a path from Begin to Home?
+@q1 question ask=path from=Begin to=Home
+
+## turn 8
+# input: Are there any cycles?
+#! scope: looks for cycles in the arrows of the whole canvas, not only this flowchart
+@q1 question ask=cycle

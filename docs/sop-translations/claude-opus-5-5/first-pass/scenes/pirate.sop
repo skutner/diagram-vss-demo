@@ -1,0 +1,191 @@
+# SOP Lang of the scene "Pirate ship" (docs/js/scenes-extra.js, id pirate), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Pirate ship scene. Background: a light cyan rectangle, 780 by 480, in the center, background layer, named Sky.
+@c1 command action=create shape=rectangle color=cyan fill=light layer=background width=780 height=480 position=center name=Sky
+
+## turn 3
+# input: the sea: a blue rectangle zone, 780 by 160, at the bottom, named Ocean
+@c1 command action=create shape=rectangle color=blue layer=zone width=780 height=160 position=bottom name=Ocean
+
+## turn 4
+# input: Ship hull: a large brown rectangle named Hull in the center
+@c1 command action=create shape=rectangle size=large color=brown name=Hull position=center
+
+## turn 5
+# input: move it down 90
+#! resolved: "it" -> Hull, made by the previous message
+@c1 command action=move target=Hull direction=down distance=90
+
+## turn 6
+# input: Mast: a brown rectangle 12 wide and 180 tall right above Hull, no gap, named Mast
+#! note: "right above Hull, no gap" -> position=onTop (touching Hull's top edge)
+@c1 command action=create shape=rectangle color=brown width=12 height=180 name=Mast position=onTop anchor=Hull
+
+## turn 7
+# input: a big white sail: large white square named Sail left of Mast, 20 px away
+@c1 command action=create shape=square size=large color=white name=Sail position=leftOf anchor=Mast distance=20
+
+## turn 8
+# input: black flag: small black triangle just 2 px above Mast, called Flag
+@c1 command action=create shape=triangle size=small color=black name=Flag position=above anchor=Mast distance=2
+
+## turn 9
+# input: write "X" on the flag
+@c1 command action=label target=Flag label="X"
+
+## turn 10
+# input: three tiny gold circles in a row at 400,340 for portholes
+@c1 command action=create count=3 shape=circle size=tiny color=gold layout=row at=400,340
+
+## turn 11
+# input: group Hull, Mast, Sail, Flag and the three portholes as Ship
+#! resolved: "the three portholes" -> every tiny gold circle: the three of the previous message (the canvas was cleared at the start)
+@m1 mention quantifier=all shape=circle size=tiny color=gold
+@c1 command action=group target=Hull,Mast,Sail,Flag,$m1 name=Ship
+
+## turn 12
+# input: Island on the right: a large yellow ellipse named Island in the bottom right
+@c1 command action=create shape=ellipse size=large color=yellow name=Island position=bottomRight
+
+## turn 13
+# input: palm tree: a brown rectangle, 14 by 70, named Trunk right above Island, no gap
+#! note: "right above Island, no gap" -> position=onTop (touching Island's top edge)
+@c1 command action=create shape=rectangle color=brown width=14 height=70 name=Trunk position=onTop anchor=Island
+
+## turn 14
+# input: and a medium green star 3 px above Trunk for the leaves, named PalmTop
+@c1 command action=create shape=star size=medium color=green name=PalmTop position=above anchor=Trunk distance=3
+
+## turn 15
+# input: treasure chest on the island: small orange square named Chest left of Trunk, 16 px gap
+@c1 command action=create shape=square size=small color=orange name=Chest position=leftOf anchor=Trunk distance=16
+
+## turn 16
+# input: group Island, Trunk, PalmTop and Chest as Isle
+@c1 command action=group target=Island,Trunk,PalmTop,Chest name=Isle
+
+## turn 17
+# input: dotted arrow from Flag to Chest, label it "X marks the spot"
+@c1 command action=connect from=Flag to=Chest style=dotted label="X marks the spot"
+
+## turn 18
+# input: Is Chest right of Hull?
+@q1 question ask=check target=Chest position=rightOf anchor=Hull
+
+## turn 19
+# input: Parrot: tiny red circle named Polly near Mast
+@c1 command action=create shape=circle size=tiny color=red name=Polly position=near anchor=Mast
+
+## turn 20
+# input: make Polly lime... no, keep it red but small
+#! note: self-correction: the colour stays red; only the size changes
+@c1 command action=set target=Polly size=small
+
+## turn 21
+# input: Shark! a small gray triangle named Fin left of Ship
+@c1 command action=create shape=triangle size=small color=gray name=Fin position=leftOf anchor=Ship
+
+## turn 22
+# input: move Fin a little down
+#! approx: "a little" -> distance=40: the legend has no word for a small distance
+@c1 command action=move target=Fin direction=down distance=40
+
+## turn 23
+# input: Is Fin below the flag?
+@q1 question ask=check target=Fin position=below anchor=Flag
+
+## turn 24
+# input: sun: medium gold circle in the top right, Sun
+@c1 command action=create shape=circle size=medium color=gold position=topRight name=Sun
+
+## turn 25
+# input: two white ovals for clouds, one left of Sun and a white oval in the top left
+@c1 command action=create shape=ellipse color=white position=leftOf anchor=Sun
+@c2 command action=create shape=ellipse color=white position=topLeft
+
+## turn 26
+# input: make the clouds smaller
+#! resolved: "the clouds" -> every white ellipse: the two of the previous message
+@m1 mention quantifier=all shape=ellipse color=white
+@c1 command action=resize target=$m1 scale=0.67
+
+## turn 27
+# input: title "Captain Saltbeard" at the top in large black letters
+@c1 command action=create shape=text label="Captain Saltbeard" size=large color=black position=top
+
+## turn 28
+# input: Cannonball: tiny black circle right of Hull, 20 px gap
+@c1 command action=create shape=circle size=tiny color=black position=rightOf anchor=Hull distance=20
+
+## turn 29
+# input: dashed arrow from Hull to the cannonball
+#! resolved: "the cannonball" -> the tiny black circle of the previous message
+@m1 mention shape=circle size=tiny color=black
+@c1 command action=connect from=Hull to=$m1 style=dashed
+
+## turn 30
+# input: How many circles are there, portholes included?
+@q1 question ask=count shape=circle
+
+## turn 31
+# input: Which shape is closest to Polly?
+@q1 question ask=nearest superlative=closest shape=any anchor=Polly
+
+## turn 32
+# input: Bring Ship to the front
+@c1 command action=toFront target=Ship
+
+## turn 33
+# input: move Ship 40 px to the left
+@c1 command action=move target=Ship direction=left distance=40
+
+## turn 34
+# input: What's in Isle?
+@q1 question ask=members target=Isle
+
+## turn 35
+# input: the sail should be gray, it's an old ship
+@c1 command action=set target=Sail color=gray
+
+## turn 36
+# input: Is Chest reachable from Flag?
+@q1 question ask=path from=Flag to=Chest
+
+## turn 37
+# input: How many groups are there on the canvas?
+@q1 question ask=count kind=group
+
+## turn 38
+# input: duplicate Fin
+@c1 command action=duplicate target=Fin
+
+## turn 39
+# input: put the copy left of Fin
+#! resolved: "the copy" -> the small gray triangle drawn last (the copy of Fin, named by the engine)
+@m1 mention shape=triangle size=small color=gray recency=newest
+@c1 command action=move target=$m1 position=leftOf anchor=Fin
+
+## turn 40
+# input: Which shapes are gray?
+@q1 question ask=list color=gray shape=any
+
+## turn 41
+# input: delete the cannonball
+#! resolved: "the cannonball" -> the tiny black circle of turn 28
+@m1 mention shape=circle size=tiny color=black
+@c1 command action=delete target=$m1
+
+## turn 42
+# input: Give me a description of Hull.
+@q1 question ask=describe target=Hull
+
+## turn 43
+# input: Arr, finished!
+#! noop: a closing remark; nothing to draw or answer

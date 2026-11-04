@@ -1,0 +1,38 @@
+# SOP Lang of the scenario "Solar system" (docs/js/scenarios.js, id solar), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Draw a huge gold circle named Sun in the center.
+@c1 command action=create shape=circle size=huge color=gold name=Sun position=center
+
+## turn 2
+# input: Add a tiny gray circle named Mercury right of Sun. Add a small orange circle named Venus left of Sun.
+@c1 command action=create shape=circle size=tiny color=gray name=Mercury position=rightOf anchor=Sun
+@c2 command action=create shape=circle size=small color=orange name=Venus position=leftOf anchor=Sun
+
+## turn 3
+# input: Add a small blue circle named Earth above Sun. Add a small red circle named Mars below Sun.
+@c1 command action=create shape=circle size=small color=blue name=Earth position=above anchor=Sun
+@c2 command action=create shape=circle size=small color=red name=Mars position=below anchor=Sun
+
+## turn 4
+# input: Add a large brown circle named Jupiter in the top right. Add a large yellow circle named Saturn in the bottom left with a gold outline.
+@c1 command action=create shape=circle size=large color=brown name=Jupiter position=topRight
+@c2 command action=create shape=circle size=large color=yellow outline=gold name=Saturn position=bottomLeft
+
+## turn 5
+# input: Connect Sun to Mercury, Venus, Earth and Mars with dotted lines.
+@c1 command action=connect from=Sun to=Mercury,Venus,Earth,Mars style=dotted arrow=none
+
+## turn 6
+# input: Which circle is closest to Jupiter?
+@q1 question ask=nearest superlative=closest shape=circle anchor=Jupiter
+
+## turn 7
+# input: Which shape is the biggest?
+#! scope: every shape of the canvas (panels left out), not only this drawing
+@q1 question ask=extreme superlative=biggest shape=any
+
+## turn 8
+# input: Is Earth above Mars?
+@q1 question ask=check target=Earth position=above anchor=Mars

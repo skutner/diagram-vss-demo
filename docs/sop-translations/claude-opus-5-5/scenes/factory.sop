@@ -1,0 +1,185 @@
+# SOP Lang of the scene "Robot factory" (docs/js/scenes-extra.js, id factory), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Robot factory. Background: a faint gray rectangle, 780 by 480, in the center, background layer, named Floor.
+@c1 command action=create shape=rectangle color=gray fill=faint layer=background width=780 height=480 position=center name=Floor
+
+## turn 3
+# input: conveyor belt: a black rectangle, 600 by 30, at the bottom, named Belt
+@c1 command action=create shape=rectangle color=black width=600 height=30 position=bottom name=Belt
+
+## turn 4
+# input: rollers: a gray circle RollerL 16 px left of Belt and a gray circle RollerR 16 px right of Belt
+@c1 command action=create shape=circle color=gray name=RollerL position=leftOf anchor=Belt distance=16
+@c2 command action=create shape=circle color=gray name=RollerR position=rightOf anchor=Belt distance=16
+
+## turn 5
+# input: group Belt, RollerL and RollerR as Conveyor
+@c1 command action=group target=Belt,RollerL,RollerR name=Conveyor
+
+## turn 6
+# input: First robot body: a medium blue square named Body1 2 px above Belt
+@c1 command action=create shape=square size=medium color=blue name=Body1 position=above anchor=Belt distance=2
+
+## turn 7
+# input: its head, a small blue square named Head1, with a 2 px gap above Body1
+@c1 command action=create shape=square size=small color=blue name=Head1 position=above anchor=Body1 distance=2
+
+## turn 8
+# input: and a tiny red circle 2 px on top of Head1 for the antenna, named Antenna1
+@c1 command action=create shape=circle size=tiny color=red name=Antenna1 position=above anchor=Head1 distance=2
+
+## turn 9
+# input: put Body1, Head1 and Antenna1 into one group named Bot1
+@c1 command action=group target=Body1,Head1,Antenna1 name=Bot1
+
+## turn 10
+# input: duplicate Bot1 twice
+@c1 command action=duplicate target=Bot1 count=2
+
+## turn 11
+# input: What's in Bot12?
+@q1 question ask=members target=Bot12
+
+## turn 12
+# input: Robot arm: an orange rectangle named ArmPole, 20 by 120, in the top left
+@c1 command action=create shape=rectangle color=orange width=20 height=120 name=ArmPole position=topLeft
+
+## turn 13
+# input: a small orange circle named Joint right of ArmPole, 16 px gap
+@c1 command action=create shape=circle size=small color=orange name=Joint position=rightOf anchor=ArmPole distance=16
+
+## turn 14
+# input: link ArmPole and Joint with an orange line
+@c1 command action=connect from=ArmPole to=Joint arrow=none color=orange
+
+## turn 15
+# input: Control panel: a navy rectangle named Panel in the top right
+@c1 command action=create shape=rectangle color=navy name=Panel position=topRight
+
+## turn 16
+# input: three tiny lime circles in a row below Panel for the buttons
+@c1 command action=create count=3 shape=circle size=tiny color=lime layout=row position=below anchor=Panel
+
+## turn 17
+# input: two medium gray hexagons for gears: GearA in the top center, and a medium gray hexagon GearB right of GearA
+@c1 command action=create shape=hexagon size=medium color=gray name=GearA position=top
+@c2 command action=create shape=hexagon size=medium color=gray name=GearB position=rightOf anchor=GearA
+
+## turn 18
+# input: align GearA and GearB horizontally
+@c1 command action=align target=GearA,GearB axis=horizontal
+
+## turn 19
+# input: draw an arrow from Panel to Joint with "signal" written on it
+@c1 command action=connect from=Panel to=Joint label="signal"
+
+## turn 20
+# input: and a dashed arrow from Joint to Head1
+@c1 command action=connect from=Joint to=Head1 style=dashed
+
+## turn 21
+# input: Does anything lead from Panel to Head1?
+@q1 question ask=path from=Panel to=Head1
+
+## turn 22
+# input: What is connected to Joint?
+@q1 question ask=neighbors target=Joint
+
+## turn 23
+# input: make GearB smaller than GearA
+#! approx: "smaller than GearA" -> size=small: GearA is medium, so GearB takes the size one step below it
+@c1 command action=set target=GearB size=small
+
+## turn 24
+# input: is GearB smaller than GearA?
+@q1 question ask=check target=GearB comparison=smaller anchor=GearA
+
+## turn 25
+# input: Write "ROBO WORKS" above the belt? no, at the bottom left, in large gray letters
+#! note: self-correction: the place is the bottom left, not above the belt
+@c1 command action=create shape=text label="ROBO WORKS" size=large color=gray position=bottomLeft
+
+## turn 26
+# input: make the title orange
+#! resolved: "the title" -> the text "ROBO WORKS"
+@m1 mention shape=text label="ROBO WORKS"
+@c1 command action=set target=$m1 color=orange
+
+## turn 27
+# input: Which group holds Antenna1?
+@q1 question ask=groupOf target=Antenna1
+
+## turn 28
+# input: paint the robot bodies of the copies purple... hmm, never mind, that is hard to say
+#! noop: the request is withdrawn ("never mind"); nothing is left to do
+
+## turn 29
+# input: Which shapes are blue?
+@q1 question ask=list color=blue shape=any
+
+## turn 30
+# input: raise Conveyor to the top layer
+@c1 command action=toFront target=Conveyor
+
+## turn 31
+# input: How many groups do we have?
+@q1 question ask=count kind=group
+
+## turn 32
+# input: Which shape has the most connections, the joint?
+#! note: "the joint?" is the person's guess about the answer, not a filter
+@q1 question ask=extreme superlative=mostConnected shape=any
+
+## turn 33
+# input: move Bot1 a bit to the left
+#! repair: review: distance=40 -> distance=20, so that "a bit" / "a little" is one step in every example (the convention added after the first pass)
+#! approx: "a bit" -> distance=20: a small step (the engine's default step is 80 px)
+@c1 command action=move target=Bot1 direction=left distance=20
+
+## turn 34
+# input: how many squares are there with the three robots?
+@q1 question ask=count shape=square
+
+## turn 35
+# input: Is ArmPole left of Panel?
+@q1 question ask=check target=ArmPole position=leftOf anchor=Panel
+
+## turn 36
+# input: Which shape is closest to GearB?
+@q1 question ask=nearest superlative=closest shape=any anchor=GearB
+
+## turn 37
+# input: make the arrow from Joint to Head1 red
+@c1 command action=set from=Joint to=Head1 color=red
+
+## turn 38
+# input: reverse the signal arrow
+#! resolved: "the signal arrow" -> the arrow Panel → Joint labeled "signal" (turn 19)
+@c1 command action=reverse from=Panel to=Joint
+
+## turn 39
+# input: oops, undo
+@c1 command action=undo
+
+## turn 40
+# input: describe the Panel for me
+@q1 question ask=describe target=Panel
+
+## turn 41
+# input: What color is Belt?
+@q1 question ask=property property=color target=Belt
+
+## turn 42
+# input: make the belt gray
+@c1 command action=set target=Belt color=gray
+
+## turn 43
+# input: the factory is ready, thanks!
+#! noop: thanks and a closing remark; nothing to draw or answer

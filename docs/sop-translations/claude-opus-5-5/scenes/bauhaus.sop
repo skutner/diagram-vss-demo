@@ -1,0 +1,203 @@
+# SOP Lang of the scene "Bauhaus composition" (docs/js/scenes-extra.js, id bauhaus), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Abstract composition, Bauhaus style. First a faint black background rectangle, 780 by 480, centred, named Canvas.
+@c1 command action=create shape=rectangle color=black fill=faint layer=background width=780 height=480 position=center name=Canvas
+
+## turn 3
+# input: huge red circle in the center, call it Disc
+@c1 command action=create shape=circle size=huge color=red position=center name=Disc
+
+## turn 4
+# input: a large blue square to the left of Disc, named Block
+@c1 command action=create shape=square size=large color=blue position=leftOf anchor=Disc name=Block
+
+## turn 5
+# input: and a large yellow triangle on the right of Disc, Peak
+@c1 command action=create shape=triangle size=large color=yellow position=rightOf anchor=Disc name=Peak
+
+## turn 6
+# input: align Block, Disc and Peak horizontally
+@c1 command action=align target=Block,Disc,Peak axis=horizontal
+
+## turn 7
+# input: A long navy rectangle, 400 by 20, under Disc, named Bar
+@c1 command action=create shape=rectangle color=navy width=400 height=20 position=below anchor=Disc name=Bar
+
+## turn 8
+# input: five small black circles in a row above Disc
+@c1 command action=create count=5 shape=circle size=small color=black layout=row position=above anchor=Disc
+
+## turn 9
+# input: make them gray
+#! resolved: "them" -> every small black circle: the five circles of the previous message (the canvas was cleared at the start)
+@m1 mention quantifier=all shape=circle size=small color=black
+@c1 command action=set target=$m1 color=gray
+
+## turn 10
+# input: space those circles out evenly
+#! resolved: "those circles" -> every small gray circle: the five circles made gray by the previous message
+@m1 mention quantifier=all shape=circle size=small color=gray
+@c1 command action=distribute target=$m1 axis=horizontal
+
+## turn 11
+# input: Put a white diamond between Block and Disc
+@c1 command action=create shape=diamond color=white position=between anchor=Block,Disc
+
+## turn 12
+# input: another white diamond between Disc and Peak
+@c1 command action=create shape=diamond color=white position=between anchor=Disc,Peak
+
+## turn 13
+# input: make both diamonds small
+#! resolved: "both diamonds" -> every white diamond: the two of the previous messages
+@m1 mention quantifier=all shape=diamond color=white
+@c1 command action=set target=$m1 size=small
+
+## turn 14
+# input: connect the two diamonds with a black line
+#! resolved: "the two diamonds" -> every white diamond: the two of turns 11 and 12
+@m1 mention quantifier=all shape=diamond color=white
+@c1 command action=connect from=$m1 arrow=none color=black
+
+## turn 15
+# input: teal hexagon in the top left corner, name it Hex
+@c1 command action=create shape=hexagon color=teal position=topLeft name=Hex
+
+## turn 16
+# input: and a magenta hexagon in the bottom right corner, Hex2
+@c1 command action=create shape=hexagon color=magenta position=bottomRight name=Hex2
+
+## turn 17
+# input: make Hex huge
+@c1 command action=set target=Hex size=huge
+
+## turn 18
+# input: now Hex2 the same size as Hex
+#! resolved: "the same size as Hex" -> size=huge, the size the previous message gave Hex
+@c1 command action=set target=Hex2 size=huge
+
+## turn 19
+# input: dotted line from Hex to Hex2
+@c1 command action=connect from=Hex to=Hex2 style=dotted arrow=none
+
+## turn 20
+# input: Six tiny gold stars in a ring in the top right
+@c1 command action=create count=6 shape=star size=tiny color=gold layout=circle position=topRight
+
+## turn 21
+# input: is Peak right of Disc?
+@q1 question ask=check target=Peak position=rightOf anchor=Disc
+
+## turn 22
+# input: Which shape is the biggest now, the hexagon?
+@q1 question ask=extreme superlative=biggest shape=any
+
+## turn 23
+# input: make Disc a little smaller
+@c1 command action=resize target=Disc scale=0.8
+
+## turn 24
+# input: bring Disc in front of everything
+@c1 command action=toFront target=Disc
+
+## turn 25
+# input: group Block, Disc and Peak as Trio
+@c1 command action=group target=Block,Disc,Peak name=Trio
+
+## turn 26
+# input: move Trio up 30
+@c1 command action=move target=Trio direction=up distance=30
+
+## turn 27
+# input: Write "FORM / COLOUR" in the bottom left in large black letters
+@c1 command action=create shape=text label="FORM / COLOUR" size=large color=black position=bottomLeft
+
+## turn 28
+# input: hmm, the text should be gray
+#! resolved: "the text" -> the text "FORM / COLOUR"
+@m1 mention shape=text label="FORM / COLOUR"
+@c1 command action=set target=$m1 color=gray
+
+## turn 29
+# input: turn Block into a circle
+@c1 command action=set target=Block shape=circle
+
+## turn 30
+# input: No, back to a square, undo
+@c1 command action=undo
+
+## turn 31
+# input: How many hexagons are there?
+@q1 question ask=count shape=hexagon
+
+## turn 32
+# input: which shapes are white at this point?
+@q1 question ask=list shape=any color=white
+
+## turn 33
+# input: arrange the stars in a row
+#! resolved: "the stars" -> every star: the six gold stars of turn 20
+@m1 mention quantifier=all shape=star
+@c1 command action=arrange target=$m1 layout=row
+
+## turn 34
+# input: put Bar 20 px below Trio
+@c1 command action=move target=Bar position=below anchor=Trio distance=20
+
+## turn 35
+# input: Is Bar below Disc?
+@q1 question ask=check target=Bar position=below anchor=Disc
+
+## turn 36
+# input: make all the circles purple, even Disc
+@m1 mention quantifier=all shape=circle
+@c1 command action=set target=$m1 color=purple
+
+## turn 37
+# input: undo that, only the five small circles should be purple
+#! resolved: "the five small circles" -> every small circle (the five of turn 8; Disc is huge)
+@c1 command action=undo
+@m1 mention quantifier=all shape=circle size=small
+@c2 command action=set target=$m1 color=purple
+
+## turn 38
+# input: Are there any triangles?
+@q1 question ask=exists shape=triangle
+
+## turn 39
+# input: duplicate Peak
+@c1 command action=duplicate target=Peak
+
+## turn 40
+# input: make the copy pink and small
+#! resolved: "the copy" -> the yellow triangle drawn last (the copy of Peak, named by the engine)
+@m1 mention shape=triangle color=yellow recency=newest
+@c1 command action=set target=$m1 color=pink size=small
+
+## turn 41
+# input: what's the rightmost shape?
+@q1 question ask=extreme superlative=rightmost shape=any
+
+## turn 42
+# input: Is diamond1 left of diamond2?
+#! resolved: "diamond1", "diamond2" -> the white diamond drawn first and the one drawn last (the names the engine gave the two diamonds of turns 11 and 12 on a first play; its counters survive a clear, so a replay names them otherwise)
+@m1 mention shape=diamond recency=oldest
+@m2 mention shape=diamond recency=newest
+@q1 question ask=check target=$m1 position=leftOf anchor=$m2
+
+## turn 43
+# input: delete the copy
+#! resolved: "the copy" -> the pink triangle (the copy of Peak, made pink by turn 40)
+@m1 mention shape=triangle color=pink
+@c1 command action=delete target=$m1
+
+## turn 44
+# input: Done, very Bauhaus.
+#! noop: a closing remark; nothing to draw or answer

@@ -1,0 +1,207 @@
+# SOP Lang of the scene "Concert poster" (docs/js/scenes-extra.js, id poster), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Poster for a concert. Background: a solid purple rectangle, 780 by 480, centred, background layer, named Poster.
+@c1 command action=create shape=rectangle color=purple fill=solid layer=background width=780 height=480 position=center name=Poster
+
+## turn 3
+# input: Big headline at the top: "ECHO VALLEY" in huge white letters
+@c1 command action=create shape=text label="ECHO VALLEY" size=huge color=white position=top
+
+## turn 4
+# input: below it, a subtitle "live at the Old Mill" in yellow, large
+#! resolved: "it" -> the headline, the text "ECHO VALLEY"
+@m1 mention shape=text label="ECHO VALLEY"
+@c1 command action=create shape=text label="live at the Old Mill" size=large color=yellow position=below anchor=$m1
+
+## turn 5
+# input: a huge gold star in the center, name it Burst
+@c1 command action=create shape=star size=huge color=gold position=center name=Burst
+
+## turn 6
+# input: label Burst "SAT 14 NOV"
+@c1 command action=label target=Burst label="SAT 14 NOV"
+
+## turn 7
+# input: Stage: a wide black rectangle, 500 by 40, at the bottom, called Stage
+@c1 command action=create shape=rectangle color=black width=500 height=40 position=bottom name=Stage
+
+## turn 8
+# input: three small orange triangles in a row 10 px above Stage for the spotlights
+@c1 command action=create count=3 shape=triangle size=small color=orange layout=row position=above anchor=Stage distance=10
+
+## turn 9
+# input: Speakers: a navy rectangle named SpeakerL left of Burst, and a navy rectangle SpeakerR right of Burst
+@c1 command action=create shape=rectangle color=navy name=SpeakerL position=leftOf anchor=Burst
+@c2 command action=create shape=rectangle color=navy name=SpeakerR position=rightOf anchor=Burst
+
+## turn 10
+# input: make the speakers tall: 50 by 120
+@c1 command action=set target=SpeakerL,SpeakerR width=50 height=120
+
+## turn 11
+# input: Put four tiny white circles in a column right of SpeakerR, music notes
+@c1 command action=create count=4 shape=circle size=tiny color=white layout=column position=rightOf anchor=SpeakerR
+
+## turn 12
+# input: write "tickets 12 EUR" in the bottom right, small, white
+@c1 command action=create shape=text label="tickets 12 EUR" size=small color=white position=bottomRight
+
+## turn 13
+# input: add "doors 19:00" in the bottom left, small white too
+@c1 command action=create shape=text label="doors 19:00" size=small color=white position=bottomLeft
+
+## turn 14
+# input: connect SpeakerL to Burst and Burst to SpeakerR with dotted white lines
+@c1 command action=connect from=SpeakerL to=Burst style=dotted arrow=none color=white
+@c2 command action=connect from=Burst to=SpeakerR style=dotted arrow=none color=white
+
+## turn 15
+# input: make the headline red
+#! resolved: "the headline" -> the text "ECHO VALLEY"
+@m1 mention shape=text label="ECHO VALLEY"
+@c1 command action=set target=$m1 color=red
+
+## turn 16
+# input: no, gold looks better
+#! resolved: the headline (the text "ECHO VALLEY") of the previous message
+@m1 mention shape=text label="ECHO VALLEY"
+@c1 command action=set target=$m1 color=gold
+
+## turn 17
+# input: Is the subtitle below the headline?
+#! resolved: "the subtitle" -> the text "live at the Old Mill"; "the headline" -> the text "ECHO VALLEY"
+@m1 mention shape=text label="live at the Old Mill"
+@m2 mention shape=text label="ECHO VALLEY"
+@q1 question ask=check target=$m1 position=below anchor=$m2
+
+## turn 18
+# input: put Burst on top of the other layers
+@c1 command action=toFront target=Burst
+
+## turn 19
+# input: group SpeakerL and SpeakerR as Sound
+@c1 command action=group target=SpeakerL,SpeakerR name=Sound
+
+## turn 20
+# input: move Sound up a bit
+#! approx: "a bit" -> distance=20: a small step (the engine's default step is 80 px)
+@c1 command action=move target=Sound direction=up distance=20
+
+## turn 21
+# input: how many texts are on the poster?
+@q1 question ask=count shape=text
+
+## turn 22
+# input: make the subtitle smaller
+#! resolved: "the subtitle" -> the text "live at the Old Mill"
+@m1 mention shape=text label="live at the Old Mill"
+@c1 command action=resize target=$m1 scale=0.67
+
+## turn 23
+# input: Band names: three small pink rectangles in a row under the subtitle
+#! resolved: "the subtitle" -> the text "live at the Old Mill"
+@m1 mention shape=text label="live at the Old Mill"
+@c1 command action=create count=3 shape=rectangle size=small color=pink layout=row position=below anchor=$m1
+
+## turn 24
+# input: label them "Moss", "Tide" and "Lumen"
+#! resolved: "them" -> the three pink rectangles of the previous message, in their order in the row: the one drawn first, the one between the two others, the one drawn last
+@m1 mention shape=rectangle color=pink recency=oldest
+@m2 mention shape=rectangle color=pink recency=newest
+@m3 mention shape=rectangle color=pink position=between anchor=$m1,$m2
+@c1 command action=label target=$m1 label="Moss"
+@c2 command action=label target=$m3 label="Tide"
+@c3 command action=label target=$m2 label="Lumen"
+
+## turn 25
+# input: space the band boxes evenly
+#! resolved: "the band boxes" -> every pink rectangle: the three of turn 23
+@m1 mention quantifier=all shape=rectangle color=pink
+@c1 command action=distribute target=$m1 axis=horizontal
+
+## turn 26
+# input: Which shapes are pink on the poster?
+@q1 question ask=list shape=any color=pink
+
+## turn 27
+# input: make the band boxes magenta
+#! resolved: "the band boxes" -> every pink rectangle: the three of turn 23
+@m1 mention quantifier=all shape=rectangle color=pink
+@c1 command action=set target=$m1 color=magenta
+
+## turn 28
+# input: What color is Burst?
+@q1 question ask=property property=color target=Burst
+
+## turn 29
+# input: paint Burst orange
+@c1 command action=set target=Burst color=orange
+
+## turn 30
+# input: Put a small white star near the headline
+#! resolved: "the headline" -> the text "ECHO VALLEY"
+@m1 mention shape=text label="ECHO VALLEY"
+@c1 command action=create shape=star size=small color=white position=near anchor=$m1
+
+## turn 31
+# input: and another small white star near rectangle3
+#! resolved: "rectangle3" -> the rectangle labeled "Lumen" (the third band box, the name the engine gave it on a first play; its counters survive a clear, so a replay names it otherwise)
+@m1 mention shape=rectangle label="Lumen"
+@c1 command action=create shape=star size=small color=white position=near anchor=$m1
+
+## turn 32
+# input: make both little stars yellow
+#! resolved: "both little stars" -> every small white star: the two of the previous messages
+@m1 mention quantifier=all shape=star size=small color=white
+@c1 command action=set target=$m1 color=yellow
+
+## turn 33
+# input: delete the music notes
+#! resolved: "the music notes" -> every tiny white circle: the four of turn 11
+@m1 mention quantifier=all shape=circle size=tiny color=white
+@c1 command action=delete target=$m1
+
+## turn 34
+# input: undo, the notes should stay
+@c1 command action=undo
+
+## turn 35
+# input: What's the topmost shape on the poster?
+@q1 question ask=extreme superlative=topmost shape=any
+
+## turn 36
+# input: Is Stage at the bottom?
+@q1 question ask=check target=Stage position=bottom
+
+## turn 37
+# input: Stage should be gray
+@c1 command action=set target=Stage color=gray
+
+## turn 38
+# input: Write "all ages" under Burst, small, white
+@c1 command action=create shape=text label="all ages" size=small color=white position=below anchor=Burst
+
+## turn 39
+# input: how many stars are there, Burst included?
+@q1 question ask=count shape=star
+
+## turn 40
+# input: Bring the headline to the front.
+#! resolved: "the headline" -> the text "ECHO VALLEY"
+@m1 mention shape=text label="ECHO VALLEY"
+@c1 command action=toFront target=$m1
+
+## turn 41
+# input: what do you know about Burst?
+@q1 question ask=describe target=Burst
+
+## turn 42
+# input: Great poster!
+#! noop: praise; nothing to draw or answer

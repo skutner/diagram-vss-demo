@@ -1,0 +1,195 @@
+# SOP Lang of the scene "Pump schematic" (docs/js/scenes-extra.js, id pump), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Technical drawing of a pump skid. Background sheet: very light gray rectangle, 780 x 480, at 400,250, background layer, name Sheet.
+@c1 command action=create shape=rectangle color=gray fill=faint layer=background width=780 height=480 at=400,250 name=Sheet
+
+## turn 3
+# input: Tank: blue rectangle, 120 wide, 160 tall, at 110,260, called Tank.
+@c1 command action=create shape=rectangle color=blue width=120 height=160 at=110,260 name=Tank
+
+## turn 4
+# input: label it "TANK 2000 L"
+#! resolved: "it" -> Tank, made by the previous message
+@c1 command action=label target=Tank label="TANK 2000 L"
+
+## turn 5
+# input: Add a large gray circle named Pump to the right of the tank, labelled P-101.
+@c1 command action=create shape=circle size=large color=gray name=Pump label="P-101" position=rightOf anchor=Tank
+
+## turn 6
+# input: valve next: medium yellow diamond right of Pump, named Valve, with V1 written on it
+@c1 command action=create shape=diamond size=medium color=yellow name=Valve label="V1" position=rightOf anchor=Pump
+
+## turn 7
+# input: then a small teal hexagon called Filter to the right of Valve
+@c1 command action=create shape=hexagon size=small color=teal name=Filter position=rightOf anchor=Valve
+
+## turn 8
+# input: and finally the outlet, a medium green square named Outlet to the right of Filter.
+@c1 command action=create shape=square size=medium color=green name=Outlet position=rightOf anchor=Filter
+
+## turn 9
+# input: Connect Tank, Pump, Valve, Filter and Outlet in a chain.
+@c1 command action=connect from=Tank,Pump,Valve,Filter,Outlet pairing=chain
+
+## turn 10
+# input: Motor: gray rectangle 100 by 60, below Pump, named Motor
+@c1 command action=create shape=rectangle color=gray width=100 height=60 position=below anchor=Pump name=Motor
+
+## turn 11
+# input: a plain line between Motor and Pump for the shaft
+@c1 command action=connect from=Motor to=Pump arrow=none
+
+## turn 12
+# input: Gauge: small white circle above Valve, label PSI, name Gauge
+@c1 command action=create shape=circle size=small color=white position=above anchor=Valve label="PSI" name=Gauge
+
+## turn 13
+# input: hook the gauge to the valve with a dotted line
+@c1 command action=connect from=Gauge to=Valve style=dotted arrow=none
+
+## turn 14
+# input: Draw a dashed arrow from Valve back to Tank and label it "bypass".
+@c1 command action=connect from=Valve to=Tank style=dashed label="bypass"
+
+## turn 15
+# input: make all the arrows navy
+#! approx: "all the arrows" -> kind=edge: every connection of the drawing, the plain and dotted lines too
+@c1 command action=set kind=edge color=navy
+
+## turn 16
+# input: actually the bypass arrow should be red
+#! resolved: "the bypass arrow" -> the arrow Valve → Tank labeled "bypass"
+@c1 command action=set from=Valve to=Tank color=red
+
+## turn 17
+# input: Make the arrow from Tank to Pump thick, it's the main suction line.
+#! approx: "thick" -> size=large (the arrow's stroke size)
+@c1 command action=set from=Tank to=Pump size=large
+
+## turn 18
+# input: Can I get from Tank to Outlet following the arrows?
+@q1 question ask=path from=Tank to=Outlet
+
+## turn 19
+# input: How many arrows are there on the sheet?
+#! approx: "arrows" -> kind=edge: the count includes the plain and dotted lines
+@q1 question ask=count kind=edge
+
+## turn 20
+# input: Which shapes is Valve connected to?
+@q1 question ask=neighbors target=Valve
+
+## turn 21
+# input: how many connections does Pump have
+@q1 question ask=degree target=Pump
+
+## turn 22
+# input: Put a legend box in the top right: light gray rectangle zone, 200 by 110, named LegendBox.
+@c1 command action=create shape=rectangle color=gray fill=light layer=zone width=200 height=110 position=topRight name=LegendBox
+
+## turn 23
+# input: write "solid = flow" at 690,65 in small navy letters
+@c1 command action=create shape=text label="solid = flow" size=small color=navy at=690,65
+
+## turn 24
+# input: and "dashed = bypass" just under it, at 690,95, small and red
+@c1 command action=create shape=text label="dashed = bypass" size=small color=red at=690,95
+
+## turn 25
+# input: group LegendBox and both captions as Legend
+#! resolved: "both captions" -> the texts "solid = flow" and "dashed = bypass"
+@m1 mention shape=text label="solid = flow"
+@m2 mention shape=text label="dashed = bypass"
+@c1 command action=group target=LegendBox,$m1,$m2 name=Legend
+
+## turn 26
+# input: Title block: "PUMP SKID P-101 rev B" in the bottom right, medium, black.
+@c1 command action=create shape=text label="PUMP SKID P-101 rev B" size=medium color=black position=bottomRight
+
+## turn 27
+# input: Drain: small blue triangle under Tank, called Drain
+@c1 command action=create shape=triangle size=small color=blue position=below anchor=Tank name=Drain
+
+## turn 28
+# input: dotted line from Tank to Drain
+@c1 command action=connect from=Tank to=Drain style=dotted arrow=none
+
+## turn 29
+# input: align Pump, Valve, Filter and Outlet horizontally
+@c1 command action=align target=Pump,Valve,Filter,Outlet axis=horizontal
+
+## turn 30
+# input: Spread Valve, Filter and Outlet out evenly, horizontally.
+@c1 command action=distribute target=Valve,Filter,Outlet axis=horizontal
+
+## turn 31
+# input: Is Filter between Valve and Outlet?
+@q1 question ask=check target=Filter position=between anchor=Valve,Outlet
+
+## turn 32
+# input: What does the arrow from Valve to Tank say?
+@q1 question ask=property property=label from=Valve to=Tank
+
+## turn 33
+# input: rename Filter to Strainer
+@c1 command action=rename target=Filter name=Strainer
+
+## turn 34
+# input: make Strainer a bit bigger
+@c1 command action=resize target=Strainer scale=1.25
+
+## turn 35
+# input: Add a tiny red circle named Alarm 8 px right of Gauge
+@c1 command action=create shape=circle size=tiny color=red name=Alarm position=rightOf anchor=Gauge distance=8
+
+## turn 36
+# input: connect Alarm to Gauge with a red dashed line
+@c1 command action=connect from=Alarm to=Gauge style=dashed color=red arrow=none
+
+## turn 37
+# input: reverse the arrow from Valve to Tank, I had it backwards
+@c1 command action=reverse from=Valve to=Tank
+
+## turn 38
+# input: Which shape has the most connections, Pump or Valve?
+@q1 question ask=extreme superlative=mostConnected target=Pump,Valve
+
+## turn 39
+# input: Is Motor below Pump?
+@q1 question ask=check target=Motor position=below anchor=Pump
+
+## turn 40
+# input: Motor should be indigo
+@c1 command action=set target=Motor color=indigo
+
+## turn 41
+# input: label Motor M1
+@c1 command action=label target=Motor label="M1"
+
+## turn 42
+# input: Legend must sit above everything else, bring it forward
+@c1 command action=toFront target=Legend
+
+## turn 43
+# input: What's in Legend?
+@q1 question ask=members target=Legend
+
+## turn 44
+# input: delete the alarm
+@c1 command action=delete target=Alarm
+
+## turn 45
+# input: Describe the diagram, I want to check it before sending.
+@q1 question ask=describe
+
+## turn 46
+# input: Perfect, sending this to the plant engineer.
+#! noop: a closing remark; nothing to draw or answer

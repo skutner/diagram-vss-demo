@@ -11,6 +11,9 @@ accepted only 16 of 1,745 requested actions correctly (0.92%). See
 An experimental, opt-in sixth reader, Qwen3-0.6B Q8_0 on the CPU in the browser, is described with its live test in
 [the Qwen3 prototype report](reports/qwen3-browser-prototype.md): it loads and runs on Pages and executes nothing by itself (no
 calibration yet); on the same fixture 3 of its 10 proposals were right, at about 100 s per message on a 4-vCPU cloud VM.
+After it come two tabs that are not readers: **gpt-6.1-sol** and **Claude Opus 5.5** play saved SOP Lang translations of the built-in examples
+that those models wrote offline (Claude Opus 5.5: [how and what they cover](docs/sop-translations/claude-opus-5-5/README.md)); they do not
+read typed messages.
 
 **SOP Sketchpad**: a diagram editor you talk to in English, in the browser, with no server. Every message is formalized into SOP Lang
 wires by the enabled readers (the table under "The readers"), and the same engine and the same Datalog reasoner run the wires,
@@ -51,6 +54,7 @@ slow, these readers are also small enough to run in a browser tab.
 | **VSS-BERT** | SOP-BERT paired with VSS and its own calibrated confidence gate | the existing SOP-BERT and VSS artifacts, with `docs/model/confidence/vote3.json` |
 | **ModernBERT (experimental)** | ModernBERT-base with joint action, value, role and request-cut heads, trained for one epoch. Uses 8-bit weight storage and FP32 arithmetic on browser WASM. Its fixed confidence gate currently holds almost every request. | `docs/model/neural/modernbert/`, `docs/model/confidence/modernbert.json` |
 | **Qwen3 (experimental, opt-in)** | Qwen3-0.6B Q8_0, a general instruction model, not trained here: given the legend and two annotated messages, it writes requests as JSON under a grammar; the whole output is validated before anything can run. wllama 3.8.1 on the CPU, one thread, in its own worker and queue. It loads only on request (its tab's **Load Qwen3**, or `?models=...,qwen`). It has no calibrated threshold, so it holds every request. | `docs/model/qwen3/reader.json` (pins, prompt inputs); the 639 MB GGUF comes from the pinned Hugging Face URL and is checked by SHA-256 in the browser; runtime `docs/vendor/wllama-3.8.1/`; [prototype report](reports/qwen3-browser-prototype.md) |
+| **Claude Opus 5.5 (saved example translations)** | not a reader: every message of the built-in examples (13 quick examples, 11 scenarios, 24 scenes: 1,139 messages) written once, offline, as SOP Lang by Claude Opus 5.5 (`claude-opus-5-5`); the tab plays a saved program only for a built-in example played from the + menu, matched by example and turn, and says "Not played" for anything else. No model is loaded and nothing is called. How they were generated and their limits: [docs/sop-translations/claude-opus-5-5/README.md](docs/sop-translations/claude-opus-5-5/README.md) | `docs/sop-translations/claude-opus-5-5/` (the `.sop` files and `manifest.json`) |
 
 The **Benchmark** (menu ⋮ › Benchmark) runs the readers on the same labelled sentences in the browser and shows accuracy per test set, the model
 size, the load time and the time per message.

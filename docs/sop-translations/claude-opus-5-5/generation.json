@@ -1,0 +1,42 @@
+{
+  "about": "How the .sop files of this folder were generated (read by training/sop-translations/build_manifest.mjs into manifest.json).",
+  "model": {
+    "name": "Claude Opus 5.5",
+    "id": "claude-opus-5-5",
+    "evidence": [
+      "2026-11-04 12:50 UTC, at the start of the generation: get_session (Claude Code remote session session_018zYYPKispx6XA5feSGXKN5, the session that wrote these files) reports session_context.model = claude-opus-5-5 and configured_model = claude-opus-5-5; .claude/settings.json of this repository sets model claude-opus-5-5",
+      "2026-11-04 13:35 UTC, after every file was written and reviewed: get_session reports session_context.model = claude-opus-5-5, configured_model = claude-opus-5-5 and external_metadata.last_served_model = claude-opus-5-5 (the model that served the session's latest turn); no model-fallback notice reached the session during the work. The six forks that wrote 23 scenes are agents of this same session and run on its model."
+    ]
+  },
+  "generated": "2026-11-04",
+  "source_revision": "4eba6860181b2940727869e661e1b1516e8262af",
+  "method": "Each program was written by the generation model from the example's own text and the earlier messages of the same example, following CONVENTIONS.md, with the interpreter (docs/js/logic.js), the legend and the help pages as the only references. No reader of the page (Rules, VSS, SOP-BERT, ModernBERT, Qwen3) and no annotation produced or checked a translation. The first pass of every file was frozen in first-pass/ before any validation ran; every later change carries a '#! repair:' line.",
+  "authors": {
+    "quick.sop": "claude-opus-5-5, the session's own agent (the coordinator)",
+    "scenarios/": "claude-opus-5-5, the session's own agent (the coordinator)",
+    "scenes/farm.sop": "claude-opus-5-5, the session's own agent (the coordinator)",
+    "scenes/city.sop": "claude-opus-5-5, forked translator A of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/space.sop": "claude-opus-5-5, forked translator A of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/reef.sop": "claude-opus-5-5, forked translator A of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/pump.sop": "claude-opus-5-5, forked translator A of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/circuit.sop": "claude-opus-5-5, forked translator B of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/floorplan.sop": "claude-opus-5-5, forked translator B of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/barchart.sop": "claude-opus-5-5, forked translator B of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/jungle.sop": "claude-opus-5-5, forked translator B of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/bauhaus.sop": "claude-opus-5-5, forked translator C of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/poster.sop": "claude-opus-5-5, forked translator C of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/sunrise.sop": "claude-opus-5-5, forked translator C of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/recycle.sop": "claude-opus-5-5, forked translator C of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/winter.sop": "claude-opus-5-5, forked translator D of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/pirate.sop": "claude-opus-5-5, forked translator D of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/factory.sop": "claude-opus-5-5, forked translator D of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/harbour.sop": "claude-opus-5-5, forked translator D of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/kitchen.sop": "claude-opus-5-5, forked translator D of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/busstop.sop": "claude-opus-5-5, forked translator E of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/garden.sop": "claude-opus-5-5, forked translator E of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/living.sop": "claude-opus-5-5, forked translator E of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/town.sop": "claude-opus-5-5, forked translator E of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/grancard.sop": "claude-opus-5-5, forked translator F of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)",
+    "scenes/playground.sop": "claude-opus-5-5, forked translator F of the same session (a fork runs on the session's model; it was given CONVENTIONS.md and scenes/farm.sop as the example, and forbidden the readers and the annotations)"
+  }
+}

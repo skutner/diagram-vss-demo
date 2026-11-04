@@ -1,0 +1,25 @@
+# SOP Lang of the scenario "Little house" (docs/js/scenarios.js, id house), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Draw a huge brown square named Walls at 400, 300.
+@c1 command action=create shape=square size=huge color=brown name=Walls at=400,300
+
+## turn 2
+# input: Put a huge red triangle named Roof at 400, 182.
+@c1 command action=create shape=triangle size=huge color=red name=Roof at=400,182
+
+## turn 3
+# input: Add a small navy rectangle named Door at 400, 337, labeled "door". Add a tiny cyan square named Window at 365, 280.
+@c1 command action=create shape=rectangle size=small color=navy name=Door label="door" at=400,337
+@c2 command action=create shape=square size=tiny color=cyan name=Window at=365,280
+
+## turn 4
+# input: Draw a large yellow circle in the top right. Add a white ellipse named Cloud in the top left.
+@c1 command action=create shape=circle size=large color=yellow position=topRight
+@c2 command action=create shape=ellipse color=white name=Cloud position=topLeft
+
+## turn 5
+# input: Add a large green circle named Tree at 190, 300. Add a small brown rectangle named Trunk at 190, 365.
+@c1 command action=create shape=circle size=large color=green name=Tree at=190,300
+@c2 command action=create shape=rectangle size=small color=brown name=Trunk at=190,365

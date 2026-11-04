@@ -1,0 +1,59 @@
+# SOP Lang of the 13 quick examples ("Send one sentence", docs/js/ui.js QUICK), in the order of the menu.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: CONVENTIONS.md.
+# Each one is sent on its own against whatever drawing is open; they name the shapes of the opening drawing (Start, Process, Check, Done).
+
+## turn 1
+# input: Draw a small pink star next to Done
+@c1 command action=create shape=star size=small color=pink position=near anchor=Done
+
+## turn 2
+# input: Make the green circle bigger
+@m1 mention shape=circle color=green
+@c1 command action=resize target=$m1
+
+## turn 3
+# input: Connect Done to Start with a dotted line
+@c1 command action=connect from=Done to=Start style=dotted arrow=none
+
+## turn 4
+# input: Is there a path from Start to Done?
+@q1 question ask=path from=Start to=Done
+
+## turn 5
+# input: What is connected to Check?
+@q1 question ask=neighbors target=Check
+
+## turn 6
+# input: Add three tiny red circles in a row below Process
+@c1 command action=create count=3 shape=circle size=tiny color=red position=below anchor=Process layout=row
+
+## turn 7
+# input: Which shape has the most connections?
+#! scope: every shape of the canvas, not only the current area
+@q1 question ask=extreme superlative=mostConnected shape=any
+
+## turn 8
+# input: From now on, circles are orange
+@r1 rule shape=circle color=orange
+
+## turn 9
+# input: Check is above Process
+@f1 fact target=Check position=above anchor=Process
+
+## turn 10
+# input: Rename Done to End
+@c1 command action=rename target=Done name=End
+
+## turn 11
+# input: Arrange everything in a circle
+@c1 command action=arrange layout=circle
+
+## turn 12
+# input: Describe the diagram
+#! scope: describes every shape of the canvas, not only the current area
+@q1 question ask=describe
+
+## turn 13
+# input: @g1 command action=create shape=star color=gold name=Gem position=center
+#! direct: already SOP Lang in docs/js/ui.js QUICK since e69eef6 (2026-11-03), the first commit of this repository; written by hand, not by the generation model; played as written
+@g1 command action=create shape=star color=gold name=Gem position=center

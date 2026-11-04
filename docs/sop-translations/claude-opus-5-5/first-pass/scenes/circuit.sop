@@ -1,0 +1,188 @@
+# SOP Lang of the scene "Circuit board" (docs/js/scenes-extra.js, id circuit), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Clear the canvas
+@m1 mention quantifier=all
+@c1 command action=delete target=$m1
+
+## turn 2
+# input: Let's sketch a circuit board. The board itself: a green rectangle zone, 740 by 430, at 400,265, named Board.
+@c1 command action=create shape=rectangle color=green layer=zone width=740 height=430 at=400,265 name=Board
+
+## turn 3
+# input: CPU chip: black rectangle 120 x 90 at 360,260, label "CPU", name Cpu
+@c1 command action=create shape=rectangle color=black width=120 height=90 at=360,260 label="CPU" name=Cpu
+
+## turn 4
+# input: memory: gray rectangle 34 wide 90 tall right of Cpu, call it Ram1
+@c1 command action=create shape=rectangle color=gray width=34 height=90 position=rightOf anchor=Cpu name=Ram1
+
+## turn 5
+# input: Ram2 is the same, a gray rectangle 34 by 90, 20 px right of Ram1
+@c1 command action=create shape=rectangle color=gray width=34 height=90 name=Ram2 position=rightOf anchor=Ram1 distance=20
+
+## turn 6
+# input: gold traces from Cpu to Ram1 and Ram2, plain lines
+@c1 command action=connect from=Cpu to=Ram1,Ram2 arrow=none color=gold
+
+## turn 7
+# input: Crystal: small gray oval 20 px above Cpu, named Xtal
+@c1 command action=create shape=ellipse size=small color=gray name=Xtal position=above anchor=Cpu distance=20
+
+## turn 8
+# input: four tiny red circles in a row 30 px above Xtal, those are the LEDs
+@c1 command action=create count=4 shape=circle size=tiny color=red layout=row position=above anchor=Xtal distance=30
+
+## turn 9
+# input: link the LEDs one after the other with gold lines
+#! resolved: "the LEDs" -> every tiny red circle: the four of the previous message (the canvas was cleared at the start)
+@m1 mention quantifier=all shape=circle size=tiny color=red
+@c1 command action=connect from=$m1 pairing=chain arrow=none color=gold
+
+## turn 10
+# input: 3 small brown rectangles in a column left of Cpu for the resistors
+@c1 command action=create count=3 shape=rectangle size=small color=brown layout=column position=leftOf anchor=Cpu
+
+## turn 11
+# input: rename rectangle1 to R1
+#! note: rectangle1 is the name the engine gave a resistor, as the message writes it
+@c1 command action=rename target=rectangle1 name=R1
+
+## turn 12
+# input: rectangle2 becomes R2
+@c1 command action=rename target=rectangle2 name=R2
+
+## turn 13
+# input: and call rectangle3 R3
+@c1 command action=rename target=rectangle3 name=R3
+
+## turn 14
+# input: Is R2 left of Cpu?
+@q1 question ask=check target=R2 position=leftOf anchor=Cpu
+
+## turn 15
+# input: Battery: medium gold circle labeled 3V at 140,410, Battery.
+@c1 command action=create shape=circle size=medium color=gold label="3V" at=140,410 name=Battery
+
+## turn 16
+# input: a small blue hexagon C1 right of the battery, and C2, another small blue hexagon, right of C1
+@c1 command action=create shape=hexagon size=small color=blue name=C1 position=rightOf anchor=Battery
+@c2 command action=create shape=hexagon size=small color=blue name=C2 position=rightOf anchor=C1
+
+## turn 17
+# input: wire Battery to C1, C1 to C2 and C2 to Cpu with plain gold lines
+@c1 command action=connect from=Battery to=C1 arrow=none color=gold
+@c2 command action=connect from=C1 to=C2 arrow=none color=gold
+@c3 command action=connect from=C2 to=Cpu arrow=none color=gold
+
+## turn 18
+# input: six tiny gold squares in a column on the right side as the connector pins
+@c1 command action=create count=6 shape=square size=tiny color=gold layout=column position=right
+
+## turn 19
+# input: group the six pins as Header
+#! resolved: "the six pins" -> every tiny gold square: the six of the previous message
+@m1 mention quantifier=all shape=square size=tiny color=gold
+@c1 command action=group target=$m1 name=Header
+
+## turn 20
+# input: How many gold shapes are there on the board?
+@q1 question ask=count shape=any color=gold position=inside anchor=Board
+
+## turn 21
+# input: connect Cpu to square1 with a gold line
+@c1 command action=connect from=Cpu to=square1 arrow=none color=gold
+
+## turn 22
+# input: Which shapes are connected to Cpu?
+@q1 question ask=neighbors target=Cpu
+
+## turn 23
+# input: does a route exist from Battery to Ram2?
+@q1 question ask=path from=Battery to=Ram2
+
+## turn 24
+# input: make the resistors all the same size
+#! resolved: "the resistors" -> R1, R2, R3: the names messages 11-13 gave them
+@c1 command action=equalize property=size target=R1,R2,R3
+
+## turn 25
+# input: Put "MK-II CONTROLLER" in white at the bottom.
+@c1 command action=create shape=text label="MK-II CONTROLLER" color=white position=bottom
+
+## turn 26
+# input: make it bold, I mean large
+#! resolved: "it" -> the text "MK-II CONTROLLER" of the previous message
+@m1 mention shape=text label="MK-II CONTROLLER"
+@c1 command action=set target=$m1 size=large
+
+## turn 27
+# input: How many connections does Cpu have?
+@q1 question ask=degree target=Cpu
+
+## turn 28
+# input: Change Xtal to a diamond.
+@c1 command action=set target=Xtal shape=diamond
+
+## turn 29
+# input: hmm no, oval was fine. undo
+@c1 command action=undo
+
+## turn 30
+# input: paint the LEDs lime, they are green LEDs
+#! resolved: "the LEDs" -> every tiny red circle (the four LEDs)
+@m1 mention quantifier=all shape=circle size=tiny color=red
+@c1 command action=set target=$m1 color=lime
+
+## turn 31
+# input: raise Cpu above the traces and everything
+@c1 command action=toFront target=Cpu
+
+## turn 32
+# input: group Cpu, Ram1 and Ram2 as Core
+@c1 command action=group target=Cpu,Ram1,Ram2 name=Core
+
+## turn 33
+# input: move Core 20 px down
+@c1 command action=move target=Core direction=down distance=20
+
+## turn 34
+# input: Is Xtal above Cpu?
+@q1 question ask=check target=Xtal position=above anchor=Cpu
+
+## turn 35
+# input: dashed gold line from R3 to Battery
+@c1 command action=connect from=R3 to=Battery style=dashed arrow=none color=gold
+
+## turn 36
+# input: which shape is closest to Battery?
+@q1 question ask=nearest superlative=closest shape=any anchor=Battery
+
+## turn 37
+# input: the gold traces look too bright, make all the lines yellow
+@c1 command action=set kind=edge color=yellow
+
+## turn 38
+# input: Is square6 part of Header?
+@q1 question ask=groupOf target=square6
+
+## turn 39
+# input: What is the bottommost shape?
+@q1 question ask=extreme superlative=bottommost shape=any
+
+## turn 40
+# input: delete C2
+@c1 command action=delete target=C2
+
+## turn 41
+# input: oops, undo that
+@c1 command action=undo
+
+## turn 42
+# input: Tell me about Cpu.
+@q1 question ask=describe target=Cpu
+
+## turn 43
+# input: Okay the board is done.
+#! noop: a closing remark; nothing to draw or answer

@@ -1,0 +1,280 @@
+# SOP Lang of the scenario "Cartoon" (docs/js/scenarios.js, id cartoon), one block per message.
+# Generation model: Claude Opus 5.5 (claude-opus-5-5), 2026-11-04. Format and rules: ../CONVENTIONS.md.
+
+## turn 1
+# input: Add a title "Sunny Meadow" at 400, 48.
+@c1 command action=create shape=text label="Sunny Meadow" at=400,48
+
+## turn 2
+# input: Add a huge gold star named Rays at 728, 88. Add a large yellow circle named Sun at 728, 88.
+@c1 command action=create shape=star size=huge color=gold name=Rays at=728,88
+@c2 command action=create shape=circle size=large color=yellow name=Sun at=728,88
+
+## turn 3
+# input: Add a white circle named Puff at 196, 68. Add a small white circle called Puff3 at 230, 86. Add a small white circle named Puff2 at 162, 86.
+@c1 command action=create shape=circle color=white name=Puff at=196,68
+@c2 command action=create shape=circle size=small color=white name=Puff3 at=230,86
+@c3 command action=create shape=circle size=small color=white name=Puff2 at=162,86
+
+## turn 4
+# input: Place a medium white ellipse named Cloud at 198, 98.
+@c1 command action=create shape=ellipse size=medium color=white name=Cloud at=198,98
+
+## turn 5
+# input: Add a white circle named Puff4 at 600, 62. Add a small white circle called Puff5 at 566, 80.
+@c1 command action=create shape=circle color=white name=Puff4 at=600,62
+@c2 command action=create shape=circle size=small color=white name=Puff5 at=566,80
+
+## turn 6
+# input: Add a small white circle named Puff6 at 634, 80.
+@c1 command action=create shape=circle size=small color=white name=Puff6 at=634,80
+
+## turn 7
+# input: Place a medium white ellipse named Cloud2 at 602, 92.
+@c1 command action=create shape=ellipse size=medium color=white name=Cloud2 at=602,92
+
+## turn 8
+# input: Add a huge lime ellipse named Hill at 110, 433. Add a huge lime ellipse named Hill2 at 262, 433.
+@c1 command action=create shape=ellipse size=huge color=lime name=Hill at=110,433
+@c2 command action=create shape=ellipse size=huge color=lime name=Hill2 at=262,433
+
+## turn 9
+# input: Add a large lime ellipse named Hill3 at 410, 446. Add a huge lime ellipse named Hill4 at 560, 431.
+@c1 command action=create shape=ellipse size=large color=lime name=Hill3 at=410,446
+@c2 command action=create shape=ellipse size=huge color=lime name=Hill4 at=560,431
+
+## turn 10
+# input: Place a medium brown square named Trunk at 98, 342.
+@c1 command action=create shape=square size=medium color=brown name=Trunk at=98,342
+
+## turn 11
+# input: Add a huge green circle named Leaves at 96, 253.
+@c1 command action=create shape=circle size=huge color=green name=Leaves at=96,253
+
+## turn 12
+# input: Add a tiny red circle named Apple at 70, 272. Add a tiny red circle named Apple2 at 122, 288.
+@c1 command action=create shape=circle size=tiny color=red name=Apple at=70,272
+@c2 command action=create shape=circle size=tiny color=red name=Apple2 at=122,288
+
+## turn 13
+# input: Add a small gold circle named MonkeyEar at 52, 132. Add a small gold circle named MonkeyEar2 at 140, 132.
+@c1 command action=create shape=circle size=small color=gold name=MonkeyEar at=52,132
+@c2 command action=create shape=circle size=small color=gold name=MonkeyEar2 at=140,132
+
+## turn 14
+# input: Add a brown ellipse named MonkeyBody at 98, 196.
+@c1 command action=create shape=ellipse color=brown name=MonkeyBody at=98,196
+
+## turn 15
+# input: Add a large brown circle named MonkeyHead at 96, 136.
+@c1 command action=create shape=circle size=large color=brown name=MonkeyHead at=96,136
+
+## turn 16
+# input: Add a small gold ellipse named Face at 96, 152.
+@c1 command action=create shape=ellipse size=small color=gold name=Face at=96,152
+
+## turn 17
+# input: Add a tiny black circle named MonkeyEye at 80, 124. Add a tiny black circle named MonkeyEye2 at 112, 124.
+@c1 command action=create shape=circle size=tiny color=black name=MonkeyEye at=80,124
+@c2 command action=create shape=circle size=tiny color=black name=MonkeyEye2 at=112,124
+
+## turn 18
+# input: Add a tiny brown circle named MonkeyHand at 178, 182. Add a tiny brown circle named Tail at 22, 210.
+@c1 command action=create shape=circle size=tiny color=brown name=MonkeyHand at=178,182
+@c2 command action=create shape=circle size=tiny color=brown name=Tail at=22,210
+
+## turn 19
+# input: Connect MonkeyBody to MonkeyHand with a line. Connect MonkeyBody to Tail with a line.
+@c1 command action=connect from=MonkeyBody to=MonkeyHand arrow=none
+@c2 command action=connect from=MonkeyBody to=Tail arrow=none
+
+## turn 20
+# input: Add a large gray square named RoboHead at 250, 220.
+@c1 command action=create shape=square size=large color=gray name=RoboHead at=250,220
+
+## turn 21
+# input: Add a tiny red circle named Bulb at 250, 160.
+@c1 command action=create shape=circle size=tiny color=red name=Bulb at=250,160
+
+## turn 22
+# input: Add a tiny cyan circle named RoboEye at 230, 210. Add a tiny cyan circle named RoboEye2 at 270, 210.
+@c1 command action=create shape=circle size=tiny color=cyan name=RoboEye at=230,210
+@c2 command action=create shape=circle size=tiny color=cyan name=RoboEye2 at=270,210
+
+## turn 23
+# input: Add a tiny black rectangle named Mouth at 250, 244.
+@c1 command action=create shape=rectangle size=tiny color=black name=Mouth at=250,244
+
+## turn 24
+# input: Add a large blue square named RoboBody at 250, 315.
+@c1 command action=create shape=square size=large color=blue name=RoboBody at=250,315
+
+## turn 25
+# input: Add a small gold star named Badge at 250, 314.
+@c1 command action=create shape=star size=small color=gold name=Badge at=250,314
+
+## turn 26
+# input: Add a small gray square named RoboLeg at 230, 382. Add a small gray square named RoboLeg2 at 274, 382.
+@c1 command action=create shape=square size=small color=gray name=RoboLeg at=230,382
+@c2 command action=create shape=square size=small color=gray name=RoboLeg2 at=274,382
+
+## turn 27
+# input: Add a tiny gray circle named RoboHand at 178, 262. Add a tiny gray circle named RoboHand2 at 330, 332.
+@c1 command action=create shape=circle size=tiny color=gray name=RoboHand at=178,262
+@c2 command action=create shape=circle size=tiny color=gray name=RoboHand2 at=330,332
+
+## turn 28
+# input: Connect RoboBody to RoboHand with a line. Connect RoboBody to RoboHand2 with a line.
+@c1 command action=connect from=RoboBody to=RoboHand arrow=none
+@c2 command action=connect from=RoboBody to=RoboHand2 arrow=none
+
+## turn 29
+# input: Add a brown ellipse named Hair at 410, 197.
+@c1 command action=create shape=ellipse color=brown name=Hair at=410,197
+
+## turn 30
+# input: Add a large pink circle named Head at 410, 234.
+@c1 command action=create shape=circle size=large color=pink name=Head at=410,234
+
+## turn 31
+# input: Add a tiny black circle at 393, 232 named Eye. Add a tiny black circle named Eye2 at 427, 232.
+@c1 command action=create shape=circle size=tiny color=black name=Eye at=393,232
+@c2 command action=create shape=circle size=tiny color=black name=Eye2 at=427,232
+
+## turn 32
+# input: Add a large purple triangle named Dress at 410, 324.
+@c1 command action=create shape=triangle size=large color=purple name=Dress at=410,324
+
+## turn 33
+# input: Add a tiny pink circle named Hand at 352, 328. Draw a tiny pink circle named Hand2 at 502, 260.
+@c1 command action=create shape=circle size=tiny color=pink name=Hand at=352,328
+@c2 command action=create shape=circle size=tiny color=pink name=Hand2 at=502,260
+
+## turn 34
+# input: Connect Dress to Hand with a line. Connect Dress to Hand2 with a line.
+@c1 command action=connect from=Dress to=Hand arrow=none
+@c2 command action=connect from=Dress to=Hand2 arrow=none
+
+## turn 35
+# input: Add a tiny black ellipse named Shoe at 392, 396. Add a tiny black ellipse named Shoe2 at 430, 396.
+@c1 command action=create shape=ellipse size=tiny color=black name=Shoe at=392,396
+@c2 command action=create shape=ellipse size=tiny color=black name=Shoe2 at=430,396
+
+## turn 36
+# input: Connect Dress to Shoe with a line. Connect Dress to Shoe2 with a line.
+@c1 command action=connect from=Dress to=Shoe arrow=none
+@c2 command action=connect from=Dress to=Shoe2 arrow=none
+
+## turn 37
+# input: Add a white diamond named BunnyEar at 540, 180. Add a white diamond named BunnyEar2 at 580, 180.
+@c1 command action=create shape=diamond color=white name=BunnyEar at=540,180
+@c2 command action=create shape=diamond color=white name=BunnyEar2 at=580,180
+
+## turn 38
+# input: Put a small pink diamond at 540, 184 named InnerEar.
+@c1 command action=create shape=diamond size=small color=pink name=InnerEar at=540,184
+
+## turn 39
+# input: Add a small pink diamond named InnerEar2 at 580, 184.
+@c1 command action=create shape=diamond size=small color=pink name=InnerEar2 at=580,184
+
+## turn 40
+# input: Add a large white circle named BunnyHead at 560, 245.
+@c1 command action=create shape=circle size=large color=white name=BunnyHead at=560,245
+
+## turn 41
+# input: Add a tiny black circle named BunnyEye at 545, 238. Add a tiny black circle named BunnyEye2 at 579, 238.
+@c1 command action=create shape=circle size=tiny color=black name=BunnyEye at=545,238
+@c2 command action=create shape=circle size=tiny color=black name=BunnyEye2 at=579,238
+
+## turn 42
+# input: Add a tiny pink circle named Nose at 560, 272.
+@c1 command action=create shape=circle size=tiny color=pink name=Nose at=560,272
+
+## turn 43
+# input: Add a large white ellipse named BunnyBody at 560, 330.
+@c1 command action=create shape=ellipse size=large color=white name=BunnyBody at=560,330
+
+## turn 44
+# input: Add a small pink circle named Belly at 560, 334.
+@c1 command action=create shape=circle size=small color=pink name=Belly at=560,334
+
+## turn 45
+# input: Add a tiny white ellipse named Foot at 530, 378. Add a tiny white ellipse named Foot2 at 592, 378.
+@c1 command action=create shape=ellipse size=tiny color=white name=Foot at=530,378
+@c2 command action=create shape=ellipse size=tiny color=white name=Foot2 at=592,378
+
+## turn 46
+# input: Add a tiny purple circle named HippoEar at 670, 294. Add a tiny purple circle named HippoEar2 at 738, 294.
+@c1 command action=create shape=circle size=tiny color=purple name=HippoEar at=670,294
+@c2 command action=create shape=circle size=tiny color=purple name=HippoEar2 at=738,294
+
+## turn 47
+# input: Add a large purple circle named HippoHead at 704, 330.
+@c1 command action=create shape=circle size=large color=purple name=HippoHead at=704,330
+
+## turn 48
+# input: Add a tiny black circle named HippoEye at 688, 316. Add a tiny black circle named HippoEye2 at 720, 316.
+@c1 command action=create shape=circle size=tiny color=black name=HippoEye at=688,316
+@c2 command action=create shape=circle size=tiny color=black name=HippoEye2 at=720,316
+
+## turn 49
+# input: Add a pink ellipse named Snout at 704, 366.
+@c1 command action=create shape=ellipse color=pink name=Snout at=704,366
+
+## turn 50
+# input: Add a tiny purple circle named Nostril at 690, 358. Add a tiny purple circle named Nostril2 at 718, 358.
+@c1 command action=create shape=circle size=tiny color=purple name=Nostril at=690,358
+@c2 command action=create shape=circle size=tiny color=purple name=Nostril2 at=718,358
+
+## turn 51
+# input: Add a huge cyan ellipse named Pond at 704, 431.
+@c1 command action=create shape=ellipse size=huge color=cyan name=Pond at=704,431
+
+## turn 52
+# input: Add a pink star named Flower at 175, 445. Add a tiny yellow circle named Bud at 175, 447.
+@c1 command action=create shape=star color=pink name=Flower at=175,445
+@c2 command action=create shape=circle size=tiny color=yellow name=Bud at=175,447
+
+## turn 53
+# input: Add a purple star named Flower2 at 330, 455. Add a tiny yellow circle named Bud2 at 330, 457.
+@c1 command action=create shape=star color=purple name=Flower2 at=330,455
+@c2 command action=create shape=circle size=tiny color=yellow name=Bud2 at=330,457
+
+## turn 54
+# input: Add an orange star named Flower3 at 488, 450. Add a tiny yellow circle named Bud3 at 488, 452.
+@c1 command action=create shape=star color=orange name=Flower3 at=488,450
+@c2 command action=create shape=circle size=tiny color=yellow name=Bud3 at=488,452
+
+## turn 55
+# input: Add a large white ellipse named Bubble at 470, 128. Label Bubble "Hello, friends!".
+@c1 command action=create shape=ellipse size=large color=white name=Bubble at=470,128
+@c2 command action=label target=Bubble label="Hello, friends!"
+
+## turn 56
+# input: Add a tiny white circle named Dot at 472, 188.
+@c1 command action=create shape=circle size=tiny color=white name=Dot at=472,188
+
+## turn 57
+# input: Group Bulb, RoboHead, RoboEye, RoboEye2, Mouth, RoboBody, Badge, RoboLeg, RoboLeg2, RoboHand and RoboHand2 as Robot.
+@c1 command action=group target=Bulb,RoboHead,RoboEye,RoboEye2,Mouth,RoboBody,Badge,RoboLeg,RoboLeg2,RoboHand,RoboHand2 name=Robot
+
+## turn 58
+# input: Group MonkeyEar, MonkeyEar2, MonkeyBody, MonkeyHead, Face, MonkeyEye, MonkeyEye2, MonkeyHand and Tail as Monkey.
+@c1 command action=group target=MonkeyEar,MonkeyEar2,MonkeyBody,MonkeyHead,Face,MonkeyEye,MonkeyEye2,MonkeyHand,Tail name=Monkey
+
+## turn 59
+# input: Bundle Hair, Head, Eye, Eye2, Dress, Hand, Hand2, Shoe and Shoe2 as Kid.
+@c1 command action=group target=Hair,Head,Eye,Eye2,Dress,Hand,Hand2,Shoe,Shoe2 name=Kid
+
+## turn 60
+# input: Bundle BunnyEar, BunnyEar2, InnerEar, InnerEar2, BunnyHead, BunnyEye, BunnyEye2, Nose, BunnyBody, Belly, Foot and Foot2 together as Bunny.
+@c1 command action=group target=BunnyEar,BunnyEar2,InnerEar,InnerEar2,BunnyHead,BunnyEye,BunnyEye2,Nose,BunnyBody,Belly,Foot,Foot2 name=Bunny
+
+## turn 61
+# input: Bundle HippoEar, HippoEar2, HippoHead, HippoEye, HippoEye2, Snout, Nostril and Nostril2 as Hippo.
+@c1 command action=group target=HippoEar,HippoEar2,HippoHead,HippoEye,HippoEye2,Snout,Nostril,Nostril2 name=Hippo
+
+## turn 62
+# input: Bundle Trunk, Leaves, Apple and Apple2 as Tree.
+@c1 command action=group target=Trunk,Leaves,Apple,Apple2 name=Tree
