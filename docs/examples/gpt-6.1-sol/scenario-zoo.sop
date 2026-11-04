@@ -1,0 +1,18 @@
+# Saved executable SOP Lang: Shape zoo
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=circle color=red name=ZooCircle
+@w1 command action=create shape=square color=orange name=ZooSquare
+@w2 command action=create shape=rectangle color=yellow name=ZooRectangle
+@w3 command action=create shape=triangle color=green name=ZooTriangle
+@w4 command action=create shape=diamond color=teal name=ZooDiamond
+@w5 command action=create shape=ellipse color=blue name=ZooEllipse
+@w6 command action=create shape=hexagon color=purple name=ZooHexagon
+@w7 command action=create shape=star color=pink name=ZooStar
+
+# turn-1
+@w0 command action=arrange layout=row
+
+# turn-2
+@w0 question ask=count

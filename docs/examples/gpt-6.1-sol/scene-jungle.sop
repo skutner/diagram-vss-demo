@@ -1,0 +1,140 @@
+# Saved executable SOP Lang: Jungle Race board game
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=green fill=light width=780 height=480 position=center layer=background name=Jungle
+
+# turn-2
+@w0 command action=create shape=square count=9 size=medium color=white layout=grid position=center name=square
+@w1 command action=rename target=square name=square1
+
+# turn-3
+@w0 command action=label target=square1 label="1"
+
+# turn-4
+@w0 command action=label target=square2 label="2"
+@w1 command action=label target=square3 label="3"
+
+# turn-5
+@w0 command action=label target=square4 label="4"
+@w1 command action=label target=square5 label="5"
+@w2 command action=label target=square6 label="6"
+
+# turn-6
+@w0 command action=label target=square7 label="7"
+@w1 command action=label target=square8 label="8"
+@w2 command action=label target=square9 label="9"
+
+# turn-7
+@w0 command action=set target=square9 color=gold
+
+# turn-8
+@w0 command action=set target=square1 color=lime
+
+# turn-9
+@w0 command action=connect from=square2 to=square7 color=green label="ladder"
+
+# turn-10
+@w0 command action=connect from=square8 to=square3 style=dashed color=red label="snake"
+
+# turn-11
+@w0 command action=create shape=circle size=small color=red name=RedPawn position=leftOf anchor=square4
+
+# turn-12
+@w0 command action=create shape=circle size=small color=blue name=BluePawn position=below anchor=RedPawn
+
+# turn-13
+@w0 command action=create shape=square color=white label="6" position=topRight name=Dice
+
+# turn-14
+@w0 command action=set target=Dice outline=black
+
+# turn-15
+@w0 command action=create shape=text label="Jungle Race" position=top size=large color=green name=Title
+
+# turn-16
+@w0 question ask=path from=square2 to=square7
+
+# turn-17
+@w0 question ask=count shape=square
+
+# turn-18
+@w0 command action=group target=square1,square2,square3,square4,square5,square6,square7,square8,square9 name=Board
+
+# turn-19
+@w0 command action=move target=Board direction=right distance=40
+
+# turn-20
+@w0 question ask=check target=RedPawn position=leftOf anchor=Board
+
+# turn-21
+@w0 command action=create shape=star size=small color=yellow position=between anchor=RedPawn,BluePawn name=Bonus
+
+# turn-22
+@w0 command action=set target=Bonus shape=hexagon
+
+# turn-23
+@w0 command action=swap target=RedPawn,BluePawn
+
+# turn-24
+@w0 command action=duplicate target=Dice name=Dice2
+
+# turn-25
+@w0 command action=label target=Dice2 label="3"
+
+# turn-26
+@w0 question ask=extreme superlative=topmost shape=any
+
+# turn-27
+@w0 command action=set from=square8 to=square3 style=dotted
+
+# turn-28
+@w0 command action=label from=square2 to=square7 label=""
+
+# turn-29
+@w0 question ask=property target=square9 property=color
+
+# turn-30
+@w0 command action=create shape=diamond size=tiny color=gold position=rightOf anchor=square6 distance=20 name=Gem
+
+# turn-31
+@w0 command action=connect from=Gem to=square6 arrow=none style=dotted
+
+# turn-32
+@w0 command action=equalize target=RedPawn,BluePawn anchor=Gem property=size
+
+# turn-33
+@w0 command action=undo
+
+# turn-34
+@w0 command action=create shape=rectangle color=gray fill=light layer=zone width=160 height=120 position=bottomLeft name=RulesBox
+
+# turn-35
+@w0 command action=create shape=text label="roll, move, climb!" position=above anchor=RulesBox size=small name=RulesCaption
+
+# turn-36
+@w0 command action=group target=RulesBox,RulesCaption name=Rules
+
+# turn-37
+@w0 question ask=list position=near anchor=Dice
+
+# turn-38
+# unsupported: There are two directed ladder/snake arrows and one plain Gem line. The interpreter count for kind=edge includes the plain line and cannot filter to directed arrows.
+
+# turn-39
+@w0 question ask=extreme superlative=rightmost shape=any
+
+# turn-40
+@w0 command action=delete target=Dice2
+
+# turn-41
+@w0 command action=toFront target=RedPawn,BluePawn
+
+# turn-42
+@w0 question ask=describe target=square1
+
+# turn-43
+# noop: Closing acknowledgment; no diagram request.

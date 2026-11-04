@@ -1,0 +1,153 @@
+# Saved executable SOP Lang: City street at night
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=navy fill=faint layer=background width=780 height=480 at=400,250 name=Night
+
+# turn-2
+@w0 command action=create shape=rectangle color=gray fill=light layer=zone width=780 height=110 at=400,430 name=Road
+
+# turn-3
+@w0 command action=label target=Road label="MAIN ST"
+
+# turn-4
+@w0 command action=create shape=rectangle color=indigo width=120 height=250 at=90,240 name=Tower1
+
+# turn-5
+@w0 command action=create shape=square count=4 size=tiny color=yellow layout=grid at=90,200 name=Window
+
+# turn-6
+@w0 command action=group target=Tower1,Window,Window2,Window3,Window4 name=Block1
+
+# turn-7
+@w0 command action=create shape=rectangle color=teal width=110 height=190 at=240,270 name=Tower2
+
+# turn-8
+@w0 command action=label target=Tower2 label="HOTEL"
+
+# turn-9
+@w0 question ask=check target=Tower2 comparison=smaller anchor=Tower1
+
+# turn-10
+@w0 command action=create shape=rectangle color=gray width=12 height=130 at=380,305 name=Pole
+
+# turn-11
+@w0 command action=create shape=circle size=small color=yellow at=380,220 name=Bulb
+
+# turn-12
+@w0 command action=group target=Bulb,Pole name=Lamp
+
+# turn-13
+@w0 command action=create shape=circle size=medium color=white position=topRight name=Moon
+
+# turn-14
+@w0 command action=create shape=star count=5 size=tiny color=white layout=row position=top name=Star
+
+# turn-15
+@w0 command action=set target=Star,Star2,Star3,Star4,Star5 color=gold
+
+# turn-16
+@w0 command action=create shape=rectangle color=black width=36 height=96 at=470,250 name=Signal
+
+# turn-17
+@w0 command action=create shape=circle size=tiny color=red at=470,220 name=RedLight
+
+# turn-18
+@w0 command action=create shape=circle size=tiny color=yellow at=470,250 name=AmberLight
+
+# turn-19
+@w0 command action=create shape=circle size=tiny color=green at=470,280 name=GreenLight
+
+# turn-20
+@w0 command action=group target=Signal,RedLight,AmberLight,GreenLight name=TrafficLight
+
+# turn-21
+@w0 command action=create shape=rectangle color=red width=140 height=50 at=580,405 name=CarBody
+
+# turn-22
+@w0 command action=create shape=circle size=tiny color=black name=Wheel1 at=540,435
+@w1 command action=create shape=circle size=tiny color=black name=Wheel2 at=620,435
+
+# turn-23
+@w0 command action=group target=CarBody,Wheel1,Wheel2 name=Car
+
+# turn-24
+@w0 command action=toFront target=Car
+
+# turn-25
+@w0 command action=move target=Car direction=left distance=60
+
+# turn-26
+@w0 question ask=property target=CarBody property=position
+
+# turn-27
+@w0 command action=create shape=rectangle color=gray width=10 height=100 at=720,320 name=StopPole
+
+# turn-28
+@w0 command action=create shape=hexagon size=small color=red label="STOP" at=720,255 name=StopSign
+
+# turn-29
+@w0 command action=group target=StopPole,StopSign name=BusStop
+
+# turn-30
+@w0 command action=create shape=circle size=small color=pink at=330,300 name=Head
+
+# turn-31
+@w0 command action=create shape=rectangle color=blue width=30 height=56 at=330,352 name=Torso
+
+# turn-32
+@w0 command action=group target=Head,Torso name=Walker
+
+# turn-33
+@w0 command action=connect from=Torso to=StopPole style=dotted
+
+# turn-34
+@w0 command action=label from=Torso to=StopPole label="to the bus"
+
+# turn-35
+@w0 question ask=count shape=circle
+
+# turn-36
+@w0 question ask=list color=gold
+
+# turn-37
+@w0 command action=resize target=Moon scale=0.8
+
+# turn-38
+@w0 question ask=check target=Moon position=rightOf anchor=Signal
+
+# turn-39
+@w0 command action=create shape=ellipse size=small color=gray name=Cloud position=near anchor=Moon
+
+# turn-40
+@w0 command action=delete target=Cloud
+
+# turn-41
+@w0 command action=duplicate target=Bulb name=BulbCopy
+
+# turn-42
+@w0 command action=move target=BulbCopy at=640,300
+
+# turn-43
+@w0 command action=create shape=rectangle color=gray width=12 height=100 at=640,372 name=Pole2
+
+# turn-44
+@w0 command action=create shape=text label="Night Shift" position=top color=white name=Title
+
+# turn-45
+@w0 command action=resize target=Title size=huge
+
+# turn-46
+@w0 command action=undo
+
+# turn-47
+@w0 question ask=path from=Torso to=StopPole
+
+# turn-48
+@w0 question ask=describe target=CarBody
+
+# turn-49
+# noop: Closing acknowledgment; no diagram request.

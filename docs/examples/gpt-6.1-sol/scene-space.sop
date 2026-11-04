@@ -1,0 +1,150 @@
+# Saved executable SOP Lang: Space station
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=navy width=780 height=480 at=400,250 layer=background name=Space
+
+# turn-2
+@w0 command action=create shape=hexagon size=large color=gray position=center name=Core
+
+# turn-3
+@w0 command action=label target=Core label="ORBITAL 7"
+
+# turn-4
+@w0 command action=create shape=rectangle color=blue width=120 height=40 position=leftOf anchor=Core name=PanelL
+
+# turn-5
+@w0 command action=create shape=rectangle color=blue width=120 height=40 position=rightOf anchor=Core name=PanelR
+
+# turn-6
+@w0 command action=connect from=PanelL,PanelR to=Core arrow=none
+
+# turn-7
+@w0 command action=set target=PanelL,PanelR color=cyan
+
+# turn-8
+@w0 command action=create shape=triangle size=small color=white position=above anchor=Core name=Dish
+
+# turn-9
+@w0 command action=create shape=square size=medium color=teal position=below anchor=Core name=Dock
+
+# turn-10
+@w0 command action=connect from=Dock to=Core arrow=none color=gray
+
+# turn-11
+@w0 command action=create shape=circle size=huge color=orange at=110,410 name=PlanetBall
+
+# turn-12
+@w0 command action=create shape=ellipse color=orange fill=none width=190 height=44 at=110,410 name=Ring
+
+# turn-13
+@w0 command action=toFront target=PlanetBall
+
+# turn-14
+@w0 command action=group target=PlanetBall,Ring name=Planet
+
+# turn-15
+@w0 question ask=check target=PlanetBall position=bottomLeft
+
+# turn-16
+@w0 command action=create shape=rectangle color=white width=40 height=90 at=120,150 name=Hull
+
+# turn-17
+@w0 command action=create shape=triangle size=small color=red at=120,82 name=Nose
+
+# turn-18
+@w0 command action=create shape=star size=tiny color=orange at=120,213 name=Flame
+
+# turn-19
+@w0 command action=group target=Hull,Nose,Flame name=Rocket
+
+# turn-20
+@w0 command action=connect from=Nose to=Dock style=dashed label="docking"
+
+# turn-21
+@w0 question ask=degree target=Core
+
+# turn-22
+@w0 question ask=neighbors target=Dock
+
+# turn-23
+@w0 command action=create shape=star count=6 size=tiny color=yellow layout=grid position=topRight name=Star
+
+# turn-24
+@w0 command action=create shape=star size=small color=white at=300,60 name=WhiteStar
+
+# turn-25
+@w0 command action=create shape=circle size=small color=gray name=Moon at=560,80
+
+# turn-26
+@w0 question ask=nearest anchor=Moon
+
+# turn-27
+@w0 command action=create shape=circle size=small color=white name=Helmet at=680,346
+
+# turn-28
+@w0 command action=create shape=rectangle color=white width=40 height=50 at=680,400 name=Suit
+
+# turn-29
+@w0 command action=group target=Helmet,Suit name=Astro
+
+# turn-30
+@w0 command action=connect from=Suit to=Dock style=dotted arrow=none
+
+# turn-31
+@w0 command action=set target=Helmet outline=cyan
+
+# turn-32
+@w0 command action=move target=Helmet,Suit direction=up distance=40
+
+# turn-33
+@w0 question ask=check target=Helmet position=above anchor=Suit
+
+# turn-34
+@w0 command action=swap target=PanelL,PanelR
+
+# turn-35
+@w0 question ask=property target=PanelR property=color
+
+# turn-36
+@w0 command action=create shape=text label="Day 214 in orbit" position=bottomRight name=Caption
+
+# turn-37
+@w0 command action=set target=Caption color=cyan size=small
+
+# turn-38
+@w0 command action=create shape=circle size=tiny color=red position=above anchor=Dish distance=20 name=BeaconDraft
+@w1 command action=move target=BeaconDraft direction=down distance=16
+
+# turn-39
+@w0 command action=rename target=BeaconDraft name=Beacon
+
+# turn-40
+@w0 command action=connect from=Beacon to=Dish arrow=none
+
+# turn-41
+@w0 question ask=count shape=star
+
+# turn-42
+@w0 command action=delete target=WhiteStar
+
+# turn-43
+@w0 question ask=extreme superlative=biggest shape=any
+
+# turn-44
+@w0 command action=label from=Nose to=Dock label=""
+
+# turn-45
+@w0 command action=set target=Dish shape=diamond
+
+# turn-46
+@w0 question ask=cycle
+
+# turn-47
+@w0 command action=undo
+
+# turn-48
+# noop: Closing acknowledgment; no diagram request.

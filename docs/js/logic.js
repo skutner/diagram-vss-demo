@@ -872,7 +872,7 @@ const shapesPlugin = {
   name: 'shapes', title: 'Shapes',
   description: 'Create, delete, move, restyle, rename, label, duplicate and swap shapes.',
   legend: {
-    action: { values: { create: ['draw', 'create', 'add', 'make', 'put', 'place', 'insert', 'sketch', 'build', 'spawn', 'throw', 'slap', 'pop', 'stick', 'plonk'], delete: ['delete', 'remove', 'erase', 'drop', 'clear', 'wipe', 'reset', 'get rid of', 'kill', 'trash', 'axe', 'ditch', 'zap', 'banish', 'nuke'], move: ['move', 'shift', 'drag', 'push', 'nudge', 'slide', 'reposition', 'relocate', 'scoot', 'shove', 'park', 'tuck'], set: ['set', 'change', 'turn', 'color', 'colour', 'paint', 'fill', 'give', 'recolor', 'recolour', 'transform', 'convert', 'reshape', 'morph'], resize: ['resize', 'grow', 'enlarge', 'shrink', 'scale'], rename: ['rename', 'call'], label: ['label', 'title', 'caption', 'write', 'inscribe', 'stamp', 'tag'], duplicate: ['duplicate', 'copy', 'clone', 'replicate', 'dupe'], swap: ['swap', 'exchange', 'trade', 'switch places', 'trade places'] } },
+    action: { values: { clear: [], create: ['draw', 'create', 'add', 'make', 'put', 'place', 'insert', 'sketch', 'build', 'spawn', 'throw', 'slap', 'pop', 'stick', 'plonk'], delete: ['delete', 'remove', 'erase', 'drop', 'clear', 'wipe', 'reset', 'get rid of', 'kill', 'trash', 'axe', 'ditch', 'zap', 'banish', 'nuke'], move: ['move', 'shift', 'drag', 'push', 'nudge', 'slide', 'reposition', 'relocate', 'scoot', 'shove', 'park', 'tuck'], set: ['set', 'change', 'turn', 'color', 'colour', 'paint', 'fill', 'give', 'recolor', 'recolour', 'transform', 'convert', 'reshape', 'morph'], resize: ['resize', 'grow', 'enlarge', 'shrink', 'scale'], rename: ['rename', 'call'], label: ['label', 'title', 'caption', 'write', 'inscribe', 'stamp', 'tag'], duplicate: ['duplicate', 'copy', 'clone', 'replicate', 'dupe'], swap: ['swap', 'exchange', 'trade', 'switch places', 'trade places'] } },
     shape: { ask: 'What kind of shape?', kind: 'enum', values: SHAPE_VALUES },
     color: { ask: 'What color is it?', kind: 'enum', values: COLOR_VALUES },
     outline: { ask: 'What color is its outline?', kind: 'enum', values: OUTLINE_VALUES },
@@ -892,6 +892,15 @@ const shapesPlugin = {
     layer: { ask: 'Is it a background, a zone that holds items, or an item?', kind: 'enum', values: { background: ['background', 'backdrop'], zone: ['zone', 'panel', 'container', 'area', 'lane', 'swimlane'], item: [] } }
   },
   handlers: [
+    // Executable saved examples need an idempotent clear, including panels and free text.
+    // Keep its legend entry before delete so the Rules' existing 'clear' cue stays targeted delete.
+    { type: 'command', when: { action: 'clear' }, run(a, ctx) {
+      const W = ctx.world;
+      for (const e of W.state.edges.slice()) ctx.emit({ op: 'unlink', id: e.id });
+      for (const g of (W.state.groups || []).slice()) ctx.emit({ op: 'ungroup', name: g.name });
+      for (const s of W.state.shapes.slice()) ctx.emit({ op: 'remove', name: s.name });
+      return { value: [], answer: 'The canvas is empty.' };
+    } },
     { type: 'command', when: { action: 'create', shape: 'text' }, run: createText },
     { type: 'command', when: { action: 'create' }, run(a0, ctx) {
       const W = ctx.world, notes = [];

@@ -1,0 +1,26 @@
+# Saved executable SOP Lang: Org chart
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=rectangle size=large color=navy name=CEO position=top label="CEO"
+
+# turn-1
+@w0 command action=create shape=rectangle color=teal name=CTO position=below anchor=CEO label="CTO"
+@w1 command action=create shape=rectangle color=teal name=CFO position=leftOf anchor=CTO label="CFO"
+@w2 command action=create shape=rectangle color=teal name=COO position=rightOf anchor=CTO label="COO"
+
+# turn-2
+@w0 command action=connect from=CEO to=CTO,CFO,COO arrow=none
+
+# turn-3
+@w0 command action=create shape=rectangle size=small color=gray name=Dev position=below anchor=CTO label="Dev"
+@w1 command action=create shape=rectangle size=small color=gray name=Ops position=rightOf anchor=Dev label="Ops"
+
+# turn-4
+@w0 command action=connect from=CTO to=Dev,Ops arrow=none
+
+# turn-5
+@w0 question ask=neighbors target=CTO
+
+# turn-6
+@w0 question ask=extreme superlative=mostConnected

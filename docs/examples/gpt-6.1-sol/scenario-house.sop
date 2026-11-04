@@ -1,0 +1,20 @@
+# Saved executable SOP Lang: Little house
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=square size=huge color=brown name=Walls at=400,300
+
+# turn-1
+@w0 command action=create shape=triangle size=huge color=red name=Roof at=400,182
+
+# turn-2
+@w0 command action=create shape=rectangle size=small color=navy name=Door at=400,337 label="door"
+@w1 command action=create shape=square size=tiny color=cyan name=Window at=365,280
+
+# turn-3
+@w0 command action=create shape=circle size=large color=yellow position=topRight name=Sunlight
+@w1 command action=create shape=ellipse color=white name=Cloud position=topLeft
+
+# turn-4
+@w0 command action=create shape=circle size=large color=green name=Tree at=190,300
+@w1 command action=create shape=rectangle size=small color=brown name=Trunk at=190,365

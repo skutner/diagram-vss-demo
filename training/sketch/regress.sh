@@ -60,7 +60,7 @@ for grp, label in (("templates", "short: templates*"), ("llm_short", "short: llm
     a = re.search(rf"^ALL {grp} vss gated \w+%?: precision ([\d.]+) · right ([\d.]+) · asked ([\d.]+) · unread ([\d.]+) · executed wrong ([\d.]+) · extras executed (\d+)", t, re.M)
     gated.append((label, a.groups() if a else None, int(rows[1 if grp == "templates" else 2][1]) if a and rows[1 if grp == "templates" else 2][1].isdigit() else None))
 lvl = gl.group(1) if gl else "?"; lvl = lvl + "%" if lvl.isdigit() else ("the cost-score threshold" if lvl == "cost" else lvl)
-print(f"VSS gated at {lvl} (t = {gl.group(2) if gl else "?"}, docs/model/confidence/vss.json: fitted on the fresh2 + short3 calibration part, out-of-fold; VSS alone, without the votes the demo adds when SOP-BERT is loaded): precision of execution / right / asked / unread (%) / executed wrong (%) + extras executed")
+print(f"VSS gated at {lvl} (t = {gl.group(2) if gl else '?' }, docs/model/confidence/vss.json: fitted on the fresh2 + short3 calibration part, out-of-fold; VSS alone, without the votes the demo adds when SOP-BERT is loaded): precision of execution / right / asked / unread (%) / executed wrong (%) + extras executed")
 for name, x, g in gated: print(f"{name:22s}       " + ("  -" if x is None else f"{x[0]:>5} / {x[1]:>4} / {x[2]:>4} / {x[3]:>4} / {x[4]:>3} +{x[5]}"))
 # the cost score (AGENTS.md 2026-11-02): (right - 10 x (executed wrong + extras executed)) per 100 requested actions; asked / not done = 0. At the gate above.
 print(f"cost score at the gate above ({lvl}) (right - 10 x (executed wrong + extras executed), per 100 requested actions; 0 = asks everything):")

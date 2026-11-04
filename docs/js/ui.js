@@ -13,15 +13,19 @@ const escH = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;
 // readers voting) was removed then: VSS-BERT measured better (test part cost score 34.8 against 31.8, confidently wrong 1.8% against 2.6%).
 // READERS is the order of the tabs, of the lines of a reply and of the details; READ_ORDER is the order in which they read a message
 // (VSS-BERT reuses the readings of VSS and SOP-BERT, so it reads last).
-const READERS = [['combined', 'VSS-BERT'], ['rules', 'Rules'], ['vss', 'VSS'], ['neural', 'SOP-BERT'], ['modernbert', 'ModernBERT'], ['qwen', 'Qwen3']].map(([id, label]) => Object.assign({ id, label, last: [], pending: null, held: [], focusCell: null, reads: 0, lastRead: null }, K.createSystem()));
+const READERS = [['combined', 'VSS-BERT'], ['rules', 'Rules'], ['vss', 'VSS'], ['neural', 'SOP-BERT'], ['modernbert', 'ModernBERT'], ['qwen', 'Qwen3'], ['saved', 'gpt-6.1-sol']].map(([id, label]) => Object.assign({ id, label, last: [], pending: null, held: [], focusCell: null, reads: 0, lastRead: null }, K.createSystem()));
 const RD = Object.fromEntries(READERS.map(r => [r.id, r]));
-const READ_ORDER = ['rules', 'vss', 'neural', 'combined', 'modernbert'].map(id => RD[id]);
+const READ_ORDER = ['rules', 'vss', 'neural', 'combined', 'modernbert', 'saved'].map(id => RD[id]);
 const sys = RD.rules, engine = sys.engine;          // the legend, plugins and SOP rendering are the same in every reader; the Rules system serves them
 let cur = RD.combined, world = cur.world;            // the active tab
 const neural = NeuralKit.create(RD.neural.engine, RD.neural.formalize);
 const modernbert = NeuralKit.create(RD.modernbert.engine, RD.modernbert.formalize, { activateCut: false, requireJoint: true });
 const modern = { state: 'checking', models: null, status: null, error: null, bytes: 0, ms: 0, progress: { L: 0, T: 0 }, fromCache: false, token: 0, conf: { spec: null, error: null, url: null } };
 let models = null, queue = Promise.resolve();
+const saved = SavedReaderKit.create({ K, rd: RD.saved, catalog: ExamplesKit.catalog,
+  readManifest: async () => { const r = await fetch('examples/gpt-6.1-sol/manifest.json', { cache: 'no-cache' }); if (!r.ok) throw new Error(`Saved manifest: HTTP ${r.status}`); return r.json(); },
+  readFile: async name => { const r = await fetch('examples/gpt-6.1-sol/' + name, { cache: 'no-cache' }); if (!r.ok) throw new Error(`Saved program: HTTP ${r.status}`); return r.text(); } });
+const savedLoad = saved.load().catch(e => { console.error(e); return null; });
 // the VSS formalizer reads through the composer (docs/model/micro/registry.json: 9 micro-worlds, CandidateRouter, event hint;
 // training/sketch/COMBINED.md).
 const VSS_OPTS = { composer: true };
@@ -970,7 +974,7 @@ const chatTabs = (() => { const ids = String(store.get(CHAT_KEY) || '').split(',
 function chatLines(parts) {
   const chosen = parts.filter(p => chatTabs.has(p.rd.id));
   if (chosen.some(p => !p.off)) return { lines: chosen, note: null };
-  const others = parts.filter(p => !chatTabs.has(p.rd.id) && !p.off);
+  const others = parts.filter(p => !chatTabs.has(p.rd.id) && !p.off && p.rd.id !== 'saved');
   if (!others.length) return { lines: chosen, note: null };
   return { lines: others, note: `${listing(chosen.map(p => p.rd.label))} ${chosen.length === 1 ? 'is' : 'are'} not ready yet, so here is what ${listing(others.map(p => p.rd.label))} made of it.` };
 }
@@ -991,9 +995,10 @@ function sysNote(text) { const d = document.createElement('div'); d.className = 
 function typing() { const d = document.createElement('div'); d.className = 'b bot'; d.innerHTML = '<div class="typing" aria-label="Thinking"><i></i><i></i><i></i></div>'; msgs.appendChild(d); scrollDown(); return d; }
 function setStatus(t) { $('#status').textContent = t; }
 const fmtMs = ms => ms < 10 ? ms.toFixed(1) + ' ms' : Math.round(ms) + ' ms';
-const isReady = rd => rd.id === 'rules' || (rd.id === 'qwen' ? qwenReady() : rd.id === 'modernbert' ? !!modern.models && modern.state === 'ready' : rd.id === 'vss' ? vssState === 'ready' : rd.id === 'neural' ? !!models && nState === 'ready' : isReady(RD.vss) && isReady(RD.neural));
+const isReady = rd => rd.id === 'rules' || rd.id === 'saved' || (rd.id === 'qwen' ? qwenReady() : rd.id === 'modernbert' ? !!modern.models && modern.state === 'ready' : rd.id === 'vss' ? vssState === 'ready' : rd.id === 'neural' ? !!models && nState === 'ready' : isReady(RD.vss) && isReady(RD.neural));
 /** what a reader that is not loaded says instead of an answer */
 function offText(rd) {
+  if (rd.id === 'saved') return saved.info().error ? 'saved translations unavailable: ' + saved.info().error : 'saved example translations; no live inference';
   if (rd.id === 'qwen') return { idle: 'not loaded (experimental: Load Qwen3 on its tab)', loading: 'still loading, did not read this', failed: 'not available (it failed or was stopped; see Qwen3 › Settings)' }[qwenState()] || 'not ready, did not read this';
   if (rd.id === 'modernbert') return { unpublished: 'not available (the trained ModernBERT model is not published yet)', failed: 'not available (loading failed; see ModernBERT › Settings)' }[modern.state] || 'still loading, did not read this';
   if (rd.id === 'combined') { const wait = [RD.vss, RD.neural].filter(x => !isReady(x)); return `waits for ${listing(wait.map(x => x.label))} (it combines the readings of VSS and SOP-BERT)`; }
@@ -1062,11 +1067,13 @@ async function run(text, sop, meta) {
   text = String(text).trim(); if (!text) return;
   // the spell checker runs before every reader (not on SOP and toolbar buttons): they all read the corrected text
   const typed = text, raw = !!sop || text.startsWith('@');
+  // Capture the immutable occurrence before spelling. Saved programs never use the corrected text to select a translation.
+  const savedSource = meta && meta.saved ? Object.assign({}, meta.saved) : null;
   let sp = null;
   if (!raw && spellEnabled) { const sc = await spellP; if (sc) { sp = sc.check(text, { names: canvasNames(cur) }); text = sp.text; } }
   meBubble(typed, sp, meta);
   const namesBefore = canvasNames(RD.combined);   // the drawing the chat speaks for, before the message (the collected entry's `names`)
-  const id = ++turnSeq, rec = { id, time: clock(), text, typed, spell: sp, spellOff: !raw && !spellEnabled, raw, sop: sop || text, button: !!sop, readers: {}, off: {}, ran: [] }; history.push(rec);
+  const id = ++turnSeq, rec = { id, time: clock(), text, typed, spell: sp, spellOff: !raw && !spellEnabled, raw, sop: sop || text, button: !!sop, savedSource, readers: {}, off: {}, ran: [] }; history.push(rec);
   if (rec.raw) { try { K.parse(rec.sop); } catch (e) { rec.error = e; botBubble({ text: e.message, err: true, turn: id, tag: 'SOP Lang' }); return; } }
   // the readers that read this message are fixed now: one that finishes loading meanwhile starts from the Rules drawing instead
   const live = READERS.filter(rd => isReady(rd) && rd.id !== 'qwen'), qwenLive = qwenReady();   // Qwen3 reads in its own queue (qwenRead)
@@ -1082,6 +1089,7 @@ async function run(text, sop, meta) {
   for (const rd of READ_ORDER) {
     if (!live.includes(rd)) { rec.off[rd.id] = offText(rd); plan.push({ rd, line: { off: rec.off[rd.id] } }); continue; }
     const pend = rd.pending; rd.pending = null;
+    if (rd.id === 'saved') { plan.push({ rd, ran: true, line: await savedPart(rd, rec) }); continue; }
     if (anyPick && !picks.get(rd)) { plan.push({ rd, ran: true, line: { text: 'No question was open here; nothing to choose.' } }); continue; }
     const pk = picks.get(rd) ? { pend, pick: picks.get(rd) } : null;
     plan.push({ rd, ran: true, pk, pend, line: await readPart(rd, text, rec, pk) });
@@ -1359,6 +1367,26 @@ function destructiveView(view, h) {
   if (d.action === 'delete' && d.shapes.length) view.edit = `delete ${d.shapes.join(', ')}`;
   view.canAnyway = view.canAnyway !== false;
 }
+/** Saved occurrences execute in the main queue, independently of other readers' clarification and confidence gates. */
+async function savedPart(rd, rec) {
+  let r;
+  try {
+    if (rec.raw && !rec.savedSource) {
+      saved.invalidate('direct SOP input');
+      r = { nodes: K.parse(rec.sop), notes: ['Direct SOP input; this was not generated by gpt-6.1-sol.'], saved: { status: 'direct-input', reason: 'Direct SOP input' } };
+      r.result = rd.engine.run(r.nodes);
+    } else {
+      await savedLoad;
+      const src = rec.savedSource;
+      r = await saved.execute(src, src ? src.original : rec.typed, rec.typed);
+    }
+  } catch (e) { saved.invalidate(); r = { nodes: [], notes: [], unavailable: true, saved: { status: 'unavailable', reason: e.message } }; }
+  rec.readers.saved = r; rd.reads++; rd.lastRead = { turn: rec.id, nodes: r.nodes };
+  if (r.unavailable) return { text: `Saved translation unavailable: ${r.saved.reason}`, err: true };
+  if (r.saved.status === 'unsupported') return { text: `Unsupported saved input: ${r.saved.reason}`, err: true };
+  if (r.saved.status === 'noop') return { text: `No executable request: ${r.saved.reason}` };
+  return { text: [r.result ? summarize(r.result) : 'Nothing changed.', r.saved.status === 'partial' ? `Partial translation: ${r.saved.reason}` : ''].filter(Boolean).join(' '), err: !!r.result && !r.result.ok };
+}
 /** one reader reads (formalizes) one message, nothing is executed yet: fills rec.readers[rd.id]; returns null, or the reply's line when it failed */
 async function readPart(rd, text, rec, pk) {
   const r = { nodes: [], notes: [], overrides: {} }; rec.readers[rd.id] = r;
@@ -1478,14 +1506,19 @@ function turnHTML(r) {
   return READERS.map(rd => {
     const x = r.readers[rd.id];
     if (!x) return `<section class="rdsec"><div class="minihead">${escH(rd.label)} <span>${escH(r.off[rd.id] || 'did not read this')}</span></div></section>`;
-    let h = `<div class="minihead">${escH(rd.label)} <span>${x.ms != null ? 'formalized in ' + fmtMs(x.ms) : r.raw ? 'SOP Lang, nothing to formalize' : 'your choice from the question'}${x.neural ? ` · ${x.neural.calls} model calls` : x.qwen ? ' · 1 model call' : ''}${x.cutBy ? ` · cut by: ${escH(cutLabel(x.cutBy))}` : ''}</span></div>`;
-    if (x.nodes && x.nodes.length) h += `<pre class="sop">${r.raw ? `<span class="cm"># ${r.button ? 'toolbar button, sent as SOP Lang' : 'typed as SOP Lang'}</span>\n` : ''}${x.nodes.map(hlNode).join('\n')}</pre>`;
+    const preExisting = x.saved?.provenance?.kind === 'pre-existing-sop' || (r.raw && r.savedSource);
+    const source = preExisting ? 'pre-existing SOP example' : r.button ? 'toolbar button, sent as SOP Lang' : 'direct SOP input';
+    const reading = x.saved ? x.saved.status === 'direct-input' ? 'direct SOP input, not generated' : preExisting ? 'saved playback · pre-existing SOP example · no live inference' : 'saved example playback · no live inference'
+      : x.ms != null ? 'formalized in ' + fmtMs(x.ms) : r.raw ? preExisting ? 'pre-existing SOP example, nothing to formalize' : 'SOP Lang, nothing to formalize' : 'your choice from the question';
+    let h = `<div class="minihead">${escH(rd.label)} <span>${reading}${x.neural ? ` · ${x.neural.calls} model calls` : x.qwen ? ' · 1 model call' : ''}${x.cutBy ? ` · cut by: ${escH(cutLabel(x.cutBy))}` : ''}</span></div>`;
+    if (x.nodes && x.nodes.length) h += `<pre class="sop">${r.raw ? `<span class="cm"># ${source}</span>\n` : ''}${x.nodes.map(hlNode).join('\n')}</pre>`;
     (x.notes || []).forEach(n => { h += `<div class="note">${escH(n)}</div>`; });
     if (x.gate) h += gateHTML(x, rd);
     if (x.vss) h += vssHTML(x.vss);
     if (x.neural) h += neuralHTML(x.neural);
     if (x.combined) h += combinedHTML(x.combined);
     if (x.qwen) { try { h += qwenHTML(x.qwen.qwen); } catch (e) { console.error(e); h += `<div class="errt">Qwen3’s evidence could not be shown: ${escH(e.message)}</div>`; } }   // x.qwen: the reading; .qwen: its evidence
+    if (x.saved) h += `<div class="note">Saved translation: ${escH(x.saved.status)}${x.saved.reason ? ' · ' + escH(x.saved.reason) : ''}</div><pre class="sop">${escH(JSON.stringify(x.saved, null, 2))}</pre>`;
     if (x.result) h += x.result.steps.map(stepHTML).join('');
     for (const a of x.anyway || []) h += `<div class="note">Done anyway: “${escH(a.src)}”</div><pre class="sop">${a.nodes.map(hlNode).join('\n')}</pre>` + a.result.steps.map(stepHTML).join('');
     const err = x.error && x.error.message !== 'No wires.' ? x.error : x.result && !x.result.ok ? x.result.error : null;
@@ -1640,26 +1673,12 @@ function renderSheet(focus) {
 }
 
 /* ---------------- examples ---------------- */
-const QUICK = [
-  'Draw a small pink star next to Done',
-  'Make the green circle bigger',
-  'Connect Done to Start with a dotted line',
-  'Is there a path from Start to Done?',
-  'What is connected to Check?',
-  'Add three tiny red circles in a row below Process',
-  'Which shape has the most connections?',
-  'From now on, circles are orange',
-  'Check is above Process',
-  'Rename Done to End',
-  'Arrange everything in a circle',
-  'Describe the diagram',
-  '@g1 command action=create shape=star color=gold name=Gem position=center'
-];
+const QUICK = ExamplesKit.QUICK;
 /** one scenario's card in the + menu (a scene marked test: llm_bench/scenes_test, shown here, never trained on) */
 const scCard = sc => `<article class="sc"><header><h4>${escH(sc.title)}${sc.test ? ' <span class="tst" title="A scene of the test set (training/sketch/llm_bench/scenes_test): shown in the demo, never trained on">test</span>' : ''}</h4><span class="len">${sc.size} · ${sc.turns.length} message${sc.turns.length === 1 ? '' : 's'}</span></header><p>${escH(sc.blurb)}</p><div class="row2"><button type="button" class="btn solid" data-sc="${sc.id}" data-how="play">Play</button><button type="button" class="btn" data-sc="${sc.id}" data-how="step">Step through</button><button type="button" class="btn" data-sc="${sc.id}" data-how="edit">Edit a copy</button></div></article>`;
 function renderExamples() {
   return `<h3 class="sub">Send one sentence</h3>
-  <div class="quick">${QUICK.map(q => `<button type="button" data-quick="${escH(q)}">${escH(q.startsWith('@') ? 'SOP Lang: ' + q : q)}</button>`).join('')}</div>
+  <div class="quick">${QUICK.map((q, i) => `<button type="button" data-quick="${escH(q)}" data-example="quick:${i}">${escH(q.startsWith('@') ? 'SOP Lang: ' + q : q)}</button>`).join('')}</div>
   <h3 class="sub">Play a scenario</h3>
   <p class="intro">A scenario is a script of messages. It is drawn in a new area next to what is already on the canvas; nothing is erased.</p>
   <div class="opts"><label for="sc-delay">Pause between messages</label><select id="sc-delay"><option value="0">none</option><option value="400" selected>0.4 s</option><option value="1000">1 s</option><option value="2000">2 s</option></select></div>
@@ -1672,10 +1691,21 @@ function renderExamples() {
   <textarea id="sc-text" rows="7" spellcheck="false" placeholder="# My diagram&#10;Draw a blue circle named Hub in the center.&#10;Add a red square named Node1 left of Hub and connect Hub to it.&#10;What is connected to Hub?"></textarea>
   <div class="row2" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px"><button type="button" class="btn solid" data-own="play">Play</button><button type="button" class="btn" data-own="step">Step through</button><label class="btn file">Load .txt<input type="file" id="sc-file" accept=".txt,.md,.sop,text/plain"></label><span class="status" id="sc-status"></span></div>`;
 }
-const player = { name: '', turns: [], i: 0, playing: false, stop: false, delay: 400 };
+const player = { name: '', turns: [], original: [], exampleId: null, token: 0, i: 0, playing: false, stop: false, busy: false, delay: 400 };
+function deactivatePlayer(busy = false) {
+  const token = player.token + 1;
+  Object.assign(player, { name: '', turns: [], original: [], exampleId: null, token, i: 0, playing: false, stop: true, busy });
+  renderPlayer();
+  return token;
+}
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const parseScript = txt => txt.split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('//'));
-function renamedForCanvas(turns) {
+function renamedForCanvas(turns, savedEntry) {
+  if (savedEntry) {
+    const occupied = READERS.flatMap(rd => rd.world.state.shapes.map(s => s.name).concat((rd.world.state.groups || []).map(g => g.name)));
+    const map = SavedReaderKit.allocate(savedEntry.names, occupied, SavedReaderKit.families(savedEntry));
+    return { map, turns: turns.map((t, i) => t.startsWith('@') ? SavedReaderKit.bindNodes(savedEntry.turns[i].nodes, map).map(K.serialize).join('\n') : SavedReaderKit.bindText(t, map)) };
+  }
   const declared = new Set(); turns.forEach(t => (t.match(/\b(?:named|called)\s+([A-Za-z_][\w-]*)/g) || []).forEach(m => declared.add(m.split(/\s+/).pop())));
   const map = {};
   const taken = n => READERS.some(rd => rd.world.find(n));
@@ -1690,47 +1720,66 @@ function renderPlayer() {
   bar.hidden = false;
   const done = player.i >= player.turns.length;
   bar.innerHTML = `<div class="pl-t"><b>${escH(player.name)}</b> · ${done ? 'finished' : `${player.i + 1} of ${player.turns.length}`}${done ? '' : `<span>Next: ${escH(player.turns[player.i])}</span>`}</div>
-    ${done ? '' : player.playing ? '<button type="button" class="pbtn ghost" data-pl="pause">Pause</button>' : '<button type="button" class="pbtn ghost" data-pl="play">Play</button><button type="button" class="pbtn" data-pl="next">Next</button>'}
-    <button type="button" class="ib" data-pl="close" aria-label="Close player"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>`;
+    ${done ? '' : player.playing ? `<button type="button" class="pbtn ghost" data-pl="pause" data-pl-token="${player.token}">Pause</button>` : `<button type="button" class="pbtn ghost" data-pl="play" data-pl-token="${player.token}">Play</button><button type="button" class="pbtn" data-pl="next" data-pl-token="${player.token}">Next</button>`}
+    <button type="button" class="ib" data-pl="close" data-pl-token="${player.token}" aria-label="Close player"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>`;
 }
-async function playRest() {
-  if (player.playing) return; player.playing = true; player.stop = false; renderPlayer();
-  while (player.i < player.turns.length && !player.stop) { const t = player.turns[player.i++]; renderPlayer(); await submit(t, undefined, { via: 'script' }); await sleep(player.delay); }
-  player.playing = false; renderPlayer();
+async function playRest(token = player.token) {
+  if (token !== player.token || player.playing || player.busy || !player.turns.length) return;
+  player.playing = true; player.stop = false; renderPlayer();
+  while (token === player.token && player.i < player.turns.length && !player.stop) { await nextPlayer(token); await sleep(player.delay); }
+  if (token === player.token) { player.playing = false; renderPlayer(); }
+}
+async function nextPlayer(token) {
+  if (token !== player.token || player.busy || player.i >= player.turns.length) return;
+  const i = player.i++, text = player.turns[i], original = player.original[i], exampleId = player.exampleId;
+  player.busy = true; renderPlayer();
+  const meta = { via: 'script' };
+  if (exampleId) meta.saved = { exampleId, turn: i, original, runToken: token };
+  await submit(text, undefined, meta);
+  if (token === player.token) { player.busy = false; renderPlayer(); }
 }
 /** play a script in a new area of every tab's drawing. opts.names: false hides the name tags (a scenario's names: false; see "Name tags"),
  *  otherwise the user's kept choice comes back. The view switches to the scenario's own area (the 'focus' view, fitted to what it draws, the
  *  zoom and pan reset), on desktop too, where the default view shows every area small; the view button still shows them all. */
 async function startScript(name, turns, how, opts) {
   if (!turns.length) return;
-  player.delay = +(($('#sc-delay') || {}).value || 400);
-  player.stop = true; await queue; player.playing = false;
+  const token = deactivatePlayer(true), delay = +(($('#sc-delay') || {}).value ?? 400);
   closeSheet();
-  const fixed = renamedForCanvas(turns);
+  const original = turns.slice(), exampleId = opts && opts.exampleId;
+  let fixed;
   const newArea = rd => {   // every reader's drawing gets the new area (Qwen3's in its queue, before the scenario's messages)
     const w = rd.world;
     if (w.state.shapes.length) { const before = w.snapshot(); w.newFrame(name); w.commit(before); }
     else { w.state.frame = { x: 0, y: 0 }; w.state.frames = [{ x: 0, y: 0, title: name }]; }
     rd.focusCell = Object.assign({}, w.state.frame);
   };
-  for (const rd of READERS) if (rd.id !== 'qwen') newArea(rd);
-  qwenJob(() => { newArea(RD.qwen); if (cur === RD.qwen) renderCanvas(); });
+  // New area, allocation and saved context capture are one queue operation. A replaced run cannot capture the replacement's context.
+  queue = queue.then(async () => {
+    await savedLoad; if (token !== player.token) return;
+    fixed = renamedForCanvas(original, exampleId && saved.entry(exampleId));
+    for (const rd of READERS) if (rd.id !== 'qwen') newArea(rd);
+    qwenJob(() => { newArea(RD.qwen); if (cur === RD.qwen) renderCanvas(); });
+    saved.invalidate();
+    if (exampleId) try { await saved.begin(exampleId, original, fixed.turns, fixed.map, token); } catch (e) { console.error(e); }
+  });
+  await queue; if (token !== player.token) return;
   setShowNames(opts && opts.names === false ? false : namesPref);
   view = 'focus'; zv.k = 1; zv.dx = 0; zv.dy = 0;
-  const ren = Object.entries(fixed.map).map(([a, b]) => `${a} → ${b}`);
+  const ren = Object.entries(fixed.map).filter(([a, b]) => a !== b).map(([a, b]) => `${a} → ${b}`);
   sysNote(`Scenario: ${name}` + (ren.length ? ` · renamed ${ren.join(', ')} to avoid clashes` : ''));
   renderCanvas();
-  Object.assign(player, { name, turns: fixed.turns, i: 0 });
+  Object.assign(player, { name, turns: fixed.turns, original, exampleId, delay, i: 0, busy: false });
   renderPlayer();
-  if (how === 'play') playRest();
+  if (how === 'play') playRest(token);
 }
 $('#player').addEventListener('click', async ev => {
   const b = ev.target.closest('[data-pl]'); if (!b) return;
-  const a = b.dataset.pl;
-  if (a === 'next' && player.i < player.turns.length && !player.playing) { const t = player.turns[player.i++]; renderPlayer(); await submit(t, undefined, { via: 'script' }); renderPlayer(); }
-  if (a === 'play') playRest();
+  const a = b.dataset.pl, token = +b.dataset.plToken;
+  if (token !== player.token) return;
+  if (a === 'next' && !player.playing) await nextPlayer(token);
+  if (a === 'play') playRest(token);
   if (a === 'pause') player.stop = true;
-  if (a === 'close') { player.stop = true; player.turns = []; renderPlayer(); }
+  if (a === 'close') { deactivatePlayer(); queue = queue.then(() => saved.invalidate()); }
 });
 
 /* ---------------- formalizers: rules, VSS, neural ---------------- */
@@ -1749,10 +1798,11 @@ function copyDrawing(src, dst) {
   dst.world.restore(src.world.state); dst.world.undoStack = c(src.world.undoStack); dst.world.redoStack = c(src.world.redoStack);
   dst.last = src.last.slice(); dst.focusCell = src.focusCell && Object.assign({}, src.focusCell); dst.pending = null; dst.held = [];
 }
-function adoptRules(rd) { queue = queue.then(() => { if (!rd.reads) { copyDrawing(RD.rules, rd); if (rd === cur) renderCanvas(); } updateTabs(); renderSopBar(); }); return queue; }
+function adoptRules(rd) { if (rd.id === 'saved') return queue; queue = queue.then(() => { if (!rd.reads) { copyDrawing(RD.rules, rd); if (rd === cur) renderCanvas(); } updateTabs(); renderSopBar(); }); return queue; }
 function alignDrawings() {
   queue = queue.then(() => {
-    const src = cur, to = READERS.filter(rd => rd !== src && isReady(rd) && rd.id !== 'qwen');   // Qwen3's drawing changes only in its own queue
+    if (cur.id === 'saved') return;
+    const src = cur, to = READERS.filter(rd => rd !== src && isReady(rd) && rd.id !== 'qwen' && rd.id !== 'saved');
     for (const rd of to) copyDrawing(src, rd);
     sysNote(`Drawings aligned: ${to.map(rd => rd.label).join(' and ') || 'no other reader'} now ${to.length > 1 ? 'have' : 'has'} the ${src.label} drawing and its undo history.`);
     renderCanvas(); updateTabs(); renderSopBar();
@@ -1797,7 +1847,7 @@ rtabs.addEventListener('keydown', ev => {
 /* the align tool: shown when another loaded reader's drawing differs from the one on screen; copies this drawing to them */
 function renderSopBar() {
   const b = $('#align-btn'); if (!b) return;
-  b.hidden = !READERS.filter(rd => rd.id !== 'qwen').some(differs);
+  b.hidden = cur.id === 'saved' || !READERS.filter(rd => rd.id !== 'qwen' && rd.id !== 'saved').some(differs);
   b.title = b.ariaLabel = `Copy this ${cur.label} drawing and its undo history to the other tabs`;
 }
 $('#align-btn').addEventListener('click', alignDrawings);
@@ -2120,6 +2170,7 @@ function readerFacts(rd) {
 }
 const sharedNote = `<p class="intro">SOP Lang (the commands every reader writes) and the engine’s capabilities are the same for every reader. Help explains both: <button type="button" class="btn" data-help="sop-lang">SOP Lang</button> <button type="button" class="btn" data-help="capabilities">Capabilities</button> <button type="button" class="btn" data-help="architecture">How it works inside</button></p>`;
 function renderReaderSettings(rd) {
+  if (rd.id === 'saved') return `<h3 class="sub">gpt-6.1-sol saved examples</h3><p class="intro">These are saved example translations generated by gpt-6.1-sol, not live inference. Use the unchanged built-in Examples buttons or player. Custom or edited scripts have no saved translation. Direct SOP input runs as your input. No model download or confidence gate is used.</p><p class="intro">Each example uses this tab’s own drawing and history. Global clear, defaults and questions use the current drawing; earlier drawings can change answers. Changing the drawing or history outside a running example makes its later saved turns unavailable. Partial and unsupported translations say why. Message details show the original and effective input, saved and bound SOP, provenance, repairs and engine results.</p><pre class="sop">${escH(JSON.stringify(saved.info(), null, 2))}</pre>${sharedNote}`;
   if (rd.id === 'qwen') {
     const S = qwen ? qwen.S : null, R = S && S.reader, i = S && S.info, ck = S && S.check;
     return `<h3 class="sub">Qwen3 reader (experimental)</h3>${readerFacts(rd)}<div id="qwen-box">${qwenBoxHTML()}</div>
@@ -2175,14 +2226,26 @@ function neuralGateSettingsHTML() {
   ${columnLevelsHTML('neural-gate', 'sop', neuralGate || 'cost', 'SOP-BERT uses its confidence without the votes (sop-bert.json)')}`;
 }
 sbody.addEventListener('click', async ev => {
-  const q = ev.target.closest('[data-quick]'); if (q) { closeSheet(); submit(q.dataset.quick, undefined, { via: 'example' }); return; }
+  const q = ev.target.closest('[data-quick]'); if (q) {
+    const exampleId = q.dataset.example, original = q.dataset.quick, token = deactivatePlayer(true);
+    closeSheet();
+    queue = queue.then(async () => {
+      await savedLoad; if (token !== player.token) return;
+      const entry = saved.entry(exampleId), fixed = renamedForCanvas([original], entry);
+      saved.invalidate();
+      try { await saved.begin(exampleId, [original], fixed.turns, fixed.map, token); } catch (e) { console.error(e); }
+      if (token !== player.token) return;
+      await run(fixed.turns[0], undefined, { via: 'example', saved: { exampleId, turn: 0, original, runToken: token } });
+      if (token === player.token) player.busy = false;
+    }).catch(e => { console.error(e); }); return;
+  }
   const op = ev.target.closest('[data-open]'); if (op) { openSheet('settings', op.dataset.open); return; }
   const hp = ev.target.closest('[data-help]'); if (hp) { openHelp(hp.dataset.help); return; }
   const b = ev.target.closest('[data-sc]');
   if (b) {
     const sc = SCENARIOS.find(x => x.id === b.dataset.sc);
     if (b.dataset.how === 'edit') { const t = $('#sc-text'); t.value = `# ${sc.title}\n` + sc.turns.join('\n'); t.focus(); t.scrollIntoView({ block: 'center' }); return; }
-    startScript(sc.title, sc.turns.slice(), b.dataset.how, { names: sc.names !== false }); return;
+    startScript(sc.title, sc.turns.slice(), b.dataset.how, { names: sc.names !== false, exampleId: `${sc.kind === 'scene' ? 'scene' : 'scenario'}:${sc.id}` }); return;
   }
   const o = ev.target.closest('[data-own]');
   if (o) { const v = $('#sc-text').value, turns = parseScript(v); if (!turns.length) { $('#sc-status').textContent = 'Write at least one line first.'; return; } startScript((v.match(/^\s*#\s*(.+)$/m) || [])[1] || 'Your script', turns, o.dataset.own); return; }
@@ -2362,6 +2425,12 @@ if (QWEN_URL) loadQwen();   // opt-in (see the Qwen3 block): the URL lists qwen
    not at all; area(id): the shapes of that tab's current area (its focus cell) and those whose body leaves the area's 800 x 500 canvas */
 window.SketchpadInfo = Object.freeze({
   turn: () => turnSeq, view: () => view, names: () => showNames,
+  saved: () => saved.info(),
+  world: id => RD[id] ? JSON.parse(JSON.stringify({ state: RD[id].world.snapshot(), undo: RD[id].world.undoStack, redo: RD[id].world.redoStack, last: RD[id].last, pending: RD[id].pending, held: RD[id].held, focusCell: RD[id].focusCell })) : null,
+  savedTurn(id) {
+    const rec = history.find(x => x.id === id), r = rec && rec.readers.saved;
+    return r ? JSON.parse(JSON.stringify({ evidence: r.saved, nodes: (r.nodes || []).map(K.serialize), notes: r.notes, unavailable: !!r.unavailable, steps: r.result ? r.result.steps.map(s => ({ wire: K.serialize(s.node), value: s.value, answer: s.answer, error: s.error && s.error.message, skipped: s.skipped, patches: s.patches })) : [] })) : null;
+  },
   /** Qwen3's part of one turn: its reply line, its wires (those executed and all it read), the gate and the evidence of the reading */
   qwenTurn(id) {
     const rec = history.find(x => x.id === id), r = rec && rec.readers.qwen; if (!rec) return null;

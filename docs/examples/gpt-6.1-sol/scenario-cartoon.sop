@@ -1,0 +1,221 @@
+# Saved executable SOP Lang: Cartoon
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=text name=MeadowTitle label="Sunny Meadow" at=400,48
+
+# turn-1
+@w0 command action=create shape=star size=huge color=gold name=Rays at=728,88
+@w1 command action=create shape=circle size=large color=yellow name=Sun at=728,88
+
+# turn-2
+@w0 command action=create shape=circle color=white name=Puff at=196,68
+@w1 command action=create shape=circle size=small color=white name=Puff3 at=230,86
+@w2 command action=create shape=circle size=small color=white name=Puff2 at=162,86
+
+# turn-3
+@w0 command action=create shape=ellipse size=medium color=white name=Cloud at=198,98
+
+# turn-4
+@w0 command action=create shape=circle color=white name=Puff4 at=600,62
+@w1 command action=create shape=circle size=small color=white name=Puff5 at=566,80
+
+# turn-5
+@w0 command action=create shape=circle size=small color=white name=Puff6 at=634,80
+
+# turn-6
+@w0 command action=create shape=ellipse size=medium color=white name=Cloud2 at=602,92
+
+# turn-7
+@w0 command action=create shape=ellipse size=small color=lime name=Hill at=110,433
+@w1 command action=set target=Hill size=huge
+@w2 command action=create shape=ellipse size=small color=lime name=Hill2 at=262,433
+@w3 command action=set target=Hill2 size=huge
+
+# turn-8
+@w0 command action=create shape=ellipse size=large color=lime name=Hill3 at=410,446
+@w1 command action=create shape=ellipse size=huge color=lime name=Hill4 at=560,431
+
+# turn-9
+@w0 command action=create shape=square size=medium color=brown name=Trunk at=98,342
+
+# turn-10
+@w0 command action=create shape=circle size=huge color=green name=Leaves at=96,253
+
+# turn-11
+@w0 command action=create shape=circle size=tiny color=red name=Apple at=70,272
+@w1 command action=create shape=circle size=tiny color=red name=Apple2 at=122,288
+
+# turn-12
+@w0 command action=create shape=circle size=small color=gold name=MonkeyEar at=52,132
+@w1 command action=create shape=circle size=small color=gold name=MonkeyEar2 at=140,132
+
+# turn-13
+@w0 command action=create shape=ellipse color=brown name=MonkeyBody at=98,196
+
+# turn-14
+@w0 command action=create shape=circle size=large color=brown name=MonkeyHead at=96,136
+
+# turn-15
+@w0 command action=create shape=ellipse size=small color=gold name=Face at=96,152
+
+# turn-16
+@w0 command action=create shape=circle size=tiny color=black name=MonkeyEye at=80,124
+@w1 command action=create shape=circle size=tiny color=black name=MonkeyEye2 at=112,124
+
+# turn-17
+@w0 command action=create shape=circle size=tiny color=brown name=MonkeyHand at=178,182
+@w1 command action=create shape=circle size=tiny color=brown name=Tail width=10 height=10 at=22,210
+@w2 command action=set target=Tail size=tiny
+
+# turn-18
+@w0 command action=connect from=MonkeyBody to=MonkeyHand arrow=none
+@w1 command action=connect from=MonkeyBody to=Tail arrow=none
+
+# turn-19
+@w0 command action=create shape=square size=large color=gray name=RoboHead at=250,220
+
+# turn-20
+@w0 command action=create shape=circle size=tiny color=red name=Bulb at=250,160
+
+# turn-21
+@w0 command action=create shape=circle size=tiny color=cyan name=RoboEye at=230,210
+@w1 command action=create shape=circle size=tiny color=cyan name=RoboEye2 at=270,210
+
+# turn-22
+@w0 command action=create shape=rectangle size=tiny color=black name=Mouth at=250,244
+
+# turn-23
+@w0 command action=create shape=square size=large color=blue name=RoboBody at=250,315
+
+# turn-24
+@w0 command action=create shape=star size=small color=gold name=Badge at=250,314
+
+# turn-25
+@w0 command action=create shape=square size=small color=gray name=RoboLeg at=230,382
+@w1 command action=create shape=square size=small color=gray name=RoboLeg2 at=274,382
+
+# turn-26
+@w0 command action=create shape=circle size=tiny color=gray name=RoboHand at=178,262
+@w1 command action=create shape=circle size=tiny color=gray name=RoboHand2 at=330,332
+
+# turn-27
+@w0 command action=connect from=RoboBody to=RoboHand arrow=none
+@w1 command action=connect from=RoboBody to=RoboHand2 arrow=none
+
+# turn-28
+@w0 command action=create shape=ellipse color=brown name=Hair at=410,197
+
+# turn-29
+@w0 command action=create shape=circle size=large color=pink name=Head at=410,234
+
+# turn-30
+@w0 command action=create shape=circle size=tiny color=black name=Eye at=393,232
+@w1 command action=create shape=circle size=tiny color=black name=Eye2 at=427,232
+
+# turn-31
+@w0 command action=create shape=triangle size=large color=purple name=Dress at=410,324
+
+# turn-32
+@w0 command action=create shape=circle size=tiny color=pink name=Hand at=352,328
+@w1 command action=create shape=circle size=tiny color=pink name=Hand2 at=502,260
+
+# turn-33
+@w0 command action=connect from=Dress to=Hand arrow=none
+@w1 command action=connect from=Dress to=Hand2 arrow=none
+
+# turn-34
+@w0 command action=create shape=ellipse size=tiny color=black name=Shoe at=392,396
+@w1 command action=create shape=ellipse size=tiny color=black name=Shoe2 at=430,396
+
+# turn-35
+@w0 command action=connect from=Dress to=Shoe arrow=none
+@w1 command action=connect from=Dress to=Shoe2 arrow=none
+
+# turn-36
+@w0 command action=create shape=diamond color=white name=BunnyEar at=540,180
+@w1 command action=create shape=diamond color=white name=BunnyEar2 at=580,180
+
+# turn-37
+@w0 command action=create shape=diamond size=small color=pink name=InnerEar at=540,184
+
+# turn-38
+@w0 command action=create shape=diamond size=small color=pink name=InnerEar2 at=580,184
+
+# turn-39
+@w0 command action=create shape=circle size=large color=white name=BunnyHead at=560,245
+
+# turn-40
+@w0 command action=create shape=circle size=tiny color=black name=BunnyEye at=545,238
+@w1 command action=create shape=circle size=tiny color=black name=BunnyEye2 at=579,238
+
+# turn-41
+@w0 command action=create shape=circle size=tiny color=pink name=Nose at=560,272
+
+# turn-42
+@w0 command action=create shape=ellipse size=large color=white name=BunnyBody at=560,330
+
+# turn-43
+@w0 command action=create shape=circle size=small color=pink name=Belly at=560,334
+
+# turn-44
+@w0 command action=create shape=ellipse size=tiny color=white name=Foot at=530,378
+@w1 command action=create shape=ellipse size=tiny color=white name=Foot2 at=592,378
+
+# turn-45
+@w0 command action=create shape=circle size=tiny color=purple name=HippoEar at=670,294
+@w1 command action=create shape=circle size=tiny color=purple name=HippoEar2 at=738,294
+
+# turn-46
+@w0 command action=create shape=circle size=large color=purple name=HippoHead at=704,330
+
+# turn-47
+@w0 command action=create shape=circle size=tiny color=black name=HippoEye at=688,316
+@w1 command action=create shape=circle size=tiny color=black name=HippoEye2 at=720,316
+
+# turn-48
+@w0 command action=create shape=ellipse color=pink name=Snout at=704,366
+
+# turn-49
+@w0 command action=create shape=circle size=tiny color=purple name=Nostril at=690,358
+@w1 command action=create shape=circle size=tiny color=purple name=Nostril2 at=718,358
+
+# turn-50
+@w0 command action=create shape=ellipse size=huge color=cyan name=Pond at=704,431
+
+# turn-51
+@w0 command action=create shape=star color=pink name=Flower at=175,445
+@w1 command action=create shape=circle size=tiny color=yellow name=Bud at=175,447
+
+# turn-52
+@w0 command action=create shape=star color=purple name=Flower2 at=330,455
+@w1 command action=create shape=circle size=tiny color=yellow name=Bud2 at=330,457
+
+# turn-53
+@w0 command action=create shape=star color=orange name=Flower3 at=488,450
+@w1 command action=create shape=circle size=tiny color=yellow name=Bud3 at=488,452
+
+# turn-54
+@w0 command action=create shape=ellipse size=large color=white name=Bubble at=470,128
+@w1 command action=label target=Bubble label="Hello, friends!"
+
+# turn-55
+@w0 command action=create shape=circle size=tiny color=white name=Dot at=472,188
+
+# turn-56
+@w0 command action=group target=Bulb,RoboHead,RoboEye,RoboEye2,Mouth,RoboBody,Badge,RoboLeg,RoboLeg2,RoboHand,RoboHand2 name=Robot
+
+# turn-57
+@w0 command action=group target=MonkeyEar,MonkeyEar2,MonkeyBody,MonkeyHead,Face,MonkeyEye,MonkeyEye2,MonkeyHand,Tail name=Monkey
+
+# turn-58
+@w0 command action=group target=Hair,Head,Eye,Eye2,Dress,Hand,Hand2,Shoe,Shoe2 name=Kid
+
+# turn-59
+@w0 command action=group target=BunnyEar,BunnyEar2,InnerEar,InnerEar2,BunnyHead,BunnyEye,BunnyEye2,Nose,BunnyBody,Belly,Foot,Foot2 name=Bunny
+
+# turn-60
+@w0 command action=group target=HippoEar,HippoEar2,HippoHead,HippoEye,HippoEye2,Snout,Nostril,Nostril2 name=Hippo
+
+# turn-61
+@w0 command action=group target=Trunk,Leaves,Apple,Apple2 name=Tree

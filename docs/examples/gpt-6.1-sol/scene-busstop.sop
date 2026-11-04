@@ -1,0 +1,74 @@
+# Saved executable SOP Lang: Bus stop
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=gray fill=faint width=780 height=480 at=400,250 layer=background name=Street
+
+# turn-2
+@a0 command action=create shape=rectangle color=black width=780 height=110 at=400,435 layer=zone name=Road
+
+# turn-3
+@a0 command action=create shape=rectangle color=blue width=200 height=70 at=300,330 name=Bus
+
+# turn-4
+@a0 command action=create shape=circle color=black size=tiny at=240,372 name=Wheel1
+@a1 command action=create shape=circle color=black size=tiny at=360,372 name=Wheel2
+
+# turn-5
+@a0 command action=group target=Bus,Wheel1,Wheel2 name=Coach
+
+# turn-6
+@a0 command action=create shape=circle color=red size=small at=520,240 name=Sign
+
+# turn-7
+@a0 command action=create shape=rectangle color=gray width=8 height=80 position=below anchor=Sign distance=2 name=Pole
+@a1 command action=move target=Pole direction=up distance=16
+
+# turn-8
+@a0 command action=group target=Sign,Pole name=Stop
+
+# turn-9
+@a0 command action=create count=3 shape=square color=yellow size=small layout=row position=above anchor=Bus name=BusWindow
+
+# turn-10
+@a0 question ask=count shape=square color=yellow
+
+# turn-11
+@a0 command action=create shape=ellipse color=white size=large position=topLeft name=Cloud
+
+# turn-12
+@a0 command action=create shape=ellipse color=white size=medium position=rightOf anchor=Cloud distance=30 name=Cloud2
+
+# turn-13
+@a0 command action=create shape=circle color=yellow size=medium position=topRight name=Sun
+
+# turn-14
+@a0 question ask=check target=Cloud2 position=leftOf anchor=Sun
+
+# turn-15
+@a0 command action=create shape=circle color=orange size=small at=640,270 name=Head
+
+# turn-16
+@a0 command action=create shape=rectangle color=orange width=20 height=50 position=below anchor=Head distance=2 name=Body
+@a1 command action=move target=Body direction=up distance=16
+
+# turn-17
+@a0 command action=group target=Head,Body name=Rider
+
+# turn-18
+@a0 command action=set target=Cloud2 color=gray
+
+# turn-19
+@a0 question ask=extreme superlative=topmost
+
+# turn-20
+@a0 command action=connect from=Head to=Sign style=dotted arrow=none
+
+# turn-21
+@a0 command action=create shape=text label="Route 7" position=above anchor=Coach size=small name=Title
+
+# turn-22
+# noop: Closing acknowledgement with no diagram request.

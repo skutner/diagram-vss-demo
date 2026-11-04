@@ -1,0 +1,131 @@
+# Saved executable SOP Lang: Winter village
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=navy width=780 height=480 position=center layer=background name=NightSky
+
+# turn-2
+@a0 command action=create shape=rectangle color=white width=780 height=140 position=bottom layer=zone name=Snow
+
+# turn-3
+@a0 command action=create shape=circle color=white size=medium position=topLeft name=Moon
+
+# turn-4
+@a0 command action=create shape=square color=red size=medium position=bottomLeft name=House1
+
+# turn-5
+@a0 command action=create shape=triangle color=brown size=medium position=above anchor=House1 distance=2 name=Roof1
+@a1 command action=move target=Roof1 direction=up distance=2
+
+# turn-6
+@a0 command action=create shape=square color=blue size=medium position=rightOf anchor=House1 distance=100 name=House2
+
+# turn-7
+@a0 command action=create shape=triangle color=brown size=medium position=above anchor=House2 distance=2 name=Roof2
+@a1 command action=move target=Roof2 direction=up distance=2
+
+# turn-8
+@a0 command action=create shape=square color=green size=medium position=rightOf anchor=House2 distance=100 name=House3
+
+# turn-9
+@a0 command action=create shape=triangle color=brown size=medium position=above anchor=House3 distance=2 name=Roof3
+@a1 command action=move target=Roof3 direction=up distance=2
+
+# turn-10
+@a0 command action=group target=House1,Roof1 name=Home1
+
+# turn-11
+@a0 command action=group target=House2,Roof2 name=Home2
+@a1 command action=group target=House3,Roof3 name=Home3
+
+# turn-12
+@a0 command action=create shape=circle color=white size=large at=640,410 name=Base
+
+# turn-13
+@a0 command action=create shape=circle color=white size=medium at=640,338 name=Belly
+
+# turn-14
+@a0 command action=create shape=circle color=white size=small at=640,288 name=Noggin
+
+# turn-15
+@a0 command action=create shape=triangle color=orange size=tiny at=662,288 name=Carrot
+
+# turn-16
+@a0 command action=group target=Base,Belly,Noggin,Carrot name=Snowman
+
+# turn-17
+@a0 command action=create shape=triangle color=green name=Pine1 position=rightOf anchor=Home3
+@a1 command action=create shape=triangle color=green name=Pine2 position=between anchor=Home1,Home2
+
+# turn-18
+@a0 command action=set target=Pine1,Pine2 size=large
+
+# turn-19
+@a0 command action=undo
+
+# turn-20
+@a0 command action=create count=8 shape=star color=white size=tiny layout=grid position=topRight name=Snowflake
+
+# turn-21
+@a0 question ask=count shape=star
+@a1 question ask=count shape=circle
+
+# turn-22
+@a0 command action=set target=Snowflake,Snowflake2,Snowflake3,Snowflake4,Snowflake5,Snowflake6,Snowflake7,Snowflake8 color=cyan
+
+# turn-23
+@a0 command action=create count=3 shape=circle color=gray size=tiny layout=column position=above anchor=Roof1 name=Smoke
+
+# turn-24
+@a0 command action=create shape=text label="Merry Winter" position=top color=gold size=large name=Title
+
+# turn-25
+@a0 question ask=check target=Base position=rightOf anchor=House3
+
+# turn-26
+@a0 question ask=groupOf target=Carrot
+
+# turn-27
+@a0 command action=create shape=rectangle color=brown size=small at=541,360 name=Sled
+
+# turn-28
+@a0 command action=connect from=Sled to=Base style=dotted arrow=none
+
+# turn-29
+# noop: The requested lights are cancelled within this turn by "no, never mind"; no shape should be created.
+
+# turn-30
+@a0 question ask=check target=Moon position=above anchor=Home1
+
+# turn-31
+@a0 command action=move target=Moon direction=right distance=20
+
+# turn-32
+@a0 question ask=nearest anchor=Moon
+
+# turn-33
+@a0 command action=set target=House2 color=purple
+
+# turn-34
+@a0 command action=toFront target=Snowman
+
+# turn-35
+@a0 question ask=property target=Roof3 property=color
+
+# turn-36
+@a0 command action=set target=Roof1,Roof2,Roof3 color=gray
+
+# turn-37
+@a0 command action=undo
+
+# turn-38
+@a0 question ask=count shape=square
+
+# turn-39
+@a0 question ask=describe target=Noggin
+
+# turn-40
+# noop: Closing acknowledgement with no diagram request.

@@ -1,0 +1,163 @@
+# Saved executable SOP Lang: Farm
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=cyan fill=light width=780 height=222 at=400,135 name=Sky layer=background
+@w1 command action=set target=Sky width=780 height=250
+
+# turn-2
+@w0 command action=create shape=rectangle color=green fill=light layer=zone name=Grass width=780 height=230 at=400,375
+
+# turn-3
+@w0 command action=create shape=circle size=large color=gold position=topRight name=Sun
+
+# turn-4
+@w0 command action=create shape=square size=huge color=red at=170,330 name=Walls
+
+# turn-5
+@w0 command action=create shape=triangle size=huge color=brown at=170,204 name=Roof
+
+# turn-6
+@w0 command action=create shape=rectangle size=small color=navy at=170,362 name=Door
+
+# turn-7
+@w0 command action=label target=Roof label="BARN"
+
+# turn-8
+@w0 command action=group target=Walls,Roof,Door name=Barn
+
+# turn-9
+@w0 command action=create shape=rectangle color=gray width=50 height=150 name=Silo position=rightOf anchor=Barn
+
+# turn-10
+@w0 command action=create shape=circle color=gray size=small name=Dome position=above anchor=Silo distance=10
+@w1 command action=move target=Dome direction=down distance=16
+
+# turn-11
+@w0 question ask=count shape=rectangle
+
+# turn-12
+@w0 command action=create shape=ellipse size=large color=white outline=black at=480,370 name=Cow
+
+# turn-13
+@w0 command action=create shape=circle size=small color=white at=566,340 name=CowHead
+
+# turn-14
+@w0 command action=create shape=circle size=tiny color=black name=Spot1 at=455,355
+@w1 command action=create shape=circle size=tiny color=black name=Spot2 at=505,385
+
+# turn-15
+@w0 command action=group target=Cow,CowHead,Spot1,Spot2 name=Bessie
+
+# turn-16
+@w0 command action=move target=Bessie direction=left distance=30
+
+# turn-17
+@w0 command action=create shape=ellipse layer=zone color=blue fill=light name=Pond position=bottomRight width=170 height=70
+
+# turn-18
+@w0 command action=create shape=circle size=tiny color=yellow name=Duck at=690,425
+
+# turn-19
+@w0 command action=create shape=triangle size=tiny color=orange name=Beak at=712,422
+
+# turn-20
+@w0 command action=group target=Duck,Beak name=Ducky
+
+# turn-21
+@w0 command action=create shape=circle size=large color=green name=Leaves at=55,215
+
+# turn-22
+@w0 command action=create shape=rectangle size=small color=brown name=Trunk at=55,285
+
+# turn-23
+@w0 command action=group target=Leaves,Trunk name=TreeA
+
+# turn-24
+@w0 command action=create shape=ellipse color=white name=Cloud at=330,70
+
+# turn-25
+@w0 command action=duplicate target=Cloud name=CloudCopy
+
+# turn-26
+@w0 command action=set target=CloudCopy size=medium
+@w1 command action=move target=CloudCopy direction=up distance=15
+@w2 command action=set target=CloudCopy size=large
+
+# turn-27
+@w0 command action=rename target=CloudCopy name=Cloud2
+
+# turn-28
+@w0 command action=create shape=square size=tiny color=brown count=5 layout=row position=bottomLeft name=Fence
+
+# turn-29
+@w0 command action=connect from=Fence,Fence2,Fence3,Fence4,Fence5 pairing=chain arrow=none color=brown
+
+# turn-30
+@w0 question ask=property target=Roof property=color
+
+# turn-31
+@w0 command action=set target=Roof color=gray
+
+# turn-32
+@w0 command action=move target=Cloud2 at=660,95
+
+# turn-33
+@w0 command action=toFront target=Cloud2
+
+# turn-34
+@w0 question ask=check target=Sun position=rightOf anchor=Barn
+
+# turn-35
+@w0 command action=create shape=circle size=small color=white name=Hen position=below anchor=Silo
+
+# turn-36
+@w0 command action=create shape=triangle size=tiny color=orange name=HenBeak position=rightOf anchor=Hen distance=4
+
+# turn-37
+@w0 command action=group target=Hen,HenBeak name=Chick
+
+# turn-38
+@w0 command action=create shape=text label="Sunny Acres" position=top size=large color=green name=Title
+
+# turn-39
+@w0 command action=set target=Title color=navy
+
+# turn-40
+@w0 command action=create shape=star count=3 size=tiny color=gold layout=row position=above anchor=Silo name=LuckyStar
+
+# turn-41
+@w0 command action=delete target=LuckyStar,LuckyStar2,LuckyStar3
+
+# turn-42
+@w0 question ask=count kind=group
+
+# turn-43
+@w0 question ask=members target=Bessie
+
+# turn-44
+@w0 command action=create shape=hexagon size=small color=yellow name=Hay position=between anchor=Barn,Bessie
+
+# turn-45
+@w0 command action=resize target=Hay scale=1.2
+
+# turn-46
+@w0 question ask=check target=Hay shape=hexagon
+
+# turn-47
+@w0 command action=connect from=Hen to=Hay style=dashed color=brown
+
+# turn-48
+@w0 command action=label from=Hen to=Hay label="lunch"
+
+# turn-49
+@w0 question ask=extreme superlative=leftmost shape=any
+
+# turn-50
+@w0 question ask=path from=Hen to=Hay
+
+# turn-51
+# noop: Closing acknowledgment; no diagram request.

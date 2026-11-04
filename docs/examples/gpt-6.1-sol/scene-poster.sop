@@ -1,0 +1,133 @@
+# Saved executable SOP Lang: Concert poster
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=purple fill=solid width=780 height=480 position=center layer=background name=Poster
+
+# turn-2
+@w0 command action=create shape=text label="ECHO VALLEY" position=top size=huge color=white name=Headline
+
+# turn-3
+@w0 command action=create shape=text label="live at the Old Mill" position=below anchor=Headline size=large color=yellow name=Subtitle
+
+# turn-4
+@w0 command action=create shape=star size=huge color=gold position=center name=Burst
+
+# turn-5
+@w0 command action=label target=Burst label="SAT 14 NOV"
+
+# turn-6
+@w0 command action=create shape=rectangle color=black width=500 height=40 position=bottom name=Stage
+
+# turn-7
+@w0 command action=create shape=triangle count=3 size=small color=orange layout=row position=above anchor=Stage distance=10 name=Spotlight
+@w1 command action=move target=Spotlight,Spotlight2,Spotlight3 direction=down distance=16
+
+# turn-8
+@w0 command action=create shape=rectangle color=navy position=leftOf anchor=Burst name=SpeakerL
+@w1 command action=create shape=rectangle color=navy position=rightOf anchor=Burst name=SpeakerR
+
+# turn-9
+@w0 command action=set target=SpeakerL,SpeakerR width=50 height=120
+
+# turn-10
+@w0 command action=create shape=circle count=4 size=tiny color=white layout=column position=rightOf anchor=SpeakerR name=Note
+
+# turn-11
+@w0 command action=create shape=text label="tickets 12 EUR" position=bottomRight size=small color=white name=Tickets
+
+# turn-12
+@w0 command action=create shape=text label="doors 19:00" position=bottomLeft size=small color=white name=Doors
+
+# turn-13
+@w0 command action=connect from=SpeakerL,Burst,SpeakerR pairing=chain style=dotted arrow=none color=white
+
+# turn-14
+@w0 command action=set target=Headline color=red
+
+# turn-15
+@w0 command action=set target=Headline color=gold
+
+# turn-16
+@w0 question ask=check target=Subtitle position=below anchor=Headline
+
+# turn-17
+@w0 command action=toFront target=Burst
+
+# turn-18
+@w0 command action=group target=SpeakerL,SpeakerR name=Sound
+
+# turn-19
+@w0 command action=move target=Sound direction=up distance=20
+
+# turn-20
+@w0 question ask=count shape=text
+
+# turn-21
+@w0 command action=resize target=Subtitle scale=0.8
+
+# turn-22
+@w0 command action=create shape=rectangle count=3 size=small color=pink layout=row position=below anchor=Subtitle name=rectangle
+@w1 command action=rename target=rectangle name=rectangle1
+
+# turn-23
+@w0 command action=label target=rectangle1 label="Moss"
+@w1 command action=label target=rectangle2 label="Tide"
+@w2 command action=label target=rectangle3 label="Lumen"
+
+# turn-24
+@w0 command action=distribute target=rectangle1,rectangle2,rectangle3 axis=horizontal
+
+# turn-25
+@w0 question ask=list color=pink
+
+# turn-26
+@w0 command action=set target=rectangle1,rectangle2,rectangle3 color=magenta
+
+# turn-27
+@w0 question ask=property target=Burst property=color
+
+# turn-28
+@w0 command action=set target=Burst color=orange
+
+# turn-29
+@w0 command action=create shape=star size=small color=white position=near anchor=Headline name=SmallStar1
+
+# turn-30
+@w0 command action=create shape=star size=small color=white position=near anchor=rectangle3 name=SmallStar2
+
+# turn-31
+@w0 command action=set target=SmallStar1,SmallStar2 color=yellow
+
+# turn-32
+@w0 command action=delete target=Note,Note2,Note3,Note4
+
+# turn-33
+@w0 command action=undo
+
+# turn-34
+@w0 question ask=extreme superlative=topmost shape=any
+
+# turn-35
+@w0 question ask=check target=Stage position=bottom
+
+# turn-36
+@w0 command action=set target=Stage color=gray
+
+# turn-37
+@w0 command action=create shape=text label="all ages" position=below anchor=Burst size=small color=white name=AllAges
+
+# turn-38
+@w0 question ask=count shape=star
+
+# turn-39
+@w0 command action=toFront target=Headline
+
+# turn-40
+@w0 question ask=describe target=Burst
+
+# turn-41
+# noop: Closing acknowledgment; no diagram request.

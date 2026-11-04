@@ -1,0 +1,136 @@
+# Saved executable SOP Lang: Pirate ship
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=cyan fill=light width=780 height=480 position=center layer=background name=Sky
+
+# turn-2
+@a0 command action=create shape=rectangle color=blue width=780 height=160 position=bottom layer=zone name=Ocean
+
+# turn-3
+@a0 command action=create shape=rectangle color=brown size=large position=center name=Hull
+
+# turn-4
+@a0 command action=move target=Hull direction=down distance=90
+
+# turn-5
+@a0 command action=create shape=rectangle color=brown width=12 height=180 position=above anchor=Hull distance=0 name=Mast
+@a1 command action=move target=Mast direction=down distance=16
+
+# turn-6
+@a0 command action=create shape=square color=white size=large position=leftOf anchor=Mast distance=20 name=Sail
+
+# turn-7
+@a0 command action=create shape=triangle color=black size=small position=above anchor=Mast distance=2 name=Flag
+@a1 command action=move target=Flag direction=down distance=16
+
+# turn-8
+@a0 command action=label target=Flag label="X"
+
+# turn-9
+@a0 command action=create count=3 shape=circle color=gold size=tiny layout=row at=400,340 name=Porthole
+
+# turn-10
+@a0 command action=group target=Hull,Mast,Sail,Flag,Porthole,Porthole2,Porthole3 name=Ship
+
+# turn-11
+@a0 command action=create shape=ellipse color=yellow size=large position=bottomRight name=Island
+
+# turn-12
+@a0 command action=create shape=rectangle color=brown width=14 height=70 position=above anchor=Island distance=0 name=Trunk
+@a1 command action=move target=Trunk direction=down distance=16
+
+# turn-13
+@a0 command action=create shape=star color=green size=medium position=above anchor=Trunk distance=3 name=PalmTop
+@a1 command action=move target=PalmTop direction=down distance=16
+
+# turn-14
+@a0 command action=create shape=square color=orange size=small at=665,351 name=Chest
+
+# turn-15
+@a0 command action=group target=Island,Trunk,PalmTop,Chest name=Isle
+
+# turn-16
+@a0 command action=connect from=Flag to=Chest style=dotted arrow=forward label="X marks the spot"
+
+# turn-17
+@a0 question ask=check target=Chest position=rightOf anchor=Hull
+
+# turn-18
+@a0 command action=create shape=circle color=red size=tiny position=near anchor=Mast name=Polly
+
+# turn-19
+@a0 command action=set target=Polly color=red size=small
+
+# turn-20
+@a0 command action=create shape=triangle color=gray size=small position=leftOf anchor=Ship name=Fin
+
+# turn-21
+@a0 command action=move target=Fin direction=down distance=20
+
+# turn-22
+@a0 question ask=check target=Fin position=below anchor=Flag
+
+# turn-23
+@a0 command action=create shape=circle color=gold size=medium position=topRight name=Sun
+
+# turn-24
+@a0 command action=create shape=ellipse color=white position=leftOf anchor=Sun name=Cloud
+@a1 command action=create shape=ellipse color=white position=topLeft name=Cloud2
+
+# turn-25
+@a0 command action=resize target=Cloud,Cloud2 scale=0.67
+
+# turn-26
+@a0 command action=create shape=text label="Captain Saltbeard" position=top size=large color=black name=Title
+
+# turn-27
+@a0 command action=create shape=circle color=black size=tiny position=rightOf anchor=Hull distance=20 name=Cannonball
+
+# turn-28
+@a0 command action=connect from=Hull to=Cannonball style=dashed arrow=forward
+
+# turn-29
+@a0 question ask=count shape=circle
+
+# turn-30
+@a0 question ask=nearest anchor=Polly
+
+# turn-31
+@a0 command action=toFront target=Ship
+
+# turn-32
+@a0 command action=move target=Ship direction=left distance=40
+
+# turn-33
+@a0 question ask=members target=Isle
+
+# turn-34
+@a0 command action=set target=Sail color=gray
+
+# turn-35
+@a0 question ask=path from=Flag to=Chest
+
+# turn-36
+@a0 question ask=count kind=group
+
+# turn-37
+@a0 command action=duplicate target=Fin name=FinCopy
+
+# turn-38
+@a0 command action=move target=FinCopy position=leftOf anchor=Fin
+
+# turn-39
+@a0 question ask=list color=gray
+
+# turn-40
+@a0 command action=delete target=Cannonball
+
+# turn-41
+@a0 question ask=describe target=Hull
+
+# turn-42
+# noop: Closing acknowledgement with no diagram request.

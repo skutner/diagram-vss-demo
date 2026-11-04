@@ -1,0 +1,132 @@
+# Saved executable SOP Lang: Playground
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=green fill=light width=780 height=480 position=center layer=background name=Grass
+
+# turn-2
+@a0 command action=create shape=rectangle color=yellow fill=light width=200 height=110 position=bottomLeft layer=zone name=Sandbox
+
+# turn-3
+@a0 command action=create shape=triangle color=red size=large position=center name=Slide
+
+# turn-4
+@a0 command action=create shape=rectangle color=gray width=14 height=90 position=leftOf anchor=Slide distance=16 name=Ladder
+
+# turn-5
+@a0 command action=group target=Slide,Ladder name=SlideSet
+
+# turn-6
+@a0 command action=create shape=rectangle color=brown width=160 height=12 position=topRight name=SwingBar
+
+# turn-7
+@a0 command action=create count=2 shape=square color=blue size=small position=below anchor=SwingBar name=Seat
+
+# turn-8
+@a0 command action=connect from=SwingBar to=Seat,Seat2 arrow=none style=solid
+
+# turn-9
+@a0 command action=group target=SwingBar,Seat,Seat2 name=Swings
+
+# turn-10
+@a0 command action=create shape=circle color=pink size=small position=above anchor=Slide name=Kid1
+
+# turn-11
+@a0 command action=create shape=circle color=orange size=small position=near anchor=Sandbox name=Kid2
+
+# turn-12
+@a0 command action=create shape=circle color=red size=tiny position=between anchor=Kid2,Slide name=Ball
+
+# turn-13
+@a0 command action=create shape=diamond color=purple size=small position=topLeft name=Kite
+
+# turn-14
+@a0 command action=connect from=Kite to=Kid2 style=dotted arrow=none
+
+# turn-15
+@a0 command action=create shape=circle color=green size=large position=leftOf anchor=SwingBar name=Crown
+
+# turn-16
+@a0 command action=create shape=rectangle color=brown position=below anchor=Crown distance=2 name=Stem
+@a1 command action=move target=Stem direction=up distance=16
+
+# turn-17
+@a0 command action=group target=Crown,Stem name=Tree
+
+# turn-18
+@a0 command action=create shape=rectangle color=brown width=120 height=24 position=bottom name=Bench
+
+# turn-19
+@a0 command action=create count=3 shape=star color=yellow size=tiny layout=row position=above anchor=Bench name=Flower
+
+# turn-20
+@a0 question ask=count shape=circle
+
+# turn-21
+@a0 question ask=check target=Ball position=between anchor=Kid2,Slide
+
+# turn-22
+@a0 command action=resize target=Ball scale=1.5
+
+# turn-23
+@a0 command action=create shape=text label="Recess!" position=top size=large color=navy name=Title
+
+# turn-24
+@a0 question ask=check target=Kite position=leftOf anchor=Tree
+
+# turn-25
+@a0 command action=move target=Kite direction=down distance=20
+
+# turn-26
+@a0 question ask=list position=near anchor=Bench
+
+# turn-27
+@a0 command action=equalize target=Seat,Seat2 property=size anchor=Ball
+
+# turn-28
+@a0 command action=undo
+
+# turn-29
+@a0 command action=set target=Kid1 color=yellow
+
+# turn-30
+@a0 command action=set target=Slide color=orange
+
+# turn-31
+@a0 question ask=property target=Slide property=color
+
+# turn-32
+@a0 command action=create count=5 shape=square color=brown size=tiny layout=row position=bottomRight name=Fence
+
+# turn-33
+@a0 command action=connect from=Fence,Fence2,Fence3,Fence4,Fence5 pairing=chain color=brown arrow=none
+
+# turn-34
+@a0 question ask=count shape=square
+
+# turn-35
+@a0 question ask=groupOf target=Stem
+
+# turn-36
+@a0 command action=move target=Swings direction=down distance=30
+
+# turn-37
+@a0 question ask=path from=Kite to=Kid2
+
+# turn-38
+@a0 question ask=nearest anchor=Sandbox superlative=farthest
+
+# turn-39
+@a0 command action=toFront target=Kid1
+
+# turn-40
+@a0 command action=delete target=Flower3
+
+# turn-41
+@a0 question ask=describe target=Ball
+
+# turn-42
+# noop: Closing acknowledgement with no diagram request.

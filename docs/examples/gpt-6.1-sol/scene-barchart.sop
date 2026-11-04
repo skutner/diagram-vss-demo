@@ -1,0 +1,139 @@
+# Saved executable SOP Lang: Ice cream bar chart
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+# noop: Scene introduction; the axes and bars are requested in subsequent turns.
+
+# turn-2
+@w0 command action=create shape=rectangle color=black width=4 height=330 at=100,255 name=AxisY
+
+# turn-3
+@w0 command action=create shape=rectangle color=black width=560 height=4 at=380,440 name=AxisX
+
+# turn-4
+@w0 command action=create shape=rectangle width=60 height=100 at=160,370 name=Jan
+
+# turn-5
+@w0 command action=create shape=rectangle width=60 height=150 at=260,345 name=Feb
+
+# turn-6
+@w0 command action=create shape=rectangle width=60 height=200 at=360,320 name=Mar
+
+# turn-7
+@w0 command action=create shape=rectangle width=60 height=250 at=460,295 name=Apr
+
+# turn-8
+@w0 command action=create shape=rectangle width=60 height=300 at=560,270 name=May
+
+# turn-9
+@w0 command action=set target=Jan color=blue
+@w1 command action=set target=Feb color=teal
+@w2 command action=set target=Mar color=green
+@w3 command action=set target=Apr color=orange
+@w4 command action=set target=May color=red
+
+# turn-10
+@w0 command action=label target=Jan label="120"
+
+# turn-11
+@w0 command action=label target=Feb label="190"
+@w1 command action=label target=Mar label="260"
+
+# turn-12
+@w0 command action=label target=Apr label="350"
+@w1 command action=label target=May label="400"
+
+# turn-13
+@w0 command action=create shape=text size=small label="Jan" at=160,458 name=JanCaption
+
+# turn-14
+@w0 command action=create shape=text size=small label="Feb" at=260,458 name=FebCaption
+@w1 command action=create shape=text size=small label="Mar" at=360,458 name=MarCaption
+
+# turn-15
+@w0 command action=create shape=text size=small label="Apr" at=460,458 name=AprCaption
+@w1 command action=create shape=text size=small label="May" at=560,458 name=MayCaption
+
+# turn-16
+@w0 command action=create shape=text size=huge label="Ice cream sales 2026" color=navy at=310,60 name=Title
+
+# turn-17
+@w0 question ask=check target=May comparison=bigger anchor=Apr
+
+# turn-18
+@w0 question ask=extreme target=Jan,Feb,Mar,Apr,May superlative=biggest
+
+# turn-19
+@w0 command action=create shape=star color=gold name=Best at=560,69
+
+# turn-20
+@w0 command action=connect from=Jan to=May style=dashed label="growing!"
+
+# turn-21
+@w0 command action=set from=Jan to=May color=orange
+
+# turn-22
+@w0 command action=create shape=rectangle width=60 height=260 name=Jun position=rightOf anchor=May distance=40
+
+# turn-23
+@w0 command action=set target=Jun color=magenta
+
+# turn-24
+@w0 command action=move target=Jun direction=down distance=20
+
+# turn-25
+@w0 command action=label target=Jun label="330"
+
+# turn-26
+@w0 command action=create shape=text size=small label="Jun" at=660,458 name=JunCaption
+
+# turn-27
+@w0 question ask=count shape=rectangle
+
+# turn-28
+@w0 question ask=list color=red
+
+# turn-29
+@w0 command action=create shape=circle size=small color=gray position=topLeft name=Logo
+
+# turn-30
+@w0 command action=create shape=text label="units sold, thousands" size=small color=gray at=200,110 name=UnitsCaption
+
+# turn-31
+@w0 question ask=nearest anchor=Best
+
+# turn-32
+@w0 command action=group target=Jan,Feb,Mar,Apr,May,Jun name=Bars
+
+# turn-33
+@w0 command action=move target=Title direction=up distance=10
+
+# turn-34
+@w0 question ask=check target=Jun position=rightOf anchor=May
+
+# turn-35
+@w0 command action=move target=Best direction=right distance=40
+
+# turn-36
+@w0 command action=disconnect from=Jan to=May
+
+# turn-37
+@w0 question ask=property target=Mar property=color
+
+# turn-38
+@w0 command action=set target=Mar color=lime
+
+# turn-39
+@w0 command action=undo
+
+# turn-40
+@w0 command action=delete target=Logo
+
+# turn-41
+@w0 question ask=describe target=Jun
+
+# turn-42
+# noop: Closing acknowledgment; no diagram request.

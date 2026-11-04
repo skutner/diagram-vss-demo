@@ -1,0 +1,135 @@
+# Saved executable SOP Lang: Bauhaus composition
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=black fill=faint width=780 height=480 position=center layer=background name=Canvas
+
+# turn-2
+@w0 command action=create shape=circle size=huge color=red position=center name=Disc
+
+# turn-3
+@w0 command action=create shape=square size=large color=blue position=leftOf anchor=Disc name=Block
+
+# turn-4
+@w0 command action=create shape=triangle size=large color=yellow position=rightOf anchor=Disc name=Peak
+
+# turn-5
+@w0 command action=align target=Block,Disc,Peak axis=horizontal
+
+# turn-6
+@w0 command action=create shape=rectangle color=navy width=400 height=20 position=below anchor=Disc name=Bar
+
+# turn-7
+@w0 command action=create shape=circle count=5 size=small color=black layout=row position=above anchor=Disc name=Dot
+
+# turn-8
+@w0 command action=set target=Dot,Dot2,Dot3,Dot4,Dot5 color=gray
+
+# turn-9
+@w0 command action=distribute target=Dot,Dot2,Dot3,Dot4,Dot5 axis=horizontal
+
+# turn-10
+@w0 command action=create shape=diamond color=white position=between anchor=Block,Disc name=diamond1
+
+# turn-11
+@w0 command action=create shape=diamond color=white position=between anchor=Disc,Peak name=diamond2
+
+# turn-12
+@w0 command action=set target=diamond1,diamond2 size=small
+
+# turn-13
+@w0 command action=connect from=diamond1 to=diamond2 arrow=none color=black
+
+# turn-14
+@w0 command action=create shape=hexagon color=teal position=topLeft name=Hex
+
+# turn-15
+@w0 command action=create shape=hexagon color=magenta position=bottomRight name=Hex2
+
+# turn-16
+@w0 command action=set target=Hex size=huge
+
+# turn-17
+@w0 command action=equalize target=Hex2 anchor=Hex property=size
+
+# turn-18
+@w0 command action=connect from=Hex to=Hex2 style=dotted arrow=none
+
+# turn-19
+@w0 command action=create shape=star count=6 size=tiny color=gold layout=circle position=topRight name=Star
+
+# turn-20
+@w0 question ask=check target=Peak position=rightOf anchor=Disc
+
+# turn-21
+@w0 question ask=extreme superlative=biggest shape=any
+
+# turn-22
+@w0 command action=resize target=Disc scale=0.8
+
+# turn-23
+@w0 command action=toFront target=Disc
+
+# turn-24
+@w0 command action=group target=Block,Disc,Peak name=Trio
+
+# turn-25
+@w0 command action=move target=Trio direction=up distance=30
+
+# turn-26
+@w0 command action=create shape=text label="FORM / COLOUR" position=bottomLeft size=large color=black name=Title
+
+# turn-27
+@w0 command action=set target=Title color=gray
+
+# turn-28
+@w0 command action=set target=Block shape=circle
+
+# turn-29
+@w0 command action=undo
+
+# turn-30
+@w0 question ask=count shape=hexagon
+
+# turn-31
+@w0 question ask=list color=white
+
+# turn-32
+@w0 command action=arrange target=Star,Star2,Star3,Star4,Star5,Star6 layout=row
+
+# turn-33
+@w0 command action=move target=Bar at=400,297
+
+# turn-34
+@w0 question ask=check target=Bar position=below anchor=Disc
+
+# turn-35
+@w0 command action=set target=Dot,Dot2,Dot3,Dot4,Dot5,Disc color=purple
+
+# turn-36
+@w0 command action=undo
+@w1 command action=set target=Dot,Dot2,Dot3,Dot4,Dot5 color=purple
+
+# turn-37
+@w0 question ask=exists shape=triangle
+
+# turn-38
+@w0 command action=duplicate target=Peak name=PeakCopy
+
+# turn-39
+@w0 command action=set target=PeakCopy color=pink size=small
+
+# turn-40
+@w0 question ask=extreme superlative=rightmost shape=any
+
+# turn-41
+@w0 question ask=check target=diamond1 position=leftOf anchor=diamond2
+
+# turn-42
+@w0 command action=delete target=PeakCopy
+
+# turn-43
+# noop: Closing acknowledgment; no diagram request.

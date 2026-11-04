@@ -1,0 +1,128 @@
+# Saved executable SOP Lang: Living room
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=orange fill=faint width=780 height=302 at=400,175 layer=background name=Wall
+@a1 command action=set target=Wall height=330
+
+# turn-2
+@a0 command action=create shape=rectangle color=brown fill=light width=780 height=150 at=400,415 layer=zone name=Floor
+
+# turn-3
+@a0 command action=create shape=rectangle color=cyan fill=light width=160 height=110 at=150,140 outline=white name=Window
+
+# turn-4
+@a0 command action=create shape=rectangle color=green size=large width=220 height=70 at=330,380 name=Sofa
+
+# turn-5
+@a0 command action=create shape=rectangle color=green width=30 height=60 at=190,385 name=ArmL
+@a1 command action=create shape=rectangle color=green width=30 height=60 at=470,385 name=ArmR
+
+# turn-6
+@a0 command action=group target=Sofa,ArmL,ArmR name=Couch
+
+# turn-7
+@a0 command action=create shape=circle color=white size=medium at=520,110 label="12" name=Clock
+
+# turn-8
+@a0 command action=create shape=rectangle color=gold width=90 height=70 at=360,130 name=Frame
+
+# turn-9
+@a0 question ask=check target=Frame position=leftOf anchor=Clock
+
+# turn-10
+@a0 command action=create shape=rectangle color=brown width=10 height=150 at=580,340 name=LampPole
+
+# turn-11
+@a0 command action=create shape=triangle color=yellow size=small at=580,252 name=LampShade
+
+# turn-12
+@a0 command action=group target=LampPole,LampShade name=FloorLamp
+
+# turn-13
+@a0 command action=create shape=rectangle color=black width=150 height=90 at=700,300 name=Tv
+
+# turn-14
+@a0 command action=create shape=rectangle color=brown width=100 height=40 at=700,385 name=TvStand
+
+# turn-15
+@a0 command action=create shape=ellipse color=red fill=light width=260 height=50 at=330,455 name=Rug
+
+# turn-16
+@a0 command action=create shape=ellipse color=gray size=small at=525,445 name=CatBody
+
+# turn-17
+@a0 command action=create shape=circle color=gray size=tiny at=568,432 name=CatHead
+
+# turn-18
+@a0 command action=group target=CatBody,CatHead name=Whiskers
+
+# turn-19
+@a0 command action=create shape=square color=brown size=small at=60,420 name=Pot
+
+# turn-20
+@a0 command action=create shape=star color=green size=medium position=above anchor=Pot distance=6 name=Leaves
+@a1 command action=move target=Leaves direction=down distance=16
+
+# turn-21
+@a0 question ask=count shape=rectangle
+
+# turn-22
+@a0 command action=set target=Tv color=navy
+
+# turn-23
+@a0 question ask=property target=Tv property=color
+
+# turn-24
+@a0 command action=create shape=text label="Home sweet home" at=300,50 name=Title
+
+# turn-25
+@a0 command action=set target=Title color=purple size=large
+
+# turn-26
+@a0 command action=toFront target=Couch
+
+# turn-27
+@a0 question ask=exists position=between anchor=Couch,Tv
+
+# turn-28
+@a0 command action=set target=Clock shape=hexagon
+
+# turn-29
+@a0 command action=undo
+
+# turn-30
+@a0 command action=connect from=TvStand to=Tv arrow=none style=solid
+
+# turn-31
+@a0 question ask=members target=Whiskers
+
+# turn-32
+@a0 command action=move target=Whiskers direction=left distance=15
+
+# turn-33
+@a0 command action=resize target=Leaves scale=0.67
+
+# turn-34
+@a0 question ask=check target=Rug comparison=bigger anchor=Clock
+
+# turn-35
+@a0 command action=create shape=circle color=yellow size=small at=630,252 name=Glow
+
+# turn-36
+@a0 command action=delete target=Glow
+
+# turn-37
+@a0 question ask=extreme superlative=rightmost
+
+# turn-38
+@a0 question ask=describe target=Window
+
+# turn-39
+@a0 question ask=check target=CatBody position=rightOf anchor=Sofa
+
+# turn-40
+# noop: Closing acknowledgement with no diagram request.

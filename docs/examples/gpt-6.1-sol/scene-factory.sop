@@ -1,0 +1,136 @@
+# Saved executable SOP Lang: Robot factory
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=gray fill=faint width=780 height=480 position=center layer=background name=Floor
+
+# turn-2
+@a0 command action=create shape=rectangle color=black width=600 height=30 position=bottom name=Belt
+
+# turn-3
+@a0 command action=create shape=circle color=gray position=leftOf anchor=Belt distance=16 name=RollerL
+@a1 command action=create shape=circle color=gray position=rightOf anchor=Belt distance=16 name=RollerR
+
+# turn-4
+@a0 command action=group target=Belt,RollerL,RollerR name=Conveyor
+
+# turn-5
+@a0 command action=create shape=square color=blue size=medium position=above anchor=Belt distance=2 name=Body1
+@a1 command action=move target=Body1 direction=down distance=16
+
+# turn-6
+@a0 command action=create shape=square color=blue size=small position=above anchor=Body1 distance=2 name=Head1
+@a1 command action=move target=Head1 direction=down distance=16
+
+# turn-7
+@a0 command action=create shape=circle color=red size=tiny position=above anchor=Head1 distance=2 name=Antenna1
+@a1 command action=move target=Antenna1 direction=down distance=16
+
+# turn-8
+@a0 command action=group target=Body1,Head1,Antenna1 name=Bot1
+
+# turn-9
+@a0 command action=duplicate target=Bot1 count=2 name=Bot12
+
+# turn-10
+@a0 question ask=members target=Bot12
+
+# turn-11
+@a0 command action=create shape=rectangle color=orange width=20 height=120 position=topLeft name=ArmPole
+
+# turn-12
+@a0 command action=create shape=circle color=orange size=small position=rightOf anchor=ArmPole distance=16 name=Joint
+
+# turn-13
+@a0 command action=connect from=ArmPole to=Joint color=orange arrow=none
+
+# turn-14
+@a0 command action=create shape=rectangle color=navy position=topRight name=Panel
+
+# turn-15
+@a0 command action=create count=3 shape=circle color=lime size=tiny layout=row position=below anchor=Panel name=Button
+
+# turn-16
+@a0 command action=create shape=hexagon color=gray size=medium position=top name=GearA
+@a1 command action=create shape=hexagon color=gray size=medium position=rightOf anchor=GearA name=GearB
+
+# turn-17
+@a0 command action=align target=GearA,GearB axis=horizontal
+
+# turn-18
+@a0 command action=connect from=Panel to=Joint arrow=forward label="signal"
+
+# turn-19
+@a0 command action=connect from=Joint to=Head1 style=dashed arrow=forward
+
+# turn-20
+@a0 question ask=path from=Panel to=Head1
+
+# turn-21
+@a0 question ask=neighbors target=Joint
+
+# turn-22
+@a0 command action=resize target=GearB scale=0.67
+
+# turn-23
+@a0 question ask=check target=GearB comparison=smaller anchor=GearA
+
+# turn-24
+@a0 command action=create shape=text label="ROBO WORKS" position=bottomLeft size=large color=gray name=Title
+
+# turn-25
+@a0 command action=set target=Title color=orange
+
+# turn-26
+@a0 question ask=groupOf target=Antenna1
+
+# turn-27
+# noop: The requested recoloring of copied robot bodies is withdrawn within the turn by "never mind"; no change should be executed.
+
+# turn-28
+@a0 question ask=list color=blue
+
+# turn-29
+@a0 command action=toFront target=Conveyor
+
+# turn-30
+@a0 question ask=count kind=group
+
+# turn-31
+@a0 question ask=extreme superlative=mostConnected
+
+# turn-32
+@a0 command action=move target=Bot1 direction=left distance=20
+
+# turn-33
+@a0 question ask=count shape=square
+
+# turn-34
+@a0 question ask=check target=ArmPole position=leftOf anchor=Panel
+
+# turn-35
+@a0 question ask=nearest anchor=GearB
+
+# turn-36
+@a0 command action=set from=Joint to=Head1 color=red
+
+# turn-37
+@a0 command action=reverse from=Panel to=Joint
+
+# turn-38
+@a0 command action=undo
+
+# turn-39
+@a0 question ask=describe target=Panel
+
+# turn-40
+@a0 question ask=property target=Belt property=color
+
+# turn-41
+@a0 command action=set target=Belt color=gray
+
+# turn-42
+# noop: Closing acknowledgement with no diagram request.

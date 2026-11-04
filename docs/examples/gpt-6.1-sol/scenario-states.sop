@@ -1,0 +1,29 @@
+# Saved executable SOP Lang: Player state machine
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=ellipse color=gray name=Idle position=left label="idle"
+
+# turn-1
+@w0 command action=create shape=ellipse color=green name=Playing position=rightOf anchor=Idle label="playing"
+@w1 command action=create shape=ellipse color=yellow name=Paused position=below anchor=Playing label="paused"
+@w2 command action=create shape=ellipse color=red name=Ended position=rightOf anchor=Playing label="ended"
+
+# turn-2
+@w0 command action=connect from=Idle to=Playing arrow=forward label="play"
+
+# turn-3
+@w0 command action=connect from=Playing to=Paused arrow=forward label="pause"
+@w1 command action=connect from=Paused to=Playing style=dashed arrow=forward label="resume"
+
+# turn-4
+@w0 command action=connect from=Playing to=Ended arrow=forward label="finish"
+
+# turn-5
+@w0 question ask=reachable from=Idle
+
+# turn-6
+@w0 question ask=cycle
+
+# turn-7
+@w0 question ask=path from=Ended to=Idle

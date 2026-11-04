@@ -1,0 +1,5 @@
+# Saved executable SOP Lang: Quick example 5
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create count=3 shape=circle size=tiny color=red layout=row position=below anchor=Process name=RedDot

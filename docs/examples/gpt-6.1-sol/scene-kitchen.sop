@@ -1,0 +1,78 @@
+# Saved executable SOP Lang: Kitchen plan
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=yellow fill=light width=780 height=480 at=400,250 layer=background name=Floor
+
+# turn-2
+@a0 command action=create shape=rectangle color=gray width=500 height=50 at=330,60 name=Counter
+
+# turn-3
+@a0 command action=create shape=square color=blue fill=light at=650,60 name=Sink
+
+# turn-4
+@a0 command action=create shape=square color=black width=70 height=70 at=520,170 name=Stove
+
+# turn-5
+@a0 command action=create shape=rectangle color=white width=60 height=110 at=740,190 name=Fridge
+
+# turn-6
+@a0 command action=create shape=circle color=brown size=large at=330,290 name=Table
+
+# turn-7
+@a0 command action=create shape=square color=orange size=small position=leftOf anchor=Table distance=20 name=Chair1
+
+# turn-8
+@a0 command action=create shape=square color=orange size=small position=rightOf anchor=Table distance=20 name=Chair2
+
+# turn-9
+@a0 command action=create shape=square color=orange size=small position=below anchor=Table distance=16 name=Chair3
+@a1 command action=move target=Chair3 direction=up distance=16
+
+# turn-10
+@a0 command action=group target=Table,Chair1,Chair2,Chair3 name=Dining
+
+# turn-11
+@a0 question ask=count shape=square
+
+# turn-12
+@a0 command action=create shape=rectangle color=cyan fill=light width=30 height=150 at=40,250 name=Window
+
+# turn-13
+@a0 question ask=check target=Stove position=above anchor=Table
+
+# turn-14
+@a0 command action=set target=Fridge color=gray
+
+# turn-15
+@a0 command action=create shape=circle color=green size=tiny at=80,450 name=Plant
+
+# turn-16
+@a0 command action=create shape=circle color=green size=tiny position=rightOf anchor=Plant distance=30 name=Plant2
+
+# turn-17
+@a0 command action=rename target=Plant2 name=Herb
+
+# turn-18
+@a0 question ask=extreme superlative=biggest
+
+# turn-19
+@a0 command action=create shape=rectangle color=gray width=120 height=40 at=160,170 name=Shelf
+
+# turn-20
+@a0 command action=connect from=Sink to=Stove arrow=forward label="pot"
+
+# turn-21
+@a0 command action=delete target=Herb
+
+# turn-22
+@a0 command action=undo
+
+# turn-23
+@a0 question ask=connected target=Sink anchor=Stove
+
+# turn-24
+# noop: Closing acknowledgement with no diagram request.

@@ -1,0 +1,144 @@
+# Saved executable SOP Lang: Pump schematic
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=gray fill=faint width=780 height=480 at=400,250 layer=background name=Sheet
+
+# turn-2
+@w0 command action=create shape=rectangle color=blue width=120 height=160 at=110,260 name=Tank
+
+# turn-3
+@w0 command action=label target=Tank label="TANK 2000 L"
+
+# turn-4
+@w0 command action=create shape=circle size=large color=gray name=Pump position=rightOf anchor=Tank label="P-101"
+
+# turn-5
+@w0 command action=create shape=diamond size=medium color=yellow name=Valve position=rightOf anchor=Pump label="V1"
+
+# turn-6
+@w0 command action=create shape=hexagon size=small color=teal name=Filter position=rightOf anchor=Valve
+
+# turn-7
+@w0 command action=create shape=square size=medium color=green name=Outlet position=rightOf anchor=Filter
+
+# turn-8
+@w0 command action=connect from=Tank,Pump,Valve,Filter,Outlet pairing=chain
+
+# turn-9
+@w0 command action=create shape=rectangle color=gray width=100 height=60 position=below anchor=Pump name=Motor
+
+# turn-10
+@w0 command action=connect from=Motor to=Pump arrow=none
+
+# turn-11
+@w0 command action=create shape=circle size=small color=white position=above anchor=Valve label="PSI" name=Gauge
+
+# turn-12
+@w0 command action=connect from=Gauge to=Valve arrow=none style=dotted
+
+# turn-13
+@w0 command action=connect from=Valve to=Tank style=dashed label="bypass"
+
+# turn-14
+@w0 command action=set from=Tank to=Pump color=navy
+@w1 command action=set from=Pump to=Valve color=navy
+@w2 command action=set from=Valve to=Filter color=navy
+@w3 command action=set from=Filter to=Outlet color=navy
+@w4 command action=set from=Valve to=Tank color=navy
+
+# turn-15
+@w0 command action=set from=Valve to=Tank color=red
+
+# turn-16
+@w0 command action=set from=Tank to=Pump size=large
+
+# turn-17
+@w0 question ask=path from=Tank to=Outlet
+
+# turn-18
+# unsupported: This scene distinguishes five directed flow/bypass arrows from two plain shaft/gauge lines. The interpreter can count all connections but cannot filter the count by arrow direction. Returning seven would answer a different question.
+
+# turn-19
+@w0 question ask=neighbors target=Valve
+
+# turn-20
+@w0 question ask=degree target=Pump
+
+# turn-21
+@w0 command action=create shape=rectangle color=gray fill=light layer=zone width=200 height=110 position=topRight name=LegendBox
+
+# turn-22
+@w0 command action=create shape=text label="solid = flow" at=690,65 size=small color=navy name=FlowCaption
+
+# turn-23
+@w0 command action=create shape=text label="dashed = bypass" at=690,95 size=small color=red name=BypassCaption
+
+# turn-24
+@w0 command action=group target=LegendBox,FlowCaption,BypassCaption name=Legend
+
+# turn-25
+@w0 command action=create shape=text label="PUMP SKID P-101 rev B" position=bottomRight size=medium color=black name=Title
+
+# turn-26
+@w0 command action=create shape=triangle size=small color=blue position=below anchor=Tank name=Drain
+
+# turn-27
+@w0 command action=connect from=Tank to=Drain arrow=none style=dotted
+
+# turn-28
+@w0 command action=align target=Pump,Valve,Filter,Outlet axis=horizontal
+
+# turn-29
+@w0 command action=distribute target=Valve,Filter,Outlet axis=horizontal
+
+# turn-30
+@w0 question ask=check target=Filter position=between anchor=Valve,Outlet
+
+# turn-31
+@w0 question ask=property from=Valve to=Tank property=label
+
+# turn-32
+@w0 command action=rename target=Filter name=Strainer
+
+# turn-33
+@w0 command action=resize target=Strainer scale=1.2
+
+# turn-34
+@w0 command action=create shape=circle size=tiny color=red name=Alarm position=rightOf anchor=Gauge distance=8
+
+# turn-35
+@w0 command action=connect from=Alarm to=Gauge arrow=none style=dashed color=red
+
+# turn-36
+@w0 command action=reverse from=Valve to=Tank
+
+# turn-37
+@w0 question ask=extreme target=Pump,Valve superlative=mostConnected
+
+# turn-38
+@w0 question ask=check target=Motor position=below anchor=Pump
+
+# turn-39
+@w0 command action=set target=Motor color=indigo
+
+# turn-40
+@w0 command action=label target=Motor label="M1"
+
+# turn-41
+@w0 command action=toFront target=Legend
+
+# turn-42
+@w0 question ask=members target=Legend
+
+# turn-43
+@w0 command action=delete target=Alarm
+
+# turn-44
+@w0 question ask=describe
+
+# turn-45
+# noop: Closing acknowledgment; no diagram request.

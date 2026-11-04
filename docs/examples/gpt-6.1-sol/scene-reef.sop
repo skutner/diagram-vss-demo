@@ -1,0 +1,151 @@
+# Saved executable SOP Lang: Underwater reef
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=blue fill=light width=780 height=480 at=400,250 layer=background name=Water
+
+# turn-2
+@w0 command action=set target=Water color=teal
+
+# turn-3
+@w0 command action=create shape=rectangle color=yellow fill=light layer=zone width=780 height=90 at=400,445 name=Sand
+
+# turn-4
+@w0 command action=create shape=ellipse size=medium color=orange at=300,200 name=FinnBody
+
+# turn-5
+@w0 command action=create shape=triangle size=small color=orange at=232,200 name=Tail
+
+# turn-6
+@w0 command action=create shape=circle size=tiny color=black at=322,190 name=Eye
+
+# turn-7
+@w0 command action=group target=FinnBody,Tail,Eye name=Finn
+
+# turn-8
+@w0 command action=create shape=circle size=medium color=purple at=620,110 name=Jelly
+
+# turn-9
+@w0 command action=create shape=triangle count=3 size=tiny color=purple layout=row position=below anchor=Jelly distance=5 name=Tentacle
+@w1 command action=move target=Tentacle,Tentacle2,Tentacle3 direction=up distance=16
+
+# turn-10
+@w0 command action=group target=Jelly,Tentacle,Tentacle2,Tentacle3 name=Jellyfish
+
+# turn-11
+@w0 command action=duplicate target=Finn name=Finn2
+@w1 mention shape=ellipse recency=newest
+@w2 command action=rename target=$w1 name=FriendBody
+@w3 mention shape=triangle recency=newest
+@w4 command action=rename target=$w3 name=FriendTail
+@w5 mention shape=circle recency=newest
+@w6 command action=rename target=$w5 name=FriendEye
+
+# turn-12
+@w0 command action=move target=FriendBody,FriendTail,FriendEye direction=down distance=110
+
+# turn-13
+@w0 question ask=members target=Finn2
+
+# turn-14
+@w0 command action=create shape=circle count=4 size=tiny color=white layout=column at=380,110 name=Bubble
+
+# turn-15
+@w0 command action=create shape=ellipse size=small color=red at=220,440 name=CrabBody
+
+# turn-16
+@w0 command action=create shape=circle size=tiny color=red at=170,430 name=ClawL
+@w1 command action=create shape=circle size=tiny color=red at=270,430 name=ClawR
+
+# turn-17
+@w0 command action=group target=CrabBody,ClawL,ClawR name=Crab
+
+# turn-18
+@w0 question ask=check target=CrabBody position=below anchor=Jelly
+
+# turn-19
+@w0 command action=create shape=rectangle color=brown width=90 height=50 at=640,435 name=ChestBox
+
+# turn-20
+@w0 command action=create shape=square size=tiny color=gold at=640,435 name=Lock
+
+# turn-21
+@w0 command action=group target=ChestBox,Lock name=Chest
+
+# turn-22
+@w0 question ask=groupOf target=Lock
+
+# turn-23
+@w0 command action=connect from=FinnBody to=ChestBox style=dashed label="treasure!"
+
+# turn-24
+@w0 command action=create shape=star size=small color=orange at=420,450 name=Starfish
+
+# turn-25
+@w0 command action=create shape=hexagon size=medium color=gray at=520,440 name=Rock
+
+# turn-26
+@w0 question ask=check target=Rock position=near anchor=Starfish
+
+# turn-27
+@w0 command action=create shape=rectangle color=green width=14 height=110 at=60,370 name=Weed1
+
+# turn-28
+@w0 command action=create shape=rectangle color=green width=14 height=80 at=100,385 name=Weed2
+
+# turn-29
+@w0 command action=group target=Weed1,Weed2 name=Kelp
+
+# turn-30
+@w0 command action=create shape=triangle size=large color=pink at=745,395 name=Coral
+
+# turn-31
+@w0 command action=set target=Coral color=magenta
+
+# turn-32
+@w0 command action=create shape=star color=magenta position=above anchor=ChestBox name=CoralStar
+
+# turn-33
+@w0 question ask=count shape=ellipse
+
+# turn-34
+@w0 question ask=list color=pink
+
+# turn-35
+@w0 question ask=list position=near anchor=Chest
+
+# turn-36
+@w0 command action=create shape=text label="Coral Cove" position=topLeft size=large color=white name=Title
+
+# turn-37
+@w0 command action=move target=Title direction=right distance=20
+
+# turn-38
+@w0 command action=toFront target=Finn
+
+# turn-39
+@w0 question ask=check target=Starfish color=orange
+
+# turn-40
+@w0 command action=set target=Starfish color=gold
+
+# turn-41
+@w0 command action=resize target=Bubble,Bubble2,Bubble3,Bubble4 scale=1.2
+
+# turn-42
+@w0 command action=delete target=Weed2
+
+# turn-43
+@w0 command action=undo
+
+# turn-44
+@w0 question ask=extreme superlative=topmost shape=any
+
+# turn-45
+@w0 question ask=nearest anchor=Rock superlative=farthest
+
+# turn-46
+# noop: Closing acknowledgment; no diagram request.

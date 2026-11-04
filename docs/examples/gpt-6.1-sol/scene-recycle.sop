@@ -1,0 +1,137 @@
+# Saved executable SOP Lang: Recycling cycle
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=green fill=faint width=780 height=480 position=center layer=background name=Bg
+
+# turn-2
+@a0 command action=create count=5 shape=hexagon color=green size=medium layout=circle position=center name=hexagon
+@a1 command action=rename target=hexagon name=hexagon1
+
+# turn-3
+@a0 command action=label target=hexagon1 label="Collect"
+
+# turn-4
+@a0 command action=label target=hexagon2 label="Sort"
+@a1 command action=label target=hexagon3 label="Wash"
+
+# turn-5
+@a0 command action=label target=hexagon4 label="Melt"
+@a1 command action=label target=hexagon5 label="Make"
+
+# turn-6
+@a0 command action=connect from=hexagon1,hexagon2,hexagon3,hexagon4,hexagon5 pairing=chain
+
+# turn-7
+@a0 command action=connect from=hexagon5 to=hexagon1 arrow=forward
+
+# turn-8
+@a0 command action=set kind=edge color=teal style=dashed
+
+# turn-9
+@a0 command action=set from=hexagon5 to=hexagon1 style=solid
+
+# turn-10
+@a0 command action=create shape=star color=lime size=small position=center name=Core
+
+# turn-11
+@a0 command action=create shape=text label="Plastic: round and round" position=top size=large color=green name=Title
+
+# turn-12
+@a0 command action=create shape=rectangle color=yellow fill=light layer=zone width=200 height=260 position=right name=Facts
+
+# turn-13
+@a0 command action=label target=Facts label="9% recycled"
+
+# turn-14
+@a0 command action=create shape=text label="1 bottle = 450 years" size=small position=below anchor=Facts name=FactText
+
+# turn-15
+@a0 command action=set target=hexagon1 color=orange
+
+# turn-16
+@a0 command action=rename target=hexagon1 name=Collect
+
+# turn-17
+@a0 command action=rename target=hexagon5 name=Make
+
+# turn-18
+@a0 question ask=path from=Collect to=Make
+
+# turn-19
+@a0 question ask=cycle
+
+# turn-20
+@a0 command action=create count=3 shape=rectangle color=blue size=small layout=row position=bottom name=rectangle
+@a1 command action=rename target=rectangle name=rectangle1
+
+# turn-21
+@a0 command action=label target=rectangle1 label="Paper 68%"
+@a1 command action=label target=rectangle2 label="Glass 31%"
+@a2 command action=label target=rectangle3 label="Plastic 9%"
+
+# turn-22
+@a0 command action=set target=rectangle3 color=red
+
+# turn-23
+@a0 question ask=check target=rectangle3 position=rightOf anchor=rectangle1
+
+# turn-24
+@a0 command action=group target=rectangle1,rectangle2,rectangle3 name=Stats
+
+# turn-25
+@a0 command action=move target=Stats direction=left distance=20
+
+# turn-26
+@a0 question ask=count shape=hexagon
+
+# turn-27
+@a0 question ask=nearest shape=hexagon anchor=Core
+
+# turn-28
+@a0 command action=create shape=circle color=gray size=small name=Bin position=leftOf anchor=Collect
+
+# turn-29
+@a0 command action=connect from=Bin to=Collect style=dotted arrow=forward
+
+# turn-30
+@a0 command action=set target=Bin shape=square
+
+# turn-31
+@a0 question ask=neighbors target=Collect
+
+# turn-32
+@a0 question ask=check target=Facts position=right
+
+# turn-33
+@a0 command action=set target=Title color=navy
+
+# turn-34
+@a0 command action=set target=Title size=huge
+
+# turn-35
+@a0 command action=undo
+
+# turn-36
+@a0 command action=set kind=edge style=solid
+
+# turn-37
+@a0 question ask=count kind=edge
+
+# turn-38
+@a0 question ask=extreme target=Collect,hexagon2,hexagon3,hexagon4,Make superlative=mostConnected
+
+# turn-39
+@a0 question ask=describe target=Core
+
+# turn-40
+@a0 command action=delete target=Core
+
+# turn-41
+@a0 command action=toFront target=Stats
+
+# turn-42
+# noop: Closing acknowledgement with no diagram request.

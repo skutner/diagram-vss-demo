@@ -1,0 +1,77 @@
+# Saved executable SOP Lang: Garden plan
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=green fill=light width=780 height=480 at=400,250 layer=zone name=Lawn
+
+# turn-2
+@a0 command action=create shape=rectangle color=brown width=160 height=60 at=150,110 name=Bed1
+
+# turn-3
+@a0 command action=create shape=rectangle color=brown width=160 height=60 position=rightOf anchor=Bed1 distance=40 name=Bed2
+
+# turn-4
+@a0 command action=create shape=rectangle color=brown width=160 height=60 position=rightOf anchor=Bed2 distance=40 name=Bed3
+
+# turn-5
+@a0 command action=create count=4 shape=circle color=red size=tiny layout=row position=below anchor=Bed1 name=BedFlower
+
+# turn-6
+@a0 command action=create shape=ellipse color=blue width=140 height=80 at=600,330 name=Pond
+
+# turn-7
+@a0 command action=create shape=hexagon color=gray size=medium at=250,400 name=Bench
+
+# turn-8
+@a0 command action=create shape=triangle color=green size=small position=leftOf anchor=Pond distance=20 name=Bush
+
+# turn-9
+@a0 command action=create shape=triangle color=green size=small position=rightOf anchor=Pond distance=20 name=Bush2
+
+# turn-10
+@a0 command action=group target=Bush,Bush2 name=Hedge
+
+# turn-11
+@a0 question ask=count shape=triangle
+
+# turn-12
+@a0 command action=connect from=Bench to=Pond style=dashed arrow=none
+
+# turn-13
+@a0 command action=set target=Bed2 color=orange
+
+# turn-14
+@a0 question ask=check target=Bed3 position=rightOf anchor=Bed2
+
+# turn-15
+@a0 command action=create shape=star color=yellow size=tiny at=420,250 name=Flower
+
+# turn-16
+@a0 command action=move target=Flower direction=down distance=10
+
+# turn-17
+@a0 question ask=property target=Pond property=color
+
+# turn-18
+@a0 command action=delete target=Flower
+
+# turn-19
+@a0 command action=create shape=square color=white size=small position=bottomLeft name=Shed
+
+# turn-20
+@a0 command action=create shape=rectangle width=10 height=10 at=400,30 name=_TitlePosition
+@a1 command action=create shape=text label="My garden" size=large position=top name=Title
+@a2 command action=swap target=Title,_TitlePosition
+@a3 command action=delete target=_TitlePosition
+
+# turn-21
+@a0 question ask=nearest anchor=Shed
+
+# turn-22
+@a0 command action=toFront target=Pond
+
+# turn-23
+# noop: Closing acknowledgement with no diagram request.

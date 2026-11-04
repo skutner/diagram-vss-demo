@@ -1,0 +1,140 @@
+# Saved executable SOP Lang: Apartment floor plan
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=gray fill=faint layer=background width=780 height=460 at=400,260 name=Outline
+
+# turn-2
+@w0 command action=create shape=rectangle color=orange fill=light layer=zone width=360 height=220 at=210,150 name=Living
+
+# turn-3
+@w0 command action=create shape=rectangle color=yellow fill=light layer=zone width=190 height=220 at=495,150 name=Kitchen
+
+# turn-4
+@w0 command action=create shape=rectangle color=cyan fill=light layer=zone width=170 height=220 at=685,150 name=Bath
+
+# turn-5
+@w0 command action=create shape=rectangle color=purple fill=light layer=zone width=360 height=210 at=210,375 name=Bedroom
+
+# turn-6
+@w0 command action=create shape=rectangle color=gray fill=light layer=zone width=370 height=210 at=585,375 name=Hall
+
+# turn-7
+@w0 command action=create shape=text label="Living" size=small at=75,58 name=text1
+
+# turn-8
+@w0 command action=create shape=text label="Kitchen" size=small at=455,46 name=text2
+
+# turn-9
+@w0 command action=create shape=text label="Bath" size=small at=625,58 name=text3
+
+# turn-10
+@w0 command action=create shape=text label="Bedroom" size=small at=75,288 name=text4
+@w1 command action=create shape=text label="Hall" size=small at=430,288 name=text5
+
+# turn-11
+@w0 command action=set target=text1,text2,text3,text4,text5 color=gray
+
+# turn-12
+@w0 command action=create shape=rectangle color=gray width=140 height=50 at=160,205 name=Sofa
+
+# turn-13
+@w0 command action=create shape=rectangle color=black width=120 height=20 at=160,95 name=TvUnit
+
+# turn-14
+@w0 command action=create shape=ellipse size=small color=brown at=160,150 name=CoffeeTable
+
+# turn-15
+@w0 command action=create shape=square color=white at=560,90 name=Fridge
+
+# turn-16
+@w0 command action=create shape=square size=small color=black at=450,90 name=Stove
+
+# turn-17
+@w0 command action=create shape=circle size=medium color=brown at=495,170 name=Table
+
+# turn-18
+@w0 command action=create shape=square count=2 size=tiny color=brown layout=row position=below anchor=Table distance=6 name=Chair
+@w1 command action=move target=Chair,Chair2 direction=up distance=16
+
+# turn-19
+@w0 command action=create shape=ellipse color=white width=120 height=50 at=685,100 name=Tub
+
+# turn-20
+@w0 command action=create shape=circle size=small color=white at=650,210 name=Toilet
+
+# turn-21
+@w0 command action=create shape=rectangle color=blue width=160 height=110 at=200,395 name=Bed
+
+# turn-22
+@w0 command action=create shape=rectangle size=small color=white at=160,355 name=Pillow1
+@w1 command action=create shape=rectangle size=small color=white at=240,355 name=Pillow2
+
+# turn-23
+@w0 command action=create shape=rectangle color=brown width=50 height=150 at=345,385 name=Wardrobe
+
+# turn-24
+@w0 command action=create shape=rectangle size=small color=brown at=690,455 label="door" name=FrontDoor
+
+# turn-25
+@w0 question ask=count shape=rectangle
+
+# turn-26
+@w0 command action=group target=Living,Sofa,TvUnit,CoffeeTable,text1 name=LivingSet
+
+# turn-27
+@w0 command action=group target=Bed,Pillow1,Pillow2,Wardrobe name=Sleep
+
+# turn-28
+@w0 question ask=groupOf target=Pillow2
+
+# turn-29
+@w0 command action=connect from=FrontDoor to=Sofa style=dotted label="way in"
+
+# turn-30
+@w0 command action=connect from=FrontDoor to=Bed style=dotted
+
+# turn-31
+@w0 question ask=path from=FrontDoor to=Bed
+
+# turn-32
+@w0 command action=set target=Fridge color=gray
+
+# turn-33
+@w0 question ask=property target=Fridge property=color
+
+# turn-34
+@w0 question ask=check target=Stove position=leftOf anchor=Fridge
+
+# turn-35
+@w0 command action=swap target=Stove,Fridge
+
+# turn-36
+@w0 command action=create shape=hexagon size=small color=gray position=leftOf anchor=FrontDoor distance=30 name=Shoes
+
+# turn-37
+@w0 question ask=list position=near anchor=FrontDoor
+
+# turn-38
+@w0 command action=create shape=text label="Flat 4B, 62 m2" color=navy position=bottomLeft name=Title
+
+# turn-39
+@w0 command action=set target=Pillow1,Pillow2 color=pink
+
+# turn-40
+@w0 command action=undo
+
+# turn-41
+@w0 question ask=extreme superlative=biggest
+
+# turn-42
+@w0 question ask=count shape=circle
+
+# turn-43
+@w0 question ask=describe target=Bedroom
+
+# turn-44
+# noop: Closing acknowledgment; no diagram request.

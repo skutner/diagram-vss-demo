@@ -1,0 +1,93 @@
+# Saved executable SOP Lang: Harbour at dusk
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=orange fill=faint width=780 height=192 at=400,120 layer=background name=Sky
+@a1 command action=set target=Sky height=230
+
+# turn-2
+@a0 command action=create shape=rectangle color=blue fill=light width=780 height=240 at=400,370 layer=zone name=Sea
+@a1 command action=set target=Sea height=250
+
+# turn-3
+@a0 command action=create shape=circle color=yellow size=large at=620,150 name=Sun
+
+# turn-4
+@a0 command action=create shape=rectangle color=brown width=220 height=30 at=150,300 name=Pier
+
+# turn-5
+@a0 command action=create shape=square color=gray size=small at=110,258 name=Hut
+
+# turn-6
+@a0 command action=create shape=triangle color=red size=tiny position=above anchor=Hut distance=2 name=Roof
+@a1 command action=move target=Roof direction=up distance=2
+
+# turn-7
+@a0 command action=create shape=ellipse color=white size=medium at=480,340 name=Boat
+
+# turn-8
+@a0 command action=create shape=triangle color=white size=small position=above anchor=Boat distance=4 name=Sail
+@a1 command action=move target=Sail direction=down distance=16
+
+# turn-9
+@a0 question ask=count shape=triangle
+
+# turn-10
+@a0 command action=create shape=circle color=red size=tiny at=360,430 name=Buoy1
+
+# turn-11
+@a0 command action=create shape=circle color=red size=tiny at=420,450 name=Buoy2
+@a1 command action=create shape=circle color=red size=tiny at=300,455 name=Buoy3
+
+# turn-12
+@a0 command action=group target=Buoy1,Buoy2,Buoy3 name=Buoys
+
+# turn-13
+@a0 command action=create shape=rectangle color=white width=30 height=120 at=740,300 name=Tower
+
+# turn-14
+@a0 command action=create shape=circle color=yellow size=tiny position=above anchor=Tower distance=2 name=Lamp
+@a1 command action=move target=Lamp direction=down distance=16
+
+# turn-15
+@a0 command action=set target=Lamp color=orange
+
+# turn-16
+@a0 command action=create shape=triangle color=black size=tiny at=300,90 name=Gull
+
+# turn-17
+@a0 command action=create shape=triangle color=black size=tiny position=rightOf anchor=Gull distance=40 name=Gull2
+
+# turn-18
+@a0 question ask=check target=Gull2 position=rightOf anchor=Gull
+
+# turn-19
+@a0 command action=connect from=Pier to=Boat style=dashed arrow=none
+
+# turn-20
+@a0 command action=create shape=diamond color=navy at=560,455 name=Rock
+
+# turn-21
+@a0 command action=set target=Rock color=gray
+
+# turn-22
+@a0 question ask=nearest anchor=Boat
+
+# turn-23
+@a0 command action=create shape=text label="Harbour" size=small at=400,40 name=Title
+@a1 command action=set target=Title size=large
+
+# turn-24
+@a0 command action=move target=Title direction=down distance=10
+
+# turn-25
+@a0 command action=group target=Hut,Roof name=Cabin
+
+# turn-26
+@a0 question ask=members target=Buoys
+
+# turn-27
+# noop: Closing acknowledgement with no diagram request.

@@ -1,0 +1,30 @@
+# Saved executable SOP Lang: Login flowchart
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=circle color=blue name=Begin position=left label="start"
+
+# turn-1
+@w0 command action=create shape=rectangle name=Form position=rightOf anchor=Begin label="Enter password"
+@w1 command action=connect from=Begin to=Form
+
+# turn-2
+@w0 command action=create shape=diamond color=yellow name=Valid position=rightOf anchor=Form label="valid?"
+@w1 command action=connect from=Form to=Valid
+
+# turn-3
+@w0 command action=create shape=rectangle color=green name=Home position=rightOf anchor=Valid label="Dashboard"
+@w1 command action=connect from=Valid to=Home arrow=forward label="yes"
+
+# turn-4
+@w0 command action=create shape=rectangle color=red name=Error position=below anchor=Valid label="Show error"
+@w1 command action=connect from=Valid to=Error style=dashed arrow=forward label="no"
+
+# turn-5
+@w0 command action=connect from=Error to=Form style=dotted arrow=forward label="retry"
+
+# turn-6
+@w0 question ask=path from=Begin to=Home
+
+# turn-7
+@w0 question ask=cycle

@@ -1,0 +1,16 @@
+# Saved executable SOP Lang: Traffic light
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=circle size=large color=red name=Stop position=top
+
+# turn-1
+@w0 command action=create shape=circle size=large color=yellow name=Wait position=below anchor=Stop
+@w1 command action=create shape=circle size=large color=green name=Go position=below anchor=Wait
+
+# turn-2
+@w0 command action=connect from=Stop to=Wait arrow=none
+@w1 command action=connect from=Wait to=Go arrow=none
+
+# turn-3
+@w0 question ask=property property=color target=Go

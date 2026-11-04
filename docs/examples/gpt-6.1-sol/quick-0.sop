@@ -1,0 +1,5 @@
+# Saved executable SOP Lang: Quick example 0
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=star size=small color=pink position=near anchor=Done name=QuickStar

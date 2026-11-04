@@ -1,0 +1,66 @@
+# Saved executable SOP Lang: Office network
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=ellipse size=large color=white name=Internet position=left label="Internet"
+
+# turn-1
+@w0 command action=create shape=hexagon color=red name=Firewall position=rightOf anchor=Internet label="FW"
+@w1 command action=connect from=Internet to=Firewall arrow=both
+
+# turn-2
+@w0 command action=create shape=hexagon color=purple name=Router position=rightOf anchor=Firewall label="core"
+@w1 command action=connect from=Firewall to=Router arrow=both
+
+# turn-3
+@w0 rule shape=rectangle color=teal
+
+# turn-4
+@w0 command action=create shape=rectangle name=SwitchA at=520,150 label="switch A"
+@w1 command action=create shape=rectangle name=SwitchB at=520,350 label="switch B"
+
+# turn-5
+@w0 command action=connect from=Router to=SwitchA,SwitchB
+
+# turn-6
+@w0 command action=create shape=square size=small color=blue name=Laptop at=690,90 label="laptop"
+@w1 command action=create shape=square size=small color=blue name=Printer position=below anchor=Laptop label="printer"
+
+# turn-7
+@w0 command action=create shape=square size=small color=green name=Server at=690,300 label="db"
+@w1 command action=create shape=square size=small color=green name=Backup at=690,440 label="backup"
+
+# turn-8
+@w0 command action=connect from=SwitchA to=Laptop,Printer
+@w1 command action=connect from=SwitchB to=Server,Backup
+
+# turn-9
+@w0 command action=connect from=Server to=Backup style=dashed color=red arrow=forward label="nightly"
+
+# turn-10
+@w0 mention shape=square quantifier=all
+@w1 command action=resize target=$w0 scale=1.2
+
+# turn-11
+@w0 fact target=Printer color=gray
+
+# turn-12
+@w0 command action=move target=Router direction=up distance=30
+
+# turn-13
+@w0 question ask=path from=Internet to=Backup
+
+# turn-14
+@w0 question ask=path from=Laptop to=Server
+
+# turn-15
+@w0 question ask=reachable from=SwitchB
+
+# turn-16
+@w0 question ask=extreme superlative=mostConnected
+
+# turn-17
+@w0 question ask=count kind=edge
+
+# turn-18
+@w0 question ask=describe target=Router

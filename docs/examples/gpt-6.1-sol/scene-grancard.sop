@@ -1,0 +1,130 @@
+# Saved executable SOP Lang: Card for Grandma
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@a0 command action=clear
+
+# turn-1
+@a0 command action=create shape=rectangle color=pink fill=light width=780 height=480 position=center layer=background name=Card
+
+# turn-2
+@a0 command action=create shape=circle color=red size=large at=360,220 name=LobeL
+
+# turn-3
+@a0 command action=create shape=circle color=red size=large at=440,220 name=LobeR
+
+# turn-4
+@a0 command action=create shape=diamond color=red size=huge at=400,290 name=Tip
+
+# turn-5
+@a0 command action=group target=LobeL,LobeR,Tip name=Heart
+
+# turn-6
+@a0 command action=create shape=text label="Thank you, Grandma" position=top size=large color=magenta name=Title
+
+# turn-7
+@a0 command action=create shape=circle color=yellow size=small position=leftOf anchor=Heart distance=60 name=MyHead
+
+# turn-8
+@a0 command action=create shape=rectangle color=orange position=below anchor=MyHead distance=2 name=MyBody
+@a1 command action=move target=MyBody direction=up distance=16
+
+# turn-9
+@a0 command action=create shape=circle color=white size=small position=rightOf anchor=Heart distance=60 name=GranHead
+
+# turn-10
+@a0 command action=create shape=rectangle color=purple position=below anchor=GranHead distance=2 name=GranBody
+@a1 command action=move target=GranBody direction=up distance=16
+
+# turn-11
+@a0 command action=group target=MyHead,MyBody name=Me
+
+# turn-12
+@a0 command action=group target=GranHead,GranBody name=Gran
+
+# turn-13
+@a0 command action=connect from=MyBody,GranBody to=Tip style=dotted arrow=forward
+
+# turn-14
+@a0 command action=label from=GranBody to=Tip label="love"
+
+# turn-15
+@a0 question ask=check target=MyHead position=leftOf anchor=GranHead
+
+# turn-16
+@a0 command action=create count=5 shape=star color=pink size=small layout=row position=below anchor=Heart name=Flower
+
+# turn-17
+@a0 command action=set target=Flower,Flower2,Flower3,Flower4,Flower5 color=gold
+
+# turn-18
+@a0 command action=create shape=circle color=yellow size=medium position=topRight name=Sun
+
+# turn-19
+@a0 command action=create shape=ellipse color=white size=tiny position=near anchor=Sun name=Cloud
+
+# turn-20
+@a0 question ask=check target=Tip position=center
+
+# turn-21
+@a0 command action=set target=GranBody color=pink
+
+# turn-22
+@a0 question ask=count shape=circle
+
+# turn-23
+@a0 command action=toFront target=LobeL,LobeR
+
+# turn-24
+@a0 command action=create shape=hexagon color=purple size=small position=near anchor=MyBody name=Present
+
+# turn-25
+@a0 question ask=list color=pink
+
+# turn-26
+@a0 command action=create shape=diamond color=red size=tiny position=above anchor=MyHead name=MyDiamond
+
+# turn-27
+@a0 command action=create shape=diamond color=red size=tiny position=above anchor=GranHead name=GranDiamond
+
+# turn-28
+@a0 command action=set target=MyDiamond,GranDiamond color=magenta
+
+# turn-29
+@a0 question ask=list position=near anchor=Sun
+
+# turn-30
+@a0 command action=create shape=text label="with love, Mia" position=below anchor=Me size=small name=Signature
+
+# turn-31
+@a0 question ask=check target=Cloud color=white
+
+# turn-32
+@a0 command action=delete target=Cloud
+
+# turn-33
+@a0 command action=move target=Gran direction=right distance=20
+
+# turn-34
+@a0 question ask=describe target=Tip
+
+# turn-35
+@a0 question ask=count kind=group
+
+# turn-36
+@a0 question ask=groupOf target=MyBody
+
+# turn-37
+@a0 question ask=neighbors target=Tip
+
+# turn-38
+@a0 command action=set target=Title color=magenta size=huge
+
+# turn-39
+@a0 question ask=check target=Sun comparison=bigger anchor=MyHead
+
+# turn-40
+@a0 command action=undo
+
+# turn-41
+# noop: Closing acknowledgement with no diagram request.

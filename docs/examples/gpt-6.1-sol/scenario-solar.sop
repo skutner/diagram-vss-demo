@@ -1,0 +1,29 @@
+# Saved executable SOP Lang: Solar system
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=create shape=circle size=huge color=gold name=Sun position=center
+
+# turn-1
+@w0 command action=create shape=circle size=tiny color=gray name=Mercury position=rightOf anchor=Sun
+@w1 command action=create shape=circle size=small color=orange name=Venus position=leftOf anchor=Sun
+
+# turn-2
+@w0 command action=create shape=circle size=small color=blue name=Earth position=above anchor=Sun
+@w1 command action=create shape=circle size=small color=red name=Mars position=below anchor=Sun
+
+# turn-3
+@w0 command action=create shape=circle size=large color=brown name=Jupiter position=topRight
+@w1 command action=create shape=circle size=large color=yellow name=Saturn position=bottomLeft outline=gold
+
+# turn-4
+@w0 command action=connect from=Sun to=Mercury,Venus,Earth,Mars style=dotted arrow=none
+
+# turn-5
+@w0 question ask=nearest shape=circle anchor=Jupiter superlative=closest
+
+# turn-6
+@w0 question ask=extreme superlative=biggest
+
+# turn-7
+@w0 question ask=check target=Earth position=above anchor=Mars

@@ -1,0 +1,130 @@
+# Saved executable SOP Lang: Sunrise of hope
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+# noop: Scene introduction and motivation; concrete drawing requests follow.
+
+# turn-2
+@w0 command action=create shape=rectangle color=orange fill=light width=780 height=300 position=top layer=background name=Dawn
+
+# turn-3
+@w0 command action=create shape=rectangle color=blue fill=light width=780 height=180 position=bottom layer=zone name=Sea
+
+# turn-4
+@w0 command action=create shape=circle size=huge color=gold at=400,310 name=Sun
+
+# turn-5
+@w0 command action=resize target=Sun scale=1.2
+
+# turn-6
+@w0 command action=create shape=triangle count=5 size=small color=yellow layout=row position=above anchor=Sun name=Ray
+
+# turn-7
+@w0 command action=set target=Ray,Ray2,Ray3,Ray4,Ray5 outline=orange
+
+# turn-8
+@w0 command action=create shape=text label="after every night" position=top size=large color=white name=FirstLine
+
+# turn-9
+@w0 command action=create shape=text label="comes the morning" position=below anchor=FirstLine size=large color=white name=SecondLine
+
+# turn-10
+@w0 command action=set target=FirstLine,SecondLine color=navy
+
+# turn-11
+@w0 command action=create shape=rectangle size=small color=brown position=bottomLeft name=Hull
+
+# turn-12
+@w0 command action=create shape=triangle color=white position=onTop anchor=Hull distance=0 name=Sail
+
+# turn-13
+@w0 command action=group target=Hull,Sail name=Boat
+
+# turn-14
+@w0 command action=move target=Boat direction=right distance=20
+
+# turn-15
+@w0 command action=create shape=triangle size=tiny color=black name=Gull1 position=leftOf anchor=Sun distance=30
+@w1 command action=create shape=triangle size=tiny color=black name=Gull2 position=rightOf anchor=Sun distance=30
+
+# turn-16
+@w0 command action=move target=Gull1,Gull2 direction=up distance=40
+
+# turn-17
+@w0 question ask=check target=Gull1 position=leftOf anchor=Gull2
+
+# turn-18
+@w0 command action=create shape=ellipse count=3 color=blue fill=light layout=row position=below anchor=Sun name=Wave
+
+# turn-19
+@w0 command action=set target=Wave,Wave2,Wave3 color=white
+
+# turn-20
+@w0 command action=connect from=Sun to=Hull arrow=none style=dashed color=white
+
+# turn-21
+@w0 command action=label from=Sun to=Hull label="hope"
+
+# turn-22
+@w0 question ask=list color=white position=inside anchor=Sea
+
+# turn-23
+@w0 command action=create shape=rectangle size=small color=red position=right name=Tower
+
+# turn-24
+@w0 command action=create shape=circle size=tiny color=yellow position=above anchor=Tower distance=2 name=Lamp
+@w1 command action=move target=Lamp direction=down distance=16
+
+# turn-25
+@w0 command action=connect from=Lamp to=Sun arrow=none style=dotted color=yellow
+
+# turn-26
+@w0 command action=group target=Tower,Lamp name=Lighthouse
+
+# turn-27
+@w0 question ask=check target=Lighthouse position=rightOf anchor=Boat
+
+# turn-28
+@w0 command action=set target=Tower size=small
+
+# turn-29
+@w0 command action=undo
+
+# turn-30
+@w0 question ask=count shape=triangle
+
+# turn-31
+@w0 command action=create shape=diamond size=tiny color=pink position=between anchor=Boat,Sun name=Love
+
+# turn-32
+@w0 command action=toFront target=Love
+
+# turn-33
+@w0 question ask=nearest anchor=Love
+
+# turn-34
+@w0 command action=set target=Sun color=orange
+
+# turn-35
+@w0 command action=undo
+
+# turn-36
+@w0 command action=move target=SecondLine direction=down distance=10
+
+# turn-37
+@w0 question ask=check target=Sun comparison=bigger anchor=Tower
+
+# turn-38
+@w0 question ask=extreme superlative=biggest
+
+# turn-39
+@w0 command action=create shape=text label="for Ana" position=bottomRight size=small color=gray name=Dedication
+
+# turn-40
+@w0 question ask=neighbors target=Sun
+
+# turn-41
+# noop: Closing acknowledgment; no diagram request.

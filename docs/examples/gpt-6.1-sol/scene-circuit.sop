@@ -1,0 +1,136 @@
+# Saved executable SOP Lang: Circuit board
+# Model: gpt-6.1-sol; generation date: 2026-11-04
+
+# turn-0
+@w0 command action=clear
+
+# turn-1
+@w0 command action=create shape=rectangle color=green layer=zone width=740 height=430 at=400,265 name=Board
+
+# turn-2
+@w0 command action=create shape=rectangle color=black width=120 height=90 at=360,260 label="CPU" name=Cpu
+
+# turn-3
+@w0 command action=create shape=rectangle color=gray width=34 height=90 position=rightOf anchor=Cpu name=Ram1
+
+# turn-4
+@w0 command action=create shape=rectangle color=gray width=34 height=90 position=rightOf anchor=Ram1 distance=20 name=Ram2
+
+# turn-5
+@w0 command action=connect from=Cpu to=Ram1,Ram2 color=gold arrow=none
+
+# turn-6
+@w0 command action=create shape=ellipse size=small color=gray position=above anchor=Cpu distance=20 name=Xtal
+@w1 command action=move target=Xtal direction=down distance=16
+
+# turn-7
+@w0 command action=create shape=circle count=4 size=tiny color=red layout=row position=above anchor=Xtal distance=30 name=Led
+@w1 command action=move target=Led,Led2,Led3,Led4 direction=down distance=16
+
+# turn-8
+@w0 command action=connect from=Led,Led2,Led3,Led4 pairing=chain color=gold arrow=none
+
+# turn-9
+@w0 command action=create shape=rectangle count=3 size=small color=brown layout=column position=leftOf anchor=Cpu name=rectangle
+@w1 command action=rename target=rectangle name=rectangle1
+
+# turn-10
+@w0 command action=rename target=rectangle1 name=R1
+
+# turn-11
+@w0 command action=rename target=rectangle2 name=R2
+
+# turn-12
+@w0 command action=rename target=rectangle3 name=R3
+
+# turn-13
+@w0 question ask=check target=R2 position=leftOf anchor=Cpu
+
+# turn-14
+@w0 command action=create shape=circle size=medium color=gold label="3V" at=140,410 name=Battery
+
+# turn-15
+@w0 command action=create shape=hexagon size=small color=blue position=rightOf anchor=Battery name=C1
+@w1 command action=create shape=hexagon size=small color=blue position=rightOf anchor=C1 name=C2
+
+# turn-16
+@w0 command action=connect from=Battery,C1,C2,Cpu pairing=chain color=gold arrow=none
+
+# turn-17
+@w0 command action=create shape=square count=6 size=tiny color=gold layout=column position=right name=square
+@w1 command action=rename target=square name=square1
+
+# turn-18
+@w0 command action=group target=square1,square2,square3,square4,square5,square6 name=Header
+
+# turn-19
+@w0 question ask=count color=gold shape=any
+
+# turn-20
+@w0 command action=connect from=Cpu to=square1 color=gold arrow=none
+
+# turn-21
+@w0 question ask=neighbors target=Cpu
+
+# turn-22
+@w0 question ask=path from=Battery to=Ram2
+
+# turn-23
+@w0 command action=equalize target=R1,R2,R3 property=size
+
+# turn-24
+@w0 command action=create shape=text label="MK-II CONTROLLER" position=bottom color=white name=Title
+
+# turn-25
+@w0 command action=set target=Title size=large
+
+# turn-26
+@w0 question ask=degree target=Cpu
+
+# turn-27
+@w0 command action=set target=Xtal shape=diamond
+
+# turn-28
+@w0 command action=undo
+
+# turn-29
+@w0 command action=set target=Led,Led2,Led3,Led4 color=lime
+
+# turn-30
+@w0 command action=toFront target=Cpu
+
+# turn-31
+@w0 command action=group target=Cpu,Ram1,Ram2 name=Core
+
+# turn-32
+@w0 command action=move target=Core direction=down distance=20
+
+# turn-33
+@w0 question ask=check target=Xtal position=above anchor=Cpu
+
+# turn-34
+@w0 command action=connect from=R3 to=Battery style=dashed color=gold arrow=none
+
+# turn-35
+@w0 question ask=nearest anchor=Battery
+
+# turn-36
+@w0 command action=set kind=edge color=yellow
+
+# turn-37
+@w0 question ask=groupOf target=square6
+
+# turn-38
+@w0 question ask=extreme superlative=bottommost shape=any
+
+# turn-39
+@w0 command action=delete target=C2
+
+# turn-40
+@w0 command action=undo
+
+# turn-41
+@w0 question ask=describe target=Cpu
+
+# turn-42
+# noop: Closing acknowledgment; no diagram request.
