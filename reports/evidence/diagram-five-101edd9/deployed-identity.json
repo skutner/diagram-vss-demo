@@ -1,0 +1,115 @@
+{
+  "verifiedAt": "2026-11-04T05:42:37.625830+00:00",
+  "deployedBuild": {
+    "status": "built",
+    "commit": "101edd92599c2bcae995082d037b7683637b1633",
+    "created_at": "2026-11-04T05:41:19Z",
+    "updated_at": "2026-11-04T05:42:29Z"
+  },
+  "assets": {
+    "docs/js/ui.js": {
+      "url": "https://skutner.github.io/diagram-vss-demo/js/ui.js?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 216558,
+      "live_sha256": "2e9f50758945326ed3ca78a15202d1a836e4b30a8d1e6797f2ff61ce5c061ed6",
+      "source_sha256": "2e9f50758945326ed3ca78a15202d1a836e4b30a8d1e6797f2ff61ce5c061ed6",
+      "equal": true
+    },
+    "docs/js/neural.js": {
+      "url": "https://skutner.github.io/diagram-vss-demo/js/neural.js?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 71639,
+      "live_sha256": "a1992b795b1d585a48b5b0eb834bd413d9fa9b6b7d128812655d702786187944",
+      "source_sha256": "a1992b795b1d585a48b5b0eb834bd413d9fa9b6b7d128812655d702786187944",
+      "equal": true
+    },
+    "docs/js/logic.js": {
+      "url": "https://skutner.github.io/diagram-vss-demo/js/logic.js?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 326019,
+      "live_sha256": "fef540d19ba00eb3b09104a64eacacac1ae82535adb932c472a5527b04746d2b",
+      "source_sha256": "fef540d19ba00eb3b09104a64eacacac1ae82535adb932c472a5527b04746d2b",
+      "equal": true
+    },
+    "docs/model/versions.json": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/versions.json?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 1649,
+      "live_sha256": "ea6c8192aa3fe46e2715f5fcce475871c8473429104e0bc2e522bb8bfa7250ad",
+      "source_sha256": "ea6c8192aa3fe46e2715f5fcce475871c8473429104e0bc2e522bb8bfa7250ad",
+      "equal": true
+    },
+    "docs/model/confidence/modernbert.json": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/confidence/modernbert.json?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 307774,
+      "live_sha256": "97aa94d96f2981f5aee14311f3359a882ba13e3987e5e0eda4c77260e2e55a81",
+      "source_sha256": "97aa94d96f2981f5aee14311f3359a882ba13e3987e5e0eda4c77260e2e55a81",
+      "equal": true
+    },
+    "docs/model/neural/modernbert/export_manifest.json": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/neural/modernbert/export_manifest.json?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 4366,
+      "live_sha256": "dcf322eb7708ac14d21142b01d7ee0372b21a160171db49fa759f90a5ee12a84",
+      "source_sha256": "dcf322eb7708ac14d21142b01d7ee0372b21a160171db49fa759f90a5ee12a84",
+      "equal": true
+    },
+    "docs/model/neural/modernbert/config.json": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/neural/modernbert/config.json?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 509081,
+      "live_sha256": "c0110b40cf405d45e405842b22179e49a43b8e0e9a52cf1c454f9213786b0973",
+      "source_sha256": "c0110b40cf405d45e405842b22179e49a43b8e0e9a52cf1c454f9213786b0973",
+      "equal": true
+    },
+    "docs/model/neural/modernbert/onnx/model_quantized.onnx": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/neural/modernbert/onnx/model_quantized.onnx?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 1490412,
+      "live_sha256": "d5c943cd2fdcfbe4481cf99d56927efde3cb7dd8fcfa64bf6714604743408773",
+      "source_sha256": "d5c943cd2fdcfbe4481cf99d56927efde3cb7dd8fcfa64bf6714604743408773",
+      "equal": true
+    },
+    "docs/model/neural/modernbert/onnx/model_quantized.onnx_data": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/neural/modernbert/onnx/model_quantized.onnx_data?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 93974180,
+      "live_sha256": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47",
+      "source_sha256": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47",
+      "equal": true
+    },
+    "docs/model/neural/modernbert/onnx/model_quantized.onnx_data_1": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/neural/modernbert/onnx/model_quantized.onnx_data_1?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 56133888,
+      "live_sha256": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d",
+      "source_sha256": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d",
+      "equal": true
+    },
+    "docs/model/neural/modernbert/special_tokens_map.json": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/neural/modernbert/special_tokens_map.json?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 694,
+      "live_sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "source_sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "equal": true
+    },
+    "docs/model/neural/modernbert/tokenizer.json": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/neural/modernbert/tokenizer.json?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 3583228,
+      "live_sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "source_sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "equal": true
+    },
+    "docs/model/neural/modernbert/tokenizer_config.json": {
+      "url": "https://skutner.github.io/diagram-vss-demo/model/neural/modernbert/tokenizer_config.json?verification=101edd92599c2bcae995082d037b7683637b1633",
+      "status": 200,
+      "bytes": 20840,
+      "live_sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "source_sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "equal": true
+    }
+  }
+}

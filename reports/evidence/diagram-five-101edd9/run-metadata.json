@@ -1,0 +1,129 @@
+{
+  "deployed_source": "101edd92599c2bcae995082d037b7683637b1633",
+  "fixture_sha256": "c81167e8bb6ff0a8c693317b11ca5d1e72f781bb7851ba28b7448c0edff89f3f",
+  "harness_sha256": "da8e770266aecff1d0836e3ffc288c01754fb9c21690cb28809e3fe42d7459c8",
+  "raw_record_sha256": "ba77d0b416913cfde40913e67719e48ad5bdeed18df0044d6146f2bc9fc6196c",
+  "actual_url": "https://skutner.github.io/diagram-vss-demo/?models=rules,vss,neural,combined,modernbert",
+  "messages": 11,
+  "requested_per_reader": 10,
+  "negative_controls_per_reader": 1,
+  "after_snapshots": 55,
+  "legacy_after_sop_equal_baseline": 44,
+  "ui_formalization_timing": {
+    "rules": {
+      "message_count": 11,
+      "min_ms": 1.7,
+      "median_ms": 3.4,
+      "max_ms": 25.0,
+      "values_ms": [
+        25.0,
+        5.2,
+        6.3,
+        15.0,
+        3.3,
+        1.9,
+        3.6,
+        1.7,
+        3.4,
+        3.1,
+        3.1
+      ]
+    },
+    "vss": {
+      "message_count": 11,
+      "min_ms": 8.0,
+      "median_ms": 14.0,
+      "max_ms": 30.0,
+      "values_ms": [
+        19.0,
+        30.0,
+        15.0,
+        11.0,
+        18.0,
+        14.0,
+        13.0,
+        8.0,
+        14.0,
+        13.0,
+        15.0
+      ]
+    },
+    "neural": {
+      "message_count": 11,
+      "min_ms": 46.0,
+      "median_ms": 71.0,
+      "max_ms": 84.0,
+      "values_ms": [
+        80.0,
+        78.0,
+        83.0,
+        58.0,
+        71.0,
+        77.0,
+        66.0,
+        46.0,
+        84.0,
+        65.0,
+        67.0
+      ]
+    },
+    "combined": {
+      "message_count": 11,
+      "min_ms": 49.0,
+      "median_ms": 77.0,
+      "max_ms": 108.0,
+      "values_ms": [
+        108.0,
+        88.0,
+        90.0,
+        62.0,
+        77.0,
+        82.0,
+        72.0,
+        49.0,
+        90.0,
+        72.0,
+        74.0
+      ]
+    },
+    "modernbert": {
+      "message_count": 11,
+      "min_ms": 474.0,
+      "median_ms": 537.0,
+      "max_ms": 579.0,
+      "values_ms": [
+        573.0,
+        572.0,
+        569.0,
+        517.0,
+        537.0,
+        552.0,
+        527.0,
+        474.0,
+        579.0,
+        516.0,
+        526.0
+      ]
+    }
+  },
+  "hardware": {
+    "cpu": "Apple M1",
+    "ram_bytes": 17179869184,
+    "macos": "27.2 (26B123)",
+    "browser_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+  },
+  "commands": [
+    "playwright-cli -s=diagram-five-live open https://skutner.github.io/diagram-vss-demo/?models=rules,vss,neural,combined,modernbert --browser chrome",
+    "playwright-cli -s=diagram-five-live run-code --filename training/sketch/diagram_e2e_live.mjs",
+    "playwright-cli -s=diagram-five-live run-code --filename <task cache>/capture-five-settings.mjs",
+    "playwright-cli -s=diagram-five-live close"
+  ],
+  "network_response_errors_during_harness": [],
+  "initial_console_note": "The first navigation requested https://skutner.github.io/favicon.ico and received 404. No model/runtime substitution was used.",
+  "cleanup": {
+    "supported_close_exit": 0,
+    "owned_daemon_pid": 88158,
+    "daemon_absent_after_close": true,
+    "http_server_used_for_live_run": false
+  }
+}

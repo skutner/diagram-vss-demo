@@ -8,7 +8,9 @@ Export, reader and calibration source:
 **Training and browser compatibility succeeded. Task quality failed the registered
 criterion.** The frozen confidence gate accepts only 16 of 1,745 held-out requested
 actions correctly, or 0.92%. Keep this model experimental and retain the existing
-readers. The direct five-reader Pages drawing comparison remains pending.
+readers. The [direct five-reader Pages comparison](diagram-e2e-five.md) is complete:
+ModernBERT answered one path question and held all nine drawing commands,
+leaving its starter canvas unchanged. Independent live grading remains pending.
 
 ## What was trained on Apparatus
 
@@ -188,8 +190,14 @@ It reused the closed source-bound OOF coefficient fit without refitting it.
 It confirmed the negative experiment and found no provenance or metric blocker.
 
 Stop this quality experiment at its fixed result. Do not loosen the gate or
-retrain to improve the reported number. Publish only as an experimental reader
-for the already planned direct comparison. The next authorized measurement is
-the frozen eleven-message, five-reader E2E run on the fork's Pages site, with
-intent, holds, actual operations and per-reader drawings inspected. Its outcome
-is pending. Any later training hypothesis requires a separately declared run.
+retrain to improve the reported number. The artifact is now published as an
+experimental reader. The [frozen eleven-message E2E run](diagram-e2e-five.md)
+completed directly on Pages at `101edd92599c2bcae995082d037b7683637b1633`, with
+all five readers ready. Manual grading found ModernBERT held all nine drawing
+commands, correctly answered the path question and left the starter drawing
+unchanged. Some held proposals were correct, while others contained wrong colors,
+shapes or references. No wrong execution or extra action was observed. Independent
+live grading confirmed all 50 requested-action outcomes and all five unsupported
+controls. This adds actual canvas evidence to the separate
+formalization evaluation. Any later training hypothesis requires a separately
+declared run.

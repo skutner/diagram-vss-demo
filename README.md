@@ -1,13 +1,13 @@
 # diagram-vss-demo
 
 [Open this fork's diagram demo](https://skutner.github.io/diagram-vss-demo/).
-The existing four-reader live baseline and per-action drawings are recorded in
-[the E2E report](reports/diagram-e2e-baseline.md). The experimental fifth reader, ModernBERT, completed training on Apparatus and
-passed browser export parity. It failed the fixed task-quality criterion: only
-16 of 1,745 requested actions passed its calibrated gate correctly (0.92%).
-See [the full report](reports/modernbert.md) and
-[integration status](reports/modernbert-status.md). Publication and the direct
-five-reader live comparison remain pending.
+The [live five-reader comparison](reports/diagram-e2e-five.md) tested the same
+natural-language requests on Rules, VSS, SOP-BERT, VSS-BERT and ModernBERT.
+ModernBERT answered the path question and held all nine drawing commands, leaving
+its canvas unchanged. It remains experimental: its separate fixed quality test
+accepted only 16 of 1,745 requested actions correctly (0.92%). See
+[the full model report](reports/modernbert.md) and
+[integration status](reports/modernbert-status.md).
 
 **SOP Sketchpad**: a diagram editor you talk to in English, in the browser, with no server. Every message is formalized into SOP Lang
 wires by the enabled readers (the table under "The readers"), and the same engine and the same Datalog reasoner run the wires,

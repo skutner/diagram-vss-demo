@@ -1,0 +1,80 @@
+{
+  "candidate": "101edd92599c2bcae995082d037b7683637b1633",
+  "record_sha256": "ba77d0b416913cfde40913e67719e48ad5bdeed18df0044d6146f2bc9fc6196c",
+  "fixtures": 11,
+  "after_snapshots": 55,
+  "graded_actions": 50,
+  "negative_controls": 5,
+  "ready_readers": 5,
+  "common_initial_sop": true,
+  "source_asset_hashes_verified": 13,
+  "legacy_exact_sop_and_shape_edge_svg_states": 44,
+  "settings_all_cost_and_null_overrides": true,
+  "question_answers_and_directed_graph_verified": 5,
+  "unsupported_no_mutation_no_extras_verified": 5,
+  "adversarial_false_pass_checks": [
+    "Combined connect gate says executed1of1 but engine missing E2EAlpha and no scene change: not_done.",
+    "Wrong held ModernBERT star/red/broad-target proposals do not count as executed wrong or extras.",
+    "Rules pronoun succeeds despite failed label because actual renamed target exists."
+  ],
+  "summary": {
+    "rules": {
+      "right": 9,
+      "asked": 0,
+      "not_done": 1,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "vss": {
+      "right": 8,
+      "asked": 2,
+      "not_done": 0,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "neural": {
+      "right": 7,
+      "asked": 3,
+      "not_done": 0,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "combined": {
+      "right": 3,
+      "asked": 3,
+      "not_done": 4,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "modernbert": {
+      "right": 1,
+      "asked": 9,
+      "not_done": 0,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    }
+  },
+  "cleanup_evidence": {
+    "supported_close_exit": 0,
+    "owned_daemon_pid": 88158,
+    "daemon_absent_after_close": true,
+    "http_server_used_for_live_run": false
+  },
+  "observed_by_verifier": [
+    "all50 per-action before/afterSOP semantic effects and per-reader details",
+    "all55 shape/edge SVG snapshots inspected through comparisons and semantic attribute assertions",
+    "all5 final screenshots visually inspected",
+    "frozen fixture and deployed identity consistency",
+    "all13 source identity hashes"
+  ],
+  "reused": [
+    "coordinator live Playwright execution and direct HTTP deployed identity retrieval",
+    "coordinator supported close evidence; no browser session opened by verifier"
+  ],
+  "assessment_sha256": "f3e80c461765fcc1952eed36d96a0f6cede026ee0ba95d29d2f30a0ff201e614"
+}

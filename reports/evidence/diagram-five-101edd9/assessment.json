@@ -1,0 +1,1187 @@
+{
+  "scope": "Independent read-only assessment of actual direct published five-reader capture; no new browser/model calls",
+  "deployed_source": "101edd92599c2bcae995082d037b7683637b1633",
+  "raw_record_sha256": "ba77d0b416913cfde40913e67719e48ad5bdeed18df0044d6146f2bc9fc6196c",
+  "fixture_sha256": "c81167e8bb6ff0a8c693317b11ca5d1e72f781bb7851ba28b7448c0edff89f3f",
+  "model_version": "663a4edb5b",
+  "confidence_version": "97aa94d96f",
+  "identity_evidence": "Reused coordinator direct live HTTP identity capture; all 13 corresponding local source/file hashes personally recomputed and matched. Browser recorded versioned same-fork model/confidence URLs; Cache API hits need not appear as network responses.",
+  "summary": {
+    "rules": {
+      "right": 9,
+      "asked": 0,
+      "not_done": 1,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "vss": {
+      "right": 8,
+      "asked": 2,
+      "not_done": 0,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "neural": {
+      "right": 7,
+      "asked": 3,
+      "not_done": 0,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "combined": {
+      "right": 3,
+      "asked": 3,
+      "not_done": 4,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    },
+    "modernbert": {
+      "right": 1,
+      "asked": 9,
+      "not_done": 0,
+      "wrong": 0,
+      "extras": 0,
+      "requested": 10
+    }
+  },
+  "actions": [
+    {
+      "reader": "rules",
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Created E2EAlpha as a red circle in SOP and rendered SVG.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=create shape=circle color=red name=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "initial",
+        "after_case": "create_alpha",
+        "reader_section": "RULES formalized in 25 ms · cut by: Rules segmenter\n@s1 command action=create shape=circle color=red name=E2EAlpha\n@s1 shapes\n+E2EAlpha medium red circle"
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Created E2EAlpha as a red circle in SOP and rendered SVG.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=create shape=circle color=red name=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "initial",
+        "after_case": "create_alpha",
+        "reader_section": "VSS formalized in 19 ms · cut by: VSS cutter\n@s1 command action=create shape=circle color=red name=E2EAlpha\nIgnored (not understood): “Please”\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“add a red circle called E2EAlpha to the diagram” → confidence 0.919, executed\nThe requests and the world that read each:\n“add a red circle called E2EAlpha to the diagram” → world shapes8, create\nclause add a red circle called E2EAlpha to the diagram\n@s1 shapes\n+E2EAlpha medium red circle"
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Created E2EAlpha as a red circle in SOP and rendered SVG.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@n1 command action=create shape=circle color=red name=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "initial",
+        "after_case": "create_alpha",
+        "reader_section": "SOP-BERT formalized in 80 ms · 2 model calls · cut by: BERT cutter\n@n1 command action=create shape=circle color=red name=E2EAlpha\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“add a red circle called E2EAlpha to the diagram” → confidence 0.957, executed\n@n1 add a red circle called E2EAlpha to the diagram\n@n1 shapes\n+E2EAlpha medium red circle"
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@w1 command action=create shape=circle color=red name=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "initial",
+        "after_case": "create_alpha",
+        "reader_section": "VSS-BERT formalized in 108 ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 1 request, not sure about 1.\n“add a red circle called E2EAlpha to the diagram” → confidence 0.898, not executed: both readers read it the same way, but the confidence of the reading is still below the threshold; SOP-BERT alone is not sure: not sure where this request starts\n# not executed (not sure)\n@w1 command action=create shape=circle color=red name=E2EAlpha\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 107 ms, combining 0.7 ms); combined confidence of the BERT cutter.\n“add a red circle called E2EAlpha to the diagram” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.701)\nNo wires were produced."
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=create shape=circle color=red name=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "initial",
+        "after_case": "create_alpha",
+        "reader_section": "MODERNBERT formalized in 573 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“add a red circle called E2EAlpha to the diagram” → confidence 0.044, not executed: not sure whether it gives a size; requests read as ‘create’ are often read wrong (right about 11% of the time on the calibration messages); not sure where this request starts\n# not executed (not sure)\n@n1 command action=create shape=circle color=red name=E2EAlpha\n@n1 add a red circle called E2EAlpha to the diagram\nNo wires were produced."
+      },
+      "displayed_confidence": 0.044,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Correct red circle create held."
+    },
+    {
+      "reader": "rules",
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Created E2EBeta as a blue rectangle in SOP and rendered SVG.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=create shape=rectangle color=blue name=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_alpha",
+        "after_case": "create_beta",
+        "reader_section": "RULES formalized in 5.2 ms · cut by: Rules segmenter\n@s1 command action=create shape=rectangle color=blue name=E2EBeta\n@s1 shapes\n+E2EBeta medium blue rectangle"
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Created E2EBeta as a blue rectangle in SOP and rendered SVG.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=create shape=rectangle color=blue name=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_alpha",
+        "after_case": "create_beta",
+        "reader_section": "VSS formalized in 30 ms · cut by: VSS cutter\n@s1 command action=create shape=rectangle color=blue name=E2EBeta\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Add a blue rectangle named E2EBeta as well” → confidence 0.927, executed\nThe requests and the world that read each:\n“Add a blue rectangle named E2EBeta as well” → world shapes8, create\nclause Add a blue rectangle named E2EBeta as well\n@s1 shapes\n+E2EBeta medium blue rectangle"
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Created E2EBeta as a blue rectangle in SOP and rendered SVG.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@n1 command action=create shape=rectangle color=blue name=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_alpha",
+        "after_case": "create_beta",
+        "reader_section": "SOP-BERT formalized in 78 ms · 2 model calls · cut by: BERT cutter\n@n1 command action=create shape=rectangle color=blue name=E2EBeta\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Add a blue rectangle named E2EBeta as well” → confidence 0.984, executed\n@n1 Add a blue rectangle named E2EBeta as well\n@n1 shapes\n+E2EBeta medium blue rectangle"
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Created E2EBeta as a blue rectangle in SOP and rendered SVG.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@w1 command action=create shape=rectangle color=blue name=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_alpha",
+        "after_case": "create_beta",
+        "reader_section": "VSS-BERT formalized in 88 ms · cut by: BERT cutter\n@w1 command action=create shape=rectangle color=blue name=E2EBeta\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Add a blue rectangle named E2EBeta as well” → confidence 0.968, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 87 ms, combining 0.2 ms); combined confidence of the BERT cutter.\n“Add a blue rectangle named E2EBeta as well” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.768)\n@w1 shapes\n+E2EBeta medium blue rectangle"
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "value_reading_then_confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=create shape=star name=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_alpha",
+        "after_case": "create_beta",
+        "reader_section": "MODERNBERT formalized in 572 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Add a blue rectangle named E2EBeta as well” → confidence 0.070, not executed: not sure whether it gives a color; requests read as ‘create’ are often read wrong (right about 11% of the time on the calibration messages)\n# not executed (not sure)\n@n1 command action=create shape=star name=E2EBeta\n@n1 Add a blue rectangle named E2EBeta as well\nNo wires were produced."
+      },
+      "displayed_confidence": 0.07,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Wrong star proposal omits requested blue; held."
+    },
+    {
+      "reader": "rules",
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Added the requested forward arrow with correct endpoints and rendered arrowhead.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=connect from=E2EAlpha to=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_beta",
+        "after_case": "connect",
+        "reader_section": "RULES formalized in 6.3 ms · cut by: Rules segmenter\n@s1 command action=connect from=E2EAlpha to=E2EBeta\n@s1 connections\n+E2EAlpha → E2EBeta"
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Added the requested forward arrow with correct endpoints and rendered arrowhead.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=connect from=E2EAlpha to=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_beta",
+        "after_case": "connect",
+        "reader_section": "VSS formalized in 15 ms · cut by: VSS cutter\n@s1 command action=connect from=E2EAlpha to=E2EBeta\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Draw an arrow from E2EAlpha to E2EBeta” → confidence 0.919, executed\nThe requests and the world that read each:\n“Draw an arrow from E2EAlpha to E2EBeta” → world links8, connect\nclause Draw an arrow from E2EAlpha to E2EBeta\n@s1 connections\n+E2EAlpha → E2EBeta"
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Added the requested forward arrow with correct endpoints and rendered arrowhead.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@n1 command action=connect from=E2EAlpha to=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_beta",
+        "after_case": "connect",
+        "reader_section": "SOP-BERT formalized in 83 ms · 2 model calls · cut by: BERT cutter\n@n1 command action=connect from=E2EAlpha to=E2EBeta\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Draw an arrow from E2EAlpha to E2EBeta” → confidence 0.993, executed\n@n1 Draw an arrow from E2EAlpha to E2EBeta\n@n1 connections\n+E2EAlpha → E2EBeta"
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Engine rejected missing E2EAlpha after a1 was held; no executed change.",
+      "first_cause": "previous_missing_object",
+      "proposed_wire_lines": [
+        "@w1 command action=connect from=E2EAlpha to=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_beta",
+        "after_case": "connect",
+        "reader_section": "VSS-BERT formalized in 90 ms · cut by: BERT cutter\n@w1 command action=connect from=E2EAlpha to=E2EBeta\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Draw an arrow from E2EAlpha to E2EBeta” → confidence 0.977, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 89 ms, combining 0.2 ms); combined confidence of the BERT cutter.\n“Draw an arrow from E2EAlpha to E2EBeta” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.687)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EBeta, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=connect from=E2EAlpha to=E2EBeta"
+      ],
+      "evidence": {
+        "before": "create_beta",
+        "after_case": "connect",
+        "reader_section": "MODERNBERT formalized in 569 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Draw an arrow from E2EAlpha to E2EBeta” → confidence 0.859, not executed: not sure whether it gives a style\n# not executed (not sure)\n@n1 command action=connect from=E2EAlpha to=E2EBeta\n@n1 Draw an arrow from E2EAlpha to E2EBeta\nNo wires were produced."
+      },
+      "displayed_confidence": 0.859,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Correct named connection held; both endpoints also absent after held creates."
+    },
+    {
+      "reader": "rules",
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Only E2EAlpha changed to green; shape and position preserved.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=set color=green target=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "connect",
+        "after_case": "recolor",
+        "reader_section": "RULES formalized in 15 ms · cut by: Rules segmenter\n@s1 command action=set color=green target=E2EAlpha\n@s1 shapes\n~E2EAlpha color green"
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Only E2EAlpha changed to green; shape and position preserved.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=set color=green target=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "connect",
+        "after_case": "recolor",
+        "reader_section": "VSS formalized in 11 ms · cut by: VSS cutter\n@s1 command action=set color=green target=E2EAlpha\nIgnored (not understood): “please”\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Make E2EAlpha green” → confidence 0.937, executed\nThe requests and the world that read each:\n“Make E2EAlpha green” → world shapes8, set\nclause Make E2EAlpha green\n@s1 shapes\n~E2EAlpha color green"
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Only E2EAlpha changed to green; shape and position preserved.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@n1 command action=set color=green target=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "connect",
+        "after_case": "recolor",
+        "reader_section": "SOP-BERT formalized in 58 ms · 2 model calls · cut by: BERT cutter\n@n1 command action=set color=green target=E2EAlpha\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Make E2EAlpha green” → confidence 0.976, executed\n@n1 Make E2EAlpha green\n@n1 shapes\n~E2EAlpha color green"
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Engine rejected missing E2EAlpha after a1 was held; no executed change.",
+      "first_cause": "previous_missing_object",
+      "proposed_wire_lines": [
+        "@w1 command action=set color=green target=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "connect",
+        "after_case": "recolor",
+        "reader_section": "VSS-BERT formalized in 62 ms · cut by: BERT cutter\n@w1 command action=set color=green target=E2EAlpha\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Make E2EAlpha green” → confidence 0.971, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 62 ms, combining 0.2 ms); combined confidence of the BERT cutter.\n“Make E2EAlpha green” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.861)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EBeta, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "value_reading_then_confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=set color=red target=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "connect",
+        "after_case": "recolor",
+        "reader_section": "MODERNBERT formalized in 517 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Make E2EAlpha green” → confidence 0.546, not executed: requests read as ‘set’ are often read wrong (right about 17% of the time on the calibration messages); not sure of the color (‘red’)\n# not executed (not sure)\n@n1 command action=set color=red target=E2EAlpha\n@n1 Make E2EAlpha green\nNo wires were produced."
+      },
+      "displayed_confidence": 0.546,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Wrong red proposal instead of green; held."
+    },
+    {
+      "reader": "rules",
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Only E2EBeta moved below E2EAlpha; rendered transform agrees.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=move target=E2EBeta position=below anchor=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "recolor",
+        "after_case": "move",
+        "reader_section": "RULES formalized in 3.3 ms · cut by: Rules segmenter\n@s1 command action=move target=E2EBeta position=below anchor=E2EAlpha\n@s1 shapes\n~E2EBeta moved to (80, 376)"
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Only E2EBeta moved below E2EAlpha; rendered transform agrees.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=move target=E2EBeta position=below anchor=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "recolor",
+        "after_case": "move",
+        "reader_section": "VSS formalized in 18 ms · cut by: VSS cutter\n@s1 command action=move target=E2EBeta position=below anchor=E2EAlpha\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Place E2EBeta below E2EAlpha” → confidence 0.940, executed\nThe requests and the world that read each:\n“Place E2EBeta below E2EAlpha” → world position8, move, 2 worlds read it, decided by order\nclause Place E2EBeta below E2EAlpha\n@s1 shapes\n~E2EBeta moved to (80, 376)"
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Only E2EBeta moved below E2EAlpha; rendered transform agrees.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@n1 command action=move target=E2EBeta position=below anchor=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "recolor",
+        "after_case": "move",
+        "reader_section": "SOP-BERT formalized in 71 ms · 2 model calls · cut by: BERT cutter\n@n1 command action=move target=E2EBeta position=below anchor=E2EAlpha\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Place E2EBeta below E2EAlpha” → confidence 0.980, executed\n@n1 Place E2EBeta below E2EAlpha\n@n1 shapes\n~E2EBeta moved to (80, 376)"
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Engine rejected missing E2EAlpha after a1 was held; no executed change.",
+      "first_cause": "previous_missing_object",
+      "proposed_wire_lines": [
+        "@w1 command action=move target=E2EBeta position=below anchor=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "recolor",
+        "after_case": "move",
+        "reader_section": "VSS-BERT formalized in 77 ms · cut by: BERT cutter\n@w1 command action=move target=E2EBeta position=below anchor=E2EAlpha\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Place E2EBeta below E2EAlpha” → confidence 0.978, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 76 ms, combining 0.2 ms); combined confidence of the BERT cutter.\n“Place E2EBeta below E2EAlpha” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.884)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EBeta, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=move target=E2EBeta position=below anchor=E2EAlpha"
+      ],
+      "evidence": {
+        "before": "recolor",
+        "after_case": "move",
+        "reader_section": "MODERNBERT formalized in 537 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Place E2EBeta below E2EAlpha” → confidence 0.955, not executed: the model knows ‘E2EBeta’, ‘E2EAlpha’ only in pieces\n# not executed (not sure)\n@n1 command action=move target=E2EBeta position=below anchor=E2EAlpha\n@n1 Place E2EBeta below E2EAlpha\nNo wires were produced."
+      },
+      "displayed_confidence": 0.955,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Correct relative move held; required named objects also absent."
+    },
+    {
+      "reader": "rules",
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Renamed E2EBeta to E2EGamma, preserving its body and updating existing edge references.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=rename name=E2EGamma target=E2EBeta"
+      ],
+      "evidence": {
+        "before": "move",
+        "after_case": "rename",
+        "reader_section": "RULES formalized in 1.9 ms · cut by: Rules segmenter\n@s1 command action=rename name=E2EGamma target=E2EBeta\n@s1 shapes\n~E2EBeta is now E2EGamma"
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Renamed E2EBeta to E2EGamma, preserving its body and updating existing edge references.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=rename name=E2EGamma target=E2EBeta"
+      ],
+      "evidence": {
+        "before": "move",
+        "after_case": "rename",
+        "reader_section": "VSS formalized in 14 ms · cut by: VSS cutter\n@s1 command action=rename name=E2EGamma target=E2EBeta\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Rename E2EBeta to E2EGamma” → confidence 0.926, executed\nThe requests and the world that read each:\n“Rename E2EBeta to E2EGamma” → world manage8, rename\nclause Rename E2EBeta to E2EGamma\n@s1 shapes\n~E2EBeta is now E2EGamma"
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Renamed E2EBeta to E2EGamma, preserving its body and updating existing edge references.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@n1 command action=rename name=E2EGamma target=E2EBeta"
+      ],
+      "evidence": {
+        "before": "move",
+        "after_case": "rename",
+        "reader_section": "SOP-BERT formalized in 77 ms · 2 model calls · cut by: BERT cutter\n@n1 command action=rename name=E2EGamma target=E2EBeta\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Rename E2EBeta to E2EGamma” → confidence 0.972, executed\n@n1 Rename E2EBeta to E2EGamma\n@n1 shapes\n~E2EBeta is now E2EGamma"
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Renamed E2EBeta to E2EGamma, preserving its body and updating existing edge references.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@w1 command action=rename name=E2EGamma target=E2EBeta"
+      ],
+      "evidence": {
+        "before": "move",
+        "after_case": "rename",
+        "reader_section": "VSS-BERT formalized in 82 ms · cut by: BERT cutter\n@w1 command action=rename name=E2EGamma target=E2EBeta\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Rename E2EBeta to E2EGamma” → confidence 0.980, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 81 ms, combining 0.3 ms); combined confidence of the BERT cutter.\n“Rename E2EBeta to E2EGamma” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.773)\n@w1 shapes\n~E2EBeta is now E2EGamma"
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=rename name=E2EGamma target=E2EBeta"
+      ],
+      "evidence": {
+        "before": "move",
+        "after_case": "rename",
+        "reader_section": "MODERNBERT formalized in 552 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Rename E2EBeta to E2EGamma” → confidence 0.919, not executed: the model knows ‘Rename’, ‘E2EBeta’, ‘E2EGamma’ only in pieces\n# not executed (not sure)\n@n1 command action=rename name=E2EGamma target=E2EBeta\n@n1 Rename E2EBeta to E2EGamma\nNo wires were produced."
+      },
+      "displayed_confidence": 0.919,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Correct rename held; E2EBeta also absent."
+    },
+    {
+      "reader": "rules",
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Label parsed as set using a missing label mention; engine rejected it without change.",
+      "first_cause": "rules_parse",
+      "proposed_wire_lines": [
+        "@m1 mention label=\"Review queue\"",
+        "@s1 command action=set target=E2EGamma,$m1"
+      ],
+      "evidence": {
+        "before": "rename",
+        "after_case": "label",
+        "reader_section": "RULES formalized in 3.6 ms · cut by: Rules segmenter\n@m1 mention label=\"Review queue\"\n@s1 command action=set target=E2EGamma,$m1\nI can't find a shape showing \"Review queue\" on the canvas."
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "action_reading_then_confidence",
+      "proposed_wire_lines": [
+        "@s1 command action=set target=E2EGamma"
+      ],
+      "evidence": {
+        "before": "rename",
+        "after_case": "label",
+        "reader_section": "VSS formalized in 13 ms · cut by: VSS cutter\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Give E2EGamma the label Review queue” → confidence 0.174, not executed: no two readers read it the same, SOP-BERT reads it as ‘label’ instead of ‘set’; the Rules read target ‘e2egamma, mention(label=review queue)’ instead of target ‘e2egamma’; VSS itself: which world should read it was uncertain (shapes was close to another); VSS itself: the words ‘the’, ‘label’, ‘n_review’, ‘queue’ were not understood\n# not executed (not sure)\n@s1 command action=set target=E2EGamma\nThe requests and the world that read each:\n“Give E2EGamma the label Review queue” → world shapes8, set, 2 worlds read it, decided by order\nclause Give E2EGamma the label Review queue\nNo wires were produced."
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=label label=\"Review queue\" target=E2EGamma"
+      ],
+      "evidence": {
+        "before": "rename",
+        "after_case": "label",
+        "reader_section": "SOP-BERT formalized in 66 ms · 2 model calls · cut by: BERT cutter\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Give E2EGamma the label Review queue” → confidence 0.477, not executed: no two readers read it the same, VSS reads it as ‘set’ instead of ‘label’; the Rules read it as ‘set’ instead of ‘label’; SOP-BERT itself: requests read as ‘label’ are often read wrong (right about 69% of the time on the calibration messages); SOP-BERT itself: not sure about the shape it is about (read as ‘E2EGamma’)\n# not executed (not sure)\n@n1 command action=label label=\"Review queue\" target=E2EGamma\n@n1 Give E2EGamma the label Review queue\nNo wires were produced."
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@w1 command action=label label=\"Review queue\" target=E2EGamma",
+        "@w2 command action=set target=E2EGamma"
+      ],
+      "evidence": {
+        "before": "rename",
+        "after_case": "label",
+        "reader_section": "VSS-BERT formalized in 72 ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 2 requests, not sure about 2.\n“Give E2EGamma the label Review queue” → confidence 0.752, not executed: the two readers read different actions here (SOP-BERT: label; VSS: set); SOP-BERT alone is not sure: requests read as ‘label’ are often read wrong (right about 69% of the time on the calibration messages)\n“Give E2EGamma the label Review queue” → confidence 0.024, not executed: the two readers read different actions here (SOP-BERT: label; VSS: set); VSS alone is not sure: the words ‘the’, ‘label’, ‘n_review’, ‘queue’ were not understood\n# not executed (not sure)\n@w1 command action=label label=\"Review queue\" target=E2EGamma\n@w2 command action=set target=E2EGamma\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 71 ms, combining 0.8 ms); combined confidence of the BERT cutter.\n“Give E2EGamma the label Review queue” → SOP-BERT’s reading (VSS has none of this action here)\n“Give E2EGamma the label Review queue” → VSS’s reading (SOP-BERT has none of this action here)\nNo wires were produced."
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=label label=\"Review queue\" target=E2EGamma"
+      ],
+      "evidence": {
+        "before": "rename",
+        "after_case": "label",
+        "reader_section": "MODERNBERT formalized in 527 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Give E2EGamma the label Review queue” → confidence 0.917, not executed: not sure which action this is (‘label’, or ‘move’)\n# not executed (not sure)\n@n1 command action=label label=\"Review queue\" target=E2EGamma\n@n1 Give E2EGamma the label Review queue\nNo wires were produced."
+      },
+      "displayed_confidence": 0.917,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Correct label proposal held; E2EGamma also absent."
+    },
+    {
+      "reader": "rules",
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "E2EGamma changed to yellow. The failed label did not remove this existing referent.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=set color=yellow target=E2EGamma"
+      ],
+      "evidence": {
+        "before": "label",
+        "after_case": "pronoun",
+        "reader_section": "RULES formalized in 1.7 ms · cut by: Rules segmenter\n@s1 command action=set color=yellow target=E2EGamma\n@s1 shapes\n~E2EGamma color yellow"
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "context_resolution",
+      "proposed_wire_lines": [],
+      "evidence": {
+        "before": "label",
+        "after_case": "pronoun",
+        "reader_section": "VSS formalized in 8.0 ms · cut by: VSS cutter\nIn “Make that shape yellow” (set), which shape is meant by target?\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 0 of 0 requests.\nThe requests and the world that read each:\n“Make that shape yellow” → world shapes8, set, asked which shape\nclause Make that shape yellow\nNo wires were produced."
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=set color=yellow target=E2EGamma"
+      ],
+      "evidence": {
+        "before": "label",
+        "after_case": "pronoun",
+        "reader_section": "SOP-BERT formalized in 46 ms · 2 model calls · cut by: BERT cutter\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Make that shape yellow” → confidence 0.487, not executed: the Rules and SOP-BERT agree, VSS did not find this request; SOP-BERT itself: not sure which shape ‘that’ means (taken from the conversation: E2EGamma); SOP-BERT itself: requests read as ‘set’ are often read wrong (right about 72% of the time on the calibration messages)\n# not executed (not sure)\n@n1 command action=set color=yellow target=E2EGamma\n@n1 Make that shape yellow\nNo wires were produced."
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@w1 command action=set color=yellow target=E2EGamma"
+      ],
+      "evidence": {
+        "before": "label",
+        "after_case": "pronoun",
+        "reader_section": "VSS-BERT formalized in 49 ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 1 request, not sure about 1.\n“Make that shape yellow” → confidence 0.366, not executed: only one reader found this request (SOP-BERT; VSS read nothing here); SOP-BERT alone is not sure: not sure which shape ‘that’ means (taken from the conversation: E2EGamma)\n# not executed (not sure)\n@w1 command action=set color=yellow target=E2EGamma\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 49 ms, combining 0.3 ms); combined confidence of the BERT cutter.\n“Make that shape yellow” → SOP-BERT’s reading (VSS has none of this action here)\nNo wires were produced."
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "value_and_reference_reading_then_confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=set color=red target=Start,Process,Check,Done"
+      ],
+      "evidence": {
+        "before": "label",
+        "after_case": "pronoun",
+        "reader_section": "MODERNBERT formalized in 474 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Make that shape yellow” → confidence 0.071, not executed: not sure of the color (‘red’); requests read as ‘set’ are often read wrong (right about 17% of the time on the calibration messages); not sure how to read the word ‘shape’\n# not executed (not sure)\n@n1 command action=set color=red target=Start,Process,Check,Done\n@n1 Make that shape yellow\nNo wires were produced."
+      },
+      "displayed_confidence": 0.071,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Wrong red proposal targets Start, Process, Check and Done; held before these existing shapes change."
+    },
+    {
+      "reader": "rules",
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Only the requested pair moved into a common row; colors and identities preserved.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=arrange target=E2EAlpha,E2EGamma layout=row"
+      ],
+      "evidence": {
+        "before": "pronoun",
+        "after_case": "layout",
+        "reader_section": "RULES formalized in 3.4 ms · cut by: Rules segmenter\n@s1 command action=arrange target=E2EAlpha,E2EGamma layout=row\n@s1 layout\n~E2EAlpha moved to (41, 103)\n~E2EGamma moved to (162, 103)\nArranged 2 shapes as a row. E2EGamma is no longer on IntakeZone.\nmoved the block to a free place; row layout"
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Only the requested pair moved into a common row; colors and identities preserved.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 command action=arrange target=E2EAlpha,E2EGamma layout=row"
+      ],
+      "evidence": {
+        "before": "pronoun",
+        "after_case": "layout",
+        "reader_section": "VSS formalized in 14 ms · cut by: VSS cutter\n@s1 command action=arrange target=E2EAlpha,E2EGamma layout=row\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Arrange E2EAlpha and E2EGamma in a row” → confidence 0.935, executed\nThe requests and the world that read each:\n“Arrange E2EAlpha and E2EGamma in a row” → world position8, arrange\nclause Arrange E2EAlpha and E2EGamma in a row\n@s1 layout\n~E2EAlpha moved to (41, 103)\n~E2EGamma moved to (162, 103)\nArranged 2 shapes as a row. E2EGamma is no longer on IntakeZone.\nmoved the block to a free place; row layout"
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=arrange target=E2EAlpha,E2EGamma layout=row"
+      ],
+      "evidence": {
+        "before": "pronoun",
+        "after_case": "layout",
+        "reader_section": "SOP-BERT formalized in 84 ms · 2 model calls · cut by: BERT cutter\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Arrange E2EAlpha and E2EGamma in a row” → confidence 0.947, not executed: all three readers read it the same; SOP-BERT itself: requests read as ‘arrange’ are often read wrong (right about 55% of the time on the calibration messages); SOP-BERT itself: not sure about the shape it is about (read as ‘E2EAlpha, E2EGamma’)\n# not executed (not sure)\n@n1 command action=arrange target=E2EAlpha,E2EGamma layout=row\n@n1 Arrange E2EAlpha and E2EGamma in a row\nNo wires were produced."
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "not_done",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Engine rejected missing E2EAlpha after a1 was held; no executed change.",
+      "first_cause": "previous_missing_object",
+      "proposed_wire_lines": [
+        "@w1 command action=arrange target=E2EAlpha,E2EGamma layout=row"
+      ],
+      "evidence": {
+        "before": "pronoun",
+        "after_case": "layout",
+        "reader_section": "VSS-BERT formalized in 90 ms · cut by: BERT cutter\n@w1 command action=arrange target=E2EAlpha,E2EGamma layout=row\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Arrange E2EAlpha and E2EGamma in a row” → confidence 0.959, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 90 ms, combining 0.2 ms); combined confidence of the BERT cutter.\n“Arrange E2EAlpha and E2EGamma in a row” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.851)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EGamma, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "asked",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Request explicitly held or target clarification requested before engine execution; no mutation.",
+      "first_cause": "confidence",
+      "proposed_wire_lines": [
+        "@n1 command action=arrange target=E2EAlpha,E2EGamma layout=row"
+      ],
+      "evidence": {
+        "before": "pronoun",
+        "after_case": "layout",
+        "reader_section": "MODERNBERT formalized in 579 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Arrange E2EAlpha and E2EGamma in a row” → confidence 0.515, not executed: not sure about the shape it is about (read as ‘E2EAlpha, E2EGamma’); requests read as ‘arrange’ are often read wrong (right about 26% of the time on the calibration messages)\n# not executed (not sure)\n@n1 command action=arrange target=E2EAlpha,E2EGamma layout=row\n@n1 Arrange E2EAlpha and E2EGamma in a row\nNo wires were produced."
+      },
+      "displayed_confidence": 0.515,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Correct row proposal held; named shapes also absent."
+    },
+    {
+      "reader": "rules",
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct per-reader Yes answer, supported by three existing directed edges; no mutation.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 question ask=path from=Start to=Done"
+      ],
+      "evidence": {
+        "before": "layout",
+        "after_case": "question",
+        "reader_section": "RULES formalized in 3.1 ms · cut by: Rules segmenter\n@s1 question ask=path from=Start to=Done\n@s1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+      }
+    },
+    {
+      "reader": "vss",
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct per-reader Yes answer, supported by three existing directed edges; no mutation.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@s1 question ask=path from=Start to=Done"
+      ],
+      "evidence": {
+        "before": "layout",
+        "after_case": "question",
+        "reader_section": "VSS formalized in 13 ms · cut by: VSS cutter\n@s1 question ask=path from=Start to=Done\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Is there a path from Start to Done” → confidence 0.930, executed\nThe requests and the world that read each:\n“Is there a path from Start to Done” → world graphq8, path\nclause Is there a path from Start to Done\n@s1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+      }
+    },
+    {
+      "reader": "neural",
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct per-reader Yes answer, supported by three existing directed edges; no mutation.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@n1 question ask=path from=Start to=Done"
+      ],
+      "evidence": {
+        "before": "layout",
+        "after_case": "question",
+        "reader_section": "SOP-BERT formalized in 65 ms · 2 model calls · cut by: BERT cutter\n@n1 question ask=path from=Start to=Done\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Is there a path from Start to Done” → confidence 0.997, executed\n@n1 Is there a path from Start to Done\n@n1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+      }
+    },
+    {
+      "reader": "combined",
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct per-reader Yes answer, supported by three existing directed edges; no mutation.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@w1 question ask=path from=Start to=Done"
+      ],
+      "evidence": {
+        "before": "layout",
+        "after_case": "question",
+        "reader_section": "VSS-BERT formalized in 72 ms · cut by: BERT cutter\n@w1 question ask=path from=Start to=Done\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Is there a path from Start to Done” → confidence 0.991, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 72 ms, combining 0.2 ms); combined confidence of the BERT cutter.\n“Is there a path from Start to Done” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.855)\n@w1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+      }
+    },
+    {
+      "reader": "modernbert",
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "wrong": 0,
+      "extras": 0,
+      "reason": "Correct per-reader Yes answer, supported by three existing directed edges; no mutation.",
+      "first_cause": null,
+      "proposed_wire_lines": [
+        "@n1 question ask=path from=Start to=Done"
+      ],
+      "evidence": {
+        "before": "layout",
+        "after_case": "question",
+        "reader_section": "MODERNBERT formalized in 516 ms · 2 model calls · cut by: ModernBERT cutter\n@n1 question ask=path from=Start to=Done\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 1 of 1 request.\n“Is there a path from Start to Done” → confidence 0.979, executed\n@n1 Is there a path from Start to Done\n@n1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+      },
+      "displayed_confidence": 0.979,
+      "threshold": 0.9765597115495379,
+      "confidence_precision": "UI display rounded to three decimal places",
+      "proposal_observation": "Correct existing path question executed."
+    }
+  ],
+  "negative_control": [
+    {
+      "reader": "rules",
+      "no_sop_or_rendered_shape_edge_mutation": true,
+      "extras": 0,
+      "requested": 0,
+      "explanation": "RULES formalized in 3.1 ms · cut by: Rules segmenter\n@m1 mention quantifier=all\n@s1 command action=set target=$m1\n@m1 core\nmatched Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, E2EAlpha, E2EGamma, MainTitle, IntakeCaption, ReviewCaption\nWhat should change about Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, E2EAlpha, E2EGamma, MainTitle, IntakeCaption and ReviewCaption? Try a color, size, shape, outline or label.",
+      "held_unrequested_proposals": [
+        "@m1 mention quantifier=all",
+        "@s1 command action=set target=$m1"
+      ]
+    },
+    {
+      "reader": "vss",
+      "no_sop_or_rendered_shape_edge_mutation": true,
+      "extras": 0,
+      "requested": 0,
+      "explanation": "VSS formalized in 15 ms · cut by: VSS cutter\nVSS gate: safety threshold (it acts from confidence 0.9094 for commands and 0.5368 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Make the diagram feel more optimistic about next quarter” → confidence 0.180, not executed: no two readers read it the same, SOP-BERT reads it as ‘improve’ instead of ‘equalize’; the Rules read it as ‘set’ instead of ‘equalize’; VSS itself: it was read by a world that was not the cutter's first choice (layout); VSS itself: the words ‘the’, ‘feel’, ‘more’, ‘optimistic’, ‘about’ and 2 more were not understood\n# not executed (not sure)\n@m1 mention quantifier=all\n@s1 command action=equalize target=$m1\nThe requests and the world that read each:\n“Make the diagram feel more optimistic about next quarter” → world layout8, equalize\nclause Make the diagram feel more optimistic about next quarter\nNo wires were produced.",
+      "held_unrequested_proposals": [
+        "@m1 mention quantifier=all",
+        "@s1 command action=equalize target=$m1"
+      ]
+    },
+    {
+      "reader": "neural",
+      "no_sop_or_rendered_shape_edge_mutation": true,
+      "extras": 0,
+      "requested": 0,
+      "explanation": "SOP-BERT formalized in 67 ms · 2 model calls · cut by: BERT cutter\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Make the diagram feel more optimistic about next quarter” → confidence 0.238, not executed: no two readers read it the same, VSS reads it as ‘equalize’ instead of ‘improve’; the Rules read it as ‘set’ instead of ‘improve’; SOP-BERT itself: requests read as ‘improve’ are often read wrong (right about 58% of the time on the calibration messages); SOP-BERT itself: not sure how to read the word ‘Make’\n# not executed (not sure)\n@m1 mention quantifier=all\n@n1 command action=improve target=$m1\n@n1 Make the diagram feel more optimistic about next quarter\nNo wires were produced.",
+      "held_unrequested_proposals": [
+        "@m1 mention quantifier=all",
+        "@n1 command action=improve target=$m1"
+      ]
+    },
+    {
+      "reader": "combined",
+      "no_sop_or_rendered_shape_edge_mutation": true,
+      "extras": 0,
+      "requested": 0,
+      "explanation": "VSS-BERT formalized in 74 ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 2 requests, not sure about 2.\n“Make the diagram feel more optimistic about next quarter” → confidence 0.407, not executed: the two readers read different actions here (SOP-BERT: improve; VSS: equalize); SOP-BERT alone is not sure: requests read as ‘improve’ are often read wrong (right about 58% of the time on the calibration messages)\n“Make the diagram feel more optimistic about next quarter” → confidence 0.000, not executed: the two readers read different actions here (SOP-BERT: improve; VSS: equalize); VSS alone is not sure: it was read by a world that was not the cutter's first choice (layout)\n# not executed (not sure)\n@m1 mention quantifier=all\n@w2 command action=improve target=$m1\n@m3 mention quantifier=all\n@w4 command action=equalize target=$m3\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading 73 ms, combining 0.5 ms); combined confidence of the BERT cutter.\n“Make the diagram feel more optimistic about next quarter” → SOP-BERT’s reading (VSS has none of this action here)\n“Make the diagram feel more optimistic about next quarter” → VSS’s reading (SOP-BERT has none of this action here)\nNo wires were produced.",
+      "held_unrequested_proposals": [
+        "@m1 mention quantifier=all",
+        "@w2 command action=improve target=$m1",
+        "@m3 mention quantifier=all",
+        "@w4 command action=equalize target=$m3"
+      ]
+    },
+    {
+      "reader": "modernbert",
+      "no_sop_or_rendered_shape_edge_mutation": true,
+      "extras": 0,
+      "requested": 0,
+      "explanation": "MODERNBERT formalized in 526 ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Make the diagram feel more optimistic about next quarter” → confidence 0.243, not executed: not sure how to read the word ‘quarter’; not sure which shape the description means; not sure which action this is (‘improve’, or ‘respace’)\n# not executed (not sure)\n@m1 mention\n@n1 command action=improve target=$m1\n@n1 Make the diagram feel more optimistic about next quarter\nNo wires were produced.",
+      "held_unrequested_proposals": [
+        "@m1 mention",
+        "@n1 command action=improve target=$m1"
+      ]
+    }
+  ],
+  "legacy_comparison": {
+    "after_sop_states_equal": 44,
+    "after_shape_svg_arrays_equal": 44,
+    "after_edge_svg_arrays_equal": 44,
+    "deltas": []
+  },
+  "modernbert": [
+    {
+      "action_id": "a1",
+      "case": "create_alpha",
+      "outcome": "asked",
+      "displayed_confidence": 0.044,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 command action=create shape=circle color=red name=E2EAlpha"
+      ],
+      "proposal_observation": "Correct red circle create held.",
+      "first_cause": "confidence"
+    },
+    {
+      "action_id": "a2",
+      "case": "create_beta",
+      "outcome": "asked",
+      "displayed_confidence": 0.07,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 command action=create shape=star name=E2EBeta"
+      ],
+      "proposal_observation": "Wrong star proposal omits requested blue; held.",
+      "first_cause": "value_reading_then_confidence"
+    },
+    {
+      "action_id": "a3",
+      "case": "connect",
+      "outcome": "asked",
+      "displayed_confidence": 0.859,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 command action=connect from=E2EAlpha to=E2EBeta"
+      ],
+      "proposal_observation": "Correct named connection held; both endpoints also absent after held creates.",
+      "first_cause": "confidence"
+    },
+    {
+      "action_id": "a4",
+      "case": "recolor",
+      "outcome": "asked",
+      "displayed_confidence": 0.546,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 command action=set color=red target=E2EAlpha"
+      ],
+      "proposal_observation": "Wrong red proposal instead of green; held.",
+      "first_cause": "value_reading_then_confidence"
+    },
+    {
+      "action_id": "a5",
+      "case": "move",
+      "outcome": "asked",
+      "displayed_confidence": 0.955,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 command action=move target=E2EBeta position=below anchor=E2EAlpha"
+      ],
+      "proposal_observation": "Correct relative move held; required named objects also absent.",
+      "first_cause": "confidence"
+    },
+    {
+      "action_id": "a6",
+      "case": "rename",
+      "outcome": "asked",
+      "displayed_confidence": 0.919,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 command action=rename name=E2EGamma target=E2EBeta"
+      ],
+      "proposal_observation": "Correct rename held; E2EBeta also absent.",
+      "first_cause": "confidence"
+    },
+    {
+      "action_id": "a7",
+      "case": "label",
+      "outcome": "asked",
+      "displayed_confidence": 0.917,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 command action=label label=\"Review queue\" target=E2EGamma"
+      ],
+      "proposal_observation": "Correct label proposal held; E2EGamma also absent.",
+      "first_cause": "confidence"
+    },
+    {
+      "action_id": "a8",
+      "case": "pronoun",
+      "outcome": "asked",
+      "displayed_confidence": 0.071,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 command action=set color=red target=Start,Process,Check,Done"
+      ],
+      "proposal_observation": "Wrong red proposal targets Start, Process, Check and Done; held before these existing shapes change.",
+      "first_cause": "value_and_reference_reading_then_confidence"
+    },
+    {
+      "action_id": "a9",
+      "case": "layout",
+      "outcome": "asked",
+      "displayed_confidence": 0.515,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 command action=arrange target=E2EAlpha,E2EGamma layout=row"
+      ],
+      "proposal_observation": "Correct row proposal held; named shapes also absent.",
+      "first_cause": "confidence"
+    },
+    {
+      "action_id": "a10",
+      "case": "question",
+      "outcome": "right",
+      "displayed_confidence": 0.979,
+      "threshold": 0.9765597115495379,
+      "proposed_wire_lines": [
+        "@n1 question ask=path from=Start to=Done"
+      ],
+      "proposal_observation": "Correct existing path question executed.",
+      "first_cause": null
+    }
+  ],
+  "limits": [
+    "Ten requested actions per reader in one dependent literal sequence; no general quality or precision claim.",
+    "Nine ModernBERT commands were held before engine execution; latent missing prerequisites are secondary, not counted as engine failures.",
+    "Proposed wrong wires are not wrong executions; no Do it anyway action was taken.",
+    "The held-out quality experiment remains negative; this live capture does not change thresholds or its outcome.",
+    "Per-reader UI formalization times are observed combined cutter/request/decoder timings, not standalone inference benchmarks."
+  ]
+}
