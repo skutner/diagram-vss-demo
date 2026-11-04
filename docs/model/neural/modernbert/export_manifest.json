@@ -1,0 +1,95 @@
+{
+  "schema": "modernbert-export-v2",
+  "complete": true,
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "bindings": {
+    "checkpoint_sha256": "5581d9fd1760ac8fa33fcd697cae77f7a019b576cd5be7da14aebb81aa1c8099",
+    "float_graph_sha256": "b9cc41b1101f99654383f544016de668b52c6172940235ca3058917f47094b9f",
+    "float_graph_files": {
+      "model_float.onnx": {
+        "sha256": "b9cc41b1101f99654383f544016de668b52c6172940235ca3058917f47094b9f",
+        "bytes": 600565860
+      }
+    },
+    "source_dynamic_files": {
+      "model_quantized.onnx": {
+        "sha256": "519389f976151b579018284f21a6a529d1263006758f371e2601eac6bfaf8465",
+        "bytes": 1561037
+      },
+      "model_quantized.onnx_data": {
+        "sha256": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47",
+        "bytes": 93974180
+      },
+      "model_quantized.onnx_data_1": {
+        "sha256": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d",
+        "bytes": 56133888
+      }
+    },
+    "source_dynamic_graph_sha256": "519389f976151b579018284f21a6a529d1263006758f371e2601eac6bfaf8465",
+    "files": {
+      "config.json": {
+        "sha256": "c0110b40cf405d45e405842b22179e49a43b8e0e9a52cf1c454f9213786b0973",
+        "bytes": 509081
+      },
+      "onnx/model_quantized.onnx": {
+        "sha256": "d5c943cd2fdcfbe4481cf99d56927efde3cb7dd8fcfa64bf6714604743408773",
+        "bytes": 1490412
+      },
+      "onnx/model_quantized.onnx_data": {
+        "sha256": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47",
+        "bytes": 93974180
+      },
+      "onnx/model_quantized.onnx_data_1": {
+        "sha256": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d",
+        "bytes": 56133888
+      },
+      "special_tokens_map.json": {
+        "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+        "bytes": 694
+      },
+      "tokenizer.json": {
+        "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+        "bytes": 3583228
+      },
+      "tokenizer_config.json": {
+        "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+        "bytes": 20840
+      }
+    },
+    "sources": {
+      "training/neural/export_modernbert.py": "1c4d87caab51dff2fed163a2d65b0b7597f316d04af49f07d0b5a49bb2180d47",
+      "training/neural/modernbert_weight_only.py": "9e33579f79429e2aaaf772f39f7e9378e0a80bd3aec744bc8301296c168268ca",
+      "training/neural/modernbert_parity.mjs": "a4b2f6dc53171de1bfb28928ad529e0df4e39828c9261a821370c273ff501622",
+      "training/neural/check_modernbert.mjs": "f53802561a984e1f525543955ed4efd67db6c1c3263900e44e5960e48bdb1545",
+      "training/neural/check_modernbert_browser.py": "247690aa4d9b63d771413bfb31aec282c150d823ed4cecb3d88c0af83e0da538",
+      "training/neural/check_modernbert_browser.mjs": "1313ab0a339eb1b3cee73c0d5b37da1496694e8684fb05c5b8dea1beb3a18aa1",
+      "training/neural/finalize_modernbert_export.mjs": "16d42f87a9ca9e8cfaabd13be00f53bd2edb5dc713af38dfc790d77302ff2945",
+      "training/neural/modernbert_tokenization.py": "98f760e6382b6544d52f743cfdbc3cef2f360887ccb04a2e50f4871bc3036757",
+      "training/neural/finetune_modernbert.py": "129ad900ea2235895517c98edc45c57a9db0e4e16907f62c10ec2f166c2e167f",
+      "training/neural/finetune_roles.py": "cc9f1352439bc319180b3098b941f7b5812b494287cb92ba99bbb2214894f51c",
+      "training/neural/fixtures/modernbert_alignment.json": "e68541d85324b8f88a2a66c6ebc8947fe67001d5f2362986b464f84df5ec56ac",
+      "docs/js/neural.js": "a1992b795b1d585a48b5b0eb834bd413d9fa9b6b7d128812655d702786187944",
+      "docs/js/logic.js": "fef540d19ba00eb3b09104a64eacacac1ae82535adb932c472a5527b04746d2b"
+    },
+    "inputs_sha256": "ab9dd0e984ed5a26fae0f2d7418b220eabd4fa0cdc0e80cb646395c21bacfad7"
+  },
+  "candidate": {
+    "file": "export_candidate.json",
+    "sha256": "e9111e2f9cb456ab2d4e0d97c73b8c51d294f9b370e67178f3e26e1569e1e188"
+  },
+  "receipts": {
+    "node": {
+      "file": "node-receipt.json",
+      "sha256": "511d53f90ec8cd138f80731bbbe017803d04098a0a12c4aaba10c3f70f073ea2"
+    },
+    "browser": {
+      "file": "browser-receipt.json",
+      "sha256": "b9dc4737a79518ce91ca8e9383a9d05c7d2805ae19e6da12c1c857567f519dd9"
+    }
+  }
+}

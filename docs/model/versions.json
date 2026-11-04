@@ -2,6 +2,7 @@
  "about": "Content versions of the model folders and files the demo loads (training/sketch/stamp_models.py). The loader appends ?v=<version>.",
  "files": {
   "confidence/combined.json": "579b1dfc36",
+  "confidence/modernbert.json": "97aa94d96f",
   "confidence/sop-bert.json": "769d3f4293",
   "confidence/vote3.json": "4dfe6402cb",
   "confidence/vss.json": "09386a14df",
@@ -17,10 +18,28 @@
   "micro/position8": "6b5a5738cb",
   "micro/questions8": "df78cc694b",
   "micro/shapes8": "52dac7648e",
+  "neural/modernbert": "663a4edb5b",
   "neural/sop-bert": "fd69a08c3b",
   "spell/vocab.json": "34accc6565"
  },
  "sizes": {
+  "neural/modernbert": {
+   "README.md": 2813,
+   "browser-receipt.json": 370009,
+   "config.json": 509081,
+   "conversion.json": 64404,
+   "export_candidate.json": 71615,
+   "export_manifest.json": 4366,
+   "export_parity.json": 192485,
+   "node-receipt.json": 3433,
+   "references.json": 4753117,
+   "special_tokens_map.json": 694,
+   "tokenizer.json": 3583228,
+   "tokenizer_config.json": 20840,
+   "onnx/model_quantized.onnx": 1490412,
+   "onnx/model_quantized.onnx_data": 93974180,
+   "onnx/model_quantized.onnx_data_1": 56133888
+  },
   "neural/sop-bert": {
    "README.md": 4093,
    "config.json": 15636,

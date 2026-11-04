@@ -1,0 +1,226 @@
+{
+  "source_revision": "baef6de8c8b4ab86c4c95d320a11ab3fbc5d943c",
+  "hashes": {
+    "/home/skutner/.cache/diagram-vss-modernbert/weight-only-records-baef6de.jsonl": "46db42505e1f471a1ed0cdb4ddc9a41da9260aef0075080ce66544e2a1e53e2b",
+    "/home/skutner/.cache/diagram-vss-modernbert/weight-only-records-baef6de.jsonl.manifest.json": "2fc134d43c3c4682137961d3b55132e3fab069b1fbfb2f5aee486513a16376c0",
+    "/home/skutner/.cache/diagram-vss-modernbert/modernbert-weightonly-confidence-baef6de.json": "97aa94d96f2981f5aee14311f3359a882ba13e3987e5e0eda4c77260e2e55a81",
+    "/home/skutner/.cache/diagram-vss-modernbert/modernbert-weightonly-report-baef6de.json": "64d8eb616f387f2e2ea14be31f9da465160767e78e65a4dfcba3f136d0892d7e"
+  },
+  "collection": {
+    "messages": 1113,
+    "calibration_messages": 368,
+    "test_messages": 745,
+    "calibration_requested": 808,
+    "test_requested": 1745,
+    "excluded": 17,
+    "train_overlap": 0,
+    "runtime": {
+      "transformers_js": "3.8.1",
+      "onnxruntime": "1.21.0",
+      "node": "v24.22.2",
+      "backend": "cpu",
+      "export_mode": "weight-only-u8-fp32",
+      "execution_policy": {
+        "graph_optimization": "basic",
+        "arithmetic": "float32",
+        "weight_storage": "uint8"
+      }
+    },
+    "artifacts": {
+      "config.json": "c0110b40cf405d45e405842b22179e49a43b8e0e9a52cf1c454f9213786b0973",
+      "onnx/model_quantized.onnx": "d5c943cd2fdcfbe4481cf99d56927efde3cb7dd8fcfa64bf6714604743408773",
+      "onnx/model_quantized.onnx_data": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47",
+      "onnx/model_quantized.onnx_data_1": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d",
+      "special_tokens_map.json": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "tokenizer.json": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "tokenizer_config.json": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "export_manifest.json": "dcf322eb7708ac14d21142b01d7ee0372b21a160171db49fa759f90a5ee12a84",
+      "export_candidate.json": "e9111e2f9cb456ab2d4e0d97c73b8c51d294f9b370e67178f3e26e1569e1e188",
+      "node-receipt.json": "511d53f90ec8cd138f80731bbbe017803d04098a0a12c4aaba10c3f70f073ea2",
+      "browser-receipt.json": "b9dc4737a79518ce91ca8e9383a9d05c7d2805ae19e6da12c1c857567f519dd9",
+      "references.json": "b590c8cad98aac70a248bf498fd37e2c10a0153d9faeee2fa87b463ad84f93ff"
+    }
+  },
+  "calibration": {
+    "threshold": 0.9765597115495379,
+    "l2": 0.01,
+    "oof_auroc": 0.8818229201321889,
+    "fold_message_counts": [
+      74,
+      74,
+      74,
+      73,
+      73
+    ],
+    "calibration_only_percentile_tables_verified": 24,
+    "calibration_only_act_priors_verified": true,
+    "oof_fits_recomputed": false,
+    "provenance": "Reused closed source-bound calibration CLI; inspected fitCalibrationRecipe/calibrate: only calibration messages enter folds, priors, tables, L2 and OOF threshold selection; test messages scored afterward."
+  },
+  "test": {
+    "messages": 745,
+    "requested": 1745,
+    "right": 16,
+    "wrong": 0,
+    "asked": 1625,
+    "unread": 104,
+    "extras": 0,
+    "executed": 16,
+    "execution_precision": 1,
+    "wrong_execution_share": 0,
+    "right_share": 0.009169054441260744,
+    "cost_score": 0.9169054441260744,
+    "auroc": 0.8886550861234406
+  },
+  "raw_test_outcomes": {
+    "right": 693,
+    "wrong": 948,
+    "extra": 237
+  },
+  "held_prediction_reasons": {
+    "below_threshold": 1862,
+    "truncated": 0,
+    "dependency": 0
+  },
+  "causes": {
+    "heads": 844,
+    "cutter": 445
+  },
+  "causes_qualification": "Mechanical first-cut-boundary vs downstream-head categories; not proof that every contextual/reference miss is an encoder/head defect.",
+  "value_head_examples": [
+    {
+      "id": "fo-0001",
+      "src": "put a gray hexagon called Switch between Fw1 and Lan",
+      "want": {
+        "action": "create",
+        "shape": "hexagon",
+        "color": "gray",
+        "name": "switch",
+        "position": "between",
+        "anchor": "fw1,lan"
+      },
+      "got": {
+        "action": "create",
+        "anchor": "fw1,lan",
+        "name": "switch",
+        "position": "between",
+        "shape": "circle"
+      },
+      "act_probability": 0.999517,
+      "min_value_probability": 0.256094,
+      "min_value_margin": 0.0827,
+      "calibrated_confidence": 0.1820945153265968,
+      "threshold": 0.9765597115495379,
+      "executed": false
+    },
+    {
+      "id": "fo-0004",
+      "src": "add a small red diamond called Dlq below Clean",
+      "want": {
+        "action": "create",
+        "shape": "diamond",
+        "color": "red",
+        "size": "small",
+        "name": "dlq",
+        "position": "below",
+        "anchor": "clean"
+      },
+      "got": {
+        "action": "create",
+        "anchor": "clean",
+        "name": "dlq",
+        "position": "below",
+        "shape": "circle",
+        "size": "small"
+      },
+      "act_probability": 0.999292,
+      "min_value_probability": 0.28229,
+      "min_value_margin": 0.058196,
+      "calibrated_confidence": 0.01523295250798786,
+      "threshold": 0.9765597115495379,
+      "executed": false
+    },
+    {
+      "id": "fo-0010",
+      "src": "make it a white rectangle",
+      "want": {
+        "action": "set",
+        "target": "search",
+        "color": "white",
+        "shape": "rectangle"
+      },
+      "got": {
+        "action": "set",
+        "color": "gold",
+        "target": "logo"
+      },
+      "act_probability": 0.999161,
+      "min_value_probability": 0.116111,
+      "min_value_margin": 0.008767,
+      "calibrated_confidence": 0.006919522564120066,
+      "threshold": 0.9765597115495379,
+      "executed": false
+    },
+    {
+      "id": "fo-0020",
+      "src": "Make Extract, Transform and Load the same, medium blue rectangles",
+      "want": {
+        "action": "set",
+        "target": "extract,transform,load",
+        "size": "medium",
+        "color": "blue",
+        "shape": "rectangle"
+      },
+      "got": {
+        "action": "set",
+        "color": "red",
+        "shape": "circle",
+        "target": "extract,transform,load"
+      },
+      "act_probability": 0.998741,
+      "min_value_probability": 0.106738,
+      "min_value_margin": 0.013277,
+      "calibrated_confidence": 0.054919665514032504,
+      "threshold": 0.9765597115495379,
+      "executed": false
+    }
+  ],
+  "float_fixture": {
+    "text": "draw a red circle.",
+    "decoded": {
+      "act": "create",
+      "classes": {
+        "color": "red",
+        "shape": "star"
+      },
+      "tags": [
+        "O",
+        "O",
+        "O",
+        "O",
+        "O"
+      ],
+      "spans": {},
+      "cut": [
+        [
+          0,
+          17
+        ]
+      ],
+      "cutInfo": {
+        "truncated": false,
+        "unreadFrom": null
+      }
+    }
+  },
+  "experimental_success": false,
+  "failure_reason": "Right-request share below fixed20percent criterion",
+  "adversarial_probes_passed": true,
+  "evidence_unchanged": true,
+  "limits": [
+    "Observed zero wrong executions among only16; not a general error bound or perfect generalization.",
+    "No model inference, full calibration refitting or threshold tuning performed.",
+    "One epoch differs from shipped DistilBERT eight-epoch regime; no architecture-capacity conclusion.",
+    "Publication and five-reader live observations remain pending."
+  ]
+}

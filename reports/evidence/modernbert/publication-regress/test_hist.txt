@@ -1,0 +1,19 @@
+ok   create A + undo in one message (empty canvas): canvas empty, no error
+ok     ... and nothing is left to undo
+ok   earlier turn A,B; message 'create C, undo': A,B stay
+ok   two messages then undo: second message reverted
+ok     ... undo again: first message reverted
+ok   message 'connect A to B, undo': the connect is undone, the shapes stay
+ok   message 'create C, create D, undo twice': both undone, earlier turn kept
+ok   message 'create C, undo, undo' (earlier turn made A,B): the second undo reaches that turn
+ok   undo then redo in two messages
+ok   message 'create B, undo, redo': B is back
+ok     ... and it is one undoable turn
+ok   message 'undo, redo' after a turn: net effect nothing
+ok   redo in the next message does not bring back an action undone inside a finished message
+ok   connect C, A, B in a chain (canvas order A,B,C)
+ok   from B,C to A, chain
+ok   same, from the text through the rules reader
+
+all passed
+exit 0

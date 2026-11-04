@@ -1,0 +1,16 @@
+set n | demo-ok rules vss | per request rules R/W/ND(+wrongact) extra | vss R/W/ND extra
+== templates: written or generated from the rules' own templates: they favour the Rules reader
+hand                     40 gold   40 | demo  97.5  72.5 | rules  97.5/ 0.0/  2.5 (wrong act  0.0) x0 | vss  72.5/10.0/ 17.5 (wrong act  7.5) x3 |
+blind                    60 gold   60 | demo  88.3  80.0 | rules  88.3/ 3.3/  8.3 (wrong act  5.0) x3 | vss  80.0/ 3.3/ 16.7 (wrong act  8.3) x5 |
+broad                   128 gold  140 | demo  97.7  85.9 | rules  97.1/ 0.7/  2.1 (wrong act  1.4) x1 | vss  87.1/ 5.0/  7.9 (wrong act  5.7) x8 |
+seen                    300 gold  300 | demo 100.0  76.7 | rules 100.0/ 0.0/  0.0 (wrong act  0.0) x0 | vss  76.7/ 6.0/ 17.3 (wrong act  8.0) x24 |
+new_identities          300 gold  300 | demo 100.0  76.0 | rules 100.0/ 0.0/  0.0 (wrong act  0.0) x0 | vss  76.0/ 8.0/ 16.0 (wrong act  5.7) x17 |
+heldout_formulations    300 gold  300 | demo  99.7  79.3 | rules  99.7/ 0.3/  0.0 (wrong act  0.0) x0 | vss  79.3/10.7/ 10.0 (wrong act  4.0) x12 |
+ALL templates rules 98.9/0.4/0.8 (wrong act 0.4) extra 4
+ALL templates vss 78.5/7.6/13.9 (wrong act 6.1) extra 69
+ALL templates vss gated cost: precision 99.4 · right 14.0 · asked 72.1 · unread 13.9 · executed wrong 0.0 · extras executed 1 (of 69) · executed 161 of 1051 produced
+== llm_short: 3000 LLM-written one-line commands with spans; the VSS cutter was trained on them
+llm_short              3000 gold 3000 | demo   -     -   | rules  72.4/ 5.6/ 22.0 (wrong act 11.3) x374 | vss  71.1/ 8.6/ 20.3 (wrong act 14.4) x442 |
+ALL llm_short rules 72.4/5.6/22.0 (wrong act 11.3) extra 374
+ALL llm_short vss 71.1/8.6/20.3 (wrong act 14.4) extra 442
+ALL llm_short vss gated cost: precision 97.0 · right 10.6 · asked 69.1 · unread 20.3 · executed wrong 0.0 · extras executed 9 (of 442) · executed 329 of 2834 produced

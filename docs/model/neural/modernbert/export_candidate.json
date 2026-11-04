@@ -1,0 +1,1465 @@
+{
+  "schema": "modernbert-export-candidate-v2",
+  "complete": false,
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "bindings": {
+    "checkpoint_sha256": "5581d9fd1760ac8fa33fcd697cae77f7a019b576cd5be7da14aebb81aa1c8099",
+    "float_graph_sha256": "b9cc41b1101f99654383f544016de668b52c6172940235ca3058917f47094b9f",
+    "float_graph_files": {
+      "model_float.onnx": {
+        "sha256": "b9cc41b1101f99654383f544016de668b52c6172940235ca3058917f47094b9f",
+        "bytes": 600565860
+      }
+    },
+    "source_dynamic_files": {
+      "model_quantized.onnx": {
+        "sha256": "519389f976151b579018284f21a6a529d1263006758f371e2601eac6bfaf8465",
+        "bytes": 1561037
+      },
+      "model_quantized.onnx_data": {
+        "sha256": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47",
+        "bytes": 93974180
+      },
+      "model_quantized.onnx_data_1": {
+        "sha256": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d",
+        "bytes": 56133888
+      }
+    },
+    "source_dynamic_graph_sha256": "519389f976151b579018284f21a6a529d1263006758f371e2601eac6bfaf8465",
+    "files": {
+      "config.json": {
+        "sha256": "c0110b40cf405d45e405842b22179e49a43b8e0e9a52cf1c454f9213786b0973",
+        "bytes": 509081
+      },
+      "onnx/model_quantized.onnx": {
+        "sha256": "d5c943cd2fdcfbe4481cf99d56927efde3cb7dd8fcfa64bf6714604743408773",
+        "bytes": 1490412
+      },
+      "onnx/model_quantized.onnx_data": {
+        "sha256": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47",
+        "bytes": 93974180
+      },
+      "onnx/model_quantized.onnx_data_1": {
+        "sha256": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d",
+        "bytes": 56133888
+      },
+      "special_tokens_map.json": {
+        "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+        "bytes": 694
+      },
+      "tokenizer.json": {
+        "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+        "bytes": 3583228
+      },
+      "tokenizer_config.json": {
+        "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+        "bytes": 20840
+      }
+    },
+    "sources": {
+      "training/neural/export_modernbert.py": "1c4d87caab51dff2fed163a2d65b0b7597f316d04af49f07d0b5a49bb2180d47",
+      "training/neural/modernbert_weight_only.py": "9e33579f79429e2aaaf772f39f7e9378e0a80bd3aec744bc8301296c168268ca",
+      "training/neural/modernbert_parity.mjs": "a4b2f6dc53171de1bfb28928ad529e0df4e39828c9261a821370c273ff501622",
+      "training/neural/check_modernbert.mjs": "f53802561a984e1f525543955ed4efd67db6c1c3263900e44e5960e48bdb1545",
+      "training/neural/check_modernbert_browser.py": "247690aa4d9b63d771413bfb31aec282c150d823ed4cecb3d88c0af83e0da538",
+      "training/neural/check_modernbert_browser.mjs": "1313ab0a339eb1b3cee73c0d5b37da1496694e8684fb05c5b8dea1beb3a18aa1",
+      "training/neural/finalize_modernbert_export.mjs": "16d42f87a9ca9e8cfaabd13be00f53bd2edb5dc713af38dfc790d77302ff2945",
+      "training/neural/modernbert_tokenization.py": "98f760e6382b6544d52f743cfdbc3cef2f360887ccb04a2e50f4871bc3036757",
+      "training/neural/finetune_modernbert.py": "129ad900ea2235895517c98edc45c57a9db0e4e16907f62c10ec2f166c2e167f",
+      "training/neural/finetune_roles.py": "cc9f1352439bc319180b3098b941f7b5812b494287cb92ba99bbb2214894f51c",
+      "training/neural/fixtures/modernbert_alignment.json": "e68541d85324b8f88a2a66c6ebc8947fe67001d5f2362986b464f84df5ec56ac",
+      "docs/js/neural.js": "a1992b795b1d585a48b5b0eb834bd413d9fa9b6b7d128812655d702786187944",
+      "docs/js/logic.js": "fef540d19ba00eb3b09104a64eacacac1ae82535adb932c472a5527b04746d2b"
+    },
+    "inputs_sha256": "ab9dd0e984ed5a26fae0f2d7418b220eabd4fa0cdc0e80cb646395c21bacfad7"
+  },
+  "reference": {
+    "file": "references.json",
+    "sha256": "b590c8cad98aac70a248bf498fd37e2c10a0153d9faeee2fa87b463ad84f93ff"
+  },
+  "conversion": {
+    "export_mode": "weight-only-u8-fp32",
+    "converted_blocks": 93,
+    "removed_activation_quantizers": 91,
+    "forbidden_operators": {},
+    "initializer_hashes": {
+      "encoder.embeddings.norm.weight": "6604b239949b7fb6ac943c9831ea80386f35ec319dc94152dfbdf5ea592e7293",
+      "encoder.layers.0.mlp_norm.weight": "c844eb6949b4410bcd90ba21486c8e69841f086f2477368485c81ee18de46d4a",
+      "encoder.layers.1.attn_norm.weight": "af226ab242d1a5934648be3670024ef2b0da8ab3326387968fcf5e0c7a406f8a",
+      "encoder.layers.1.mlp_norm.weight": "b993297cdc7fa32cca8f4e74917c1d48cdbddcc6ede944541d14b345f095d0d2",
+      "encoder.layers.2.attn_norm.weight": "6b7ee4df97907a623685fa3c4aa8577312ef790e63e4f37a45bd0043d0f78adf",
+      "encoder.layers.2.mlp_norm.weight": "19420f627116e56380890386b0248f14041afe98e80c61b7530eb5d9f2d86896",
+      "encoder.layers.3.attn_norm.weight": "924f57c08bbae09565e7e97f1ef2ab223bb3cf579ed0cba8dfa629c377396621",
+      "encoder.layers.3.mlp_norm.weight": "10eeed0dd11b235847e608f292fc555647169f611451195095c048be94905151",
+      "encoder.layers.4.attn_norm.weight": "65864c12e8a44eed6e99da252cac7bff98bd49e88c4cb0606fe9dc28a88c665a",
+      "encoder.layers.4.mlp_norm.weight": "653122bbf106486a40ced9748d4b2f510fd38ccea3bf6c34e9b9e26594a8d819",
+      "encoder.layers.5.attn_norm.weight": "b45443ef2bdbd4fdc0d8e0ce7374ff80654578cecc9db037d18b9904130e8d7e",
+      "encoder.layers.5.mlp_norm.weight": "1d96c03078f6793f3a2bbc78b77da6cb04291d356adab5d532b71e18ebcd3d08",
+      "encoder.layers.6.attn_norm.weight": "751cf243e73268ea0293667f89535a0ebf298a97eb27b489e2eb741d5224eb80",
+      "encoder.layers.6.mlp_norm.weight": "b296c3c16a12a88d5fd63fd718fd61001e16ef63726358934631b5d507962fdb",
+      "encoder.layers.7.attn_norm.weight": "6da61738e27e2e16fff725e9ca6ed2696e8c1b90718909624cf18b0e77039f60",
+      "encoder.layers.7.mlp_norm.weight": "5f578b034f98b0153ddec50583c81847b57524cbc31b4a0154995bba0deca916",
+      "encoder.layers.8.attn_norm.weight": "4a35153060445d218f880779ef4b5ae09ab19c72e1fc72d2659fe79faaa40a71",
+      "encoder.layers.8.mlp_norm.weight": "0fda6a8596e0aae827ff69becfbb7ffa0ff4ac39ebed29274be475210eb97265",
+      "encoder.layers.9.attn_norm.weight": "b4c8ee67fcbb61bff96304de9605b7e8169e54edeedb12a6dd79694d759b50f8",
+      "encoder.layers.9.mlp_norm.weight": "a4eec89ab740d1d28fca30cc835e363ef3d62ea6e11a50082b9b43befa4f27f2",
+      "encoder.layers.10.attn_norm.weight": "c5a4611c5133ab2f429dca464dd2dd14db6cee7b0b19b1b31a341f3487888f0b",
+      "encoder.layers.10.mlp_norm.weight": "90b73d6ff54c3b88447b7d313557a1a2b760b4b4f82340dbe60f2209389131f5",
+      "encoder.layers.11.attn_norm.weight": "b4211472f56a94a3b69ffe2e70bb8744159c286ca94f9501ca2a1b9b7b259204",
+      "encoder.layers.11.mlp_norm.weight": "40183b1ff5072125c7f9885718c5f7565b4a8354b806040f75054ed959133223",
+      "encoder.layers.12.attn_norm.weight": "5b8642ef1ecd247710368ce440d4ef9c89bde99036beebfff678b20c30ae9d71",
+      "encoder.layers.12.mlp_norm.weight": "7736b3e8d4744bb5d157bca90e6db355a7a76f4106cf96ace4b1f27415128c77",
+      "encoder.layers.13.attn_norm.weight": "3afc05db7ba8ea1935724372e3f540a84e71d81e842c05ed753bb377ed74bd93",
+      "encoder.layers.13.mlp_norm.weight": "7ac4ae8e5042457a512a93bdf89f31effb315bd06bb7355075b1eedb4bf08cdc",
+      "encoder.layers.14.attn_norm.weight": "3c78475e21a5b95e5c7835b068a8eed8396118e125736b7d009b2ad4d587ef4f",
+      "encoder.layers.14.mlp_norm.weight": "dfe24ff7d80589df858b5f7b90c213e0b1db95cdbfa6aaea4019f9ca0991ffec",
+      "encoder.layers.15.attn_norm.weight": "2200572207f802a28d33eba1c38ecf822ff93fdf55144864f44551988b063941",
+      "encoder.layers.15.mlp_norm.weight": "fb19fff10a5b3f92d970a932c6b25e63a431c9cd01311f8e6ad5b94ba58029aa",
+      "encoder.layers.16.attn_norm.weight": "04cf0ec05daac5aae12c10367f622bf84562b3ee09f4d112d923aba29efe528c",
+      "encoder.layers.16.mlp_norm.weight": "19f8596c7332e021ce7fde961fdfbdb03aeecd15262064431e3389ebcf64431d",
+      "encoder.layers.17.attn_norm.weight": "0de89b80b0cd6832403de15b4796ca173f822c985a218d10c374c5c2240d5b10",
+      "encoder.layers.17.mlp_norm.weight": "655bda416e402fdc978859bba1a02305b9f1f334101b81e26107a191fe9103a0",
+      "encoder.layers.18.attn_norm.weight": "fef8c9765fb965b44f908caf9de264fe15bcf3e6241452377389a7b76456e304",
+      "encoder.layers.18.mlp_norm.weight": "c021a37a2046146518b079a27a929d6c3fb7cd08013efe4b6945de3a604c4488",
+      "encoder.layers.19.attn_norm.weight": "1906d83ca2edb3ce322f1bb2254846328c5c88459bf14dbbc2b79b6acadd1769",
+      "encoder.layers.19.mlp_norm.weight": "84a9ce71a7fda056e1dab3c96196a56ce861d705a45abb92865f4eb5a64f4ff0",
+      "encoder.layers.20.attn_norm.weight": "61596f4aee28f0f62b0e61601bd14587dd69067409eab861276b6014a75f128c",
+      "encoder.layers.20.mlp_norm.weight": "a967a561afd11cfbd18f8bb802b33315d0029f234dcefcb2b1beedb486382b4f",
+      "encoder.layers.21.attn_norm.weight": "8de826f13c8a753d6ca8c07732f389fdfc4dc348063786fc297402f75543a585",
+      "encoder.layers.21.mlp_norm.weight": "f7222eae139f635f10cf8f6920b4589e598c68dc705d719cc33e05da653317f9",
+      "encoder.final_norm.weight": "611ee707a061eaa2860f776e59c72d4b83cdd9fea53ced92619deb2598442bb3",
+      "pre.bias": "4b26c350cbf3eb9961d8c2a97d6547356b760bac06bab0e1ca0467d0f98ee692",
+      "act.bias": "2fb76371e1f34cedb8af120c73b692edfe29b279d3c515b754c172ada5114f88",
+      "classes.bias": "140c1fd39a3286b901c67462e4bd9aec54a916c8842f93cd229fff17e5d44dcd",
+      "tags.bias": "81cf7e5c0e33641806b0b5e61ad10a3b6562fa771b082d128a67bb92cc79d6ca",
+      "cut.bias": "d2ba5882fee2bf6efb7ac573ae6f6e9c9530c6ba6dd58a78593f597fac4027f5",
+      "encoder.embeddings.tok_embeddings.weight_scale": "6521e70f88bba4b32a3be90b2af44f0ab00681d294dad3a26219085aa7030eb0",
+      "encoder.embeddings.tok_embeddings.weight_zero_point": "88863486b65c5a0a058cb5e0795b77c0473448763aa8b2f8cc3a59d8e4837bf5",
+      "encoder.embeddings.tok_embeddings.weight_quantized": "4b4e50697abe2e3062b291118ba7258994cd5379a94b7b551f3a0aaa7a86689f",
+      "onnx::MatMul_3415_scale": "969ef9d4b0e7d9313d143876ff8604609c9d5c2f11c3dc500cae39817abbde04",
+      "onnx::MatMul_3415_zero_point": "b5febce4b5703a0ebd5d9de44af92c946c3f2ae59a0a5a0e3a7632298b4a11a8",
+      "onnx::MatMul_3415_quantized": "dcdf9dbfdbdb622cb9a81246d41ae42ca547c712149fad923c64acf00fdc8b9c",
+      "onnx::MatMul_3436_scale": "ce63e304177755498da8260d96d52b31bd53c3990c3be8f2835ce3300437cb44",
+      "onnx::MatMul_3436_zero_point": "c393d9114d26e43d46cf22ace5bc90fe5627fcd78198cdd4afb0bd6c4ac9215b",
+      "onnx::MatMul_3436_quantized": "cd5212e759439ef02fbfeaad04801931f9d082d68cc9f2e24f917e0e6f6298d3",
+      "onnx::MatMul_3437_scale": "cc1fb233bfd23da65519a443828e1342a4875ab6d67be705bb81b676a8d47ae1",
+      "onnx::MatMul_3437_zero_point": "0c74874d34dfa5d8f7718865be2f726140caf51419e226cda5214d8f0e606b61",
+      "onnx::MatMul_3437_quantized": "1ea7022aa41cc7d1b19b0ddea652f235a2f3732720fc567aebb341e93ed0677c",
+      "onnx::MatMul_3438_scale": "20db8c2f41a1645281b0851c0928d5962c17b12c081485aba76613ce41fae837",
+      "onnx::MatMul_3438_zero_point": "1242a0590f5628ddcdb28001e6c522b7bc460ad02de46cda41b037a60cd686b2",
+      "onnx::MatMul_3438_quantized": "262f37376dbae9f5e599e07ae1b841e6e135a98a4b18fd9ec91467ad4d6a8f65",
+      "onnx::MatMul_3439_scale": "783e74df213ce7d5c5123b1052a4f4cd0700a749d63bb4948b7d1d1c26a71403",
+      "onnx::MatMul_3439_zero_point": "46b8561b596cfe8ded43025327c4246f217ee0b45e2bf609b3f24f54810a0160",
+      "onnx::MatMul_3439_quantized": "2ebbb977de97ecc9dd532cac36e77514a33c19b8953a039996dcb0fe7b064e52",
+      "onnx::MatMul_3460_scale": "873ff6d4f52306735f928737c597cc4f51da096c2d8122264584e6fae0c2036f",
+      "onnx::MatMul_3460_zero_point": "7a0d5d35ba27a877bce22a772354dfdba8f3cde1de8d5980119bd6ad178fdf62",
+      "onnx::MatMul_3460_quantized": "f84a553d57686e3a79771433f1f1262bdb8592d8db9551499ba65ad6c76b8843",
+      "onnx::MatMul_3461_scale": "33595fc6ae93a3a22a9218d402ec6f8c83422865eb73a86a293e2f5b1540c9ca",
+      "onnx::MatMul_3461_zero_point": "7451e0af3974f2603b0a98faf44dfce3f5191b84bd8d4740ef3eeb9ccb26471b",
+      "onnx::MatMul_3461_quantized": "b9d83420cb68a765fd86731730d1c7ae8f8b589d537fc27b1b4b3e7ef40c0b77",
+      "onnx::MatMul_3462_scale": "453d82fc7a954d84b65ac5cad6e4a30c2b3322818d70908aa8eb9bafbf9ddf6c",
+      "onnx::MatMul_3462_zero_point": "d1cf544c2e05d7ea135471f86c747c06fe9db396341192cfd8b1d7328bed6fde",
+      "onnx::MatMul_3462_quantized": "b3a8988656b9028bcb891d41515e0eee940de63ec7d9a85f5d8555f6ff6fc519",
+      "onnx::MatMul_3463_scale": "563c6676decfd3979ff3a20495da5ebbc89191d569ac204149766c74484275c0",
+      "onnx::MatMul_3463_zero_point": "ab489c51f1c20ac0d0f607519fcf3e6428bed6a4730b50f760ca8cb52e817ac8",
+      "onnx::MatMul_3463_quantized": "c0e4605c2a54921107c7759a307ad3341a269ef2e75addd9f480272c16feebf9",
+      "onnx::MatMul_3482_scale": "00881c7a8bbd9de1274ad81c8f6e01d9a730de93b1d87282d632554937216924",
+      "onnx::MatMul_3482_zero_point": "4b083dc7daf2653977ffa13eaea3df3bf3ea496e02409bed3a1208d7b055e3f7",
+      "onnx::MatMul_3482_quantized": "243772d9fa5e39627e489dd0ca62f70c902feb941f5c46412007aa7b371f273d",
+      "onnx::MatMul_3483_scale": "b8b6b4f7e0192c938b96dc5f1adcaf15d95a6c7d396529263fb0a977491bb987",
+      "onnx::MatMul_3483_zero_point": "839e8e4524c9eb1bd33b48bfa562dc33b763c00c19564f83593706d66f0be34b",
+      "onnx::MatMul_3483_quantized": "dd436fccade60ed021fc6c626d1fa2bd6fef75540c9cecc170987fd7a0833034",
+      "onnx::MatMul_3484_scale": "7110e9301caafc04206f52906c8e540c57f17ba1195e13ddbd1da4fce380a5f9",
+      "onnx::MatMul_3484_zero_point": "ca3ff6c4d9d5c7658782a4e24e4d899470b9ecbf54eddab4ab5377d3a6c7c4bf",
+      "onnx::MatMul_3484_quantized": "7030842dbc3e532cc2cfaf5449fe6621476ff38c7e72e12c3ea82373294031d4",
+      "onnx::MatMul_3485_scale": "e795de5dd3affc35d75acfd109ff87d164c4ebf5da8b2659a858493be69546bb",
+      "onnx::MatMul_3485_zero_point": "5c178f08a426735e2ec061f878fe03ae4a1ad24ad9236616fd273feb884ef469",
+      "onnx::MatMul_3485_quantized": "18914bcc8c3dbab63029ba11377f1cb3fadfc675759e73fbc5813b7c581afbed",
+      "onnx::MatMul_3504_scale": "a54de37703e20d11b53f867dcbae72aa13f00fc9df65a43dff31ed93cdd368ac",
+      "onnx::MatMul_3504_zero_point": "4f3d72df1e726564ef9de8bf3131e6ab77eb3377c884fc883fa654f6720045e7",
+      "onnx::MatMul_3504_quantized": "0765a5b31b8fe56d8e941bcc7ef6622283c5f0b0da682db383c4e4a72713fe1c",
+      "onnx::MatMul_3505_scale": "2a31d1318e304aeb08a824e88a2e275ab8cfc2c40eb94907160a8fea30d0088b",
+      "onnx::MatMul_3505_zero_point": "080057ac1fabf202fdd4948dbade668a86600e542c53415ebbad2153f3372937",
+      "onnx::MatMul_3505_quantized": "e81f498addd1610adb83a1dcad3291b0e6524137f6b16f11378aabda639fc484",
+      "onnx::MatMul_3506_scale": "a8c1c3aad0a24d282d1de6a3fdab6975e6fdb708341c6c8d64db6ac57c792e9b",
+      "onnx::MatMul_3506_zero_point": "10b18060ebb1efea7ab0216a519ce433875c74722ce20fb61b6b854009d7642e",
+      "onnx::MatMul_3506_quantized": "6578b930ba88c67f65f73519b0fb5d5d302aea6d6657e67789336e22464917ff",
+      "onnx::MatMul_3507_scale": "61a7b6b86f84dab464e8198481b98dec0b83dc6cec30a762fd4249a7f5787e24",
+      "onnx::MatMul_3507_zero_point": "18e3201f0ee9e5b3769d162170dea2a79a76ff7110cb07e3d95ae4f7771950ef",
+      "onnx::MatMul_3507_quantized": "2b34015abfa8e09c43ac7ea8f9a2941f55dd80d903019f14f2678a1a258f04af",
+      "onnx::MatMul_3526_scale": "a4de6d28d47a8aef1baa23762f7eeb2914471891838c01430854eca96628108d",
+      "onnx::MatMul_3526_zero_point": "88317e70e5784eef73270e89b5dc6431d4bb6e2a5898ad25e599ff20568c47c2",
+      "onnx::MatMul_3526_quantized": "c03eaf341e948608a146bc32f5a4565c2661396cd01e97d2d8e347e26a346a6b",
+      "onnx::MatMul_3527_scale": "4db323afc5f0cdbc2aaead81130289ea3e7ae9c5522323d0076e73daf560991d",
+      "onnx::MatMul_3527_zero_point": "e1a76b5656bcec7d0c8d80a3f4610e3869e565d14f5766454e11b785870e0904",
+      "onnx::MatMul_3527_quantized": "0173ce5f70afe76056291b353dc0c5b6c2abf691fdff4b31e0871e79894e02df",
+      "onnx::MatMul_3528_scale": "8a9befa16cc3e24bf641dc656d36ebd330ace47c7cfa30185c862e53f8ddb819",
+      "onnx::MatMul_3528_zero_point": "9a2b86f889cf963a71f490105ccc448dd939fd5d41be83b7d64b459ea9ced5ac",
+      "onnx::MatMul_3528_quantized": "065a2669ec32653a5b8aeeb046abb49feecff78b8fd538cf38709006901e9b4f",
+      "onnx::MatMul_3529_scale": "3555cc0d8a9842f793ad3050d6ba24b9a8759901a3747a2551d2113a9e688725",
+      "onnx::MatMul_3529_zero_point": "d2fd074bd6962cd944156f17be988e4f372387dde80133c25a72e20eb1e7c358",
+      "onnx::MatMul_3529_quantized": "d2fdd30726c0e7ea6b4237b75f76571a8fd47f050e6376bcd636878eecd35645",
+      "onnx::MatMul_3548_scale": "8074f8d599606a05857f19dbdb177e6366a620399c87141aa7eb93111b11af94",
+      "onnx::MatMul_3548_zero_point": "d502683573f9b5c09c8506c76b5ecd59a5723b3893681603fbcc7c9dbc10ceb0",
+      "onnx::MatMul_3548_quantized": "6d2e41d85a3f68369ea47379a4a8989c428ad78e67bcd6f16e0b01690583f162",
+      "onnx::MatMul_3549_scale": "29697f7456791f39b66ec69ec4f7d7647a6f8a900ba03f6bc321b2a9df184362",
+      "onnx::MatMul_3549_zero_point": "a0ae7c0b4cbc273df8c4525c5de1b9f0d530144cd2ca1e429899293c767a9ff5",
+      "onnx::MatMul_3549_quantized": "b960644d6121d0c356c8d4a66bb3d2974142354b291b5ac9205d38166c500318",
+      "onnx::MatMul_3550_scale": "c5c4d46d0cf882b6820be723c18d62ba2ff7f547adf3fdb3a3417efb8fd52fb9",
+      "onnx::MatMul_3550_zero_point": "cbf22ef7dfe33ecf6c70816a8b80b3d0e1a751ce535ed4a9b443e814409850d8",
+      "onnx::MatMul_3550_quantized": "9caa4298ea50fe5212088e29c6a4fdb11fae83aa4862db694c8742ca99224cc0",
+      "onnx::MatMul_3551_scale": "cdaf4256c51168ade76c6d4d889b3b017b4ba0fe85affd269b58ef3a089c7c6c",
+      "onnx::MatMul_3551_zero_point": "94ebf848a0c9720d21c58db93bc346375454041831eb7e8c4a96b774edb8eb66",
+      "onnx::MatMul_3551_quantized": "d0526b2040dd2e9f865d654578896f27bf15faf92ac9fcaed81aba94944dc0ce",
+      "onnx::MatMul_3570_scale": "fa1a8cf1f2c9eb3f7b7531523fc24407cd975201228b29bcbb6ad0773ef83156",
+      "onnx::MatMul_3570_zero_point": "f9fc6151c7ff6bdd5805f35be5608ae35fbf4bbd746c746b58a4db54836c9583",
+      "onnx::MatMul_3570_quantized": "68d046a9168adc5b155dead6f064defad5179d195f4dbe9700f3d8cfc647cd7b",
+      "onnx::MatMul_3571_scale": "ae2542b26650dcc825f9eb50cd8ca26e776d8b118e6f008141a7e802608d1c75",
+      "onnx::MatMul_3571_zero_point": "eaef6696eeaa71e10f0d62fccbf77f7063f894588d560e2996ccc7e3bc5f54dc",
+      "onnx::MatMul_3571_quantized": "51b2fb4ee971073958dad27bd0762e86c8cc8ee2a99298dcee32b79f8fec4a1a",
+      "onnx::MatMul_3572_scale": "2258016039b1975ab15c30d1dfcdeeedc5ce512e79f91cd57d55de39d31e715b",
+      "onnx::MatMul_3572_zero_point": "24e670b0b911ed8aab682fe41504a9e51ae2b9722b934f0c7995973c01255f1e",
+      "onnx::MatMul_3572_quantized": "e33584855ae865cbce374ba35a3788cf43b68e0f7266b96920e43a902e249755",
+      "onnx::MatMul_3573_scale": "61487903745dc20cabae564cdecda04e92cab9a2877c5c425801fe81d751c3c8",
+      "onnx::MatMul_3573_zero_point": "f842bcaac71b476aad8b8d13ee76add7a836d9c7ac4f0348fa1d1dce59fdcae4",
+      "onnx::MatMul_3573_quantized": "1cc5f5ffb32f991ee4391cd277493cee4b2b848c49ce88947e5592b8a2e2c681",
+      "onnx::MatMul_3592_scale": "a6037a50b7c45704041ded3b9afae8a7e49cc204a4d87ab2cc9c62aeb42ed1c8",
+      "onnx::MatMul_3592_zero_point": "18e44b4247a62818ef51d8578435cfd2b66d9ebaf2d09356d49e58eb11ed6ceb",
+      "onnx::MatMul_3592_quantized": "fb857af12e3c9ebbc68f86a751a5698566cee29db7a391ebf72e24a799983261",
+      "onnx::MatMul_3593_scale": "aa7a104f6ccbbbef3c06b1bd3352adbac6e275bd1454daa954adbb9a378bbfce",
+      "onnx::MatMul_3593_zero_point": "0889e9d0563e51089a7cb1fd779e1a02cf23ce7407aee25059d16a9d4fee7399",
+      "onnx::MatMul_3593_quantized": "29aced314e7949629de516f91bf92b9eff4541b3ef288abc1158269b02ff6c65",
+      "onnx::MatMul_3594_scale": "d41cef48ed390830d1f99a0fc9ee9cb2c748cd3dd5506443e1aee17b38d1ccf9",
+      "onnx::MatMul_3594_zero_point": "941a759142faae13f721297dc8ef30dabd97b9e9dc475eda826727166c6b395d",
+      "onnx::MatMul_3594_quantized": "ac176997997f25e2ecea889c259132a21ba98f5317abb02c9646d23d910300e2",
+      "onnx::MatMul_3595_scale": "2d1c61ce14286459649bcd928bdafc1091e209015a3be4ed3659f79fbbe85c20",
+      "onnx::MatMul_3595_zero_point": "3c2ad1998bd7214b57210acf7043a6a3d562455dad31f373b2d943942d37b0d3",
+      "onnx::MatMul_3595_quantized": "395d6c70274d59c293133d86f2e8aa7124b00f5ba1781c379cfc65c72ca05b1a",
+      "onnx::MatMul_3614_scale": "27256602e3a434f3fa71e15a7bbeca968bbcb9de5dba3326e65cf8494e4b3db1",
+      "onnx::MatMul_3614_zero_point": "fa287c31257cde801edcce8ebd81b5ee89340f7557408712c545c63a5dfe099d",
+      "onnx::MatMul_3614_quantized": "5fe2fc1938d8c078989ba633497ba8d19dda2bfae6a3368ceb4a8a3846e66a36",
+      "onnx::MatMul_3615_scale": "816dc6fdeffa420886cd59b045b5a703c4c3565de77816e9ec2459ea63c34d84",
+      "onnx::MatMul_3615_zero_point": "cd15067653dc013190aaf5c967814faaef98f1145f9427436378e0484c7577a2",
+      "onnx::MatMul_3615_quantized": "5f51c42b786c5da77c42e8fd91cc474c642e18c1ecb013ddfe66b8251f966609",
+      "onnx::MatMul_3616_scale": "2b86e4b09c5b4defb3b8840c584ba08b602989ec7ac0b715756b73664e47ca3e",
+      "onnx::MatMul_3616_zero_point": "586b2ab8b355d397a8ca1ce9caddce6097cd86587193c0c1b506d771bb601138",
+      "onnx::MatMul_3616_quantized": "a3f7ae9faaa6e9ec41048a57c8f17bad775040af3258128cad5e0be70de10def",
+      "onnx::MatMul_3617_scale": "b97e1dd78526d73510cc8798c8958506def9f9fda169a3638d5ae2ce2c28d391",
+      "onnx::MatMul_3617_zero_point": "f0145491c260490aceaeab80e88cc77854fb9f1a0a1f3a08bff86dadb8b4f974",
+      "onnx::MatMul_3617_quantized": "2ccf6778b7d105c912ee15be43d2c8fd516b064c4c7672ab96eb391a4128ee75",
+      "onnx::MatMul_3636_scale": "7684ffc5fea18fe31014865b4dfc4da8eeb18f8e40cb946f54a0709694af4e71",
+      "onnx::MatMul_3636_zero_point": "c62ff3127f42e2cd88e0f208c891322086eb17f96772cc13a954ed6058ea0fb4",
+      "onnx::MatMul_3636_quantized": "7548453f5d095d8835e977ab1237b34c15f1aa55769b33f805b20e0916be8ca4",
+      "onnx::MatMul_3637_scale": "927283d972b0e55f3de6578ed74d5ba15a6506e71a4bbe72cc15d8167476ceec",
+      "onnx::MatMul_3637_zero_point": "1e50c41becf3370350b4c531dc9c54a1f29008c6f445445fc0063590aa3ce61a",
+      "onnx::MatMul_3637_quantized": "79453df5e9c0af3b1db1cddf27160b3d277b404cc650718b7e6681efbc943413",
+      "onnx::MatMul_3638_scale": "16cfce3a4f983ba621360af41cb87a4ffcbd95ad4ce12e2f5c8b29f51e5aa0bc",
+      "onnx::MatMul_3638_zero_point": "4ce3296fd32508129131e1629df78c3b9281f0e1efa1b3d9854f077f4ac40d53",
+      "onnx::MatMul_3638_quantized": "e118d908b2871aae2cdffb0367677371dfe8811a081c3e47d5548c64b2689277",
+      "onnx::MatMul_3639_scale": "0fe863c3b20d04ab7bf0c34d11ede6c5b13aeb524b5363bc8acdb886eccbe19b",
+      "onnx::MatMul_3639_zero_point": "2938cd1493a07a11e8d29010173e7daf9047d2930977d0506d166c7f5082fca6",
+      "onnx::MatMul_3639_quantized": "c66109fdfa47120e13d73bfd26cb8d2b1668c58c94fb2202c0d2331950c6185e",
+      "onnx::MatMul_3658_scale": "62cb892bcd23a4f9efd48db7188e6971a988dddce90a6a20591dc21d0ec9ebbe",
+      "onnx::MatMul_3658_zero_point": "c9f7e416e3d930bd09433ae8aeef33ec8e6ab1d469758966a148173e3a7a0146",
+      "onnx::MatMul_3658_quantized": "875b7cfa5001b064eb618b3e89709f3be3edba0252cd9a47647cc4b64a872d44",
+      "onnx::MatMul_3659_scale": "939fb7f92158279352f1c163e1f2f3b973fbf02c642152fade1a07e6ea172e66",
+      "onnx::MatMul_3659_zero_point": "fc29c94affdf5d3bc6a31f91797d5272c4f379106b72e57544eababbb8a90741",
+      "onnx::MatMul_3659_quantized": "9b0e100e3f817e4e1ed3596f2d60b60d098f626da71244212d4c155dac45a14f",
+      "onnx::MatMul_3660_scale": "aadf13e28bf20bc08aeceb4f05029579554933c32f5352df97532a17fe820d19",
+      "onnx::MatMul_3660_zero_point": "0b177be498de61e2073848b56bea8dba4a38c0c70f9fec30f69ddedf48797024",
+      "onnx::MatMul_3660_quantized": "c94ad9e3cfd12157710ad14c0030f338a4dde393d51d80e0252ff3ff51406a03",
+      "onnx::MatMul_3661_scale": "2111fecac94ad168004d8a3e580033bfb94a29500390f40dd33c6d62bec75852",
+      "onnx::MatMul_3661_zero_point": "57a6a39d7cde85ae8469f3434e8b699a3baf6c038fdb8fef82a7669d9418be8e",
+      "onnx::MatMul_3661_quantized": "ff1606696000cc2d3c8059fe6389fcbf93187b68c65abc79d5e6d48d2094ccd2",
+      "onnx::MatMul_3680_scale": "3fa27dc83ef4a3ca1c647bd53cc66b6afbf74462cdfee2c4db7163e0a2029d5a",
+      "onnx::MatMul_3680_zero_point": "dcf38e9c0486280bfd779b190c2ee091db017a9b488361b2e4f80cab9ddfa6b7",
+      "onnx::MatMul_3680_quantized": "f106753ae706691846f7eaf0c01caf175d51a625bc279ff59350dfc5a2b10646",
+      "onnx::MatMul_3681_scale": "68c663c768c7c1253ef7df8ff56768440c9416ea649e0bb2f6c0e6984a319d7e",
+      "onnx::MatMul_3681_zero_point": "301e68e0fa6f3d3c031594d5b1d690790a57177c3d482f8c2b59b87d47ef2a56",
+      "onnx::MatMul_3681_quantized": "d85a743b369b978a4c7aa40c28de91a86b865bcbc19fab26ab66135f706c0542",
+      "onnx::MatMul_3682_scale": "e413d49b838e317adc5eeb0a59963125960e32cd08c2b1ea8a562956d0bc1167",
+      "onnx::MatMul_3682_zero_point": "43f128f84fc3366d13eb91244c0ccd80cd45a50450d4954b9455b0e71df84c75",
+      "onnx::MatMul_3682_quantized": "af7118acb91d42237d37aeb8816e96941ef44c2a100e2af4af4be14392ce1d1e",
+      "onnx::MatMul_3683_scale": "d4bb24877a7553e1bf407c50128758838bfb398a4840d63985b2c05392689d35",
+      "onnx::MatMul_3683_zero_point": "5f4bbdc3c3d2ab9134618c2d0d30cd8e44cb68367d0471fde6c83a4ba95baabc",
+      "onnx::MatMul_3683_quantized": "1c79a809f94ff7e175588d937bd2535748669a35eca35bb63a9d77e8edd087f1",
+      "onnx::MatMul_3702_scale": "07ba65e385718e6a79e0046f29d6bb465cb00ae2eb5af10970c52a1f5ac0e5bd",
+      "onnx::MatMul_3702_zero_point": "dfeb38872c91ffca281d0611119cdc9a135907e9a7ca2a5ee16ff0a400649767",
+      "onnx::MatMul_3702_quantized": "4bf30ee58c36af648d8e6155eb144f1bdba986925bcc8d35f0396fa734d6416a",
+      "onnx::MatMul_3703_scale": "f5875576a98aa15d103840d78c5fcbdb508708352b064e3c113b5e358a54e154",
+      "onnx::MatMul_3703_zero_point": "df63749ae6b65af6afe6694e6afc99dfff73895d92d43e321ebcc18aeddbba69",
+      "onnx::MatMul_3703_quantized": "32178d7902d713a38124b124cc64bae51fdc7aabd6c7566749cf5241756c26b9",
+      "onnx::MatMul_3704_scale": "1ed7f6df8ecee3380f0ea7e10bad09ca5ca56713c05a9eb60c67cc03d7e5cf0e",
+      "onnx::MatMul_3704_zero_point": "fe8c7e4d9d780b7ff6f731fc984bec5105c36892b34bbb37d60805c6d0b54d57",
+      "onnx::MatMul_3704_quantized": "e0279dd2398aed5caebf30d3ee7c255d2654194237a7e3868c1bccdfcebd7c2f",
+      "onnx::MatMul_3705_scale": "451e855c804a7f2898af3e5f63d28c994e8dee669ff10589c080218daefd6942",
+      "onnx::MatMul_3705_zero_point": "c35a0ade70266780a0df103ab19c076e828e4f76efc0e8b6df9dbeea862de289",
+      "onnx::MatMul_3705_quantized": "439988df208a33b3a124061fb51a1d99cfac66b37846bc2e6b5a04f66433238f",
+      "onnx::MatMul_3724_scale": "244b9e206add6aaa606be4f968427a3a80e5cba0182bd2abc6ca347827a7a5e1",
+      "onnx::MatMul_3724_zero_point": "d2516a2b4647aa52ccd7b29849bbf3e8d1a966b6aeb7087efcedb11e871e813b",
+      "onnx::MatMul_3724_quantized": "a954ce21b436c745373c44191a0c7b2cd39502566dc57103f269b7e421f9bfd3",
+      "onnx::MatMul_3725_scale": "4a98f3bd1e20ae28363dc6abdac15ce7726d28ded31e1123be28df870418628a",
+      "onnx::MatMul_3725_zero_point": "f9db818e1b5ae1d0e029ae2d6d6a29cd50e799b84c516634e36af6b645a31c4c",
+      "onnx::MatMul_3725_quantized": "aee657870991d0ca47a287db838b12a5952a1e35a4359a8ed490f00f675c7017",
+      "onnx::MatMul_3726_scale": "0a6b6218936a7af491fb6aa202c509b4a3b89ffec6c3391528014957c463633e",
+      "onnx::MatMul_3726_zero_point": "af53c7de0587a258d7d9d98ad5df921dfc242cc96cc7663d12e99a4609d245eb",
+      "onnx::MatMul_3726_quantized": "a3d38d9a58c540981a77e93257545e530b0ee87fd96c590ad64f6426d582293f",
+      "onnx::MatMul_3727_scale": "16a6b89a16ee8cccf19195d1e46b084ec3adf05332d82876dcbeebd4ef3ec638",
+      "onnx::MatMul_3727_zero_point": "c2be96dad0cf8ee92f25bba7637fd4606866a0dd8fedf5981fcb490354b00487",
+      "onnx::MatMul_3727_quantized": "70d3495c4a4e8a9688f8b065591e433833009bce5f2e38ef4d350ae5916263b1",
+      "onnx::MatMul_3746_scale": "703998ba0afe5206c74d1a431dd261582ca4ba4bee39f1c94d7af039d54b6fab",
+      "onnx::MatMul_3746_zero_point": "f2f7a9306e83e22c7489c2d2ee46aecdd24e908b2de36364858aa018fdfed341",
+      "onnx::MatMul_3746_quantized": "150e7057a6a7e7d16190dc099bee31ee87961193151e5aa95dd1f8b0b84f68df",
+      "onnx::MatMul_3747_scale": "d5bae324c475634c2cf8f188c26b1bd417e29f538de73e72607908d2b080a44b",
+      "onnx::MatMul_3747_zero_point": "0a037074009978aa1f49382d61e0878870e386452bae7cc3418c75ab6dfcfbe7",
+      "onnx::MatMul_3747_quantized": "5e3aa476c27e40ff0dc567701cc2c350a5d7ddf089d9f7e7e99aa9df69aa6d0d",
+      "onnx::MatMul_3748_scale": "7ec2cca7ff84ae840b816232d030bffcbbe3ff83223c7316ce21b9b690e529ea",
+      "onnx::MatMul_3748_zero_point": "b2b0f95e9613cce823228ce65cd32e234ff6f511a07046dfd6819afa140764da",
+      "onnx::MatMul_3748_quantized": "6a81db5c51db5e6be84424c0c515aa6e2a935fa70195c8f409b20cfc558a7d26",
+      "onnx::MatMul_3749_scale": "85d02bab6e383ba4e69fde5bddaa6abf0faca97a9859faf0c3920be10326cd84",
+      "onnx::MatMul_3749_zero_point": "211473317f258fb75b306d8b8119b85a34c85132b611df087824a4e8f7eb7be9",
+      "onnx::MatMul_3749_quantized": "33a6a5424f3a29641e0f36ba565431b3c4a9959014f28ccfe935ac355f1224c6",
+      "onnx::MatMul_3768_scale": "2f8d653ae39efcf47908e88a652cae85a4aa711899d568bfc52b9f93c6277cf3",
+      "onnx::MatMul_3768_zero_point": "f640abbcd0239e750dd65f1ca3ff0a1c02ff9a4d9f8aab113a325a528c6e9feb",
+      "onnx::MatMul_3768_quantized": "e1489a0350e264c1d1c576d08a65d39018f08bc02e03dd80c4fe65647bbd4792",
+      "onnx::MatMul_3769_scale": "3ab1e20e3c8e8ea1645344915815b46f28c771809ec338ae2a967a22f276ddca",
+      "onnx::MatMul_3769_zero_point": "6cf796a301a60a08d1bbf79f076f354cf78a482e0e90215d271dbe204d6b9ef8",
+      "onnx::MatMul_3769_quantized": "5a86d563cdc083265b7a42f7e9d9396bf012eb10e0f38fdd459cb3ba7a91ca7c",
+      "onnx::MatMul_3770_scale": "4e9cbd5250b3220d4ed4cb9503a50091faa107d3c91685692b4a55fa3d14c936",
+      "onnx::MatMul_3770_zero_point": "cd1a7a76b0ca3ed5927d9c8c40b30ca9a1d320d9a919a2bf43b4ec465b9a569a",
+      "onnx::MatMul_3770_quantized": "963370d792fd5b28455f57579b7e1d41c3ede921e904363de211dffb131cb6e0",
+      "onnx::MatMul_3771_scale": "3784be9a2ea0973a243e16cd7dca464eef327c7ed7742236e033fca34b2bd3e8",
+      "onnx::MatMul_3771_zero_point": "cb078477750840848d2b0d359ea1714a478fee8b64e56379b01d7d3bcc5c7499",
+      "onnx::MatMul_3771_quantized": "e7924a129d4ef0c14fe8958982380a2d6c545cae4f8ec82bdd1e27dbd1f74944",
+      "onnx::MatMul_3790_scale": "77cf317fc5bc548d4bed83388b84a5f8e2b04d1b6de9d39a3a252bb64aa83594",
+      "onnx::MatMul_3790_zero_point": "37220bbd6bd50585aaaf6ba1b3418e068641a716ca0b7b34d63d1eebfca8e3c3",
+      "onnx::MatMul_3790_quantized": "f2f56d3be884f7d1aac1a766bc1fb53edc36c09ee6989f99dca4b6fe42cb7b03",
+      "onnx::MatMul_3791_scale": "8b4303c517c316a8ab9719451ca97add6f3c157ea390476309cdcd71491b6ae7",
+      "onnx::MatMul_3791_zero_point": "95c0f9e6cfae6f6adf6b8610dece9ecb4e8d415f8ee14388e1823e460b9738f8",
+      "onnx::MatMul_3791_quantized": "8f3a7cd8d13470610f3a8da999c2839a4bfc4fcca13f79ecd6c052347c00151f",
+      "onnx::MatMul_3792_scale": "bd05c9ceb2139a6fa48a903c06c7f420e38d3f1031309cb11b4173874985a3b3",
+      "onnx::MatMul_3792_zero_point": "a5b086f7b00a6fb19c5264d1536147608138622b238701d224d8eda420e53b72",
+      "onnx::MatMul_3792_quantized": "ea07bd973468a674e18ef589d6daadea40e829deb6c3a6ac756ffd6b526dd3f6",
+      "onnx::MatMul_3793_scale": "157acc6d7c8276c2f27451bf097d477017dbd0cbb83cecac76825f0b6d9d077a",
+      "onnx::MatMul_3793_zero_point": "09e4cdad6030d4ba4fc8d692f332f066e0092fa014ce134028df883df2ff51bd",
+      "onnx::MatMul_3793_quantized": "56dec7cc4e6ec51206c72e0a6595de63f1029026d047937a9406396700a837bf",
+      "onnx::MatMul_3812_scale": "2bce8038fbeb55a705be4f8aaf3da090564b707591c84d098bfd013bc3e9309e",
+      "onnx::MatMul_3812_zero_point": "c90e177dfba9df71e2338fbd8daa65f24860d028ad23404785584f3ca5bfdc35",
+      "onnx::MatMul_3812_quantized": "1353de995d37d980758d1511d8de117da0f6d1f0702b4f1c7ba80ac032649e64",
+      "onnx::MatMul_3813_scale": "c0c6d9d020bd97a587eb24f73443b77396d9313a15834dc97c583cee6aa01ff7",
+      "onnx::MatMul_3813_zero_point": "0d43bd4478d98ceca356e668f114bb41c9bef93e4cf512d1df58ac443291d7be",
+      "onnx::MatMul_3813_quantized": "e901bc2713f52db69f82081ef36759722380b14c21210e57dedd405ac32beee3",
+      "onnx::MatMul_3814_scale": "07285ec783b60e95e08defe3ec34eebc4a04c69e9c3b6abc1ed86bb3cbee0bb7",
+      "onnx::MatMul_3814_zero_point": "380a1301ee4f4148dfd1074a3eb1f912726e0c478a569fcef5db8ad404f0ec17",
+      "onnx::MatMul_3814_quantized": "dbbadb9c05286a64ac4431595e731bb46c9ed9512e639e8363b8ccc3ea8f84f5",
+      "onnx::MatMul_3815_scale": "86a8e18b85368989e69211fed348011d93c9afdf25fb7186565f0c24fcf3262c",
+      "onnx::MatMul_3815_zero_point": "558f3a04e4703a81cdecd96b15118dd3f3f3f2a09dca687654740093b5c5fa7d",
+      "onnx::MatMul_3815_quantized": "65389381c94f30a0bc0270d8c1fbb10055f3dc318dd734d55fbade1d683709e1",
+      "onnx::MatMul_3834_scale": "e0cc715b0c8356cfac81d2e5f8c92d2f9de0bed91e23ab115e42e4e78e548799",
+      "onnx::MatMul_3834_zero_point": "e0c40ddbed4927b5d5490412de3d2b371ee67f44e30070dac2574b008db82591",
+      "onnx::MatMul_3834_quantized": "2363266eea07a9aed975a7465b3ffb1ff44e8ce526fdb0ae591b8815a1e52f35",
+      "onnx::MatMul_3835_scale": "7f79f6aa28ac5198d7195e6670083c8259ae1ce3beb982f38ea2f403a6996cbe",
+      "onnx::MatMul_3835_zero_point": "caf2a7eef4c86420a130765a24498ced10c704d0e14f18eaea361f96c6e7064c",
+      "onnx::MatMul_3835_quantized": "b2ab4f99f0fd8405527d7a7dc92018bbbcb7ad534a40313a9638ae3591132370",
+      "onnx::MatMul_3836_scale": "6deba2bce55f2237c7bd921b31bcd1a6484c9a20be20255bf2669d3de6af7515",
+      "onnx::MatMul_3836_zero_point": "44d15e8f6f3885efc35d6a3c39150b561b9b25ca1580850d65deda34282ecf72",
+      "onnx::MatMul_3836_quantized": "eff9e206d286507eea0c185857f78a097db20272ca6dc0cae4033d76b2a1343c",
+      "onnx::MatMul_3837_scale": "29791727e7adeaeb74ae22541a4f2e3eac0aa5495c96c278331613123b34c943",
+      "onnx::MatMul_3837_zero_point": "ed43266b8e5ff762bef75d74997849b6637ebcc53e50cabe082b66dc7e87433b",
+      "onnx::MatMul_3837_quantized": "93dda716f9d864db5abb5f9951eb30408bb61a8a86dc4c9da409becd5177e7fd",
+      "onnx::MatMul_3856_scale": "47c841c0ec2433692f0fd18d012231c532f0be1190cb897c3783cd9ac28fecb8",
+      "onnx::MatMul_3856_zero_point": "29be8522d0b4b0e44d7c15dff18b7beed7ff99b03377d779a1e61689bb17ae90",
+      "onnx::MatMul_3856_quantized": "2af430c105c22c20d3156834c4f7f6edc5132579007e4d65a4cc553d74ba5fa4",
+      "onnx::MatMul_3857_scale": "72deefe8bdfcd284dcbfad2810550b2ffb0cc6072e5d94e1c983f5dada835888",
+      "onnx::MatMul_3857_zero_point": "a7a6886a48d1ce9ac1f84993413f1649ca55b17bdf856927a7dece145aad294a",
+      "onnx::MatMul_3857_quantized": "32e6371e684ddb7f1530dcfbc2c8643cb74c2bd771b543a92c2ff57c6ee96635",
+      "onnx::MatMul_3858_scale": "2b2e438847f5cfe79b51080ae65fa65ee900f35bbd2c4725f5173136177c1482",
+      "onnx::MatMul_3858_zero_point": "723e54616a506b815b2e8be373a66ca2e652786416b3c5c599d9ef1ceee96d68",
+      "onnx::MatMul_3858_quantized": "83c189830a6d2cc73fe9e4dfe33275cdcea64c73ff6c2c3b6cec3c82640732d4",
+      "onnx::MatMul_3859_scale": "4c9224f875d0a888907cc3565841467cdcf94012327bdebbdc44d6db937962cf",
+      "onnx::MatMul_3859_zero_point": "6ba20dcbcf9cc90a88eeae1578c5c35b5fb87f85e46ba844f4d8e189abb6a412",
+      "onnx::MatMul_3859_quantized": "984094b2539bc68b13901394b890aa8cb16c9c7bd49dd8340d1a127c48bedaef",
+      "onnx::MatMul_3878_scale": "c8c353ed18978f0300aabec33923eedd06c1d5d977c1dad6e3287866bd768aaf",
+      "onnx::MatMul_3878_zero_point": "2d598e4f1ef489141094fab2a2531c3f625d377fc0ba020cf0a3c6bc700dc048",
+      "onnx::MatMul_3878_quantized": "6696ea14425bb2f2617734866aa494af5b6b08b004fa3b565b94e50cc98d4367",
+      "onnx::MatMul_3879_scale": "206676065c99fd2120bde8d129447b5600e865b9e02a838465283db85c790f12",
+      "onnx::MatMul_3879_zero_point": "1781b679dbd67bee5f8895de2cb8787e4bd1cc0a71f770d8cc2222647326c800",
+      "onnx::MatMul_3879_quantized": "20915d64c401288b4b6b14ff4b17150bcdb1d8e33234aece065842c9230afd2a",
+      "onnx::MatMul_3880_scale": "95fdd32c6479f12ec9edbd10a5d69271578fd1c3b812dd6cbb5e228c9e9b32b1",
+      "onnx::MatMul_3880_zero_point": "47b07c2a770f337d521f5418781899a4ba4cbdd6f734ed08b1a32a56cd124770",
+      "onnx::MatMul_3880_quantized": "e68ad8df26e979c2cc962472fed96791b91ce8050343a6705eac7195cf8ba5f7",
+      "onnx::MatMul_3881_scale": "60443c7f13f3b1013b2528d3b3871b32d961f979882d1c89206f81c4e2e7930a",
+      "onnx::MatMul_3881_zero_point": "9afb363aa7259cd82473b72af93a18508bd5acad1c08739cd8d1b2fe6923f24b",
+      "onnx::MatMul_3881_quantized": "17f065eb78fe935090db90154a2db924ff4a1e7a7f6f9b17901cb0559a3574af",
+      "onnx::MatMul_3900_scale": "201f2d53678a28f712eb6d0b86ab8c6d58655953f0436076da66028ccd25dfd7",
+      "onnx::MatMul_3900_zero_point": "425db43ddf829100ac6083d4d49c8c7f9b0a59be058ebbcf25d49b638d0c252f",
+      "onnx::MatMul_3900_quantized": "0323735b3843eb8f2e242099f03dfe2e6dfe81f07544fb39c4e2d1fa44b239e4",
+      "onnx::MatMul_3901_scale": "7f52711fd373782a10d8b76ca8d0d11761c01cf60424d71d6ce99e06f15e06a5",
+      "onnx::MatMul_3901_zero_point": "566bf50a778e979a585b4f8b177dc4a7afb2db1ede404ae6d8d30b259d590709",
+      "onnx::MatMul_3901_quantized": "3b65a28b013fb19ecad5df779eb099890d551676cddec02f2fc0d6ff72459bd5",
+      "onnx::MatMul_3902_scale": "ee02a3e86268e701df2f76fd647d3be5ad719f998cd1d5898131c3cd834b4526",
+      "onnx::MatMul_3902_zero_point": "c2a0b30d6e456fa799b2efbdf2362015d10534e4dd229cde47f9c898cb65bcf8",
+      "onnx::MatMul_3902_quantized": "28214d32e873492caa8ab68d473748851bae80d0f638f573a481267118b996e3",
+      "pre.weight_scale": "cb3a2c0cdd4c32e8b1f20feef534c6cbc879fa32dae19475f3cac86a8aedeb27",
+      "pre.weight_zero_point": "ad2ecd518f0f2d046e439090a5210089f680c88240833e9170111f09f3990cdf",
+      "pre.weight_quantized": "53c0a6627f56ee2e77b37370c57ba4529e80bbe1ecdee1caa921faf1c62abed0",
+      "onnx::MatMul_3903_scale": "47c6188e26213b3ac64d6be3d334db57683539311978a47ad89442b6adcb7a1e",
+      "onnx::MatMul_3903_zero_point": "40a7e89fbd10e01cecbb1c733abe0c586267ffca4745d733a75c2b8afd802459",
+      "onnx::MatMul_3903_quantized": "6df39663e34ff0de06b6ecaf2535d3f557539ee1eac513810693e78facfe4df1",
+      "act.weight_scale": "8aafff4119d1f8baa370023db81e1285d402ff4944b2844017310ac37f429677",
+      "act.weight_zero_point": "3e4343854ee2a8d428ec7a7a3e371e12e8d5c3914a4b1659bd0b73be1a655980",
+      "act.weight_quantized": "22ba01b6d92bad113987c681ff10a6b521fc8bc4dcd6220fde7c3344e9474e80",
+      "classes.weight_scale": "3f60b49930cdf66a9aa78eb8c126b9ed0443d41981dfc7441cdf79a1d9ace3a0",
+      "classes.weight_zero_point": "382267d93e0372ebb7c64cccaaaf0ce7aa517ab4271d6399171f3091438c98a2",
+      "classes.weight_quantized": "04966f8a33f311c6ba94d70e586e6da214a43228d5e95f98a790656c31b9d0a9",
+      "onnx::MatMul_3904_scale": "258fcdfcbbf0f4082233104d130c28f02775efed0102a652f3644983e7adeef6",
+      "onnx::MatMul_3904_zero_point": "330f8e5e295a99c5e891518a3b8d4f2ffbb2b133fbc4e06a00b6f56747a5d6c5",
+      "onnx::MatMul_3904_quantized": "b19a500469912a16b5f6144dbc1ff786d7f3627767ed29389e3b06ca2fa9de42"
+    },
+    "blocks": [
+      {
+        "integer": "/encoder/layers.0/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.0/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3415_quantized",
+        "scale": "onnx::MatMul_3415_scale",
+        "zero_point": "onnx::MatMul_3415_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.0/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.0/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3436_quantized",
+        "scale": "onnx::MatMul_3436_scale",
+        "zero_point": "onnx::MatMul_3436_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.0/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.0/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3437_quantized",
+        "scale": "onnx::MatMul_3437_scale",
+        "zero_point": "onnx::MatMul_3437_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.0/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.0/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3438_quantized",
+        "scale": "onnx::MatMul_3438_scale",
+        "zero_point": "onnx::MatMul_3438_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.1/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.1/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3439_quantized",
+        "scale": "onnx::MatMul_3439_scale",
+        "zero_point": "onnx::MatMul_3439_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.1/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.1/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3460_quantized",
+        "scale": "onnx::MatMul_3460_scale",
+        "zero_point": "onnx::MatMul_3460_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.1/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.1/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3461_quantized",
+        "scale": "onnx::MatMul_3461_scale",
+        "zero_point": "onnx::MatMul_3461_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.1/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.1/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3462_quantized",
+        "scale": "onnx::MatMul_3462_scale",
+        "zero_point": "onnx::MatMul_3462_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.2/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.2/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3463_quantized",
+        "scale": "onnx::MatMul_3463_scale",
+        "zero_point": "onnx::MatMul_3463_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.2/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.2/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3482_quantized",
+        "scale": "onnx::MatMul_3482_scale",
+        "zero_point": "onnx::MatMul_3482_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.2/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.2/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3483_quantized",
+        "scale": "onnx::MatMul_3483_scale",
+        "zero_point": "onnx::MatMul_3483_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.2/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.2/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3484_quantized",
+        "scale": "onnx::MatMul_3484_scale",
+        "zero_point": "onnx::MatMul_3484_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.3/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.3/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3485_quantized",
+        "scale": "onnx::MatMul_3485_scale",
+        "zero_point": "onnx::MatMul_3485_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.3/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.3/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3504_quantized",
+        "scale": "onnx::MatMul_3504_scale",
+        "zero_point": "onnx::MatMul_3504_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.3/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.3/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3505_quantized",
+        "scale": "onnx::MatMul_3505_scale",
+        "zero_point": "onnx::MatMul_3505_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.3/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.3/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3506_quantized",
+        "scale": "onnx::MatMul_3506_scale",
+        "zero_point": "onnx::MatMul_3506_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.4/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.4/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3507_quantized",
+        "scale": "onnx::MatMul_3507_scale",
+        "zero_point": "onnx::MatMul_3507_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.4/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.4/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3526_quantized",
+        "scale": "onnx::MatMul_3526_scale",
+        "zero_point": "onnx::MatMul_3526_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.4/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.4/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3527_quantized",
+        "scale": "onnx::MatMul_3527_scale",
+        "zero_point": "onnx::MatMul_3527_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.4/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.4/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3528_quantized",
+        "scale": "onnx::MatMul_3528_scale",
+        "zero_point": "onnx::MatMul_3528_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.5/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.5/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3529_quantized",
+        "scale": "onnx::MatMul_3529_scale",
+        "zero_point": "onnx::MatMul_3529_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.5/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.5/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3548_quantized",
+        "scale": "onnx::MatMul_3548_scale",
+        "zero_point": "onnx::MatMul_3548_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.5/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.5/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3549_quantized",
+        "scale": "onnx::MatMul_3549_scale",
+        "zero_point": "onnx::MatMul_3549_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.5/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.5/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3550_quantized",
+        "scale": "onnx::MatMul_3550_scale",
+        "zero_point": "onnx::MatMul_3550_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.6/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.6/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3551_quantized",
+        "scale": "onnx::MatMul_3551_scale",
+        "zero_point": "onnx::MatMul_3551_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.6/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.6/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3570_quantized",
+        "scale": "onnx::MatMul_3570_scale",
+        "zero_point": "onnx::MatMul_3570_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.6/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.6/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3571_quantized",
+        "scale": "onnx::MatMul_3571_scale",
+        "zero_point": "onnx::MatMul_3571_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.6/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.6/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3572_quantized",
+        "scale": "onnx::MatMul_3572_scale",
+        "zero_point": "onnx::MatMul_3572_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.7/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.7/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3573_quantized",
+        "scale": "onnx::MatMul_3573_scale",
+        "zero_point": "onnx::MatMul_3573_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.7/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.7/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3592_quantized",
+        "scale": "onnx::MatMul_3592_scale",
+        "zero_point": "onnx::MatMul_3592_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.7/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.7/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3593_quantized",
+        "scale": "onnx::MatMul_3593_scale",
+        "zero_point": "onnx::MatMul_3593_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.7/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.7/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3594_quantized",
+        "scale": "onnx::MatMul_3594_scale",
+        "zero_point": "onnx::MatMul_3594_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.8/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.8/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3595_quantized",
+        "scale": "onnx::MatMul_3595_scale",
+        "zero_point": "onnx::MatMul_3595_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.8/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.8/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3614_quantized",
+        "scale": "onnx::MatMul_3614_scale",
+        "zero_point": "onnx::MatMul_3614_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.8/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.8/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3615_quantized",
+        "scale": "onnx::MatMul_3615_scale",
+        "zero_point": "onnx::MatMul_3615_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.8/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.8/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3616_quantized",
+        "scale": "onnx::MatMul_3616_scale",
+        "zero_point": "onnx::MatMul_3616_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.9/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.9/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3617_quantized",
+        "scale": "onnx::MatMul_3617_scale",
+        "zero_point": "onnx::MatMul_3617_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.9/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.9/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3636_quantized",
+        "scale": "onnx::MatMul_3636_scale",
+        "zero_point": "onnx::MatMul_3636_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.9/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.9/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3637_quantized",
+        "scale": "onnx::MatMul_3637_scale",
+        "zero_point": "onnx::MatMul_3637_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.9/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.9/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3638_quantized",
+        "scale": "onnx::MatMul_3638_scale",
+        "zero_point": "onnx::MatMul_3638_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.10/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.10/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3639_quantized",
+        "scale": "onnx::MatMul_3639_scale",
+        "zero_point": "onnx::MatMul_3639_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.10/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.10/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3658_quantized",
+        "scale": "onnx::MatMul_3658_scale",
+        "zero_point": "onnx::MatMul_3658_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.10/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.10/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3659_quantized",
+        "scale": "onnx::MatMul_3659_scale",
+        "zero_point": "onnx::MatMul_3659_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.10/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.10/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3660_quantized",
+        "scale": "onnx::MatMul_3660_scale",
+        "zero_point": "onnx::MatMul_3660_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.11/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.11/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3661_quantized",
+        "scale": "onnx::MatMul_3661_scale",
+        "zero_point": "onnx::MatMul_3661_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.11/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.11/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3680_quantized",
+        "scale": "onnx::MatMul_3680_scale",
+        "zero_point": "onnx::MatMul_3680_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.11/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.11/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3681_quantized",
+        "scale": "onnx::MatMul_3681_scale",
+        "zero_point": "onnx::MatMul_3681_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.11/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.11/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3682_quantized",
+        "scale": "onnx::MatMul_3682_scale",
+        "zero_point": "onnx::MatMul_3682_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.12/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.12/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3683_quantized",
+        "scale": "onnx::MatMul_3683_scale",
+        "zero_point": "onnx::MatMul_3683_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.12/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.12/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3702_quantized",
+        "scale": "onnx::MatMul_3702_scale",
+        "zero_point": "onnx::MatMul_3702_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.12/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.12/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3703_quantized",
+        "scale": "onnx::MatMul_3703_scale",
+        "zero_point": "onnx::MatMul_3703_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.12/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.12/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3704_quantized",
+        "scale": "onnx::MatMul_3704_scale",
+        "zero_point": "onnx::MatMul_3704_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.13/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.13/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3705_quantized",
+        "scale": "onnx::MatMul_3705_scale",
+        "zero_point": "onnx::MatMul_3705_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.13/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.13/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3724_quantized",
+        "scale": "onnx::MatMul_3724_scale",
+        "zero_point": "onnx::MatMul_3724_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.13/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.13/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3725_quantized",
+        "scale": "onnx::MatMul_3725_scale",
+        "zero_point": "onnx::MatMul_3725_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.13/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.13/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3726_quantized",
+        "scale": "onnx::MatMul_3726_scale",
+        "zero_point": "onnx::MatMul_3726_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.14/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.14/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3727_quantized",
+        "scale": "onnx::MatMul_3727_scale",
+        "zero_point": "onnx::MatMul_3727_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.14/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.14/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3746_quantized",
+        "scale": "onnx::MatMul_3746_scale",
+        "zero_point": "onnx::MatMul_3746_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.14/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.14/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3747_quantized",
+        "scale": "onnx::MatMul_3747_scale",
+        "zero_point": "onnx::MatMul_3747_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.14/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.14/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3748_quantized",
+        "scale": "onnx::MatMul_3748_scale",
+        "zero_point": "onnx::MatMul_3748_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.15/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.15/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3749_quantized",
+        "scale": "onnx::MatMul_3749_scale",
+        "zero_point": "onnx::MatMul_3749_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.15/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.15/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3768_quantized",
+        "scale": "onnx::MatMul_3768_scale",
+        "zero_point": "onnx::MatMul_3768_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.15/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.15/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3769_quantized",
+        "scale": "onnx::MatMul_3769_scale",
+        "zero_point": "onnx::MatMul_3769_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.15/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.15/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3770_quantized",
+        "scale": "onnx::MatMul_3770_scale",
+        "zero_point": "onnx::MatMul_3770_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.16/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.16/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3771_quantized",
+        "scale": "onnx::MatMul_3771_scale",
+        "zero_point": "onnx::MatMul_3771_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.16/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.16/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3790_quantized",
+        "scale": "onnx::MatMul_3790_scale",
+        "zero_point": "onnx::MatMul_3790_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.16/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.16/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3791_quantized",
+        "scale": "onnx::MatMul_3791_scale",
+        "zero_point": "onnx::MatMul_3791_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.16/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.16/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3792_quantized",
+        "scale": "onnx::MatMul_3792_scale",
+        "zero_point": "onnx::MatMul_3792_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.17/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.17/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3793_quantized",
+        "scale": "onnx::MatMul_3793_scale",
+        "zero_point": "onnx::MatMul_3793_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.17/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.17/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3812_quantized",
+        "scale": "onnx::MatMul_3812_scale",
+        "zero_point": "onnx::MatMul_3812_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.17/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.17/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3813_quantized",
+        "scale": "onnx::MatMul_3813_scale",
+        "zero_point": "onnx::MatMul_3813_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.17/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.17/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3814_quantized",
+        "scale": "onnx::MatMul_3814_scale",
+        "zero_point": "onnx::MatMul_3814_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.18/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.18/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3815_quantized",
+        "scale": "onnx::MatMul_3815_scale",
+        "zero_point": "onnx::MatMul_3815_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.18/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.18/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3834_quantized",
+        "scale": "onnx::MatMul_3834_scale",
+        "zero_point": "onnx::MatMul_3834_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.18/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.18/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3835_quantized",
+        "scale": "onnx::MatMul_3835_scale",
+        "zero_point": "onnx::MatMul_3835_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.18/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.18/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3836_quantized",
+        "scale": "onnx::MatMul_3836_scale",
+        "zero_point": "onnx::MatMul_3836_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.19/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.19/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3837_quantized",
+        "scale": "onnx::MatMul_3837_scale",
+        "zero_point": "onnx::MatMul_3837_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.19/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.19/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3856_quantized",
+        "scale": "onnx::MatMul_3856_scale",
+        "zero_point": "onnx::MatMul_3856_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.19/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.19/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3857_quantized",
+        "scale": "onnx::MatMul_3857_scale",
+        "zero_point": "onnx::MatMul_3857_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.19/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.19/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3858_quantized",
+        "scale": "onnx::MatMul_3858_scale",
+        "zero_point": "onnx::MatMul_3858_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.20/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.20/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3859_quantized",
+        "scale": "onnx::MatMul_3859_scale",
+        "zero_point": "onnx::MatMul_3859_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.20/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.20/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3878_quantized",
+        "scale": "onnx::MatMul_3878_scale",
+        "zero_point": "onnx::MatMul_3878_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.20/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.20/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3879_quantized",
+        "scale": "onnx::MatMul_3879_scale",
+        "zero_point": "onnx::MatMul_3879_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.20/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.20/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3880_quantized",
+        "scale": "onnx::MatMul_3880_scale",
+        "zero_point": "onnx::MatMul_3880_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.21/attn/Wqkv/MatMul_quant",
+        "output": "/encoder/layers.21/attn/Wqkv/MatMul_output_0",
+        "weight": "onnx::MatMul_3881_quantized",
+        "scale": "onnx::MatMul_3881_scale",
+        "zero_point": "onnx::MatMul_3881_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.21/attn/Wo/MatMul_quant",
+        "output": "/encoder/layers.21/attn/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3900_quantized",
+        "scale": "onnx::MatMul_3900_scale",
+        "zero_point": "onnx::MatMul_3900_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/encoder/layers.21/mlp/Wi/MatMul_quant",
+        "output": "/encoder/layers.21/mlp/Wi/MatMul_output_0",
+        "weight": "onnx::MatMul_3901_quantized",
+        "scale": "onnx::MatMul_3901_scale",
+        "zero_point": "onnx::MatMul_3901_zero_point",
+        "shape": [
+          768,
+          2304
+        ]
+      },
+      {
+        "integer": "/encoder/layers.21/mlp/Wo/MatMul_quant",
+        "output": "/encoder/layers.21/mlp/Wo/MatMul_output_0",
+        "weight": "onnx::MatMul_3902_quantized",
+        "scale": "onnx::MatMul_3902_scale",
+        "zero_point": "onnx::MatMul_3902_zero_point",
+        "shape": [
+          1152,
+          768
+        ]
+      },
+      {
+        "integer": "/tags/MatMul_quant",
+        "output": "/tags/MatMul_output_0",
+        "weight": "onnx::MatMul_3903_quantized",
+        "scale": "onnx::MatMul_3903_scale",
+        "zero_point": "onnx::MatMul_3903_zero_point",
+        "shape": [
+          768,
+          35
+        ]
+      },
+      {
+        "integer": "/cut/MatMul_quant",
+        "output": "/cut/MatMul_output_0",
+        "weight": "onnx::MatMul_3904_quantized",
+        "scale": "onnx::MatMul_3904_scale",
+        "zero_point": "onnx::MatMul_3904_zero_point",
+        "shape": [
+          768,
+          3
+        ]
+      },
+      {
+        "integer": "/pre/Gemm_MatMul_quant",
+        "output": "/pre/Gemm_output_0_MatMul",
+        "weight": "pre.weight_quantized",
+        "scale": "pre.weight_scale",
+        "zero_point": "pre.weight_zero_point",
+        "shape": [
+          768,
+          768
+        ]
+      },
+      {
+        "integer": "/act/Gemm_MatMul_quant",
+        "output": "/act/Gemm_output_0_MatMul",
+        "weight": "act.weight_quantized",
+        "scale": "act.weight_scale",
+        "zero_point": "act.weight_zero_point",
+        "shape": [
+          768,
+          52
+        ]
+      },
+      {
+        "integer": "/classes/Gemm_MatMul_quant",
+        "output": "/classes/Gemm_output_0_MatMul",
+        "weight": "classes.weight_quantized",
+        "scale": "classes.weight_scale",
+        "zero_point": "classes.weight_zero_point",
+        "shape": [
+          768,
+          425
+        ]
+      }
+    ],
+    "interfaces_unchanged": true,
+    "opset": 17
+  },
+  "float_validation": {
+    "passed": true,
+    "atol": 0.001,
+    "rtol": 0.001,
+    "max_abs": [
+      0.0001919269561767578,
+      1.2576580047607422e-05,
+      9.119510650634766e-05
+    ],
+    "checkpoint_sha256": "5581d9fd1760ac8fa33fcd697cae77f7a019b576cd5be7da14aebb81aa1c8099",
+    "graph_sha256": "b9cc41b1101f99654383f544016de668b52c6172940235ca3058917f47094b9f",
+    "cases": 19
+  }
+}

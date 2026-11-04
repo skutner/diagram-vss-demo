@@ -2,12 +2,15 @@
 
 [Open this fork's diagram demo](https://skutner.github.io/diagram-vss-demo/).
 The existing four-reader live baseline and per-action drawings are recorded in
-[the E2E report](reports/diagram-e2e-baseline.md). A fifth ModernBERT reader is
-being trained under [the registered plan](training/neural/MODERNBERT_PLAN.md);
-its completed model and live comparison remain pending.
+[the E2E report](reports/diagram-e2e-baseline.md). The experimental fifth reader, ModernBERT, completed training on Apparatus and
+passed browser export parity. It failed the fixed task-quality criterion: only
+16 of 1,745 requested actions passed its calibrated gate correctly (0.92%).
+See [the full report](reports/modernbert.md) and
+[integration status](reports/modernbert-status.md). Publication and the direct
+five-reader live comparison remain pending.
 
 **SOP Sketchpad**: a diagram editor you talk to in English, in the browser, with no server. Every message is formalized into SOP Lang
-wires by each of three readers (the table under "The readers"), and the same engine and the same Datalog reasoner run the wires,
+wires by the enabled readers (the table under "The readers"), and the same engine and the same Datalog reasoner run the wires,
 whichever reader wrote them.
 
 ## Goal and metric
@@ -42,6 +45,8 @@ slow, these readers are also small enough to run in a browser tab.
 | **Rules** | hand-written extractors keyed on the legend's cue words, with spelling correction and mention resolution | none (code) |
 | **VSS** | a composer of 9 small VSS worlds (VSA route book, no transformer) trained on this demo's legend with the `sop` tool of [vss-demo](https://github.com/ml-circuits-research/vss-demo): a cutter cuts the message into units, the worlds read them, a context filler fills references | `docs/model/micro/` (the worlds, the cutter, `registry.json`), `docs/model/context/` |
 | **Neural** | SOP-BERT: one DistilBERT fine-tuned on the annotated requests, run in the browser by Transformers.js; it cuts the message (the BERT cutter) and reads, per request, the act, the value of each legend key, who fills each role and the written names, labels and numbers, without the Rules reader. (Until 2026-11-02: an act classifier plus a ready-made QA model, removed.) | `docs/model/neural/sop-bert/` (hosted on this site, versioned) |
+| **VSS-BERT** | SOP-BERT paired with VSS and its own calibrated confidence gate | the existing SOP-BERT and VSS artifacts, with `docs/model/confidence/vote3.json` |
+| **ModernBERT (experimental)** | ModernBERT-base with joint action, value, role and request-cut heads, trained for one epoch. Uses 8-bit weight storage and FP32 arithmetic on browser WASM. Its fixed confidence gate currently holds almost every request. | `docs/model/neural/modernbert/`, `docs/model/confidence/modernbert.json` |
 
 The **Benchmark** (menu ⋮ › Benchmark) runs the readers on the same labelled sentences in the browser and shows accuracy per test set, the model
 size, the load time and the time per message.

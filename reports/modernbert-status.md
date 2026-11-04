@@ -1,76 +1,57 @@
 # ModernBERT integration checkpoint
 
-Updated 2026-11-03. Fork https://github.com/skutner/diagram-vss-demo.
-Demo https://skutner.github.io/diagram-vss-demo/.
+Updated 2026-11-04. Fork: https://github.com/skutner/diagram-vss-demo.
+Demo: https://skutner.github.io/diagram-vss-demo/.
 
-## Completed preparation
+Training and strict export validation are complete. **The task-quality experiment
+failed:** the frozen gate accepts only 16 of 1,745 requested actions correctly
+(0.92%). The model remains experimental. See the [full report](modernbert.md).
 
-- Cloned the current main branch, forked it into `skutner`, and enabled Pages
-  from `main` and `/docs`. The local clone is shallow and contains every current
-  tracked file. The GitHub fork retains the repository history.
-- Added an independent ModernBERT reader, its tokenizer contract, own confidence
-  gate, cache/version handling, loading state and diagram. Its trained model is
-  unpublished, so it is explicitly unavailable.
-- Added training, transactional checkpoints, export with bounded external-data
-  files, strict collection provenance and calibration. Independent reviews closed
-  recovery, tokenization, overlay, collection-completeness and cut-boundary findings.
-- Completed the [direct live four-reader baseline](diagram-e2e-baseline.md).
-  The candidate UI was also exercised locally with the same eleven messages;
-  all 44 legacy after-state SOP drawings matched that live baseline exactly.
+## Completed
 
-Observed final preparation checks were eight offline device tests, six Python
-contracts, nine runtime tests with no skips, and nine Python/JavaScript tokenizer
-fixtures plus manifest, threshold and truncation checks. Tiny random ModernBERT
-export/q8/JavaScript parity passed three fixtures with a clean Node exit. These
-checks leave the full-sized trained artifact and native CUDA checks pending.
+- Apparatus recovered after Daniel's reboot. The expected RTX 3060 Laptop GPU
+  reported recovery action `None` and passed the native CUDA probe.
+- One fixed seed-0 FP32 epoch completed: 54,584 request/cut pairs, 3,412 optimizer
+  updates, 4,652.95 seconds (77 minutes 33 seconds). The closed checkpoint and
+  source/data hashes were independently checked. The GPU job exited and released
+  its lease.
+- The initial dynamic-activation q8 export failed cross-runtime numeric and
+  decoded-output parity. Its failure evidence is retained. The separately
+  registered compatibility conversion preserves its compressed weight bytes and
+  uses FP32 arithmetic with Basic graph optimization.
+- The accepted full-sized artifact passed all 19 fixtures, including padded
+  batches, on Python ORT, native Node and actual Chrome WASM. Exact token IDs and
+  decoded actions, values, roles and cuts agreed, with the fixed numeric tolerance.
+- Collection completed all 1,113 eligible fresh2+short3 messages. Calibration used
+  368 messages only. The remaining 745 messages contain 1,745 requested actions.
+  Independent verification reproduced the negative result and checked provenance
+  and dependency guards. No thresholds or weights were changed after this result.
+- The closed model and confidence files are installed locally for publication.
+  Model version `663a4edb5b` and confidence version `97aa94d96f` are stamped.
+  All five readers loaded together locally. The publication regression reproduced
+  the baseline Rules/VSS table, all 359 operation checks and all history checks.
+  [Regression evidence](evidence/modernbert/publication-regress/invocation.txt).
+  Direct five-reader Pages evidence remains pending.
 
-The canonical Rules/VSS regression completed with Python 3.12 and matched the
-baseline table, including 359 diagram-operation checks and the history checks.
-The existing native SOP-BERT confidence checker initially printed matching
-assertions, then aborted with exit 134 during native teardown on both baseline
-and candidate. The failure evidence is retained. A subsequent reviewed cleanup
-fix awaits disposal and lets Node terminate naturally. Its 20-request case exits
-0, its deliberately insufficient 34-request case exits 1, and a cleanup rejection
-prints no success footer. Assertions and failure counting are unchanged.
-[Positive check](evidence/native-confidence-cleanup/native-confidence.txt),
-[negative check](evidence/native-confidence-cleanup/native-confidence-negative.txt),
-and [footer probe](evidence/native-confidence-cleanup/footer-probe.json).
+## Existing evidence retained
 
-## Training state
+The [MPS pilot](evidence/mps-pilot-62a5b8d/stopped.json) stopped after 17 pairs at
+the host-memory guard. It was superseded by the fresh CUDA run, not resumed on a
+different device. The earlier [four-reader live baseline](diagram-e2e-baseline.md)
+remains a separate result. The native SOP-BERT confidence teardown fix and its
+[positive](evidence/native-confidence-cleanup/native-confidence.txt),
+[negative](evidence/native-confidence-cleanup/native-confidence-negative.txt) and
+[cleanup rejection](evidence/native-confidence-cleanup/footer-probe.json) evidence
+also remain separate from the ModernBERT quality test.
 
-The native MPS attempt at `62a5b8d` stopped at the unchanged host-memory guard after
-17 request/cut pairs and one optimizer update. Its eight-update pilot did not
-complete. The checkpoint remains in the task cache and the
-[failure evidence](evidence/mps-pilot-62a5b8d/stopped.json) is preserved.
+## Remaining gates
 
-Daniel rebooted Apparatus and authorized checking and continuing. The post-reboot
-check reported `gpu_recovery_action: None`, normal temperature and no compute
-workload. An isolated CUDA environment is being installed, with the source pinned
-to `1527372` and verified data and pretrained-weight hashes. Native CUDA allocation
-and training remain gated on the required kernel probe. The reviewed CUDA
-implementation uses a fresh seed-0 run and preserves the MPS evidence.
-The [CUDA follow-up plan](../training/neural/MODERNBERT_PLAN.md#cuda-follow-up-after-the-incomplete-mps-pilot)
-records the resource and continuation checks.
+1. Publish the experimental artifact and frozen confidence gate to this fork's
+   Pages site, then confirm the deployed commit and all five ready readers.
+2. Run the frozen eleven-message scenario directly on Pages, inspect each
+   reader's intent, holds, executed actions and drawing, and report requested
+   actions right/wrong/asked/not done plus extras.
 
-## Remaining sequence
-
-1. Confirm operator readiness and the expected physical GPU's health, identity
-   and absence of foreign compute workloads.
-2. Prepare an isolated Python 3.12 environment with Torch 2.15.0+cu132 and the
-   pinned dependencies. Verify the official wheel and actual native CUDA support.
-3. Run `test_modernbert_device.py --require-cuda --gpu-uuid <physical-uuid>` with
-   `CUDA_VISIBLE_DEVICES` set to that UUID. This gate must pass on actual hardware.
-4. Start `finetune_modernbert.py --device cuda --gpu-uuid <physical-uuid>` with
-   the verified ALL dataset and a new work directory. Assess the eight-update
-   pilot before using `--resume --continue-after-pilot` under the fixed schedule.
-5. After a complete epoch, export and verify the full q8 artifact and Python/JS
-   decoder parity. Collect all 1,113 eligible fresh2+short3 messages with the
-   finalized manifest, fit confidence and report the fixed test criteria and
-   first causes. Preserve a negative outcome without retuning.
-6. Install finalized model/confidence artifacts, stamp their versions, run the
-   required regression and local UI checks, then publish and exercise all five
-   readers directly on Pages with the frozen command fixture.
-
-ModernBERT training completion, task-quality results and five-reader live results
-remain open. The published availability label must stay truthful until those
-artifacts and checks exist.
+The validated browser backend is WASM with FP32 arithmetic. WebGPU execution and
+performance have not been established for this artifact. The live comparison is
+pending and must not be inferred from export parity or offline formalization.

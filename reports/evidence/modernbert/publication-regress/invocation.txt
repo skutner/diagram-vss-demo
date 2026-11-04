@@ -1,0 +1,16 @@
+Command: PATH=<task Python 3.12 venv>/bin:$PATH bash training/sketch/regress.sh <this directory>
+Observed exit: 0
+Per gold request, right / wrong / not done (%) + extra
+                       gold  Rules                     VSS
+sample (1000 msgs)     4858   69.1/15.5/15.4 +769         77.7/9.3/13.0 +470
+short: templates      1140   98.9/0.4/0.8 +4             78.5/7.6/13.9 +69
+short: llm_short       3000   72.4/5.6/22.0 +374          71.1/8.6/20.3 +442
+Templates favor the Rules. The VSS cutter trained on llm_short.
+VSS gated cost: precision / right / asked / unread / executed wrong (%) + extras
+sample: 97.9 / 7.8 / 79.1 / 13.0 / 0.1 +5
+short: templates: 99.4 / 14.0 / 72.1 / 13.9 / 0.0 +1
+short: llm_short: 97.0 / 10.6 / 69.1 / 20.3 / 0.0 +9
+Cost scores: sample 5.8, templates 13.1, llm_short 7.6
+Rules sets: hand 39/40, blind 53/60, seen 300/300, new_identities 300/300, heldout_formulations 299/300
+Diagram operations: 359/359 passed, exit 0
+Editor history: all passed, exit 0

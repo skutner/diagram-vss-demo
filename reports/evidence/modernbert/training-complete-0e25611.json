@@ -1,0 +1,129 @@
+{
+  "complete": true,
+  "state": {
+    "request_pos": 54584,
+    "cut_pos": 5188,
+    "update": 3412,
+    "accumulated": 0,
+    "elapsed": 4652.947828175001,
+    "truncated_requests": 0,
+    "truncated_messages": 0,
+    "pilot": {
+      "passed": true,
+      "elapsed": 10.410463370000116,
+      "projected_seconds": 4439.411429210111,
+      "requests": 128,
+      "cut_microbatches": 128,
+      "gradients": {
+        "encoder": true,
+        "pre": true,
+        "act": true,
+        "classes": true,
+        "tags": true,
+        "cut": true
+      },
+      "gradient_norm": 30.949222564697266,
+      "native_mps": false,
+      "native_cuda": true,
+      "memory": {
+        "rss": 2141675520,
+        "available": 25263677440,
+        "cuda_allocated": 1858036736,
+        "cuda_reserved": 2816475136,
+        "cuda_peak_allocated": 2789729792,
+        "cuda_peak_reserved": 2816475136,
+        "cuda_free": 3097821184,
+        "cuda_total": 6088359936
+      }
+    }
+  },
+  "metadata": {
+    "base": "answerdotai/ModernBERT-base",
+    "revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+    "settings": {
+      "seed": 0,
+      "epochs": 1,
+      "lr": 3e-05,
+      "weight_decay": 0.01,
+      "warmup": 0.06,
+      "accumulation": 16,
+      "microbatch": 1,
+      "cut_microbatch": 1,
+      "clip": 1.0,
+      "dtype": "float32"
+    },
+    "data": {
+      "messages": 24698,
+      "requests": 54584,
+      "extra_dirs": [
+        "llm_train/opus_train_a",
+        "llm_train/opus_train_b",
+        "llm_train/opus_train_c",
+        "llm_train/opus_train_d",
+        "llm_train/opus_gen_1",
+        "llm_train/opus_gen_2",
+        "llm_train/synth_rules",
+        "llm_train/synth_rules_ops",
+        "llm_train/synth_rules_ext",
+        "llm_train/ops_formulations",
+        "llm_train/opus_ext_1",
+        "llm_train/synth_combo"
+      ],
+      "files": {
+        "coverage.json": "d5ed1f70714b87fff30dc5f6bf25402902b38578d6c479e362eebf6b0a6d9cd3",
+        "cut_eval_sample1000.jsonl": "038401927d529e3872365c95dc7ec2b443b5171b18ccc67c0669945552957cc1",
+        "cut_heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cut_train.jsonl": "57d3fd9b57cbc4c9ec5efe2acb6fc9dc13899cf8ca7746c58d5ac3f47c468e59",
+        "eval_blind.jsonl": "eb312953a12cf76e1473b465a9523caf26c8d0639c4af066b3604ca812b6a4b0",
+        "eval_broad.jsonl": "5f13b2e7d767f282cca15a54f9152370e7de1f47e803ae642af60673dd5a3f7a",
+        "eval_hand.jsonl": "7f9ec9415f0e809c258c11a949d26115bf56f82b2d9dcc2a8f8447c9a8c142ee",
+        "eval_heldout_formulations.jsonl": "7bb572336913d6e150075a5322bc330600018bc342aae0fbe645ca04b5b622cc",
+        "eval_new_identities.jsonl": "2b168253ce192c8aa53c6be86dc39a8b5045f46dc8816f42564f73f7ee4f394f",
+        "eval_sample1000.jsonl": "167030207130c112c63ce5b740e3b135f3face5fcf31849d4da67c44cc853c03",
+        "eval_seen.jsonl": "2e10e7f1742376bab2115e780604aeac316262404876907c3122b4447263ae54",
+        "heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reader.json": "97de6db28305638602147577a65362399f61e2595ea58ef7715f73146c29d1eb",
+        "train.jsonl": "d42b251ad421ca2b7c294091669cbfb6299b9199b303fe5df753c49f0f990ea9"
+      }
+    },
+    "tokenization": "wordwise-bpe-prefix-space-v1",
+    "device": "cuda",
+    "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.43",
+    "python": "3.12.16 (main, Oct 26 2026, 14:08:45) [Clang 23.1.3 ]",
+    "versions": {
+      "torch": "2.15.0+cu132",
+      "transformers": "4.57.6",
+      "tokenizers": "0.22.2",
+      "numpy": "2.5.4",
+      "onnx": "1.23.2",
+      "onnxruntime": "1.29.0",
+      "psutil": "7.2.2"
+    },
+    "gpu_uuid": "GPU-905b8484-3b1e-30f6-defd-05d44f00f692",
+    "gpu_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_driver": "595.99.02",
+    "gpu_recovery_action": "None",
+    "cuda_total": 6088359936,
+    "cuda_allocator_limit": 4294967296,
+    "cuda_capability": [
+      8,
+      6
+    ],
+    "cuda_runtime": "13.2",
+    "torch_build": "PyTorch built with:\n  - GCC 13.3\n  - C++ Version: 202002\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.13.3 (Git Hash b38f97eb6f2173513112f15a0481750b8a66e901)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX2\n  - CUDA Runtime 13.2\n  - NVCC architecture flags: -gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120\n  - CuDNN 92.6  (built against CUDA 13.4)\n  - Magma 2.6.1\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=d0f2af8b66b20da4baa50644c0cd3f887a2eae2e, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all -DONNX_NAMESPACE=onnx_torch -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100 -gencode arch=compute_120,code=sm_120 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -Xfatbin -compress-all --threads 2 -compress-mode=size -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CUDA_VERSION=13.2, CUDNN_VERSION=9.26.0, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DHAS_CUPTI -DUSE_FBGEMM -DUSE_MSLK -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.15.0, USE_CUDA=1, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_HIPSPARSELT=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, \n",
+    "numerics": {
+      "dtype": "float32",
+      "matmul_precision": "highest",
+      "tf32": false,
+      "amp": false,
+      "grad_scaler": false
+    },
+    "sources": {
+      "finetune_modernbert.py": "129ad900ea2235895517c98edc45c57a9db0e4e16907f62c10ec2f166c2e167f",
+      "modernbert_tokenization.py": "98f760e6382b6544d52f743cfdbc3cef2f360887ccb04a2e50f4871bc3036757",
+      "finetune_roles.py": "cc9f1352439bc319180b3098b941f7b5812b494287cb92ba99bbb2214894f51c",
+      "make_roles.py": "36082dba6fd0f76528bcf4af06d917ef3f543ac5ee4218c6c648b38f0958ed51",
+      "make_data.py": "940d8d15a94fc824d57bb9db96d7681ed52e3693aca3b1b7346c4ef04b504d67"
+    }
+  }
+}

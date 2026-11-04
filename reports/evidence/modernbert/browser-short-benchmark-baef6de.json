@@ -1,0 +1,299 @@
+{
+  "schema": "modernbert-supplemental-benchmark-v1",
+  "observed_utc": "2026-11-04T05:22:17.909585+00:00",
+  "source_revision": "baef6de8c8b4ab86c4c95d320a11ab3fbc5d943c",
+  "accepted_manifest_sha256": "dcf322eb7708ac14d21142b01d7ee0372b21a160171db49fa759f90a5ee12a84",
+  "candidate_manifest_sha256": "e9111e2f9cb456ab2d4e0d97c73b8c51d294f9b370e67178f3e26e1569e1e188",
+  "reference_sha256": "b590c8cad98aac70a248bf498fd37e2c10a0153d9faeee2fa87b463ad84f93ff",
+  "bindings": {
+    "checkpoint_sha256": "5581d9fd1760ac8fa33fcd697cae77f7a019b576cd5be7da14aebb81aa1c8099",
+    "float_graph_sha256": "b9cc41b1101f99654383f544016de668b52c6172940235ca3058917f47094b9f",
+    "float_graph_files": {
+      "model_float.onnx": {
+        "sha256": "b9cc41b1101f99654383f544016de668b52c6172940235ca3058917f47094b9f",
+        "bytes": 600565860
+      }
+    },
+    "source_dynamic_files": {
+      "model_quantized.onnx": {
+        "sha256": "519389f976151b579018284f21a6a529d1263006758f371e2601eac6bfaf8465",
+        "bytes": 1561037
+      },
+      "model_quantized.onnx_data": {
+        "sha256": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47",
+        "bytes": 93974180
+      },
+      "model_quantized.onnx_data_1": {
+        "sha256": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d",
+        "bytes": 56133888
+      }
+    },
+    "source_dynamic_graph_sha256": "519389f976151b579018284f21a6a529d1263006758f371e2601eac6bfaf8465",
+    "files": {
+      "config.json": {
+        "sha256": "c0110b40cf405d45e405842b22179e49a43b8e0e9a52cf1c454f9213786b0973",
+        "bytes": 509081
+      },
+      "onnx/model_quantized.onnx": {
+        "sha256": "d5c943cd2fdcfbe4481cf99d56927efde3cb7dd8fcfa64bf6714604743408773",
+        "bytes": 1490412
+      },
+      "onnx/model_quantized.onnx_data": {
+        "sha256": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47",
+        "bytes": 93974180
+      },
+      "onnx/model_quantized.onnx_data_1": {
+        "sha256": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d",
+        "bytes": 56133888
+      },
+      "special_tokens_map.json": {
+        "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+        "bytes": 694
+      },
+      "tokenizer.json": {
+        "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+        "bytes": 3583228
+      },
+      "tokenizer_config.json": {
+        "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+        "bytes": 20840
+      }
+    },
+    "sources": {
+      "training/neural/export_modernbert.py": "1c4d87caab51dff2fed163a2d65b0b7597f316d04af49f07d0b5a49bb2180d47",
+      "training/neural/modernbert_weight_only.py": "9e33579f79429e2aaaf772f39f7e9378e0a80bd3aec744bc8301296c168268ca",
+      "training/neural/modernbert_parity.mjs": "a4b2f6dc53171de1bfb28928ad529e0df4e39828c9261a821370c273ff501622",
+      "training/neural/check_modernbert.mjs": "f53802561a984e1f525543955ed4efd67db6c1c3263900e44e5960e48bdb1545",
+      "training/neural/check_modernbert_browser.py": "247690aa4d9b63d771413bfb31aec282c150d823ed4cecb3d88c0af83e0da538",
+      "training/neural/check_modernbert_browser.mjs": "1313ab0a339eb1b3cee73c0d5b37da1496694e8684fb05c5b8dea1beb3a18aa1",
+      "training/neural/finalize_modernbert_export.mjs": "16d42f87a9ca9e8cfaabd13be00f53bd2edb5dc713af38dfc790d77302ff2945",
+      "training/neural/modernbert_tokenization.py": "98f760e6382b6544d52f743cfdbc3cef2f360887ccb04a2e50f4871bc3036757",
+      "training/neural/finetune_modernbert.py": "129ad900ea2235895517c98edc45c57a9db0e4e16907f62c10ec2f166c2e167f",
+      "training/neural/finetune_roles.py": "cc9f1352439bc319180b3098b941f7b5812b494287cb92ba99bbb2214894f51c",
+      "training/neural/fixtures/modernbert_alignment.json": "e68541d85324b8f88a2a66c6ebc8947fe67001d5f2362986b464f84df5ec56ac",
+      "docs/js/neural.js": "a1992b795b1d585a48b5b0eb834bd413d9fa9b6b7d128812655d702786187944",
+      "docs/js/logic.js": "fef540d19ba00eb3b09104a64eacacac1ae82535adb932c472a5527b04746d2b"
+    },
+    "inputs_sha256": "ab9dd0e984ed5a26fae0f2d7418b220eabd4fa0cdc0e80cb646395c21bacfad7"
+  },
+  "browser_result": {
+    "completed": true,
+    "input": "draw a red circle.",
+    "prepared": {
+      "ids": [
+        50281,
+        6553,
+        247,
+        2502,
+        9096,
+        964,
+        50282
+      ],
+      "first": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "truncated": false,
+      "unreadFrom": null
+    },
+    "execution_policy": {
+      "graph_optimization": "basic",
+      "arithmetic": "float32",
+      "weight_storage": "uint8"
+    },
+    "runtime": {
+      "transformers_js": "3.8.1",
+      "onnxruntime": "1.22.0-dev.20250409-89f8206ba4",
+      "backend": "wasm",
+      "threads": 1,
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "assets": [
+        {
+          "url": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1",
+          "bytes": 888173,
+          "sha256": "aa5002b70e789798da263f5f99c62bd3e8fcd0c119258a493c40c180648365fa"
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1/dist/ort-wasm-simd-threaded.jsep.mjs",
+          "bytes": 44484,
+          "sha256": "08fb86ec433c78bfb032c5d84a68b8e8e5a8d81268fa39e24314179a5767a5b9"
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1/dist/ort-wasm-simd-threaded.jsep.wasm",
+          "bytes": 21596019,
+          "sha256": "c46655e8a94afc45338d4cb2b840475f88e5012d524509916e505079c00bfa39"
+        }
+      ]
+    },
+    "metrics": {
+      "load_ms": 1124.300000011921,
+      "warmup_ms": 357.80000001192093,
+      "warmups_excluded": 1,
+      "measured_calls": 5,
+      "raw_ms": [
+        252.89999997615814,
+        251.60000002384186,
+        253.39999997615814,
+        249.10000002384186,
+        250.29999995231628
+      ],
+      "p50_ms": 251.60000002384186,
+      "p95_ms": 253.29999997615815,
+      "quantile_method": "linear interpolation on sorted samples, index=(N-1)*q"
+    },
+    "predictions": [
+      {
+        "act": {
+          "label": "create",
+          "score": 0.9855649436379245
+        },
+        "classes": {
+          "color": {
+            "value": "red",
+            "score": 0.09665844564612625
+          },
+          "shape": {
+            "value": "star",
+            "score": 0.16446874003914205
+          }
+        },
+        "tags": [
+          "O",
+          "O",
+          "O",
+          "O",
+          "O"
+        ],
+        "spans": {}
+      },
+      {
+        "act": {
+          "label": "create",
+          "score": 0.9855649436379245
+        },
+        "classes": {
+          "color": {
+            "value": "red",
+            "score": 0.09665844564612625
+          },
+          "shape": {
+            "value": "star",
+            "score": 0.16446874003914205
+          }
+        },
+        "tags": [
+          "O",
+          "O",
+          "O",
+          "O",
+          "O"
+        ],
+        "spans": {}
+      },
+      {
+        "act": {
+          "label": "create",
+          "score": 0.9855649436379245
+        },
+        "classes": {
+          "color": {
+            "value": "red",
+            "score": 0.09665844564612625
+          },
+          "shape": {
+            "value": "star",
+            "score": 0.16446874003914205
+          }
+        },
+        "tags": [
+          "O",
+          "O",
+          "O",
+          "O",
+          "O"
+        ],
+        "spans": {}
+      },
+      {
+        "act": {
+          "label": "create",
+          "score": 0.9855649436379245
+        },
+        "classes": {
+          "color": {
+            "value": "red",
+            "score": 0.09665844564612625
+          },
+          "shape": {
+            "value": "star",
+            "score": 0.16446874003914205
+          }
+        },
+        "tags": [
+          "O",
+          "O",
+          "O",
+          "O",
+          "O"
+        ],
+        "spans": {}
+      },
+      {
+        "act": {
+          "label": "create",
+          "score": 0.9855649436379245
+        },
+        "classes": {
+          "color": {
+            "value": "red",
+            "score": 0.09665844564612625
+          },
+          "shape": {
+            "value": "star",
+            "score": 0.16446874003914205
+          }
+        },
+        "tags": [
+          "O",
+          "O",
+          "O",
+          "O",
+          "O"
+        ],
+        "spans": {}
+      }
+    ],
+    "model_disposed": true
+  },
+  "decoded_identical_across_five_calls": true,
+  "accepted_receipts_unchanged": true,
+  "cleanup": {
+    "browser_closed": true,
+    "server_closed": true,
+    "profile_directory_removed": true
+  },
+  "harness_sha256": {
+    "benchmark.js": "61bff4cc5561b10c6d06f4644ccea6bf85398a45680b5775e424167e98985a0c",
+    "benchmark-server.py": "68e99968f1b9d9aa2ea84b4bd7e9da518a2ecc3586e01433057a798e86932b73",
+    "index.html": "16dbc012417690adaea778f49885a41d0767c96fec2c3cde85a0ba10d87f519a"
+  },
+  "qualification": "Five sequential warm calls in one private local-HTTP Chrome run. One warmup and loading excluded. This supplements, and does not relabel or replace, the accepted receipt empty-input short_ms measurement. No quality or threshold fitting performed."
+}
