@@ -1485,7 +1485,7 @@ function turnHTML(r) {
     if (x.vss) h += vssHTML(x.vss);
     if (x.neural) h += neuralHTML(x.neural);
     if (x.combined) h += combinedHTML(x.combined);
-    if (x.qwen) h += qwenHTML(x.qwen);
+    if (x.qwen) { try { h += qwenHTML(x.qwen.qwen); } catch (e) { console.error(e); h += `<div class="errt">Qwen3’s evidence could not be shown: ${escH(e.message)}</div>`; } }   // x.qwen: the reading; .qwen: its evidence
     if (x.result) h += x.result.steps.map(stepHTML).join('');
     for (const a of x.anyway || []) h += `<div class="note">Done anyway: “${escH(a.src)}”</div><pre class="sop">${a.nodes.map(hlNode).join('\n')}</pre>` + a.result.steps.map(stepHTML).join('');
     const err = x.error && x.error.message !== 'No wires.' ? x.error : x.result && !x.result.ok ? x.result.error : null;

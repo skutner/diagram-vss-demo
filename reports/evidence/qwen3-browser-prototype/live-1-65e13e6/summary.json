@@ -1,0 +1,2028 @@
+{
+ "record": "<scratch>/live/record.json",
+ "reference": "reports/evidence/diagram-five-101edd9/record.json",
+ "legacy": {
+  "sop_equal": 55,
+  "steps_equal": 55,
+  "section_equal": 0,
+  "compared": 55,
+  "diffs": [
+   {
+    "case": "create_alpha",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@s1 command action=create shape=circle color=red name=E2EAlpha\n@s1 shapes\n+E2EAlpha medium red circle"
+   },
+   {
+    "case": "create_alpha",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 1 request, not sure about 1.\n“add a red circle called E2EAlpha to the diagram” → confidence 0.898, not executed: both readers read it the same way, but the confidence of the reading is still below the threshold; SOP-BERT alone is not sure: not sure where this request starts\n# not executed (not sure)\n@w1 command action=create shape=circle color=red name=E2EAlpha\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“add a red circle called E2EAlpha to the diagram” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.701)\nNo wires were produced."
+   },
+   {
+    "case": "create_alpha",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\n@n1 command action=create shape=circle color=red name=E2EAlpha\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“add a red circle called E2EAlpha to the diagram” → confidence 0.957, executed\n@n1 add a red circle called E2EAlpha to the diagram\n@n1 shapes\n+E2EAlpha medium red circle"
+   },
+   {
+    "case": "create_alpha",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 1 request, not sure about 1.\n“add a red circle called E2EAlpha to the diagram” → confidence 0.898, not executed: both readers read it the same way, but the confidence of the reading is still below the threshold; SOP-BERT alone is not sure: not sure where this request starts\n# not executed (not sure)\n@w1 command action=create shape=circle color=red name=E2EAlpha\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“add a red circle called E2EAlpha to the diagram” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.701)\nNo wires were produced."
+   },
+   {
+    "case": "create_alpha",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“add a red circle called E2EAlpha to the diagram” → confidence 0.044, not executed: not sure whether it gives a size; requests read as ‘create’ are often read wrong (right about 11% of the time on the calibration messages); not sure where this request starts\n# not executed (not sure)\n@n1 command action=create shape=circle color=red name=E2EAlpha\n@n1 add a red circle called E2EAlpha to the diagram\nNo wires were produced."
+   },
+   {
+    "case": "create_beta",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@s1 command action=create shape=rectangle color=blue name=E2EBeta\n@s1 shapes\n+E2EBeta medium blue rectangle"
+   },
+   {
+    "case": "create_beta",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=create shape=rectangle color=blue name=E2EBeta\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Add a blue rectangle named E2EBeta as well” → confidence 0.968, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Add a blue rectangle named E2EBeta as well” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.768)\n@w1 shapes\n+E2EBeta medium blue rectangle"
+   },
+   {
+    "case": "create_beta",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\n@n1 command action=create shape=rectangle color=blue name=E2EBeta\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Add a blue rectangle named E2EBeta as well” → confidence 0.984, executed\n@n1 Add a blue rectangle named E2EBeta as well\n@n1 shapes\n+E2EBeta medium blue rectangle"
+   },
+   {
+    "case": "create_beta",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=create shape=rectangle color=blue name=E2EBeta\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Add a blue rectangle named E2EBeta as well” → confidence 0.968, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Add a blue rectangle named E2EBeta as well” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.768)\n@w1 shapes\n+E2EBeta medium blue rectangle"
+   },
+   {
+    "case": "create_beta",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Add a blue rectangle named E2EBeta as well” → confidence 0.070, not executed: not sure whether it gives a color; requests read as ‘create’ are often read wrong (right about 11% of the time on the calibration messages)\n# not executed (not sure)\n@n1 command action=create shape=star name=E2EBeta\n@n1 Add a blue rectangle named E2EBeta as well\nNo wires were produced."
+   },
+   {
+    "case": "connect",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@s1 command action=connect from=E2EAlpha to=E2EBeta\n@s1 connections\n+E2EAlpha → E2EBeta"
+   },
+   {
+    "case": "connect",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=connect from=E2EAlpha to=E2EBeta\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Draw an arrow from E2EAlpha to E2EBeta” → confidence 0.977, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Draw an arrow from E2EAlpha to E2EBeta” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.687)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EBeta, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+   },
+   {
+    "case": "connect",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\n@n1 command action=connect from=E2EAlpha to=E2EBeta\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Draw an arrow from E2EAlpha to E2EBeta” → confidence 0.993, executed\n@n1 Draw an arrow from E2EAlpha to E2EBeta\n@n1 connections\n+E2EAlpha → E2EBeta"
+   },
+   {
+    "case": "connect",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=connect from=E2EAlpha to=E2EBeta\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Draw an arrow from E2EAlpha to E2EBeta” → confidence 0.977, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Draw an arrow from E2EAlpha to E2EBeta” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.687)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EBeta, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+   },
+   {
+    "case": "connect",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Draw an arrow from E2EAlpha to E2EBeta” → confidence 0.859, not executed: not sure whether it gives a style\n# not executed (not sure)\n@n1 command action=connect from=E2EAlpha to=E2EBeta\n@n1 Draw an arrow from E2EAlpha to E2EBeta\nNo wires were produced."
+   },
+   {
+    "case": "recolor",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@s1 command action=set color=green target=E2EAlpha\n@s1 shapes\n~E2EAlpha color green"
+   },
+   {
+    "case": "recolor",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=set color=green target=E2EAlpha\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Make E2EAlpha green” → confidence 0.971, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Make E2EAlpha green” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.861)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EBeta, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+   },
+   {
+    "case": "recolor",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\n@n1 command action=set color=green target=E2EAlpha\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Make E2EAlpha green” → confidence 0.976, executed\n@n1 Make E2EAlpha green\n@n1 shapes\n~E2EAlpha color green"
+   },
+   {
+    "case": "recolor",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=set color=green target=E2EAlpha\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Make E2EAlpha green” → confidence 0.971, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Make E2EAlpha green” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.861)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EBeta, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+   },
+   {
+    "case": "recolor",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Make E2EAlpha green” → confidence 0.546, not executed: requests read as ‘set’ are often read wrong (right about 17% of the time on the calibration messages); not sure of the color (‘red’)\n# not executed (not sure)\n@n1 command action=set color=red target=E2EAlpha\n@n1 Make E2EAlpha green\nNo wires were produced."
+   },
+   {
+    "case": "move",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@s1 command action=move target=E2EBeta position=below anchor=E2EAlpha\n@s1 shapes\n~E2EBeta moved to (80, 376)"
+   },
+   {
+    "case": "move",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=move target=E2EBeta position=below anchor=E2EAlpha\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Place E2EBeta below E2EAlpha” → confidence 0.978, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Place E2EBeta below E2EAlpha” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.884)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EBeta, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+   },
+   {
+    "case": "move",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\n@n1 command action=move target=E2EBeta position=below anchor=E2EAlpha\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Place E2EBeta below E2EAlpha” → confidence 0.980, executed\n@n1 Place E2EBeta below E2EAlpha\n@n1 shapes\n~E2EBeta moved to (80, 376)"
+   },
+   {
+    "case": "move",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=move target=E2EBeta position=below anchor=E2EAlpha\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Place E2EBeta below E2EAlpha” → confidence 0.978, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Place E2EBeta below E2EAlpha” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.884)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EBeta, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+   },
+   {
+    "case": "move",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Place E2EBeta below E2EAlpha” → confidence 0.955, not executed: the model knows ‘E2EBeta’, ‘E2EAlpha’ only in pieces\n# not executed (not sure)\n@n1 command action=move target=E2EBeta position=below anchor=E2EAlpha\n@n1 Place E2EBeta below E2EAlpha\nNo wires were produced."
+   },
+   {
+    "case": "rename",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@s1 command action=rename name=E2EGamma target=E2EBeta\n@s1 shapes\n~E2EBeta is now E2EGamma"
+   },
+   {
+    "case": "rename",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=rename name=E2EGamma target=E2EBeta\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Rename E2EBeta to E2EGamma” → confidence 0.980, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Rename E2EBeta to E2EGamma” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.773)\n@w1 shapes\n~E2EBeta is now E2EGamma"
+   },
+   {
+    "case": "rename",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\n@n1 command action=rename name=E2EGamma target=E2EBeta\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Rename E2EBeta to E2EGamma” → confidence 0.972, executed\n@n1 Rename E2EBeta to E2EGamma\n@n1 shapes\n~E2EBeta is now E2EGamma"
+   },
+   {
+    "case": "rename",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=rename name=E2EGamma target=E2EBeta\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Rename E2EBeta to E2EGamma” → confidence 0.980, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Rename E2EBeta to E2EGamma” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.773)\n@w1 shapes\n~E2EBeta is now E2EGamma"
+   },
+   {
+    "case": "rename",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Rename E2EBeta to E2EGamma” → confidence 0.919, not executed: the model knows ‘Rename’, ‘E2EBeta’, ‘E2EGamma’ only in pieces\n# not executed (not sure)\n@n1 command action=rename name=E2EGamma target=E2EBeta\n@n1 Rename E2EBeta to E2EGamma\nNo wires were produced."
+   },
+   {
+    "case": "label",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@m1 mention label=\"Review queue\"\n@s1 command action=set target=E2EGamma,$m1\nI can't find a shape showing \"Review queue\" on the canvas."
+   },
+   {
+    "case": "label",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 2 requests, not sure about 2.\n“Give E2EGamma the label Review queue” → confidence 0.752, not executed: the two readers read different actions here (SOP-BERT: label; VSS: set); SOP-BERT alone is not sure: requests read as ‘label’ are often read wrong (right about 69% of the time on the calibration messages)\n“Give E2EGamma the label Review queue” → confidence 0.024, not executed: the two readers read different actions here (SOP-BERT: label; VSS: set); VSS alone is not sure: the words ‘the’, ‘label’, ‘n_review’, ‘queue’ were not understood\n# not executed (not sure)\n@w1 command action=label label=\"Review queue\" target=E2EGamma\n@w2 command action=set target=E2EGamma\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Give E2EGamma the label Review queue” → SOP-BERT’s reading (VSS has none of this action here)\n“Give E2EGamma the label Review queue” → VSS’s reading (SOP-BERT has none of this action here)\nNo wires were produced."
+   },
+   {
+    "case": "label",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Give E2EGamma the label Review queue” → confidence 0.477, not executed: no two readers read it the same, VSS reads it as ‘set’ instead of ‘label’; the Rules read it as ‘set’ instead of ‘label’; SOP-BERT itself: requests read as ‘label’ are often read wrong (right about 69% of the time on the calibration messages); SOP-BERT itself: not sure about the shape it is about (read as ‘E2EGamma’)\n# not executed (not sure)\n@n1 command action=label label=\"Review queue\" target=E2EGamma\n@n1 Give E2EGamma the label Review queue\nNo wires were produced."
+   },
+   {
+    "case": "label",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 2 requests, not sure about 2.\n“Give E2EGamma the label Review queue” → confidence 0.752, not executed: the two readers read different actions here (SOP-BERT: label; VSS: set); SOP-BERT alone is not sure: requests read as ‘label’ are often read wrong (right about 69% of the time on the calibration messages)\n“Give E2EGamma the label Review queue” → confidence 0.024, not executed: the two readers read different actions here (SOP-BERT: label; VSS: set); VSS alone is not sure: the words ‘the’, ‘label’, ‘n_review’, ‘queue’ were not understood\n# not executed (not sure)\n@w1 command action=label label=\"Review queue\" target=E2EGamma\n@w2 command action=set target=E2EGamma\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Give E2EGamma the label Review queue” → SOP-BERT’s reading (VSS has none of this action here)\n“Give E2EGamma the label Review queue” → VSS’s reading (SOP-BERT has none of this action here)\nNo wires were produced."
+   },
+   {
+    "case": "label",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Give E2EGamma the label Review queue” → confidence 0.917, not executed: not sure which action this is (‘label’, or ‘move’)\n# not executed (not sure)\n@n1 command action=label label=\"Review queue\" target=E2EGamma\n@n1 Give E2EGamma the label Review queue\nNo wires were produced."
+   },
+   {
+    "case": "pronoun",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@s1 command action=set color=yellow target=E2EGamma\n@s1 shapes\n~E2EGamma color yellow"
+   },
+   {
+    "case": "pronoun",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 1 request, not sure about 1.\n“Make that shape yellow” → confidence 0.366, not executed: only one reader found this request (SOP-BERT; VSS read nothing here); SOP-BERT alone is not sure: not sure which shape ‘that’ means (taken from the conversation: E2EGamma)\n# not executed (not sure)\n@w1 command action=set color=yellow target=E2EGamma\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Make that shape yellow” → SOP-BERT’s reading (VSS has none of this action here)\nNo wires were produced."
+   },
+   {
+    "case": "pronoun",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Make that shape yellow” → confidence 0.487, not executed: the Rules and SOP-BERT agree, VSS did not find this request; SOP-BERT itself: not sure which shape ‘that’ means (taken from the conversation: E2EGamma); SOP-BERT itself: requests read as ‘set’ are often read wrong (right about 72% of the time on the calibration messages)\n# not executed (not sure)\n@n1 command action=set color=yellow target=E2EGamma\n@n1 Make that shape yellow\nNo wires were produced."
+   },
+   {
+    "case": "pronoun",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 1 request, not sure about 1.\n“Make that shape yellow” → confidence 0.366, not executed: only one reader found this request (SOP-BERT; VSS read nothing here); SOP-BERT alone is not sure: not sure which shape ‘that’ means (taken from the conversation: E2EGamma)\n# not executed (not sure)\n@w1 command action=set color=yellow target=E2EGamma\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Make that shape yellow” → SOP-BERT’s reading (VSS has none of this action here)\nNo wires were produced."
+   },
+   {
+    "case": "pronoun",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Make that shape yellow” → confidence 0.071, not executed: not sure of the color (‘red’); requests read as ‘set’ are often read wrong (right about 17% of the time on the calibration messages); not sure how to read the word ‘shape’\n# not executed (not sure)\n@n1 command action=set color=red target=Start,Process,Check,Done\n@n1 Make that shape yellow\nNo wires were produced."
+   },
+   {
+    "case": "layout",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@s1 command action=arrange target=E2EAlpha,E2EGamma layout=row\n@s1 layout\n~E2EAlpha moved to (41, 103)\n~E2EGamma moved to (162, 103)\nArranged 2 shapes as a row. E2EGamma is no longer on IntakeZone.\nmoved the block to a free place; row layout"
+   },
+   {
+    "case": "layout",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=arrange target=E2EAlpha,E2EGamma layout=row\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Arrange E2EAlpha and E2EGamma in a row” → confidence 0.959, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Arrange E2EAlpha and E2EGamma in a row” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.851)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EGamma, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+   },
+   {
+    "case": "layout",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Arrange E2EAlpha and E2EGamma in a row” → confidence 0.947, not executed: all three readers read it the same; SOP-BERT itself: requests read as ‘arrange’ are often read wrong (right about 55% of the time on the calibration messages); SOP-BERT itself: not sure about the shape it is about (read as ‘E2EAlpha, E2EGamma’)\n# not executed (not sure)\n@n1 command action=arrange target=E2EAlpha,E2EGamma layout=row\n@n1 Arrange E2EAlpha and E2EGamma in a row\nNo wires were produced."
+   },
+   {
+    "case": "layout",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 command action=arrange target=E2EAlpha,E2EGamma layout=row\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Arrange E2EAlpha and E2EGamma in a row” → confidence 0.959, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Arrange E2EAlpha and E2EGamma in a row” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.851)\nThere is no shape named \"E2EAlpha\". The closest names on the canvas: E2EGamma, Backdrop, IntakeZone, ReviewZone, Start, and 6 others."
+   },
+   {
+    "case": "layout",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Arrange E2EAlpha and E2EGamma in a row” → confidence 0.515, not executed: not sure about the shape it is about (read as ‘E2EAlpha, E2EGamma’); requests read as ‘arrange’ are often read wrong (right about 26% of the time on the calibration messages)\n# not executed (not sure)\n@n1 command action=arrange target=E2EAlpha,E2EGamma layout=row\n@n1 Arrange E2EAlpha and E2EGamma in a row\nNo wires were produced."
+   },
+   {
+    "case": "question",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@s1 question ask=path from=Start to=Done\n@s1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+   },
+   {
+    "case": "question",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 question ask=path from=Start to=Done\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Is there a path from Start to Done” → confidence 0.991, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Is there a path from Start to Done” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.855)\n@w1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+   },
+   {
+    "case": "question",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\n@n1 question ask=path from=Start to=Done\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 1 of 1 request.\n“Is there a path from Start to Done” → confidence 0.997, executed\n@n1 Is there a path from Start to Done\n@n1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+   },
+   {
+    "case": "question",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\n@w1 question ask=path from=Start to=Done\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 1 of 1 request.\n“Is there a path from Start to Done” → confidence 0.991, executed\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Is there a path from Start to Done” → SOP-BERT’s reading; VSS reads it the same (VSS’s own confidence 0.855)\n@w1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+   },
+   {
+    "case": "question",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\n@n1 question ask=path from=Start to=Done\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 1 of 1 request.\n“Is there a path from Start to Done” → confidence 0.979, executed\n@n1 Is there a path from Start to Done\n@n1 logic\nYes: Start → Process → Check → Done (3 steps).\nLowered to Datalog and evaluated"
+   },
+   {
+    "case": "unsupported",
+    "reader": "rules",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "RULES formalized in <t> ms · cut by: Rules segmenter\n@m1 mention quantifier=all\n@s1 command action=set target=$m1\n@m1 core\nmatched Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, E2EAlpha, E2EGamma, MainTitle, IntakeCaption, ReviewCaption\nWhat should change about Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, E2EAlpha, E2EGamma, MainTitle, IntakeCaption and ReviewCaption? Try a color, size, shape, outline or label."
+   },
+   {
+    "case": "unsupported",
+    "reader": "vss",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 2 requests, not sure about 2.\n“Make the diagram feel more optimistic about next quarter” → confidence 0.407, not executed: the two readers read different actions here (SOP-BERT: improve; VSS: equalize); SOP-BERT alone is not sure: requests read as ‘improve’ are often read wrong (right about 58% of the time on the calibration messages)\n“Make the diagram feel more optimistic about next quarter” → confidence 0.000, not executed: the two readers read different actions here (SOP-BERT: improve; VSS: equalize); VSS alone is not sure: it was read by a world that was not the cutter's first choice (layout)\n# not executed (not sure)\n@m1 mention quantifier=all\n@w2 command action=improve target=$m1\n@m3 mention quantifier=all\n@w4 command action=equalize target=$m3\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Make the diagram feel more optimistic about next quarter” → SOP-BERT’s reading (VSS has none of this action here)\n“Make the diagram feel more optimistic about next quarter” → VSS’s reading (SOP-BERT has none of this action here)\nNo wires were produced."
+   },
+   {
+    "case": "unsupported",
+    "reader": "neural",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "SOP-BERT formalized in <t> ms · 2 model calls · cut by: BERT cutter\nSOP-BERT gate: safety threshold (it acts from confidence 0.9551 for commands and 0.8907 for questions, with the votes of the other two readers); executed 0 of 1 request, not sure about 1.\n“Make the diagram feel more optimistic about next quarter” → confidence 0.238, not executed: no two readers read it the same, VSS reads it as ‘equalize’ instead of ‘improve’; the Rules read it as ‘set’ instead of ‘improve’; SOP-BERT itself: requests read as ‘improve’ are often read wrong (right about 58% of the time on the calibration messages); SOP-BERT itself: not sure how to read the word ‘Make’\n# not executed (not sure)\n@m1 mention quantifier=all\n@n1 command action=improve target=$m1\n@n1 Make the diagram feel more optimistic about next quarter\nNo wires were produced."
+   },
+   {
+    "case": "unsupported",
+    "reader": "combined",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "VSS-BERT formalized in <t> ms · cut by: BERT cutter\nVSS-BERT gate: safety threshold (it acts from confidence 0.9488); executed 0 of 2 requests, not sure about 2.\n“Make the diagram feel more optimistic about next quarter” → confidence 0.407, not executed: the two readers read different actions here (SOP-BERT: improve; VSS: equalize); SOP-BERT alone is not sure: requests read as ‘improve’ are often read wrong (right about 58% of the time on the calibration messages)\n“Make the diagram feel more optimistic about next quarter” → confidence 0.000, not executed: the two readers read different actions here (SOP-BERT: improve; VSS: equalize); VSS alone is not sure: it was read by a world that was not the cutter's first choice (layout)\n# not executed (not sure)\n@m1 mention quantifier=all\n@w2 command action=improve target=$m1\n@m3 mention quantifier=all\n@w4 command action=equalize target=$m3\nVSS-BERT: the BERT cutter’s requests: the SOP-BERT tab’s reading and VSS’s reading of the same requests (made for SOP-BERT’s votes), reused, no model call (reading <t> ms, combining <t> ms); combined confidence of the BERT cutter.\n“Make the diagram feel more optimistic about next quarter” → SOP-BERT’s reading (VSS has none of this action here)\n“Make the diagram feel more optimistic about next quarter” → VSS’s reading (SOP-BERT has none of this action here)\nNo wires were produced."
+   },
+   {
+    "case": "unsupported",
+    "reader": "modernbert",
+    "sop": true,
+    "steps": true,
+    "section": false,
+    "now": null,
+    "before": "MODERNBERT formalized in <t> ms · 2 model calls · cut by: ModernBERT cutter\nModernBERT gate: safety threshold (it acts from confidence 0.9766); executed 0 of 1 request, not sure about 1.\n“Make the diagram feel more optimistic about next quarter” → confidence 0.243, not executed: not sure how to read the word ‘quarter’; not sure which shape the description means; not sure which action this is (‘improve’, or ‘respace’)\n# not executed (not sure)\n@m1 mention\n@n1 command action=improve target=$m1\n@n1 Make the diagram feel more optimistic about next quarter\nNo wires were produced."
+   }
+  ]
+ },
+ "qwen": [
+  {
+   "case": "create_alpha",
+   "text": "Please add a red circle called E2EAlpha to the diagram.",
+   "gold": [
+    {
+     "id": "a1",
+     "action": "create",
+     "name": "E2EAlpha",
+     "shape": "circle",
+     "color": "red"
+    }
+   ],
+   "mainReplyMs": 1692,
+   "qwenMs": 120007.09999999963,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Please add a red circle called E2EAlpha to the diagram.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Add a red circle named E2ealpha.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=create shape=circle color=red name=E2EAlpha"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Please add a red circle called E2EAlpha to the diagram.\", \"do\": \"create\", \"args\": {\"shape\": \"circle\", \"color\": \"red\", \"name\": \"E2EAlpha\"}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "Please add a red circle called E2EAlpha to the diagram.",
+     "span": [
+      0,
+      55
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.07466745975993945,
+     "weakest": "name",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.00048255641013383865,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -0.051006571084144525,
+       "n": 2
+      },
+      {
+       "name": "color",
+       "mean": -0.03157560909858148,
+       "n": 2
+      },
+      {
+       "name": "name",
+       "mean": -0.07466745975993945,
+       "n": 5
+      },
+      {
+       "name": "end",
+       "mean": -0.0158854927867651,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Please add a red circle called E2EAlpha to the diagram.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.07466745975993945,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=create shape=circle color=red name=E2EAlpha"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 67,
+    "prompt_tokens": 1844,
+    "total_tokens": 1911,
+    "prompt_tokens_details": {
+     "cached_tokens": 1786
+    }
+   },
+   "timings": {
+    "cache_n": 1786,
+    "prompt_n": 58,
+    "prompt_ms": 46606.3,
+    "prompt_per_token_ms": 803.5568965517242,
+    "prompt_per_second": 1.244466949747137,
+    "predicted_n": 67,
+    "predicted_ms": 73332.1,
+    "predicted_per_token_ms": 1111.0924242424244,
+    "predicted_per_second": 0.9000151366182066
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "tart, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Please add a red circle called E2EAlpha to the diagram.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Please add a red circle called E2EAlpha to the diagram.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "create_beta",
+   "text": "Add a blue rectangle named E2EBeta as well.",
+   "gold": [
+    {
+     "id": "a2",
+     "action": "create",
+     "name": "E2EBeta",
+     "shape": "rectangle",
+     "color": "blue"
+    }
+   ],
+   "mainReplyMs": 1379,
+   "qwenMs": 111805.40000000037,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Add a blue rectangle named E2EBeta as well.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Add a rectangle named E2ebeta with the text \"e2ebeta\" at the top.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=create shape=rectangle name=E2EBeta label=E2EBeta position=top anchor=Backdrop"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Add a blue rectangle named E2EBeta as well.\", \"do\": \"create\", \"args\": {\"shape\": \"rectangle\", \"name\": \"E2EBeta\", \"label\": \"E2EBeta\", \"position\": \"top\", \"anchor\": [{\"name\": \"Backdrop\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "Add a blue rectangle named E2EBeta as well.",
+     "span": [
+      0,
+      43
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -4.690867185592651,
+     "weakest": "position",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.00020953227067366242,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -0.079017409007065,
+       "n": 2
+      },
+      {
+       "name": "name",
+       "mean": -0.05735738294883959,
+       "n": 5
+      },
+      {
+       "name": "label",
+       "mean": -1.9335488237982645,
+       "n": 5
+      },
+      {
+       "name": "position",
+       "mean": -4.690867185592651,
+       "n": 2
+      },
+      {
+       "name": "anchor[0].name",
+       "mean": -1.3057854368016706,
+       "n": 4
+      },
+      {
+       "name": "end",
+       "mean": -0.016162925167009234,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Add a blue rectangle named E2EBeta as well.",
+      "execute": false,
+      "blocked": false,
+      "score": -4.690867185592651,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=create shape=rectangle name=E2EBeta label=E2EBeta position=top anchor=Backdrop"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 86,
+    "prompt_tokens": 1842,
+    "total_tokens": 1928,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 21,
+    "prompt_ms": 17133.9,
+    "prompt_per_token_ms": 815.9000000000001,
+    "prompt_per_second": 1.2256403971074885,
+    "predicted_n": 86,
+    "predicted_ms": 94620.199,
+    "predicted_per_token_ms": 1113.1788117647059,
+    "predicted_per_second": 0.8983282734376833
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "eviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Add a blue rectangle named E2EBeta as well.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Add a blue rectangle named E2EBeta as well.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "connect",
+   "text": "Draw an arrow from E2EAlpha to E2EBeta.",
+   "gold": [
+    {
+     "id": "a3",
+     "action": "connect",
+     "from": "E2EAlpha",
+     "to": "E2EBeta",
+     "arrow": "forward",
+     "depends_on": [
+      "a1",
+      "a2"
+     ]
+    }
+   ],
+   "mainReplyMs": 1380,
+   "qwenMs": 114520.59999999963,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Draw an arrow from E2EAlpha to E2EBeta",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Add a blue triangle between E2ealpha and E2ebeta.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=create shape=triangle color=blue position=between anchor=E2EAlpha,E2EBeta"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Draw an arrow from E2EAlpha to E2EBeta\", \"do\": \"create\", \"args\": {\"shape\": \"triangle\", \"color\": \"blue\", \"position\": \"between\", \"anchor\": [{\"name\": \"E2EAlpha\"}, {\"name\": \"E2EBeta\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "Draw an arrow from E2EAlpha to E2EBeta",
+     "span": [
+      0,
+      38
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -3.085153229534626,
+     "weakest": "shape",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.09790267050266266,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -3.085153229534626,
+       "n": 2
+      },
+      {
+       "name": "color",
+       "mean": -0.31536345183849335,
+       "n": 2
+      },
+      {
+       "name": "position",
+       "mean": -0.9771672165952623,
+       "n": 2
+      },
+      {
+       "name": "anchor[0].name",
+       "mean": -0.015015952808804892,
+       "n": 6
+      },
+      {
+       "name": "anchor[1].name",
+       "mean": -0.014120236902783745,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.020579978416208178,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Draw an arrow from E2EAlpha to E2EBeta",
+      "execute": false,
+      "blocked": false,
+      "score": -3.085153229534626,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=create shape=triangle color=blue position=between anchor=E2EAlpha,E2EBeta"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 87,
+    "prompt_tokens": 1844,
+    "total_tokens": 1931,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 23,
+    "prompt_ms": 18909.5,
+    "prompt_per_token_ms": 822.1521739130435,
+    "prompt_per_second": 1.2163198392342474,
+    "predicted_n": 87,
+    "predicted_ms": 95557.2,
+    "predicted_per_token_ms": 1111.1302325581396,
+    "predicted_per_second": 0.8999845118944465
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "e, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Draw an arrow from E2EAlpha to E2EBeta.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Draw an arrow from E2EAlpha to E2EBeta.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "recolor",
+   "text": "Make E2EAlpha green, please.",
+   "gold": [
+    {
+     "id": "a4",
+     "action": "set",
+     "target": "E2EAlpha",
+     "color": "green",
+     "depends_on": [
+      "a1"
+     ],
+     "property": "color"
+    }
+   ],
+   "mainReplyMs": 1363,
+   "qwenMs": 82489.20000000019,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Make E2EAlpha green, please.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Make E2ealpha green.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=set color=green target=E2EAlpha"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Make E2EAlpha green, please.\", \"do\": \"set\", \"args\": {\"color\": \"green\", \"target\": [{\"name\": \"E2EAlpha\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "set",
+     "src": "Make E2EAlpha green, please.",
+     "span": [
+      0,
+      28
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.07310297669755528,
+     "weakest": "color",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.004441274330019951,
+       "n": 1
+      },
+      {
+       "name": "color",
+       "mean": -0.07310297669755528,
+       "n": 2
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.032794055451565406,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.009173507540253922,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Make E2EAlpha green, please.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.07310297669755528,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=set color=green target=E2EAlpha"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 61,
+    "prompt_tokens": 1839,
+    "total_tokens": 1900,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 18,
+    "prompt_ms": 15229.399,
+    "prompt_per_token_ms": 846.0777222222222,
+    "prompt_per_second": 1.1819245132391634,
+    "predicted_n": 61,
+    "predicted_ms": 67211.701,
+    "predicted_per_token_ms": 1120.1950166666668,
+    "predicted_per_second": 0.8927017038298138
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": ", IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make E2EAlpha green, please.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make E2EAlpha green, please.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "move",
+   "text": "Place E2EBeta below E2EAlpha.",
+   "gold": [
+    {
+     "id": "a5",
+     "action": "move",
+     "target": "E2EBeta",
+     "relative_to": "E2EAlpha",
+     "position": "below",
+     "depends_on": [
+      "a1",
+      "a2"
+     ]
+    }
+   ],
+   "mainReplyMs": 1524,
+   "qwenMs": 100232.20000000019,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Place E2EBeta below E2EAlpha.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Add a blue triangle below E2ealpha.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=create shape=triangle color=blue position=below anchor=E2EAlpha"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Place E2EBeta below E2EAlpha.\", \"do\": \"create\", \"args\": {\"shape\": \"triangle\", \"color\": \"blue\", \"position\": \"below\", \"anchor\": [{\"name\": \"E2EAlpha\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "Place E2EBeta below E2EAlpha.",
+     "span": [
+      0,
+      29
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -1.7550456277094781,
+     "weakest": "shape",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.0007708658813498914,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -1.7550456277094781,
+       "n": 2
+      },
+      {
+       "name": "color",
+       "mean": -0.5183709375560284,
+       "n": 2
+      },
+      {
+       "name": "position",
+       "mean": -0.005628540937323123,
+       "n": 2
+      },
+      {
+       "name": "anchor[0].name",
+       "mean": -0.002702774882872442,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.036888693168293685,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Place E2EBeta below E2EAlpha.",
+      "execute": false,
+      "blocked": false,
+      "score": -1.7550456277094781,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=create shape=triangle color=blue position=below anchor=E2EAlpha"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 75,
+    "prompt_tokens": 1841,
+    "total_tokens": 1916,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 20,
+    "prompt_ms": 16613.601,
+    "prompt_per_token_ms": 830.6800499999999,
+    "prompt_per_second": 1.2038329318249548,
+    "predicted_n": 75,
+    "predicted_ms": 83556.4,
+    "predicted_per_token_ms": 1129.1405405405405,
+    "predicted_per_second": 0.8856293473629788
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": " IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Place E2EBeta below E2EAlpha.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Place E2EBeta below E2EAlpha.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "rename",
+   "text": "Rename E2EBeta to E2EGamma.",
+   "gold": [
+    {
+     "id": "a6",
+     "action": "rename",
+     "depends_on": [
+      "a2"
+     ],
+     "target": "E2EBeta",
+     "name": "E2EGamma"
+    }
+   ],
+   "mainReplyMs": 1516,
+   "qwenMs": 88280.29999999981,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Rename E2EBeta to E2EGamma.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Rename E2egamma to E2ebeta.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=rename name=E2EBeta target=E2EGamma"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Rename E2EBeta to E2EGamma.\", \"do\": \"rename\", \"args\": {\"name\": \"E2EBeta\", \"target\": [{\"name\": \"E2EGamma\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "rename",
+     "src": "Rename E2EBeta to E2EGamma.",
+     "span": [
+      0,
+      27
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.016342080903844664,
+     "weakest": "target[0].name",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.0000741509284125641,
+       "n": 1
+      },
+      {
+       "name": "name",
+       "mean": -0.004274710082324873,
+       "n": 5
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.016342080903844664,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.012540611030999571,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Rename E2EBeta to E2EGamma.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.016342080903844664,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=rename name=E2EBeta target=E2EGamma"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 66,
+    "prompt_tokens": 1841,
+    "total_tokens": 1907,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 20,
+    "prompt_ms": 16905.099,
+    "prompt_per_token_ms": 845.2549499999999,
+    "prompt_per_second": 1.1830750000340136,
+    "predicted_n": 66,
+    "predicted_ms": 71338.401,
+    "predicted_per_token_ms": 1097.5138615384615,
+    "predicted_per_second": 0.9111502232857729
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "p, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Rename E2EBeta to E2EGamma.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Rename E2EBeta to E2EGamma.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "label",
+   "text": "Give E2EGamma the label Review queue.",
+   "gold": [
+    {
+     "id": "a7",
+     "action": "label",
+     "target": "E2EGamma",
+     "label": "Review queue",
+     "depends_on": [
+      "a6"
+     ]
+    }
+   ],
+   "mainReplyMs": 1366,
+   "qwenMs": 91404.80000000075,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Give E2EGamma the label Review queue.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Label E2egamma \"review queue\".”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=label kind=shape label=\"Review queue\" target=E2EGamma"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Give E2EGamma the label Review queue.\", \"do\": \"label\", \"args\": {\"kind\": \"shape\", \"label\": \"Review queue\", \"target\": [{\"name\": \"E2EGamma\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "label",
+     "src": "Give E2EGamma the label Review queue.",
+     "span": [
+      0,
+      37
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -1.6963756084442139,
+     "weakest": "kind",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.0001317349378950894,
+       "n": 1
+      },
+      {
+       "name": "kind",
+       "mean": -1.6963756084442139,
+       "n": 2
+      },
+      {
+       "name": "label",
+       "mean": -0.016182292965822853,
+       "n": 3
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.00027869193127116887,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.03417740383883938,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Give E2EGamma the label Review queue.",
+      "execute": false,
+      "blocked": false,
+      "score": -1.6963756084442139,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=label kind=shape label=\"Review queue\" target=E2EGamma"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 69,
+    "prompt_tokens": 1840,
+    "total_tokens": 1909,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 19,
+    "prompt_ms": 15703.6,
+    "prompt_per_token_ms": 826.5052631578948,
+    "prompt_per_second": 1.2099136503731627,
+    "predicted_n": 69,
+    "predicted_ms": 75655.7,
+    "predicted_per_token_ms": 1112.5838235294118,
+    "predicted_per_second": 0.8988086819631568
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "one, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Give E2EGamma the label Review queue.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Give E2EGamma the label Review queue.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "pronoun",
+   "text": "Make that shape yellow.",
+   "gold": [
+    {
+     "id": "a8",
+     "action": "set",
+     "target": "E2EGamma",
+     "property": "color",
+     "color": "yellow",
+     "depends_on": [
+      "a6",
+      "a7"
+     ]
+    }
+   ],
+   "mainReplyMs": 1195,
+   "qwenMs": 71391.79999999981,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Make that shape yellow.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Make Backdrop yellow.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=set color=yellow target=Backdrop"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Make that shape yellow.\", \"do\": \"set\", \"args\": {\"color\": \"yellow\", \"target\": [{\"name\": \"Backdrop\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "set",
+     "src": "Make that shape yellow.",
+     "span": [
+      0,
+      23
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.29229322100945865,
+     "weakest": "color",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.2155575156211853,
+       "n": 1
+      },
+      {
+       "name": "color",
+       "mean": -0.29229322100945865,
+       "n": 2
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.12773963049403392,
+       "n": 4
+      },
+      {
+       "name": "end",
+       "mean": -0.016390509525081143,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Make that shape yellow.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.29229322100945865,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=set color=yellow target=Backdrop"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 55,
+    "prompt_tokens": 1835,
+    "total_tokens": 1890,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 14,
+    "prompt_ms": 11789.2,
+    "prompt_per_token_ms": 842.0857142857143,
+    "prompt_per_second": 1.1875275676042478,
+    "predicted_n": 55,
+    "predicted_ms": 59556,
+    "predicted_per_token_ms": 1102.888888888889,
+    "predicted_per_second": 0.9067096514205117
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "kdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make that shape yellow.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make that shape yellow.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "layout",
+   "text": "Arrange E2EAlpha and E2EGamma in a row.",
+   "gold": [
+    {
+     "id": "a9",
+     "action": "layout",
+     "targets": [
+      "E2EAlpha",
+      "E2EGamma"
+     ],
+     "layout": "row",
+     "depends_on": [
+      "a1",
+      "a6"
+     ]
+    }
+   ],
+   "mainReplyMs": 1493,
+   "qwenMs": 119302,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Arrange E2EAlpha and E2EGamma in a row.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Arrange E2ealpha and E2egamma as a steps.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=arrange template=steps title=\"E2EAlpha and E2EGamma\" target=E2EAlpha,E2EGamma"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Arrange E2EAlpha and E2EGamma in a row.\", \"do\": \"arrange\", \"args\": {\"template\": \"steps\", \"title\": \"E2EAlpha and E2EGamma\", \"target\": [{\"name\": \"E2EAlpha\"}, {\"name\": \"E2EGamma\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "arrange",
+     "src": "Arrange E2EAlpha and E2EGamma in a row.",
+     "span": [
+      0,
+      39
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.1812286525964737,
+     "weakest": "template",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.0002021878763116547,
+       "n": 2
+      },
+      {
+       "name": "template",
+       "mean": -0.1812286525964737,
+       "n": 2
+      },
+      {
+       "name": "title",
+       "mean": -0.0506250829909618,
+       "n": 10
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.1188647135642024,
+       "n": 6
+      },
+      {
+       "name": "target[1].name",
+       "mean": -0.11637229754277693,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.010173001734074205,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Arrange E2EAlpha and E2EGamma in a row.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.1812286525964737,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=arrange template=steps title=\"E2EAlpha and E2EGamma\" target=E2EAlpha,E2EGamma"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 90,
+    "prompt_tokens": 1844,
+    "total_tokens": 1934,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 23,
+    "prompt_ms": 19743.2,
+    "prompt_per_token_ms": 858.4,
+    "prompt_per_second": 1.1649580615097856,
+    "predicted_n": 90,
+    "predicted_ms": 99506.6,
+    "predicted_per_token_ms": 1118.0516853932586,
+    "predicted_per_second": 0.8944130339093085
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "e, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Arrange E2EAlpha and E2EGamma in a row.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Arrange E2EAlpha and E2EGamma in a row.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "question",
+   "text": "Is there a path from Start to Done?",
+   "gold": [
+    {
+     "id": "a10",
+     "action": "question",
+     "question": "path",
+     "from": "Start",
+     "to": "Done",
+     "answer": true
+    }
+   ],
+   "mainReplyMs": 1411,
+   "qwenMs": 85908.5,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Is there a path from Start to Done?",
+      "reasons": [
+       "it uses property, which check does not take"
+      ],
+      "line": null,
+      "canAnyway": false
+     }
+    ]
+   },
+   "read": [],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Is there a path from Start to Done?\",\"do\": \"check\", \"args\": {\"property\": \"position\", \"target\": [{\"name\": \"Start\"}, {\"name\": \"Done\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "check",
+     "src": "Is there a path from Start to Done?",
+     "span": [
+      0,
+      35
+     ],
+     "blocked": true,
+     "errors": [
+      "it uses property, which check does not take"
+     ]
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -3.33826245367527,
+     "weakest": "property",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.7768710851669312,
+       "n": 1
+      },
+      {
+       "name": "property",
+       "mean": -3.33826245367527,
+       "n": 2
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.12640000044969688,
+       "n": 3
+      },
+      {
+       "name": "target[1].name",
+       "mean": -0.12525280127920269,
+       "n": 3
+      },
+      {
+       "name": "end",
+       "mean": -0.036397927382495254,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Is there a path from Start to Done?",
+      "execute": false,
+      "blocked": true,
+      "score": -3.33826245367527,
+      "reasons": [
+       "it uses property, which check does not take"
+      ],
+      "nodes": []
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 64,
+    "prompt_tokens": 1839,
+    "total_tokens": 1903,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 18,
+    "prompt_ms": 14558.2,
+    "prompt_per_token_ms": 808.7888888888889,
+    "prompt_per_second": 1.2364165899630448,
+    "predicted_n": 64,
+    "predicted_ms": 71304.9,
+    "predicted_per_token_ms": 1131.8238095238094,
+    "predicted_per_second": 0.883529743397719
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "eZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Is there a path from Start to Done?<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Is there a path from Start to Done?",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "unsupported",
+   "text": "Make the diagram feel more optimistic about next quarter.",
+   "gold": [],
+   "mainReplyMs": 1545,
+   "qwenMs": 174286.40000000037,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Make the diagram feel more optimistic about next quarter.",
+      "reasons": [
+       "it uses property, which improve does not take"
+      ],
+      "line": null,
+      "canAnyway": false
+     },
+     {
+      "index": 1,
+      "src": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review",
+      "reasons": [
+       "its words “Names on the canvas: Backdrop, IntakeZone, ReviewZone, St…” are not in the message",
+       "it uses name, which list does not take"
+      ],
+      "line": null,
+      "canAnyway": false
+     }
+    ]
+   },
+   "read": [],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Make the diagram feel more optimistic about next quarter.\", \"do\": \"improve\", \"args\": {\"property\": \"color\", \"target\": [{\"name\": \"MainTitle\"}]}}, {\"id\": \"r2\", \"text\": \"Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\", \"do\": \"list\", \"args\": {\"shape\": \"text\", \"kind\": \"shape\", \"name\": \"MainTitle\"}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "improve",
+     "src": "Make the diagram feel more optimistic about next quarter.",
+     "span": [
+      0,
+      57
+     ],
+     "blocked": true,
+     "errors": [
+      "it uses property, which improve does not take"
+     ]
+    },
+    {
+     "id": "r2",
+     "do": "list",
+     "src": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review",
+     "span": null,
+     "blocked": true,
+     "errors": [
+      "its words “Names on the canvas: Backdrop, IntakeZone, ReviewZone, St…” are not in the message",
+      "it uses name, which list does not take"
+     ]
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -1.5198414092883468,
+     "weakest": "property",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.33689263492124155,
+       "n": 2
+      },
+      {
+       "name": "property",
+       "mean": -1.5198414092883468,
+       "n": 2
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.051815537863149075,
+       "n": 4
+      },
+      {
+       "name": "end",
+       "mean": -0.20160970464348793,
+       "n": 2
+      }
+     ]
+    },
+    {
+     "min": -1.9277641773223877,
+     "weakest": "kind",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.2015921026468277,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -0.38460960052907467,
+       "n": 2
+      },
+      {
+       "name": "kind",
+       "mean": -1.9277641773223877,
+       "n": 2
+      },
+      {
+       "name": "name",
+       "mean": -0.4084398703635088,
+       "n": 3
+      },
+      {
+       "name": "end",
+       "mean": -0.19352681189775467,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Make the diagram feel more optimistic about next quarter.",
+      "execute": false,
+      "blocked": true,
+      "score": -1.5198414092883468,
+      "reasons": [
+       "it uses property, which improve does not take"
+      ],
+      "nodes": []
+     },
+     {
+      "index": 1,
+      "src": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review",
+      "execute": false,
+      "blocked": true,
+      "score": -1.9277641773223877,
+      "reasons": [
+       "its words “Names on the canvas: Backdrop, IntakeZone, ReviewZone, St…” are not in the message",
+       "it uses name, which list does not take"
+      ],
+      "nodes": []
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 138,
+    "prompt_tokens": 1840,
+    "total_tokens": 1978,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 19,
+    "prompt_ms": 16317.499,
+    "prompt_per_token_ms": 858.8157368421053,
+    "prompt_per_second": 1.1643941268205378,
+    "predicted_n": 138,
+    "predicted_ms": 157905.901,
+    "predicted_per_token_ms": 1152.5978175182483,
+    "predicted_per_second": 0.8676053214756047
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "rt, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make the diagram feel more optimistic about next quarter.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make the diagram feel more optimistic about next quarter.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  }
+ ]
+}
