@@ -1,13 +1,14 @@
 // MODEL=finalized-folder node collect_modernbert.mjs records.jsonl fresh2+short3 DATA_DIR...
 // Uses this artifact's own cutter and the browser's own 24 confidence features.
-import { readFileSync, writeFileSync, appendFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, appendFileSync, existsSync, mkdtempSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, basename, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
 import { canon } from '../../docs/js/bench-canon.js';
 import { nextContext } from '../../docs/js/vss-composer.js';
 import { signals } from '../../docs/js/neural-confidence.js';
 import { goldSpans, pairValue, actOf } from '../sketch/layer_common.mjs';
-import { startCollection, validateCollection, inputHash, hashFile, atomicJSON } from './calibrate_modernbert.mjs';
+import { startCollection, validateCollection, inputHash, hashFile, atomicJSON, collectionRuntime } from './calibrate_modernbert.mjs';
 
 const [out, set, ...dirs] = process.argv.slice(2);
 if (!out || !set || !dirs.length || !process.env.MODEL) throw new Error('MODEL=folder node collect_modernbert.mjs OUT SET DATA_DIR...');
@@ -21,13 +22,19 @@ const require = createRequire(new URL('../laptop/package.json', import.meta.url)
 // Annotation-derived only: this is a reporting split, never a word-to-action map.
 const seenTriggers = new Set(prepared.trainingInfo.triggers);
 const T = require('@huggingface/transformers');
+prepared.manifest.runtime=collectionRuntime(T);
+atomicJSON(manifestPath,prepared.manifest);
 const K = require('../../docs/js/logic.js'); globalThis.SOPKit = K;
 const N = require('../../docs/js/neural.js');
 T.env.allowRemoteModels = false; T.env.allowLocalModels = true;
 T.env.localModelPath = dirname(folder) + '/'; T.env.useBrowserCache = false;
-const tokenizer = await T.AutoTokenizer.from_pretrained(name, { local_files_only: true });
-const model = await T.AutoModel.from_pretrained(name, { device: 'cpu', dtype: 'q8', local_files_only: true });
+const cache=mkdtempSync(tmpdir()+'/modernbert-collection-');
+T.env.useFSCache=true;T.env.cacheDir=cache;
+let model;
 try {
+const tokenizer = await T.AutoTokenizer.from_pretrained(name, { local_files_only: true });
+model = await T.AutoModel.from_pretrained(name, { device: 'cpu', dtype: 'q8', local_files_only: true,
+  session_options: { graphOptimizationLevel: prepared.manifest.runtime.execution_policy.graph_optimization } });
 if (model.config.model_type !== 'modernbert' || model.config.reader.tokenization !== 'wordwise-bpe-prefix-space-v1') throw new Error('Expected trained ModernBERT reader');
 const m = N.makeReader(T, tokenizer, model);
 const system = K.createSystem(), neural = N.create(system.engine, () => { throw new Error('ModernBERT invoked Rules fallback'); }, { activateCut: false, requireJoint: true });
@@ -63,10 +70,11 @@ for (const row of prepared.rows) {
     appendFileSync(out, JSON.stringify({ id: row.id, set, input_sha256:inputHash(row), gold: gold.length, goldActs: gold.map(g => g.act),
       text: row.text, goldSpans: gold, modernbert: produced, cut: 'own', cutInfo: m.cutInfo(row.text),
       unread: result.unread || [], artifacts }) + '\n');
-    if (++count % 100 === 0) console.error(`${count} messages (ModernBERT own q8 cut)`);
+    if (++count % 100 === 0) console.error(`${count} messages (ModernBERT own cut; 8-bit weights, float32 arithmetic)`);
 }
 } finally {
-  await model.dispose();
+  try { if(model)await model.dispose(); }
+  finally { rmSync(cache,{recursive:true,force:true}); }
 }
 const records=readFileSync(out,'utf8').split('\n').filter(x=>x.trim()).map(JSON.parse);
 const finalized={...prepared.manifest,complete:true,records:{count:records.length,sha256:hashFile(out)}};

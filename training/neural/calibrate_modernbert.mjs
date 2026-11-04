@@ -7,6 +7,8 @@ import { resolve, dirname } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { confidence, percentile } from '../../docs/js/neural-confidence.js';
 import { goldSpans, actOf } from '../sketch/layer_common.mjs';
+import { validateCompleteManifest, EXPORT_MODE } from './finalize_modernbert_export.mjs';
+import { EXECUTION_POLICY } from './modernbert_parity.mjs';
 
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const BASE = 'answerdotai/ModernBERT-base', REVISION = '8949b909ec900327062f0ebf497f51aef5e6f0c8';
@@ -19,10 +21,11 @@ const EVALUATION_FILES = {
   'training/sketch/llm_bench/short3/batch_01.jsonl': 'e14b271f7d50e416346474345bcdd95397c9784b8206be169c5bfed56ae0d782',
 };
 export const COLLECTION_SOURCES = ['training/neural/collect_modernbert.mjs', 'training/neural/calibrate_modernbert.mjs',
+  'training/neural/finalize_modernbert_export.mjs',
+  'training/neural/modernbert_parity.mjs',
   'docs/js/neural.js', 'docs/js/neural-confidence.js', 'docs/js/logic.js', 'docs/js/bench-canon.js',
   'docs/js/vss-composer.js', 'training/sketch/layer_common.mjs', 'training/neural/make_data.py'];
 const TRAINING_SOURCES = ['finetune_modernbert.py', 'modernbert_tokenization.py', 'finetune_roles.py', 'make_roles.py', 'make_data.py'];
-const EXPORT_SOURCES = ['training/neural/export_modernbert.py', 'training/neural/check_modernbert.mjs', 'docs/js/neural.js'];
 const EXTRA_DIRS='opus_train_a opus_train_b opus_train_c opus_train_d opus_gen_1 opus_gen_2 synth_rules synth_rules_ops synth_rules_ext ops_formulations opus_ext_1 synth_combo'.split(' ').map(x=>'llm_train/'+x);
 const equal = (a,b) => JSON.stringify(a) === JSON.stringify(b);
 export const digest = data => createHash('sha256').update(data).digest('hex');
@@ -97,24 +100,32 @@ export function validateModel(folder) {
   const trainingIDs=validateTraining(cfg.reader.training_provenance,cfg.reader.training_manifest);
   const count=cfg['transformers.js_config']?.use_external_data_format;
   if(!Number.isInteger(count) || count<1 || count>100)throw new Error('Invalid external-data chunk count');
-  const required=['config.json','tokenizer.json','tokenizer_config.json','onnx/model_quantized.onnx'];
+  const required=['config.json','tokenizer.json','tokenizer_config.json','special_tokens_map.json','onnx/model_quantized.onnx'];
   for(let i=0;i<count;i++)required.push('onnx/model_quantized.onnx_data'+(i?'_'+i:''));
-  const receiptPath=folder+'/export_manifest.json',receipt=JSON.parse(readFileSync(receiptPath,'utf8'));
-  if(receipt.schema!=='modernbert-export-v1' || receipt.complete!==true || receipt.parity?.node_exit_code!==0 || receipt.parity?.float_atol!==1e-3 || receipt.parity?.float_rtol!==1e-3 || !HASH.test(receipt.checkpoint_sha256||''))throw new Error('Missing completed export parity receipt');
-  if(!equal(Object.keys(receipt.sources||{}).sort(),[...EXPORT_SOURCES].sort()) || !equal(receipt.sources,sourceHashes(EXPORT_SOURCES)))throw new Error('Export source hashes changed');
-  const artifacts=validateArtifactFiles(folder,required,receipt.files);
+  const receiptPath=folder+'/export_manifest.json',validated=validateCompleteManifest(folder);
+  const artifacts=validateArtifactFiles(folder,required,validated.bindings.files);
   artifacts['export_manifest.json']=hashFile(receiptPath);
-  return {config:cfg,trainingIDs,trainingInfo:trainingInventory(cfg.reader.training_manifest),summary:{folder,artifacts,training_ids_sha256:cfg.reader.training_manifest.message_ids_sha256}};
+  for(const info of [validated.manifest.candidate,...Object.values(validated.manifest.receipts),validated.candidate.reference])artifacts[info.file]=hashFile(folder+'/'+info.file);
+  return {config:cfg,trainingIDs,trainingInfo:trainingInventory(cfg.reader.training_manifest),summary:{folder,artifacts,export_mode:EXPORT_MODE,export_schema:validated.manifest.schema,training_ids_sha256:cfg.reader.training_manifest.message_ids_sha256}};
+}
+export function collectionRuntime(T) {
+  const runtime={transformers_js:T.env.version,onnxruntime:T.env.backends.onnx.versions?.node,node:process.version,backend:'cpu',export_mode:EXPORT_MODE,execution_policy:EXECUTION_POLICY};
+  if(runtime.transformers_js!=='3.8.1'||runtime.onnxruntime!=='1.21.0')throw new Error('Wrong actual collection runtime');
+  return runtime;
+}
+function validateCollectionRuntime(runtime) {
+  if(runtime?.transformers_js!=='3.8.1'||runtime.onnxruntime!=='1.21.0'||runtime.backend!=='cpu'||runtime.export_mode!==EXPORT_MODE||!equal(runtime.execution_policy,EXECUTION_POLICY)||typeof runtime.node!=='string'||!runtime.node.startsWith('v'))throw new Error('Missing actual collection runtime provenance');
 }
 export function startCollection(folder, dirs) {
   const inventory=evaluationInventory(dirs),model=validateModel(folder);
   assertDisjointIDs(inventory.rows.map(r=>r.id),model.trainingIDs);
   return {rows:inventory.rows,config:model.config,trainingInfo:model.trainingInfo,manifest:{schema:'modernbert-collection-v1',complete:false,set:'fresh2+short3',
-    evaluation:inventory.summary,model:model.summary,sources:sourceHashes(COLLECTION_SOURCES),records:null}};
+    evaluation:inventory.summary,model:model.summary,sources:sourceHashes(COLLECTION_SOURCES),runtime:null,records:null}};
 }
 export function validateCollection(records, manifest, recordsPath) {
   if(!manifest || manifest.schema!=='modernbert-collection-v1' || manifest.complete!==true || manifest.set!=='fresh2+short3')throw new Error('A finalized fresh2+short3 collection manifest is required');
   if(records.length!==1113 || !recordsPath || !manifest.records || manifest.records.count!==1113 || !HASH.test(manifest.records.sha256||'') || hashFile(recordsPath)!==manifest.records.sha256 || digest(records.map(r=>JSON.stringify(r)+'\n').join(''))!==manifest.records.sha256)throw new Error('Partial or modified collection records');
+  validateCollectionRuntime(manifest.runtime);
   const current=startCollection(manifest.model?.folder,null);
   if(!equal(manifest.evaluation,current.manifest.evaluation) || !equal(manifest.model,current.manifest.model) || !equal(manifest.sources,current.manifest.sources))throw new Error('Collection data/model/source provenance changed');
   const wanted=new Map(current.rows.map(r=>[r.id,r])),seen=new Set();
@@ -276,7 +287,7 @@ export function calibrate(records,manifest,recordsPath) {
     causes[cause]=(causes[cause]||0)+1;(examples[cause]||=[]);if(examples[cause].length<5)examples[cause].push({id:r.id,gold:r.goldSpans[i].span,outcome:'unread'});
   }
   const report={recipe:'fresh2+short3 SHA256(id)%3; 5 message folds; fold-local priors and percentiles',artifacts:records[0].artifacts,
-    collection:{schema:manifest.schema,records_sha256:manifest.records.sha256,evaluation:manifest.evaluation,model:manifest.model,sources:manifest.sources},
+    collection:{schema:manifest.schema,records_sha256:manifest.records.sha256,evaluation:manifest.evaluation,model:manifest.model,sources:manifest.sources,runtime:manifest.runtime},
     calibration:{messages:cal.length,requested:G,produced:train.length,l2:best.lam,oof_auroc:best.auc},
     test:{messages:test.length,...headline,auroc:auroc(scored)},actions,causes,examples,
     risk_coverage:[ASK_ALL,...new Set(scored.map(x=>x.c))].sort((a,b)=>b-a).map(t=>({threshold:t,...stats(scored,GT,t)})),

@@ -788,7 +788,8 @@ async function load(onProgress, readerName = READER_MODEL) {
   const build = async device => {
     if (readerName === 'modernbert' || selected[0] === MODELS.reader) {   // each joint reader owns its tokenizer, model and cut
       const id = selected[0], tokenizer = await T.AutoTokenizer.from_pretrained(id, { revision: revOf(id), progress_callback: track });
-      const model = await T.AutoModel.from_pretrained(id, { device, dtype: dtypeOf(id), revision: revOf(id), progress_callback: track });
+      const model = await T.AutoModel.from_pretrained(id, { device, dtype: dtypeOf(id), revision: revOf(id), progress_callback: track,
+        ...(readerName === 'modernbert' ? { session_options: { graphOptimizationLevel: 'basic' } } : {}) });
       const m = Object.assign({ device, dtype: dtypeOf(id), dtypeText: dtypeText(readerName), qaModel: id, enumModel: id, actModel: id }, makeReader(T, tokenizer, model));
       open.clear();
       await m.read('draw a circle');   // the first inference: a device that fails here fails now, not on a message

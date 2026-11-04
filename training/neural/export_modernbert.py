@@ -1,11 +1,14 @@
 """CPU export of a completed fixed run; never publish partial/pilot weights.
 
-python export_modernbert.py --work CACHE/run --data CACHE/roles --out CACHE/final/modernbert
+python export_modernbert.py --work CACHE/completed-run --data CACHE/roles \
+    --source-artifact CACHE/failed/modernbert --float-graph CACHE/model_float.onnx \
+    --out CACHE/new/modernbert
 The output is kept outside git until the coordinator accepts parity evidence.
 """
 import argparse
 import hashlib
 import json
+import platform
 from pathlib import Path
 import subprocess
 
@@ -15,16 +18,38 @@ import torch
 from finetune_modernbert import ModernReader, BASE, REVISION, sha, write_json
 from finetune_roles import Layout, decode
 from modernbert_tokenization import POLICY, prepare, batch
+from modernbert_weight_only import MODE, convert, initializer_hashes
 
 CHUNK_BYTES = 90 * 1024 ** 2
 GIT_LIMIT = 100 * 1024 ** 2
+EXECUTION_POLICY = {"graph_optimization": "basic", "arithmetic": "float32", "weight_storage": "uint8"}
+FAILED_DYNAMIC_FILES = {
+    "model_quantized.onnx": {"sha256": "519389f976151b579018284f21a6a529d1263006758f371e2601eac6bfaf8465", "bytes": 1561037},
+    "model_quantized.onnx_data": {"sha256": "541c6b319dc6a6a9e2660d9aa5ed70fd87c1a82dbd2001608c788e72e899ee47", "bytes": 93974180},
+    "model_quantized.onnx_data_1": {"sha256": "465d747105a1d055be9a9afd3bb1a70ef967b6aa9737141c93b4dc2ac55ff14d", "bytes": 56133888},
+}
+
+
+def graph_files(path):
+    """Bind a graph and each external initializer file, without rewriting it."""
+    import onnx
+    path = Path(path)
+    names = {path.name}
+    for tensor in onnx.load(path, load_external_data=False).graph.initializer:
+        for item in tensor.external_data:
+            if item.key == "location":
+                location = Path(item.value)
+                if location.is_absolute() or ".." in location.parts: raise ValueError("Unsafe external tensor path")
+                names.add(item.value)
+    return {name: {"sha256": sha(path.parent / name), "bytes": (path.parent / name).stat().st_size} for name in sorted(names)}
 
 
 def pack_external(model_path, out_path, chunk_bytes=CHUNK_BYTES):
     """Pack complete tensors; never split a tensor to evade hosting bounds."""
     import onnx
-    from onnx import external_data_helper as external, numpy_helper
-    graph = onnx.load(model_path, load_external_data=True)
+    from onnx import external_data_helper as external
+    import copy
+    graph = copy.deepcopy(model_path) if isinstance(model_path, onnx.ModelProto) else onnx.load(model_path, load_external_data=True)
     chunks, handle, used = [], None, 0
     try:
         for tensor in graph.graph.initializer:
@@ -75,16 +100,24 @@ def main():
     ap.add_argument("--work", required=True, type=Path)
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--data", required=True, type=Path)
+    ap.add_argument("--source-artifact", required=True, type=Path, help="Retained failed dynamic-q8 model directory")
+    ap.add_argument("--float-graph", required=True, type=Path, help="Existing float ONNX; revalidated against the completed checkpoint")
+    ap.add_argument("--checkpoint-sha256", required=True, help="Immutable completed checkpoint SHA256")
+    ap.add_argument("--run-node", action="store_true", help="Run native parity after writing the unaccepted candidate")
     a = ap.parse_args()
     repo = Path(__file__).resolve().parents[2]
     if a.out.resolve().is_relative_to(repo): raise SystemExit("Export outside git; coordinator installs finalized artifacts")
     if a.out.exists(): raise SystemExit("Use a new output directory; never overwrite an accepted artifact")
+    if sha(a.work / "checkpoint.pt") != a.checkpoint_sha256: raise ValueError("Completed checkpoint hash mismatch")
+    if graph_files(a.source_artifact / "onnx/model_quantized.onnx") != FAILED_DYNAMIC_FILES:
+        raise ValueError("Retained dynamic graph/shard identity mismatch")
     complete = json.loads((a.work / "complete.json").read_text())
     if not complete.get("complete") or complete["state"]["request_pos"] != 54584:
         raise SystemExit("One complete ALL epoch is required before export")
     from transformers import ModernBertConfig, ModernBertModel, AutoTokenizer
     import onnxruntime as ort
-    from onnxruntime.quantization import QuantType, quantize_dynamic
+    import onnx
+    if ort.__version__ != "1.29.0": raise ValueError("Canonical Python reference requires ONNX Runtime 1.29.0")
     ck = torch.load(a.work / "checkpoint.pt", map_location="cpu", weights_only=False)
     meta = ck["metadata"]
     if meta["base"] != BASE or meta["revision"] != REVISION or ck["state"]["request_pos"] != 54584:
@@ -111,70 +144,96 @@ def main():
     model.float().cpu().eval()
     tok = AutoTokenizer.from_pretrained(a.work / "tokenizer", local_files_only=True)
     fixtures = json.loads(Path(__file__).with_name("fixtures").joinpath("modernbert_alignment.json").read_text())
-    float_path, quant_path = a.work / "model_float.onnx", a.work / "model_q8.onnx"
-    _, sample = batch(tok, ["draw a circle", "connect A to B with a dashed arrow"], 128)
-    x = tuple(torch.tensor(sample[k], dtype=torch.long) for k in ("input_ids", "attention_mask"))
-    with torch.no_grad():
-        torch.onnx.export(model, x, str(float_path), dynamo=False, opset_version=17,
-                          input_names=["input_ids", "attention_mask"], output_names=["token_logits", "seq_logits", "cut_logits"],
-                          dynamic_axes={"input_ids": {0: "batch", 1: "sequence"}, "attention_mask": {0: "batch", 1: "sequence"},
-                                        "token_logits": {0: "batch", 1: "sequence"}, "seq_logits": {0: "batch"}, "cut_logits": {0: "batch", 1: "sequence"}})
+    float_path = a.float_graph
+    quant_path = a.source_artifact / "onnx/model_quantized.onnx"
+    source_config = json.loads((a.source_artifact / "config.json").read_text())
+    if source_config["reader"]["training_provenance"] != provenance:
+        raise ValueError("Retained dynamic artifact does not describe this completed run")
+    # Revalidate the existing float export; no source graph or failed evidence is overwritten.
     fs = ort.InferenceSession(str(float_path), providers=["CPUExecutionProvider"])
     references, maxima = [], [0., 0., 0.]
     cases = fixtures["cases"] + [{"text": r["text"], "limit": 512} for r in fixtures["cases"] if r["limit"] == 128]
-    for case in cases:
-        p = prepare(tok, case["text"], case["limit"])
-        inp = {"input_ids": np.array([p["ids"]], dtype=np.int64), "attention_mask": np.ones((1, len(p["ids"])), dtype=np.int64)}
+    rows = [{"id": f"single-{i:02d}", "texts": [case["text"]], "limit": case["limit"]} for i, case in enumerate(cases)]
+    rows += [{"id": "batch-request-128", "texts": fixtures["batch"]["texts"], "limit": 128},
+             {"id": "batch-message-512", "texts": [fixtures["cases"][6]["text"], fixtures["cases"][3]["text"], "draw A; connect A to B"], "limit": 512},
+             {"id": "request-view-of-long-message", "texts": [fixtures["cases"][6]["text"]], "limit": 128}]
+    for row in rows:
+        ps, arrays = batch(tok, row["texts"], row["limit"])
+        inp = {k: np.array(v, dtype=np.int64) for k, v in arrays.items()}
         with torch.no_grad(): expected = [t.numpy() for t in model(**{k: torch.from_numpy(v) for k, v in inp.items()})]
         got = fs.run(None, inp)
         for i, (g, e) in enumerate(zip(got, expected)):
             np.testing.assert_allclose(g, e, atol=1e-3, rtol=1e-3)
             maxima[i] = max(maxima[i], float(np.max(np.abs(g - e))))
-        if decoded(got, p, layout) != decoded(expected, p, layout): raise ValueError("Float ONNX decoded fixture mismatch")
-        references.append({"text": case["text"], "limit": case["limit"], "float_decoded": decoded(got, p, layout)})
-    # Batch padding is exercised independently of the single-fixture outputs.
-    _, pad = batch(tok, fixtures["batch"]["texts"], 128)
-    pad = {k: np.array(v, dtype=np.int64) for k, v in pad.items()}
-    with torch.no_grad(): pt = model(**{k: torch.from_numpy(v) for k, v in pad.items()})
-    for g, e in zip(fs.run(None, pad), pt): np.testing.assert_allclose(g, e.numpy(), atol=1e-3, rtol=1e-3)
-    del fs
-    quantize_dynamic(str(float_path), str(quant_path), per_channel=True, reduce_range=True,
-                     weight_type=QuantType.QUInt8, use_external_data_format=True)
+        float_decoded = []
+        for b, p in enumerate(ps):
+            d = decoded([g[b:b + 1] for g in got], p, layout)
+            if d != decoded([e[b:b + 1] for e in expected], p, layout): raise ValueError("Float ONNX decoded fixture mismatch")
+            float_decoded.append(d)
+        references.append(dict(row, inputs=arrays,
+            prepared=[{k: list(map(list, p[k].items())) if k == "first" else p[k] for k in ("ids", "first", "truncated", "unreadFrom")} for p in ps],
+            float_decoded=float_decoded))
+    del fs, model
+    candidate, conversion = convert(onnx.load(quant_path, load_external_data=True))
     a.out.mkdir(parents=True); (a.out / "onnx").mkdir()
-    chunks = pack_external(quant_path, a.out / "onnx/model_quantized.onnx")
+    chunks = pack_external(candidate, a.out / "onnx/model_quantized.onnx")
+    if initializer_hashes(onnx.load(a.out / "onnx/model_quantized.onnx", load_external_data=True)) != conversion["initializer_hashes"]:
+        raise ValueError("Packed initializer values changed")
+    del candidate
     tok.save_pretrained(a.out)
     config = cfg.to_dict(); config["architectures"] = ["ModernBertModel"]
     config["reader"] = dict(R, max_length=128, tokenization=POLICY)
+    config["reader"]["export_mode"] = MODE
+    config["reader"]["arithmetic"] = "8-bit weights, float32 arithmetic"
+    config["reader"]["execution_policy"] = EXECUTION_POLICY
     config["reader"]["training_manifest"] = dict(meta["data"], message_ids=sorted(train_ids),
         message_ids_sha256=hashlib.sha256(("\n".join(sorted(train_ids)) + "\n").encode()).hexdigest())
     config["reader"]["training_provenance"] = provenance
     config["reader"]["cut"] = dict(R.get("cut", {}), max_length=512)
     config["transformers.js_config"] = {"use_external_data_format": len(chunks)}
     write_json(a.out / "config.json", config)
-    qs = ort.InferenceSession(str(a.out / "onnx/model_quantized.onnx"), providers=["CPUExecutionProvider"])
+    options = ort.SessionOptions()
+    options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
+    qs = ort.InferenceSession(str(a.out / "onnx/model_quantized.onnx"), options, providers=["CPUExecutionProvider"])
     changes = []
     for ref in references:
-        p = prepare(tok, ref["text"], ref["limit"])
-        inp = {"input_ids": np.array([p["ids"]], dtype=np.int64), "attention_mask": np.ones((1, len(p["ids"])), dtype=np.int64)}
+        ps, arrays = batch(tok, ref["texts"], ref["limit"])
+        inp = {k: np.array(v, dtype=np.int64) for k, v in arrays.items()}
         got = qs.run(None, inp)
-        ref.update(ids=p["ids"], first=list(map(list, p["first"].items())), truncated=p["truncated"], unreadFrom=p["unreadFrom"],
-                   outputs=[g.tolist() for g in got], decoded=decoded(got, p, layout))
-        if ref["decoded"] != ref["float_decoded"]: changes.append({"text": ref["text"], "float": ref["float_decoded"], "q8": ref["decoded"]})
-    refs_path = a.work / "q8_references.json"
-    write_json(refs_path, references)
-    result = subprocess.run(["node", str(Path(__file__).with_name("check_modernbert.mjs")), str(a.out), str(refs_path)], text=True, capture_output=True)
-    write_json(a.work / "export_parity.json", {"float_max_abs": maxima, "q8_prediction_changes": changes,
-                                               "node_returncode": result.returncode, "node_stdout": result.stdout, "node_stderr": result.stderr})
-    print(result.stdout, result.stderr)
-    if result.returncode: raise SystemExit("Python ORT/JavaScript q8 parity failed; artifact is unaccepted")
-    required = ["config.json", "tokenizer.json", "tokenizer_config.json", "onnx/model_quantized.onnx"] + ["onnx/" + n for n in chunks]
+        ref.update(output_shapes=[list(g.shape) for g in got], outputs=[g.tolist() for g in got],
+                   decoded=[decoded([g[b:b + 1] for g in got], p, layout) for b, p in enumerate(ps)])
+        if ref["decoded"] != ref["float_decoded"]: changes.append({"id": ref["id"], "float": ref["float_decoded"], "selected": ref["decoded"]})
+    del qs
+    required = [str(p.relative_to(a.out)) for p in sorted(a.out.rglob("*")) if p.is_file()]
     repo = Path(__file__).resolve().parents[2]
-    write_json(a.out / "export_manifest.json", {"schema": "modernbert-export-v1", "complete": True,
-        "checkpoint_sha256": sha(a.work / "checkpoint.pt"),
-        "sources": {n: sha(repo / n) for n in ("training/neural/export_modernbert.py", "training/neural/check_modernbert.mjs", "docs/js/neural.js")},
-        "parity": {"node_exit_code": result.returncode, "float_atol": 1e-3, "float_rtol": 1e-3},
-        "files": {n: {"sha256": sha(a.out / n), "bytes": (a.out / n).stat().st_size} for n in required}})
-    write_json(a.work / "export_complete.json", {"complete": True, "files": {str(p.relative_to(a.out)): {"sha256": sha(p), "bytes": p.stat().st_size} for p in sorted(a.out.rglob("*")) if p.is_file()}})
+    source_names = ["export_modernbert.py", "modernbert_weight_only.py", "modernbert_parity.mjs", "check_modernbert.mjs",
+                    "check_modernbert_browser.py", "check_modernbert_browser.mjs", "finalize_modernbert_export.mjs",
+                    "modernbert_tokenization.py", "finetune_modernbert.py", "finetune_roles.py", "fixtures/modernbert_alignment.json"]
+    sources = {"training/neural/" + n: sha(Path(__file__).parent / n) for n in source_names}
+    sources.update({n: sha(repo / n) for n in ("docs/js/neural.js", "docs/js/logic.js")})
+    bindings = {"checkpoint_sha256": sha(a.work / "checkpoint.pt"), "float_graph_sha256": sha(float_path),
+                "float_graph_files": graph_files(float_path), "source_dynamic_files": graph_files(quant_path),
+                "source_dynamic_graph_sha256": sha(quant_path),
+                "files": {n: {"sha256": sha(a.out / n), "bytes": (a.out / n).stat().st_size} for n in required}, "sources": sources}
+    # Prepared arrays are independently bound even if a consumer parses/reserializes JSON.
+    bindings["inputs_sha256"] = hashlib.sha256(json.dumps([{k: r[k] for k in ("id", "texts", "limit", "inputs", "prepared")} for r in references],
+        sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode()).hexdigest()
+    float_validation = {"passed": True, "atol": 1e-3, "rtol": 1e-3, "max_abs": maxima,
+                        "checkpoint_sha256": bindings["checkpoint_sha256"], "graph_sha256": bindings["float_graph_sha256"], "cases": len(references)}
+    refs_path = a.out / "references.json"
+    write_json(refs_path, {"schema": "modernbert-reference-v2", "export_mode": MODE, "execution_policy": EXECUTION_POLICY, "bindings": bindings,
+        "runtime": {"python": platform.python_version(), "onnxruntime": ort.__version__, "providers": ["CPUExecutionProvider"], "graph_optimization_level": "basic"},
+        "float_validation": float_validation, "cases": references})
+    write_json(a.out / "conversion.json", conversion)
+    write_json(a.out / "export_parity.json", {"float_max_abs": maxima, "selected_prediction_changes": changes})
+    write_json(a.out / "export_manifest.json", {"schema": "modernbert-export-candidate-v2", "complete": False, "export_mode": MODE, "execution_policy": EXECUTION_POLICY,
+        "bindings": bindings, "reference": {"file": "references.json", "sha256": sha(refs_path)},
+        "conversion": conversion, "float_validation": float_validation})
+    if any(p.stat().st_size >= GIT_LIMIT for p in a.out.rglob("*") if p.is_file()):
+        raise ValueError("Candidate file exceeds hosting limit")
+    print("Unaccepted candidate written:", a.out)
+    if a.run_node:
+        subprocess.run(["node", str(Path(__file__).with_name("check_modernbert.mjs")), str(a.out), str(refs_path)], check=True)
 
 
 if __name__ == "__main__": main()
