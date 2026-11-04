@@ -1,0 +1,1532 @@
+{
+ "record": "<scratch>/live2/record.json",
+ "reference": "reports/evidence/diagram-five-101edd9/record.json",
+ "legacy": {
+  "sop_equal": 55,
+  "steps_equal": 55,
+  "section_equal": 55,
+  "compared": 55,
+  "diffs": []
+ },
+ "qwen": [
+  {
+   "case": "create_alpha",
+   "text": "Please add a red circle called E2EAlpha to the diagram.",
+   "gold": [
+    {
+     "id": "a1",
+     "action": "create",
+     "name": "E2EAlpha",
+     "shape": "circle",
+     "color": "red"
+    }
+   ],
+   "mainReplyMs": 1542,
+   "qwenMs": 126416.5,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Please add a red circle called E2EAlpha to the diagram.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Add a red circle named E2ealpha.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=create shape=circle color=red name=E2EAlpha"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Please add a red circle called E2EAlpha to the diagram.\", \"do\": \"create\", \"args\": {\"shape\": \"circle\", \"color\": \"red\", \"name\": \"E2EAlpha\"}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "Please add a red circle called E2EAlpha to the diagram.",
+     "span": [
+      0,
+      55
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.07466745975993945,
+     "weakest": "name",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.00048255641013383865,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -0.051006571084144525,
+       "n": 2
+      },
+      {
+       "name": "color",
+       "mean": -0.03157560909858148,
+       "n": 2
+      },
+      {
+       "name": "name",
+       "mean": -0.07466745975993945,
+       "n": 5
+      },
+      {
+       "name": "end",
+       "mean": -0.0158854927867651,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Please add a red circle called E2EAlpha to the diagram.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.07466745975993945,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=create shape=circle color=red name=E2EAlpha"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 67,
+    "prompt_tokens": 1844,
+    "total_tokens": 1911,
+    "prompt_tokens_details": {
+     "cached_tokens": 1786
+    }
+   },
+   "timings": {
+    "cache_n": 1786,
+    "prompt_n": 58,
+    "prompt_ms": 49469.8,
+    "prompt_per_token_ms": 852.9275862068966,
+    "prompt_per_second": 1.1724324739538061,
+    "predicted_n": 67,
+    "predicted_ms": 76891.899,
+    "predicted_per_token_ms": 1165.0287727272728,
+    "predicted_per_second": 0.8583478995622152
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "tart, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Please add a red circle called E2EAlpha to the diagram.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Please add a red circle called E2EAlpha to the diagram.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "create_beta",
+   "text": "Add a blue rectangle named E2EBeta as well.",
+   "gold": [
+    {
+     "id": "a2",
+     "action": "create",
+     "name": "E2EBeta",
+     "shape": "rectangle",
+     "color": "blue"
+    }
+   ],
+   "mainReplyMs": 1476,
+   "qwenMs": 117019.80000000075,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Add a blue rectangle named E2EBeta as well.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Add a rectangle named E2ebeta with the text \"e2ebeta\" at the top.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=create shape=rectangle name=E2EBeta label=E2EBeta position=top anchor=Backdrop"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Add a blue rectangle named E2EBeta as well.\", \"do\": \"create\", \"args\": {\"shape\": \"rectangle\", \"name\": \"E2EBeta\", \"label\": \"E2EBeta\", \"position\": \"top\", \"anchor\": [{\"name\": \"Backdrop\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "Add a blue rectangle named E2EBeta as well.",
+     "span": [
+      0,
+      43
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -4.690867185592651,
+     "weakest": "position",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.00020953227067366242,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -0.079017409007065,
+       "n": 2
+      },
+      {
+       "name": "name",
+       "mean": -0.05735738294883959,
+       "n": 5
+      },
+      {
+       "name": "label",
+       "mean": -1.9335488237982645,
+       "n": 5
+      },
+      {
+       "name": "position",
+       "mean": -4.690867185592651,
+       "n": 2
+      },
+      {
+       "name": "anchor[0].name",
+       "mean": -1.3057854368016706,
+       "n": 4
+      },
+      {
+       "name": "end",
+       "mean": -0.016162925167009234,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Add a blue rectangle named E2EBeta as well.",
+      "execute": false,
+      "blocked": false,
+      "score": -4.690867185592651,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=create shape=rectangle name=E2EBeta label=E2EBeta position=top anchor=Backdrop"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 86,
+    "prompt_tokens": 1842,
+    "total_tokens": 1928,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 21,
+    "prompt_ms": 18025.201,
+    "prompt_per_token_ms": 858.3429047619048,
+    "prompt_per_second": 1.165035552169432,
+    "predicted_n": 86,
+    "predicted_ms": 98934.7,
+    "predicted_per_token_ms": 1163.9376470588236,
+    "predicted_per_second": 0.8591525521379254
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "eviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Add a blue rectangle named E2EBeta as well.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Add a blue rectangle named E2EBeta as well.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "connect",
+   "text": "Draw an arrow from E2EAlpha to E2EBeta.",
+   "gold": [
+    {
+     "id": "a3",
+     "action": "connect",
+     "from": "E2EAlpha",
+     "to": "E2EBeta",
+     "arrow": "forward",
+     "depends_on": [
+      "a1",
+      "a2"
+     ]
+    }
+   ],
+   "mainReplyMs": 1505,
+   "qwenMs": 119895.30000000075,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Draw an arrow from E2EAlpha to E2EBeta",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Add a blue triangle between E2ealpha and E2ebeta.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=create shape=triangle color=blue position=between anchor=E2EAlpha,E2EBeta"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Draw an arrow from E2EAlpha to E2EBeta\", \"do\": \"create\", \"args\": {\"shape\": \"triangle\", \"color\": \"blue\", \"position\": \"between\", \"anchor\": [{\"name\": \"E2EAlpha\"}, {\"name\": \"E2EBeta\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "Draw an arrow from E2EAlpha to E2EBeta",
+     "span": [
+      0,
+      38
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -3.085153229534626,
+     "weakest": "shape",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.09790267050266266,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -3.085153229534626,
+       "n": 2
+      },
+      {
+       "name": "color",
+       "mean": -0.31536345183849335,
+       "n": 2
+      },
+      {
+       "name": "position",
+       "mean": -0.9771672165952623,
+       "n": 2
+      },
+      {
+       "name": "anchor[0].name",
+       "mean": -0.015015952808804892,
+       "n": 6
+      },
+      {
+       "name": "anchor[1].name",
+       "mean": -0.014120236902783745,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.020579978416208178,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Draw an arrow from E2EAlpha to E2EBeta",
+      "execute": false,
+      "blocked": false,
+      "score": -3.085153229534626,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=create shape=triangle color=blue position=between anchor=E2EAlpha,E2EBeta"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 87,
+    "prompt_tokens": 1844,
+    "total_tokens": 1931,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 23,
+    "prompt_ms": 19897.3,
+    "prompt_per_token_ms": 865.1,
+    "prompt_per_second": 1.1559357299734134,
+    "predicted_n": 87,
+    "predicted_ms": 99929,
+    "predicted_per_token_ms": 1161.9651162790697,
+    "predicted_per_second": 0.8606110338340222
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "e, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Draw an arrow from E2EAlpha to E2EBeta.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Draw an arrow from E2EAlpha to E2EBeta.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "recolor",
+   "text": "Make E2EAlpha green, please.",
+   "gold": [
+    {
+     "id": "a4",
+     "action": "set",
+     "target": "E2EAlpha",
+     "color": "green",
+     "depends_on": [
+      "a1"
+     ],
+     "property": "color"
+    }
+   ],
+   "mainReplyMs": 1354,
+   "qwenMs": 85935.20000000112,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Make E2EAlpha green, please.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Make E2ealpha green.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=set color=green target=E2EAlpha"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Make E2EAlpha green, please.\", \"do\": \"set\", \"args\": {\"color\": \"green\", \"target\": [{\"name\": \"E2EAlpha\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "set",
+     "src": "Make E2EAlpha green, please.",
+     "span": [
+      0,
+      28
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.07310297669755528,
+     "weakest": "color",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.004441274330019951,
+       "n": 1
+      },
+      {
+       "name": "color",
+       "mean": -0.07310297669755528,
+       "n": 2
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.032794055451565406,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.009173507540253922,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Make E2EAlpha green, please.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.07310297669755528,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=set color=green target=E2EAlpha"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 61,
+    "prompt_tokens": 1839,
+    "total_tokens": 1900,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 18,
+    "prompt_ms": 15300.099,
+    "prompt_per_token_ms": 850.0055,
+    "prompt_per_second": 1.1764629758278036,
+    "predicted_n": 61,
+    "predicted_ms": 70590.1,
+    "predicted_per_token_ms": 1176.5016666666668,
+    "predicted_per_second": 0.8499775464264818
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": ", IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make E2EAlpha green, please.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make E2EAlpha green, please.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "move",
+   "text": "Place E2EBeta below E2EAlpha.",
+   "gold": [
+    {
+     "id": "a5",
+     "action": "move",
+     "target": "E2EBeta",
+     "relative_to": "E2EAlpha",
+     "position": "below",
+     "depends_on": [
+      "a1",
+      "a2"
+     ]
+    }
+   ],
+   "mainReplyMs": 1332,
+   "qwenMs": 103676.5,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Place E2EBeta below E2EAlpha.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Add a blue triangle below E2ealpha.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=create shape=triangle color=blue position=below anchor=E2EAlpha"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Place E2EBeta below E2EAlpha.\", \"do\": \"create\", \"args\": {\"shape\": \"triangle\", \"color\": \"blue\", \"position\": \"below\", \"anchor\": [{\"name\": \"E2EAlpha\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "create",
+     "src": "Place E2EBeta below E2EAlpha.",
+     "span": [
+      0,
+      29
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -1.7550456277094781,
+     "weakest": "shape",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.0007708658813498914,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -1.7550456277094781,
+       "n": 2
+      },
+      {
+       "name": "color",
+       "mean": -0.5183709375560284,
+       "n": 2
+      },
+      {
+       "name": "position",
+       "mean": -0.005628540937323123,
+       "n": 2
+      },
+      {
+       "name": "anchor[0].name",
+       "mean": -0.002702774882872442,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.036888693168293685,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Place E2EBeta below E2EAlpha.",
+      "execute": false,
+      "blocked": false,
+      "score": -1.7550456277094781,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=create shape=triangle color=blue position=below anchor=E2EAlpha"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 75,
+    "prompt_tokens": 1841,
+    "total_tokens": 1916,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 20,
+    "prompt_ms": 16688.4,
+    "prompt_per_token_ms": 834.4200000000001,
+    "prompt_per_second": 1.1984372378418542,
+    "predicted_n": 75,
+    "predicted_ms": 86931.5,
+    "predicted_per_token_ms": 1174.75,
+    "predicted_per_second": 0.8512449457331347
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": " IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Place E2EBeta below E2EAlpha.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Place E2EBeta below E2EAlpha.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "rename",
+   "text": "Rename E2EBeta to E2EGamma.",
+   "gold": [
+    {
+     "id": "a6",
+     "action": "rename",
+     "depends_on": [
+      "a2"
+     ],
+     "target": "E2EBeta",
+     "name": "E2EGamma"
+    }
+   ],
+   "mainReplyMs": 1463,
+   "qwenMs": 92090.80000000075,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Rename E2EBeta to E2EGamma.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Rename E2egamma to E2ebeta.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=rename name=E2EBeta target=E2EGamma"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Rename E2EBeta to E2EGamma.\", \"do\": \"rename\", \"args\": {\"name\": \"E2EBeta\", \"target\": [{\"name\": \"E2EGamma\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "rename",
+     "src": "Rename E2EBeta to E2EGamma.",
+     "span": [
+      0,
+      27
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.016342080903844664,
+     "weakest": "target[0].name",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.0000741509284125641,
+       "n": 1
+      },
+      {
+       "name": "name",
+       "mean": -0.004274710082324873,
+       "n": 5
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.016342080903844664,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.012540611030999571,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Rename E2EBeta to E2EGamma.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.016342080903844664,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=rename name=E2EBeta target=E2EGamma"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 66,
+    "prompt_tokens": 1841,
+    "total_tokens": 1907,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 20,
+    "prompt_ms": 16883.5,
+    "prompt_per_token_ms": 844.175,
+    "prompt_per_second": 1.1845885035685728,
+    "predicted_n": 66,
+    "predicted_ms": 75153.4,
+    "predicted_per_token_ms": 1156.2061538461537,
+    "predicted_per_second": 0.8648976626473321
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "p, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Rename E2EBeta to E2EGamma.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Rename E2EBeta to E2EGamma.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "label",
+   "text": "Give E2EGamma the label Review queue.",
+   "gold": [
+    {
+     "id": "a7",
+     "action": "label",
+     "target": "E2EGamma",
+     "label": "Review queue",
+     "depends_on": [
+      "a6"
+     ]
+    }
+   ],
+   "mainReplyMs": 1474,
+   "qwenMs": 96166.39999999851,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Give E2EGamma the label Review queue.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Label E2egamma \"review queue\".”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=label kind=shape label=\"Review queue\" target=E2EGamma"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Give E2EGamma the label Review queue.\", \"do\": \"label\", \"args\": {\"kind\": \"shape\", \"label\": \"Review queue\", \"target\": [{\"name\": \"E2EGamma\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "label",
+     "src": "Give E2EGamma the label Review queue.",
+     "span": [
+      0,
+      37
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -1.6963756084442139,
+     "weakest": "kind",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.0001317349378950894,
+       "n": 1
+      },
+      {
+       "name": "kind",
+       "mean": -1.6963756084442139,
+       "n": 2
+      },
+      {
+       "name": "label",
+       "mean": -0.016182292965822853,
+       "n": 3
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.00027869193127116887,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.03417740383883938,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Give E2EGamma the label Review queue.",
+      "execute": false,
+      "blocked": false,
+      "score": -1.6963756084442139,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=label kind=shape label=\"Review queue\" target=E2EGamma"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 69,
+    "prompt_tokens": 1840,
+    "total_tokens": 1909,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 19,
+    "prompt_ms": 16579.7,
+    "prompt_per_token_ms": 872.6157894736842,
+    "prompt_per_second": 1.1459797221903893,
+    "predicted_n": 69,
+    "predicted_ms": 79535.4,
+    "predicted_per_token_ms": 1169.6382352941175,
+    "predicted_per_second": 0.854965210459745
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "one, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Give E2EGamma the label Review queue.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Give E2EGamma the label Review queue.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "pronoun",
+   "text": "Make that shape yellow.",
+   "gold": [
+    {
+     "id": "a8",
+     "action": "set",
+     "target": "E2EGamma",
+     "property": "color",
+     "color": "yellow",
+     "depends_on": [
+      "a6",
+      "a7"
+     ]
+    }
+   ],
+   "mainReplyMs": 1291,
+   "qwenMs": 74447.89999999851,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Make that shape yellow.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Make Backdrop yellow.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=set color=yellow target=Backdrop"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Make that shape yellow.\", \"do\": \"set\", \"args\": {\"color\": \"yellow\", \"target\": [{\"name\": \"Backdrop\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "set",
+     "src": "Make that shape yellow.",
+     "span": [
+      0,
+      23
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.29229322100945865,
+     "weakest": "color",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.2155575156211853,
+       "n": 1
+      },
+      {
+       "name": "color",
+       "mean": -0.29229322100945865,
+       "n": 2
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.12773963049403392,
+       "n": 4
+      },
+      {
+       "name": "end",
+       "mean": -0.016390509525081143,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Make that shape yellow.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.29229322100945865,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=set color=yellow target=Backdrop"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 55,
+    "prompt_tokens": 1835,
+    "total_tokens": 1890,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 14,
+    "prompt_ms": 12294.5,
+    "prompt_per_token_ms": 878.1785714285714,
+    "prompt_per_second": 1.1387205661067958,
+    "predicted_n": 55,
+    "predicted_ms": 62086,
+    "predicted_per_token_ms": 1149.7407407407406,
+    "predicted_per_second": 0.8697612988435396
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "kdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make that shape yellow.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make that shape yellow.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "layout",
+   "text": "Arrange E2EAlpha and E2EGamma in a row.",
+   "gold": [
+    {
+     "id": "a9",
+     "action": "layout",
+     "targets": [
+      "E2EAlpha",
+      "E2EGamma"
+     ],
+     "layout": "row",
+     "depends_on": [
+      "a1",
+      "a6"
+     ]
+    }
+   ],
+   "mainReplyMs": 1586,
+   "qwenMs": 124146.40000000037,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Arrange E2EAlpha and E2EGamma in a row.",
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "line": "If you meant “Arrange E2ealpha and E2egamma as a steps.”, write it like that, or press Do it anyway.",
+      "canAnyway": true
+     }
+    ]
+   },
+   "read": [
+    "@r1 command action=arrange template=steps title=\"E2EAlpha and E2EGamma\" target=E2EAlpha,E2EGamma"
+   ],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Arrange E2EAlpha and E2EGamma in a row.\", \"do\": \"arrange\", \"args\": {\"template\": \"steps\", \"title\": \"E2EAlpha and E2EGamma\", \"target\": [{\"name\": \"E2EAlpha\"}, {\"name\": \"E2EGamma\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "arrange",
+     "src": "Arrange E2EAlpha and E2EGamma in a row.",
+     "span": [
+      0,
+      39
+     ],
+     "blocked": false,
+     "errors": []
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -0.1812286525964737,
+     "weakest": "template",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.0002021878763116547,
+       "n": 2
+      },
+      {
+       "name": "template",
+       "mean": -0.1812286525964737,
+       "n": 2
+      },
+      {
+       "name": "title",
+       "mean": -0.0506250829909618,
+       "n": 10
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.1188647135642024,
+       "n": 6
+      },
+      {
+       "name": "target[1].name",
+       "mean": -0.11637229754277693,
+       "n": 6
+      },
+      {
+       "name": "end",
+       "mean": -0.010173001734074205,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Arrange E2EAlpha and E2EGamma in a row.",
+      "execute": false,
+      "blocked": false,
+      "score": -0.1812286525964737,
+      "reasons": [
+       "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+      ],
+      "nodes": [
+       "@r1 command action=arrange template=steps title=\"E2EAlpha and E2EGamma\" target=E2EAlpha,E2EGamma"
+      ]
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 90,
+    "prompt_tokens": 1844,
+    "total_tokens": 1934,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 23,
+    "prompt_ms": 19534.3,
+    "prompt_per_token_ms": 849.3173913043478,
+    "prompt_per_second": 1.1774161346964058,
+    "predicted_n": 90,
+    "predicted_ms": 104567.399,
+    "predicted_per_token_ms": 1174.914595505618,
+    "predicted_per_second": 0.8511256935825667
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "e, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Arrange E2EAlpha and E2EGamma in a row.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Arrange E2EAlpha and E2EGamma in a row.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "question",
+   "text": "Is there a path from Start to Done?",
+   "gold": [
+    {
+     "id": "a10",
+     "action": "question",
+     "question": "path",
+     "from": "Start",
+     "to": "Done",
+     "answer": true
+    }
+   ],
+   "mainReplyMs": 1215,
+   "qwenMs": 90233.5,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Is there a path from Start to Done?",
+      "reasons": [
+       "it uses property, which check does not take"
+      ],
+      "line": null,
+      "canAnyway": false
+     }
+    ]
+   },
+   "read": [],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Is there a path from Start to Done?\",\"do\": \"check\", \"args\": {\"property\": \"position\", \"target\": [{\"name\": \"Start\"}, {\"name\": \"Done\"}]}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "check",
+     "src": "Is there a path from Start to Done?",
+     "span": [
+      0,
+      35
+     ],
+     "blocked": true,
+     "errors": [
+      "it uses property, which check does not take"
+     ]
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -3.33826245367527,
+     "weakest": "property",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.7768710851669312,
+       "n": 1
+      },
+      {
+       "name": "property",
+       "mean": -3.33826245367527,
+       "n": 2
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.12640000044969688,
+       "n": 3
+      },
+      {
+       "name": "target[1].name",
+       "mean": -0.12525280127920269,
+       "n": 3
+      },
+      {
+       "name": "end",
+       "mean": -0.036397927382495254,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Is there a path from Start to Done?",
+      "execute": false,
+      "blocked": true,
+      "score": -3.33826245367527,
+      "reasons": [
+       "it uses property, which check does not take"
+      ],
+      "nodes": []
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 64,
+    "prompt_tokens": 1839,
+    "total_tokens": 1903,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 18,
+    "prompt_ms": 15461,
+    "prompt_per_token_ms": 858.9444444444445,
+    "prompt_per_second": 1.1642196494405277,
+    "predicted_n": 64,
+    "predicted_ms": 74733.9,
+    "predicted_per_token_ms": 1186.252380952381,
+    "predicted_per_second": 0.8429909318261192
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "eZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Is there a path from Start to Done?<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Is there a path from Start to Done?",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  },
+  {
+   "case": "unsupported",
+   "text": "Make the diagram feel more optimistic about next quarter.",
+   "gold": [],
+   "mainReplyMs": 1434,
+   "qwenMs": 177835.5,
+   "end": "done",
+   "reply": {
+    "text": "",
+    "sub": null,
+    "err": false,
+    "held": [
+     {
+      "index": 0,
+      "src": "Make the diagram feel more optimistic about next quarter.",
+      "reasons": [
+       "it uses property, which improve does not take"
+      ],
+      "line": null,
+      "canAnyway": false
+     },
+     {
+      "index": 1,
+      "src": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review",
+      "reasons": [
+       "its words “Names on the canvas: Backdrop, IntakeZone, ReviewZone, St…” are not in the message",
+       "it uses name, which list does not take"
+      ],
+      "line": null,
+      "canAnyway": false
+     }
+    ]
+   },
+   "read": [],
+   "executed": [],
+   "valid": true,
+   "errors": [],
+   "fenced": false,
+   "raw": "{\"requests\": [{\"id\": \"r1\", \"text\": \"Make the diagram feel more optimistic about next quarter.\", \"do\": \"improve\", \"args\": {\"property\": \"color\", \"target\": [{\"name\": \"MainTitle\"}]}}, {\"id\": \"r2\", \"text\": \"Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\", \"do\": \"list\", \"args\": {\"shape\": \"text\", \"kind\": \"shape\", \"name\": \"MainTitle\"}}], \"not_understood\": []}",
+   "requests": [
+    {
+     "id": "r1",
+     "do": "improve",
+     "src": "Make the diagram feel more optimistic about next quarter.",
+     "span": [
+      0,
+      57
+     ],
+     "blocked": true,
+     "errors": [
+      "it uses property, which improve does not take"
+     ]
+    },
+    {
+     "id": "r2",
+     "do": "list",
+     "src": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review",
+     "span": null,
+     "blocked": true,
+     "errors": [
+      "its words “Names on the canvas: Backdrop, IntakeZone, ReviewZone, St…” are not in the message",
+      "it uses name, which list does not take"
+     ]
+    }
+   ],
+   "notUnderstood": [],
+   "scores": [
+    {
+     "min": -1.5198414092883468,
+     "weakest": "property",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.33689263492124155,
+       "n": 2
+      },
+      {
+       "name": "property",
+       "mean": -1.5198414092883468,
+       "n": 2
+      },
+      {
+       "name": "target[0].name",
+       "mean": -0.051815537863149075,
+       "n": 4
+      },
+      {
+       "name": "end",
+       "mean": -0.20160970464348793,
+       "n": 2
+      }
+     ]
+    },
+    {
+     "min": -1.9277641773223877,
+     "weakest": "kind",
+     "missing": null,
+     "fields": [
+      {
+       "name": "do",
+       "mean": -0.2015921026468277,
+       "n": 1
+      },
+      {
+       "name": "shape",
+       "mean": -0.38460960052907467,
+       "n": 2
+      },
+      {
+       "name": "kind",
+       "mean": -1.9277641773223877,
+       "n": 2
+      },
+      {
+       "name": "name",
+       "mean": -0.4084398703635088,
+       "n": 3
+      },
+      {
+       "name": "end",
+       "mean": -0.19352681189775467,
+       "n": 2
+      }
+     ]
+    }
+   ],
+   "gate": {
+    "label": "no calibrated threshold: every request is held",
+    "units": [
+     {
+      "index": 0,
+      "src": "Make the diagram feel more optimistic about next quarter.",
+      "execute": false,
+      "blocked": true,
+      "score": -1.5198414092883468,
+      "reasons": [
+       "it uses property, which improve does not take"
+      ],
+      "nodes": []
+     },
+     {
+      "index": 1,
+      "src": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review",
+      "execute": false,
+      "blocked": true,
+      "score": -1.9277641773223877,
+      "reasons": [
+       "its words “Names on the canvas: Backdrop, IntakeZone, ReviewZone, St…” are not in the message",
+       "it uses name, which list does not take"
+      ],
+      "nodes": []
+     }
+    ]
+   },
+   "usage": {
+    "completion_tokens": 138,
+    "prompt_tokens": 1840,
+    "total_tokens": 1978,
+    "prompt_tokens_details": {
+     "cached_tokens": 1821
+    }
+   },
+   "timings": {
+    "cache_n": 1821,
+    "prompt_n": 19,
+    "prompt_ms": 16046.4,
+    "prompt_per_token_ms": 844.5473684210526,
+    "prompt_per_second": 1.1840662079968092,
+    "predicted_n": 138,
+    "predicted_ms": 161748.401,
+    "predicted_per_token_ms": 1180.6452627737226,
+    "predicted_per_second": 0.8469944627149667
+   },
+   "finish": "stop",
+   "reasoning": "",
+   "renderedPromptTail": "rt, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make the diagram feel more optimistic about next quarter.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+   "userContent": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review\nMessage: Make the diagram feel more optimistic about next quarter.",
+   "qwenDrawingAfter": "@Backdrop shape shape=rectangle size=medium color=navy at=400,258\n@IntakeZone shape shape=rectangle size=medium color=blue at=200,290\n@ReviewZone shape shape=rectangle size=medium color=green at=575,290\n@Start shape shape=circle size=large color=blue at=110,245\n@Process shape shape=rectangle size=medium color=white label=Validate at=280,245\n@Check shape shape=diamond size=medium color=yellow label=\"ok?\" at=480,245\n@Done shape shape=circle size=medium color=green at=480,375\n@MainTitle shape shape=text size=large color=navy label=\"Order flow\" at=400,58\n@IntakeCaption shape shape=text size=small color=blue label=\"1 · receive\" at=200,152\n@ReviewCaption shape shape=text size=small color=green label=\"2 · review\" at=575,152\n@e1 edge from=$Start to=$Process style=solid arrow=forward\n@e2 edge from=$Process to=$Check style=solid arrow=forward\n@e3 edge label=yes from=$Check to=$Done style=dashed arrow=forward\n@Intake group members=$IntakeZone,$Start,$Process,$IntakeCaption\n@Review group members=$ReviewZone,$Check,$Done,$ReviewCaption"
+  }
+ ]
+}

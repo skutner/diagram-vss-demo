@@ -1,0 +1,417 @@
+{
+ "scope": "Assessment of the second live six-reader run on Pages (deployed f6c329e), by the coordinator, with the grading rules written in training/qwen/QWEN3_PLAN.md section C before the run. Read-only: no browser or model calls.",
+ "deployed_source": "f6c329e8e47a0eb2a2551b06cafb6850d40abc58",
+ "raw_record_sha256": "0e502dff8415e1e80ba291379c225b0132bda866f077477607e9b66faec82b6f",
+ "fixture_sha256": "c81167e8bb6ff0a8c693317b11ca5d1e72f781bb7851ba28b7448c0edff89f3f",
+ "qwen": {
+  "model_sha256": "9465e63a22add5354d9bb4b99e90117043c7124007664907259bd16d043bb031",
+  "prompt_sha256": "1d11a4c2ded0583bf0cf9c60943e7d7e5a9cc144ccf5b0eafeca8ea1e3e71a25",
+  "runtime": "wllama 3.8.1, libllama b11364-46ca246, n_gpu_layers 0, 1 thread"
+ },
+ "summary_executed": {
+  "rules": {
+   "right": 9,
+   "asked": 0,
+   "not_done": 1,
+   "wrong": 0,
+   "extras": 0,
+   "requested": 10
+  },
+  "vss": {
+   "right": 8,
+   "asked": 2,
+   "not_done": 0,
+   "wrong": 0,
+   "extras": 0,
+   "requested": 10
+  },
+  "neural": {
+   "right": 7,
+   "asked": 3,
+   "not_done": 0,
+   "wrong": 0,
+   "extras": 0,
+   "requested": 10
+  },
+  "combined": {
+   "right": 3,
+   "asked": 3,
+   "not_done": 4,
+   "wrong": 0,
+   "extras": 0,
+   "requested": 10
+  },
+  "modernbert": {
+   "right": 1,
+   "asked": 9,
+   "not_done": 0,
+   "wrong": 0,
+   "extras": 0,
+   "requested": 10
+  },
+  "qwen": {
+   "right": 0,
+   "wrong": 0,
+   "asked": 10,
+   "not_done": 0,
+   "extras": 0,
+   "requested": 10
+  }
+ },
+ "summary_qwen_proposals": {
+  "right": 3,
+  "wrong": 6,
+  "blocked": 1,
+  "none": 0
+ },
+ "legacy": "The five earlier readers are graded as in reports/evidence/diagram-five-101edd9/assessment.json: in this run their 55 after-turn drawings (SOP), their 55 per-turn summaries (done/partly/none) and their 55 details sections (timings removed) are identical to that record (training/qwen/live_summary.mjs; legacy-compare.json).",
+ "legacy_outcomes": {
+  "a1": {
+   "rules": "right",
+   "vss": "right",
+   "neural": "right",
+   "combined": "asked",
+   "modernbert": "asked"
+  },
+  "a2": {
+   "rules": "right",
+   "vss": "right",
+   "neural": "right",
+   "combined": "right",
+   "modernbert": "asked"
+  },
+  "a3": {
+   "rules": "right",
+   "vss": "right",
+   "neural": "right",
+   "combined": "not_done",
+   "modernbert": "asked"
+  },
+  "a4": {
+   "rules": "right",
+   "vss": "right",
+   "neural": "right",
+   "combined": "not_done",
+   "modernbert": "asked"
+  },
+  "a5": {
+   "rules": "right",
+   "vss": "right",
+   "neural": "right",
+   "combined": "not_done",
+   "modernbert": "asked"
+  },
+  "a6": {
+   "rules": "right",
+   "vss": "right",
+   "neural": "right",
+   "combined": "right",
+   "modernbert": "asked"
+  },
+  "a7": {
+   "rules": "not_done",
+   "vss": "asked",
+   "neural": "asked",
+   "combined": "asked",
+   "modernbert": "asked"
+  },
+  "a8": {
+   "rules": "right",
+   "vss": "asked",
+   "neural": "asked",
+   "combined": "asked",
+   "modernbert": "asked"
+  },
+  "a9": {
+   "rules": "right",
+   "vss": "right",
+   "neural": "asked",
+   "combined": "not_done",
+   "modernbert": "asked"
+  },
+  "a10": {
+   "rules": "right",
+   "vss": "right",
+   "neural": "right",
+   "combined": "right",
+   "modernbert": "right"
+  }
+ },
+ "actions": [
+  {
+   "reader": "qwen",
+   "action_id": "a1",
+   "case": "create_alpha",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+   ],
+   "proposal": "right",
+   "proposal_reason": "create circle, red, name E2EAlpha: the gold action and values, nothing else",
+   "first_cause": null,
+   "proposed_wire_lines": [
+    "@r1 command action=create shape=circle color=red name=E2EAlpha"
+   ],
+   "score": [
+    -0.07466745975993945
+   ],
+   "weakest": [
+    "name"
+   ],
+   "qwen_ms": 126416.5
+  },
+  {
+   "reader": "qwen",
+   "action_id": "a2",
+   "case": "create_beta",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+   ],
+   "proposal": "wrong",
+   "proposal_reason": "blue is missing; label=E2EBeta and position=top anchor=Backdrop were not asked for",
+   "first_cause": "model semantics: a value dropped and values invented",
+   "proposed_wire_lines": [
+    "@r1 command action=create shape=rectangle name=E2EBeta label=E2EBeta position=top anchor=Backdrop"
+   ],
+   "score": [
+    -4.690867185592651
+   ],
+   "weakest": [
+    "position"
+   ],
+   "qwen_ms": 117019.80000000075
+  },
+  {
+   "reader": "qwen",
+   "action_id": "a3",
+   "case": "connect",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+   ],
+   "proposal": "wrong",
+   "proposal_reason": "a blue triangle is created between the two shapes instead of an arrow from E2EAlpha to E2EBeta",
+   "first_cause": "model semantics: action",
+   "proposed_wire_lines": [
+    "@r1 command action=create shape=triangle color=blue position=between anchor=E2EAlpha,E2EBeta"
+   ],
+   "score": [
+    -3.085153229534626
+   ],
+   "weakest": [
+    "shape"
+   ],
+   "qwen_ms": 119895.30000000075
+  },
+  {
+   "reader": "qwen",
+   "action_id": "a4",
+   "case": "recolor",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+   ],
+   "proposal": "right",
+   "proposal_reason": "set E2EAlpha green",
+   "first_cause": null,
+   "proposed_wire_lines": [
+    "@r1 command action=set color=green target=E2EAlpha"
+   ],
+   "score": [
+    -0.07310297669755528
+   ],
+   "weakest": [
+    "color"
+   ],
+   "qwen_ms": 85935.20000000112
+  },
+  {
+   "reader": "qwen",
+   "action_id": "a5",
+   "case": "move",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+   ],
+   "proposal": "wrong",
+   "proposal_reason": "a blue triangle is created below E2EAlpha instead of moving E2EBeta",
+   "first_cause": "model semantics: action",
+   "proposed_wire_lines": [
+    "@r1 command action=create shape=triangle color=blue position=below anchor=E2EAlpha"
+   ],
+   "score": [
+    -1.7550456277094781
+   ],
+   "weakest": [
+    "shape"
+   ],
+   "qwen_ms": 103676.5
+  },
+  {
+   "reader": "qwen",
+   "action_id": "a6",
+   "case": "rename",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+   ],
+   "proposal": "wrong",
+   "proposal_reason": "target E2EGamma and new name E2EBeta: the rename runs the wrong way",
+   "first_cause": "model semantics: roles swapped",
+   "proposed_wire_lines": [
+    "@r1 command action=rename name=E2EBeta target=E2EGamma"
+   ],
+   "score": [
+    -0.016342080903844664
+   ],
+   "weakest": [
+    "target[0].name"
+   ],
+   "qwen_ms": 92090.80000000075
+  },
+  {
+   "reader": "qwen",
+   "action_id": "a7",
+   "case": "label",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+   ],
+   "proposal": "right",
+   "proposal_reason": "label E2EGamma \"Review queue\"; the added kind=shape gives the same drawing (checked in the engine), so by the rule it is right",
+   "first_cause": null,
+   "proposed_wire_lines": [
+    "@r1 command action=label kind=shape label=\"Review queue\" target=E2EGamma"
+   ],
+   "score": [
+    -1.6963756084442139
+   ],
+   "weakest": [
+    "kind"
+   ],
+   "qwen_ms": 96166.39999999851
+  },
+  {
+   "reader": "qwen",
+   "action_id": "a8",
+   "case": "pronoun",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+   ],
+   "proposal": "wrong",
+   "proposal_reason": "target Backdrop instead of the shape the message refers to (E2EGamma); no context reference was used",
+   "first_cause": "context: a named shape chosen instead of the referred one",
+   "proposed_wire_lines": [
+    "@r1 command action=set color=yellow target=Backdrop"
+   ],
+   "score": [
+    -0.29229322100945865
+   ],
+   "weakest": [
+    "color"
+   ],
+   "qwen_ms": 74447.89999999851
+  },
+  {
+   "reader": "qwen",
+   "action_id": "a9",
+   "case": "layout",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "this reader has no calibrated confidence threshold yet, so it does not act on its own"
+   ],
+   "proposal": "wrong",
+   "proposal_reason": "arrange with template=steps and an invented title instead of layout=row",
+   "first_cause": "model semantics: value (template instead of layout)",
+   "proposed_wire_lines": [
+    "@r1 command action=arrange template=steps title=\"E2EAlpha and E2EGamma\" target=E2EAlpha,E2EGamma"
+   ],
+   "score": [
+    -0.1812286525964737
+   ],
+   "weakest": [
+    "template"
+   ],
+   "qwen_ms": 124146.40000000037
+  },
+  {
+   "reader": "qwen",
+   "action_id": "a10",
+   "case": "question",
+   "outcome": "asked",
+   "wrong": 0,
+   "extras": 0,
+   "hold_reasons": [
+    "it uses property, which check does not take"
+   ],
+   "proposal": "blocked",
+   "proposal_reason": "check with property=position, a key check does not take: blocked, not executable",
+   "first_cause": "model semantics: action (check instead of path), caught by validation",
+   "proposed_wire_lines": [
+    "(blocked) check \"Is there a path from Start to Done?\": it uses property, which check does not take"
+   ],
+   "score": [
+    -3.33826245367527
+   ],
+   "weakest": [
+    "property"
+   ],
+   "qwen_ms": 90233.5
+  }
+ ],
+ "negative_control": {
+  "qwen": {
+   "executed": 0,
+   "extras": 0,
+   "proposals": [
+    {
+     "do": "improve",
+     "src": "Make the diagram feel more optimistic about next quarter.",
+     "blocked": true,
+     "errors": [
+      "it uses property, which improve does not take"
+     ]
+    },
+    {
+     "do": "list",
+     "src": "Names on the canvas: Backdrop, IntakeZone, ReviewZone, Start, Process, Check, Done, MainTitle, IntakeCaption, ReviewCaption, Intake, Review",
+     "blocked": true,
+     "errors": [
+      "its words \u201cNames on the canvas: Backdrop, IntakeZone, ReviewZone, St\u2026\u201d are not in the message",
+      "it uses name, which list does not take"
+     ]
+    }
+   ],
+   "note": "Qwen3 proposed two requests for the unsupported message: improve with property=color on MainTitle (blocked: improve does not take property), and list quoting the prompt line \"Names on the canvas: ...\" (blocked: the words are not in the message). Neither could run; no mutation."
+  },
+  "legacy": "unchanged from the five-reader assessment (no mutation, no extra) \u2014 drawings identical"
+ },
+ "repeatability": "The 11 raw outputs and scores of Qwen3 are byte-identical to those of the first live run (live-1-65e13e6), deployed from a different commit whose Qwen3 code path was the same.",
+ "score_observation": "Scores (weakest field mean log-probability): right proposals -0.075 (a1), -0.073 (a4), -1.696 (a7); wrong ones -4.691 (a2), -3.085 (a3), -1.755 (a5), -0.016 (a6), -0.292 (a8), -0.181 (a9); blocked -3.338 (a10). The highest score of the run belongs to a wrong proposal (the swapped rename). No AUROC is computed on nine dependent proposals.",
+ "limits": [
+  "Ten requested actions in one dependent literal sequence; no accuracy, calibration or AUROC claim.",
+  "Qwen3 executes nothing by design (no calibrated threshold), so its executed outcomes are all asked; its proposals are graded separately and are not executions.",
+  "No Do it anyway was pressed.",
+  "Times and memory are from a 4-vCPU Intel Xeon cloud VM with headless Chromium 153, not from an Apple M1."
+ ]
+}

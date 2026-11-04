@@ -8,6 +8,9 @@ its canvas unchanged. It remains experimental: its separate fixed quality test
 accepted only 16 of 1,745 requested actions correctly (0.92%). See
 [the full model report](reports/modernbert.md) and
 [integration status](reports/modernbert-status.md).
+An experimental, opt-in sixth reader, Qwen3-0.6B Q8_0 on the CPU in the browser, is described with its live test in
+[the Qwen3 prototype report](reports/qwen3-browser-prototype.md): it loads and runs on Pages and executes nothing by itself (no
+calibration yet); on the same fixture 3 of its 10 proposals were right, at about 100 s per message on a 4-vCPU cloud VM.
 
 **SOP Sketchpad**: a diagram editor you talk to in English, in the browser, with no server. Every message is formalized into SOP Lang
 wires by the enabled readers (the table under "The readers"), and the same engine and the same Datalog reasoner run the wires,

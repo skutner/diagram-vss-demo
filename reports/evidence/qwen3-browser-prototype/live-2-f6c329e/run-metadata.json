@@ -1,0 +1,63 @@
+{
+ "url": "https://skutner.github.io/diagram-vss-demo/?models=rules,vss,neural,combined,modernbert,qwen",
+ "local": false,
+ "harness": "training/sketch/diagram_e2e_live6.mjs",
+ "harness_sha256": "37617ca3ef5856762f07c4f9bcfcc663280abb5fe5ddd8ed0f8747f77d42df4e",
+ "fixture_sha256": "c81167e8bb6ff0a8c693317b11ca5d1e72f781bb7851ba28b7448c0edff89f3f",
+ "record_sha256": "0e502dff8415e1e80ba291379c225b0132bda866f077477607e9b66faec82b6f",
+ "started": "2026-11-04T11:22:07.441Z",
+ "finished": "2026-11-04T11:50:53.527Z",
+ "status": "captured; assessment pending",
+ "failures": [],
+ "hardware": {
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "logical_cpus": 4,
+  "mem_total_kib": 16477348,
+  "os": "Ubuntu 24.04.5 LTS",
+  "kernel": "6.18.44-fc-v233",
+  "node": "v22.23.4",
+  "virtualization": "docker"
+ },
+ "browser": {
+  "version": "153.0.8010.12",
+  "headless": true,
+  "viewport": "1400x900",
+  "device_scale_factor": 2,
+  "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+  "hc": 4,
+  "coi": false,
+  "deviceMemory": 16,
+  "heap": {
+   "used": 97400000,
+   "total": 97400000,
+   "limit": 3760000000
+  }
+ },
+ "screenshots": {
+  "rules": {
+   "file": "rules.png",
+   "sha256": "cf30164040166515b22d3fae895f7f5484d36ee4dcd332ceb0eef62d8e7db210"
+  },
+  "vss": {
+   "file": "vss.png",
+   "sha256": "bde45222860275665e81a8d67f4189b8e706b30e77e25583013dd760bcb0443e"
+  },
+  "neural": {
+   "file": "neural.png",
+   "sha256": "f8d99b21f95f274b42ab4a2ca5a56f00be702a86078eb022f8640c6fbaba9e24"
+  },
+  "combined": {
+   "file": "combined.png",
+   "sha256": "767ab1cb5ce62c168ab6f37d72a5670bd4698a04bec0b194ba88aa9f58aadfc9"
+  },
+  "modernbert": {
+   "file": "modernbert.png",
+   "sha256": "6d3e916d5b32a88d08cb92aa21db4860025ed7f899fbf5f1c7ba83df76e457af"
+  },
+  "qwen": {
+   "file": "qwen.png",
+   "sha256": "ef1f0d051640f6580c54ac8d4a6d8fd1943e8a6b2f1b6fccd7e3d2520b0b4c2e"
+  }
+ },
+ "profile_fresh": true
+}

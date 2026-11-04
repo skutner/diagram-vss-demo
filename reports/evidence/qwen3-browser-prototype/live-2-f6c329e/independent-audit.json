@@ -1,0 +1,35 @@
+{
+ "scope": "Independent read-only check of assessment.json against the raw record (record.json) of live run 2, by a separate agent (Sonnet, effort medium; AGENTS.md: label reviews), grading first by the rules of training/qwen/QWEN3_PLAN.md section C and only then comparing. No file changed, no browser or model calls.",
+ "result": "No disagreement on any of the 60 executed outcomes (six readers x ten actions), the 10 Qwen3 proposal grades, or the unsupported control.",
+ "qwen": {
+  "executed": {
+   "right": 0,
+   "wrong": 0,
+   "asked": 10,
+   "not_done": 0,
+   "extras": 0
+  },
+  "proposals": {
+   "right": 3,
+   "wrong": 6,
+   "blocked": 1,
+   "none": 0
+  },
+  "a7": "checked in the engine: the label wire with and without kind=shape gives the identical patch (label \"Review queue\" on E2EGamma)",
+  "control": "improve (property=color on MainTitle) and list (quoting the prompt line \"Names on the canvas\") both blocked; nothing executed, drawing unchanged",
+  "drawing": "after.qwen.sop equals initial.qwen.sop after all 11 turns; executed and steps empty in all 11 cases"
+ },
+ "legacy": {
+  "after_sop_equal": "55/55",
+  "turn_summaries_equal": "55/55",
+  "details_sections_equal": "55/55 (Qwen3 section dropped, ms/s numbers replaced)",
+  "legacy_outcomes_equal": "50/50 action-reader pairs",
+  "spot_checks": "rules a1-a9 and a7 not done; vss a8 asked, a9 right; neural a8/a9 asked; combined only E2EBeta/E2EGamma exists, no alpha, no edge; modernbert no E2E shape in any turn: all consistent"
+ },
+ "not_checked_by_the_auditor": [
+  "the raw_record_sha256 field",
+  "the repeatability claim against live run 1 (checked by the coordinator: 11/11 raw outputs and scores byte-identical)",
+  "that path is a legend question act (checked by the coordinator: it is)",
+  "reply texts, which include timings"
+ ]
+}
