@@ -1,0 +1,50 @@
+{"id":"tr-02-001","domain":"tree house","kind":"session","session":"treehouse","setup":"@c1 command action=create shape=rectangle color=brown size=large name=Trunk width=60 height=300 at=400,330","text":"ok the brown thing is the big oak. put a platform on top of it, wide and gray"}
+{"id":"tr-02-002","domain":"tree house","kind":"session","session":"treehouse","text":"make it wood coloured not gray"}
+{"id":"tr-02-003","domain":"tree house","kind":"session","session":"treehouse","text":"ladder on the left, long thin one"}
+{"id":"tr-02-004","domain":"tree house","kind":"session","session":"treehouse","text":"walls: two squares on the platform, side by side"}
+{"id":"tr-02-005","domain":"tree house","kind":"session","session":"treehouse","text":"roof. red triangle"}
+{"id":"tr-02-006","domain":"tree house","kind":"session","session":"treehouse","text":"bigger, it should cover both walls"}
+{"id":"tr-02-007","domain":"tree house","kind":"session","session":"treehouse","text":"window on the left wall, little yellow circle"}
+{"id":"tr-02-008","domain":"tree house","kind":"session","session":"treehouse","text":"same on the right"}
+{"id":"tr-02-009","domain":"tree house","kind":"session","session":"treehouse","text":"door: a tall rectangle between the walls"}
+{"id":"tr-02-010","domain":"tree house","kind":"session","session":"treehouse","text":"sorry the door goes on the right wall not between"}
+{"id":"tr-02-011","domain":"tree house","kind":"session","session":"treehouse","text":"a rope from the roof to the trunk"}
+{"id":"tr-02-012","domain":"tree house","kind":"session","session":"treehouse","text":"no, dashed"}
+{"id":"tr-02-013","domain":"tree house","kind":"session","session":"treehouse","text":"a flag on top. small, blue"}
+{"id":"tr-02-014","domain":"tree house","kind":"session","session":"treehouse","text":"the sun, orange, top right corner"}
+{"id":"tr-02-015","domain":"tree house","kind":"session","session":"treehouse","text":"title: My Tree House, at the top"}
+{"id":"tr-02-016","domain":"tree house","kind":"session","session":"treehouse","text":"group the walls and the roof and call it House"}
+{"id":"tr-02-017","domain":"tree house","kind":"session","session":"treehouse","text":"how many windows did I end up with"}
+{"id":"tr-02-018","domain":"customer support flow","kind":"session","session":"support","text":"circle called Start, green, on the left"}
+{"id":"tr-02-019","domain":"customer support flow","kind":"session","session":"support","text":"then a box: Read ticket"}
+{"id":"tr-02-020","domain":"customer support flow","kind":"session","session":"support","text":"arrow from start"}
+{"id":"tr-02-021","domain":"customer support flow","kind":"session","session":"support","text":"diamond after it, says Urgent?"}
+{"id":"tr-02-022","domain":"customer support flow","kind":"session","session":"support","text":"yes goes up to a box Call customer, no goes down to Send template"}
+{"id":"tr-02-023","domain":"customer support flow","kind":"session","session":"support","text":"label the arrows yes and no"}
+{"id":"tr-02-024","domain":"customer support flow","kind":"session","session":"support","text":"both of those into a box Close ticket"}
+{"id":"tr-02-025","domain":"customer support flow","kind":"session","session":"support","text":"Close ticket red"}
+{"id":"tr-02-026","domain":"customer support flow","kind":"session","session":"support","text":"hm no, make it gray. red looks like an error"}
+{"id":"tr-02-027","domain":"customer support flow","kind":"session","session":"support","text":"also we have an escalation: if the call fails, back to Read ticket"}
+{"id":"tr-02-028","domain":"customer support flow","kind":"session","session":"support","text":"dotted please"}
+{"id":"tr-02-029","domain":"customer support flow","kind":"session","session":"support","text":"Send template should say Send macro"}
+{"id":"tr-02-030","domain":"customer support flow","kind":"session","session":"support","text":"line them all up, it's a mess"}
+{"id":"tr-02-031","domain":"customer support flow","kind":"session","session":"support","text":"you made the diamond tiny"}
+{"id":"tr-02-032","domain":"customer support flow","kind":"session","session":"support","text":"which boxes have no arrow leaving them"}
+{"id":"tr-02-033","domain":"customer support flow","kind":"session","session":"support","text":"ok thanks that's it for now"}
+{"id":"tr-02-034","domain":"crop rotation","kind":"session","session":"rotation","setup":"@c1 command action=create shape=rectangle color=green fill=light layer=zone name=Field width=560 height=300 at=400,260","text":"4 beds in the field, a row, call them Bed1 to Bed4"}
+{"id":"tr-02-035","domain":"crop rotation","kind":"session","session":"rotation","text":"Bed1: corn, yellow"}
+{"id":"tr-02-036","domain":"crop rotation","kind":"session","session":"rotation","text":"Bed2: beans, green"}
+{"id":"tr-02-037","domain":"crop rotation","kind":"session","session":"rotation","text":"Bed3 is wheat, gold. Bed4 left empty for fallow"}
+{"id":"tr-02-038","domain":"crop rotation","kind":"session","session":"rotation","text":"make Bed4 gray"}
+{"id":"tr-02-039","domain":"crop rotation","kind":"session","session":"rotation","text":"arrow from corn to beans"}
+{"id":"tr-02-040","domain":"crop rotation","kind":"session","session":"rotation","text":"and beans to wheat, wheat to fallow"}
+{"id":"tr-02-041","domain":"crop rotation","kind":"session","session":"rotation","text":"fallow back to corn"}
+{"id":"tr-02-042","domain":"crop rotation","kind":"session","session":"rotation","text":"that one curves badly, drop it and do it straight"}
+{"id":"tr-02-043","domain":"crop rotation","kind":"session","session":"rotation","text":"year 1 year 2 year 3 year 4 as small texts under each bed"}
+{"id":"tr-02-044","domain":"crop rotation","kind":"session","session":"rotation","text":"put 12 on the next one, it's the bed count for the north side"}
+{"id":"tr-02-045","domain":"crop rotation","kind":"session","session":"rotation","text":"sorry, the next one after that"}
+{"id":"tr-02-046","domain":"crop rotation","kind":"session","session":"rotation","text":"compost heap, brown circle, right of the field"}
+{"id":"tr-02-047","domain":"crop rotation","kind":"session","session":"rotation","text":"every bed sends to it"}
+{"id":"tr-02-048","domain":"crop rotation","kind":"session","session":"rotation","text":"too many arrows now, remove the ones to the compost except from fallow"}
+{"id":"tr-02-049","domain":"crop rotation","kind":"session","session":"rotation","text":"Field: title it Plot North"}
+{"id":"tr-02-050","domain":"crop rotation","kind":"session","session":"rotation","text":"undo that last one"}

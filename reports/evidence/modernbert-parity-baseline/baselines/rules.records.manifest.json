@@ -1,0 +1,232 @@
+{
+  "config": {
+    "schema": "arm-records-v1",
+    "reader": "rules",
+    "model": null,
+    "artifacts_sha256": "rules:715da7ed6b783350d3d167f7d477fbd58cfa722b69c877904552321ce6fcdc0e",
+    "train_data": {
+      "dir": "/home/skutner/.cache/diagram-vss-modernbert/arms/baseline/train-data",
+      "train_sha256": "d42b251ad421ca2b7c294091669cbfb6299b9199b303fe5df753c49f0f990ea9",
+      "inventory": {
+        "source": "/home/skutner/.cache/diagram-vss-modernbert/arms/baseline/train-data/trigger_inventory.json",
+        "exact": true,
+        "triggers": 3513,
+        "sha256": "54067f1ceb67aa11db0bc5d38f854c400cc02f262b7643f1ddff1bb45035ad19",
+        "definition": "make_data.split_messages annotation triggers (calibrate_modernbert.mjs trainingInventory)"
+      },
+      "text_overlap_allowed": true,
+      "text_overlap_ids": [
+        "fo-0112",
+        "fo-0341",
+        "fo-0381",
+        "fo-0527",
+        "s3-0004",
+        "s3-0021",
+        "s3-0032",
+        "s3-0064",
+        "s3-0065",
+        "s3-0067",
+        "s3-0101",
+        "s3-0157",
+        "s3-0164",
+        "s3-0177",
+        "s3-0186",
+        "s3-0283",
+        "s3-0319",
+        "s3-0355",
+        "s3-0359",
+        "s3-0362",
+        "s3-0373",
+        "s3-0380",
+        "s3-0386",
+        "s3-0440",
+        "s3-0467",
+        "s3-0484",
+        "s3-0505",
+        "s3-0506",
+        "sc3-10-022",
+        "sc3-14-032",
+        "nl-07-040",
+        "nl-08-017",
+        "nl-10-036",
+        "nl-10-038",
+        "nl-11-010"
+      ]
+    },
+    "sets": [
+      {
+        "name": "fresh2",
+        "messages": 600,
+        "excluded": [],
+        "files": [
+          "fresh2/opus_a/batch_01.jsonl",
+          "fresh2/opus_b/batch_01.jsonl",
+          "fresh2/opus_c/batch_01.jsonl",
+          "fresh2/opus_d/batch_01.jsonl"
+        ],
+        "teachers": [
+          "gold"
+        ],
+        "input_sha256": "c7f1e6a458a151687d81fd5664c999e4de654f88639f47508f3c836596245596"
+      },
+      {
+        "name": "short3",
+        "messages": 513,
+        "excluded": [
+          {
+            "id": "s3-0010",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0046",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0048",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0055",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0134",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0153",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0154",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0234",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0296",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0374",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0389",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0413",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0417",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0480",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0483",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0487",
+            "reason": "pending gold wire"
+          },
+          {
+            "id": "s3-0507",
+            "reason": "pending gold wire"
+          }
+        ],
+        "files": [
+          "short3/batch_01.jsonl"
+        ],
+        "teachers": [
+          "gold"
+        ],
+        "input_sha256": "85bf096fd48af51b96a53be8a0a6c651194bde21660dece4a679a4fd92d54a83"
+      },
+      {
+        "name": "collected_1",
+        "messages": 52,
+        "excluded": [],
+        "files": [
+          "collected_1/batch_01.jsonl",
+          "collected_1/batch_02.jsonl"
+        ],
+        "teachers": [
+          "gold",
+          "opus",
+          "gpt"
+        ],
+        "input_sha256": "61afa23bcf15c9c1a9c17528ec28999ad8e73c0c03f642363a1e48415e59d056"
+      },
+      {
+        "name": "scenes_test",
+        "messages": 166,
+        "excluded": [],
+        "files": [
+          "scenes_test/batch_01.jsonl",
+          "scenes_test/batch_02.jsonl",
+          "scenes_test/batch_03.jsonl",
+          "scenes_test/batch_04.jsonl"
+        ],
+        "teachers": [
+          "gold"
+        ],
+        "input_sha256": "e0c9af755623a2a2ca4b3b02049c2ed2959935d743973acdc93ab33b390f77ef"
+      },
+      {
+        "name": "nl_a",
+        "messages": 610,
+        "excluded": [],
+        "files": [
+          "nl_a/opus",
+          "nl_a/gpt"
+        ],
+        "teachers": [
+          "opus",
+          "gpt"
+        ],
+        "input_sha256": "dfe0396807c6a476ce1d95e96d679c4506023b1e6aaa8a5f920c060a17302393"
+      }
+    ],
+    "code": {
+      "training/neural/parity/collect_set.mjs": "4e13ca2e9e1f523675bbc0a970c094d24f3d390c4eff2b9eeb98b0f2c03ccc89",
+      "training/neural/parity/arm_lib.mjs": "a5401aeca711dde8186c352b431d588a3e6c7c62d6d0d15d44bd21db1356f548",
+      "training/neural/parity/sets.mjs": "c74c29da18dd88a1a698bc440eb7f4e64cd23a841002ba33562b8fc189c85213",
+      "training/neural/parity/parity_lib.mjs": "e750ed25d8c8308b7d3c5ce3abd0bd2126cf20b77fde7bc3b0c48d45ff9a9b03",
+      "training/neural/calibrate_modernbert.mjs": "64e29df6b4c33afc60848e244f76aae5f05052ea86acc41d0a350e46752373fc",
+      "docs/js/neural.js": "43d72c09b32cbc9b6f49977e30b84c3f3de335eb0fa177a17ca820e4506c3c33",
+      "docs/js/neural-confidence.js": "2c5a3b55db0b6f36919f6c31de9eab9ab63926bbb77e0ddf312a911b2cdc5209",
+      "docs/js/logic.js": "715da7ed6b783350d3d167f7d477fbd58cfa722b69c877904552321ce6fcdc0e",
+      "docs/js/bench-canon.js": "4e4bb98db55c2badc6725e42e04862a5893ffeb2cf4a83d2bbaf3cfc931f2cfb",
+      "docs/js/vss-composer.js": "37a012547531cdd194f9f99a5101ec328f810a11b770aced7d9e44c5b8c5a2b5",
+      "training/sketch/layer_common.mjs": "f41655370a5675e4476b0edb68b2af7576bfae7eec6723be751bfb04876fb78e"
+    },
+    "threads": null
+  },
+  "complete": true,
+  "runtime": {
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "reader": "rules (docs/js/logic.js createSystem().formalize)"
+  },
+  "started": "2026-11-05T19:15:47.103Z",
+  "records": {
+    "count": 1941,
+    "sha256": "f7160f97783aa5c2cc4025126e8c73963c2cb2f4e2dcbc4e22de31a602e0d692"
+  },
+  "expected": 1941,
+  "failed": [],
+  "finished": "2026-11-05T19:16:01.887Z",
+  "context": {
+    "session_steps_with_other_names_than_the_gold_drawing": 0,
+    "example_ids": [],
+    "gold_engine_errors": 11
+  }
+}

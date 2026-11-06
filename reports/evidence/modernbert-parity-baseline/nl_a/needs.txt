@@ -1,0 +1,8 @@
+training/sketch/llm_bench/nl_a/opus: 610 rows, 800 wires; need the drawing 269 = 33.6%
+   by kind: long 33/205, session 58/155, paraphrase 47/135, dictated 11/48, complaint 19/43, reference 34/40, self_correction 17/39, translated 18/39, typos 11/36, short 9/28, indirect 7/15, ambiguous 3/12, fragment 2/5
+   actions: create:270 connect:139 set:74 label:72 move:54 resize:25 count:23 disconnect:21 delete:18 swap:13 duplicate:11 respace:10 reverse:10 undo:10 group:8 rename:7 neighbors:6 help:4 path:3 arrange:3 fit:2 connected:2
+   keys: action:756 target:283 position:246 label:223 anchor:200 from:196 to:181 name:124 shape:98 color:81 ask:44 linked:35 size:30 arrow:22 style:21 count:20 layer:15 pairing:14 scale:13 comparison:10 object:10 direction:7 layout:5 fill:4 topic:4 aspect:4
+training/sketch/llm_bench/nl_a/gpt: 610 rows, 788 wires; need the drawing 265 = 33.6%
+   by kind: long 31/209, session 60/150, paraphrase 46/136, dictated 12/48, complaint 18/44, reference 34/40, self_correction 14/35, translated 13/35, typos 11/31, short 9/27, indirect 10/17, ambiguous 2/10, fragment 5/6
+   actions: create:248 connect:137 set:75 label:74 move:59 resize:26 disconnect:22 delete:17 duplicate:16 count:16 respace:10 reverse:10 undo:10 swap:9 group:8 rename:7 degree:7 help:6 neighbors:5 arrange:4 fit:2 connected:2
+   keys: action:744 target:301 label:262 position:235 from:193 anchor:192 to:183 shape:122 color:86 name:73 linked:45 ask:44 arrow:29 size:27 count:22 style:21 object:14 scale:13 layer:12 comparison:10 pairing:9 layout:8 topic:6 aspect:6 direction:5 fill:4

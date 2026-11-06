@@ -1,0 +1,1002 @@
+{
+  "schema": "arm-export-receipt-v1",
+  "passed": false,
+  "rule": "passed = PyTorch and Node decode every text the same; the runtime checks before it have already held",
+  "weights": {
+    "sha256": "7897e8a0fda7f43e2f7ea4cc134a325d992edf94b17dc6f135803d54844d2f4b",
+    "epoch": 8,
+    "update": 13648,
+    "total": 13648,
+    "full_schedule": true,
+    "max_updates": 0,
+    "source_file": "checkpoint.pt",
+    "source_changes_since_training": []
+  },
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "torch_vs_node": {
+    "texts": 20,
+    "counts": {
+      "act": {
+        "agree": 19,
+        "total": 20
+      },
+      "classes": {
+        "agree": 819,
+        "total": 820
+      },
+      "tags": {
+        "agree": 1936,
+        "total": 1950
+      },
+      "cuts": {
+        "agree": 19,
+        "total": 20
+      },
+      "pieces": {
+        "agree": 20,
+        "total": 20
+      }
+    },
+    "differences": [
+      {
+        "text": "Okay, so my kids and I are designing a board game map and I want to fix up a few",
+        "chars": 603,
+        "differences": [
+          {
+            "key": "tag:43",
+            "torch": "O",
+            "node": "B-label",
+            "margin": 0.0246
+          },
+          {
+            "key": "tag:74",
+            "torch": "B-to",
+            "node": "I-name",
+            "margin": 0.023
+          },
+          {
+            "key": "tag:107",
+            "torch": "B-label",
+            "node": "B-anchor",
+            "margin": 0.0067
+          }
+        ]
+      },
+      {
+        "text": "Alright, I run a small roastery and my investor wants to see how a bag of coffee",
+        "chars": 1200,
+        "differences": [
+          {
+            "key": "tag:4",
+            "torch": "I-name",
+            "node": "O",
+            "margin": 0.1691
+          },
+          {
+            "key": "tag:11",
+            "torch": "B-anchor",
+            "node": "O",
+            "margin": 0.1027
+          },
+          {
+            "key": "tag:20",
+            "torch": "B-title",
+            "node": "B-to",
+            "margin": 0.0037
+          },
+          {
+            "key": "tag:42",
+            "torch": "B-title",
+            "node": "I-name",
+            "margin": 0.0378
+          },
+          {
+            "key": "tag:48",
+            "torch": "I-items2",
+            "node": "O",
+            "margin": 0.1081
+          },
+          {
+            "key": "tag:49",
+            "torch": "B-parents",
+            "node": "I-items2",
+            "margin": 0.0763
+          },
+          {
+            "key": "tag:56",
+            "torch": "I-items2",
+            "node": "O",
+            "margin": 0.1001
+          },
+          {
+            "key": "tag:58",
+            "torch": "B-parents",
+            "node": "B-from",
+            "margin": 0.0281
+          }
+        ]
+      },
+      {
+        "text": "Caf\u00e9 na\u00efve \u6771\u4eac \ud83d\ude00 e\u0301 _ \uff11\uff12",
+        "chars": 23,
+        "differences": [
+          {
+            "key": "class:template",
+            "torch": "matrix",
+            "node": "hub",
+            "margin": 0.2558
+          }
+        ]
+      },
+      {
+        "text": "connect A to B; connect A to B; connect A to B; connect A to B; connect A to B; ",
+        "chars": 1280,
+        "differences": [
+          {
+            "key": "tag:48",
+            "torch": "O",
+            "node": "B-from",
+            "margin": 0.0561
+          },
+          {
+            "key": "tag:118",
+            "torch": "O",
+            "node": "B-to",
+            "margin": 0.4126
+          },
+          {
+            "key": "cut",
+            "torch": [
+              [
+                0,
+                62
+              ],
+              [
+                64,
+                78
+              ],
+              [
+                80,
+                94
+              ],
+              [
+                96,
+                110
+              ],
+              [
+                112,
+                126
+              ],
+              [
+                128,
+                142
+              ],
+              [
+                144,
+                158
+              ],
+              [
+                160,
+                174
+              ],
+              [
+                176,
+                190
+              ],
+              [
+                192,
+                206
+              ],
+              [
+                208,
+                220
+              ],
+              [
+                224,
+                231
+              ],
+              [
+                234,
+                236
+              ],
+              [
+                240,
+                247
+              ],
+              [
+                250,
+                252
+              ],
+              [
+                256,
+                263
+              ],
+              [
+                266,
+                268
+              ],
+              [
+                272,
+                279
+              ],
+              [
+                282,
+                284
+              ],
+              [
+                288,
+                295
+              ],
+              [
+                304,
+                311
+              ],
+              [
+                320,
+                327
+              ],
+              [
+                330,
+                332
+              ],
+              [
+                336,
+                343
+              ],
+              [
+                346,
+                348
+              ],
+              [
+                352,
+                359
+              ],
+              [
+                384,
+                391
+              ],
+              [
+                394,
+                396
+              ],
+              [
+                400,
+                407
+              ],
+              [
+                410,
+                412
+              ],
+              [
+                416,
+                423
+              ],
+              [
+                426,
+                428
+              ],
+              [
+                432,
+                439
+              ],
+              [
+                442,
+                444
+              ],
+              [
+                448,
+                455
+              ],
+              [
+                458,
+                460
+              ],
+              [
+                464,
+                471
+              ],
+              [
+                474,
+                476
+              ],
+              [
+                480,
+                487
+              ],
+              [
+                490,
+                492
+              ],
+              [
+                496,
+                503
+              ],
+              [
+                506,
+                508
+              ],
+              [
+                512,
+                519
+              ],
+              [
+                522,
+                524
+              ],
+              [
+                528,
+                535
+              ],
+              [
+                538,
+                540
+              ],
+              [
+                544,
+                551
+              ],
+              [
+                554,
+                556
+              ],
+              [
+                560,
+                567
+              ],
+              [
+                570,
+                572
+              ],
+              [
+                576,
+                583
+              ],
+              [
+                586,
+                588
+              ],
+              [
+                592,
+                599
+              ],
+              [
+                602,
+                604
+              ],
+              [
+                608,
+                615
+              ],
+              [
+                618,
+                620
+              ],
+              [
+                624,
+                631
+              ],
+              [
+                634,
+                636
+              ],
+              [
+                640,
+                647
+              ],
+              [
+                650,
+                652
+              ],
+              [
+                656,
+                663
+              ],
+              [
+                666,
+                668
+              ],
+              [
+                672,
+                679
+              ],
+              [
+                682,
+                684
+              ],
+              [
+                688,
+                695
+              ],
+              [
+                704,
+                711
+              ],
+              [
+                720,
+                727
+              ],
+              [
+                736,
+                743
+              ],
+              [
+                752,
+                759
+              ],
+              [
+                768,
+                775
+              ],
+              [
+                784,
+                791
+              ],
+              [
+                800,
+                807
+              ],
+              [
+                816,
+                823
+              ],
+              [
+                832,
+                839
+              ],
+              [
+                848,
+                855
+              ],
+              [
+                864,
+                871
+              ],
+              [
+                880,
+                887
+              ],
+              [
+                896,
+                903
+              ],
+              [
+                1072,
+                1084
+              ],
+              [
+                1088,
+                1100
+              ],
+              [
+                1104,
+                1116
+              ],
+              [
+                1120,
+                1132
+              ],
+              [
+                1136,
+                1148
+              ],
+              [
+                1152,
+                1166
+              ],
+              [
+                1168,
+                1182
+              ],
+              [
+                1184,
+                1198
+              ],
+              [
+                1200,
+                1214
+              ],
+              [
+                1216,
+                1230
+              ],
+              [
+                1232,
+                1246
+              ],
+              [
+                1248,
+                1262
+              ],
+              [
+                1264,
+                1278
+              ]
+            ],
+            "node": [
+              [
+                0,
+                62
+              ],
+              [
+                64,
+                78
+              ],
+              [
+                80,
+                94
+              ],
+              [
+                96,
+                110
+              ],
+              [
+                112,
+                126
+              ],
+              [
+                128,
+                142
+              ],
+              [
+                144,
+                158
+              ],
+              [
+                160,
+                174
+              ],
+              [
+                176,
+                190
+              ],
+              [
+                192,
+                204
+              ],
+              [
+                208,
+                215
+              ],
+              [
+                218,
+                220
+              ],
+              [
+                224,
+                231
+              ],
+              [
+                240,
+                247
+              ],
+              [
+                256,
+                263
+              ],
+              [
+                272,
+                279
+              ],
+              [
+                288,
+                295
+              ],
+              [
+                304,
+                311
+              ],
+              [
+                320,
+                327
+              ],
+              [
+                336,
+                343
+              ],
+              [
+                432,
+                439
+              ],
+              [
+                448,
+                455
+              ],
+              [
+                464,
+                471
+              ],
+              [
+                480,
+                487
+              ],
+              [
+                496,
+                503
+              ],
+              [
+                512,
+                519
+              ],
+              [
+                528,
+                535
+              ],
+              [
+                544,
+                551
+              ],
+              [
+                560,
+                567
+              ],
+              [
+                576,
+                583
+              ],
+              [
+                592,
+                599
+              ],
+              [
+                608,
+                615
+              ],
+              [
+                624,
+                631
+              ],
+              [
+                640,
+                647
+              ],
+              [
+                656,
+                663
+              ],
+              [
+                672,
+                679
+              ],
+              [
+                688,
+                695
+              ],
+              [
+                704,
+                711
+              ],
+              [
+                720,
+                727
+              ],
+              [
+                1072,
+                1079
+              ],
+              [
+                1082,
+                1084
+              ],
+              [
+                1088,
+                1100
+              ],
+              [
+                1104,
+                1116
+              ],
+              [
+                1120,
+                1132
+              ],
+              [
+                1136,
+                1148
+              ],
+              [
+                1152,
+                1164
+              ],
+              [
+                1168,
+                1180
+              ],
+              [
+                1184,
+                1198
+              ],
+              [
+                1200,
+                1214
+              ],
+              [
+                1216,
+                1230
+              ],
+              [
+                1232,
+                1246
+              ],
+              [
+                1248,
+                1262
+              ],
+              [
+                1264,
+                1278
+              ]
+            ],
+            "torch_info": {
+              "truncated": false,
+              "unreadFrom": null
+            },
+            "node_info": {
+              "truncated": false,
+              "unreadFrom": null
+            }
+          }
+        ]
+      },
+      {
+        "text": "draw circle. draw circle. draw circle. draw circle. draw circle. draw circle. dr",
+        "chars": 3900,
+        "differences": [
+          {
+            "key": "act",
+            "torch": "align",
+            "node": "count",
+            "margin": 0.0225
+          }
+        ]
+      },
+      {
+        "text": "A\u00a0B\u1680C\u2000D\u2028E\u2029F\u202fG\u205fH\u3000I",
+        "chars": 17,
+        "differences": [
+          {
+            "key": "tag:1",
+            "torch": "O",
+            "node": "B-items",
+            "margin": 1.081
+          }
+        ]
+      }
+    ],
+    "per_text": [
+      {
+        "chars": 18,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 22,
+        "pieces": 8,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 33,
+        "pieces": 8,
+        "words": 6,
+        "agree": true
+      },
+      {
+        "chars": 49,
+        "pieces": 15,
+        "words": 10,
+        "agree": true
+      },
+      {
+        "chars": 64,
+        "pieces": 17,
+        "words": 13,
+        "agree": true
+      },
+      {
+        "chars": 89,
+        "pieces": 21,
+        "words": 19,
+        "agree": true
+      },
+      {
+        "chars": 148,
+        "pieces": 36,
+        "words": 32,
+        "agree": true
+      },
+      {
+        "chars": 225,
+        "pieces": 57,
+        "words": 52,
+        "agree": true
+      },
+      {
+        "chars": 299,
+        "pieces": 81,
+        "words": 64,
+        "agree": true
+      },
+      {
+        "chars": 603,
+        "pieces": 146,
+        "words": 139,
+        "agree": false
+      },
+      {
+        "chars": 1200,
+        "pieces": 302,
+        "words": 267,
+        "agree": false
+      },
+      {
+        "chars": 0,
+        "pieces": 2,
+        "words": 0,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 10,
+        "words": 8,
+        "agree": true
+      },
+      {
+        "chars": 23,
+        "pieces": 22,
+        "words": 8,
+        "agree": false
+      },
+      {
+        "chars": 1280,
+        "pieces": 402,
+        "words": 400,
+        "agree": false
+      },
+      {
+        "chars": 3900,
+        "pieces": 512,
+        "words": 900,
+        "agree": false
+      },
+      {
+        "chars": 14,
+        "pieces": 9,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 17,
+        "pieces": 11,
+        "words": 9,
+        "agree": false
+      },
+      {
+        "chars": 13,
+        "pieces": 5,
+        "words": 3,
+        "agree": true
+      },
+      {
+        "chars": 15,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      }
+    ]
+  },
+  "python_ort_vs_node": {
+    "fixtures": 41,
+    "singles": 39,
+    "batches": 2,
+    "ids": true,
+    "outputs": true,
+    "decoded": true,
+    "cuts": true,
+    "readMany": true,
+    "max_abs": [
+      0.0003840923309326172,
+      5.340576171875e-05,
+      0.00028777122497558594
+    ]
+  },
+  "float_vs_torch_max_abs": [
+    5.14984130859375e-05,
+    4.1961669921875e-05,
+    4.431605339050293e-05
+  ],
+  "sdpa_vs_eager_max_abs": [
+    2.4080276489257812e-05,
+    1.71661376953125e-05,
+    1.430511474609375e-05
+  ],
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.001
+  },
+  "cases_where_q8_decodes_differently_from_float": [
+    "single-03",
+    "single-05",
+    "single-06",
+    "single-08",
+    "single-12",
+    "single-13",
+    "single-15",
+    "batch-message-512",
+    "request-view-of-long-message",
+    "extra-09-128",
+    "extra-09-512",
+    "extra-10-128",
+    "extra-10-512"
+  ],
+  "conversion": {
+    "blocks": 93,
+    "quantizers": 91
+  },
+  "float_graph_files": {
+    "model_float.onnx": {
+      "sha256": "43c6e6f4852f4d8a8beea0989a6d617852255637e20765e9493201cd3f6fd545",
+      "bytes": 600584316
+    }
+  },
+  "shards": [
+    "model_quantized.onnx_data",
+    "model_quantized.onnx_data_1"
+  ],
+  "files": {
+    "config.json": {
+      "sha256": "0611c15f76b1129ec1b558bb8209465a5b7f33c12e68874d4cea596015def522",
+      "bytes": 509575
+    },
+    "conversion.json": {
+      "sha256": "5ad0a684fa9ec9554e7cec5f35497d97f46f4d30a4918258d15f66d2fc821324",
+      "bytes": 64404
+    },
+    "export_parity.json": {
+      "sha256": "90c972233af1882251b7a047e60a4fcf2afe81c3ae6f5c3263976ebf74a01894",
+      "bytes": 537
+    },
+    "onnx/model_quantized.onnx": {
+      "sha256": "30fc9ed02418c3a211abc82f79029af4a75e4bebed77c9e741f7c83a69754061",
+      "bytes": 1490442
+    },
+    "onnx/model_quantized.onnx_data": {
+      "sha256": "646b506037cf8378e4fadc958b2d3533eb68c73c596134435ab792f804d79716",
+      "bytes": 93974204
+    },
+    "onnx/model_quantized.onnx_data_1": {
+      "sha256": "fbc08c2f6a28010738bf2874026cd904a98030c86b1892297f1876c4855a593f",
+      "bytes": 56138496
+    },
+    "references.json": {
+      "sha256": "2a44b6bf433a8c10801d56214ac8549ae0ab71029d202d49555da538da6ffcbf",
+      "bytes": 7007409
+    },
+    "special_tokens_map.json": {
+      "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "bytes": 694
+    },
+    "tokenizer.json": {
+      "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "bytes": 3583228
+    },
+    "tokenizer_config.json": {
+      "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "bytes": 20840
+    }
+  },
+  "source_changes_since_training": [],
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "python": "3.12.16",
+    "python_onnxruntime": "1.29.0"
+  }
+}

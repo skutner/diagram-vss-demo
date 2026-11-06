@@ -1,0 +1,694 @@
+{
+ "a": {
+  "file": "/home/skutner/.cache/diagram-vss-modernbert/arms/F0-s0/eval/cal-fresh2-short3.score.json",
+  "reader": "modernbert",
+  "artifact": "a02e4571539d0250db2adb7b107ef814601699346cc279f904f4a4836258f641",
+  "calibrated_on": [
+   "fresh2",
+   "short3"
+  ],
+  "threshold_cost10": 0.8565101899837695
+ },
+ "b": {
+  "file": "/home/skutner/.cache/diagram-vss-modernbert/arms/baseline/sop.cal-fresh2-short3.score.json",
+  "reader": "sop",
+  "artifact": "c3a9d6b0f205cfe8279a25dd4a89dfb8b847a5568f7e15ec7ac578e484de642f",
+  "calibrated_on": [
+   "fresh2",
+   "short3"
+  ],
+  "threshold_cost10": 0.88265060224658
+ },
+ "seed": 20261105,
+ "resamples": 1000,
+ "note": "difference = cost score of A minus B on the same messages; ci95 resamples the session, else the paraphrase group, else the message; the gate variants use each arm's own cost-10 threshold",
+ "comparisons": {
+  "fresh2/test": {
+   "messages": 405,
+   "resampled_units": 405,
+   "unit": "message",
+   "variants": {
+    "gold.today.all": {
+     "a": -111.4242,
+     "b": -161.31,
+     "difference": 49.8858,
+     "ci95": [
+      25.5039,
+      74.2574
+     ],
+     "p_sign_flip": 0.0001
+    },
+    "gold.today.gate": {
+     "a": 43.7167,
+     "b": 39.6801,
+     "difference": 4.0366,
+     "ci95": [
+      -5.4893,
+      12.5791
+     ],
+     "p_sign_flip": 0.368
+    },
+    "gold.direction.all": {
+     "a": -111.4242,
+     "b": -168.0122,
+     "difference": 56.588,
+     "ci95": [
+      32.2159,
+      81.0089
+     ],
+     "p_sign_flip": 0
+    },
+    "gold.direction.gate": {
+     "a": 43.7167,
+     "b": 35.4912,
+     "difference": 8.2254,
+     "ci95": [
+      -1.4567,
+      17.5775
+     ],
+     "p_sign_flip": 0.0809
+    }
+   },
+   "train_text_overlap_messages": 1,
+   "without_train_text_overlap": {
+    "messages": 404,
+    "resampled_units": 404,
+    "unit": "message",
+    "variants": {
+     "gold.today.all": {
+      "a": -111.5854,
+      "b": -161.5091,
+      "difference": 49.9238,
+      "ci95": [
+       27.2932,
+       73.2327
+      ],
+      "p_sign_flip": 0.0001
+     },
+     "gold.today.gate": {
+      "a": 43.6738,
+      "b": 39.6341,
+      "difference": 4.0396,
+      "ci95": [
+       -4.5558,
+       12.1392
+      ],
+      "p_sign_flip": 0.36
+     },
+     "gold.direction.all": {
+      "a": -111.5854,
+      "b": -168.2165,
+      "difference": 56.6311,
+      "ci95": [
+       33.862,
+       80.5687
+      ],
+      "p_sign_flip": 0.0001
+     },
+     "gold.direction.gate": {
+      "a": 43.6738,
+      "b": 35.4421,
+      "difference": 8.2317,
+      "ci95": [
+       -0.6126,
+       17.1275
+      ],
+      "p_sign_flip": 0.0806
+     }
+    }
+   }
+  },
+  "short3/test": {
+   "messages": 340,
+   "resampled_units": 340,
+   "unit": "message",
+   "variants": {
+    "gold.today.all": {
+     "a": -334.4907,
+     "b": -216.2037,
+     "difference": -118.287,
+     "ci95": [
+      -165.3396,
+      -67.7201
+     ],
+     "p_sign_flip": 0
+    },
+    "gold.today.gate": {
+     "a": -7.8704,
+     "b": -9.2593,
+     "difference": 1.3889,
+     "ci95": [
+      -14.4828,
+      18.4019
+     ],
+     "p_sign_flip": 0.8927
+    },
+    "gold.direction.all": {
+     "a": -337.037,
+     "b": -228.9352,
+     "difference": -108.1019,
+     "ci95": [
+      -156.4334,
+      -57.8089
+     ],
+     "p_sign_flip": 0
+    },
+    "gold.direction.gate": {
+     "a": -7.8704,
+     "b": -14.3519,
+     "difference": 6.4815,
+     "ci95": [
+      -10.5747,
+      24.4656
+     ],
+     "p_sign_flip": 0.5006
+    }
+   },
+   "train_text_overlap_messages": 16,
+   "without_train_text_overlap": {
+    "messages": 324,
+    "resampled_units": 324,
+    "unit": "message",
+    "variants": {
+     "gold.today.all": {
+      "a": -348.5577,
+      "b": -225.7212,
+      "difference": -122.8365,
+      "ci95": [
+       -173.7624,
+       -74.5803
+      ],
+      "p_sign_flip": 0
+     },
+     "gold.today.gate": {
+      "a": -9.6154,
+      "b": -10.8173,
+      "difference": 1.2019,
+      "ci95": [
+       -16.4216,
+       17.2414
+      ],
+      "p_sign_flip": 0.9109
+     },
+     "gold.direction.all": {
+      "a": -351.2019,
+      "b": -238.9423,
+      "difference": -112.2596,
+      "ci95": [
+       -164.1646,
+       -63.4383
+      ],
+      "p_sign_flip": 0
+     },
+     "gold.direction.gate": {
+      "a": -9.6154,
+      "b": -16.1058,
+      "difference": 6.4904,
+      "ci95": [
+       -11.8203,
+       24.3961
+      ],
+      "p_sign_flip": 0.5187
+     }
+    }
+   }
+  },
+  "collected_1/all": {
+   "messages": 52,
+   "resampled_units": 52,
+   "unit": "message",
+   "variants": {
+    "gold.today.all": {
+     "a": -995.4545,
+     "b": -1022.7273,
+     "difference": 27.2727,
+     "ci95": [
+      -184.4444,
+      232.4324
+     ],
+     "p_sign_flip": 0.7866
+    },
+    "gold.today.gate": {
+     "a": -38.6364,
+     "b": -22.7273,
+     "difference": -15.9091,
+     "ci95": [
+      -102.2222,
+      58.5366
+     ],
+     "p_sign_flip": 1
+    },
+    "gold.direction.all": {
+     "a": -995.4545,
+     "b": -1022.7273,
+     "difference": 27.2727,
+     "ci95": [
+      -184.4444,
+      232.4324
+     ],
+     "p_sign_flip": 0.7866
+    },
+    "gold.direction.gate": {
+     "a": -38.6364,
+     "b": -22.7273,
+     "difference": -15.9091,
+     "ci95": [
+      -102.2222,
+      58.5366
+     ],
+     "p_sign_flip": 1
+    },
+    "teacher_opus.today.all": {
+     "a": -955.3191,
+     "b": -980.8511,
+     "difference": 25.5319,
+     "ci95": [
+      -159.0909,
+      216.6667
+     ],
+     "p_sign_flip": 0.7691
+    },
+    "teacher_opus.today.gate": {
+     "a": -36.1702,
+     "b": -21.2766,
+     "difference": -14.8936,
+     "ci95": [
+      -93.8776,
+      53.3333
+     ],
+     "p_sign_flip": 1
+    },
+    "teacher_opus.direction.all": {
+     "a": -955.3191,
+     "b": -980.8511,
+     "difference": 25.5319,
+     "ci95": [
+      -159.0909,
+      216.6667
+     ],
+     "p_sign_flip": 0.7691
+    },
+    "teacher_opus.direction.gate": {
+     "a": -36.1702,
+     "b": -21.2766,
+     "difference": -14.8936,
+     "ci95": [
+      -93.8776,
+      53.3333
+     ],
+     "p_sign_flip": 1
+    },
+    "teacher_either.today.all": {
+     "a": -916.3265,
+     "b": -940.8163,
+     "difference": 24.4898,
+     "ci95": [
+      -155.5556,
+      206.5217
+     ],
+     "p_sign_flip": 0.7691
+    },
+    "teacher_either.today.gate": {
+     "a": -34.6939,
+     "b": -20.4082,
+     "difference": -14.2857,
+     "ci95": [
+      -88.6364,
+      50
+     ],
+     "p_sign_flip": 1
+    },
+    "teacher_either.direction.all": {
+     "a": -916.3265,
+     "b": -940.8163,
+     "difference": 24.4898,
+     "ci95": [
+      -155.5556,
+      206.5217
+     ],
+     "p_sign_flip": 0.7691
+    },
+    "teacher_either.direction.gate": {
+     "a": -34.6939,
+     "b": -20.4082,
+     "difference": -14.2857,
+     "ci95": [
+      -88.6364,
+      50
+     ],
+     "p_sign_flip": 1
+    }
+   },
+   "train_text_overlap_messages": 0
+  },
+  "scenes_test/all": {
+   "messages": 166,
+   "resampled_units": 4,
+   "unit": "session",
+   "variants": {
+    "gold.today.all": {
+     "a": -409.2025,
+     "b": -460.7362,
+     "difference": 51.5337,
+     "ci95": null,
+     "ci95_reason": "too few units (4 session)",
+     "p_sign_flip": 0.625
+    },
+    "gold.today.gate": {
+     "a": -18.4049,
+     "b": 19.6319,
+     "difference": -38.0368,
+     "ci95": null,
+     "ci95_reason": "too few units (4 session)",
+     "p_sign_flip": 0.25
+    },
+    "gold.direction.all": {
+     "a": -409.2025,
+     "b": -460.7362,
+     "difference": 51.5337,
+     "ci95": null,
+     "ci95_reason": "too few units (4 session)",
+     "p_sign_flip": 0.625
+    },
+    "gold.direction.gate": {
+     "a": -18.4049,
+     "b": 19.6319,
+     "difference": -38.0368,
+     "ci95": null,
+     "ci95_reason": "too few units (4 session)",
+     "p_sign_flip": 0.25
+    }
+   },
+   "train_text_overlap_messages": 5,
+   "without_train_text_overlap": {
+    "messages": 161,
+    "resampled_units": 4,
+    "unit": "session",
+    "variants": {
+     "gold.today.all": {
+      "a": -418.3544,
+      "b": -464.557,
+      "difference": 46.2025,
+      "ci95": null,
+      "ci95_reason": "too few units (4 session)",
+      "p_sign_flip": 0.625
+     },
+     "gold.today.gate": {
+      "a": -20.2532,
+      "b": 25.3165,
+      "difference": -45.5696,
+      "ci95": null,
+      "ci95_reason": "too few units (4 session)",
+      "p_sign_flip": 0.125
+     },
+     "gold.direction.all": {
+      "a": -418.3544,
+      "b": -464.557,
+      "difference": 46.2025,
+      "ci95": null,
+      "ci95_reason": "too few units (4 session)",
+      "p_sign_flip": 0.625
+     },
+     "gold.direction.gate": {
+      "a": -20.2532,
+      "b": 25.3165,
+      "difference": -45.5696,
+      "ci95": null,
+      "ci95_reason": "too few units (4 session)",
+      "p_sign_flip": 0.125
+     }
+    }
+   }
+  },
+  "nl_a/development": {
+   "messages": 300,
+   "resampled_units": 172,
+   "unit": "session, else paraphrase group, else message",
+   "variants": {
+    "opus.today.all": {
+     "a": -1158.6735,
+     "b": -1269.1327,
+     "difference": 110.4592,
+     "ci95": [
+      31.0748,
+      216.2162
+     ],
+     "p_sign_flip": 0.0102
+    },
+    "opus.today.gate": {
+     "a": -21.4286,
+     "b": -42.3469,
+     "difference": 20.9184,
+     "ci95": [
+      -1.937,
+      45.6989
+     ],
+     "p_sign_flip": 0.1192
+    },
+    "opus.direction.all": {
+     "a": -1158.6735,
+     "b": -1274.7449,
+     "difference": 116.0714,
+     "ci95": [
+      37.6623,
+      216.9753
+     ],
+     "p_sign_flip": 0.0061
+    },
+    "opus.direction.gate": {
+     "a": -21.4286,
+     "b": -45.1531,
+     "difference": 23.7245,
+     "ci95": [
+      -0.7752,
+      48.105
+     ],
+     "p_sign_flip": 0.0796
+    },
+    "either.today.all": {
+     "a": -1102.4272,
+     "b": -1204.8544,
+     "difference": 102.4272,
+     "ci95": [
+      27.13,
+      200.5797
+     ],
+     "p_sign_flip": 0.0119
+    },
+    "either.today.gate": {
+     "a": -20.3883,
+     "b": -37.6214,
+     "difference": 17.233,
+     "ci95": [
+      -3.9216,
+      38.4428
+     ],
+     "p_sign_flip": 0.1499
+    },
+    "either.direction.all": {
+     "a": -1102.4272,
+     "b": -1210.1942,
+     "difference": 107.767,
+     "ci95": [
+      33.7531,
+      200.716
+     ],
+     "p_sign_flip": 0.007
+    },
+    "either.direction.gate": {
+     "a": -20.3883,
+     "b": -40.2913,
+     "difference": 19.9029,
+     "ci95": [
+      -2.459,
+      41.1192
+     ],
+     "p_sign_flip": 0.1004
+    }
+   },
+   "train_text_overlap_messages": 1,
+   "without_train_text_overlap": {
+    "messages": 299,
+    "resampled_units": 172,
+    "unit": "session, else paraphrase group, else message",
+    "variants": {
+     "opus.today.all": {
+      "a": -1161.8926,
+      "b": -1272.6343,
+      "difference": 110.7417,
+      "ci95": [
+       31.0748,
+       216.2162
+      ],
+      "p_sign_flip": 0.0102
+     },
+     "opus.today.gate": {
+      "a": -21.7391,
+      "b": -42.711,
+      "difference": 20.9719,
+      "ci95": [
+       -1.9417,
+       45.809
+      ],
+      "p_sign_flip": 0.1192
+     },
+     "opus.direction.all": {
+      "a": -1161.8926,
+      "b": -1278.2609,
+      "difference": 116.3683,
+      "ci95": [
+       37.6623,
+       216.9753
+      ],
+      "p_sign_flip": 0.0061
+     },
+     "opus.direction.gate": {
+      "a": -21.7391,
+      "b": -45.5243,
+      "difference": 23.7852,
+      "ci95": [
+       -0.7752,
+       48.3122
+      ],
+      "p_sign_flip": 0.0796
+     },
+     "either.today.all": {
+      "a": -1105.3528,
+      "b": -1208.0292,
+      "difference": 102.6764,
+      "ci95": [
+       27.191,
+       200.5797
+      ],
+      "p_sign_flip": 0.0119
+     },
+     "either.today.gate": {
+      "a": -20.6813,
+      "b": -37.9562,
+      "difference": 17.2749,
+      "ci95": [
+       -3.9216,
+       38.5366
+      ],
+      "p_sign_flip": 0.1499
+     },
+     "either.direction.all": {
+      "a": -1105.3528,
+      "b": -1213.382,
+      "difference": 108.0292,
+      "ci95": [
+       33.8462,
+       201.1962
+      ],
+      "p_sign_flip": 0.007
+     },
+     "either.direction.gate": {
+      "a": -20.6813,
+      "b": -40.6326,
+      "difference": 19.9513,
+      "ci95": [
+       -2.4658,
+       41.2195
+      ],
+      "p_sign_flip": 0.1004
+     }
+    }
+   }
+  },
+  "fresh2+short3/test": {
+   "messages": 745,
+   "resampled_units": 745,
+   "unit": "message",
+   "variants": {
+    "gold.today.all": {
+     "a": -166.6476,
+     "b": -174.8997,
+     "difference": 8.2521,
+     "ci95": [
+      -12.8146,
+      28.6736
+     ],
+     "p_sign_flip": 0.4829
+    },
+    "gold.today.gate": {
+     "a": 30.9456,
+     "b": 27.5645,
+     "difference": 3.3811,
+     "ci95": [
+      -4.4801,
+      10.6557
+     ],
+     "p_sign_flip": 0.3908
+    },
+    "gold.direction.all": {
+     "a": -167.2779,
+     "b": -183.0946,
+     "difference": 15.8166,
+     "ci95": [
+      -4.9577,
+      36.4552
+     ],
+     "p_sign_flip": 0.1815
+    },
+    "gold.direction.gate": {
+     "a": 30.9456,
+     "b": 23.1519,
+     "difference": 7.7937,
+     "ci95": [
+      -0.1743,
+      16.1502
+     ],
+     "p_sign_flip": 0.0608
+    }
+   },
+   "train_text_overlap_messages": 17,
+   "without_train_text_overlap": {
+    "messages": 728,
+    "resampled_units": 728,
+    "unit": "message",
+    "variants": {
+     "gold.today.all": {
+      "a": -168.6343,
+      "b": -176.9676,
+      "difference": 8.3333,
+      "ci95": [
+       -15.4748,
+       31.2098
+      ],
+      "p_sign_flip": 0.4798
+     },
+     "gold.today.gate": {
+      "a": 30.8449,
+      "b": 27.4884,
+      "difference": 3.3565,
+      "ci95": [
+       -4.9908,
+       10.5359
+      ],
+      "p_sign_flip": 0.4069
+     },
+     "gold.direction.all": {
+      "a": -169.2708,
+      "b": -185.2431,
+      "difference": 15.9722,
+      "ci95": [
+       -7.9429,
+       38.142
+      ],
+      "p_sign_flip": 0.1773
+     },
+     "gold.direction.gate": {
+      "a": 30.8449,
+      "b": 23.0324,
+      "difference": 7.8125,
+      "ci95": [
+       -1.0787,
+       15.1772
+      ],
+      "p_sign_flip": 0.0714
+     }
+    }
+   }
+  }
+ }
+}

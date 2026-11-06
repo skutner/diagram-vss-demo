@@ -1,0 +1,42 @@
+start 2026-11-05 22:58:01
+{"update": 50, "loss": 3.7915, "value_right": 10, "value_rows": 447, "act": 0.12, "word_tags": 0.9879324215607401, "passed": false}
+{"update": 100, "loss": 1.4253, "value_right": 57, "value_rows": 447, "act": 0.885, "word_tags": 0.999195494770716, "passed": false}
+{"update": 150, "loss": 0.286, "value_right": 114, "value_rows": 447, "act": 1.0, "word_tags": 0.999195494770716, "passed": false}
+{"update": 200, "loss": 0.0955, "value_right": 297, "value_rows": 447, "act": 1.0, "word_tags": 1.0, "passed": false}
+{"update": 250, "loss": 0.0321, "value_right": 443, "value_rows": 447, "act": 1.0, "word_tags": 1.0, "passed": false}
+{"update": 300, "loss": 0.0147, "value_right": 447, "value_rows": 447, "act": 1.0, "word_tags": 1.0, "passed": false}
+{"update": 350, "loss": 0.0085, "value_right": 447, "value_rows": 447, "act": 1.0, "word_tags": 1.0, "passed": false}
+{"update": 400, "loss": 0.0066, "value_right": 446, "value_rows": 447, "act": 1.0, "word_tags": 1.0, "passed": true}
+{"overfit_gate": "passed", "stopped_by": null, "updates": 400, "failures": [], "memory": {"rss_gib": 1.883, "available_gib": 20.292, "peak_allocated_gib": 2.735, "peak_reserved_gib": 2.787}}
+overfit gate exit 0
+{"preflight": {"request_tokens": 1696, "message_tokens": 2416, "longest_request": 53, "longest_message": 302, "requests_over_cap": 0, "messages_over_cap": 0, "rss_gib": 1.914, "available_gib": 20.113, "peak_allocated_gib": 3.978, "peak_reserved_gib": 4.279}}
+{"epoch": 1, "update": 1736, "of": 13888, "elapsed": 324, "memory": {"rss_gib": 1.93, "available_gib": 21.551, "peak_allocated_gib": 3.978, "peak_reserved_gib": 4.404}}
+{"epoch": 2, "update": 3472, "of": 13888, "elapsed": 581, "memory": {"rss_gib": 1.938, "available_gib": 22.294, "peak_allocated_gib": 3.978, "peak_reserved_gib": 4.404}}
+{"epoch": 3, "update": 5208, "of": 13888, "elapsed": 821, "memory": {"rss_gib": 1.937, "available_gib": 22.439, "peak_allocated_gib": 3.98, "peak_reserved_gib": 4.404}}
+{"epoch": 4, "update": 6944, "of": 13888, "elapsed": 1060, "memory": {"rss_gib": 1.937, "available_gib": 22.442, "peak_allocated_gib": 3.98, "peak_reserved_gib": 4.404}}
+{"epoch": 5, "update": 8680, "of": 13888, "elapsed": 1300, "memory": {"rss_gib": 1.937, "available_gib": 22.573, "peak_allocated_gib": 3.98, "peak_reserved_gib": 4.404}}
+{"epoch": 6, "update": 10416, "of": 13888, "elapsed": 1539, "memory": {"rss_gib": 1.937, "available_gib": 22.438, "peak_allocated_gib": 3.98, "peak_reserved_gib": 4.406}}
+{"epoch": 7, "update": 12152, "of": 13888, "elapsed": 1778, "memory": {"rss_gib": 1.937, "available_gib": 22.453, "peak_allocated_gib": 3.98, "peak_reserved_gib": 4.406}}
+{"epoch": 8, "update": 13888, "of": 13888, "elapsed": 2016, "memory": {"rss_gib": 1.937, "available_gib": 22.426, "peak_allocated_gib": 3.98, "peak_reserved_gib": 4.406}}
+{"status": "complete", "full_schedule": true, "epoch": 8, "update": 13888, "elapsed": 2017.6711815790004, "total": 13888, "memory": {"rss_gib": 1.938, "available_gib": 22.424, "peak_allocated_gib": 3.98, "peak_reserved_gib": 4.406}}
+training exit 0
+/home/skutner/browserLLM/diagram-vss-demo/training/neural/parity/arm_export.py:117: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(model, x, str(path), dynamo=False, opset_version=17,
+/home/skutner/.cache/diagram-vss-modernbert/venv/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:196: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  inverted_mask = torch.tensor(1.0, dtype=dtype) - expanded_mask
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+WARNING:root:Inference failed or unsupported type to quantize for tensor '/encoder/Unsqueeze_6_output_0', type is tensor_type {
+  elem_type: 7
+  shape {
+    dim {
+      dim_value: 1
+    }
+    dim {
+      dim_param: "unk__6"
+    }
+  }
+}
+.
+{"folder": "/home/skutner/.cache/diagram-vss-modernbert/arms/M2s-s0/export/modernbert-M2s-s0", "passed": false, "full_schedule": true, "update": 13888, "texts": 20, "counts": {"act": {"agree": 19, "total": 20}, "classes": {"agree": 859, "total": 860}, "tags": {"agree": 1933, "total": 1935}, "cuts": {"agree": 19, "total": 20}, "pieces": {"agree": 20, "total": 20}}, "differences_in_texts": 5, "shards": ["model_quantized.onnx_data", "model_quantized.onnx_data_1"], "blocks": 93, "quantizers": 91, "float_max_abs": [2.7179718017578125e-05, 4.1961669921875e-05, 2.2411346435546875e-05], "sdpa_max_abs": [1.4424324035644531e-05, 1.52587890625e-05, 1.621246337890625e-05], "node_max_abs": [0.0002541542053222656, 5.245208740234375e-05, 4.863739013671875e-05]}
+export exit 2 (2 = PyTorch and Node differ on near ties: reported, not a gate)
+end 2026-11-05 23:34:23

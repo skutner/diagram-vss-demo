@@ -1,0 +1,8 @@
+an Opus program matches itself, strict: 1139 of 1139
+broken on purpose, no names on creates and groups: accepted 0 of 422 changed turns (strict 0)
+broken on purpose, every direction reversed: accepted 0 of 30 changed turns (strict 0)
+broken on purpose, colours dropped: accepted 109 of 568 changed turns (strict 109)
+broken on purpose, gaps dropped on creates: accepted 53 of 56 changed turns (strict 5)
+Opus against itself, final shapes, arrows, groups: 100.0, 100.0, 100.0
+no connect wires: 100.0, 0.0, 100.0 | no group wires: 91.4, 90.4, 0.0
+PASS

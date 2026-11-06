@@ -107,6 +107,23 @@ function cueFind(span, values) {
 }
 const NUMW = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, twice: 2, couple: 2, pair: 2 };
 function numFind(span) { const m = String(span).match(/\d+(?:\.\d+)?/); if (m) return +m[0]; for (const w of clean(span).trim().split(' ')) if (w in NUMW) return NUMW[w]; return null; }
+/* The mechanical number words, read only for a model built with training/neural/make_roles.py NUM_WORDS=table (its reader.number_words_from is "table"; make_roles.py NUM_UNITS,
+   NUM_TENS and NUM_DIGIT hold the same, training/neural/parity/test_label_arms.py checks it). "one" is not in the table: in the training spans it is the pronoun. */
+const NUM_UNITS_T = { two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14,
+  fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19 };
+const NUM_TENS_T = { twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+const NUM_DIGIT_T = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9 };
+/** the words of a tagged span -> the number they write by the table ("forty", "forty five", "forty-five", "two hundred"), else null */
+function tableNumber(text) {
+  const ws = String(text).toLowerCase().match(/[a-z]+/g) || [], has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+  for (let i = 0; i < ws.length; i++) {
+    const w = ws[i];
+    if (has(NUM_TENS_T, w)) return NUM_TENS_T[w] + (i + 1 < ws.length && has(NUM_DIGIT_T, ws[i + 1]) ? NUM_DIGIT_T[ws[i + 1]] : 0);
+    if (has(NUM_UNITS_T, w)) return NUM_UNITS_T[w] * (NUM_UNITS_T[w] < 10 && ws[i + 1] === 'hundred' ? 100 : 1);
+    if (w === 'hundred') return 100;
+  }
+  return null;
+}
 const ARTICLES = new Set(['a', 'an', 'the', 'it', 'its', 'and', 'to', 'of', 'with', 'named', 'called', 'new', 'shape']);
 
 function cosine(a, b) { let s = 0; for (let i = 0; i < a.length; i++) s += a[i] * b[i]; return s; }
@@ -239,11 +256,18 @@ function create(engine, rulesFormalize, options = {}) {
     }
     const sp = R.spans[key] || [];
     const out = { q, span: sp.map(s => s.text).join(' | '), score: sp.length ? Math.min(...sp.map(s => s.score)) : 0, value: null, source: 'neural' };
+    /* a number the request states without writing it ("shrink it" -> scale 0.67): the class head implied:<key>, when the model's reader has one (make_roles.py IMPLIED_SCALE=1);
+       read only when no number was read from the tags. A model without the head never comes here with a value. */
+    const implied = () => {
+      const h = R.classes['implied:' + key];
+      if (h && h.value != null && Number.isFinite(+h.value)) Object.assign(out, { span: h.value, score: h.score, value: +h.value, source: 'neural (implied)', implied: true });
+      return out;
+    };
     if (kind === 'names') {
       const found = [];
       for (const s of sp) { const hit = names.get(s.text.toLowerCase()); const v = hit != null ? hit : s.text; if (!found.some(f => f === v)) found.push(v); }
       if (found.length) out.value = found.length === 1 ? found[0] : found;
-    } else if (!sp.length) return out;
+    } else if (!sp.length) return kind === 'number' ? implied() : out;
     else if (kind === 'name' || kind === 'text') out.value = sp[0].text;
     else if (kind === 'texts') out.value = sp.map(s => s.text).join(',');   // items / items2 / parents of a template: one span per item, in order
     else if (kind === 'point') {   // at: one span per coordinate ("x=230 y=90", "(120, 220)") -> "230,90"
@@ -251,9 +275,12 @@ function create(engine, rulesFormalize, options = {}) {
       if (xs.length === 2) out.value = xs.join(',');
     }
     else if (kind === 'number') {
-      const t = sp[0].text, d = t.match(/\d+(?:\.\d+)?/), w = (st.models.reader.number_words || {})[t.toLowerCase()];
+      const RD = st.models.reader, t = sp[0].text, d = t.match(/\d+(?:\.\d+)?/);
+      // a model built with make_roles.py NUM_WORDS=table reads number words by the table (several words: "forty five"), else by its learned map
+      const w = (RD.number_words_from === 'table' ? tableNumber(t) : null) ?? (RD.number_words || {})[t.toLowerCase()];
       const n = d ? +d[0] : w != null ? +w : null;
       if (n != null && (key !== 'count' || n > 1)) out.value = n;
+      else implied();
     }
     return out;
   }
@@ -283,6 +310,54 @@ function create(engine, rulesFormalize, options = {}) {
     return Object.assign(role(key, act, R, names), f ? { fill: fill || 'none' } : {});
   }
 
+  /* ---- the drawing as a second read (training/neural/MODERNBERT_PARITY_PLAN.md arm M4). Only for a model whose config.json reader has `drawing`
+     (trained with finetune_modernbert_batched.py --canvas-rows) and only when the caller gives the drawing (ctx.drawing: {state, sources} or
+     {lines}; docs/js/drawing-lines.js writes the lines). A request is read once more, the request first and then the drawing's lines newest
+     first within the model's own cap (reader.drawing.max_length, at most 512 word pieces), when one of its name-roles (reader.ref_keys) reads
+     as context or description (its fill:<key> head), or holds a written name that is neither on the drawing nor made earlier in the message.
+     Of that read only the B / I tags on the names that head the drawing's lines are used: they answer that role. The act, the class heads and
+     every other role come from the first read. When such a role finds no name and lines were left out by the cap, the request is marked
+     drawingCut and gateReader holds it (the shape it means may be in what was not read). Every other model and caller: nothing changes. */
+  const drawingKit = () => (typeof DrawingLines !== 'undefined' ? DrawingLines : typeof require === 'function' ? require('./drawing-lines.js') : null);
+  function drawingInput(ctx, m) {
+    if (!m || !m.readDrawing || !m.reader || !m.reader.drawing || !ctx || !ctx.drawing) return null;
+    const DLK = drawingKit();
+    if (!DLK) throw new K.SOPError('This model reads the drawing, and docs/js/drawing-lines.js is not loaded.');
+    if (m.reader.drawing.format !== DLK.FORMAT) throw new K.SOPError(`This model reads the drawing as ${m.reader.drawing.format}; drawing-lines.js writes ${DLK.FORMAT}.`);
+    const lines = ctx.drawing.lines || DLK.lines(ctx.drawing.state, ctx.drawing.sources);
+    return { lines, at: [], fit: src => DLK.fit(src, lines, m.pieceCount, m.drawingCap) };
+  }
+  /** the second read of request si, when it is triggered (the context c as the first read's roles see it: names and the names made before it) */
+  async function secondRead(draw, seg, R, si, c) {
+    const RD = st.models.reader, cl = actFrom(R.acts);
+    if (cl.kind.value === 'none') return;
+    const act = cl.act ? cl.act.value : cl.kind.value, known = new Set(c.names.map(n => String(n).toLowerCase()).concat([...c.refs.keys()]));
+    const keys = (RD.act_keys[act || cl.kind.value] || []).filter(k => (RD.ref_keys || []).includes(k)).filter(k => {
+      const f = R.classes['fill:' + k], fill = f ? f.value : null;
+      return fill === 'context' || fill === 'description' || (R.spans[k] || []).some(sp => !known.has(sp.text.toLowerCase()));
+    });
+    if (!keys.length) return;
+    const fitted = draw.fit(seg.src), [R2] = await st.models.readDrawing([fitted.text]); st.calls++;
+    /* a tag counts only inside a head's character range, the positions the model was trained to tag (build_canvas_rows.mjs labelRow): the same name
+       inside an edge line, a member list or the quoted words of a message is not taken */
+    const headOf = x => fitted.heads.find(h => x.start >= h.start && x.end <= h.end), found = {};
+    for (const k of keys) {
+      const sp = (R2.spans[k] || []).filter(x => x.start >= fitted.drawFrom && headOf(x)), names = [];
+      for (const x of sp) { const nm = headOf(x).name; if (!names.includes(nm)) names.push(nm); }
+      found[k] = names.length ? { names, score: Math.min(...sp.map(x => x.score)), spans: sp } : null;
+    }
+    draw.at[si] = { keys, found, text: fitted.text, drawFrom: fitted.drawFrom, kept: fitted.kept, dropped: fitted.dropped, read: R2 };
+  }
+  /** a role the second read answers: its value becomes the drawing's names (a mention made for it is then unused and dropped) */
+  function drawnRole(draw, si, k, r, a) {
+    const d = draw.at[si];
+    if (!d || !d.keys.includes(k)) return;
+    if (!a.drawing) Object.defineProperty(a, 'drawing', { value: d, enumerable: false, configurable: true });
+    const f = d.found[k];
+    if (f) Object.assign(r, { value: f.names.length === 1 ? f.names[0] : f.names.slice(), span: f.names.join(' | '), score: f.score, source: 'drawing (second read)', drawing: true });
+    else if (d.dropped) a.drawingCut = true;
+  }
+
   /** SOP-BERT: the whole message, with no call to the Rules reader (see the head of this section) */
   async function formalizeJoint(input, ctx, opts) {
     const t0 = Date.now(); st.calls = 0;
@@ -305,7 +380,8 @@ function create(engine, rulesFormalize, options = {}) {
     const cutInfo = !given && st.models.cutInfo ? st.models.cutInfo(text) : null;
     const unread = cutInfo && cutInfo.truncated ? [text.slice(cutInfo.unreadFrom)] : [];
     if (unread.length) notes.push('Message token limit reached; the remaining text was not read.');
-    segs.forEach((seg, si) => {
+    const draw = drawingInput(ctx, st.models);   // null unless the model reads the drawing and the caller gives it
+    const one = (seg, si) => {
       const R = reads[si], id = 'n' + (++n), a = { id, src: seg.src, rules: null, keys: {} };
       if (R.truncated) a.truncated = true;
       const cl = actFrom(R.acts); a.kind = cl.kind; if (cl.act) a.act = cl.act;
@@ -315,6 +391,7 @@ function create(engine, rulesFormalize, options = {}) {
       const mentions = [], mention = ma => { const mid = 'm' + (++m); mentions.push({ id: mid, type: 'mention', args: ma }); return { ref: mid }; };
       for (const k of st.models.reader.act_keys[act || type] || []) {
         const r = jointRole(k, act || type, R, c, mention, mentions.length); a.keys[k] = r;
+        if (draw) drawnRole(draw, si, k, r, a);
         if (r.value != null) args[k] = r.value;
       }
       if (args.notColor && args.color === args.notColor) delete args.color;
@@ -329,13 +406,17 @@ function create(engine, rulesFormalize, options = {}) {
       Object.defineProperty(a, 'span', { value: [seg.c0, seg.c1], enumerable: false, configurable: true });
       nodes.push(...mine, node); analyses.push(a);
       update(c, node);
-    });
+    };
+    if (draw) for (let si = 0; si < segs.length; si++) { await secondRead(draw, segs[si], reads[si], si, c); one(segs[si], si); }
+    else segs.forEach(one);
+    if (draw && analyses.some(x => x.drawingCut)) notes.push('The drawing is longer than the reader can take; a request whose shape may be in the part not read is held.');
     if (notRequest.length) notes.push('Ignored (not a request): ' + notRequest.map(z => `“${z}”`).join(', '));
     /* joint: what the fitted confidence reads (docs/js/neural-confidence.js signals): reads[i] is the read of analyses[i] (its head logits
        in reads[i].logits), cut the cut head's probabilities per word of the message (null: not available), the head layout and [UNK] */
     const joint = { text, reads, cut: cutP, cutFrom, reader: st.models.reader, unk: st.models.unk };
     // units: the units read, as character offsets (the BERT cutter's when cutBy is 'model'): the demo gives them to the other readers for
     // SOP-BERT's votes and VSS-BERT (ui.js crossReads), as vss-composer.js cutUnits "bert" would (c1 > c0), without another call
+    if (draw) joint.drawing = { lines: draw.lines.length, reads: draw.at.filter(Boolean).length };
     return { nodes, notes, unread, rulesNodes: [], analyses, cutBy, joint, units: units.filter(u => u.c1 > u.c0).map(u => ({ c0: u.c0, c1: u.c1, src: text.slice(u.c0, u.c1) })), ms: Date.now() - t0, calls: st.calls };
   }
 
@@ -474,7 +555,8 @@ function makeReader(T, tokenizer, model) {
   if (!R) throw new Error('This model has no "reader" in its config.json: not a joint model (training/neural/finetune_roles.py).');
   const modern = R.tokenization === 'wordwise-bpe-prefix-space-v1';
   const nA = R.acts.length, nT = R.tags.length, maxlen = modern ? Math.min(R.max_length || 128, 128) : R.max_length || 128, offs = [];
-  const cutLen = R.cut ? modern ? Math.min(R.cut.max_length || 512, 512) : R.cut.max_length || 512 : 0;   // R.cut: the span head over the whole message (output cut_logits: O / B / I per word)
+  const cutLen = R.cut ? modern ? Math.min(R.cut.max_length || 512, 512) : R.cut.max_length || 512 : 0;
+  const drawLen = R.drawing ? modern ? Math.min(R.drawing.max_length || 512, 512) : R.drawing.max_length || 512 : 0;   // R.drawing: the second read of arm M4 (formalizeJoint)   // R.cut: the span head over the whole message (output cut_logits: O / B / I per word)
   let o = nA; for (const [, vals] of R.classes) { offs.push(o); o += vals.length; }
   const sp = tokenizer.encode('');   // [CLS] [SEP]
   if (sp.length !== 2) throw new Error(`The tokenizer adds ${sp.length} special tokens to a text; 2 ([CLS] [SEP]) are expected.`);
@@ -537,6 +619,9 @@ function makeReader(T, tokenizer, model) {
     return ps.map((p, b) => decodeOne(p, out, n, b));
   }
   const read = async text => (await readMany([text]))[0];
+  /** readDrawing(texts): the second read (a request, then the drawing's lines), ONE model call at the drawing's cap; pieceCount(text): its word pieces with [CLS] and [SEP] */
+  async function readDrawing(texts) { const ps = texts.map(t => prep(t, drawLen)), { out, n } = await run(ps); return ps.map((p, b) => decodeOne(p, out, n, b)); }
+  const pieceCount = text => prep(text, Infinity).ids.length;
   /** cut(text): the request spans of a whole message, from the span head: [{c0, c1, score}] character offsets into text (one model call);
       words beyond the first cut.max_length word pieces are outside every request */
   let lastCut = null;   // {text, words}: the cut head's probabilities per word of the last message cut (cutProbs)
@@ -563,7 +648,7 @@ function makeReader(T, tokenizer, model) {
   const cutProbs = text => lastCut && lastCut.text === String(text) ? lastCut.words : null;
   const unk = tokenizer.model && tokenizer.model.unk_token_id != null ? tokenizer.model.unk_token_id : tokenizer.unk_token_id;   // [UNK]
   const cutInfo = text => lastCut && lastCut.text === String(text) ? { truncated: lastCut.truncated, unreadFrom: lastCut.unreadFrom } : null;
-  return { read, readMany, prepare: prep, act: async text => (await read(text)).acts, reader: R, unk, ...(cutLen ? { cut, cutProbs, cutInfo } : {}) };
+  return { read, readMany, prepare: prep, act: async text => (await read(text)).acts, reader: R, unk, ...(cutLen ? { cut, cutProbs, cutInfo } : {}), ...(drawLen ? { readDrawing, pieceCount, drawingCap: drawLen } : {}) };
 }
 
 /** ModernBERT's own confidence: missing calibration/thresholds and truncated requests always hold, even at execute all. */
@@ -573,6 +658,7 @@ function gateReader(NC, spec, result, level = 'cost') {
   g.safe = valid ? NC.threshold(spec, 'cost') : NaN;
   for (const [index, unit] of (result.analyses || []).entries()) if (unit.truncated && !g.units.some(u => u.unit === unit)) g.units.push({ index, unit, src: unit.src, conf: NaN, execute: false, sure: false, nodes: [], reasons: [], dependsOn: [] });
   for (const u of g.units) if (u.unit.truncated) { u.execute = u.sure = false; u.blocked = true; u.reasons = [{ group: 'limit', pull: 0, text: 'the request exceeds the token limit and was not fully read' }]; }
+  for (const u of g.units) if (u.unit.drawingCut && !u.blocked) { u.execute = u.sure = false; u.blocked = true; u.reasons = [{ group: 'limit', pull: 0, text: 'the shape it means may be in the part of the drawing that was not read (the drawing exceeds the token limit)' }]; }
   for (const u of g.units) if (u.dependsOn.some(d => g.units.some(x => x.unit === d && !x.execute))) { u.execute = false; u.reasons.push({ group: 'depends', pull: 0, text: 'it uses a request that was not done' }); }
   const run = new Set(g.units.filter(u => u.execute).flatMap(u => u.nodes));
   g.executed = (result.nodes || []).filter(n => !n.unit || run.has(n)); g.held = g.units.filter(u => !u.execute);

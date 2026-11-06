@@ -1,0 +1,50 @@
+{"id":"tr-10-001","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"big island in the middle, tan colour"}
+{"id":"tr-10-002","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"now a ship, small brown one, bottom left out at sea"}
+{"id":"tr-10-003","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"Skull Cove on the west side of the island, a gray circle"}
+{"id":"tr-10-004","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"and a red star where the treasure is, top of the island. call it X"}
+{"id":"tr-10-005","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"dotted line from the ship to Skull Cove"}
+{"id":"tr-10-006","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"hm that island is huge, it covers the ship almost"}
+{"id":"tr-10-007","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"smaller. no a bit bigger than that"}
+{"id":"tr-10-008","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"three palm trees, green, along the south beach"}
+{"id":"tr-10-009","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"Then the trail. Cove to the first palm, palm to the second, and on to X"}
+{"id":"tr-10-010","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"wait the trail is straight lines, pirates don't walk like that. can they be dashed too"}
+{"id":"tr-10-011","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"Undo that"}
+{"id":"tr-10-012","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"no I meant undo the dashed, keep the trail"}
+{"id":"tr-10-013","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"title at the top: Captain Morgan's Last Hope"}
+{"id":"tr-10-014","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"how many palm trees is that now"}
+{"id":"tr-10-015","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"make X bigger, you can't see it"}
+{"id":"tr-10-016","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"ship should say Black Pearl"}
+{"id":"tr-10-017","domain":"pirate treasure map","kind":"session","session":"pirate-map","text":"ok that's the map, thanks, my son will love it"}
+{"id":"tr-10-018","domain":"release checklist","kind":"session","session":"release-checklist","text":"I need a release checklist. start with a box that says Freeze branch"}
+{"id":"tr-10-019","domain":"release checklist","kind":"session","session":"release-checklist","text":"Run tests under that"}
+{"id":"tr-10-020","domain":"release checklist","kind":"session","session":"release-checklist","text":"then Build artifacts, then Sign, then Upload"}
+{"id":"tr-10-021","domain":"release checklist","kind":"session","session":"release-checklist","text":"arrows down the whole thing please"}
+{"id":"tr-10-022","domain":"release checklist","kind":"session","session":"release-checklist","text":"they're all different widths, ugly"}
+{"id":"tr-10-023","domain":"release checklist","kind":"session","session":"release-checklist","text":"Run tests can fail. add a red one off to the side called Fix and back"}
+{"id":"tr-10-024","domain":"release checklist","kind":"session","session":"release-checklist","text":"back to where"}
+{"id":"tr-10-025","domain":"release checklist","kind":"session","session":"release-checklist","text":"no, you made it go to Freeze branch. I meant back to Run tests"}
+{"id":"tr-10-026","domain":"release checklist","kind":"session","session":"release-checklist","text":"Green for the ones done so far: freeze and tests"}
+{"id":"tr-10-027","domain":"release checklist","kind":"session","session":"release-checklist","text":"Upload should say Publish instead"}
+{"id":"tr-10-028","domain":"release checklist","kind":"session","session":"release-checklist","text":"after Sign a small diamond, Approved?"}
+{"id":"tr-10-029","domain":"release checklist","kind":"session","session":"release-checklist","text":"yes goes to Publish, no goes to Fix"}
+{"id":"tr-10-030","domain":"release checklist","kind":"session","session":"release-checklist","text":"which of these has two arrows leaving it?"}
+{"id":"tr-10-031","domain":"release checklist","kind":"session","session":"release-checklist","text":"Everything in one frame, call it Friday release"}
+{"id":"tr-10-032","domain":"release checklist","kind":"session","session":"release-checklist","text":"sorry, remove the frame, it covers the arrows"}
+{"id":"tr-10-033","domain":"release checklist","kind":"session","session":"release-checklist","text":"good. now a note at the bottom: ask Dana before pushing"}
+{"id":"tr-10-034","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"4am. Start with a circle called Wake up"}
+{"id":"tr-10-035","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"Oven on, next to it"}
+{"id":"tr-10-036","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"then Shape the dough, then Proof, in a row going right"}
+{"id":"tr-10-037","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"link them in order"}
+{"id":"tr-10-038","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"proofing takes forever, make that one wider, and orange"}
+{"id":"tr-10-039","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"Bake goes after proof. 40 minutes, put that on it"}
+{"id":"tr-10-040","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"you put the 40 minutes on Proof instead"}
+{"id":"tr-10-041","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"Bake: yellow. Cool: blue. Then Open shop"}
+{"id":"tr-10-042","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"hang on, is the oven connected to anything?"}
+{"id":"tr-10-043","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"it should feed Bake"}
+{"id":"tr-10-044","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"loaves that fail the poke test go back to Proof"}
+{"id":"tr-10-045","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"this row is running off the screen"}
+{"id":"tr-10-046","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"two rows, the second one starts at Bake"}
+{"id":"tr-10-047","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"no, that's worse. put it back like it was"}
+{"id":"tr-10-048","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"just shrink everything then"}
+{"id":"tr-10-049","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"Pastry guy comes at 6. little purple circle above Cool, name Tomas"}
+{"id":"tr-10-050","domain":"bakery morning routine","kind":"session","session":"bakery-morning","text":"thanks, I'll show this to the new girl tomorrow"}

@@ -1,0 +1,58 @@
+example messages 1139 distinct 1113
+folder                                   msgs  wires  w/msg  names in examples first_run
+llm_train/haiku                          1500      0    5.6    997           1 
+llm_train/haiku_msg                       600   2304   53.3    600           0 yes
+llm_train/haiku_msg2                      600   2001   43.9    600           1 yes
+llm_train/haiku_short                    3000   1500    5.6   1994           2 yes
+llm_train/ops_formulations                700    733    5.1    700           0 yes
+llm_train/ops_groups                      960   1693   22.7    960           2 
+llm_train/ops_positions                   928   1022   21.7    928           0 
+llm_train/opus_ext_1                      500    743   13.2    351           0 yes
+llm_train/opus_gen_1                      300    991   29.9    300           2 yes
+llm_train/opus_gen_2                      300   1094   32.3    300           0 yes
+llm_train/opus_r3_gaps                    136    147    7.8    129           0 
+llm_train/opus_short_r2                   255    345    7.6    255           0 
+llm_train/opus_tgt_1                      300    941   27.7    300           0 
+llm_train/opus_tgt_2                      300   1023   30.5    300           0 
+llm_train/opus_train_a                    300    994   27.8    300           1 yes
+llm_train/opus_train_b                    300    891   33.1    300           0 yes
+llm_train/opus_train_c                    300   1059   33.9    300           2 yes
+llm_train/opus_train_d                    300   1015   32.0    300           0 yes
+llm_train/scenes_r3                       701    714    8.6    683         701 
+llm_train/scenes_r3b                       96     94    9.8     92          96 
+llm_train/sonnet                         1500      0    5.6   1462           3 
+llm_train/sonnet_long                     240   2562  120.9    240           0 yes
+llm_train/sonnet_msg                      600   3127   41.0    600           0 yes
+llm_train/sonnet_msg2                     600   2789   35.5    600           0 yes
+llm_train/sonnet_short                   3000   1500    5.6   2924           6 yes
+llm_train/synth_combo                    1497   4521   20.8   1394           0 yes
+llm_train/synth_combo_dd                 1483   4489   20.9   1380           0 
+llm_train/synth_combo_raw                1500   4531   20.7   1397           0 
+llm_train/synth_rules                    8404  11707    8.6   7320           5 yes
+llm_train/synth_rules_dd                 7350  10468    9.0   6298           2 
+llm_train/synth_rules_ext                2783   3664   10.4   2230           0 yes
+llm_train/synth_rules_ext_dd             2575   3451   10.7   2064           0 
+llm_train/synth_rules_ops                1374   1470    7.2   1293           1 yes
+llm_train/synth_rules_ops_dd              967   1057    7.7    890           1 
+llm_train/synth_short_r2                 1997   1997    6.2   1997           0 
+llm_bench/collected_1                      52     44    6.1     52           0 
+llm_bench/haiku                           500   2691   40.8    500           0 
+llm_bench/haiku_spans                     500   2202   40.8    500           0 yes
+llm_bench/scenes_test                     166    163    8.7    162         166 
+llm_bench/short3                          530    667    6.3    530           0 
+llm_bench/sonnet                          500   2172   37.7    499           0 
+llm_bench/sonnet_spans                    500   2173   37.7    499           0 yes
+llm_bench/fresh1/haiku                    500   2514   36.4    500           0 yes
+llm_bench/fresh1/sonnet                   500   3030   47.0    489           0 yes
+llm_bench/fresh2/opus_a                   150    514   29.0    150           0 
+llm_bench/fresh2/opus_b                   150    468   35.3    150           0 
+llm_bench/fresh2/opus_c                   150    471   30.9    150           0 
+llm_bench/fresh2/opus_d                   150    456   33.8    150           0 
+total msgs 52594 wires 94202  trained msgs 27698 wires 54584
+example messages with identical text in some data folder 968 of 1113
+[(('llm_train/scenes_r3',), 696), (('llm_bench/scenes_test',), 163), (('llm_train/scenes_r3b',), 96), (('llm_train/opus_gen_1', 'llm_train/sonnet', 'llm_train/sonnet_short'), 1), (('llm_train/haiku', 'llm_train/haiku_short', 'llm_train/sonnet', 'llm_train/sonnet_short'), 1), (('llm_train/sonnet', 'llm_train/sonnet_short'), 1), (('llm_train/opus_train_c',), 1), (('llm_train/synth_rules',), 1), (('llm_train/scenes_r3', 'llm_train/synth_rules'), 1), (('llm_train/opus_train_c', 'llm_train/scenes_r3'), 1), (('llm_train/opus_train_a', 'llm_train/scenes_r3', 'llm_train/synth_rules', 'llm_train/synth_rules_dd'), 1), (('llm_train/ops_groups', 'llm_train/scenes_r3'), 1)]
+examples whose text occurs in the first run training folders 12
+arm M2 data, 955 wires: {'width': 92, 'height': 92, 'fill': 35, 'layer': 36, 'distance': 72, 'mention with layer': 19, 'mention with label': 14}
+llm_train/scenes_r3 16 [('technical drawing of a pump', 45), ('circuit board drawing', 42), ('pirate ship scene', 42), ('winter village scene', 40), ('apartment floor plan', 44), ('infographic of a cycle', 42), ('abstract geometric composition', 43), ('infographic bar chart', 42), ('underwater reef scene', 46), ('space station scene', 48), ('emotional drawing', 41), ('concert poster', 41), ('robot factory scene', 42), ('farm scene', 51), ('city street scene', 49), ('board game design', 43)]
+llm_train/scenes_r3b 4 [('kitchen plan scene', 24), ('harbour at dusk scene', 27), ('garden plan scene', 23), ('bus stop street scene', 22)]
+llm_bench/scenes_test 4 [('town map', 43), ('playground scene', 42), ('living room interior', 40), ('greeting card drawing', 41)]

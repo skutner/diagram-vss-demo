@@ -1,0 +1,42 @@
+
+HARD FAILURES (24):
+  nlb-02-003 [engine] wire 1: Spacing needs at least two shapes.
+  nlb-03-023 [engine] mention m1: I can't find a shape in the center showing "paddocks" on the canvas.
+  nlb-03-023 [engine] mention m4: I can't find a shape showing "resting" on the canvas.
+  nlb-03-023 [engine] mention m5: I can't find a shape in the center showing "paddocks" on the canvas.
+  nlb-03-023 [engine] mention m6: I can't find a shape in the right showing "paddocks" on the canvas.
+  nlb-03-023 [engine] mention m7: I can't find a shape showing "resting" on the canvas.
+  nlb-03-023 [engine] mention m8: I can't find a shape in the center showing "paddocks" on the canvas.
+  nlb-03-023 [engine] mention m9: I can't find a shape showing "next" on the canvas.
+  nlb-03-023 [engine] mention m10: I can't find a shape showing "next" on the canvas.
+  nlb-03-023 [engine] mention m11: I can't find a shape showing "resting" on the canvas.
+  nlb-09-044 [engine] wire 2: There is no shape named "Savings". Shapes on the canvas: Income, Rent, Food.
+  nlb-05-002 [engine] mention m2: I can't find a circle in the right on the canvas.
+  nlb-05-014 [engine] mention m1: I can't find a shape showing "family" on the canvas. (after an earlier failure in this session)
+  nlb-05-014 [engine] mention m2: I can't find a shape showing "friends" on the canvas. (after an earlier failure in this session)
+  nlb-05-015 [engine] mention m1: I can't find a shape showing "family" on the canvas. (after an earlier failure in this session)
+  nlb-05-015 [engine] mention m2: I can't find a shape showing "friends" on the canvas. (after an earlier failure in this session)
+  nlb-05-024 [engine] mention m1: I can't find a small rectangle in the left on the canvas.
+  nlb-05-025 [engine] mention m1: I can't find a shape showing "L" on the canvas. (after an earlier failure in this session)
+  nlb-05-025 [engine] mention m2: I can't find a shape showing "R" on the canvas. (after an earlier failure in this session)
+  nlb-05-028 [engine] mention m1: I can't find a shape showing "L" on the canvas. (after an earlier failure in this session)
+  nlb-05-028 [engine] mention m2: I can't find a shape showing "R" on the canvas. (after an earlier failure in this session)
+  nlb-05-033 [engine] mention m1: I can't find a shape showing "L" on the canvas. (after an earlier failure in this session)
+  nlb-05-033 [engine] mention m2: I can't find a shape showing "R" on the canvas. (after an earlier failure in this session)
+  nlb-11-047 [engine] wire 1: There is already a shape named "Exit".
+
+The engine asks (not a failure) (7):
+  nlb-01-004 [history] wire 1: There is nothing to undo.
+  nlb-03-023 [clarify] mention m3: Which shape in the left showing "paddocks"? circle1 (top left), circle2 (top left) and circle3 (top left). Reply with a name.
+  nlb-03-048 [history] wire 1: There is nothing to undo.
+  nlb-07-039 [history] wire 1: There is nothing to undo.
+  nlb-08-050 [history] wire 1: There is nothing to undo.
+  nlb-05-002 [clarify] mention m1: Which circle in the left? circle1 (top left) and circle2 (top left). Reply with a name.
+  nlb-05-024 [clarify] mention m2: Which small rectangle in the right? rectangle1 (top right) and rectangle2 (top right). Reply with a name.
+
+Summary: 601 saved texts in 12 file(s), 601 annotated rows in 12 file(s), 644 wires, 161 rows with no wire
+  sessions 17, paraphrase groups 24, rows replayed 601, not replayed 0
+  by kind: {"long":57,"short":35,"self_correction":36,"complaint":30,"reference":42,"nothing_to_do":29,"indirect":32,"typos":28,"ambiguous":19,"session":125,"dictated":30,"paraphrase":112,"fragment":12,"translated":14}
+  hard failures 24 {"engine":24}, the engine asks 7, warnings 0
+  --write: names and groups changed on 601 row(s) in 12 file(s); marked unreliable or left alone: 28
+RESULT: FAIL

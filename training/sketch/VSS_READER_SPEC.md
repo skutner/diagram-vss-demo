@@ -22,6 +22,22 @@ Nothing else maps language to the legend. No word lists, no synonym tables, no s
 - Building the training frames (llm_to_world.convert): the head word of a description without a shape value is looked up among
   `shapes, shape, everything, it, them, this, that` (residual hand list, debt).
 - Reasoning, after reading: "it" = the last shape referred to; a shape created earlier in the message = `$new`. Same for both readers.
+- Number words. This applies to arm L1 of `training/neural/MODERNBERT_PARITY_PLAN.md`, and only to a learned reader whose config has `reader.number_words_from: "table"`. `make_roles.py NUM_WORDS=table` builds its training data the same way.
+  - What it reads: a tagged number written in words, for any key whose values are numbers (count, distance, scale, angle and the like), is read by a fixed table:
+    - "two" to "nineteen";
+    - the tens "twenty" to "ninety", with an optional following "one" to "nine" ("forty five", "forty-five");
+    - "hundred", and a unit below ten before "hundred" ("two hundred").
+  - "one" alone is not in the table: in the training spans it is the pronoun.
+  - Where it lives: `docs/js/neural.js` (`NUM_UNITS_T`, `NUM_TENS_T`, `NUM_DIGIT_T`, `tableNumber`). `make_roles.py` holds the same table, and `training/neural/parity/test_label_arms.py` checks that the two match.
+  - What is lost without it (L1 against M1, `training/neural/MODERNBERT_RUNLOG.md`):
+    - `scenes_r3b`'s spelled gaps round-trip at 94.7% without the table and 100% with it;
+    - the number map learned by co-occurrence keeps noise words ("lights" -> 2) unless L2's labels also apply;
+    - on fresh2 and short3 no loss is shown with the table: +1.4 [-5.0, +8.7] and -3.5 [-14.0, +8.7].
+- The drawing as lines (`docs/js/drawing-lines.js`; arm M4 of `training/neural/MODERNBERT_PARITY_PLAN.md`, only for a learned reader whose
+  config has `reader.drawing`): the engine state written as `names: size colour kind "label" | "first 10 words of the message that made
+  them"`, then arrows and groups, newest first, whole lines within the reader's cap of 512 word pieces. It writes the legend's own value words
+  and the text people wrote; it maps no word to the legend. The same file serves the data builder, the measurements, the reader and the page.
+  What is lost without it is measured only once an M4 model is trained (that model with and without the second read).
 
 ## 3. Learned from the annotated training messages (front.py)
 

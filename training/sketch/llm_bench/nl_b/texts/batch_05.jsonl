@@ -1,0 +1,51 @@
+{"id": "nlb-05-001", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "setup": "@c1 command action=create shape=rectangle name=Room color=gray fill=none layer=zone width=700 height=420 at=400,250\n@c2 command action=create shape=rectangle name=Door label=\"Main door\" color=brown position=bottom anchor=Room", "text": "Two round tables to start. One each side."}
+{"id": "nlb-05-002", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Left one is family, right one friends."}
+{"id": "nlb-05-003", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Family needs eight chairs."}
+{"id": "nlb-05-004", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Six round the friends one for now."}
+{"id": "nlb-05-005", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Put Mum nearest the door at the family table."}
+{"id": "nlb-05-006", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Dad opposite her."}
+{"id": "nlb-05-007", "domain": "wedding dinner seating", "kind": "self_correction", "session": "nlb-05-s1", "text": "Jo beside Dad. no, beside Mum"}
+{"id": "nlb-05-008", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Sam next to Jo."}
+{"id": "nlb-05-009", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Can you put the actual names on the chairs? Just the four we have."}
+{"id": "nlb-05-010", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Auntie Pat goes by Dad, with Len on her other side."}
+{"id": "nlb-05-011", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "How many empty seats at family now?"}
+{"id": "nlb-05-012", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Give the last two to Noor and Ellis."}
+{"id": "nlb-05-013", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Friends: Bea, Kit, Mo, Ash, Dev, Lou. Clockwise from the top."}
+{"id": "nlb-05-014", "domain": "wedding dinner seating", "kind": "indirect", "session": "nlb-05-s1", "text": "Those two tables look a bit close for Mum to get her walker through."}
+{"id": "nlb-05-015", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "A little more gap, yeah."}
+{"id": "nlb-05-016", "domain": "wedding dinner seating", "kind": "session", "session": "nlb-05-s1", "text": "Small rectangle at the far end for the cake."}
+{"id": "nlb-05-017", "domain": "wedding dinner seating", "kind": "nothing_to_do", "session": "nlb-05-s1", "text": "Sent that to Jo. She can deal with the politics now."}
+{"id": "nlb-05-018", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "setup": "@c1 command action=create shape=rectangle name=Laptop label=\"Laptop\" color=gray position=right\n@c2 command action=create shape=rectangle name=Interface label=\"Scarlett\" color=red position=center\n@c3 command action=connect from=Interface to=Laptop label=\"USB\"", "text": "Mic on the left."}
+{"id": "nlb-05-019", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Call it AT2020."}
+{"id": "nlb-05-020", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Cable from that into the Scarlett. Input 1."}
+{"id": "nlb-05-021", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Headphones below the red box."}
+{"id": "nlb-05-022", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Connect those to the Scarlett too."}
+{"id": "nlb-05-023", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Stereo speakers above the laptop, two little boxes."}
+{"id": "nlb-05-024", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Left one L, right one R."}
+{"id": "nlb-05-025", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Both fed from the Scarlett."}
+{"id": "nlb-05-026", "domain": "bedroom recording setup", "kind": "self_correction", "session": "nlb-05-s2", "text": "Add a keyboard under the mic. MIDI keyboard I mean, not a typing one."}
+{"id": "nlb-05-027", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "USB straight to laptop for that."}
+{"id": "nlb-05-028", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Can the audio cables be orange?"}
+{"id": "nlb-05-029", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Keep USB grey."}
+{"id": "nlb-05-030", "domain": "bedroom recording setup", "kind": "complaint", "session": "nlb-05-s2", "text": "The headphone wire runs right through the keyboard now. Take it round underneath."}
+{"id": "nlb-05-031", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Which things are plugged into the laptop?"}
+{"id": "nlb-05-032", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Dashed box round the two speakers, labelled borrowed."}
+{"id": "nlb-05-033", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Actually lose the speakers and that box. Headphones only tonight."}
+{"id": "nlb-05-034", "domain": "bedroom recording setup", "kind": "session", "session": "nlb-05-s2", "text": "Bigger writing on Input 1. I need to read this from the floor."}
+{"id": "nlb-05-035", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "setup": "@c1 command action=create shape=rectangle name=Plot color=brown fill=faint layer=zone width=640 height=380 at=400,250\n@c2 command action=create shape=circle name=Tap color=blue size=small position=topLeft\n@c3 command action=create shape=rectangle name=Shed label=\"Shed\" color=gray position=bottomRight", "text": "Three long beds across the middle."}
+{"id": "nlb-05-036", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Top to bottom: beans, carrots, squash."}
+{"id": "nlb-05-037", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Leave a walking gap between each."}
+{"id": "nlb-05-038", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Water butt next to shed. Blue circle."}
+{"id": "nlb-05-039", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Name it Butt so I can find it."}
+{"id": "nlb-05-040", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Hose from tap to beans."}
+{"id": "nlb-05-041", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Branch off that for carrots."}
+{"id": "nlb-05-042", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "No hose to squash yet."}
+{"id": "nlb-05-043", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Put a little valve where the branch starts."}
+{"id": "nlb-05-044", "domain": "allotment watering plan", "kind": "self_correction", "session": "nlb-05-s3", "text": "Valve should be red. Sorry orange, red means broken on our other plan."}
+{"id": "nlb-05-045", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Can you show which bed still has no water?"}
+{"id": "nlb-05-046", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Line from Butt to squash, dotted. Thats the watering can trip."}
+{"id": "nlb-05-047", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Write hand watered beside squash."}
+{"id": "nlb-05-048", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Move the shed a touch right, the butt is sitting in the path."}
+{"id": "nlb-05-049", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Fence along the left edge."}
+{"id": "nlb-05-050", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Gap in it opposite carrots for the gate."}
+{"id": "nlb-05-051", "domain": "allotment watering plan", "kind": "session", "session": "nlb-05-s3", "text": "Add a note at the bottom: shut tap before leaving."}

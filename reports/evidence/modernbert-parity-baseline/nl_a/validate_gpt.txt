@@ -1,0 +1,38 @@
+
+HARD FAILURES (17):
+  nl-01-037 [engine] wire 2: Forgot is a shape; it can't become a text. To write on it, label it: label Forgot "…".
+  nl-02-023 [engine] wire 3: Spacing needs at least two shapes.
+  nl-03-040 [engine] wire 1: Spacing needs at least two shapes.
+  nl-06-002 [engine] mention m1: I can't find a shape showing "rejected" on the canvas.
+  nl-08-002 [engine] wire 4: There is no shape named "Reception". Shapes on the canvas: Room1, Room2, Room3, Lab, Vaccines.
+  nl-08-010 [engine] mention m1: I can't find a rectangle showing "reimbursement" on the canvas.
+  nl-08-049 [engine] wire 2: There is no shape named "Door". The closest names on the canvas: Waiting, Reception, Toys, Chair, Chair2, and 2 others.
+  nl-02-003 [engine] wire 1: There is no arrow between triage and Registration. Arrows there: Arrival → Registration; Registration → Ward; triage → assessment.
+  nl-05-002 [engine] mention m1: I can't find a shape in the left showing ""veg beds"" on the canvas.
+  nl-05-002 [engine] mention m2: I can't find a shape in the right showing ""veg beds"" on the canvas.
+  nl-05-003 [engine] wire 1: There is no shape named "herbs". Shapes on the canvas: Roof, Hatch, Vent, circle1, circle2. (after an earlier failure in this session)
+  nl-05-008 [engine] wire 1: There is no shape named "herbs". The closest names on the canvas: Roof, Hatch, Vent, circle1, circle2, and 2 others. (after an earlier failure in this session)
+  nl-05-014 [engine] mention m1: I can't find a shape near Hatch showing "chairs" on the canvas. (after an earlier failure in this session)
+  nl-07-017 [engine] wire 1: There is no shape named "Dunning". Shapes on the canvas: Subscriber, Billing, Stripe, diamond1.
+  nl-11-013 [engine] mention m1: I can't find a text showing ""Hearth & Bean"" on the canvas.
+  nl-11-014 [engine] mention m1: I can't find a text showing ""roasted on tuesdays"" on the canvas. (after an earlier failure in this session)
+  nl-11-033 [engine] mention m1: I can't find a rectangle on the canvas (the background and the zones are left out; say "the background or the zones" to mean them).
+
+The engine asks (not a failure) (10):
+  nl-02-045 [history] wire 1: There is nothing to undo.
+  nl-06-019 [clarify] mention m3: Which shape showing "shrine"? circle2 (top left) and circle5 (top left). Reply with a name.
+  nl-07-040 [history] wire 1: There is nothing to undo.
+  nl-09-047 [clarify] mention m1: Which triangle? Tree (top left), Tree2 (top left) and Tree3 (top center). Reply with a name.
+  nl-10-036 [history] wire 1: There is nothing to undo.
+  nl-10-037 [history] wire 1: There is nothing to undo.
+  nl-10-038 [history] wire 1: There is nothing to undo.
+  nl-10-039 [history] wire 1: There is nothing to undo.
+  nl-10-040 [history] wire 1: There is nothing to undo.
+  nl-11-006 [clarify] mention m1: Which circle? circle1 (center) and circle2 (center). Reply with a name.
+
+Summary: 610 saved texts in 12 file(s), 610 annotated rows in 12 file(s), 788 wires, 103 rows with no wire
+  sessions 21, paraphrase groups 27, rows replayed 610, not replayed 0
+  by kind: {"long":43,"short":30,"reference":38,"complaint":34,"typos":25,"indirect":35,"ambiguous":22,"dictated":23,"nothing_to_do":27,"session":139,"self_correction":30,"translated":21,"fragment":18,"paraphrase":125}
+  hard failures 17 {"engine":17}, the engine asks 10, warnings 0
+  --write: names and groups changed on 24 row(s) in 4 file(s); marked unreliable or left alone: 24
+RESULT: FAIL

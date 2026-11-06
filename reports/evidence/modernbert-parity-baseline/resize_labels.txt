@@ -1,0 +1,9 @@
+resize rows: 959
+no such word, no scale: 652
+a word for smaller, no scale: 307
+  e.g. ('shrink Backlog a bit', {'action': 'resize', 'target': 'Backlog'})
+  e.g. ('Shrink Scene1', {'action': 'resize', 'target': 'Scene1'})
+  e.g. ('Shrink Node2 a bit', {'action': 'resize', 'target': 'Node2'})
+  e.g. ('Shrink Problem a bit', {'action': 'resize', 'target': 'Problem'})
+  e.g. ('Make the Electron a lot smaller', {'action': 'resize', 'target': 'Electron'})
+  e.g. ('Shrink the Lamp', {'action': 'resize', 'target': 'Lamp'})

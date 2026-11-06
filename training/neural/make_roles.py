@@ -49,6 +49,19 @@ units docs/js/neural.js reads) is run on every message of the set (train, held-o
 word of it aligned to a word inside a span) is a "none" row. The segments the gold spans cover are not duplicated: the gold span is the row.
 The bench sets (one request per text, no spans) have no "none" rows. The counts are printed and saved in coverage.json.
 
+Switches of the parity plan's label arms (MODERNBERT_PARITY_PLAN.md L1, L2; parity/build_arm_data.sh). Unset: every output is byte for byte as before.
+  NUM_WORDS=table  (L1) a number written as words is aligned to a number key by a mechanical table (NUM_UNITS below: "forty", "forty five", "forty - five", "two hundred"), and
+                   co-occurrence only reads what the table does not ("halve", "twice"). reader.json carries number_words_from = "table" and docs/js/neural.js decodes by the same table.
+  LABEL_FIXES=path (L2) an overlay of the labels, {id, wire, scale, why} per line (wire: the index in the message's wires): the scale is added to that wire's args when rows are built;
+                   the data folders are not edited. Every line is checked against the covered folders and any bad line stops the run. Needs IMPLIED_SCALE=1.
+  ROLE_TOO_RICH=context  a name-role whose gold value holds a mention(...) beside another part (another mention, a name, "$new": "mention(quantifier=all,shape=square),
+                   mention(color=red,shape=triangle)", "armoury,mention(label=Entrance Hall)") is learned as fill:<key> = context: no desc / desc2 value and no B / I tag from
+                   it, so the reader leaves it to the context rule or asks, instead of learning the first description as if it were all of it (without the switch:
+                   fill = description with the first mention, a silent wrong label in roles_roundtrip.py). Same rule for every name-role and folder.
+  IMPLIED_SCALE=1  (L2) a class head "implied:scale" for the scale a request states without writing it ("shrink it"), built from the training rows like every other head. A scale counts
+                   as written when digits, a number with a unit or the table find it: such a row keeps its tag and has no value on the head; co-occurrence does not tag a scale, since
+                   "bit" cannot say both 0.8 and 1.25. docs/js/neural.js reads the head only when the model's reader has it and the request has no tagged number.
+
 Words: the request split by WORD_RE (letters/digits runs, every other non-space character alone), the same split docs/js/neural.js
 uses (WORD_RE there). Output (default ~/vss-box/ft/roles): train.jsonl, heldout.jsonl, eval_<set>.jsonl, reader.json (the head layout
 the model folder's config.json carries: acts, tags, class keys and values, act_keys, number_words, word_re), coverage.json.
@@ -83,6 +96,19 @@ def filler_kind(ws, v, created):
         if p == "$new": return any(find_seq(ws, [w[0].lower() for w in words(n)], set()) is not None for n in created)
         return find_seq(ws, [w[0].lower() for w in words(p)], set()) is not None
     return "written" if all(written(p) for p in ps) else "context"
+ROLE_TOO_RICH = os.environ.get("ROLE_TOO_RICH") or None
+if ROLE_TOO_RICH not in (None, "context"): raise SystemExit("ROLE_TOO_RICH must be unset or 'context'")
+
+
+def too_rich(v):
+    """a role value one description cannot hold: a mention(...) beside another part (another mention, a name or $new)"""
+    ps = parts(v)
+    return len(ps) > 1 and any(p.startswith("mention(") for p in ps)
+
+
+def rich_context(k, args, ref_keys):
+    """ROLE_TOO_RICH=context and this name-role's gold value is too rich: learned as context"""
+    return ROLE_TOO_RICH == "context" and k in ref_keys and k in args and too_rich(str(args[k]))
 SPAN_KINDS = {"names", "name", "text", "number", "texts", "point"}   # texts: a list of texts (items, items2, parents of a template, LEGEND_EXT.md): one B-/I- span per item, joined with "," by docs/js/neural.js; point (at "x,y"): one span per coordinate
 
 
@@ -149,6 +175,83 @@ def find_part(ws, exact, taken, after):
 def num(s):
     try: return float(s)
     except ValueError: return None
+
+
+# NUM_WORDS=table: the mechanical number words (docs/js/neural.js NUM_UNITS_T, NUM_TENS_T, NUM_DIGIT_T hold the same; parity/test_label_arms.py checks it). "one" is not in the
+# table: in the training spans it is the pronoun ("the red one"), not a number (wip/preprocess-fixes, training/sketch/front.py, counted 0 of 1841 spans).
+NUM_TABLE = os.environ.get("NUM_WORDS") == "table"
+NUM_UNITS = {"two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12,
+             "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19}
+NUM_TENS = {"twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70, "eighty": 80, "ninety": 90}
+NUM_DIGIT = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9}   # after a tens word only ("forty one")
+
+
+def table_number(low, i):
+    """the table at word i of the lower-cased words low -> (number, how many words), else None ("forty five" 2 words, "forty - five" 3, "two hundred" 2)"""
+    w = low[i]
+    n = NUM_UNITS.get(w, NUM_TENS.get(w, 100 if w == "hundred" else None))
+    if n is None: return None
+    if w in NUM_TENS:
+        if i + 1 < len(low) and low[i + 1] in NUM_DIGIT: return n + NUM_DIGIT[low[i + 1]], 2
+        if i + 2 < len(low) and low[i + 1] == "-" and low[i + 2] in NUM_DIGIT: return n + NUM_DIGIT[low[i + 2]], 3
+    if n < 10 and i + 1 < len(low) and low[i + 1] == "hundred": return n * 100, 2
+    return n, 1
+
+
+def table_value(text):
+    """the number a tagged span reads as by the table (docs/js/neural.js tableNumber), else None"""
+    low = re.findall(r"[a-z]+", str(text).lower())
+    return next((tn[0] for tn in (table_number(low, i) for i in range(len(low))) if tn), None)
+
+
+def table_words():
+    """the single words of the table (reader.json number_words when NUM_WORDS=table)"""
+    return dict(**{w: str(v) for w, v in NUM_UNITS.items()}, **{w: str(v) for w, v in NUM_TENS.items()}, hundred="100")
+
+
+# LABEL_FIXES, IMPLIED_SCALE: see the head of the file
+LABEL_FIXES = os.environ.get("LABEL_FIXES") or None
+IMPLIED_SCALE = os.environ.get("IMPLIED_SCALE") == "1"
+IMPLIED_KEYS = ("scale",) if IMPLIED_SCALE else ()
+# the folders the overlay may name: the first ModernBERT run's and those of arms M2s, M2n. Test sets are not here, so a line naming a test row is an unknown id
+LABEL_FIX_DIRS = ["llm_train/sonnet_msg", "llm_train/haiku_msg", "llm_train/sonnet_msg2", "llm_train/haiku_msg2", "llm_train/sonnet_long", "llm_bench/fresh1/sonnet", "llm_bench/fresh1/haiku",
+                  "llm_train/sonnet_short", "llm_train/haiku_short", "llm_bench/sonnet_spans", "llm_bench/haiku_spans"] + ["llm_train/" + d for d in (
+                  "opus_train_a", "opus_train_b", "opus_train_c", "opus_train_d", "opus_gen_1", "opus_gen_2", "synth_rules", "synth_rules_ops", "synth_rules_ext", "ops_formulations", "opus_ext_1", "synth_combo",
+                  "scenes_r3", "scenes_r3b", "opus_r3_gaps", "opus_tgt_1", "opus_tgt_2", "ops_groups", "ops_positions", "opus_short_r2")]
+
+
+def load_label_fixes(path):
+    """the overlay -> {message id: {wire index: scale as the data writes it ("0.67")}}. Stops on any line that does not fix a resize wire without a scale in a covered folder"""
+    if not os.path.isfile(path): raise SystemExit(f"LABEL_FIXES: no such file: {path}")
+    universe = {m["id"]: m for d in dict.fromkeys(LABEL_FIX_DIRS + MD.DIRS + MD.SAMPLE_DIRS) if MD.label_files(d) for m in MD.messages([d])}
+    fixes, bad = {}, []
+    for n, line in enumerate(open(path, encoding="utf8"), 1):
+        if not line.strip(): continue
+        try: r = json.loads(line)
+        except ValueError as e: bad.append(f"line {n}: not JSON: {e}"); continue
+        if not isinstance(r, dict) or set(r) != {"id", "wire", "scale", "why"}: bad.append(f"line {n}: the keys must be id, wire, scale, why: {line.strip()}"); continue
+        m = universe.get(r["id"]); w = r["wire"]
+        if m is None: bad.append(f"line {n}: unknown id {r['id']!r}"); continue
+        if type(w) is not int or not 0 <= w < len(m.get("wires", [])): bad.append(f"line {n}: {r['id']}: no wire {w!r}"); continue
+        wire = m["wires"][w]; args = wire.get("args", {})
+        if "pending" in wire: bad.append(f"line {n}: {r['id']} wire {w} is pending"); continue
+        if wire.get("type") != "command" or args.get("action") != "resize": bad.append(f"line {n}: {r['id']} wire {w} is not a resize: {wire.get('span')!r}"); continue
+        if "scale" in args: bad.append(f"line {n}: {r['id']} wire {w} already has scale={args['scale']}"); continue
+        if type(r["scale"]) not in (int, float) or not r["scale"] > 0: bad.append(f"line {n}: {r['id']} wire {w}: scale must be a positive number, not {r['scale']!r}"); continue
+        if not isinstance(r["why"], str) or not r["why"].strip(): bad.append(f"line {n}: {r['id']} wire {w}: no why"); continue
+        if w in fixes.get(r["id"], {}): bad.append(f"line {n}: {r['id']} wire {w} is fixed twice"); continue
+        fixes.setdefault(r["id"], {})[w] = format(r["scale"], "g")
+    if bad: raise SystemExit(f"LABEL_FIXES {path}: {len(bad)} bad line(s):\n  " + "\n  ".join(bad[:30]))
+    return fixes
+
+
+def apply_label_fixes(msgs, fixes):
+    """the overlay on these messages, in memory (a message may be in two pools: applying twice changes nothing) -> how many wires it fixed"""
+    n = 0
+    for m in msgs:
+        for w, scale in (fixes or {}).get(m["id"], {}).items():
+            m["wires"][w]["args"]["scale"] = scale; n += 1
+    return n
 
 
 NUM_UNIT = re.compile(r"(\d+(?:\.\d+)?)[^\W\d_]*")   # a number with a unit glued to it ("50px"): docs/js/neural.js reads its first digit run
@@ -261,11 +364,14 @@ def main():
     ap.add_argument("--all", action="store_true", help="all data (ALL_DATA.md): no sample removed, no held-out (heldout.jsonl empty); eval_sample1000 is then a fit-on-train check")
     ap.add_argument("--also", nargs="*", default=[], help="roles_roundtrip.py: more folders (relative to training/sketch) labelled with the training layout as also_<folder>.jsonl; not training data")
     a = ap.parse_args()
+    if LABEL_FIXES and not IMPLIED_SCALE: raise SystemExit("LABEL_FIXES needs IMPLIED_SCALE=1: the scales it adds are not written, and co-occurrence would tag other words for them")
+    fixes = load_label_fixes(LABEL_FIXES) if LABEL_FIXES else None
     os.makedirs(a.out, exist_ok=True)
     LEG = legend()
     ACTION, ASK = MD.acts_from_neural_js(); ACTS = ACTION + ASK + ["fact", "rule"] + (["none"] if a.none_rows else [])
     skipped = collections.Counter()
     train_msgs, held, sample_msgs, missing = MD.split_messages(a.sample_ids, a.seed, a.all)
+    fixed = apply_label_fixes(train_msgs, fixes); apply_label_fixes(sample_msgs, fixes)
     pools = {"train": [m for m in train_msgs if m["id"] not in held], "heldout": [m for m in train_msgs if m["id"] in held], "eval_sample1000": sample_msgs}
     sets = {n: requests(ms, ACTS, skipped) for n, ms in pools.items()}
     nreq = {n: len(r) for n, r in sets.items()}
@@ -285,7 +391,8 @@ def main():
     # --also (training/neural/roles_roundtrip.py): folders that are not trained on (short3, fresh2), labelled with the SAME layout as
     # also_<folder>.jsonl (not eval_*, so finetune_roles.py never reads them); the layout below is still built from the training rows only
     for d in a.also:
-        sets["also_" + d.replace("/", "__")] = requests(MD.messages([d]), ACTS, skipped)
+        also = MD.messages([d]); apply_label_fixes(also, fixes)
+        sets["also_" + d.replace("/", "__")] = requests(also, ACTS, skipped)
 
     # which keys are learned how: from the legend kind, for the keys the training gold uses
     train = sets["train"]; used = collections.Counter(k for x in train for k in x[3])
@@ -304,6 +411,7 @@ def main():
     dvals = collections.defaultdict(set); dunknown = collections.Counter()
     for x in train:
         for k in ref_keys:
+            if rich_context(k, x[3], ref_keys): continue   # ROLE_TOO_RICH=context: no description heads from it
             for p in parts(x[3].get(k, "")) if k in x[3] else []:
                 if not p.startswith("mention("): continue
                 for dk, dv in mention_args(p).items():
@@ -315,7 +423,7 @@ def main():
     # its own, desc2:<key>; with one set of heads both roles were decoded with the first role's description (ROLES_ROUNDTRIP.md)
     dvals2 = collections.defaultdict(set)
     for x in train:
-        ds = [next(p for p in parts(x[3][k]) if p.startswith("mention(")) for k in ref_keys if k in x[3] and any(p.startswith("mention(") for p in parts(x[3][k]))]
+        ds = [next(p for p in parts(x[3][k]) if p.startswith("mention(")) for k in ref_keys if k in x[3] and any(p.startswith("mention(") for p in parts(x[3][k])) and not rich_context(k, x[3], ref_keys)]
         for dk, dv in (mention_args(ds[1]).items() if len(ds) > 1 else []):
             if dk.lower() in DKEY: dvals2[DKEY[dk.lower()]].add(dv)
     desc2_keys = sorted(dvals2)
@@ -329,11 +437,15 @@ def main():
         co.add(words(sp), kv)
     numvals = {k: sorted({p for x in train if k in x[3] for p in parts(x[3][k])}) for k in span_keys if LEG[k]["kind"] == "number"}
 
+    implied_values = {k: collections.Counter() for k in IMPLIED_KEYS}   # the training rows' values of the head implied:<key> (filled in the label pass, train first)
+    implied_tagged = collections.Counter()
+
     def label(row, cov, numword):
         rid, sp, typ, args, act, created = row
-        ws = words(sp); tag = ["O"] * len(ws); taken = {}
+        ws = words(sp); tag = ["O"] * len(ws); taken = {}; implied = {}
         for k in sorted(span_keys, key=lambda k: LEG[k]["kind"] == "number"):   # numbers last: a number word found by co-occurrence never takes a name ("Slide Day to the left")
             if k not in args: continue
+            if rich_context(k, args, ref_keys): cov[k]["values"] += len(parts(args[k])); cov[k]["too rich: learned as context (ROLE_TOO_RICH)"] += 1; continue
             after = 0   # the parts of a list are looked for in their order (find_part)
             # a text (a label, a title) is one value even when it holds a comma ("label Persona 'Maria, 34'"); every other kind is a list
             for p in ([str(args[k])] if str(args[k]) else []) if LEG[k]["kind"] == "text" else parts(args[k]):
@@ -347,7 +459,11 @@ def main():
                 else: exact, how = [w[0] for w in words(p)], "written"
                 seq = [w.lower() for w in exact]
                 i = find_part(ws, exact, taken, after)
-                if i is None and LEG[k]["kind"] == "number":
+                if i is None and LEG[k]["kind"] == "number" and NUM_TABLE:   # the mechanical table: the first free run of words that reads as p
+                    low = [w[0].lower() for w in ws]
+                    hit = next(((j, tn[1]) for j in range(len(ws)) for tn in [table_number(low, j)] if tn and float(tn[0]) == num(p) and not any(q in taken for q in range(j, j + tn[1]))), None)
+                    if hit is not None: i = hit[0]; seq, how = [w[0].lower() for w in ws[i:i + hit[1]]], "number word (table)"
+                if i is None and LEG[k]["kind"] == "number" and k not in IMPLIED_KEYS:   # with the table: only what the table does not read ("halve", "twice")
                     i = co.align(ws, k, p, numvals[k], taken)
                     if i is not None: seq, how = [ws[i][0].lower()], "number word (co-occurrence)"; numword[ws[i][0].lower()][p] += 1
                 if i is None and LEG[k]["kind"] == "number":   # a number with its unit glued on ("50px"): the decoder reads its digits
@@ -355,14 +471,17 @@ def main():
                     if i is not None: seq, how = [ws[i][0].lower()], "number with a unit"
                 if i is None:
                     low = {w[0].lower() for w in ws}
-                    c["already tagged for another key" if seq and all(s in low for s in seq) else "not written in the request"] += 1; continue
+                    c["already tagged for another key" if seq and all(s in low for s in seq) else "not written in the request"] += 1
+                    if k in IMPLIED_KEYS: implied[k] = str(args[k])   # no word to tag: its class head says it
+                    continue
                 c["aligned: " + how] += 1
                 for j in range(i, i + len(seq)): tag[j] = ("B-" if j == i else "I-") + k; taken[j] = k
                 after = i + len(seq)
         classes ={k: str(args[k]) for k in class_keys if k in args}
+        for k, v in implied.items(): classes["implied:" + k] = v
         for k in ref_keys:
-            if k in args: classes["fill:" + k] = filler_kind(ws, str(args[k]), created)
-        ds = [next(p for p in parts(args[k]) if p.startswith("mention(")) for k in ref_keys if k in args and any(p.startswith("mention(") for p in parts(args[k]))]
+            if k in args: classes["fill:" + k] = "context" if rich_context(k, args, ref_keys) else filler_kind(ws, str(args[k]), created)
+        ds = [next(p for p in parts(args[k]) if p.startswith("mention(")) for k in ref_keys if k in args and any(p.startswith("mention(") for p in parts(args[k])) and not rich_context(k, args, ref_keys)]
         for pre, keys, d in zip(("desc:", "desc2:"), (desc_keys, desc2_keys), ds):   # the first described role -> desc:, the second -> desc2:
             for dk, dv in mention_args(d).items():
                 if DKEY.get(dk.lower()) in keys: classes[pre + DKEY[dk.lower()]] = dv
@@ -393,6 +512,10 @@ def main():
     for name, rows in sets.items():
         cov = collections.defaultdict(collections.Counter)
         out = [label(r, cov, numword if name == "train" else collections.defaultdict(collections.Counter)) for r in rows]
+        if name == "train":
+            for k in IMPLIED_KEYS:
+                implied_values[k].update(o["classes"]["implied:" + k] for o in out if "implied:" + k in o["classes"])
+                implied_tagged[k] += sum(1 for r, o in zip(rows, out) if k in r[3] and "implied:" + k not in o["classes"])
         with open(os.path.join(a.out, name + ".jsonl"), "w", encoding="utf8") as f:
             for r in out: f.write(json.dumps(r, ensure_ascii=False) + "\n")
         # evidence for the class keys: does one word of the request express the value?
@@ -406,9 +529,11 @@ def main():
             ccov[k] = {"values": n, "one word expresses it (co-occurrence, both directions)": al, "top word->value": [f"{w}->{v} {c}" for (w, v), c in pairs.most_common(8)]}
         coverage[name] = {"span keys": {k: dict(v) for k, v in cov.items()}, "class keys": ccov, "rows": len(out), "fillers": fillers(rows, out)}
     number_words = {w: c.most_common(1)[0][0] for w, c in numword.items()}
+    if NUM_TABLE: number_words = dict({w: v for w, v in number_words.items() if w not in table_words()}, **table_words())   # the table wins for its words
+    implied_classes = [["implied:" + k, ["none"] + sorted(implied_values[k])] for k in IMPLIED_KEYS if implied_values[k]]
     reader = {"cut": {"tags": ["O", "B", "I"], "max_length": 512}, "acts": ACTS, "tags": tags, "span_keys": span_keys, "ref_keys": ref_keys, "desc_keys": desc_keys, "desc2_keys": desc2_keys,
-              "classes": [[k, ["none"] + values[k]] for k in class_keys] + fill_classes,
-              "act_keys": act_keys, "number_words": number_words, "word_re": "[\\p{L}\\p{N}]+|[^\\s\\p{L}\\p{N}]", "max_length": 128}
+              "classes": [[k, ["none"] + values[k]] for k in class_keys] + fill_classes + implied_classes,
+              "act_keys": act_keys, "number_words": number_words, **({"number_words_from": "table"} if NUM_TABLE else {}), "word_re": "[\\p{L}\\p{N}]+|[^\\s\\p{L}\\p{N}]", "max_length": 128}
     json.dump(reader, open(os.path.join(a.out, "reader.json"), "w"), indent=1)
     cutn = {}
     for n, ms in pools.items():
@@ -423,6 +548,12 @@ def main():
     print("cut rows (whole messages, B/I/O per word): " + ", ".join(f"{n} {c['messages']} messages {c['spans']} spans" for n, c in cutn.items()))
     coverage["none"] = {n: {"requests": nreq[n], "none": len(sets[n]) - nreq[n], "none share": round((len(sets[n]) - nreq[n]) / max(len(sets[n]), 1), 4)} for n in nreq}
     coverage["skipped"] = dict(skipped); coverage["sample1000_missing"] = len(missing)
+    if fixes is not None:
+        coverage["label_fixes"] = {"file": os.path.basename(LABEL_FIXES), "lines": sum(len(v) for v in fixes.values()), "applied to this data": fixed}
+        print(f"label fixes: {fixed} of {coverage['label_fixes']['lines']} lines are in this data list")
+    if IMPLIED_KEYS:
+        coverage["implied"] = {k: {"tagged (written)": implied_tagged[k], "on the head": dict(sorted(implied_values[k].items()))} for k in IMPLIED_KEYS}
+        print("implied heads, training rows: " + json.dumps(coverage["implied"]))
     json.dump(coverage, open(os.path.join(a.out, "coverage.json"), "w"), indent=1)
 
     print(f"rows: " + ", ".join(f"{k} {coverage[k]['rows']}" for k in sets))

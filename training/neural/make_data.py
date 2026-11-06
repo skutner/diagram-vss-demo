@@ -23,10 +23,17 @@ SK = os.path.join(REPO, "training", "sketch")
 DIRS = ["llm_train/sonnet_msg", "llm_train/haiku_msg", "llm_train/sonnet_msg2", "llm_train/haiku_msg2", "llm_train/sonnet_long",
         "llm_bench/fresh1/sonnet", "llm_bench/fresh1/haiku", "llm_train/sonnet_short", "llm_train/haiku_short"]
 # EXTRA_DIRS (FEEDBACK_PLAN.md arms): the same extra folders as training/sketch/front.py extra_dirs(); unset: none, nothing changes
+def label_files(d):
+    """the annotated files of a folder: its msg_*.jsonl and batch_*.jsonl. A natural-language round (llm_train/nl_p*, NL_TRAIN_SPEC.md) holds texts/ (no labels) and two
+    label folders, opus/ and gpt/: training uses opus/ only, the gpt/ labels are a check and never training labels (MODERNBERT_PARITY_PLAN.md section 6)"""
+    base = os.path.join(SK, d, "opus") if re.fullmatch(r"nl_p[^/]*", os.path.basename(os.path.normpath(d))) else os.path.join(SK, d)
+    return sorted(glob.glob(os.path.join(base, "msg_*.jsonl")) + glob.glob(os.path.join(base, "batch_*.jsonl")))
+
+
 for _d in os.environ.get("EXTRA_DIRS", "").replace(",", " ").split():
     _d = os.path.relpath(os.path.join(SK, _d), SK) if not os.path.isabs(_d) else _d
-    if not (glob.glob(os.path.join(SK, _d, "msg_*.jsonl")) or glob.glob(os.path.join(SK, _d, "batch_*.jsonl"))):
-        raise SystemExit(f"EXTRA_DIRS: {_d!r} has no msg_*.jsonl / batch_*.jsonl")
+    if not label_files(_d):
+        raise SystemExit(f"EXTRA_DIRS: {_d!r} has no msg_*.jsonl / batch_*.jsonl (a folder named nl_p*: in its opus/)")
     if _d not in DIRS: DIRS.append(_d)
 SAMPLE_DIRS = ["llm_bench/sonnet_spans", "llm_bench/haiku_spans"]   # where the sample's h-/s- ids live
 EVAL = ["hand", "blind", "broad", "seen", "new_identities", "heldout_formulations"]
@@ -49,8 +56,7 @@ def act_of(type_, args):
 def messages(dirs):
     out = []
     for d in dirs:
-        files = sorted(glob.glob(os.path.join(SK, d, "msg_*.jsonl")) + glob.glob(os.path.join(SK, d, "batch_*.jsonl")))
-        for f in files:
+        for f in label_files(d):
             for l in open(f, encoding="utf8"):
                 if l.strip(): m = json.loads(l); m["_dir"] = d; out.append(m)
     return out

@@ -1,0 +1,12 @@
+# M4: the export writes reader.drawing for a run trained with --canvas-rows. Base training/neural/parity/arm_export.py sha256 6b18151664241135be59cf176aa0e3e2a63f21c9b2bc2032fbd98cc17ea64380
+--- a/training/neural/parity/arm_export.py
++++ b/training/neural/parity/arm_export.py
+@@ -297,6 +297,8 @@
+     config["reader"] = dict(R, max_length=128, tokenization=POLICY, export_mode=MODE, arithmetic="8-bit weights, float32 arithmetic", execution_policy=EXECUTION_POLICY,
+                             training_manifest=dict(meta["data"], message_ids=sorted(train_ids), message_ids_sha256=hashlib.sha256(("\n".join(sorted(train_ids)) + "\n").encode()).hexdigest()),
+                             training_provenance=provenance, cut=dict(R.get("cut", {}), max_length=512))
++    if "canvas" in meta["settings"]:   # arm M4: trained with the second read (--canvas-rows); docs/js/neural.js reads the drawing only for a reader with this
++        config["reader"]["drawing"] = dict(format="drawing-lines-v1", max_length=meta["settings"]["canvas"]["cap"], canvas_rows=meta["settings"]["canvas"])
+     config["transformers.js_config"] = {"use_external_data_format": len(chunks)}
+     atomic_json(a.out / "config.json", config)
+     atomic_json(a.out / "conversion.json", conversion)

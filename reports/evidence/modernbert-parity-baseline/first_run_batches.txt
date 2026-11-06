@@ -1,0 +1,3 @@
+request rows 54584: pieces p50 9, p90 14, p99 21, max 53
+whole messages 24698: pieces p50 14, p90 58, p99 151, max 302
+steps per epoch 1705; tokens in a batch of 32 requests: p50 608, p99 1056, max 1696; in a batch of 8 messages: p50 496, p99 1608, max 2416; steps over 4,096 tokens in one batch: 0

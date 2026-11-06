@@ -1,0 +1,24 @@
+rules, 7 turns where Opus shrinks a shape: shrinks what Opus shrinks 4; grows a shape 0; shrinks other shapes 1; changes no size 2
+   city#38 | the moon looks too big, shrink it | @s1 command action=resize size=large scale=0.67 target=Moon | shrinks what Opus shrinks
+   bauhaus#23 | make Disc a little smaller | @s1 command action=resize scale=0.67 target=Disc | shrinks what Opus shrinks
+   poster#22 | make the subtitle smaller | @s1 command action=resize scale=0.67 | no size change: Which shape should I change? Name it, e.g. "change
+   pirate#26 | make the clouds smaller | @s1 command action=resize scale=0.67 | no size change: Which shape should I change? Name it, e.g. "change
+   factory#23 | make GearB smaller than GearA | @s1 command action=resize scale=0.67 target=GearB,GearA | shrinks others: GearA,GearB
+   living#34 | shrink the plant leaves | @s1 command action=resize scale=0.67 target=Leaves | shrinks what Opus shrinks
+   town#21 | make the compass smaller | @s1 command action=resize scale=0.67 target=Compass | shrinks what Opus shrinks
+sop-bert, 7 turns where Opus shrinks a shape: shrinks what Opus shrinks 0; grows a shape 5; shrinks other shapes 0; changes no size 2
+   city#38 | the moon looks too big, shrink it | @n1 command action=resize target=Moon | grows Moon
+   bauhaus#23 | make Disc a little smaller | @n1 command action=resize target=Disc | grows Disc
+   poster#22 | make the subtitle smaller | @n1 command action=resize target=subtitle | no size change: There is no shape named "subtitle". The closest na
+   pirate#26 | make the clouds smaller | @n1 command action=resize target=clouds | no size change: There is no shape named "clouds". The closest name
+   factory#23 | make GearB smaller than GearA | @n1 command action=resize target=GearB | grows GearB
+   living#34 | shrink the plant leaves | @n1 command action=resize target=CatBody,CatHead | grows CatBody,CatHead
+   town#21 | make the compass smaller | @n1 command action=resize target=Compass | grows Compass
+modernbert, 7 turns where Opus shrinks a shape: shrinks what Opus shrinks 0; grows a shape 2; shrinks other shapes 0; changes no size 5
+   city#38 | the moon looks too big, shrink it | @n1 command action=resize target=$m1 | no size change: Which shape? Night (center), Road (bottom center),
+   bauhaus#23 | make Disc a little smaller | @n1 command action=resize target=Disc | grows Disc
+   poster#22 | make the subtitle smaller | @n1 command action=resize target=$m1 | no size change: Which shape? Poster (center), Stage (bottom center
+   pirate#26 | make the clouds smaller | @n1 command action=resize target=$m1 | no size change: Which shape? Sky (center), Ocean (bottom center), 
+   factory#23 | make GearB smaller than GearA | @n1 command action=resize target=GearB | grows GearB
+   living#34 | shrink the plant leaves | @n1 command action=resize target=$m1 | no size change: Which shape? Wall (center), Floor (bottom center),
+   town#21 | make the compass smaller | @n1 command action=resize target=$m1 | no size change: Which shape? Land (center), Park (top left), Lake 

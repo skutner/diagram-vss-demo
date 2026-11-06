@@ -1,0 +1,5272 @@
+{
+ "schema": "root-causes-v1",
+ "reader": "sop",
+ "artifactShort": "d49d22ed467c",
+ "view": "opus",
+ "scoring": "direction",
+ "score": "/home/skutner/.cache/diagram-vss-modernbert/arms/SOP-F0-s0/nlb/nlb.score.json",
+ "trainData": "/home/skutner/.cache/diagram-vss-modernbert/arms/data/F0",
+ "inventory": "3513 triggers, /home/skutner/.cache/diagram-vss-modernbert/arms/data/F0/trigger_inventory.json",
+ "layout": "/home/skutner/.cache/diagram-vss-modernbert/arms/data/F0/reader.json",
+ "oracle": "/home/skutner/.cache/diagram-vss-modernbert/arms/data/F0.work/roundtrip",
+ "notes": [
+  "oracle: /home/skutner/.cache/diagram-vss-modernbert/arms/data/F0.work/roundtrip: it holds the ids of fresh2 and short3 only, so for every other set cause 1 is not measured (the oracle verdict row of each part says absent); it is the round trip of the layout whose training data it was made for, a proxy when the arm read has another layout",
+  "Views: nl_b/all opus (direction). fresh2 / short3 have one teacher (cause 2 is not measured there). collected_1 is read as its teacher_opus view."
+ ],
+ "imported_files_sha256": {
+  "arm_lib.mjs": "3ebe440fad4bdc6b741a6227986e32dce0eb41f68186f27854d7e6bab06e7dc2",
+  "score_arm.mjs": "477449ca977240ed0b20a9ffcf42ae53eddd5220c74bbdf3e658bdec4be74ff2",
+  "sets.mjs": "5815a047cc46c1b6dd513eeebc42993d945b6a47f7500a9c9c9def2b1aa37a81",
+  "parity_lib.mjs": "e750ed25d8c8308b7d3c5ce3abd0bd2126cf20b77fde7bc3b0c48d45ff9a9b03",
+  "../calibrate_modernbert.mjs": "d109f742d0f099758a7ae153b6b23dbb9c6e3da83c4f7fd2680fdb1dc095131c",
+  "../../../docs/js/bench-canon.js": "4e4bb98db55c2badc6725e42e04862a5893ffeb2cf4a83d2bbaf3cfc931f2cfb",
+  "../../sketch/layer_common.mjs": "f41655370a5675e4476b0edb68b2af7576bfae7eec6723be751bfb04876fb78e"
+ },
+ "record_files": [
+  "/home/skutner/.cache/diagram-vss-modernbert/arms/SOP-F0-s0/nlb/rec_nlb.jsonl"
+ ],
+ "parts": [
+  {
+   "key": "nl_b",
+   "part": "all",
+   "view": "opus",
+   "scoring": "direction",
+   "messages": 601,
+   "groups": {
+    "seen": {
+     "counts": {
+      "cut": 84,
+      "act": 242,
+      "ref": 122,
+      "class": 33,
+      "name": 27,
+      "oracle": 2
+     },
+     "keys": {
+      "cut|(command:create)": 26,
+      "act|command:label read as command:create": 7,
+      "act|command:create read as command:move": 50,
+      "act|question:exists read as question:check": 2,
+      "act|command:set read as command:connect": 8,
+      "cut|(command:connect)": 14,
+      "ref|anchor": 28,
+      "class|position": 11,
+      "ref|from": 32,
+      "ref|to": 34,
+      "class|target": 8,
+      "name|label": 9,
+      "act|command:set read as command:toBack": 2,
+      "class|layer": 2,
+      "class|fill": 1,
+      "act|command:create read as command:arrange": 2,
+      "act|command:create read as command:label": 7,
+      "ref|target": 55,
+      "cut|(command:label)": 16,
+      "cut|(command:delete)": 2,
+      "act|command:connect read as command:label": 2,
+      "act|command:arrange read as command:move": 2,
+      "cut|(command:set)": 8,
+      "cut|(command:move)": 7,
+      "class|direction": 2,
+      "name|target": 13,
+      "name|from": 3,
+      "act|command:resize read as command:set": 1,
+      "name|distance": 1,
+      "act|command:create read as command:connect": 12,
+      "act|command:create read as question:help": 4,
+      "act|command:connect read as command:move": 2,
+      "oracle|object": 2,
+      "act|command:label read as command:set": 5,
+      "act|command:label read as command:move": 16,
+      "act|command:connect read as question:help": 2,
+      "act|command:resize read as command:respace": 2,
+      "act|command:connect read as command:reverse": 2,
+      "act|command:respace read as command:distribute": 4,
+      "act|command:label read as command:toFront": 2,
+      "class|shape": 9,
+      "act|command:connect read as command:untangle": 1,
+      "act|command:disconnect read as command:connect": 2,
+      "act|question:count read as question:degree": 18,
+      "cut|(command:group)": 1,
+      "act|command:set read as command:move": 2,
+      "act|command:create read as command:set": 4,
+      "act|command:create read as question:nearest": 2,
+      "cut|command:set": 1,
+      "class|to": 1,
+      "act|command:create read as question:cycle": 2,
+      "act|command:flip read as command:reverse": 2,
+      "cut|(command:duplicate)": 1,
+      "act|command:label read as command:undo": 2,
+      "act|command:label read as command:resize": 2,
+      "act|command:duplicate read as command:arrange": 2,
+      "act|command:label read as question:help": 4,
+      "act|command:label read as command:group": 2,
+      "cut|(command:swap)": 4,
+      "name|name": 1,
+      "act|command:move read as command:group": 2,
+      "act|command:flip read as command:set": 2,
+      "act|command:create read as command:redo": 2,
+      "act|command:set read as command:create": 2,
+      "act|command:delete read as command:label": 2,
+      "act|command:connect read as question:list": 2,
+      "act|question:exists read as question:connected": 2,
+      "act|command:create read as question:path": 2,
+      "name|to": 2,
+      "ref|linked": 1,
+      "act|command:create read as question:reachable": 2,
+      "act|command:set read as question:help": 4,
+      "cut|command:connect": 2,
+      "act|question:count read as question:exists": 2,
+      "act|command:set read as command:resize": 2,
+      "act|command:create read as question:check": 2,
+      "act|command:label read as command:connect": 4,
+      "class|outline": 1,
+      "act|command:swap read as command:undo": 2,
+      "act|command:delete read as command:move": 4,
+      "act|command:swap read as command:move": 2,
+      "act|command:label read as command:duplicate": 2,
+      "act|command:delete read as question:path": 2,
+      "cut|(command:resize)": 2,
+      "act|command:duplicate read as command:create": 2,
+      "act|command:move read as question:connected": 2,
+      "act|command:resize read as command:connect": 2,
+      "act|command:label read as command:rename": 2,
+      "act|command:equalize read as command:connect": 2,
+      "act|command:connect read as command:group": 2,
+      "act|question:count read as question:reachable": 2,
+      "act|command:swap read as command:untangle": 2,
+      "act|command:connect read as command:set": 2,
+      "act|command:move read as command:toFront": 1
+     },
+     "examples": {
+      "cut": [
+       {
+        "id": "nlb-01-001",
+        "text": "Give the workshop its own run underneath those",
+        "gold": "action=create label=workshop position=below anchor=sockets linked=board",
+        "read": "action=create anchor=bit label=replace before energising position=near shape=text",
+        "detail": "merged: the unit holds 2 requests"
+       },
+       {
+        "id": "nlb-01-001",
+        "text": "We need three socket outlets along that run",
+        "gold": "action=create count=3 label=socket outlet",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-01-009",
+        "text": "kitchen sensro needs to talk to the hub",
+        "gold": "action=connect from=kitchensensor to=hub",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       }
+      ],
+      "act": [
+       {
+        "id": "nlb-01-001",
+        "text": "Can you put 'replace before energising' beside it",
+        "gold": "action=label from=board to=sockets label=replace before energising",
+        "read": "not done",
+        "detail": "read as command:create"
+       },
+       {
+        "id": "nlb-01-001",
+        "text": "Give the workshop its own run underneath those, with the isolator before the sockets",
+        "gold": "requested: Give the workshop its own run underneath those",
+        "read": "extra command:move action=move target=isolator",
+        "detail": "read as command:move where command:create is requested"
+       },
+       {
+        "id": "nlb-01-005",
+        "text": "is the one under the battery actually connected",
+        "gold": "ask=exists kind=edge linked=bulbb",
+        "read": "not done",
+        "detail": "read as question:check"
+       }
+      ],
+      "ref": [
+       {
+        "id": "nlb-01-010",
+        "text": "Put the spare beside it too",
+        "gold": "action=move target=spare position=near anchor=router",
+        "read": "action=move target=spare",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-012",
+        "text": "Join those up",
+        "gold": "action=connect from=mention(shape=circle) to=mention(shape=rectangle)",
+        "read": "action=connect from=circle1,rectangle1 to=circle1,rectangle1",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-021",
+        "text": "I want the switch connected to each of the other things with plain lines",
+        "gold": "action=connect from=switch to=router,ups,$new arrow=none",
+        "read": "action=connect arrow=none from=switch to=sticker",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "class": [
+       {
+        "id": "nlb-01-011",
+        "text": "a box for the hub to its right",
+        "gold": "action=create shape=rectangle label=hub position=rightof anchor=$new",
+        "read": "action=create name=hub shape=rectangle",
+        "detail": null
+       },
+       {
+        "id": "nlb-01-014",
+        "text": "make the siren bigger",
+        "gold": "action=resize target=mention(label=siren)",
+        "read": "action=resize target=siren",
+        "detail": null
+       },
+       {
+        "id": "nlb-01-021",
+        "text": "put a pale box round them marked 'Ground floor cupboard'",
+        "gold": "action=create shape=rectangle layer=zone fill=light label=ground floor cupboard",
+        "read": "action=create color=lime label=ground floor cupboard shape=rectangle",
+        "detail": null
+       }
+      ],
+      "name": [
+       {
+        "id": "nlb-01-015",
+        "text": "Put a battery below the controller",
+        "gold": "action=create label=battery position=below anchor=controller",
+        "read": "action=create anchor=controller position=below",
+        "detail": null
+       },
+       {
+        "id": "nlb-02-001",
+        "text": "put a blue spike mark just downstage of the table",
+        "gold": "action=create color=blue label=spike mark position=below anchor=table",
+        "read": "action=create anchor=table color=blue position=below shape=rectangle",
+        "detail": null
+       },
+       {
+        "id": "nlb-02-006",
+        "text": "Label the hold 'if wet'",
+        "gold": "action=label target=$new label=if wet",
+        "read": "action=label label=if wet target=hold",
+        "detail": null
+       }
+      ],
+      "oracle": [
+       {
+        "id": "nlb-03-009",
+        "text": "Add four plum trees along the bottom fence—sorry, three",
+        "gold": "action=create object=tree count=3 layout=row position=near anchor=bottomfence",
+        "read": "action=create count=4 position=bottom shape=text",
+        "detail": "a key the layout does not read"
+       },
+       {
+        "id": "nlb-12-037",
+        "text": "put an eye on the cat",
+        "gold": "action=create object=eye position=ontop anchor=cat",
+        "read": "action=create",
+        "detail": "a key the layout does not read"
+       }
+      ]
+     },
+     "keyExamples": {
+      "cut|(command:create)": [
+       {
+        "id": "nlb-01-001",
+        "text": "Give the workshop its own run underneath those",
+        "gold": "action=create label=workshop position=below anchor=sockets linked=board",
+        "read": "action=create anchor=bit label=replace before energising position=near shape=text",
+        "detail": "merged: the unit holds 2 requests"
+       },
+       {
+        "id": "nlb-01-001",
+        "text": "We need three socket outlets along that run",
+        "gold": "action=create count=3 label=socket outlet",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-01-021",
+        "text": "a small black box with no sticker; add that as 'Unidentified'",
+        "gold": "action=create shape=rectangle size=small color=black label=unidentified",
+        "read": "action=create color=black shape=rectangle size=small",
+        "detail": "the unit covers 30% of the span"
+       }
+      ],
+      "act|command:label read as command:create": [
+       {
+        "id": "nlb-01-001",
+        "text": "Can you put 'replace before energising' beside it",
+        "gold": "action=label from=board to=sockets label=replace before energising",
+        "read": "not done",
+        "detail": "read as command:create"
+       },
+       {
+        "id": "nlb-01-007",
+        "text": "Write 'optional' over that area",
+        "gold": "action=label target=$new label=optional",
+        "read": "not done",
+        "detail": "read as command:create"
+       },
+       {
+        "id": "nlb-06-021",
+        "text": "put 12 vans back inside North",
+        "gold": "action=label target=north label=12 vans",
+        "read": "not done",
+        "detail": "read as command:create"
+       }
+      ],
+      "act|command:create read as command:move": [
+       {
+        "id": "nlb-01-001",
+        "text": "Give the workshop its own run underneath those, with the isolator before the sockets",
+        "gold": "requested: Give the workshop its own run underneath those",
+        "read": "extra command:move action=move target=isolator",
+        "detail": "read as command:move where command:create is requested"
+       },
+       {
+        "id": "nlb-01-013",
+        "text": "Add my phone on the right",
+        "gold": "action=create label=mum's phone position=right",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-01-013",
+        "text": "Add my phone on the right as well,",
+        "gold": "requested: Add my phone on the right",
+        "read": "extra command:move action=move position=right target=phone",
+        "detail": "read as command:move where command:create is requested"
+       }
+      ],
+      "act|question:exists read as question:check": [
+       {
+        "id": "nlb-01-005",
+        "text": "is the one under the battery actually connected",
+        "gold": "ask=exists kind=edge linked=bulbb",
+        "read": "not done",
+        "detail": "read as question:check"
+       },
+       {
+        "id": "nlb-01-005",
+        "text": "is the one under the battery actually connected or is it",
+        "gold": "requested: is the one under the battery actually connected",
+        "read": "extra question:check ask=check anchor=battery",
+        "detail": "read as question:check where question:exists is requested"
+       }
+      ],
+      "act|command:set read as command:connect": [
+       {
+        "id": "nlb-01-007",
+        "text": "show its connection to the hub with a dotted line",
+        "gold": "action=set from=phone to=hub style=dotted",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-01-007",
+        "text": "show its connection to the hub with a dotted line",
+        "gold": "requested: show its connection to the hub with a dotted line",
+        "read": "extra command:connect action=connect arrow=none from=phone style=dotted to=hub",
+        "detail": "read as command:connect where command:set is requested"
+       },
+       {
+        "id": "nlb-10-007",
+        "text": "That connection should be a dashed line",
+        "gold": "action=set from=ticket to=triage style=dashed arrow=none",
+        "read": "not done",
+        "detail": "read as command:connect"
+       }
+      ],
+      "cut|(command:connect)": [
+       {
+        "id": "nlb-01-009",
+        "text": "kitchen sensro needs to talk to the hub",
+        "gold": "action=connect from=kitchensensor to=hub",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-01-034",
+        "text": "No",
+        "gold": "action=connect from=mention(shape=diamond) to=$new label=no",
+        "read": "action=connect from=no to=agent,approval",
+        "detail": "merged: the unit holds 2 requests"
+       },
+       {
+        "id": "nlb-01-041",
+        "text": "give each one a path to both ends of the battery",
+        "gold": "action=connect from=bulb1,bulb2 to=battery",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "ref|anchor": [
+       {
+        "id": "nlb-01-010",
+        "text": "Put the spare beside it too",
+        "gold": "action=move target=spare position=near anchor=router",
+        "read": "action=move target=spare",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-02-004",
+        "text": "put a blue circle below it for front of house",
+        "gold": "action=create shape=circle color=blue label=front of house position=below anchor=meadow",
+        "read": "action=create color=blue shape=circle",
+        "detail": "a name written in another request or by a pronoun"
+       },
+       {
+        "id": "nlb-02-022",
+        "text": "What is beside the purple stage",
+        "gold": "ask=list position=near anchor=night",
+        "read": "ask=list color=purple",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "class|position": [
+       {
+        "id": "nlb-01-011",
+        "text": "a box for the hub to its right",
+        "gold": "action=create shape=rectangle label=hub position=rightof anchor=$new",
+        "read": "action=create name=hub shape=rectangle",
+        "detail": null
+       },
+       {
+        "id": "nlb-02-002",
+        "text": "Move pickups after lunch",
+        "gold": "action=move target=pickups position=rightof anchor=lunch",
+        "read": "action=move anchor=lunch position=below target=pickups",
+        "detail": null
+       },
+       {
+        "id": "nlb-02-006",
+        "text": "Add a weather hold after the exterior",
+        "gold": "action=create label=weather hold position=rightof anchor=exterior",
+        "read": "action=create anchor=exterior position=below",
+        "detail": null
+       }
+      ],
+      "ref|from": [
+       {
+        "id": "nlb-01-012",
+        "text": "Join those up",
+        "gold": "action=connect from=mention(shape=circle) to=mention(shape=rectangle)",
+        "read": "action=connect from=circle1,rectangle1 to=circle1,rectangle1",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-028",
+        "text": "Snip its cable",
+        "gold": "action=disconnect from=lt04 to=switch",
+        "read": "action=disconnect",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-02-006",
+        "text": "show an alternate arrow straight to the studio setup",
+        "gold": "action=connect from=exterior to=studio",
+        "read": "action=connect from=$new to=$new",
+        "detail": "a name written in another request or by a pronoun"
+       }
+      ],
+      "ref|to": [
+       {
+        "id": "nlb-01-012",
+        "text": "Join those up",
+        "gold": "action=connect from=mention(shape=circle) to=mention(shape=rectangle)",
+        "read": "action=connect from=circle1,rectangle1 to=circle1,rectangle1",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-021",
+        "text": "I want the switch connected to each of the other things with plain lines",
+        "gold": "action=connect from=switch to=router,ups,$new arrow=none",
+        "read": "action=connect arrow=none from=switch to=sticker",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-026",
+        "text": "Remove the connection between the office switch and LT-04",
+        "gold": "action=disconnect from=lt04 to=switch",
+        "read": "action=disconnect from=lt,04 to=office",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "class|target": [
+       {
+        "id": "nlb-01-014",
+        "text": "make the siren bigger",
+        "gold": "action=resize target=mention(label=siren)",
+        "read": "action=resize target=siren",
+        "detail": null
+       },
+       {
+        "id": "nlb-03-012",
+        "text": "Call that patch Beans",
+        "gold": "action=rename target=mention(recency=newest) name=beans",
+        "read": "action=rename name=beans target=circle1",
+        "detail": null
+       },
+       {
+        "id": "nlb-07-043",
+        "text": "A bit more space in the middle",
+        "gold": "action=respace comparison=bigger target=mention(quantifier=all)",
+        "read": "action=respace comparison=bigger target=mention()",
+        "detail": null
+       }
+      ],
+      "name|label": [
+       {
+        "id": "nlb-01-015",
+        "text": "Put a battery below the controller",
+        "gold": "action=create label=battery position=below anchor=controller",
+        "read": "action=create anchor=controller position=below",
+        "detail": null
+       },
+       {
+        "id": "nlb-02-001",
+        "text": "put a blue spike mark just downstage of the table",
+        "gold": "action=create color=blue label=spike mark position=below anchor=table",
+        "read": "action=create anchor=table color=blue position=below shape=rectangle",
+        "detail": null
+       },
+       {
+        "id": "nlb-02-008",
+        "text": "Put a bench next to the video, no sorry, across from it",
+        "gold": "action=create label=bench",
+        "read": "action=create anchor=video position=near",
+        "detail": null
+       }
+      ],
+      "act|command:set read as command:toBack": [
+       {
+        "id": "nlb-01-020",
+        "text": "get my red fault line back",
+        "gold": "action=set from=west to=inverter color=red",
+        "read": "not done",
+        "detail": "read as command:toBack"
+       },
+       {
+        "id": "nlb-01-020",
+        "text": "get my red fault line back",
+        "gold": "requested: get my red fault line back",
+        "read": "extra command:toBack action=toback",
+        "detail": "read as command:toBack where command:set is requested"
+       }
+      ],
+      "class|layer": [
+       {
+        "id": "nlb-01-021",
+        "text": "put a pale box round them marked 'Ground floor cupboard'",
+        "gold": "action=create shape=rectangle layer=zone fill=light label=ground floor cupboard",
+        "read": "action=create color=lime label=ground floor cupboard shape=rectangle",
+        "detail": null
+       },
+       {
+        "id": "nlb-08-049",
+        "text": "sketch two lanes, one for self service",
+        "gold": "action=create layer=zone label=self service",
+        "read": "action=create count=2 items2=self,assisted template=road",
+        "detail": null
+       }
+      ],
+      "class|fill": [
+       {
+        "id": "nlb-01-021",
+        "text": "put a pale box round them marked 'Ground floor cupboard'",
+        "gold": "action=create shape=rectangle layer=zone fill=light label=ground floor cupboard",
+        "read": "action=create color=lime label=ground floor cupboard shape=rectangle",
+        "detail": null
+       }
+      ],
+      "act|command:create read as command:arrange": [
+       {
+        "id": "nlb-01-021",
+        "text": "put today's survey date in a corner as 5 November 2026",
+        "gold": "action=create shape=text label=5 november 2026",
+        "read": "not done",
+        "detail": "read as command:arrange"
+       },
+       {
+        "id": "nlb-01-021",
+        "text": "put today's survey date in a corner as 5 November 2026",
+        "gold": "requested: put today's survey date in a corner as 5 November 2026",
+        "read": "extra command:arrange action=arrange target=today",
+        "detail": "read as command:arrange where command:create is requested"
+       }
+      ],
+      "act|command:create read as command:label": [
+       {
+        "id": "nlb-01-021",
+        "text": "sticker; add that as 'Unidentified'",
+        "gold": "requested: a small black box with no sticker; add that as 'Unidentifie…",
+        "read": "extra command:label action=label label=unidentified target=sticker",
+        "detail": "read as command:label where command:create is requested"
+       },
+       {
+        "id": "nlb-02-011",
+        "text": "Label the gap Changeover",
+        "gold": "action=create shape=text label=changeover position=between anchor=banda,bandb",
+        "read": "not done",
+        "detail": "read as command:label"
+       },
+       {
+        "id": "nlb-02-011",
+        "text": "Label the gap Changeover",
+        "gold": "requested: Label the gap Changeover",
+        "read": "extra command:label action=label label=changeover",
+        "detail": "read as command:label where command:create is requested"
+       }
+      ],
+      "ref|target": [
+       {
+        "id": "nlb-01-023",
+        "text": "make the laptops all same size",
+        "gold": "action=equalize target=laptopa,laptopb property=size",
+        "read": "action=equalize property=size target=mention(quantifier=all)",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-025",
+        "text": "Mark it 'Found — awaiting check' instead",
+        "gold": "action=label target=pc07 label=found — awaiting check",
+        "read": "action=label label=found — awaiting check target=pc",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-039",
+        "text": "Write JB1 inside it",
+        "gold": "action=label target=circle1 label=jb1",
+        "read": "action=label target=jb1",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "cut|(command:label)": [
+       {
+        "id": "nlb-01-029",
+        "text": "I'd also like the word 'unresolved' on the last step up",
+        "gold": "action=label from=tech to=manager label=unresolved",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-01-042",
+        "text": "change that as well landing motion is what I want it to say",
+        "gold": "action=label target=landingmotion label=landing motion",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-03-030",
+        "text": "The bed that had potatoes last year needs to say beans now",
+        "gold": "action=label target=beda label=beans",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "cut|(command:delete)": [
+       {
+        "id": "nlb-01-030",
+        "text": "Delete that box you've just invented",
+        "gold": "action=delete target=unhappy",
+        "read": "action=delete target=mention(shape=rectangle)",
+        "detail": "the unit covers 42% of the span"
+       },
+       {
+        "id": "nlb-03-021",
+        "text": "Remove the flowers from this passage",
+        "gold": "action=delete target=pathflowers",
+        "read": "action=delete target=mention()",
+        "detail": "the unit covers 17% of the span"
+       }
+      ],
+      "act|command:connect read as command:label": [
+       {
+        "id": "nlb-01-030",
+        "text": "put the words back on the line from agent to supervisor",
+        "gold": "action=connect from=agent to=supervisor label=customer unhappy",
+        "read": "not done",
+        "detail": "read as command:label"
+       },
+       {
+        "id": "nlb-01-030",
+        "text": "put the words back on the line from agent to supervisor",
+        "gold": "requested: put the words back on the line from agent to supervisor",
+        "read": "extra command:label action=label from=agent to=supervisor",
+        "detail": "read as command:label where command:connect is requested"
+       }
+      ],
+      "act|command:arrange read as command:move": [
+       {
+        "id": "nlb-01-041",
+        "text": "move the bulbs so one is above the other",
+        "gold": "action=arrange target=bulb1,bulb2 layout=column",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-01-041",
+        "text": "move the bulbs so one is above the other",
+        "gold": "requested: move the bulbs so one is above the other",
+        "read": "extra command:move action=move",
+        "detail": "read as command:move where command:arrange is requested"
+       }
+      ],
+      "cut|(command:set)": [
+       {
+        "id": "nlb-01-041",
+        "text": "You can get rid of those",
+        "gold": "action=set kind=edge arrow=none target=mention(quantifier=all)",
+        "read": "action=set",
+        "detail": "the unit covers 0% of the span"
+       },
+       {
+        "id": "nlb-02-017",
+        "text": "yellow",
+        "gold": "action=set target=food color=yellow",
+        "read": "action=set color=yellow",
+        "detail": "merged: the unit holds 2 requests"
+       },
+       {
+        "id": "nlb-03-023",
+        "text": "make it pale green",
+        "gold": "action=set target=mention(position=left) color=green",
+        "read": "action=set color=green target=paddock",
+        "detail": "merged: the unit holds 2 requests"
+       }
+      ],
+      "cut|(command:move)": [
+       {
+        "id": "nlb-01-047",
+        "text": "The two donated towers need",
+        "gold": "action=move target=towera,towerb position=inside anchor=$new",
+        "read": "not done",
+        "detail": "merged into a unit with another request"
+       },
+       {
+        "id": "nlb-02-025",
+        "text": "It needs to be beside the stage instead",
+        "gold": "action=move target=aid position=near anchor=stage",
+        "read": "action=move",
+        "detail": "the unit covers 0% of the span"
+       },
+       {
+        "id": "nlb-07-017",
+        "text": "make the beds on the right a bit lower",
+        "gold": "action=move target=topright,midright,baseright direction=down distance=20",
+        "read": "action=move direction=left",
+        "detail": "the unit covers 47% of the span"
+       }
+      ],
+      "class|direction": [
+       {
+        "id": "nlb-02-005",
+        "text": "pull the upstage spike mark left a bit",
+        "gold": "action=move target=spike direction=left distance=20",
+        "read": "action=move target=upstage",
+        "detail": null
+       },
+       {
+        "id": "nlb-05-048",
+        "text": "Move the shed a touch right",
+        "gold": "action=move target=shed direction=right distance=20",
+        "read": "action=move target=shed",
+        "detail": null
+       }
+      ],
+      "name|target": [
+       {
+        "id": "nlb-02-006",
+        "text": "Label the hold 'if wet'",
+        "gold": "action=label target=$new label=if wet",
+        "read": "action=label label=if wet target=hold",
+        "detail": null
+       },
+       {
+        "id": "nlb-02-026",
+        "text": "place the sign of exit more near to the door",
+        "gold": "action=move target=sign position=near anchor=door",
+        "read": "action=move anchor=door position=near target=exit",
+        "detail": null
+       },
+       {
+        "id": "nlb-02-032",
+        "text": "Make the one marked trap red",
+        "gold": "action=set target=trap color=red",
+        "read": "action=set color=red",
+        "detail": null
+       }
+      ],
+      "name|from": [
+       {
+        "id": "nlb-02-012",
+        "text": "connect it to the portrait room",
+        "gold": "action=connect from=$new to=portrait",
+        "read": "action=connect to=portrait",
+        "detail": null
+       },
+       {
+        "id": "nlb-08-005",
+        "text": "link it to place order",
+        "gold": "action=connect from=$new to=order",
+        "read": "action=connect from=n to=place",
+        "detail": null
+       },
+       {
+        "id": "nlb-12-024",
+        "text": "make that crypt to pantry",
+        "gold": "action=connect from=crypt to=pantry",
+        "read": "action=connect to=pantry",
+        "detail": null
+       }
+      ],
+      "act|command:resize read as command:set": [
+       {
+        "id": "nlb-02-017",
+        "text": "Make it larger",
+        "gold": "action=resize target=food",
+        "read": "not done",
+        "detail": "read as command:set"
+       }
+      ],
+      "name|distance": [
+       {
+        "id": "nlb-02-024",
+        "text": "move the flat a little to the left",
+        "gold": "action=move target=flat direction=left distance=20",
+        "read": "action=move direction=left target=flat",
+        "detail": null
+       }
+      ],
+      "act|command:create read as command:connect": [
+       {
+        "id": "nlb-02-031",
+        "text": "Add a separate branch from the mill to an inserts box",
+        "gold": "action=create shape=rectangle label=inserts linked=mill",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-04-001",
+        "text": "Insert a Cool step between Bake and Pack",
+        "gold": "action=create name=cool position=between anchor=bake,pack",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-04-001",
+        "text": "Insert a Cool step between Bake and Pack",
+        "gold": "requested: Insert a Cool step between Bake and Pack",
+        "read": "extra command:connect action=connect from=bake to=pack",
+        "detail": "read as command:connect where command:create is requested"
+       }
+      ],
+      "act|command:create read as question:help": [
+       {
+        "id": "nlb-02-040",
+        "text": "start a blocking plan with a gray rectangle for the stage",
+        "gold": "action=create shape=rectangle color=gray label=stage",
+        "read": "not done",
+        "detail": "read as question:help"
+       },
+       {
+        "id": "nlb-02-040",
+        "text": "Can we start a blocking plan with a gray rectangle for the stage",
+        "gold": "requested: start a blocking plan with a gray rectangle for the stage",
+        "read": "extra question:help ask=help aspect=can",
+        "detail": "read as question:help where command:create is requested"
+       },
+       {
+        "id": "nlb-07-042",
+        "text": "write erosion on this interval",
+        "gold": "action=create shape=text label=erosion position=between anchor=youngbed,oldbed",
+        "read": "not done",
+        "detail": "read as question:help"
+       }
+      ],
+      "act|command:connect read as command:move": [
+       {
+        "id": "nlb-03-001",
+        "text": "split the pump outlet between the three beds",
+        "gold": "action=connect from=pump to=beans,tomatoes,salad",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-03-001",
+        "text": "split the pump outlet between the three beds",
+        "gold": "requested: split the pump outlet between the three beds",
+        "read": "extra command:move action=move target=pump",
+        "detail": "read as command:move where command:connect is requested"
+       }
+      ],
+      "oracle|object": [
+       {
+        "id": "nlb-03-009",
+        "text": "Add four plum trees along the bottom fence—sorry, three",
+        "gold": "action=create object=tree count=3 layout=row position=near anchor=bottomfence",
+        "read": "action=create count=4 position=bottom shape=text",
+        "detail": "a key the layout does not read"
+       },
+       {
+        "id": "nlb-12-037",
+        "text": "put an eye on the cat",
+        "gold": "action=create object=eye position=ontop anchor=cat",
+        "read": "action=create",
+        "detail": "a key the layout does not read"
+       }
+      ],
+      "act|command:label read as command:set": [
+       {
+        "id": "nlb-03-023",
+        "text": "Mark the left paddock resting",
+        "gold": "action=label target=mention(position=left) label=resting",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-06-003",
+        "text": "B14: change empty to IB672",
+        "gold": "action=label target=b14 label=b14 / ib672",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-06-003",
+        "text": "change empty to IB672",
+        "gold": "requested: B14: change empty to IB672",
+        "read": "extra command:set action=set target=empty",
+        "detail": "read as command:set where command:label is requested"
+       }
+      ],
+      "act|command:label read as command:move": [
+       {
+        "id": "nlb-03-023",
+        "text": "Put next on the right",
+        "gold": "action=label target=mention(position=right) label=next",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-03-023",
+        "text": "Put next on the right",
+        "gold": "requested: Put next on the right",
+        "read": "extra command:move action=move position=right target=next",
+        "detail": "read as command:move where command:label is requested"
+       },
+       {
+        "id": "nlb-04-018",
+        "text": "Please put the right spelling on there",
+        "gold": "action=label target=grandma label=may",
+        "read": "not done",
+        "detail": "read as command:move"
+       }
+      ],
+      "act|command:connect read as question:help": [
+       {
+        "id": "nlb-03-023",
+        "text": "arrows left to middle, middle to right",
+        "gold": "action=connect from=mention(position=left),mention(position=center),mention(position=right)",
+        "read": "not done",
+        "detail": "read as question:help"
+       },
+       {
+        "id": "nlb-03-023",
+        "text": "Could there be arrows left to middle, middle to right",
+        "gold": "requested: arrows left to middle, middle to right",
+        "read": "extra question:help ask=help",
+        "detail": "read as question:help where command:connect is requested"
+       }
+      ],
+      "act|command:resize read as command:respace": [
+       {
+        "id": "nlb-03-025",
+        "text": "give the rabbits their space back",
+        "gold": "action=resize target=run",
+        "read": "not done",
+        "detail": "read as command:respace"
+       },
+       {
+        "id": "nlb-03-025",
+        "text": "give the rabbits their space back",
+        "gold": "requested: give the rabbits their space back",
+        "read": "extra command:respace action=respace target=rabbits",
+        "detail": "read as command:respace where command:resize is requested"
+       }
+      ],
+      "act|command:connect read as command:reverse": [
+       {
+        "id": "nlb-03-031",
+        "text": "The race should lead from Holding to Loading. Actually reverse that",
+        "gold": "action=connect from=loading to=holding",
+        "read": "not done",
+        "detail": "read as command:reverse"
+       },
+       {
+        "id": "nlb-03-031",
+        "text": "The race should lead from Holding to Loading. Actually reverse that",
+        "gold": "requested: The race should lead from Holding to Loading. Actually reve…",
+        "read": "extra command:reverse action=reverse from=holding to=loading",
+        "detail": "read as command:reverse where command:connect is requested"
+       }
+      ],
+      "act|command:respace read as command:distribute": [
+       {
+        "id": "nlb-03-033",
+        "text": "spread the four raised beds out",
+        "gold": "action=respace target=bed1,bed2,bed3,bed4 comparison=bigger",
+        "read": "not done",
+        "detail": "read as command:distribute"
+       },
+       {
+        "id": "nlb-03-033",
+        "text": "spread the four raised beds out",
+        "gold": "requested: spread the four raised beds out",
+        "read": "extra command:distribute action=distribute axis=horizontal target=mention(quantifier=all)",
+        "detail": "read as command:distribute where command:respace is requested"
+       },
+       {
+        "id": "nlb-07-019",
+        "text": "spread teh gas dots out more",
+        "gold": "action=respace target=g1,g2,g3 comparison=bigger",
+        "read": "not done",
+        "detail": "read as command:distribute"
+       }
+      ],
+      "act|command:label read as command:toFront": [
+       {
+        "id": "nlb-03-033",
+        "text": "put Nora on both of those",
+        "gold": "action=label target=bed1,bed2 label=nora",
+        "read": "not done",
+        "detail": "read as command:toFront"
+       },
+       {
+        "id": "nlb-03-033",
+        "text": "put Nora on both of those",
+        "gold": "requested: put Nora on both of those",
+        "read": "extra command:toFront action=tofront target=nora",
+        "detail": "read as command:toFront where command:label is requested"
+       }
+      ],
+      "class|shape": [
+       {
+        "id": "nlb-03-034",
+        "text": "How many outlets",
+        "gold": "ask=count shape=circle",
+        "read": "ask=count kind=edge",
+        "detail": null
+       },
+       {
+        "id": "nlb-03-050",
+        "text": "Write Grandad's garden across the top",
+        "gold": "action=create shape=text label=grandad's garden position=top",
+        "read": "action=create position=top",
+        "detail": null
+       },
+       {
+        "id": "nlb-07-010",
+        "text": "how many parts have we labelled",
+        "gold": "ask=count shape=any",
+        "read": "ask=count",
+        "detail": null
+       }
+      ],
+      "act|command:connect read as command:untangle": [
+       {
+        "id": "nlb-04-003",
+        "text": "fix the arrows",
+        "gold": "requested: fix the arrows",
+        "read": "extra command:untangle action=untangle target=mention(quantifier=all)",
+        "detail": "read as command:untangle where command:connect is requested"
+       }
+      ],
+      "act|command:disconnect read as command:connect": [
+       {
+        "id": "nlb-04-013",
+        "text": "Metrics to Billing, remove it",
+        "gold": "action=disconnect from=billing to=metrics",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-04-013",
+        "text": "Metrics to Billing, remove it",
+        "gold": "requested: Metrics to Billing, remove it",
+        "read": "extra command:connect action=connect from=metrics to=billing",
+        "detail": "read as command:connect where command:disconnect is requested"
+       }
+      ],
+      "act|question:count read as question:degree": [
+       {
+        "id": "nlb-04-026",
+        "text": "How many waterways flow into the lake",
+        "gold": "ask=count shape=rectangle linked=lake",
+        "read": "not done",
+        "detail": "read as question:degree"
+       },
+       {
+        "id": "nlb-04-026",
+        "text": "How many waterways flow into the lake in this picture",
+        "gold": "requested: How many waterways flow into the lake",
+        "read": "extra question:degree ask=degree target=lake",
+        "detail": "read as question:degree where question:count is requested"
+       },
+       {
+        "id": "nlb-04-027",
+        "text": "Count the arrows entering Lake",
+        "gold": "ask=count kind=edge linked=lake",
+        "read": "not done",
+        "detail": "read as question:degree"
+       }
+      ],
+      "cut|(command:group)": [
+       {
+        "id": "nlb-04-043",
+        "text": "Tie those two tables together so they'll move as a pair, and name the pair Welcome",
+        "gold": "action=group target=caketable,gifttable name=welcome",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "act|command:set read as command:move": [
+       {
+        "id": "nlb-04-047",
+        "text": "Make it 160 by 60",
+        "gold": "action=set target=exitsign width=160 height=60",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-04-047",
+        "text": "Make it 160 by 60",
+        "gold": "requested: Make it 160 by 60",
+        "read": "extra command:move action=move direction=up distance=160",
+        "detail": "read as command:move where command:set is requested"
+       }
+      ],
+      "act|command:create read as command:set": [
+       {
+        "id": "nlb-05-004",
+        "text": "Six round the friends one",
+        "gold": "action=create count=6 position=near anchor=mention(label=friends)",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-05-004",
+        "text": "Six round the friends one",
+        "gold": "requested: Six round the friends one",
+        "read": "extra command:set action=set target=friends",
+        "detail": "read as command:set where command:create is requested"
+       },
+       {
+        "id": "nlb-06-014",
+        "text": "Please give there two rings",
+        "gold": "action=create shape=circle count=2 position=ontop anchor=library",
+        "read": "not done",
+        "detail": "read as command:set"
+       }
+      ],
+      "act|command:create read as question:nearest": [
+       {
+        "id": "nlb-05-005",
+        "text": "Put Mum nearest the door",
+        "gold": "action=create shape=text label=mum position=near anchor=door",
+        "read": "not done",
+        "detail": "read as question:nearest"
+       },
+       {
+        "id": "nlb-05-005",
+        "text": "Put Mum nearest the door",
+        "gold": "requested: Put Mum nearest the door",
+        "read": "extra question:nearest ask=nearest anchor=door superlative=closest",
+        "detail": "read as question:nearest where command:create is requested"
+       }
+      ],
+      "cut|command:set": [
+       {
+        "id": "nlb-05-044",
+        "text": "Valve should be red",
+        "gold": "requested: Valve should be red. Sorry orange",
+        "read": "extra command:set action=set color=red target=valve",
+        "detail": "splits a request: a unit of the same act on a span that is paired already"
+       }
+      ],
+      "class|to": [
+       {
+        "id": "nlb-05-046",
+        "text": "Line from Butt to squash, dotted",
+        "gold": "action=connect from=butt to=mention(label=squash) style=dotted arrow=none",
+        "read": "action=connect arrow=none from=butt style=dotted to=squash",
+        "detail": null
+       }
+      ],
+      "act|command:create read as question:cycle": [
+       {
+        "id": "nlb-06-011",
+        "text": "Put a turning loop after it",
+        "gold": "action=create label=turning loop position=rightof anchor=hospital",
+        "read": "not done",
+        "detail": "read as question:cycle"
+       },
+       {
+        "id": "nlb-06-011",
+        "text": "Put a turning loop after it",
+        "gold": "requested: Put a turning loop after it",
+        "read": "extra question:cycle ask=cycle",
+        "detail": "read as question:cycle where command:create is requested"
+       }
+      ],
+      "act|command:flip read as command:reverse": [
+       {
+        "id": "nlb-06-013",
+        "text": "Reverse all four stops",
+        "gold": "action=flip axis=horizontal target=mention(quantifier=all)",
+        "read": "not done",
+        "detail": "read as command:reverse"
+       },
+       {
+        "id": "nlb-06-013",
+        "text": "Reverse all four stops",
+        "gold": "requested: Reverse all four stops",
+        "read": "extra command:reverse action=reverse target=mention(quantifier=all)",
+        "detail": "read as command:reverse where command:flip is requested"
+       }
+      ],
+      "cut|(command:duplicate)": [
+       {
+        "id": "nlb-06-020",
+        "text": "Split the green depot into two boxes",
+        "gold": "action=duplicate target=south",
+        "read": "not done",
+        "detail": "merged into a unit with another request"
+       }
+      ],
+      "act|command:label read as command:undo": [
+       {
+        "id": "nlb-06-029",
+        "text": "Put them through",
+        "gold": "action=label target=s1 label=falcons",
+        "read": "not done",
+        "detail": "read as command:undo"
+       },
+       {
+        "id": "nlb-06-029",
+        "text": "Put them through",
+        "gold": "requested: Put them through",
+        "read": "extra command:undo action=undo",
+        "detail": "read as command:undo where command:label is requested"
+       }
+      ],
+      "act|command:label read as command:resize": [
+       {
+        "id": "nlb-06-032",
+        "text": "put u14 in brackets after the name",
+        "gold": "action=label target=q2 label=bears v foxes (u14)",
+        "read": "not done",
+        "detail": "read as command:resize"
+       },
+       {
+        "id": "nlb-06-032",
+        "text": "foxes r u14 not u12 put u14 in brackets after the name",
+        "gold": "requested: put u14 in brackets after the name",
+        "read": "extra command:resize action=resize",
+        "detail": "read as command:resize where command:label is requested"
+       }
+      ],
+      "act|command:duplicate read as command:arrange": [
+       {
+        "id": "nlb-06-035",
+        "text": "Split the welcome desk morning into eight to ten and ten to twelve",
+        "gold": "action=duplicate target=bea",
+        "read": "not done",
+        "detail": "read as command:arrange"
+       },
+       {
+        "id": "nlb-06-035",
+        "text": "Split the welcome desk morning into eight to ten and ten to twelve",
+        "gold": "requested: Split the welcome desk morning into eight to ten and ten to…",
+        "read": "extra command:arrange action=arrange target=twelve",
+        "detail": "read as command:arrange where command:duplicate is requested"
+       }
+      ],
+      "act|command:label read as question:help": [
+       {
+        "id": "nlb-06-035",
+        "text": "could the gaps say help welcome",
+        "gold": "action=label target=$new label=help welcome",
+        "read": "not done",
+        "detail": "read as question:help"
+       },
+       {
+        "id": "nlb-06-035",
+        "text": "could the gaps say help welcome rather than urgent",
+        "gold": "requested: could the gaps say help welcome",
+        "read": "extra question:help ask=help aspect=can topic=hub",
+        "detail": "read as question:help where command:label is requested"
+       },
+       {
+        "id": "nlb-12-039",
+        "text": "yes and no arrows actually have yes",
+        "gold": "action=label from=counter to=discard label=yes",
+        "read": "not done",
+        "detail": "read as question:help"
+       }
+      ],
+      "act|command:label read as command:group": [
+       {
+        "id": "nlb-06-036",
+        "text": "Put my name, Nessa, in that red gap",
+        "gold": "action=label target=vacancy label=nessa",
+        "read": "not done",
+        "detail": "read as command:group"
+       },
+       {
+        "id": "nlb-06-036",
+        "text": "Put my name, Nessa, in that red gap",
+        "gold": "requested: Put my name, Nessa, in that red gap",
+        "read": "extra command:group action=group target=nessa",
+        "detail": "read as command:group where command:label is requested"
+       }
+      ],
+      "cut|(command:swap)": [
+       {
+        "id": "nlb-06-037",
+        "text": "Liv and Bea are swapping",
+        "gold": "action=swap target=bea,liv",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-07-026",
+        "text": "sandstone goes where shale is now and shale goes in sandstone's spot",
+        "gold": "action=swap target=sandstone,shale",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       },
+       {
+        "id": "nlb-09-012",
+        "text": "put the castle first and the harbour after that",
+        "gold": "action=swap target=castle,harbour",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "name|name": [
+       {
+        "id": "nlb-06-039",
+        "text": "Add cleanup, 16–17",
+        "gold": "action=create name=cleanup label=16–17",
+        "read": "action=create",
+        "detail": null
+       }
+      ],
+      "act|command:move read as command:group": [
+       {
+        "id": "nlb-06-040",
+        "text": "Put Bea with Liv",
+        "gold": "action=move target=bea position=near anchor=liv",
+        "read": "not done",
+        "detail": "read as command:group"
+       },
+       {
+        "id": "nlb-06-040",
+        "text": "Put Bea with Liv",
+        "gold": "requested: Put Bea with Liv",
+        "read": "extra command:group action=group target=bea,liv",
+        "detail": "read as command:group where command:move is requested"
+       }
+      ],
+      "act|command:flip read as command:set": [
+       {
+        "id": "nlb-07-005",
+        "text": "turn them round",
+        "gold": "action=flip target=mention(quantifier=all,shape=triangle)",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-07-005",
+        "text": "turn them round",
+        "gold": "requested: turn them round",
+        "read": "extra command:set action=set target=cold",
+        "detail": "read as command:set where command:flip is requested"
+       }
+      ],
+      "act|command:create read as command:redo": [
+       {
+        "id": "nlb-07-007",
+        "text": "need mitochondria in this, maybe three",
+        "gold": "action=create count=3 position=inside anchor=cell",
+        "read": "not done",
+        "detail": "read as command:redo"
+       },
+       {
+        "id": "nlb-07-007",
+        "text": "need mitochondria in this",
+        "gold": "requested: need mitochondria in this, maybe three",
+        "read": "extra command:redo action=redo",
+        "detail": "read as command:redo where command:create is requested"
+       }
+      ],
+      "act|command:set read as command:create": [
+       {
+        "id": "nlb-07-014",
+        "text": "Put a red outline round the one marked blank",
+        "gold": "action=set target=control outline=red",
+        "read": "not done",
+        "detail": "read as command:create"
+       },
+       {
+        "id": "nlb-07-014",
+        "text": "Put a red outline round the one marked blank",
+        "gold": "requested: Put a red outline round the one marked blank",
+        "read": "extra command:create action=create",
+        "detail": "read as command:create where command:set is requested"
+       }
+      ],
+      "act|command:delete read as command:label": [
+       {
+        "id": "nlb-07-027",
+        "text": "Remove the catalyst label",
+        "gold": "action=delete target=catalystnote",
+        "read": "not done",
+        "detail": "read as command:label"
+       },
+       {
+        "id": "nlb-07-027",
+        "text": "Remove the catalyst label",
+        "gold": "requested: Remove the catalyst label",
+        "read": "extra command:label action=label target=catalyst",
+        "detail": "read as command:label where command:delete is requested"
+       }
+      ],
+      "act|command:connect read as question:list": [
+       {
+        "id": "nlb-07-038",
+        "text": "show water going up from the sea",
+        "gold": "action=connect from=sea to=cloud",
+        "read": "not done",
+        "detail": "read as question:list"
+       },
+       {
+        "id": "nlb-07-038",
+        "text": "show water going up from the sea, but not as blue",
+        "gold": "requested: show water going up from the sea",
+        "read": "extra question:list ask=list color=blue",
+        "detail": "read as question:list where command:connect is requested"
+       }
+      ],
+      "act|question:exists read as question:connected": [
+       {
+        "id": "nlb-07-048",
+        "text": "Are any arrows going into the blue H",
+        "gold": "ask=exists kind=edge linked=high",
+        "read": "not done",
+        "detail": "read as question:connected"
+       },
+       {
+        "id": "nlb-07-048",
+        "text": "Are any arrows going into the blue H",
+        "gold": "requested: Are any arrows going into the blue H",
+        "read": "extra question:connected ask=connected target=mention(color=purple)",
+        "detail": "read as question:connected where question:exists is requested"
+       }
+      ],
+      "act|command:create read as question:path": [
+       {
+        "id": "nlb-08-001",
+        "text": "show a separate route from finding a plan to a callback request",
+        "gold": "action=create label=callback request linked=choice",
+        "read": "not done",
+        "detail": "read as question:path"
+       },
+       {
+        "id": "nlb-08-001",
+        "text": "show a separate route from finding a plan to a callback request",
+        "gold": "requested: show a separate route from finding a plan to a callback req…",
+        "read": "extra question:path ask=path from=finding to=callback",
+        "detail": "read as question:path where command:create is requested"
+       }
+      ],
+      "name|to": [
+       {
+        "id": "nlb-08-005",
+        "text": "link it to place order",
+        "gold": "action=connect from=$new to=order",
+        "read": "action=connect from=n to=place",
+        "detail": null
+       },
+       {
+        "id": "nlb-09-041",
+        "text": "Give it a line from the pension",
+        "gold": "action=connect from=pension to=$new",
+        "read": "action=connect arrow=none from=pension to=pension",
+        "detail": null
+       }
+      ],
+      "ref|linked": [
+       {
+        "id": "nlb-08-028",
+        "text": "Add a declined outcome underneath the manager decision",
+        "gold": "action=create label=declined position=below anchor=approval linked=approval",
+        "read": "action=create anchor=manager position=below",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "act|command:create read as question:reachable": [
+       {
+        "id": "nlb-08-028",
+        "text": "show the requester being notified",
+        "gold": "action=create label=requester being notified",
+        "read": "not done",
+        "detail": "read as question:reachable"
+       },
+       {
+        "id": "nlb-08-028",
+        "text": "show the requester being notified from there",
+        "gold": "requested: show the requester being notified",
+        "read": "extra question:reachable ask=reachable",
+        "detail": "read as question:reachable where command:create is requested"
+       }
+      ],
+      "act|command:set read as question:help": [
+       {
+        "id": "nlb-08-038",
+        "text": "use green for the final step",
+        "gold": "action=set target=signup color=green",
+        "read": "not done",
+        "detail": "read as question:help"
+       },
+       {
+        "id": "nlb-08-038",
+        "text": "Could we use green for the final step",
+        "gold": "requested: use green for the final step",
+        "read": "extra question:help ask=help aspect=can topic=green",
+        "detail": "read as question:help where command:set is requested"
+       },
+       {
+        "id": "nlb-10-008",
+        "text": "show the ticket-to-triage link as dashes",
+        "gold": "action=set from=ticket to=triage style=dashed",
+        "read": "not done",
+        "detail": "read as question:help"
+       }
+      ],
+      "cut|command:connect": [
+       {
+        "id": "nlb-09-004",
+        "text": "Leave both possible destinations attached to the sofa",
+        "gold": "requested: Leave both possible destinations attached to the sofa",
+        "read": "extra command:connect action=connect from=charity to=sofa",
+        "detail": "splits a request: a unit of the same act on a span that is paired already"
+       },
+       {
+        "id": "nlb-09-042",
+        "text": "add a second arrow to food with £60",
+        "gold": "requested: add a second arrow to food with £60",
+        "read": "extra command:connect action=connect to=food,£",
+        "detail": "splits a request: a unit of the same act on a span that is paired already"
+       }
+      ],
+      "act|question:count read as question:exists": [
+       {
+        "id": "nlb-09-009",
+        "text": "Are there two boxes going to the yellow room or three",
+        "gold": "ask=count linked=kitchen",
+        "read": "not done",
+        "detail": "read as question:exists"
+       },
+       {
+        "id": "nlb-09-009",
+        "text": "Are there two boxes going to the yellow room or three",
+        "gold": "requested: Are there two boxes going to the yellow room or three",
+        "read": "extra question:exists ask=exists shape=rectangle",
+        "detail": "read as question:exists where question:count is requested"
+       }
+      ],
+      "act|command:set read as command:resize": [
+       {
+        "id": "nlb-09-011",
+        "text": "make the day headings darker than the visits",
+        "gold": "action=set target=monday,tuesday,wednesday color=navy",
+        "read": "not done",
+        "detail": "read as command:resize"
+       },
+       {
+        "id": "nlb-09-011",
+        "text": "Please make the day headings darker than the visits",
+        "gold": "requested: make the day headings darker than the visits",
+        "read": "extra command:resize action=resize",
+        "detail": "read as command:resize where command:set is requested"
+       }
+      ],
+      "act|command:create read as question:check": [
+       {
+        "id": "nlb-09-013",
+        "text": "show the flight above the ferry",
+        "gold": "action=create label=flight position=above anchor=ferry",
+        "read": "not done",
+        "detail": "read as question:check"
+       },
+       {
+        "id": "nlb-09-013",
+        "text": "show the flight above the ferry",
+        "gold": "requested: show the flight above the ferry",
+        "read": "extra question:check ask=check anchor=ferry position=above target=flight",
+        "detail": "read as question:check where command:create is requested"
+       }
+      ],
+      "act|command:label read as command:connect": [
+       {
+        "id": "nlb-09-017",
+        "text": "put TAXI on that line insted of walk",
+        "gold": "action=label from=station to=hotel label=taxi",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-09-017",
+        "text": "can you put TAXI on that line insted of walk",
+        "gold": "requested: put TAXI on that line insted of walk",
+        "read": "extra command:connect action=connect",
+        "detail": "read as command:connect where command:label is requested"
+       },
+       {
+        "id": "nlb-11-046",
+        "text": "Exit becomes Collect cases. No, Collect instruments",
+        "gold": "action=label target=exit label=collect instruments",
+        "read": "not done",
+        "detail": "read as command:connect"
+       }
+      ],
+      "class|outline": [
+       {
+        "id": "nlb-09-021",
+        "text": "give the hall a darker outline",
+        "gold": "action=set target=hall outline=black",
+        "read": "action=set target=hall",
+        "detail": null
+       }
+      ],
+      "act|command:swap read as command:undo": [
+       {
+        "id": "nlb-09-023",
+        "text": "reverse those two in the job list",
+        "gold": "action=swap target=electrician,plaster",
+        "read": "not done",
+        "detail": "read as command:undo"
+       },
+       {
+        "id": "nlb-09-023",
+        "text": "reverse those two",
+        "gold": "requested: reverse those two in the job list",
+        "read": "extra command:undo action=undo",
+        "detail": "read as command:undo where command:swap is requested"
+       }
+      ],
+      "act|command:delete read as command:move": [
+       {
+        "id": "nlb-09-025",
+        "text": "take away the spare £680 underneath",
+        "gold": "action=delete target=roofcost",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-09-025",
+        "text": "take away the spare £680 underneath",
+        "gold": "requested: take away the spare £680 underneath",
+        "read": "extra command:move action=move target=spare,£",
+        "detail": "read as command:move where command:delete is requested"
+       },
+       {
+        "id": "nlb-10-043",
+        "text": "delete that brown rectangle at the top",
+        "gold": "action=delete target=shed",
+        "read": "not done",
+        "detail": "read as command:move"
+       }
+      ],
+      "act|command:swap read as command:move": [
+       {
+        "id": "nlb-09-032",
+        "text": "put the rower before the bike",
+        "gold": "action=swap target=bike,row",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-09-032",
+        "text": "you put the rower before the bike today",
+        "gold": "requested: put the rower before the bike",
+        "read": "extra command:move action=move target=rower",
+        "detail": "read as command:move where command:swap is requested"
+       }
+      ],
+      "act|command:label read as command:duplicate": [
+       {
+        "id": "nlb-09-036",
+        "text": "actually use two times twelve",
+        "gold": "action=label target=squat,press,raise label=two times twelve",
+        "read": "not done",
+        "detail": "read as command:duplicate"
+       },
+       {
+        "id": "nlb-09-036",
+        "text": "written down actually use two times twelve",
+        "gold": "requested: actually use two times twelve",
+        "read": "extra command:duplicate action=duplicate count=2",
+        "detail": "read as command:duplicate where command:label is requested"
+       }
+      ],
+      "act|command:delete read as question:path": [
+       {
+        "id": "nlb-10-044",
+        "text": "The shed can go",
+        "gold": "action=delete target=shed",
+        "read": "not done",
+        "detail": "read as question:path"
+       },
+       {
+        "id": "nlb-10-044",
+        "text": "The shed can go",
+        "gold": "requested: The shed can go",
+        "read": "extra question:path ask=path from=shed",
+        "detail": "read as question:path where command:delete is requested"
+       }
+      ],
+      "cut|(command:resize)": [
+       {
+        "id": "nlb-11-002",
+        "text": "bit smaller. about half that",
+        "gold": "action=resize target=mention(recency=newest)",
+        "read": "action=resize target=circle1",
+        "detail": "the unit covers 39% of the span"
+       },
+       {
+        "id": "nlb-11-029",
+        "text": "bigger lookout",
+        "gold": "action=resize target=mention(recency=newest)",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "act|command:duplicate read as command:create": [
+       {
+        "id": "nlb-11-004",
+        "text": "another over by the filter",
+        "gold": "action=duplicate target=mention(recency=newest) position=near anchor=filter",
+        "read": "not done",
+        "detail": "read as command:create"
+       },
+       {
+        "id": "nlb-11-004",
+        "text": "another over by the filter",
+        "gold": "requested: another over by the filter",
+        "read": "extra command:create action=create anchor=filter position=near",
+        "detail": "read as command:create where command:duplicate is requested"
+       }
+      ],
+      "act|command:move read as question:connected": [
+       {
+        "id": "nlb-11-007",
+        "text": "log up a touch",
+        "gold": "action=move target=log direction=up distance=20",
+        "read": "not done",
+        "detail": "read as question:connected"
+       },
+       {
+        "id": "nlb-11-007",
+        "text": "log up a touch, off the sand",
+        "gold": "requested: log up a touch",
+        "read": "extra question:connected ask=connected target=log",
+        "detail": "read as question:connected where command:move is requested"
+       }
+      ],
+      "act|command:resize read as command:connect": [
+       {
+        "id": "nlb-11-020",
+        "text": "make it reach the deck",
+        "gold": "action=resize target=mention(recency=newest)",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-11-020",
+        "text": "make it reach the deck",
+        "gold": "requested: make it reach the deck",
+        "read": "extra command:connect action=connect from=circle1 to=deck",
+        "detail": "read as command:connect where command:resize is requested"
+       }
+      ],
+      "act|command:label read as command:rename": [
+       {
+        "id": "nlb-11-037",
+        "text": "Call it Green room",
+        "gold": "action=label target=mention(label=waiting room) label=green room",
+        "read": "not done",
+        "detail": "read as command:rename"
+       },
+       {
+        "id": "nlb-11-037",
+        "text": "Call it Green room",
+        "gold": "requested: Call it Green room",
+        "read": "extra command:rename action=rename name=green",
+        "detail": "read as command:rename where command:label is requested"
+       }
+      ],
+      "act|command:equalize read as command:connect": [
+       {
+        "id": "nlb-11-038",
+        "text": "Same blue as check in",
+        "gold": "action=equalize target=mention(label=green room) property=color anchor=checkin",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-11-038",
+        "text": "Same blue as check in",
+        "gold": "requested: Same blue as check in",
+        "read": "extra command:connect action=connect color=blue",
+        "detail": "read as command:connect where command:equalize is requested"
+       }
+      ],
+      "act|command:connect read as command:group": [
+       {
+        "id": "nlb-12-019",
+        "text": "put the record in the suitcase instead",
+        "gold": "action=connect from=suitcase to=record",
+        "read": "not done",
+        "detail": "read as command:group"
+       },
+       {
+        "id": "nlb-12-019",
+        "text": "put the record in the suitcase instead",
+        "gold": "requested: put the record in the suitcase instead",
+        "read": "extra command:group action=group target=record",
+        "detail": "read as command:group where command:connect is requested"
+       }
+      ],
+      "act|question:count read as question:reachable": [
+       {
+        "id": "nlb-12-030",
+        "text": "how many rooms can we get into from the hallway without going through another room",
+        "gold": "ask=count linked=hall",
+        "read": "not done",
+        "detail": "read as question:reachable"
+       },
+       {
+        "id": "nlb-12-030",
+        "text": "how many rooms can we get into from the hallway without",
+        "gold": "requested: how many rooms can we get into from the hallway without goi…",
+        "read": "extra question:reachable ask=reachable from=hallway",
+        "detail": "read as question:reachable where question:count is requested"
+       }
+      ],
+      "act|command:swap read as command:untangle": [
+       {
+        "id": "nlb-12-033",
+        "text": "resolve the effect THEN discard",
+        "gold": "action=swap target=discard,resolve",
+        "read": "not done",
+        "detail": "read as command:untangle"
+       },
+       {
+        "id": "nlb-12-033",
+        "text": "resolve the effect",
+        "gold": "requested: resolve the effect THEN discard",
+        "read": "extra command:untangle action=untangle target=mention(quantifier=all)",
+        "detail": "read as command:untangle where command:swap is requested"
+       }
+      ],
+      "act|command:connect read as command:set": [
+       {
+        "id": "nlb-12-034",
+        "text": "after play should be end turn",
+        "gold": "action=connect from=play to=end",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-12-034",
+        "text": "should be end turn",
+        "gold": "requested: after play should be end turn",
+        "read": "extra command:set action=set",
+        "detail": "read as command:set where command:connect is requested"
+       }
+      ],
+      "act|command:move read as command:toFront": [
+       {
+        "id": "nlb-12-045",
+        "text": "raise the second platform a bit",
+        "gold": "requested: raise the second platform a bit. lower sorry LOWER",
+        "read": "extra command:toFront action=tofront target=platform",
+        "detail": "read as command:toFront where command:move is requested"
+       }
+      ]
+     },
+     "total": 510
+    },
+    "unseen": {
+     "counts": {
+      "cut": 102,
+      "act": 174,
+      "teachers": 1,
+      "ref": 54,
+      "name": 10,
+      "class": 13,
+      "oracle": 2
+     },
+     "keys": {
+      "cut|(command:create)": 24,
+      "cut|(command:duplicate)": 4,
+      "act|command:disconnect read as command:undo": 1,
+      "teachers|command:undo": 1,
+      "ref|from": 22,
+      "ref|to": 13,
+      "cut|(command:move)": 5,
+      "act|command:group read as command:set": 4,
+      "cut|(command:disconnect)": 9,
+      "name|label": 4,
+      "ref|anchor": 7,
+      "cut|(command:connect)": 23,
+      "act|command:create read as command:move": 48,
+      "class|position": 2,
+      "act|command:create read as command:label": 8,
+      "cut|(command:label)": 16,
+      "cut|command:connect": 3,
+      "name|anchor": 2,
+      "act|command:create read as command:connect": 12,
+      "cut|(command:set)": 7,
+      "class|arrow": 1,
+      "class|layer": 1,
+      "ref|target": 25,
+      "act|command:create read as command:set": 10,
+      "act|command:create read as command:toFront": 2,
+      "class|color": 1,
+      "class|target": 1,
+      "act|command:respace read as command:distribute": 2,
+      "act|command:connect read as command:arrange": 2,
+      "cut|(command:group)": 1,
+      "act|command:group read as question:help": 2,
+      "act|command:set read as question:exists": 2,
+      "act|command:set read as command:label": 2,
+      "act|question:count read as question:describe": 2,
+      "cut|(command:swap)": 2,
+      "act|command:swap read as command:move": 2,
+      "cut|(command:reverse)": 1,
+      "act|command:reverse read as command:connect": 4,
+      "class|shape": 3,
+      "class|layout": 2,
+      "act|command:label read as fact:": 2,
+      "cut|(command:respace)": 2,
+      "act|command:label read as question:extreme": 2,
+      "act|command:label read as command:move": 4,
+      "act|command:group read as command:create": 2,
+      "class|to": 1,
+      "act|command:create read as command:disconnect": 2,
+      "class|style": 1,
+      "name|to": 2,
+      "act|command:respace read as command:resize": 2,
+      "name|target": 2,
+      "act|command:label read as question:help": 2,
+      "cut|(command:resize)": 4,
+      "act|command:resize read as command:respace": 5,
+      "act|command:label read as command:set": 6,
+      "act|command:arrange read as command:move": 2,
+      "act|command:disconnect read as command:connect": 2,
+      "act|command:set read as command:redo": 1,
+      "act|question:property read as question:extreme": 2,
+      "cut|(question:path)": 1,
+      "act|command:move read as command:connect": 2,
+      "act|command:disconnect read as question:path": 2,
+      "act|command:connect read as command:toFront": 2,
+      "act|question:neighbors read as question:list": 2,
+      "act|command:connect read as command:move": 4,
+      "act|command:connect read as command:toBack": 4,
+      "act|command:connect read as question:cycle": 1,
+      "class|property": 1,
+      "oracle|width": 1,
+      "act|command:move read as question:check": 2,
+      "act|question:property read as command:connect": 2,
+      "act|question:property read as question:help": 2,
+      "act|command:group read as question:groupOf": 2,
+      "act|command:create read as command:toBack": 2,
+      "act|command:move read as command:create": 2,
+      "act|command:create read as question:reachable": 2,
+      "act|command:label read as question:check": 2,
+      "name|linked": 1,
+      "act|command:resize read as command:set": 2,
+      "name|from": 1,
+      "oracle|object": 1,
+      "act|command:disconnect read as question:describe": 2
+     },
+     "examples": {
+      "cut": [
+       {
+        "id": "nlb-01-001",
+        "text": "with the isolator before the sockets",
+        "gold": "action=create label=isolator",
+        "read": "not done",
+        "detail": "merged into a unit with another request"
+       },
+       {
+        "id": "nlb-01-003",
+        "text": "It's the kitchen and utility that I've got backwards",
+        "gold": "action=duplicate target=kitchen,utility",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-01-007",
+        "text": "There should be a separate little area for the things that need the cloud",
+        "gold": "action=create layer=zone size=small",
+        "read": "action=create label=optional shape=text",
+        "detail": "merged: the unit holds 2 requests"
+       }
+      ],
+      "act": [
+       {
+        "id": "nlb-01-004",
+        "text": "Undo that join",
+        "gold": "action=disconnect from=cooker to=upstairs",
+        "read": "not done",
+        "detail": "read as command:undo"
+       },
+       {
+        "id": "nlb-01-008",
+        "text": "the blind, lamp and thermostat looked like one routine",
+        "gold": "action=group target=blind,lamp,thermostat",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-01-008",
+        "text": "the blind, lamp and thermostat looked like one",
+        "gold": "requested: the blind, lamp and thermostat looked like one routine",
+        "read": "extra command:set action=set target=blind,lamp,thermostat",
+        "detail": "read as command:set where command:group is requested"
+       }
+      ],
+      "teachers": [
+       {
+        "id": "nlb-01-004",
+        "text": "Undo that join",
+        "gold": "requested: Undo that join",
+        "read": "extra command:undo action=undo",
+        "detail": "the reader's request is gpt's (right by the either-teacher view)"
+       }
+      ],
+      "ref": [
+       {
+        "id": "nlb-01-007",
+        "text": "The wall switch should still go straight to the lights",
+        "gold": "action=connect from=wallswitch to=halllight",
+        "read": "action=connect from=wall to=lights",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-012",
+        "text": "a red siren above the hub",
+        "gold": "action=create color=red label=siren position=above anchor=mention(shape=rectangle)",
+        "read": "action=create anchor=hub color=red position=above",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-012",
+        "text": "with an arrow from the hub to it",
+        "gold": "action=connect from=mention(shape=rectangle) to=$new",
+        "read": "action=connect from=hub to=$new",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "name": [
+       {
+        "id": "nlb-01-011",
+        "text": "Start with a little blue circle called Sink sensor",
+        "gold": "action=create shape=circle size=small color=blue label=sink sensor",
+        "read": "action=create color=blue name=sink shape=circle size=small",
+        "detail": null
+       },
+       {
+        "id": "nlb-01-033",
+        "text": "'Over £100?' in a diamond next to it",
+        "gold": "action=create shape=diamond label=over £100? position=near anchor=$new",
+        "read": "action=create anchor=refund label=over £100? position=near shape=diamond",
+        "detail": null
+       },
+       {
+        "id": "nlb-03-013",
+        "text": "two little strawberry circles underneath the shed. Under the beans",
+        "gold": "action=create shape=circle count=2 size=small position=below anchor=beans",
+        "read": "action=create anchor=shed,beans count=2 position=below shape=circle size=small",
+        "detail": null
+       }
+      ],
+      "class": [
+       {
+        "id": "nlb-01-015",
+        "text": "A note underneath saying '12 V lighting only'",
+        "gold": "action=create shape=text label=12 v lighting only position=bottom",
+        "read": "action=create anchor=$new label=12 v lighting position=below shape=text",
+        "detail": null
+       },
+       {
+        "id": "nlb-01-046",
+        "text": "No arrowheads on the DC cables",
+        "gold": "action=set kind=edge arrow=none target=mention(quantifier=all)",
+        "read": "action=set kind=edge target=mention(quantifier=all)",
+        "detail": null
+       },
+       {
+        "id": "nlb-01-047",
+        "text": "a home together marked 'To inspect'",
+        "gold": "action=create layer=zone label=to inspect",
+        "read": "action=create label=to inspect",
+        "detail": null
+       }
+      ],
+      "oracle": [
+       {
+        "id": "nlb-09-021",
+        "text": "make the hall about half as wide",
+        "gold": "action=resize target=hall width=40",
+        "read": "action=resize target=hall",
+        "detail": "a key the layout does not read"
+       },
+       {
+        "id": "nlb-12-028",
+        "text": "a river for the dragon to drink from",
+        "gold": "action=create object=river",
+        "read": "action=create",
+        "detail": "a key the layout does not read"
+       }
+      ]
+     },
+     "keyExamples": {
+      "cut|(command:create)": [
+       {
+        "id": "nlb-01-001",
+        "text": "with the isolator before the sockets",
+        "gold": "action=create label=isolator",
+        "read": "not done",
+        "detail": "merged into a unit with another request"
+       },
+       {
+        "id": "nlb-01-007",
+        "text": "There should be a separate little area for the things that need the cloud",
+        "gold": "action=create layer=zone size=small",
+        "read": "action=create label=optional shape=text",
+        "detail": "merged: the unit holds 2 requests"
+       },
+       {
+        "id": "nlb-03-050",
+        "text": "a pear tree in the middle",
+        "gold": "action=create object=tree position=center",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       }
+      ],
+      "cut|(command:duplicate)": [
+       {
+        "id": "nlb-01-003",
+        "text": "It's the kitchen and utility that I've got backwards",
+        "gold": "action=duplicate target=kitchen,utility",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-07-006",
+        "text": "two hydrogens",
+        "gold": "action=duplicate target=hydrogen",
+        "read": "not done",
+        "detail": "merged into a unit with another request"
+       },
+       {
+        "id": "nlb-07-033",
+        "text": "a version beside it",
+        "gold": "action=duplicate target=mention(quantifier=all)",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "act|command:disconnect read as command:undo": [
+       {
+        "id": "nlb-01-004",
+        "text": "Undo that join",
+        "gold": "action=disconnect from=cooker to=upstairs",
+        "read": "not done",
+        "detail": "read as command:undo"
+       }
+      ],
+      "teachers|command:undo": [
+       {
+        "id": "nlb-01-004",
+        "text": "Undo that join",
+        "gold": "requested: Undo that join",
+        "read": "extra command:undo action=undo",
+        "detail": "the reader's request is gpt's (right by the either-teacher view)"
+       }
+      ],
+      "ref|from": [
+       {
+        "id": "nlb-01-007",
+        "text": "The wall switch should still go straight to the lights",
+        "gold": "action=connect from=wallswitch to=halllight",
+        "read": "action=connect from=wall to=lights",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-012",
+        "text": "with an arrow from the hub to it",
+        "gold": "action=connect from=mention(shape=rectangle) to=$new",
+        "read": "action=connect from=hub to=$new",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-020",
+        "text": "leave the rest black",
+        "gold": "action=set from=east to=inverter color=black",
+        "read": "action=set color=black target=mention(quantifier=all)",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "ref|to": [
+       {
+        "id": "nlb-01-007",
+        "text": "The wall switch should still go straight to the lights",
+        "gold": "action=connect from=wallswitch to=halllight",
+        "read": "action=connect from=wall to=lights",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-01-020",
+        "text": "leave the rest black",
+        "gold": "action=set from=east to=inverter color=black",
+        "read": "action=set color=black target=mention(quantifier=all)",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-02-043",
+        "text": "Dashed line from the door to that mark",
+        "gold": "action=connect from=door to=mention(color=red) style=dashed arrow=none",
+        "read": "action=connect arrow=none from=door style=dashed to=circle1",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "cut|(command:move)": [
+       {
+        "id": "nlb-01-007",
+        "text": "starting with the voice speaker that's already here",
+        "gold": "action=move target=speaker position=inside anchor=$new",
+        "read": "action=move target=phone",
+        "detail": "the unit covers 0% of the span"
+       },
+       {
+        "id": "nlb-01-017",
+        "text": "Can that go down in",
+        "gold": "action=move target=oldinverter position=inside anchor=$new",
+        "read": "not done",
+        "detail": "merged into a unit with another request"
+       },
+       {
+        "id": "nlb-01-036",
+        "text": "There's loads of space above the whole thing",
+        "gold": "action=move target=mention(quantifier=all) direction=up",
+        "read": "action=move position=bottom target=rectangle1",
+        "detail": "the unit covers 0% of the span"
+       }
+      ],
+      "act|command:group read as command:set": [
+       {
+        "id": "nlb-01-008",
+        "text": "the blind, lamp and thermostat looked like one routine",
+        "gold": "action=group target=blind,lamp,thermostat",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-01-008",
+        "text": "the blind, lamp and thermostat looked like one",
+        "gold": "requested: the blind, lamp and thermostat looked like one routine",
+        "read": "extra command:set action=set target=blind,lamp,thermostat",
+        "detail": "read as command:set where command:group is requested"
+       },
+       {
+        "id": "nlb-04-044",
+        "text": "cake + gifts = one movable group pls. name: Welcome",
+        "gold": "action=group target=caketable,gifttable name=welcome",
+        "read": "not done",
+        "detail": "read as command:set"
+       }
+      ],
+      "cut|(command:disconnect)": [
+       {
+        "id": "nlb-01-009",
+        "text": "not stright to the heater",
+        "gold": "action=disconnect from=heater to=kitchensensor",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-01-027",
+        "text": "The line going to that one wants erasing",
+        "gold": "action=disconnect from=lt04 to=switch",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       },
+       {
+        "id": "nlb-01-029",
+        "text": "Can you straighten that out",
+        "gold": "action=disconnect from=caller to=manager",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       }
+      ],
+      "name|label": [
+       {
+        "id": "nlb-01-011",
+        "text": "Start with a little blue circle called Sink sensor",
+        "gold": "action=create shape=circle size=small color=blue label=sink sensor",
+        "read": "action=create color=blue name=sink shape=circle size=small",
+        "detail": null
+       },
+       {
+        "id": "nlb-08-001",
+        "text": "a little title at the top saying Customer journey",
+        "gold": "action=create shape=text label=customer journey size=small position=top",
+        "read": "action=create position=top shape=text size=small",
+        "detail": null
+       },
+       {
+        "id": "nlb-08-026",
+        "text": "a week one check-in",
+        "gold": "action=create label=week one check-in",
+        "read": "action=create",
+        "detail": null
+       }
+      ],
+      "ref|anchor": [
+       {
+        "id": "nlb-01-012",
+        "text": "a red siren above the hub",
+        "gold": "action=create color=red label=siren position=above anchor=mention(shape=rectangle)",
+        "read": "action=create anchor=hub color=red position=above",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-03-036",
+        "text": "Only the colour should become equal, the green of parcel B",
+        "gold": "action=equalize property=color anchor=parcelb target=mention(quantifier=all)",
+        "read": "action=equalize target=mention(quantifier=all)",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-04-008",
+        "text": "All three chairs need to be within the blue waiting-room area",
+        "gold": "action=move target=chair1,chair2,chair3 position=inside anchor=waitingroom",
+        "read": "action=move",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "cut|(command:connect)": [
+       {
+        "id": "nlb-01-013",
+        "text": "same arrow",
+        "gold": "action=connect from=mention(shape=rectangle) to=$new",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-01-029",
+        "text": "Only send it to the duty manager after technical have had a go",
+        "gold": "action=connect from=tech to=manager",
+        "read": "action=connect to=manager",
+        "detail": "the unit covers 0% of the span"
+       },
+       {
+        "id": "nlb-01-032",
+        "text": "from tier two sorry tear two whatever it's written as there have a way back to the first agent because someti…",
+        "gold": "action=connect from=second to=first label=advice only",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "act|command:create read as command:move": [
+       {
+        "id": "nlb-01-015",
+        "text": "the little lighting circuit on the right",
+        "gold": "action=create size=small label=lighting circuit position=right",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-01-015",
+        "text": "the little lighting circuit on the right",
+        "gold": "requested: the little lighting circuit on the right",
+        "read": "extra command:move action=move position=right target=$new",
+        "detail": "read as command:move where command:create is requested"
+       },
+       {
+        "id": "nlb-01-016",
+        "text": "AC isolator between inverter and meter",
+        "gold": "action=create label=ac isolator position=between anchor=inverter,meter",
+        "read": "not done",
+        "detail": "read as command:move"
+       }
+      ],
+      "class|position": [
+       {
+        "id": "nlb-01-015",
+        "text": "A note underneath saying '12 V lighting only'",
+        "gold": "action=create shape=text label=12 v lighting only position=bottom",
+        "read": "action=create anchor=$new label=12 v lighting position=below shape=text",
+        "detail": null
+       },
+       {
+        "id": "nlb-12-043",
+        "text": "lil purple portal on the right needs to be up on that ledge",
+        "gold": "action=move target=portal position=ontop anchor=ledge",
+        "read": "action=move position=right target=lil",
+        "detail": null
+       }
+      ],
+      "act|command:create read as command:label": [
+       {
+        "id": "nlb-01-017",
+        "text": "a little 'to be removed' area",
+        "gold": "action=create layer=zone size=small label=to be removed position=bottom",
+        "read": "not done",
+        "detail": "read as command:label"
+       },
+       {
+        "id": "nlb-01-017",
+        "text": "Can that go down in a little 'to be removed' area,",
+        "gold": "requested: a little 'to be removed' area",
+        "read": "extra command:label action=label label=to be removed",
+        "detail": "read as command:label where command:create is requested"
+       },
+       {
+        "id": "nlb-03-014",
+        "text": "Can we have Ella's patch written over those two",
+        "gold": "action=create shape=text label=ella's patch position=above anchor=mention(quantifier=all,shape=circle,size=small)",
+        "read": "not done",
+        "detail": "read as command:label"
+       }
+      ],
+      "cut|(command:label)": [
+       {
+        "id": "nlb-01-018",
+        "text": "the row nearest the chimney that's six panels not eight",
+        "gold": "action=label target=nearrow label=upper row: 6 panels",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       },
+       {
+        "id": "nlb-04-016",
+        "text": "correct her box",
+        "gold": "action=label target=grandma label=may",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       },
+       {
+        "id": "nlb-05-002",
+        "text": "right one friends",
+        "gold": "action=label target=mention(position=right,shape=circle) label=friends",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       }
+      ],
+      "cut|command:connect": [
+       {
+        "id": "nlb-01-029",
+        "text": "Only send it to the duty manager",
+        "gold": "requested: Only send it to the duty manager after technical have had a…",
+        "read": "extra command:connect action=connect from=technical to=technical",
+        "detail": "splits a request: a unit of the same act on a span that is paired already"
+       },
+       {
+        "id": "nlb-02-031",
+        "text": "an arrow to the station",
+        "gold": "requested: an arrow to the station",
+        "read": "extra command:connect action=connect to=mill",
+        "detail": "splits a request: a unit of the same act on a span that is paired already"
+       },
+       {
+        "id": "nlb-07-044",
+        "text": "then joins B at the centrifuge",
+        "gold": "requested: then joins B at the centrifuge",
+        "read": "extra command:connect action=connect to=b,centrifuge",
+        "detail": "splits a request: a unit of the same act on a span that is paired already"
+       }
+      ],
+      "name|anchor": [
+       {
+        "id": "nlb-01-033",
+        "text": "'Over £100?' in a diamond next to it",
+        "gold": "action=create shape=diamond label=over £100? position=near anchor=$new",
+        "read": "action=create anchor=refund label=over £100? position=near shape=diamond",
+        "detail": null
+       },
+       {
+        "id": "nlb-03-013",
+        "text": "two little strawberry circles underneath the shed. Under the beans",
+        "gold": "action=create shape=circle count=2 size=small position=below anchor=beans",
+        "read": "action=create anchor=shed,beans count=2 position=below shape=circle size=small",
+        "detail": null
+       }
+      ],
+      "act|command:create read as command:connect": [
+       {
+        "id": "nlb-01-034",
+        "text": "goes up to team leader approval",
+        "gold": "action=create label=team leader approval position=above anchor=mention(shape=diamond)",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-01-034",
+        "text": "goes down to agent approval",
+        "gold": "action=create label=agent approval position=below anchor=mention(shape=diamond)",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-04-002",
+        "text": "Can the flow go through a new box saying Cool after baking, then carry on to packing",
+        "gold": "action=create shape=rectangle name=cool position=between anchor=bake,pack",
+        "read": "not done",
+        "detail": "read as command:connect"
+       }
+      ],
+      "cut|(command:set)": [
+       {
+        "id": "nlb-01-044",
+        "text": "For the machines which have no master, I wish a yellow border",
+        "gold": "action=set target=pc02,pc03 outline=yellow",
+        "read": "action=set target=wish",
+        "detail": "the unit covers 10% of the span"
+       },
+       {
+        "id": "nlb-03-026",
+        "text": "those variety names were black",
+        "gold": "action=set target=firstvariety,secondvariety color=black",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-06-016",
+        "text": "market stop shld be hollow",
+        "gold": "action=set target=market fill=none",
+        "read": "action=set color=blue size=large target=market",
+        "detail": "the unit covers 41% of the span"
+       }
+      ],
+      "class|arrow": [
+       {
+        "id": "nlb-01-046",
+        "text": "No arrowheads on the DC cables",
+        "gold": "action=set kind=edge arrow=none target=mention(quantifier=all)",
+        "read": "action=set kind=edge target=mention(quantifier=all)",
+        "detail": null
+       }
+      ],
+      "class|layer": [
+       {
+        "id": "nlb-01-047",
+        "text": "a home together marked 'To inspect'",
+        "gold": "action=create layer=zone label=to inspect",
+        "read": "action=create label=to inspect",
+        "detail": null
+       }
+      ],
+      "ref|target": [
+       {
+        "id": "nlb-01-047",
+        "text": "A gentle grey would be fine",
+        "gold": "action=set target=towera,towerb color=gray",
+        "read": "action=set color=gray target=gentle",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-03-003",
+        "text": "make that wider",
+        "gold": "action=resize target=gate",
+        "read": "action=resize target=opening",
+        "detail": "a name or description the message does not write"
+       },
+       {
+        "id": "nlb-03-041",
+        "text": "lambs pen needs lable \"keep gate shut\"",
+        "gold": "action=label target=lambpen label=keep gate shut",
+        "read": "action=label label=keep gate shut target=lambs",
+        "detail": "a name or description the message does not write"
+       }
+      ],
+      "act|command:create read as command:set": [
+       {
+        "id": "nlb-02-041",
+        "text": "Door in the left wing, blue circle",
+        "gold": "action=create shape=circle color=blue name=door position=left",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-02-041",
+        "text": "Door in the left wing, blue circle",
+        "gold": "requested: Door in the left wing, blue circle",
+        "read": "extra command:set action=set color=blue shape=circle target=door",
+        "detail": "read as command:set where command:create is requested"
+       },
+       {
+        "id": "nlb-05-016",
+        "text": "Small rectangle at the far end",
+        "gold": "action=create shape=rectangle size=small position=top",
+        "read": "not done",
+        "detail": "read as command:set"
+       }
+      ],
+      "act|command:create read as command:toFront": [
+       {
+        "id": "nlb-02-042",
+        "text": "Red spike mark center stage",
+        "gold": "action=create color=red label=spike mark position=center",
+        "read": "not done",
+        "detail": "read as command:toFront"
+       },
+       {
+        "id": "nlb-02-042",
+        "text": "Red spike mark center stage for her",
+        "gold": "requested: Red spike mark center stage",
+        "read": "extra command:toFront action=tofront",
+        "detail": "read as command:toFront where command:create is requested"
+       }
+      ],
+      "class|color": [
+       {
+        "id": "nlb-02-049",
+        "text": "We're using blue for West in the handout; could you match that here",
+        "gold": "action=set target=west color=blue",
+        "read": "action=set color=navy target=west",
+        "detail": null
+       }
+      ],
+      "class|target": [
+       {
+        "id": "nlb-02-050",
+        "text": "The purple one should have the same blue as our West signs",
+        "gold": "action=set target=west color=blue",
+        "read": "action=set color=blue target=mention(color=green)",
+        "detail": null
+       }
+      ],
+      "act|command:respace read as command:distribute": [
+       {
+        "id": "nlb-03-009",
+        "text": "Put a gap between them",
+        "gold": "action=respace target=$new comparison=bigger",
+        "read": "not done",
+        "detail": "read as command:distribute"
+       },
+       {
+        "id": "nlb-03-009",
+        "text": "Put a gap between them",
+        "gold": "requested: Put a gap between them",
+        "read": "extra command:distribute action=distribute target=mention(quantifier=all)",
+        "detail": "read as command:distribute where command:respace is requested"
+       }
+      ],
+      "act|command:connect read as command:arrange": [
+       {
+        "id": "nlb-03-023",
+        "text": "right back to left",
+        "gold": "action=connect from=mention(position=right) to=mention(position=left)",
+        "read": "not done",
+        "detail": "read as command:arrange"
+       },
+       {
+        "id": "nlb-03-023",
+        "text": "right back to left",
+        "gold": "requested: right back to left",
+        "read": "extra command:arrange action=arrange",
+        "detail": "read as command:arrange where command:connect is requested"
+       }
+      ],
+      "cut|(command:group)": [
+       {
+        "id": "nlb-03-040",
+        "text": "just draw a box round those",
+        "gold": "action=group target=currant1,currant2,currant3",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "act|command:group read as question:help": [
+       {
+        "id": "nlb-03-046",
+        "text": "those three all sit inside one outline marked Brassicas",
+        "gold": "action=group target=cabbage,kale,broccoli name=brassicas",
+        "read": "not done",
+        "detail": "read as question:help"
+       },
+       {
+        "id": "nlb-03-046",
+        "text": "Can those three all sit inside one outline marked Brassicas",
+        "gold": "requested: those three all sit inside one outline marked Brassicas",
+        "read": "extra question:help ask=help topic=venn",
+        "detail": "read as question:help where command:group is requested"
+       }
+      ],
+      "act|command:set read as question:exists": [
+       {
+        "id": "nlb-04-023",
+        "text": "Any card starting with Blocked needs a red background",
+        "gold": "action=set target=permit,stock color=red",
+        "read": "not done",
+        "detail": "read as question:exists"
+       },
+       {
+        "id": "nlb-04-023",
+        "text": "Any card starting with Blocked needs a red background",
+        "gold": "requested: Any card starting with Blocked needs a red background",
+        "read": "extra question:exists ask=exists color=red",
+        "detail": "read as question:exists where command:set is requested"
+       }
+      ],
+      "act|command:set read as command:label": [
+       {
+        "id": "nlb-04-025",
+        "text": "Apply that colour to the two jobs marked Blocked",
+        "gold": "action=set target=permit,stock color=red",
+        "read": "not done",
+        "detail": "read as command:label"
+       },
+       {
+        "id": "nlb-04-025",
+        "text": "Apply that colour to the two jobs marked Blocked on this",
+        "gold": "requested: Apply that colour to the two jobs marked Blocked",
+        "read": "extra command:label action=label label=blocked",
+        "detail": "read as command:label where command:set is requested"
+       }
+      ],
+      "act|question:count read as question:describe": [
+       {
+        "id": "nlb-04-028",
+        "text": "What's the incoming total",
+        "gold": "ask=count kind=edge linked=lake",
+        "read": "not done",
+        "detail": "read as question:describe"
+       },
+       {
+        "id": "nlb-04-028",
+        "text": "What's the incoming total here",
+        "gold": "requested: What's the incoming total",
+        "read": "extra question:describe ask=describe",
+        "detail": "read as question:describe where question:count is requested"
+       }
+      ],
+      "cut|(command:swap)": [
+       {
+        "id": "nlb-04-033",
+        "text": "jo where ava is, ava where jo is",
+        "gold": "action=swap target=ava,jo",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       },
+       {
+        "id": "nlb-09-002",
+        "text": "keys then load then unload",
+        "gold": "action=swap target=keys,load",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       }
+      ],
+      "act|command:swap read as command:move": [
+       {
+        "id": "nlb-04-035",
+        "text": "Let Ava take the position currently occupied by Jo, and put Jo in the position Ava has now",
+        "gold": "action=swap target=ava,jo",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-04-035",
+        "text": "Let Ava take the position currently occupied by Jo",
+        "gold": "requested: Let Ava take the position currently occupied by Jo, and put…",
+        "read": "extra command:move action=move target=ava",
+        "detail": "read as command:move where command:swap is requested"
+       }
+      ],
+      "cut|(command:reverse)": [
+       {
+        "id": "nlb-04-038",
+        "text": "the changes requested link needs its pointy end at Draft",
+        "gold": "action=reverse from=draft to=review",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "act|command:reverse read as command:connect": [
+       {
+        "id": "nlb-04-039",
+        "text": "make its direction Review to Draft",
+        "gold": "action=reverse from=draft to=review",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-04-039",
+        "text": "make its direction Review to Draft",
+        "gold": "requested: make its direction Review to Draft",
+        "read": "extra command:connect action=connect to=draft",
+        "detail": "read as command:connect where command:reverse is requested"
+       },
+       {
+        "id": "nlb-04-040",
+        "text": "the one saying changes requested that should run backwards from review into draft",
+        "gold": "action=reverse from=draft to=review",
+        "read": "not done",
+        "detail": "read as command:connect"
+       }
+      ],
+      "class|shape": [
+       {
+        "id": "nlb-05-001",
+        "text": "Two round tables to start. One each side.",
+        "gold": "action=create shape=circle count=2 layout=row",
+        "read": "action=create count=2",
+        "detail": null
+       },
+       {
+        "id": "nlb-09-011",
+        "text": "Is there room at the bottom for “Hotel: ask for a ground-floor room”",
+        "gold": "action=create shape=text label=hotel: ask for a ground-floor room position=bottom",
+        "read": "action=create label=hotel: ask for a ground-floor room position=bottom",
+        "detail": null
+       },
+       {
+        "id": "nlb-09-027",
+        "text": "a question mark beside the bath",
+        "gold": "action=create shape=text label=? position=near anchor=bath",
+        "read": "action=create anchor=bath position=near",
+        "detail": null
+       }
+      ],
+      "class|layout": [
+       {
+        "id": "nlb-05-001",
+        "text": "Two round tables to start. One each side.",
+        "gold": "action=create shape=circle count=2 layout=row",
+        "read": "action=create count=2",
+        "detail": null
+       },
+       {
+        "id": "nlb-11-009",
+        "text": "3 little caves across the back",
+        "gold": "action=create count=3 size=small layout=row",
+        "read": "action=create count=3 position=left shape=triangle size=small",
+        "detail": null
+       }
+      ],
+      "act|command:label read as fact:": [
+       {
+        "id": "nlb-05-002",
+        "text": "Left one is family",
+        "gold": "action=label target=mention(position=left,shape=circle) label=family",
+        "read": "not done",
+        "detail": "read as fact:"
+       },
+       {
+        "id": "nlb-05-002",
+        "text": "Left one is family",
+        "gold": "requested: Left one is family",
+        "read": "extra fact: target=left",
+        "detail": "read as fact: where command:label is requested"
+       }
+      ],
+      "cut|(command:respace)": [
+       {
+        "id": "nlb-05-014",
+        "text": "Those two tables look a bit close",
+        "gold": "action=respace target=mention(label=family),mention(label=friends) comparison=bigger",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       },
+       {
+        "id": "nlb-05-037",
+        "text": "Leave a walking gap between each",
+        "gold": "action=respace target=mention(label=beans),mention(label=carrots),mention(label=squash) comparison=bigger",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "act|command:label read as question:extreme": [
+       {
+        "id": "nlb-05-024",
+        "text": "Left one L",
+        "gold": "action=label target=mention(position=left,shape=rectangle,size=small) label=l",
+        "read": "not done",
+        "detail": "read as question:extreme"
+       },
+       {
+        "id": "nlb-05-024",
+        "text": "Left one L",
+        "gold": "requested: Left one L",
+        "read": "extra question:extreme ask=extreme shape=triangle",
+        "detail": "read as question:extreme where command:label is requested"
+       }
+      ],
+      "act|command:label read as command:move": [
+       {
+        "id": "nlb-05-024",
+        "text": "right one R",
+        "gold": "action=label target=mention(position=right,shape=rectangle,size=small) label=r",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-05-024",
+        "text": "right one R",
+        "gold": "requested: right one R",
+        "read": "extra command:move action=move position=right target=rectangle1,rectangle2",
+        "detail": "read as command:move where command:label is requested"
+       },
+       {
+        "id": "nlb-06-028",
+        "text": "Court 2 on the lower",
+        "gold": "action=label target=s2 label=court 2",
+        "read": "not done",
+        "detail": "read as command:move"
+       }
+      ],
+      "act|command:group read as command:create": [
+       {
+        "id": "nlb-05-032",
+        "text": "Dashed box round the two speakers, labelled borrowed",
+        "gold": "action=group target=mention(label=l),mention(label=r) name=borrowed",
+        "read": "not done",
+        "detail": "read as command:create"
+       },
+       {
+        "id": "nlb-05-032",
+        "text": "Dashed box round the two speakers, labelled borrowed",
+        "gold": "requested: Dashed box round the two speakers, labelled borrowed",
+        "read": "extra command:create action=create label=borrowed",
+        "detail": "read as command:create where command:group is requested"
+       }
+      ],
+      "class|to": [
+       {
+        "id": "nlb-05-040",
+        "text": "Hose from tap to beans",
+        "gold": "action=connect from=tap to=mention(label=beans)",
+        "read": "action=connect from=tap to=beans",
+        "detail": null
+       }
+      ],
+      "act|command:create read as command:disconnect": [
+       {
+        "id": "nlb-06-006",
+        "text": "A separate section down there",
+        "gold": "action=create layer=zone position=bottom",
+        "read": "not done",
+        "detail": "read as command:disconnect"
+       },
+       {
+        "id": "nlb-06-006",
+        "text": "separate section down there would",
+        "gold": "requested: A separate section down there",
+        "read": "extra command:disconnect action=disconnect",
+        "detail": "read as command:disconnect where command:create is requested"
+       }
+      ],
+      "class|style": [
+       {
+        "id": "nlb-06-010",
+        "text": "Show it going from the library to a temporary stop called Baths, then on to the hospital",
+        "gold": "action=connect from=library,baths,hospital style=dashed",
+        "read": "action=connect from=library,hospital",
+        "detail": null
+       }
+      ],
+      "name|to": [
+       {
+        "id": "nlb-06-012",
+        "text": "Extend the 24 from Hospital to West Park, sorry East Park",
+        "gold": "action=connect from=hospital to=$new",
+        "read": "action=connect from=hospital to=west",
+        "detail": null
+       },
+       {
+        "id": "nlb-12-019",
+        "text": "suitcase should open with the birthday from the diary",
+        "gold": "action=connect from=diary to=suitcase",
+        "read": "action=connect from=suitcase,diary to=birthday",
+        "detail": null
+       }
+      ],
+      "act|command:respace read as command:resize": [
+       {
+        "id": "nlb-06-017",
+        "text": "Make the station connection shorter",
+        "gold": "action=respace target=library,station comparison=smaller",
+        "read": "not done",
+        "detail": "read as command:resize"
+       },
+       {
+        "id": "nlb-06-017",
+        "text": "Make the station connection shorter",
+        "gold": "requested: Make the station connection shorter",
+        "read": "extra command:resize action=resize",
+        "detail": "read as command:resize where command:respace is requested"
+       }
+      ],
+      "name|target": [
+       {
+        "id": "nlb-06-023",
+        "text": "North above South in a single column",
+        "gold": "action=arrange target=north,south layout=column",
+        "read": "action=arrange anchor=south layout=column target=north",
+        "detail": null
+       },
+       {
+        "id": "nlb-08-043",
+        "text": "whats conencted to manager approval",
+        "gold": "ask=neighbors target=approval",
+        "read": "ask=neighbors",
+        "detail": null
+       }
+      ],
+      "act|command:label read as question:help": [
+       {
+        "id": "nlb-06-027",
+        "text": "can Tigers appear in Semi 2",
+        "gold": "action=label target=s2 label=tigers",
+        "read": "not done",
+        "detail": "read as question:help"
+       },
+       {
+        "id": "nlb-06-027",
+        "text": "can Tigers appear in Semi 2",
+        "gold": "requested: can Tigers appear in Semi 2",
+        "read": "extra question:help ask=help aspect=can",
+        "detail": "read as question:help where command:label is requested"
+       }
+      ],
+      "cut|(command:resize)": [
+       {
+        "id": "nlb-06-027",
+        "text": "Leave enough space inside the final",
+        "gold": "action=resize target=final",
+        "read": "action=resize",
+        "detail": "the unit covers 0% of the span"
+       },
+       {
+        "id": "nlb-07-044",
+        "text": "the dilution box to have room for a handwritten ratio",
+        "gold": "action=resize target=dilution",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       },
+       {
+        "id": "nlb-09-001",
+        "text": "keep the van outline big enough that none of those boxes straddle it",
+        "gold": "action=resize target=van",
+        "read": "not done",
+        "detail": "lost: no unit on the span"
+       }
+      ],
+      "act|command:resize read as command:respace": [
+       {
+        "id": "nlb-06-027",
+        "text": "Leave enough space inside the final for",
+        "gold": "requested: Leave enough space inside the final",
+        "read": "extra command:respace action=respace target=mention(quantifier=all)",
+        "detail": "read as command:respace where command:resize is requested"
+       },
+       {
+        "id": "nlb-08-035",
+        "text": "a little wider",
+        "gold": "action=resize target=pay",
+        "read": "not done",
+        "detail": "read as command:respace"
+       },
+       {
+        "id": "nlb-08-035",
+        "text": "a little wider",
+        "gold": "requested: a little wider",
+        "read": "extra command:respace action=respace comparison=smaller target=mention(recency=newest,shape=rectangle)",
+        "detail": "read as command:respace where command:resize is requested"
+       }
+      ],
+      "act|command:label read as command:set": [
+       {
+        "id": "nlb-06-029",
+        "text": "Falcons won 3–1. Wait, 3–2",
+        "gold": "action=label target=q1 label=falcons 3–2 owls",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-06-029",
+        "text": "Falcons won 3–1. Wait, 3–2",
+        "gold": "requested: Falcons won 3–1. Wait, 3–2",
+        "read": "extra command:set action=set target=falcons",
+        "detail": "read as command:set where command:label is requested"
+       },
+       {
+        "id": "nlb-08-006",
+        "text": "The blue box at the beginning needs to say Landing page",
+        "gold": "action=label target=visit label=landing page",
+        "read": "not done",
+        "detail": "read as command:set"
+       }
+      ],
+      "act|command:arrange read as command:move": [
+       {
+        "id": "nlb-06-043",
+        "text": "Could the three committee roles sit together across the top",
+        "gold": "action=arrange target=chair,secretary,treasurer layout=row",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-06-043",
+        "text": "roles sit together across the top,",
+        "gold": "requested: Could the three committee roles sit together across the top",
+        "read": "extra command:move action=move position=top",
+        "detail": "read as command:move where command:arrange is requested"
+       }
+      ],
+      "act|command:disconnect read as command:connect": [
+       {
+        "id": "nlb-06-043",
+        "text": "with no arrows between them",
+        "gold": "action=disconnect from=chair to=secretary,treasurer",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-06-043",
+        "text": "with no arrows between them",
+        "gold": "requested: with no arrows between them",
+        "read": "extra command:connect action=connect",
+        "detail": "read as command:connect where command:disconnect is requested"
+       }
+      ],
+      "act|command:set read as command:redo": [
+       {
+        "id": "nlb-07-018",
+        "text": "put that back",
+        "gold": "requested: put that back",
+        "read": "extra command:redo action=redo",
+        "detail": "read as command:redo where command:set is requested"
+       }
+      ],
+      "act|question:property read as question:extreme": [
+       {
+        "id": "nlb-07-030",
+        "text": "Which layer has the little spiral thing in it",
+        "gold": "ask=property target=ammonite property=position",
+        "read": "not done",
+        "detail": "read as question:extreme"
+       },
+       {
+        "id": "nlb-07-030",
+        "text": "Which layer has the little spiral thing in it",
+        "gold": "requested: Which layer has the little spiral thing in it",
+        "read": "extra question:extreme ask=extreme",
+        "detail": "read as question:extreme where question:property is requested"
+       }
+      ],
+      "cut|(question:path)": [
+       {
+        "id": "nlb-07-036",
+        "text": "That path ending in the black circle—what does it pass through first",
+        "gold": "ask=path from=nebula to=blackhole",
+        "read": "not done",
+        "detail": "only a part of the span is a unit"
+       }
+      ],
+      "act|command:move read as command:connect": [
+       {
+        "id": "nlb-07-039",
+        "text": "show the little dot going across to chlorine",
+        "gold": "action=move target=electron position=near anchor=chlorine",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-07-039",
+        "text": "just show the little dot going across to chlorine",
+        "gold": "requested: show the little dot going across to chlorine",
+        "read": "extra command:connect action=connect to=chlorine",
+        "detail": "read as command:connect where command:move is requested"
+       }
+      ],
+      "act|command:disconnect read as question:path": [
+       {
+        "id": "nlb-07-044",
+        "text": "The route from A straight to the spectrometer is the old method and needs to disappear",
+        "gold": "action=disconnect from=samplea to=spectrometer",
+        "read": "not done",
+        "detail": "read as question:path"
+       },
+       {
+        "id": "nlb-07-044",
+        "text": "The route from A straight to the spectrometer",
+        "gold": "requested: The route from A straight to the spectrometer is the old me…",
+        "read": "extra question:path ask=path from=a to=spectrometer",
+        "detail": "read as question:path where command:disconnect is requested"
+       }
+      ],
+      "act|command:connect read as command:toFront": [
+       {
+        "id": "nlb-08-001",
+        "text": "The callback should come back into sign up",
+        "gold": "action=connect from=$new to=signup",
+        "read": "not done",
+        "detail": "read as command:toFront"
+       },
+       {
+        "id": "nlb-08-001",
+        "text": "The callback should come back into sign up",
+        "gold": "requested: The callback should come back into sign up",
+        "read": "extra command:toFront action=tofront target=callback",
+        "detail": "read as command:toFront where command:connect is requested"
+       }
+      ],
+      "act|question:neighbors read as question:list": [
+       {
+        "id": "nlb-08-018",
+        "text": "What comes immediately after the diamond",
+        "gold": "ask=neighbors target=approval",
+        "read": "not done",
+        "detail": "read as question:list"
+       },
+       {
+        "id": "nlb-08-018",
+        "text": "What comes immediately after the diamond",
+        "gold": "requested: What comes immediately after the diamond",
+        "read": "extra question:list ask=list",
+        "detail": "read as question:list where question:neighbors is requested"
+       }
+      ],
+      "act|command:connect read as command:move": [
+       {
+        "id": "nlb-08-023",
+        "text": "put the arrow back between those first two boxes",
+        "gold": "action=connect from=request to=approval",
+        "read": "not done",
+        "detail": "read as command:move"
+       },
+       {
+        "id": "nlb-08-023",
+        "text": "Please put the arrow back between those first two boxes",
+        "gold": "requested: put the arrow back between those first two boxes",
+        "read": "extra command:move action=move",
+        "detail": "read as command:move where command:connect is requested"
+       },
+       {
+        "id": "nlb-12-014",
+        "text": "before the safe",
+        "gold": "action=connect from=uv to=safe",
+        "read": "not done",
+        "detail": "read as command:move"
+       }
+      ],
+      "act|command:connect read as command:toBack": [
+       {
+        "id": "nlb-08-032",
+        "text": "one back when they reply",
+        "gold": "action=connect from=mention(label=waiting for customer) to=triage",
+        "read": "not done",
+        "detail": "read as command:toBack"
+       },
+       {
+        "id": "nlb-08-032",
+        "text": "one back when they reply",
+        "gold": "requested: one back when they reply",
+        "read": "extra command:toBack action=toback",
+        "detail": "read as command:toBack where command:connect is requested"
+       },
+       {
+        "id": "nlb-12-048",
+        "text": "After the cave i want a little downhill bit back to the gate",
+        "gold": "action=connect from=cave to=gate",
+        "read": "not done",
+        "detail": "read as command:toBack"
+       }
+      ],
+      "act|command:connect read as question:cycle": [
+       {
+        "id": "nlb-08-042",
+        "text": "they arrive we check again",
+        "gold": "requested: once they arrive we check again",
+        "read": "extra question:cycle ask=cycle",
+        "detail": "read as question:cycle where command:connect is requested"
+       }
+      ],
+      "class|property": [
+       {
+        "id": "nlb-09-005",
+        "text": "Make KITCHEN as big as BEDROOM",
+        "gold": "action=equalize target=kitchen property=size anchor=bedroom",
+        "read": "action=equalize anchor=bedroom target=kitchen",
+        "detail": null
+       }
+      ],
+      "oracle|width": [
+       {
+        "id": "nlb-09-021",
+        "text": "make the hall about half as wide",
+        "gold": "action=resize target=hall width=40",
+        "read": "action=resize target=hall",
+        "detail": "a key the layout does not read"
+       }
+      ],
+      "act|command:move read as question:check": [
+       {
+        "id": "nlb-10-002",
+        "text": "that white circle go over the oven",
+        "gold": "action=move target=mixer position=above anchor=oven",
+        "read": "not done",
+        "detail": "read as question:check"
+       },
+       {
+        "id": "nlb-10-002",
+        "text": "Could that white circle go over the oven instead",
+        "gold": "requested: that white circle go over the oven",
+        "read": "extra question:check ask=check anchor=oven position=above target=mention()",
+        "detail": "read as question:check where command:move is requested"
+       }
+      ],
+      "act|question:property read as command:connect": [
+       {
+        "id": "nlb-10-039",
+        "text": "draft to published arrow label",
+        "gold": "ask=property from=draft to=published property=label",
+        "read": "not done",
+        "detail": "read as command:connect"
+       },
+       {
+        "id": "nlb-10-039",
+        "text": "draft to published arrow label",
+        "gold": "requested: draft to published arrow label",
+        "read": "extra command:connect action=connect from=draft to=published",
+        "detail": "read as command:connect where question:property is requested"
+       }
+      ],
+      "act|question:property read as question:help": [
+       {
+        "id": "nlb-10-040",
+        "text": "tell me the wording on the connection leading into Published",
+        "gold": "ask=property from=draft to=published property=label",
+        "read": "not done",
+        "detail": "read as question:help"
+       },
+       {
+        "id": "nlb-10-040",
+        "text": "Could you tell me the wording on the connection leading into Published",
+        "gold": "requested: tell me the wording on the connection leading into Published",
+        "read": "extra question:help ask=help",
+        "detail": "read as question:help where question:property is requested"
+       }
+      ],
+      "act|command:group read as question:groupOf": [
+       {
+        "id": "nlb-10-047",
+        "text": "Those two blue desks belong in one group",
+        "gold": "action=group target=deska,deskb",
+        "read": "not done",
+        "detail": "read as question:groupOf"
+       },
+       {
+        "id": "nlb-10-047",
+        "text": "Those two blue desks belong in one group",
+        "gold": "requested: Those two blue desks belong in one group",
+        "read": "extra question:groupOf ask=groupof",
+        "detail": "read as question:groupOf where command:group is requested"
+       }
+      ],
+      "act|command:create read as command:toBack": [
+       {
+        "id": "nlb-11-003",
+        "text": "tall plant behind it",
+        "gold": "action=create",
+        "read": "not done",
+        "detail": "read as command:toBack"
+       },
+       {
+        "id": "nlb-11-003",
+        "text": "tall plant behind it",
+        "gold": "requested: tall plant behind it",
+        "read": "extra command:toBack action=toback target=tall,plant",
+        "detail": "read as command:toBack where command:create is requested"
+       }
+      ],
+      "act|command:move read as command:create": [
+       {
+        "id": "nlb-11-017",
+        "text": "leave a gap under it",
+        "gold": "action=move target=log direction=up",
+        "read": "not done",
+        "detail": "read as command:create"
+       },
+       {
+        "id": "nlb-11-017",
+        "text": "leave a gap under it too",
+        "gold": "requested: leave a gap under it",
+        "read": "extra command:create action=create",
+        "detail": "read as command:create where command:move is requested"
+       }
+      ],
+      "act|command:create read as question:reachable": [
+       {
+        "id": "nlb-11-021",
+        "text": "trapdoor where the ladder ends",
+        "gold": "action=create position=above anchor=mention(recency=newest)",
+        "read": "not done",
+        "detail": "read as question:reachable"
+       },
+       {
+        "id": "nlb-11-021",
+        "text": "trapdoor where the ladder ends",
+        "gold": "requested: trapdoor where the ladder ends",
+        "read": "extra question:reachable ask=reachable",
+        "detail": "read as question:reachable where command:create is requested"
+       }
+      ],
+      "act|command:label read as question:check": [
+       {
+        "id": "nlb-11-026",
+        "text": "mine is kit",
+        "gold": "action=label target=mention(recency=newest) label=kit",
+        "read": "not done",
+        "detail": "read as question:check"
+       },
+       {
+        "id": "nlb-11-026",
+        "text": "is kit",
+        "gold": "requested: mine is kit",
+        "read": "extra question:check ask=check target=kit",
+        "detail": "read as question:check where command:label is requested"
+       }
+      ],
+      "name|linked": [
+       {
+        "id": "nlb-11-047",
+        "text": "a new Exit after it",
+        "gold": "action=create label=exit linked=exit",
+        "read": "action=create",
+        "detail": null
+       }
+      ],
+      "act|command:resize read as command:set": [
+       {
+        "id": "nlb-12-002",
+        "text": "make it big enough to actually notice",
+        "gold": "action=resize target=pit",
+        "read": "not done",
+        "detail": "read as command:set"
+       },
+       {
+        "id": "nlb-12-002",
+        "text": "make it big enough to actually notice",
+        "gold": "requested: make it big enough to actually notice",
+        "read": "extra command:set action=set target=mention(color=blue,shape=square)",
+        "detail": "read as command:set where command:resize is requested"
+       }
+      ],
+      "name|from": [
+       {
+        "id": "nlb-12-019",
+        "text": "suitcase should open with the birthday from the diary",
+        "gold": "action=connect from=diary to=suitcase",
+        "read": "action=connect from=suitcase,diary to=birthday",
+        "detail": null
+       }
+      ],
+      "oracle|object": [
+       {
+        "id": "nlb-12-028",
+        "text": "a river for the dragon to drink from",
+        "gold": "action=create object=river",
+        "read": "action=create",
+        "detail": "a key the layout does not read"
+       }
+      ],
+      "act|command:disconnect read as question:describe": [
+       {
+        "id": "nlb-12-048",
+        "text": "show the cave as a proper stop along the way",
+        "gold": "action=disconnect from=forest to=gate",
+        "read": "not done",
+        "detail": "read as question:describe"
+       },
+       {
+        "id": "nlb-12-048",
+        "text": "show the cave as a proper stop",
+        "gold": "requested: show the cave as a proper stop along the way",
+        "read": "extra question:describe ask=describe target=cave",
+        "detail": "read as question:describe where command:disconnect is requested"
+       }
+      ]
+     },
+     "total": 356
+    },
+    "unannotated": {
+     "counts": {},
+     "keys": {},
+     "examples": {},
+     "keyExamples": {},
+     "total": 0
+    },
+    "no request": {
+     "counts": {
+      "spurious": 357,
+      "cut": 99,
+      "teachers": 2
+     },
+     "keys": {
+      "spurious|command:move": 88,
+      "spurious|question:check": 19,
+      "spurious|command:delete": 14,
+      "spurious|command:set": 58,
+      "spurious|command:swap": 2,
+      "spurious|command:rename": 3,
+      "spurious|command:disconnect": 4,
+      "spurious|command:connect": 34,
+      "cut|question:nearest": 1,
+      "cut|command:create": 6,
+      "spurious|command:resize": 6,
+      "spurious|command:arrange": 6,
+      "spurious|question:list": 6,
+      "spurious|question:cycle": 2,
+      "cut|command:set": 23,
+      "spurious|command:create": 8,
+      "cut|fact:": 3,
+      "spurious|command:label": 9,
+      "cut|command:delete": 7,
+      "cut|question:describe": 1,
+      "cut|question:path": 1,
+      "cut|question:degree": 1,
+      "spurious|question:count": 5,
+      "spurious|question:help": 18,
+      "cut|command:forget": 1,
+      "cut|question:neighbors": 1,
+      "spurious|command:duplicate": 2,
+      "spurious|question:path": 9,
+      "spurious|command:fit": 2,
+      "spurious|fact:": 17,
+      "spurious|command:distribute": 3,
+      "spurious|question:connected": 2,
+      "spurious|question:degree": 5,
+      "spurious|question:describe": 4,
+      "spurious|command:toFront": 4,
+      "spurious|command:toBack": 3,
+      "spurious|question:neighbors": 4,
+      "spurious|command:respace": 5,
+      "cut|command:move": 20,
+      "cut|command:undo": 1,
+      "spurious|command:untangle": 3,
+      "cut|command:connect": 6,
+      "spurious|question:reachable": 4,
+      "cut|question:property": 3,
+      "cut|command:rename": 2,
+      "cut|command:resize": 2,
+      "cut|rule:": 1,
+      "cut|command:arrange": 2,
+      "cut|question:help": 4,
+      "spurious|question:property": 2,
+      "cut|question:exists": 2,
+      "cut|question:list": 1,
+      "spurious|question:groupOf": 1,
+      "cut|question:check": 2,
+      "cut|command:toFront": 1,
+      "cut|command:respace": 3,
+      "teachers|command:move": 1,
+      "spurious|command:equalize": 1,
+      "cut|question:reachable": 1,
+      "spurious|command:undo": 2,
+      "cut|command:redo": 1,
+      "cut|command:distribute": 1,
+      "spurious|command:redo": 1,
+      "cut|question:count": 1,
+      "teachers|command:set": 1,
+      "spurious|command:improve": 1
+     },
+     "examples": {
+      "spurious": [
+       {
+        "id": "nlb-01-001",
+        "text": "The board on the left",
+        "gold": "-",
+        "read": "extra command:move action=move position=left target=board",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-001",
+        "text": "please leave some daylight between them",
+        "gold": "-",
+        "read": "extra command:move action=move anchor=isolator position=between target=daylight",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-001",
+        "text": "red bit is",
+        "gold": "-",
+        "read": "extra question:check ask=check color=red target=bit",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut": [
+       {
+        "id": "nlb-01-018",
+        "text": "row nearest the chimney",
+        "gold": "-",
+        "read": "extra question:nearest ask=nearest anchor=chimney superlative=closest",
+        "detail": "partial overlap with a requested action: 42% of it"
+       },
+       {
+        "id": "nlb-01-018",
+        "text": "six",
+        "gold": "-",
+        "read": "extra command:create action=create count=6",
+        "detail": "partial overlap with a requested action: 5% of it"
+       },
+       {
+        "id": "nlb-01-027",
+        "text": "that",
+        "gold": "-",
+        "read": "extra command:set action=set",
+        "detail": "partial overlap with a requested action: 10% of it"
+       }
+      ],
+      "teachers": [
+       {
+        "id": "nlb-07-011",
+        "text": "the Sun at the left",
+        "gold": "-",
+        "read": "extra command:move action=move position=left target=sun",
+        "detail": "the reader's request is gpt's (right by the either-teacher view)"
+       },
+       {
+        "id": "nlb-09-045",
+        "text": "Music green as before",
+        "gold": "-",
+        "read": "extra command:set action=set color=green target=music",
+        "detail": "the reader's request is gpt's (right by the either-teacher view)"
+       }
+      ]
+     },
+     "keyExamples": {
+      "spurious|command:move": [
+       {
+        "id": "nlb-01-001",
+        "text": "The board on the left",
+        "gold": "-",
+        "read": "extra command:move action=move position=left target=board",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-001",
+        "text": "please leave some daylight between them",
+        "gold": "-",
+        "read": "extra command:move action=move anchor=isolator position=between target=daylight",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-005",
+        "text": "there",
+        "gold": "-",
+        "read": "extra command:move action=move",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|question:check": [
+       {
+        "id": "nlb-01-001",
+        "text": "red bit is",
+        "gold": "-",
+        "read": "extra question:check ask=check color=red target=bit",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-03-026",
+        "text": "Yellow on white is beyond my eyes",
+        "gold": "-",
+        "read": "extra question:check ask=check color=white target=yellow,white",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-03-046",
+        "text": "Not the orange one",
+        "gold": "-",
+        "read": "extra question:check ask=check notColor=orange target=mention()",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:delete": [
+       {
+        "id": "nlb-01-001",
+        "text": "don't",
+        "gold": "-",
+        "read": "extra command:delete action=delete",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-024",
+        "text": "retired server",
+        "gold": "-",
+        "read": "extra command:delete action=delete target=server",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-025",
+        "text": "move it out of the missing pile",
+        "gold": "-",
+        "read": "extra command:delete action=delete target=mention()",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:set": [
+       {
+        "id": "nlb-01-001",
+        "text": "beautiful",
+        "gold": "-",
+        "read": "extra command:set action=set",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-017",
+        "text": "orange",
+        "gold": "-",
+        "read": "extra command:set action=set color=orange",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-040",
+        "text": "Make the second string match the first",
+        "gold": "-",
+        "read": "extra command:set action=set",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:swap": [
+       {
+        "id": "nlb-01-003",
+        "text": "Swap the kitchen and hall labels. No, hang on",
+        "gold": "-",
+        "read": "extra command:swap action=swap target=hall,kitchen",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-12-004",
+        "text": "Swap the start and the",
+        "gold": "-",
+        "read": "extra command:swap action=swap target=start",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:rename": [
+       {
+        "id": "nlb-01-013",
+        "text": ". Actually call it Mum's phone",
+        "gold": "-",
+        "read": "extra command:rename action=rename name=mum",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-02-027",
+        "text": "Can you call the location manager",
+        "gold": "-",
+        "read": "extra command:rename action=rename name=manager target=location",
+        "detail": "a message with no request"
+       },
+       {
+        "id": "nlb-08-020",
+        "text": "Change New ticket to Received",
+        "gold": "-",
+        "read": "extra command:rename action=rename name=received",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:disconnect": [
+       {
+        "id": "nlb-01-015",
+        "text": "Make the two panel feeds separate all the way to the controller",
+        "gold": "-",
+        "read": "extra command:disconnect action=disconnect to=controller",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-07-017",
+        "text": "Does the fault currently cut all three layers",
+        "gold": "-",
+        "read": "extra command:disconnect action=disconnect",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-08-007",
+        "text": "leave the normal route there",
+        "gold": "-",
+        "read": "extra command:disconnect action=disconnect from=resolve to=resolve",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:connect": [
+       {
+        "id": "nlb-01-017",
+        "text": "with the wire that goes into it",
+        "gold": "-",
+        "read": "extra command:connect action=connect",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-020",
+        "text": "cable",
+        "gold": "-",
+        "read": "extra command:connect action=connect",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-029",
+        "text": "it goes to technical support",
+        "gold": "-",
+        "read": "extra command:connect action=connect to=technical",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|question:nearest": [
+       {
+        "id": "nlb-01-018",
+        "text": "row nearest the chimney",
+        "gold": "-",
+        "read": "extra question:nearest ask=nearest anchor=chimney superlative=closest",
+        "detail": "partial overlap with a requested action: 42% of it"
+       }
+      ],
+      "cut|command:create": [
+       {
+        "id": "nlb-01-018",
+        "text": "six",
+        "gold": "-",
+        "read": "extra command:create action=create count=6",
+        "detail": "partial overlap with a requested action: 5% of it"
+       },
+       {
+        "id": "nlb-03-040",
+        "text": "down the bottom just draw a box",
+        "gold": "-",
+        "read": "extra command:create action=create position=bottom shape=rectangle",
+        "detail": "partial overlap with a requested action: 35% of it"
+       },
+       {
+        "id": "nlb-06-001",
+        "text": "write Madrid",
+        "gold": "-",
+        "read": "extra command:create action=create",
+        "detail": "partial overlap with a requested action: 46% of it"
+       }
+      ],
+      "spurious|command:resize": [
+       {
+        "id": "nlb-01-018",
+        "text": "shrink the whole row",
+        "gold": "-",
+        "read": "extra command:resize action=resize target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-033",
+        "text": "the refund bit",
+        "gold": "-",
+        "read": "extra command:resize action=resize target=refund",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-05-034",
+        "text": "Bigger writing on Input 1",
+        "gold": "-",
+        "read": "extra command:resize action=resize target=input",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:arrange": [
+       {
+        "id": "nlb-01-019",
+        "text": "what would sixteen of them produce in a year here in Leeds",
+        "gold": "-",
+        "read": "extra command:arrange action=arrange",
+        "detail": "a message with no request"
+       },
+       {
+        "id": "nlb-03-049",
+        "text": "the plots it serves had their own",
+        "gold": "-",
+        "read": "extra command:arrange action=arrange target=tap",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-07-028",
+        "text": "word equation",
+        "gold": "-",
+        "read": "extra command:arrange action=arrange",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|question:list": [
+       {
+        "id": "nlb-01-022",
+        "text": "Which of the laptops in the blue area don't have an owner written underneath",
+        "gold": "-",
+        "read": "extra question:list ask=list",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-04-008",
+        "text": "Why are our patients sitting out by the desk",
+        "gold": "-",
+        "read": "extra question:list ask=list anchor=desk position=near",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-08-042",
+        "text": "those pieces",
+        "gold": "-",
+        "read": "extra question:list ask=list",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|question:cycle": [
+       {
+        "id": "nlb-01-027",
+        "text": "still own",
+        "gold": "-",
+        "read": "extra question:cycle ask=cycle",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-03-025",
+        "text": "run",
+        "gold": "-",
+        "read": "extra question:cycle ask=cycle",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|command:set": [
+       {
+        "id": "nlb-01-027",
+        "text": "that",
+        "gold": "-",
+        "read": "extra command:set action=set",
+        "detail": "partial overlap with a requested action: 10% of it"
+       },
+       {
+        "id": "nlb-01-038",
+        "text": "Give to it its own rectangle",
+        "gold": "-",
+        "read": "extra command:set action=set shape=rectangle",
+        "detail": "partial overlap with a requested action: 45% of it"
+       },
+       {
+        "id": "nlb-02-015",
+        "text": "Yellow box please",
+        "gold": "-",
+        "read": "extra command:set action=set color=yellow",
+        "detail": "partial overlap with a requested action: 15% of it"
+       }
+      ],
+      "spurious|command:create": [
+       {
+        "id": "nlb-01-028",
+        "text": "this drawing",
+        "gold": "-",
+        "read": "extra command:create action=create",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-06-027",
+        "text": "write a score on the printout",
+        "gold": "-",
+        "read": "extra command:create action=create",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-06-034",
+        "text": "There are six teams: Red,",
+        "gold": "-",
+        "read": "extra command:create action=create color=red",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|fact:": [
+       {
+        "id": "nlb-01-029",
+        "text": "technical",
+        "gold": "-",
+        "read": "extra fact: target=technical",
+        "detail": "partial overlap with a requested action: 15% of it"
+       },
+       {
+        "id": "nlb-07-036",
+        "text": "in the black circle",
+        "gold": "-",
+        "read": "extra fact: target=mention(color=black,shape=circle)",
+        "detail": "partial overlap with a requested action: 28% of it"
+       },
+       {
+        "id": "nlb-09-012",
+        "text": "the harbour",
+        "gold": "-",
+        "read": "extra fact: target=harbour",
+        "detail": "partial overlap with a requested action: 23% of it"
+       }
+      ],
+      "spurious|command:label": [
+       {
+        "id": "nlb-01-030",
+        "text": "'Customer unhappy",
+        "gold": "-",
+        "read": "extra command:label action=label label=unhappy target=customer",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-03-044",
+        "text": "leave 18 as Mrs Khan",
+        "gold": "-",
+        "read": "extra command:label action=label target=leave",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-04-020",
+        "text": "For the mother of Elin and Robert",
+        "gold": "-",
+        "read": "extra command:label action=label target=robert",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|command:delete": [
+       {
+        "id": "nlb-01-032",
+        "text": "tear two",
+        "gold": "-",
+        "read": "extra command:delete action=delete",
+        "detail": "partial overlap with a requested action: 4% of it"
+       },
+       {
+        "id": "nlb-01-038",
+        "text": "departure from the board",
+        "gold": "-",
+        "read": "extra command:delete action=delete",
+        "detail": "partial overlap with a requested action: 39% of it"
+       },
+       {
+        "id": "nlb-05-037",
+        "text": "Leave",
+        "gold": "-",
+        "read": "extra command:delete action=delete",
+        "detail": "partial overlap with a requested action: 16% of it"
+       }
+      ],
+      "cut|question:describe": [
+       {
+        "id": "nlb-01-036",
+        "text": "whole thing",
+        "gold": "-",
+        "read": "extra question:describe ask=describe",
+        "detail": "partial overlap with a requested action: 25% of it"
+       }
+      ],
+      "cut|question:path": [
+       {
+        "id": "nlb-01-041",
+        "text": "give each one a path",
+        "gold": "-",
+        "read": "extra question:path ask=path",
+        "detail": "partial overlap with a requested action: 42% of it"
+       }
+      ],
+      "cut|question:degree": [
+       {
+        "id": "nlb-01-041",
+        "text": "of the battery",
+        "gold": "-",
+        "read": "extra question:degree ask=degree target=battery",
+        "detail": "partial overlap with a requested action: 29% of it"
+       }
+      ],
+      "spurious|question:count": [
+       {
+        "id": "nlb-01-041",
+        "text": "Does this still count as",
+        "gold": "-",
+        "read": "extra question:count ask=count",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-07-047",
+        "text": "Number them from the top",
+        "gold": "-",
+        "read": "extra question:count ask=count position=top",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-08-008",
+        "text": "How many days of annual leave do new starters get in France",
+        "gold": "-",
+        "read": "extra question:count ask=count",
+        "detail": "a message with no request"
+       }
+      ],
+      "spurious|question:help": [
+       {
+        "id": "nlb-01-043",
+        "text": "Can you",
+        "gold": "-",
+        "read": "extra question:help ask=help",
+        "detail": "a message with no request"
+       },
+       {
+        "id": "nlb-01-050",
+        "text": "Do I need permission from the council for panels on a listed cottage",
+        "gold": "-",
+        "read": "extra question:help ask=help aspect=can",
+        "detail": "a message with no request"
+       },
+       {
+        "id": "nlb-02-005",
+        "text": "can",
+        "gold": "-",
+        "read": "extra question:help ask=help aspect=can",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|command:forget": [
+       {
+        "id": "nlb-01-044",
+        "text": "machines which have no master",
+        "gold": "-",
+        "read": "extra command:forget action=forget",
+        "detail": "partial overlap with a requested action: 48% of it"
+       }
+      ],
+      "cut|question:neighbors": [
+       {
+        "id": "nlb-01-044",
+        "text": "border",
+        "gold": "-",
+        "read": "extra question:neighbors ask=neighbors target=border",
+        "detail": "partial overlap with a requested action: 10% of it"
+       }
+      ],
+      "spurious|command:duplicate": [
+       {
+        "id": "nlb-01-044",
+        "text": "The machine of Elena has a master already",
+        "gold": "-",
+        "read": "extra command:duplicate action=duplicate target=elena",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-01-047",
+        "text": "a donated oscilloscope once",
+        "gold": "-",
+        "read": "extra command:duplicate action=duplicate",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|question:path": [
+       {
+        "id": "nlb-01-045",
+        "text": "How many ways are there to get to the red box",
+        "gold": "-",
+        "read": "extra question:path ask=path from=mention(color=gold,shape=rectangle)",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-02-016",
+        "text": "A route from the entrance past the fossils",
+        "gold": "-",
+        "read": "extra question:path ask=path from=entrance to=fossils",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-03-006",
+        "text": "There's no way for me to get from the gate to the henhouse",
+        "gold": "-",
+        "read": "extra question:path ask=path from=gate to=henhouse",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:fit": [
+       {
+        "id": "nlb-01-047",
+        "text": "each tower",
+        "gold": "-",
+        "read": "extra command:fit action=fit target=$new",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-12-005",
+        "text": "bend it round the outside",
+        "gold": "-",
+        "read": "extra command:fit action=fit target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|fact:": [
+       {
+        "id": "nlb-02-004",
+        "text": "meadow stage is the orange one",
+        "gold": "-",
+        "read": "extra fact: color=orange target=meadow",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-02-019",
+        "text": "The exit is the first thing",
+        "gold": "-",
+        "read": "extra fact: target=exit",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-04-010",
+        "text": "They're the three green squares outside it",
+        "gold": "-",
+        "read": "extra fact: color=green shape=square",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:distribute": [
+       {
+        "id": "nlb-02-012",
+        "text": "space",
+        "gold": "-",
+        "read": "extra command:distribute action=distribute target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-05-050",
+        "text": "Gap in it",
+        "gold": "-",
+        "read": "extra command:distribute action=distribute target=circle6",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-07-011",
+        "text": "space that",
+        "gold": "-",
+        "read": "extra command:distribute action=distribute target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|question:connected": [
+       {
+        "id": "nlb-02-027",
+        "text": "ask about parking",
+        "gold": "-",
+        "read": "extra question:connected ask=connected target=parking",
+        "detail": "a message with no request"
+       },
+       {
+        "id": "nlb-12-007",
+        "text": "The port should still touch the coast",
+        "gold": "-",
+        "read": "extra question:connected ask=connected target=port",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|question:degree": [
+       {
+        "id": "nlb-02-029",
+        "text": "Then",
+        "gold": "-",
+        "read": "extra question:degree ask=degree",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-03-037",
+        "text": "Why has Tuesday vanished",
+        "gold": "-",
+        "read": "extra question:degree ask=degree target=tuesday",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-06-005",
+        "text": "b16 out of use till 1430",
+        "gold": "-",
+        "read": "extra question:degree ask=degree target=b16",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|question:describe": [
+       {
+        "id": "nlb-02-036",
+        "text": "Does anyone know if the understudy has the revised script",
+        "gold": "-",
+        "read": "extra question:describe ask=describe target=understudy",
+        "detail": "a message with no request"
+       },
+       {
+        "id": "nlb-03-005",
+        "text": "tell",
+        "gold": "-",
+        "read": "extra question:describe ask=describe",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-05-045",
+        "text": "Can you show which bed still has no water",
+        "gold": "-",
+        "read": "extra question:describe ask=describe",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:toFront": [
+       {
+        "id": "nlb-03-004",
+        "text": "comes the",
+        "gold": "-",
+        "read": "extra command:toFront action=tofront",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-04-009",
+        "text": "bring them into the bit that says waiting room that",
+        "gold": "-",
+        "read": "extra command:toFront action=tofront",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-07-005",
+        "text": "cold front",
+        "gold": "-",
+        "read": "extra command:toFront action=tofront target=cold",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:toBack": [
+       {
+        "id": "nlb-03-019",
+        "text": "a compost bin behind",
+        "gold": "-",
+        "read": "extra command:toBack action=toback target=compost,bin",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-12-008",
+        "text": "Number the circles backwards from 12",
+        "gold": "-",
+        "read": "extra command:toBack action=toback target=mention(quantifier=all,shape=circle)",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-12-044",
+        "text": "behind",
+        "gold": "-",
+        "read": "extra command:toBack action=toback target=spawn",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|question:neighbors": [
+       {
+        "id": "nlb-03-022",
+        "text": "Which of the yellow ones has no inspection note attached",
+        "gold": "-",
+        "read": "extra question:neighbors ask=neighbors",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-03-049",
+        "text": "who shares a tap",
+        "gold": "-",
+        "read": "extra question:neighbors ask=neighbors target=tap",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-07-002",
+        "text": "which arrow here is meant to point to them",
+        "gold": "-",
+        "read": "extra question:neighbors ask=neighbors",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "spurious|command:respace": [
+       {
+        "id": "nlb-03-023",
+        "text": "Leave a bit of space below the whole thing",
+        "gold": "-",
+        "read": "extra command:respace action=respace target=mention()",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-07-028",
+        "text": "leave some space underneath for me",
+        "gold": "-",
+        "read": "extra command:respace action=respace target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-08-004",
+        "text": "Could it stand out a bit more",
+        "gold": "-",
+        "read": "extra command:respace action=respace comparison=bigger target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|command:move": [
+       {
+        "id": "nlb-03-027",
+        "text": "the",
+        "gold": "-",
+        "read": "extra command:move action=move",
+        "detail": "partial overlap with a requested action: 2% of it"
+       },
+       {
+        "id": "nlb-03-030",
+        "text": "The bed that had",
+        "gold": "-",
+        "read": "extra command:move action=move target=bed",
+        "detail": "partial overlap with a requested action: 28% of it"
+       },
+       {
+        "id": "nlb-04-035",
+        "text": "put Jo in the position Ava has now",
+        "gold": "-",
+        "read": "extra command:move action=move target=jo,ava",
+        "detail": "partial overlap with a requested action: 38% of it"
+       }
+      ],
+      "cut|command:undo": [
+       {
+        "id": "nlb-03-030",
+        "text": "last",
+        "gold": "-",
+        "read": "extra command:undo action=undo",
+        "detail": "partial overlap with a requested action: 7% of it"
+       }
+      ],
+      "spurious|command:untangle": [
+       {
+        "id": "nlb-03-042",
+        "text": "uncap the frames, extract",
+        "gold": "-",
+        "read": "extra command:untangle action=untangle target=extract",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-06-005",
+        "text": "cross it out",
+        "gold": "-",
+        "read": "extra command:untangle action=untangle target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-12-007",
+        "text": "Don't change the colours of the resources",
+        "gold": "-",
+        "read": "extra command:untangle action=untangle target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|command:connect": [
+       {
+        "id": "nlb-03-042",
+        "text": "the empty supers go back to the bees. Can you draw that as a loop",
+        "gold": "-",
+        "read": "extra command:connect action=connect from=extract to=bees",
+        "detail": "partial overlap with a requested action: 42% of it"
+       },
+       {
+        "id": "nlb-04-004",
+        "text": "following Bake",
+        "gold": "-",
+        "read": "extra command:connect action=connect",
+        "detail": "partial overlap with a requested action: 41% of it"
+       },
+       {
+        "id": "nlb-04-038",
+        "text": "the changes requested link",
+        "gold": "-",
+        "read": "extra command:connect action=connect",
+        "detail": "partial overlap with a requested action: 46% of it"
+       }
+      ],
+      "spurious|question:reachable": [
+       {
+        "id": "nlb-04-014",
+        "text": "the connections from Orders",
+        "gold": "-",
+        "read": "extra question:reachable ask=reachable from=orders",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-07-034",
+        "text": "water must enter from",
+        "gold": "-",
+        "read": "extra question:reachable ask=reachable",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-08-029",
+        "text": "see where customers drop out before signing up",
+        "gold": "-",
+        "read": "extra question:reachable ask=reachable",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|question:property": [
+       {
+        "id": "nlb-04-033",
+        "text": "jo where ava is",
+        "gold": "-",
+        "read": "extra question:property ask=property property=position target=ava",
+        "detail": "partial overlap with a requested action: 47% of it"
+       },
+       {
+        "id": "nlb-04-033",
+        "text": "ava where jo is",
+        "gold": "-",
+        "read": "extra question:property ask=property property=position target=ava,jo",
+        "detail": "partial overlap with a requested action: 47% of it"
+       },
+       {
+        "id": "nlb-07-026",
+        "text": "sandstone goes where shale is now",
+        "gold": "-",
+        "read": "extra question:property ask=property target=sandstone,shale",
+        "detail": "partial overlap with a requested action: 49% of it"
+       }
+      ],
+      "cut|command:rename": [
+       {
+        "id": "nlb-04-043",
+        "text": "name the pair Welcome",
+        "gold": "-",
+        "read": "extra command:rename action=rename name=welcome",
+        "detail": "partial overlap with a requested action: 26% of it"
+       },
+       {
+        "id": "nlb-04-044",
+        "text": "name: Welcome",
+        "gold": "-",
+        "read": "extra command:rename action=rename name=welcome",
+        "detail": "partial overlap with a requested action: 25% of it"
+       }
+      ],
+      "cut|command:resize": [
+       {
+        "id": "nlb-04-048",
+        "text": "twice its height",
+        "gold": "-",
+        "read": "extra command:resize action=resize target=mention(quantifier=all)",
+        "detail": "partial overlap with a requested action: 23% of it"
+       },
+       {
+        "id": "nlb-04-049",
+        "text": "2x taller",
+        "gold": "-",
+        "read": "extra command:resize action=resize",
+        "detail": "partial overlap with a requested action: 28% of it"
+       }
+      ],
+      "cut|rule:": [
+       {
+        "id": "nlb-04-050",
+        "text": "For the green rectangle carrying EXIT",
+        "gold": "-",
+        "read": "extra rule: color=green",
+        "detail": "partial overlap with a requested action: 46% of it"
+       }
+      ],
+      "cut|command:arrange": [
+       {
+        "id": "nlb-05-036",
+        "text": "Top to bottom: beans, carrots, squash",
+        "gold": "-",
+        "read": "extra command:arrange action=arrange target=carrots template=matrix",
+        "detail": "partial overlap with a requested action: 19% of it"
+       },
+       {
+        "id": "nlb-06-035",
+        "text": "afternoon kitchen",
+        "gold": "-",
+        "read": "extra command:arrange action=arrange target=kitchen",
+        "detail": "partial overlap with a requested action: 30% of it"
+       }
+      ],
+      "cut|question:help": [
+       {
+        "id": "nlb-05-037",
+        "text": "walking",
+        "gold": "-",
+        "read": "extra question:help ask=help",
+        "detail": "partial overlap with a requested action: 22% of it"
+       },
+       {
+        "id": "nlb-06-043",
+        "text": "Could",
+        "gold": "-",
+        "read": "extra question:help ask=help aspect=can",
+        "detail": "partial overlap with a requested action: 8% of it"
+       },
+       {
+        "id": "nlb-06-048",
+        "text": "can we loose the arrows",
+        "gold": "-",
+        "read": "extra question:help ask=help aspect=can",
+        "detail": "partial overlap with a requested action: 43% of it"
+       }
+      ],
+      "spurious|question:property": [
+       {
+        "id": "nlb-06-021",
+        "text": "size",
+        "gold": "-",
+        "read": "extra question:property ask=property property=size target=mention()",
+        "detail": "no requested action on this text"
+       },
+       {
+        "id": "nlb-12-011",
+        "text": "Both halves together show where the pretend exit key is",
+        "gold": "-",
+        "read": "extra question:property ask=property target=box",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|question:exists": [
+       {
+        "id": "nlb-06-033",
+        "text": "nowhere",
+        "gold": "-",
+        "read": "extra question:exists ask=exists",
+        "detail": "partial overlap with a requested action: 13% of it"
+       },
+       {
+        "id": "nlb-06-050",
+        "text": "Maybe a circle of members with those jobs written outside it",
+        "gold": "-",
+        "read": "extra question:exists ask=exists shape=circle",
+        "detail": "partial overlap with a requested action: 32% of it"
+       }
+      ],
+      "cut|question:list": [
+       {
+        "id": "nlb-06-033",
+        "text": "the losers of the semis",
+        "gold": "-",
+        "read": "extra question:list ask=list",
+        "detail": "partial overlap with a requested action: 43% of it"
+       }
+      ],
+      "spurious|question:groupOf": [
+       {
+        "id": "nlb-06-034",
+        "text": "Show all the group games",
+        "gold": "-",
+        "read": "extra question:groupOf ask=groupof",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|question:check": [
+       {
+        "id": "nlb-06-045",
+        "text": "is Helen",
+        "gold": "-",
+        "read": "extra question:check ask=check target=helen",
+        "detail": "partial overlap with a requested action: 8% of it"
+       },
+       {
+        "id": "nlb-11-002",
+        "text": "half that",
+        "gold": "-",
+        "read": "extra question:check ask=check target=circle1",
+        "detail": "partial overlap with a requested action: 32% of it"
+       }
+      ],
+      "cut|command:toFront": [
+       {
+        "id": "nlb-06-046",
+        "text": "just restore the top box",
+        "gold": "-",
+        "read": "extra command:toFront action=tofront target=mention(shape=rectangle)",
+        "detail": "partial overlap with a requested action: 46% of it"
+       }
+      ],
+      "cut|command:respace": [
+       {
+        "id": "nlb-07-009",
+        "text": "make it small enough to fit outside the cell",
+        "gold": "-",
+        "read": "extra command:respace action=respace target=mention(quantifier=all)",
+        "detail": "partial overlap with a requested action: 30% of it"
+       },
+       {
+        "id": "nlb-11-029",
+        "text": "bigger lookout we both have to fit",
+        "gold": "-",
+        "read": "extra command:respace action=respace comparison=bigger target=lookout",
+        "detail": "partial overlap with a requested action: 41% of it"
+       },
+       {
+        "id": "nlb-12-040",
+        "text": "more",
+        "gold": "-",
+        "read": "extra command:respace action=respace comparison=bigger target=mention(quantifier=all)",
+        "detail": "partial overlap with a requested action: 16% of it"
+       }
+      ],
+      "teachers|command:move": [
+       {
+        "id": "nlb-07-011",
+        "text": "the Sun at the left",
+        "gold": "-",
+        "read": "extra command:move action=move position=left target=sun",
+        "detail": "the reader's request is gpt's (right by the either-teacher view)"
+       }
+      ],
+      "spurious|command:equalize": [
+       {
+        "id": "nlb-07-020",
+        "text": "red and orange routes look identical",
+        "gold": "-",
+        "read": "extra command:equalize action=equalize target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|question:reachable": [
+       {
+        "id": "nlb-07-036",
+        "text": "what does it pass through first",
+        "gold": "-",
+        "read": "extra question:reachable ask=reachable",
+        "detail": "partial overlap with a requested action: 46% of it"
+       }
+      ],
+      "spurious|command:undo": [
+       {
+        "id": "nlb-07-037",
+        "text": "submitting it now",
+        "gold": "-",
+        "read": "extra command:undo action=undo",
+        "detail": "a message with no request"
+       },
+       {
+        "id": "nlb-09-029",
+        "text": "last junction",
+        "gold": "-",
+        "read": "extra command:undo action=undo",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|command:redo": [
+       {
+        "id": "nlb-07-050",
+        "text": "put haploid",
+        "gold": "-",
+        "read": "extra command:redo action=redo",
+        "detail": "partial overlap with a requested action: 34% of it"
+       }
+      ],
+      "cut|command:distribute": [
+       {
+        "id": "nlb-09-007",
+        "text": "a space between them",
+        "gold": "-",
+        "read": "extra command:distribute action=distribute target=mention(quantifier=all)",
+        "detail": "partial overlap with a requested action: 31% of it"
+       }
+      ],
+      "spurious|command:redo": [
+       {
+        "id": "nlb-09-043",
+        "text": "car microphone again",
+        "gold": "-",
+        "read": "extra command:redo action=redo",
+        "detail": "no requested action on this text"
+       }
+      ],
+      "cut|question:count": [
+       {
+        "id": "nlb-09-043",
+        "text": "eighty",
+        "gold": "-",
+        "read": "extra question:count ask=count",
+        "detail": "partial overlap with a requested action: 11% of it"
+       }
+      ],
+      "teachers|command:set": [
+       {
+        "id": "nlb-09-045",
+        "text": "Music green as before",
+        "gold": "-",
+        "read": "extra command:set action=set color=green target=music",
+        "detail": "the reader's request is gpt's (right by the either-teacher view)"
+       }
+      ],
+      "spurious|command:improve": [
+       {
+        "id": "nlb-12-039",
+        "text": "no damage happens",
+        "gold": "-",
+        "read": "extra command:improve action=improve target=mention(quantifier=all)",
+        "detail": "no requested action on this text"
+       }
+      ]
+     },
+     "total": 458
+    }
+   },
+   "gate": {
+    "threshold": 0.8825649909685067,
+    "right_executed": 12,
+    "wrong_executed": 4,
+    "extras_executed": 1,
+    "asked": 370,
+    "held_right": {
+     "counts": {
+      "held": 51
+     },
+     "keys": {
+      "held|command:set": 7,
+      "held|command:respace": 1,
+      "held|command:resize": 6,
+      "held|command:undo": 4,
+      "held|command:delete": 2,
+      "held|command:disconnect": 4,
+      "held|command:swap": 2,
+      "held|command:group": 1,
+      "held|question:neighbors": 1,
+      "held|command:create": 7,
+      "held|command:move": 12,
+      "held|command:arrange": 1,
+      "held|command:fit": 1,
+      "held|command:connect": 1,
+      "held|question:path": 1
+     },
+     "examples": {
+      "held": [
+       {
+        "id": "nlb-01-002",
+        "text": "Earth in green",
+        "gold": "action=set target=earth color=green",
+        "read": "command:set action=set color=green target=earth",
+        "detail": "confidence 0.797; the group is seen"
+       },
+       {
+        "id": "nlb-01-029",
+        "text": "give the two routes a bit of space",
+        "gold": "action=respace comparison=bigger target=mention(quantifier=all)",
+        "read": "command:respace action=respace comparison=bigger target=mention(quantifier=all)",
+        "detail": "confidence 0.081; the group is seen"
+       },
+       {
+        "id": "nlb-01-048",
+        "text": "turn the bathroom tile blue",
+        "gold": "action=set target=bathroom color=blue",
+        "read": "command:set action=set color=blue target=bathroom",
+        "detail": "confidence 0.555; the group is seen"
+       }
+      ]
+     },
+     "keyExamples": {
+      "held|command:set": [
+       {
+        "id": "nlb-01-002",
+        "text": "Earth in green",
+        "gold": "action=set target=earth color=green",
+        "read": "command:set action=set color=green target=earth",
+        "detail": "confidence 0.797; the group is seen"
+       },
+       {
+        "id": "nlb-01-048",
+        "text": "turn the bathroom tile blue",
+        "gold": "action=set target=bathroom color=blue",
+        "read": "command:set action=set color=blue target=bathroom",
+        "detail": "confidence 0.555; the group is seen"
+       },
+       {
+        "id": "nlb-02-031",
+        "text": "Can you make the station blue",
+        "gold": "action=set target=station color=blue",
+        "read": "command:set action=set color=blue target=station",
+        "detail": "confidence 0.638; the group is seen"
+       }
+      ],
+      "held|command:respace": [
+       {
+        "id": "nlb-01-029",
+        "text": "give the two routes a bit of space",
+        "gold": "action=respace comparison=bigger target=mention(quantifier=all)",
+        "read": "command:respace action=respace comparison=bigger target=mention(quantifier=all)",
+        "detail": "confidence 0.081; the group is seen"
+       }
+      ],
+      "held|command:resize": [
+       {
+        "id": "nlb-02-038",
+        "text": "Make the acoustic tent smaller",
+        "gold": "action=resize target=acoustic",
+        "read": "command:resize action=resize target=acoustic",
+        "detail": "confidence 0.843; the group is seen"
+       },
+       {
+        "id": "nlb-07-022",
+        "text": "the moon should be much smaller than earth",
+        "gold": "action=resize target=moon",
+        "read": "command:resize action=resize target=moon",
+        "detail": "confidence 0.386; the group is unseen"
+       },
+       {
+        "id": "nlb-08-024",
+        "text": "can u make signup bigger",
+        "gold": "action=resize target=signup",
+        "read": "command:resize action=resize target=signup",
+        "detail": "confidence 0.358; the group is seen"
+       }
+      ],
+      "held|command:undo": [
+       {
+        "id": "nlb-02-044",
+        "text": "undo the line",
+        "gold": "action=undo",
+        "read": "command:undo action=undo",
+        "detail": "confidence 0.844; the group is seen"
+       },
+       {
+        "id": "nlb-03-048",
+        "text": "Undo",
+        "gold": "action=undo",
+        "read": "command:undo action=undo",
+        "detail": "confidence 0.862; the group is seen"
+       },
+       {
+        "id": "nlb-07-039",
+        "text": "Undo that move",
+        "gold": "action=undo",
+        "read": "command:undo action=undo",
+        "detail": "confidence 0.793; the group is seen"
+       }
+      ],
+      "held|command:delete": [
+       {
+        "id": "nlb-03-024",
+        "text": "Remove rectangle1",
+        "gold": "action=delete target=rectangle1",
+        "read": "command:delete action=delete target=rectangle1",
+        "detail": "confidence 0.135; the group is seen"
+       },
+       {
+        "id": "nlb-10-041",
+        "text": "Remove the shed",
+        "gold": "action=delete target=shed",
+        "read": "command:delete action=delete target=shed",
+        "detail": "confidence 0.780; the group is seen"
+       }
+      ],
+      "held|command:disconnect": [
+       {
+        "id": "nlb-04-011",
+        "text": "Delete the Metrics → Billing edge",
+        "gold": "action=disconnect from=billing to=metrics",
+        "read": "command:disconnect action=disconnect from=billing to=metrics",
+        "detail": "confidence 0.735; the group is seen"
+       },
+       {
+        "id": "nlb-04-014",
+        "text": "disconnect Metrics from Billing",
+        "gold": "action=disconnect from=billing to=metrics",
+        "read": "command:disconnect action=disconnect from=billing to=metrics",
+        "detail": "confidence 0.768; the group is seen"
+       },
+       {
+        "id": "nlb-04-015",
+        "text": "metrics shouldnt point at billing can you rub out just that link",
+        "gold": "action=disconnect from=billing to=metrics",
+        "read": "command:disconnect action=disconnect from=billing to=metrics",
+        "detail": "confidence 0.230; the group is unseen"
+       }
+      ],
+      "held|command:swap": [
+       {
+        "id": "nlb-04-034",
+        "text": "Exchange Ava's spot with Jo's",
+        "gold": "action=swap target=ava,jo",
+        "read": "command:swap action=swap target=ava,jo",
+        "detail": "confidence 0.613; the group is seen"
+       },
+       {
+        "id": "nlb-07-024",
+        "text": "Swap the shale and sandstone layers",
+        "gold": "action=swap target=sandstone,shale",
+        "read": "command:swap action=swap target=sandstone,shale",
+        "detail": "confidence 0.740; the group is seen"
+       }
+      ],
+      "held|command:group": [
+       {
+        "id": "nlb-04-041",
+        "text": "Group CakeTable and GiftTable as Welcome",
+        "gold": "action=group target=caketable,gifttable name=welcome",
+        "read": "command:group action=group name=welcome target=caketable,gifttable",
+        "detail": "confidence 0.495; the group is seen"
+       }
+      ],
+      "held|question:neighbors": [
+       {
+        "id": "nlb-05-031",
+        "text": "Which things are plugged into the laptop",
+        "gold": "ask=neighbors target=laptop",
+        "read": "question:neighbors ask=neighbors target=laptop",
+        "detail": "confidence 0.636; the group is seen"
+       }
+      ],
+      "held|command:create": [
+       {
+        "id": "nlb-05-035",
+        "text": "Three long beds across the middle",
+        "gold": "action=create count=3 position=center",
+        "read": "command:create action=create count=3 position=center",
+        "detail": "confidence 0.095; the group is unseen"
+       },
+       {
+        "id": "nlb-07-011",
+        "text": "Put a quiet 'sizes and distances not to scale' note at the bottom",
+        "gold": "action=create shape=text label=sizes and distances not to scale position=bottom",
+        "read": "command:create action=create label=sizes and distances not to scale position=bottom shape=text template=list",
+        "detail": "confidence 0.404; the group is seen"
+       },
+       {
+        "id": "nlb-10-021",
+        "text": "Put a stop called Bristol between Departure and Arrival",
+        "gold": "action=create name=bristol position=between anchor=departure,arrival",
+        "read": "command:create action=create anchor=departure,arrival name=bristol position=between",
+        "detail": "confidence 0.763; the group is seen"
+       }
+      ],
+      "held|command:move": [
+       {
+        "id": "nlb-07-028",
+        "text": "oxygen should leave on the right",
+        "gold": "action=move target=oxygen position=right",
+        "read": "command:move action=move position=right target=oxygen",
+        "detail": "confidence 0.200; the group is seen"
+       },
+       {
+        "id": "nlb-07-028",
+        "text": "glucose needs its own box below the leaf",
+        "gold": "action=move target=glucose position=below anchor=leaf",
+        "read": "command:move action=move anchor=leaf position=below target=glucose",
+        "detail": "confidence 0.254; the group is unseen"
+       },
+       {
+        "id": "nlb-09-001",
+        "text": "kitchen at the right",
+        "gold": "action=move target=kitchen position=right",
+        "read": "command:move action=move position=right target=kitchen",
+        "detail": "confidence 0.514; the group is seen"
+       }
+      ],
+      "held|command:arrange": [
+       {
+        "id": "nlb-07-041",
+        "text": "put them in a row",
+        "gold": "action=arrange layout=row",
+        "read": "command:arrange action=arrange layout=row",
+        "detail": "confidence 0.077; the group is seen"
+       }
+      ],
+      "held|command:fit": [
+       {
+        "id": "nlb-07-044",
+        "text": "Can you fit all of this on one landscape page",
+        "gold": "action=fit target=mention(quantifier=all)",
+        "read": "command:fit action=fit target=mention(quantifier=all)",
+        "detail": "confidence 0.024; the group is seen"
+       }
+      ],
+      "held|command:connect": [
+       {
+        "id": "nlb-10-014",
+        "text": "We need the fox linked from the rabbit with an arrow",
+        "gold": "action=connect from=rabbit to=fox",
+        "read": "command:connect action=connect from=rabbit to=fox",
+        "detail": "confidence 0.524; the group is seen"
+       }
+      ],
+      "held|question:path": [
+       {
+        "id": "nlb-12-050",
+        "text": "can you get from spawn to the boss",
+        "gold": "ask=path from=spawn to=boss",
+        "read": "question:path ask=path from=spawn to=boss",
+        "detail": "confidence 0.740; the group is seen"
+       }
+      ]
+     },
+     "total": 51
+    },
+    "executed_wrong": {
+     "counts": {
+      "ref": 2,
+      "name": 1,
+      "class": 1,
+      "spurious": 1
+     },
+     "keys": {
+      "ref|target": 2,
+      "ref|anchor": 1,
+      "name|target": 1,
+      "class|shape": 1,
+      "spurious|command:move": 1
+     },
+     "examples": {
+      "ref": [
+       {
+        "id": "nlb-06-031",
+        "text": "Move Bears above Falcons",
+        "gold": "action=move target=q2 position=above anchor=q1",
+        "read": "command:move action=move anchor=falcons position=above target=bears",
+        "detail": "confidence 0.903; wrong"
+       },
+       {
+        "id": "nlb-08-033",
+        "text": "Make waiting yellow",
+        "gold": "action=set target=mention(label=waiting for customer) color=yellow",
+        "read": "command:set action=set color=yellow target=waiting",
+        "detail": "confidence 0.914; wrong"
+       }
+      ],
+      "name": [
+       {
+        "id": "nlb-08-015",
+        "text": "make the incident box red",
+        "gold": "action=set target=$new color=red",
+        "read": "command:set action=set color=red target=incident",
+        "detail": "confidence 0.940; wrong"
+       }
+      ],
+      "class": [
+       {
+        "id": "nlb-08-019",
+        "text": "How many steps are on the canvas",
+        "gold": "ask=count shape=any",
+        "read": "question:count ask=count",
+        "detail": "confidence 0.909; wrong"
+       }
+      ],
+      "spurious": [
+       {
+        "id": "nlb-12-021",
+        "text": "basement under the lobby",
+        "gold": "-",
+        "read": "extra command:move action=move anchor=lobby position=below target=basement",
+        "detail": "confidence 0.915; extra"
+       }
+      ]
+     },
+     "keyExamples": {
+      "ref|target": [
+       {
+        "id": "nlb-06-031",
+        "text": "Move Bears above Falcons",
+        "gold": "action=move target=q2 position=above anchor=q1",
+        "read": "command:move action=move anchor=falcons position=above target=bears",
+        "detail": "confidence 0.903; wrong"
+       },
+       {
+        "id": "nlb-08-033",
+        "text": "Make waiting yellow",
+        "gold": "action=set target=mention(label=waiting for customer) color=yellow",
+        "read": "command:set action=set color=yellow target=waiting",
+        "detail": "confidence 0.914; wrong"
+       }
+      ],
+      "ref|anchor": [
+       {
+        "id": "nlb-06-031",
+        "text": "Move Bears above Falcons",
+        "gold": "action=move target=q2 position=above anchor=q1",
+        "read": "command:move action=move anchor=falcons position=above target=bears",
+        "detail": "confidence 0.903; wrong"
+       }
+      ],
+      "name|target": [
+       {
+        "id": "nlb-08-015",
+        "text": "make the incident box red",
+        "gold": "action=set target=$new color=red",
+        "read": "command:set action=set color=red target=incident",
+        "detail": "confidence 0.940; wrong"
+       }
+      ],
+      "class|shape": [
+       {
+        "id": "nlb-08-019",
+        "text": "How many steps are on the canvas",
+        "gold": "ask=count shape=any",
+        "read": "question:count ask=count",
+        "detail": "confidence 0.909; wrong"
+       }
+      ],
+      "spurious|command:move": [
+       {
+        "id": "nlb-12-021",
+        "text": "basement under the lobby",
+        "gold": "-",
+        "read": "extra command:move action=move anchor=lobby position=below target=basement",
+        "detail": "confidence 0.915; extra"
+       }
+      ]
+     },
+     "total": 5
+    },
+    "held_wrong_or_extra": 991,
+    "held_right_by_group": {
+     "seen": 38,
+     "unseen": 13,
+     "unannotated": 0,
+     "no request": 0
+    },
+    "executed_wrong_by_group": {
+     "seen": 4,
+     "unseen": 0,
+     "unannotated": 0,
+     "no request": 1
+    }
+   },
+   "oracle": {
+    "right": 0,
+    "layout": 0,
+    "reference": 0,
+    "absent": 651,
+    "unaligned": 0,
+    "unmatched": 0
+   },
+   "notes": [],
+   "seenMismatch": 0,
+   "requested": 714,
+   "sub": {
+    "teachersDisagree": 209,
+    "teachersDisagreeWrongAgainstBoth": 209,
+    "teachersReaderEqualsGpt": 0,
+    "refNeedsDrawing": 134,
+    "refElsewhere": 42
+   },
+   "all": {
+    "requested": 714,
+    "right": 63,
+    "wrong": 323,
+    "not_done": 328,
+    "extras": 673
+   }
+  }
+ ]
+}

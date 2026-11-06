@@ -1,0 +1,23 @@
+{"torch": "2.15.0+cu132", "bf16": true, "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU"}
+{"bs": 1, "len": 64, "attn": "eager", "dtype": "fp32", "ckpt": true, "s_per_step": 0.0491, "ex_per_s": 20.4, "tokens_per_s": 1303, "peak_alloc_gb": 2.3, "peak_res_gb": 2.33}
+{"bs": 16, "len": 64, "attn": "sdpa", "dtype": "fp32", "ckpt": false, "s_per_step": 0.1094, "ex_per_s": 146.2, "tokens_per_s": 9357, "peak_alloc_gb": 2.8, "peak_res_gb": 2.97}
+{"bs": 16, "len": 64, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.0719, "ex_per_s": 222.5, "tokens_per_s": 14239, "peak_alloc_gb": 2.55, "peak_res_gb": 2.7}
+{"bs": 16, "len": 64, "attn": "sdpa", "dtype": "fp16", "ckpt": false, "s_per_step": 0.0782, "ex_per_s": 204.7, "tokens_per_s": 13100, "peak_alloc_gb": 2.55, "peak_res_gb": 2.7}
+{"bs": 16, "len": 64, "attn": "eager", "dtype": "bf16", "ckpt": false, "s_per_step": 0.0769, "ex_per_s": 208.2, "tokens_per_s": 13323, "peak_alloc_gb": 2.58, "peak_res_gb": 2.76}
+{"bs": 32, "len": 64, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.1181, "ex_per_s": 271.0, "tokens_per_s": 17343, "peak_alloc_gb": 3.15, "peak_res_gb": 3.31}
+{"bs": 64, "len": 64, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.2167, "ex_per_s": 295.4, "tokens_per_s": 18905, "peak_alloc_gb": 4.33, "peak_res_gb": 4.65}
+{"bs": 128, "len": 64, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "oom": true}
+{"bs": 16, "len": 128, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.1214, "ex_per_s": 131.8, "tokens_per_s": 16865, "peak_alloc_gb": 3.16, "peak_res_gb": 3.32}
+{"bs": 32, "len": 128, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.2219, "ex_per_s": 144.2, "tokens_per_s": 18457, "peak_alloc_gb": 4.35, "peak_res_gb": 4.81}
+{"bs": 64, "len": 128, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "oom": true}
+{"bs": 8, "len": 256, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.126, "ex_per_s": 63.5, "tokens_per_s": 16251, "peak_alloc_gb": 3.17, "peak_res_gb": 3.33}
+{"bs": 16, "len": 256, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.2315, "ex_per_s": 69.1, "tokens_per_s": 17692, "peak_alloc_gb": 4.37, "peak_res_gb": 4.65}
+{"bs": 32, "len": 256, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "oom": true}
+{"bs": 4, "len": 512, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.1355, "ex_per_s": 29.5, "tokens_per_s": 15116, "peak_alloc_gb": 3.2, "peak_res_gb": 3.37}
+{"bs": 8, "len": 512, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.2496, "ex_per_s": 32.1, "tokens_per_s": 16412, "peak_alloc_gb": 4.39, "peak_res_gb": 4.73}
+{"bs": 16, "len": 512, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "oom": true}
+{"bs": 2, "len": 1024, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.1556, "ex_per_s": 12.9, "tokens_per_s": 13166, "peak_alloc_gb": 3.26, "peak_res_gb": 3.43}
+{"bs": 4, "len": 1024, "attn": "sdpa", "dtype": "bf16", "ckpt": false, "s_per_step": 0.2878, "ex_per_s": 13.9, "tokens_per_s": 14232, "peak_alloc_gb": 4.49, "peak_res_gb": 4.97}
+{"bs": 32, "len": 256, "attn": "sdpa", "dtype": "bf16", "ckpt": true, "s_per_step": 0.5693, "ex_per_s": 56.2, "tokens_per_s": 14390, "peak_alloc_gb": 2.64, "peak_res_gb": 2.91}
+{"bs": 16, "len": 512, "attn": "sdpa", "dtype": "bf16", "ckpt": true, "s_per_step": 0.6272, "ex_per_s": 25.5, "tokens_per_s": 13061, "peak_alloc_gb": 2.67, "peak_res_gb": 3.17}
+{"bs": 8, "len": 1024, "attn": "sdpa", "dtype": "bf16", "ckpt": true, "s_per_step": 0.7384, "ex_per_s": 10.8, "tokens_per_s": 11094, "peak_alloc_gb": 2.73, "peak_res_gb": 3.08}

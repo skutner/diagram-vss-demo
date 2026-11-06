@@ -1,0 +1,170 @@
+{
+ "set": "nl_b",
+ "part": "all",
+ "c": 0.696078,
+ "teachers_agreement_requested": 714,
+ "thresholds": {
+  "every_request_executed": 0.5220585,
+  "at_threshold_right": 0.348039,
+  "wrong_execution_share": 0.02,
+  "paraphrase_same_effect_as_gold": 0.5,
+  "sessions": 0.5
+ },
+ "names": [
+  "F0-s0",
+  "SOP-F0-s0",
+  "M3-s0"
+ ],
+ "rows": [
+  {
+   "id": "1",
+   "row": "nl_b: every request executed, right (teachers' agreement c = 69.6%)",
+   "bar": ">= 0.75 c = 52.2%",
+   "final": "7.4%",
+   "control": "8.8%",
+   "side": "9.0%",
+   "status": "FAIL",
+   "note": "with the direction of a resize compared: 7.4%; either teacher (upper reading): 7.8%"
+  },
+  {
+   "id": "2",
+   "row": "nl_b: at the cost-10 threshold, right",
+   "bar": ">= 0.5 c = 34.8%",
+   "final": "1.1%",
+   "control": "1.7%",
+   "side": "2.0%",
+   "status": "FAIL",
+   "note": "threshold 0.9156; asked 410; with direction: 1.1%"
+  },
+  {
+   "id": "3",
+   "row": "nl_b: at the cost-10 threshold, executions wrong (wrong + extras)",
+   "bar": "<= 2%",
+   "final": "38.5% (5 of 13)",
+   "control": "29.4% (5 of 17)",
+   "side": "39.1% (9 of 23)",
+   "status": "FAIL",
+   "note": "only 13 executions at the threshold: a rate of so few is weak evidence"
+  },
+  {
+   "id": "4",
+   "row": "nl_b: cost score (cost-10 threshold) above the SOP-BERT control, 95% interval above 0",
+   "bar": "interval above 0",
+   "final": "-5.9",
+   "control": "-5.3",
+   "side": "-10.6",
+   "status": "FAIL",
+   "note": "final minus control -0.6 [-7.7, 7.7], session, else paraphrase group, else message, 387 units, sign-flip p 0.7848"
+  },
+  {
+   "id": "5",
+   "row": "nl_b: requests whose trigger never occurs in training, every request executed, right",
+   "bar": ">= 70% (as in the plan)",
+   "final": "5.1% (277 requests)",
+   "control": "4.7%",
+   "side": "4.3%",
+   "status": "FAIL",
+   "note": "the plan's 70% is not restated: it is 100.6% of the teachers' agreement c, above the restated every-request bar (0.75 c = 52.2%)"
+  },
+  {
+   "id": "5b",
+   "row": "nl_b: unseen triggers, at the threshold, executions wrong",
+   "bar": "<= 2%",
+   "final": "0.0%",
+   "control": "0.0%",
+   "side": "0.0%",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "6",
+   "row": "nl_b: paraphrase groups, wordings with the same effect as the gold (every request executed)",
+   "bar": ">= 50% (restated)",
+   "final": "38.4% (24 groups, 112 wordings)",
+   "control": "42.0%",
+   "side": "34.8%",
+   "status": "FAIL",
+   "note": "same effect as one another 67.9%; at the threshold: as gold 18.8%, as one another 97.3%, changed nothing 97.3%; floor (executes nothing): as one another 100.0%, as gold 16.1%"
+  },
+  {
+   "id": "7",
+   "row": "nl_b: messages with nothing to do, actions executed per 100 at the threshold",
+   "bar": "<= 1",
+   "final": "0.00 (29 messages; every request executed: 89.7)",
+   "control": "0.00",
+   "side": "0.00",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "8",
+   "row": "nl_b: step-by-step sessions, each on its own drawing, what the session changed that the reader changed the same way (mean over 17 sessions, every request executed)",
+   "bar": "each >= 50% (M4 declined)",
+   "final": "shapes 10.8%, arrows 18.8%, groups 0.0%",
+   "control": "shapes 8.4%, arrows 20.0%, groups n/a",
+   "side": "shapes 11.6%, arrows 31.5%, groups n/a",
+   "status": "FAIL",
+   "note": "at the threshold: shapes 0.0%, arrows 0.0%, groups n/a; floor (executes nothing): shapes 0.0%, arrows 0.0%, groups n/a; same whole drawing in 0 of 17; answers of the gold's questions 0 of 0"
+  },
+  {
+   "id": "9",
+   "row": "short3 test: at the threshold, right within 5 points of the Rules and wrong not above theirs",
+   "bar": "right >= Rules - 5 pt; wrong <= Rules",
+   "final": "right 15.3%, wrong 1.2%",
+   "control": "right 16.4%, wrong 1.4%",
+   "side": null,
+   "status": "FAIL",
+   "note": "Rules, every request executed: right 56.3%, wrong 11.8%; short3 test only (the short sets of regress.sh are not read here)"
+  },
+  {
+   "id": "10",
+   "row": "fresh2, short3 test: no loss against the SOP-BERT control",
+   "bar": "no interval below 0",
+   "final": "fresh2 10.1 [3.3, 16.5]; short3 1.2 [-13.0, 15.6]",
+   "control": null,
+   "side": null,
+   "status": "PASS",
+   "note": "final minus control, cost score at the threshold; a loss is shown when an interval lies below 0"
+  },
+  {
+   "id": "A",
+   "row": "Adoption (a separate decision): cost score on nl_b above the control's by >= 5 points, interval above 0",
+   "bar": ">= 5 points, interval above 0",
+   "final": "-0.6 [-7.7, 7.7]",
+   "control": null,
+   "side": null,
+   "status": "FAIL",
+   "note": "for its cost: 150 MB and 537 ms against 68 MB and 71 ms per message (plan); if SOP-BERT does as well, that is the result"
+  }
+ ],
+ "cannot_compute": [
+  {
+   "row": "nl_b: cost score above VSS-BERT's",
+   "why": "VSS-BERT is not a reader in collect_set.mjs (it needs the composer of the micro registry, vss-composer.js); its numbers on this set cannot be produced tonight"
+  },
+  {
+   "row": "real messages (>= 200): no destructive action wrong, right share above the control",
+   "why": "the data is LLM-written (MODERNBERT_RUNLOG.md D8); collected_1 holds 26 real messages (52 with the corrected variants), under 200, so the gate does not apply"
+  },
+  {
+   "row": "seeds 1 and 2 (the spread)",
+   "why": "only seed 0 was trained (MODERNBERT_RUNLOG.md); the 95% intervals of rows 4 and A are over messages, sessions and groups, not over seeds"
+  },
+  {
+   "row": "the short sets of regress.sh",
+   "why": "only short3 is read by these tools"
+  }
+ ],
+ "reached": false,
+ "gating_rows_failing": [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "8",
+  "9"
+ ],
+ "gating_rows_not_computed": []
+}

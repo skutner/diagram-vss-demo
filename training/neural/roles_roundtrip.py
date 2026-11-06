@@ -14,6 +14,9 @@ same gold in the browser? (The SOP-BERT counterpart of training/sketch/convert_c
    word mapped to another number, a key the layout does not learn) is counted as a SILENT wrong label: the model is trained to be confidently
    wrong there.
 Per folder: the share of gold requests that round-trip, wrong, missing; the silent wrong-label share of the rows.
+Under make_roles.py ROLE_TOO_RICH=context a role too rich for one description is trained as context, and counted here as the context-rule reference.
+Under make_roles.py IMPLIED_SCALE=1 the rows are built with the same switches and `scale` is compared too, here and in roles_roundtrip.mjs (bench-canon.js skips it); LABEL_FIXES
+applies to the gold of this comparison as it does to the rows.
 --gate MIN_RT MAX_SILENT (job 071): exit 1 if a TRAINED folder's round trip is below MIN_RT % or its silent wrong-label share is above MAX_SILENT %.
 Run: EXTRA_DIRS="..." python3 training/neural/roles_roundtrip.py [--work DIR] [--compare-rows ROWS_DIR] [--gate 95 1] [--md PREFIX: writes PREFIX.table]
 """
@@ -38,13 +41,19 @@ ONE_WORD = "one word for two keys (the group name is also a target)"
 ASKED = ('label=""', ONE_WORD)
 
 
+_LAYOUT = []
+
+
 def class_targets(row, classes):
-    """finetune_roles.py Layout.class_targets (imported when torch is there, so a change there is what this measures)"""
-    try:
-        from finetune_roles import Layout
-        return Layout({"acts": [], "tags": [], "classes": classes}).class_targets(row)
-    except ImportError:
-        return [vals.index(row["classes"][k]) if row["classes"].get(k) in vals else 0 for k, vals in classes]
+    """finetune_roles.py Layout.class_targets (imported when torch is there, so a change there is what this measures; the import is tried once)"""
+    if not _LAYOUT:
+        try:
+            from finetune_roles import Layout
+            _LAYOUT.append(Layout)
+        except ImportError: _LAYOUT.append(None)
+    if _LAYOUT[0] is not None: return _LAYOUT[0]({"acts": [], "tags": [], "classes": classes}).class_targets(row)
+    # no torch here: the same rule (a gold value spelled "none" is its own class, from index 1)
+    return [vals.index(row["classes"][k], 1) if row["classes"].get(k) in vals[1:] else 0 for k, vals in classes]
 
 
 def num(s):
@@ -64,6 +73,8 @@ def category(key, act, got, want, row, R, LEG):
     if key not in LEG: return "key not in the legend (not learned): " + key
     if key not in ck and key not in R["span_keys"]: return "key of a legend kind not learned: " + key
     if key not in akeys: return "key not read for this act (act_keys)"
+    if key in MR.IMPLIED_KEYS and "implied:" + key in row["classes"]:
+        return "implied value decoded differently" if row["classes"]["implied:" + key] in ck.get("implied:" + key, [])[1:] else "implied value with no class"
     if key in ck:
         g = str(row["gold"][key]) if key in row["gold"] else None
         if g is not None and g not in ck[key][1:]: return "value with no class"
@@ -73,6 +84,7 @@ def category(key, act, got, want, row, R, LEG):
     kind = LEG[key]["kind"]
     fill = row["classes"].get("fill:" + key)
     if kind == "names":
+        if fill == "context" and MR.ROLE_TOO_RICH == "context" and MR.too_rich(want): return "context: a role too rich for one description (ROLE_TOO_RICH=context)"
         if fill == "context": return "context: the shared rule gives another shape" + (" (gold is a list)" if len(MR.parts(want)) > 1 else "")
         if fill == "description":
             ps = MR.parts(want); wm = [mention_keys(p) for p in ps]
@@ -128,8 +140,14 @@ def silent(row, R, LEG, number_words):
     tgt = dict(zip([k for k, _ in R["classes"]], class_targets(row, R["classes"])))   # what the loss trains
     for k, v in gold.items():
         if k in ("action", "ask"): continue
-        if k not in ck and k not in R["span_keys"] and k != "scale":
+        if k not in ck and k not in R["span_keys"] and not (k == "scale" and not MR.IMPLIED_SCALE):
             out.append("key not learned: " + k); continue
+        if k in MR.IMPLIED_KEYS and "implied:" + k in row["classes"]:   # a value the request does not write: its class head says it
+            if num(row["classes"]["implied:" + k]) != num(v): out.append(f"{k}: implied value differs ({row['classes']['implied:' + k]}, gold {v})")
+            elif row["classes"]["implied:" + k] not in ck.get("implied:" + k, [])[1:]: out.append(f"{k}: implied value with no class ({v})")
+            elif tgt["implied:" + k] == 0: out.append(f"{k}: implied value trained as absent")
+            elif spans_of(row["tags"]).get(k): out.append(f"{k}: both tagged and on the implied head")
+            continue
         if k in ck:
             vals = ck[k]; s = str(v)
             if s not in vals[1:]: out.append(f"{k}: value with no class ({s})")
@@ -163,9 +181,12 @@ def silent(row, R, LEG, number_words):
             if kind == "number":
                 def val(s):
                     m = re.search(r"\d+(?:\.\d+)?", s)
-                    return num(m.group(0)) if m else num(number_words.get(s, ""))
+                    if m: return num(m.group(0))
+                    tv = MR.table_value(s) if R.get("number_words_from") == "table" else None   # docs/js/neural.js decodes by the table first
+                    return float(tv) if tv is not None else num(number_words.get(s, ""))
                 if any(val(s) == num(p) is not None for s in spans): continue
                 if spans: out.append(f"{k}: number word mapped to another number ({spans} -> {[val(s) for s in spans]}, gold {p})"); continue
+                if k in MR.IMPLIED_KEYS: out.append(f"{k}: neither tagged nor on the implied head ({p})"); continue
                 if not re.search(r"\b" + re.escape(p) + r"(?![\d.])", low): continue   # the number is not written: not learnable, not a label error
             elif " " + pw + " " not in low: continue   # the value is not written in the request: not learnable, not a label error
             if row["gold"].get("action") == "group" and k == "target" and p == str(row["gold"].get("name")): out.append(f"{k}: {ONE_WORD} ({p})"); continue
@@ -198,6 +219,7 @@ def main():
     a = ap.parse_args()
     os.makedirs(a.work, exist_ok=True)
     rows_dir = os.path.join(a.work, "rows")
+    fixes = MR.load_label_fixes(MR.LABEL_FIXES) if MR.LABEL_FIXES else None
     subprocess.run([sys.executable, os.path.join(HERE, "make_roles.py"), "--all", "--out", rows_dir, "--also", *ALSO], check=True, stdout=subprocess.DEVNULL)
     if a.compare_rows:
         for f in ("train.jsonl", "reader.json"):
@@ -218,7 +240,8 @@ def main():
     msgs_out, meta = [], {}
     for d, is_train in folders:
         by = trained if is_train else load_rows(os.path.join(rows_dir, "also_" + d.replace("/", "__") + ".jsonl"))
-        for m in MD.messages([d]):
+        msgs = MD.messages([d]); MR.apply_label_fixes(msgs, fixes)
+        for m in msgs:
             wires = [w for w in m.get("wires", []) if "pending" not in w]
             rows = by.get(m["id"], []); k = 0; mrows = []; dropped = {}
             for j, w in enumerate(wires):

@@ -1,0 +1,50 @@
+{"id": "nl-05-001", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "setup": "@r1 command action=create shape=rectangle name=Roof label=\"Roof terrace\" width=650 height=350 fill=none at=400,250\n@r2 command action=create shape=rectangle name=Hatch label=\"Stair hatch\" color=gray size=small position=bottomLeft\n@r3 command action=create shape=circle name=Vent label=\"Vent\" color=gray size=small position=topRight", "text": "veg beds along the sunny edge first. two long ones"}
+{"id": "nl-05-002", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "call the left one herbs, other one tomatoes"}
+{"id": "nl-05-003", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "more room between those. wheelbarrow needs through"}
+{"id": "nl-05-004", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "bench by the hatch"}
+{"id": "nl-05-005", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "facing the beds though"}
+{"id": "nl-05-006", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "water butt in that empty corner under the vent"}
+{"id": "nl-05-007", "domain": "shared rooftop garden plan", "kind": "self_correction", "session": "roof_garden", "text": "actually not under it. left of it"}
+{"id": "nl-05-008", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "hose from the butt to both beds, dotted"}
+{"id": "nl-05-009", "domain": "shared rooftop garden plan", "kind": "complaint", "session": "roof_garden", "text": "that hose goes straight through the tomatoes lol. take it round the outside"}
+{"id": "nl-05-010", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "little round table in front of the bench"}
+{"id": "nl-05-011", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "table smaller"}
+{"id": "nl-05-012", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "and 3 chairs round it"}
+{"id": "nl-05-013", "domain": "shared rooftop garden plan", "kind": "indirect", "session": "roof_garden", "text": "the one nearest the hatch is in the way"}
+{"id": "nl-05-014", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "just lose that chair"}
+{"id": "nl-05-015", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "shade the sitting bit pale yellow"}
+{"id": "nl-05-016", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "put “keep clear” beside the hatch"}
+{"id": "nl-05-017", "domain": "shared rooftop garden plan", "kind": "session", "session": "roof_garden", "text": "how many seats have we got now?"}
+{"id": "nl-05-018", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "setup": "@m1 command action=create shape=rectangle name=Hall label=\"Entry hall\" width=180 height=110 at=330,270\n@m2 command action=create shape=square name=Start label=\"Start\" color=green size=small position=below anchor=Hall\n@m3 command action=create shape=rectangle name=Exit label=\"Street exit\" color=red size=small position=right\n@m4 command action=connect from=Start to=Hall arrow=none", "text": "need a guard room off the hall, on the right"}
+{"id": "nl-05-019", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "join those with a doorway, no arrow"}
+{"id": "nl-05-020", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "archive above the guard room. bigger than that room"}
+{"id": "nl-05-021", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "hall to archive too"}
+{"id": "nl-05-022", "domain": "museum escape-room game map", "kind": "self_correction", "session": "museum_escape", "text": "no wait that makes it too easy. undo that last passage"}
+{"id": "nl-05-023", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "archive door needs the brass key. write that on the guard room passage"}
+{"id": "nl-05-024", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "key in the hall, tiny gold diamond"}
+{"id": "nl-05-025", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "tuck it behind a statue"}
+{"id": "nl-05-026", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "statue can just be a grey circle"}
+{"id": "nl-05-027", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "ok now vault left of archive"}
+{"id": "nl-05-028", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "thin corridor between them"}
+{"id": "nl-05-029", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "vault dark blue and put the crown inside"}
+{"id": "nl-05-030", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "a star is fine for the crown"}
+{"id": "nl-05-031", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "secret way from vault back to hall, dashed"}
+{"id": "nl-05-032", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "can you get from start to the crown without using the secret way?"}
+{"id": "nl-05-033", "domain": "museum escape-room game map", "kind": "session", "session": "museum_escape", "text": "hook the guard room up to the street exit"}
+{"id": "nl-05-034", "domain": "museum escape-room game map", "kind": "typos", "session": "museum_escape", "text": "street exit says alarmed. dont let that look like the main route"}
+{"id": "nl-05-035", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "setup": "@p1 command action=create shape=rectangle name=Record label=\"Record\" color=blue size=medium position=left\n@p2 command action=create shape=rectangle name=Edit label=\"Edit\" color=blue size=medium position=center\n@p3 command action=create shape=rectangle name=Publish label=\"Publish\" color=green size=medium position=right\n@p4 command action=connect from=Record,Edit,Publish pairing=chain", "text": "stick guest check before record"}
+{"id": "nl-05-036", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "arrow into record obviously"}
+{"id": "nl-05-037", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "after edit we listen back"}
+{"id": "nl-05-038", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "publish should only come after that"}
+{"id": "nl-05-039", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "listen back is me and Jo. put our names under it"}
+{"id": "nl-05-040", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "then a yes/no for whether we heard anything bad"}
+{"id": "nl-05-041", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "yes goes back to edit"}
+{"id": "nl-05-042", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "no carries on to publish"}
+{"id": "nl-05-043", "domain": "small podcast production workflow", "kind": "complaint", "session": "podcast_edit", "text": "the old straight arrow from edit to publish is still there"}
+{"id": "nl-05-044", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "take that out"}
+{"id": "nl-05-045", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "rename the yes/no to “fixes needed?”"}
+{"id": "nl-05-046", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "sponsor signoff above publish"}
+{"id": "nl-05-047", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "optional, so dotted from listen back into that"}
+{"id": "nl-05-048", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "and from signoff to publish"}
+{"id": "nl-05-049", "domain": "small podcast production workflow", "kind": "session", "session": "podcast_edit", "text": "whole sponsor bit grey please"}
+{"id": "nl-05-050", "domain": "small podcast production workflow", "kind": "nothing_to_do", "session": "podcast_edit", "text": "cheers, Jo can argue with this version tomorrow"}

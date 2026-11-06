@@ -1,0 +1,56 @@
+messages 1113 gold 2553
+Counter({'wrong': 1373, 'right': 1032, 'extra': 344})
+right/wrong/extra by proposed act (top 22):
+  command:set              n= 471 right   63 ( 13.4%) wrong  359 extra   49
+  command:connect          n= 427 right  221 ( 51.8%) wrong  169 extra   37
+  command:move             n= 266 right  123 ( 46.2%) wrong  113 extra   30
+  command:create           n= 237 right   11 (  4.6%) wrong  217 extra    9
+  question:check           n= 110 right   41 ( 37.3%) wrong   59 extra   10
+  command:arrange          n=  99 right   23 ( 23.2%) wrong   64 extra   12
+  question:help            n=  98 right    3 (  3.1%) wrong   24 extra   71
+  question:count           n=  72 right   18 ( 25.0%) wrong   49 extra    5
+  command:label            n=  72 right   26 ( 36.1%) wrong   30 extra   16
+  question:property        n=  71 right   34 ( 47.9%) wrong   26 extra   11
+  question:extreme         n=  64 right   34 ( 53.1%) wrong   29 extra    1
+  command:resize           n=  58 right   38 ( 65.5%) wrong   19 extra    1
+  fact:                    n=  58 right    7 ( 12.1%) wrong   38 extra   13
+  command:delete           n=  51 right   25 ( 49.0%) wrong   19 extra    7
+  question:path            n=  38 right   34 ( 89.5%) wrong    1 extra    3
+  command:align            n=  37 right   22 ( 59.5%) wrong   12 extra    3
+  question:connected       n=  35 right   31 ( 88.6%) wrong    4 extra    0
+  question:list            n=  35 right    5 ( 14.3%) wrong   28 extra    2
+  question:neighbors       n=  32 right   29 ( 90.6%) wrong    1 extra    2
+  rule:                    n=  28 right    0 (  0.0%) wrong   24 extra    4
+  command:disconnect       n=  26 right   13 ( 50.0%) wrong    9 extra    4
+  question:nearest         n=  26 right   22 ( 84.6%) wrong    4 extra    0
+per-key error among paired proposals (key: wrong/seen):
+  action          0/1778 =   0.0%   e.g. []
+  target        312/1338 =  23.3%   e.g. [('Move it to the right of Api', 'got', '∅', 'want', 'cache'), ('put all the boxes in a row', 'got', 'mention(quantifier=all)', 'want', 'mention(quantifier=all,shape=rectangle)')]
+  ask             0/ 558 =   0.0%   e.g. []
+  color         435/ 514 =  84.6%   e.g. [('put a gray hexagon called Switch between Fw1 and Lan', 'got', '∅', 'want', 'gray'), ('make it a navy ellipse', 'got', '∅', 'want', 'navy')]
+  from           74/ 470 =  15.7%   e.g. [('connect Ingest Parse Clean and Load one after the other', 'got', 'ingest,clean,load', 'want', 'ingest,parse,clean,load'), ('hook the copies up to Alb', 'got', '∅', 'want', '$new')]
+  position      223/ 464 =  48.1%   e.g. [('Logo goes to the top left', 'got', 'top', 'want', 'topleft'), ('Add a tiny black circle named Avatar right of Search', 'got', 'near', 'want', 'rightof')]
+  anchor         60/ 449 =  13.4%   e.g. [("What's to the right of Transform now", 'got', '∅', 'want', 'transform'), ('Is Ecr smaller', 'got', '∅', 'want', 'eks')]
+  shape         338/ 397 =  85.1%   e.g. [('put a gray hexagon called Switch between Fw1 and Lan', 'got', 'circle', 'want', 'hexagon'), ('make it a navy ellipse', 'got', 'square', 'want', 'ellipse')]
+  to             79/ 375 =  21.1%   e.g. [('disconnect Cart from it', 'got', '∅', 'want', 'queue'), ('disconnect them', 'got', '∅', 'want', 'load')]
+  name           11/ 166 =   6.6%   e.g. [('Add a white square named Pc1 next to Router', 'got', 'pc1', 'want', 'laptop'), ('Start with Mercury: a tiny gray circle to the right of Sun', 'got', '∅', 'want', 'mercury')]
+  size          117/ 153 =  76.5%   e.g. [('Add a tiny black circle named Avatar right of Search', 'got', '∅', 'want', 'tiny'), ('Archived should be gray and small', 'got', '∅', 'want', 'small')]
+  layout         66/  99 =  66.7%   e.g. [('arrange Worker and the copies in a column to the right of Scheduler', 'got', '∅', 'want', 'column'), ('Stack NameField, EmailField and SubmitBtn vertically', 'got', '∅', 'want', 'column'
+  style          70/  91 =  76.9%   e.g. [('another one from Review to Rejected, dashed', 'got', '∅', 'want', 'dashed'), ('dashed arrow Cdn to Origin', 'got', '∅', 'want', 'dashed')]
+  superlative    29/  89 =  32.6%   e.g. [('Which shape is bottommost', 'got', 'leftmost', 'want', 'bottommost'), ('which shape is topmost', 'got', 'leftmost', 'want', 'topmost')]
+  label          14/  81 =  17.3%   e.g. [('Draw an arrow from Guests to Budget either way', 'got', '∅', 'want', 'headcount'), ('"', 'got', '∅', 'want', 'the storm')]
+  arrow          22/  66 =  33.3%   e.g. [('connect Billing and Ledger with a two-way arrow', 'got', 'none', 'want', 'both'), ('put a two-way arrow between Locked and Unlocked', 'got', '∅', 'want', 'both')]
+  count           7/  63 =  11.1%   e.g. [('Add six small pink circles around Floor... no, make it eight', 'got', '6', 'want', '8'), ('Can you put three small yellow stars underneath it', 'got', '3', 'want', '5')]
+  property       25/  60 =  41.7%   e.g. [('what shape has R2', 'got', 'color', 'want', 'shape'), ("What's the shape of New", 'got', 'color', 'want', 'shape')]
+  axis            3/  48 =   6.2%   e.g. [('Input1 Input2 Input3 evnly spaced vertically', 'got', 'horizontal', 'want', 'vertical'), ("I'd like Supplier, Factory, Dc and Retail distributed horizontally acr", 'got', '∅', 'want', 'h
+  direction      28/  38 =  73.7%   e.g. [('Move Modem 50px left', 'got', '∅', 'want', 'left'), ('I need the Router2 more down, 100 pixels', 'got', '∅', 'want', 'down')]
+  comparison     12/  35 =  34.3%   e.g. [('Is Ecr smaller', 'got', '∅', 'want', 'smaller'), ('Is the Moon smaller than Earth now', 'got', 'bigger', 'want', 'smaller')]
+  distance        0/  27 =   0.0%   e.g. []
+  topic          23/  23 = 100.0%   e.g. [('can i rename a group', 'got', '∅', 'want', 'rename'), ('can you', 'got', '∅', 'want', 'connections')]
+  aspect          6/  21 =  28.6%   e.g. [('can you', 'got', '∅', 'want', 'can'), ('which colors can i use', 'got', '∅', 'want', 'values')]
+  template       18/  18 = 100.0%   e.g. [('process steps: Plan, Build, Test, Ship', 'got', '∅', 'want', 'process'), ('a staircase of 4 steps going up', 'got', '∅', 'want', 'steps')]
+  kind            9/  17 =  52.9%   e.g. [('how many arrows are there', 'got', '∅', 'want', 'edge'), ('how many arrows are there altogether', 'got', '∅', 'want', 'edge')]
+  outline        10/  10 = 100.0%   e.g. [('all circles with a white outline', 'got', '∅', 'want', 'white'), ('outline start black', 'got', '∅', 'want', 'black')]
+  items           2/   9 =  22.2%   e.g. [('draw a venn with two circles A and B', 'got', '∅', 'want', 'a,b'), ('a cycle diagram Plan Do Check Act', 'got', 'act', 'want', 'plan,do,check,act')]
+  notColor        7/   7 = 100.0%   e.g. [('How many shapes are not blue', 'got', '∅', 'want', 'blue'), ("List all the shapes that aren't orange", 'got', '∅', 'want', 'orange')]
+  at              0/   6 =   0.0%   e.g. []

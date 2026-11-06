@@ -1,0 +1,246 @@
+# M4: the canvas pass of the trainer. Base: training/neural/finetune_modernbert_batched.py sha256 8a395961b5af7200adc4ebd591df81ab2cb988c9ebae91e4790da9e2a4f7f4e9
+# Result sha256 50bd73fcf839eeeb123b5866d532ecbce9d5509ea1161907f8b951797e8781b3. Apply: patch -p1 < this file (from the repository root), only when no run with the old trainer may still resume.
+--- a/training/neural/finetune_modernbert_batched.py
++++ b/training/neural/finetune_modernbert_batched.py
+@@ -5,6 +5,10 @@
+ 
+ python finetune_modernbert_batched.py --data DIR --work DIR --seed 0 --gpu-uuid UUID --stop-at "YYYY-MM-DD HH:MM" [--expect-manifest FILE]
+                                       [--epochs 8 --lr 6e-5 --head-lr LR --batch 32 --cut-batch 8] [--resume] [--overfit-gate] [--max-updates N]
++                                      [--canvas-rows DIR [--canvas-tokens 4096]]
++--canvas-rows (arm M4, the drawing as a second read): a third pass per update over DIR/canvas_train.jsonl (parity/build_canvas_rows.mjs: the request,
++then the drawing's lines; B / I / O tags on the drawing's words only, the request's words unlabelled), with its own backward, tag loss only, as
++many rows per batch as fit in --canvas-tokens padded tokens, cycling as the cut pass does. Without the flag nothing of it runs or is recorded.
+ 
+ Exit codes: 0 finished, already complete, gate passed, or stopped by --stop-at (checkpoint saved, resume with --resume); 1 gate failed or an error (the
+ checkpoint on disk is the last durable one; stopped.json says why); 3 a clean stop for another reason: temperature, hardware slowdown, a failed GPU
+@@ -39,6 +43,7 @@
+ 
+ SOURCES = ("finetune_modernbert_batched.py", "finetune_modernbert.py", "modernbert_tokenization.py", "finetune_roles.py", "make_roles.py", "make_data.py")
+ REQUEST_CAP, MESSAGE_CAP = 128, 512
++CANVAS_CAP, CANVAS_FIT_ROWS = 512, 500   # the second read's cap (docs/js/neural.js, build_canvas_rows.mjs CAP); canvas rows measured at each epoch's end
+ WARMUP, WEIGHT_DECAY, CLIP = .06, .01, 1.
+ RSS_LIMIT, AVAILABLE_FLOOR = 8 * GIB, 2 * GIB
+ STOP_CELSIUS = 90
+@@ -134,6 +139,75 @@
+     return loss, int(x["input_ids"].numel())
+ 
+ 
++def canvas_data(folder):
++    """The second-read rows of arm M4 and their identity (hashes of the rows and of the builder's manifest)."""
++    folder = Path(folder); rows = read(folder / "canvas_train.jsonl")
++    if not rows: raise ValueError(f"No canvas rows in {folder}")
++    man = folder / "canvas_manifest.json"
++    return rows, {"rows": len(rows), "sha256": sha(folder / "canvas_train.jsonl"), "manifest_sha256": sha(man) if man.exists() else None}
++
++
++def canvas_prepare(tok, rows, layout):
++    """Each canvas row once: its word pieces at CANVAS_CAP and its labels (-100 on the request's words, tag null). A row the reader would cut at the
++    cap, or split into other words, is refused: the builder counted its pieces with the same tokenizer, so this is the Node / Python parity check."""
++    out = []
++    for r in rows:
++        p = prepare(tok, r["text"], CANVAS_CAP)
++        if p["truncated"]: raise ValueError(f"Canvas row {r['id']} is over {CANVAS_CAP} pieces here; the builder counted it within the cap")
++        if [w["w"] for w in p["ws"]] != r["words"] or len(r["tags"]) != len(r["words"]): raise ValueError(f"Canvas row {r['id']}: word splitter differs from the builder")
++        lab = [-100] * len(p["ids"])
++        for w, t in p["first"].items():
++            tag = r["tags"][w]
++            if tag is None: continue
++            if tag not in layout.tag_id: raise ValueError(f"Canvas row {r['id']}: tag {tag} is not in reader.json")
++            lab[t] = layout.tag_id[tag]
++        out.append({"ids": p["ids"], "labels": lab})
++    return out
++
++
++def canvas_batch(prepared, order, pos, budget):
++    """From order[pos]: rows while rows x the longest of them stays within budget padded tokens (at least one row) -> their indices"""
++    take, longest = [], 0
++    while pos + len(take) < len(order):
++        n = len(prepared[order[pos + len(take)]]["ids"])
++        if take and (len(take) + 1) * max(longest, n) > budget: break
++        take.append(order[pos + len(take)]); longest = max(longest, n)
++    return take
++
++
++def canvas_tensors(tok, part, device):
++    n = max(len(p["ids"]) for p in part)
++    ids = torch.tensor([p["ids"] + [tok.pad_token_id] * (n - len(p["ids"])) for p in part], dtype=torch.long, device=device)
++    mask = torch.tensor([[1] * len(p["ids"]) + [0] * (n - len(p["ids"])) for p in part], dtype=torch.long, device=device)
++    lab = torch.tensor([p["labels"] + [-100] * (n - len(p["labels"])) for p in part], dtype=torch.long, device=device)
++    return {"input_ids": ids, "attention_mask": mask}, lab
++
++
++def canvas_loss(model, tok, part, backend):
++    """The second read's loss: word tags on the drawing's words only (no act, class or cut loss)."""
++    x, lab = canvas_tensors(tok, part, backend.name)
++    with autocast(backend): tl, _, _ = model(**x)
++    tl = tl.float()
++    loss = nn.functional.cross_entropy(tl.flatten(0, 1), lab.flatten(), ignore_index=-100) if bool((lab != -100).any()) else tl.sum() * 0
++    return loss, int(x["input_ids"].numel())
++
++
++@torch.no_grad()
++def measure_canvas(model, tok, sample, layout, backend, budget):
++    """Tag accuracy of the second read on canvas rows: every labelled word of the drawing, and the words a role refers to (B / I)"""
++    was_training = model.training; model.eval()
++    ok = n = ok_bi = n_bi = 0; order = list(range(len(sample))); pos = 0
++    while pos < len(order):
++        take = canvas_batch(sample, order, pos, budget); pos += len(take)
++        x, lab = canvas_tensors(tok, [sample[i] for i in take], backend.name)
++        with autocast(backend): tl, _, _ = model(**x)
++        pred, m = tl.float().argmax(-1), lab != -100
++        ok += (pred[m] == lab[m]).sum().item(); n += m.sum().item()
++        bi = m & (lab != layout.tag_id["O"]); ok_bi += (pred[bi] == lab[bi]).sum().item(); n_bi += bi.sum().item()
++    if was_training: model.train()
++    return dict(canvas_rows=len(sample), canvas_tags=ok / max(n, 1), canvas_role_words=ok_bi / max(n_bi, 1), canvas_role_words_n=n_bi)
++
++
+ def act_weights(rows, layout, device):
+     """finetune_roles.py: "none" is weighted down when it would be more than 40% of the rows."""
+     n_none = sum(r["act"] == "none" for r in rows)
+@@ -222,8 +296,11 @@
+ 
+ 
+ def settings_of(a):
+-    return dict(seed=a.seed, epochs=a.epochs, lr=a.lr, head_lr=a.head_lr, batch=a.batch, cut_batch=a.cut_batch, weight_decay=WEIGHT_DECAY, warmup=WARMUP, clip=CLIP,
+-                request_cap=REQUEST_CAP, message_cap=MESSAGE_CAP, attn="sdpa", autocast="bfloat16", weights="float32", gradient_checkpointing=False, max_updates=a.max_updates)
++    s = dict(seed=a.seed, epochs=a.epochs, lr=a.lr, head_lr=a.head_lr, batch=a.batch, cut_batch=a.cut_batch, weight_decay=WEIGHT_DECAY, warmup=WARMUP, clip=CLIP,
++             request_cap=REQUEST_CAP, message_cap=MESSAGE_CAP, attn="sdpa", autocast="bfloat16", weights="float32", gradient_checkpointing=False, max_updates=a.max_updates)
++    if getattr(a, "canvas_rows", None) is not None:   # only with --canvas-rows: the default settings stay as they were
++        s["canvas"] = dict(getattr(a, "canvas_identity", {}), tokens=a.canvas_tokens, cap=CANVAS_CAP)
++    return s
+ 
+ 
+ def metadata_of(a, backend, manifest, device_metadata):
+@@ -290,7 +367,7 @@
+     return [rows[i] for i in order[:n]], len(prepared[order[0]]["ids"]), sum(p["truncated"] for p in prepared)
+ 
+ 
+-def preflight(model, tok, opt, rows, cuts, layout, backend, hooks, a, act_weight):
++def preflight(model, tok, opt, rows, cuts, layout, backend, hooks, a, act_weight, canvas=None):
+     """One worst-case step with the optimizer state already in memory: the longest requests, then the longest messages padded together. Random batches
+     reach this size only once every few thousand steps; better to fail in the first minute than in the third hour. Nothing changes: no optimizer step, generators restored."""
+     state = rng_state(backend)
+@@ -299,11 +376,18 @@
+     opt.zero_grad(set_to_none=True)
+     rl, tokens_r = request_loss(model, tok, top_requests, layout, backend, act_weight); rl.backward(); rv = rl.item(); del rl
+     cl, tokens_c = cut_loss(model, tok, top_messages, layout, backend); cl.backward(); cv = cl.item(); del cl
++    extra = {}
++    if canvas is not None:   # the canvas pass's worst case: the longest rows, packed under the budget
++        longest = sorted(range(len(canvas)), key=lambda i: (-len(canvas[i]["ids"]), i))
++        part = [canvas[i] for i in canvas_batch(canvas, longest, 0, a.canvas_tokens)]
++        xl, tokens_x = canvas_loss(model, tok, part, backend); xl.backward(); xv = xl.item(); del xl
++        if not math.isfinite(xv): raise NonFinite("Non-finite canvas loss on the longest batch")
++        extra = {"canvas_tokens": tokens_x, "canvas_rows": len(part), "longest_canvas": len(part[0]["ids"])}
+     if not (math.isfinite(rv) and math.isfinite(cv)): raise NonFinite("Non-finite loss on the longest batches")
+     gradients(model); torch.nn.utils.clip_grad_norm_(model.parameters(), CLIP, error_if_nonfinite=True)
+     opt.zero_grad(set_to_none=True); restore_rng(state, backend)
+     return {"request_tokens": tokens_r, "message_tokens": tokens_c, "longest_request": long_request, "longest_message": long_message,
+-            "requests_over_cap": cut_requests, "messages_over_cap": cut_messages, **peak_memory(backend, hooks)}
++            "requests_over_cap": cut_requests, "messages_over_cap": cut_messages, **extra, **peak_memory(backend, hooks)}
+ 
+ 
+ def overfit_gate(a, backend, hooks):
+@@ -348,6 +432,8 @@
+     device_metadata = hooks.configure(backend); apply_allocator_limit(backend, hooks)
+     rows, cuts, manifest = data_manifest(a.data, a.expect_manifest)
+     layout = Layout(json.loads((a.data / "reader.json").read_text()))
++    canvas_rows = None
++    if getattr(a, "canvas_rows", None) is not None: canvas_rows, a.canvas_identity = canvas_data(a.canvas_rows)
+     metadata = metadata_of(a, backend, manifest, device_metadata)
+     checkpoint = a.work / "checkpoint.pt"
+     ck = None
+@@ -361,6 +447,11 @@
+     fit_rows, _ = fixed_rows(rows)
+     backend.seed(a.seed)
+     tok, model = prepare_model(a, backend, hooks, layout)
++    canvas = canvas_prepare(tok, canvas_rows, layout) if canvas_rows is not None else None
++    canvas_rng = random.Random(a.seed) if canvas is not None else None   # its own generator: the request and cut orders draw exactly as without the flag
++    canvas_fit = None
++    if canvas is not None:
++        idx = list(range(len(canvas))); random.Random(0).shuffle(idx); canvas_fit = [canvas[i] for i in idx[:CANVAS_FIT_ROWS]]
+     opt = make_optimizer(model, a, backend)
+     from transformers import get_linear_schedule_with_warmup
+     steps_per_epoch = math.ceil(len(rows) / a.batch); total = steps_per_epoch * a.epochs
+@@ -370,6 +461,7 @@
+     if ck is not None:
+         model.load_state_dict(ck["model"]); opt.load_state_dict(ck["optimizer"]); sch.load_state_dict(ck["scheduler"])
+         state = ck["state"]; shuffler.setstate(state["shuffler"])
++        if canvas is not None: canvas_rng.setstate(state["canvas_rng"])
+         restore_rng(ck["rng"], backend)
+         trim_jsonl(a.work / "train.jsonl", state["update"]); trim_jsonl(a.work / "fit.jsonl", state["update"]); trim_jsonl(a.work / "gpu.jsonl", state["update"])
+         del ck
+@@ -377,6 +469,9 @@
+         order, cut_order = list(range(len(rows))), list(range(len(cuts)))
+         shuffler.shuffle(order); shuffler.shuffle(cut_order)
+         state = dict(epoch=0, pos=0, cut_pos=0, update=0, order=order, cut_order=cut_order, elapsed=0., total=total, steps_per_epoch=steps_per_epoch)
++        if canvas is not None:
++            canvas_order = list(range(len(canvas))); canvas_rng.shuffle(canvas_order)
++            state.update(canvas_pos=0, canvas_order=canvas_order)
+     if state["total"] != total: raise RuntimeError("The schedule of the checkpoint differs")
+     start, previous = time.monotonic(), state["elapsed"]
+     elapsed = lambda: previous + time.monotonic() - start
+@@ -384,6 +479,7 @@
+ 
+     def save(path=checkpoint):
+         state["elapsed"] = elapsed(); state["shuffler"] = shuffler.getstate()
++        if canvas is not None: state["canvas_rng"] = canvas_rng.getstate()
+         atomic_save(path, {"model": model.state_dict(), "optimizer": opt.state_dict(), "scheduler": sch.state_dict(), "rng": rng_state(backend), "state": state, "metadata": metadata})
+ 
+     def stop(reason, code):
+@@ -396,6 +492,7 @@
+ 
+     def fit_line(**extra):
+         fit = measure(model, tok, fit_rows, layout, backend)
++        if canvas is not None: fit.update(measure_canvas(model, tok, canvas_fit, layout, backend, a.canvas_tokens))
+         fits.write(json.dumps(dict(update=state["update"], elapsed=elapsed(), **extra, **fit), allow_nan=False) + "\n"); fits.flush()
+ 
+     log, fits, gpu_log = (open(a.work / n, "a", buffering=1) for n in ("train.jsonl", "fit.jsonl", "gpu.jsonl"))
+@@ -428,6 +525,14 @@
+             cl, tokens_c = cut_loss(model, tok, crow, layout, backend)
+             if not torch.isfinite(cl).item(): raise NonFinite("Non-finite cut loss")
+             cl.backward(); cv = cl.item(); del cl
++            if canvas is not None:   # the second read: its own backward, the same update
++                canvas_pos, canvas_order = state["canvas_pos"], state["canvas_order"]
++                if canvas_pos >= len(canvas_order):
++                    canvas_rng.shuffle(canvas_order); canvas_pos = 0
++                take = canvas_batch(canvas, canvas_order, canvas_pos, a.canvas_tokens)
++                xl, tokens_x = canvas_loss(model, tok, [canvas[i] for i in take], backend)
++                if not torch.isfinite(xl).item(): raise NonFinite("Non-finite canvas loss")
++                xl.backward(); xv = xl.item(); del xl
+             evidence = gradients(model) if state["update"] % EVIDENCE_EVERY == 0 else None
+             try: norm = torch.nn.utils.clip_grad_norm_(model.parameters(), CLIP, error_if_nonfinite=True)
+             except RuntimeError as exc: raise NonFinite(str(exc)) from None
+@@ -435,11 +540,14 @@
+             opt.step(); sch.step()
+             state["update"] += 1; state["pos"] += len(part); state["cut_pos"] = cut_pos + len(crow)
+             row = dict(update=state["update"], epoch=state["epoch"] + 1, request_loss=rv, cut_loss=cv, lr=lrs[0], head_lr=lrs[1], grad_norm=norm.item(), request_tokens=tokens_r, cut_tokens=tokens_c, elapsed=elapsed())
++            if canvas is not None:
++                state["canvas_pos"] = canvas_pos + len(take)
++                row.update(canvas_loss=xv, canvas_tokens=tokens_x, canvas_rows=len(take))
+             if evidence is not None: row["gradients"] = evidence
+             if state["update"] % MEMORY_EVERY == 0: row["memory"] = peak_memory(backend, hooks)
+             log.write(json.dumps(row, allow_nan=False) + "\n")
+             if not done_preflight:
+-                info = preflight(model, tok, opt, rows, cuts, layout, backend, hooks, a, weight)
++                info = preflight(model, tok, opt, rows, cuts, layout, backend, hooks, a, weight, canvas)
+                 atomic_json(a.work / "preflight.json", info); done_preflight = True
+                 print(json.dumps({"preflight": info}), flush=True)
+             if state["pos"] >= len(rows):
+@@ -484,6 +592,8 @@
+     ap.add_argument("--overfit-gate", action="store_true")
+     ap.add_argument("--max-updates", type=int, default=0, help="finish after N updates of the full schedule (dry run); the run is marked full_schedule false")
+     ap.add_argument("--gpu-limit-gib", type=float, default=5., help="allocator limit. 4 is too tight: the longest batches of the first run's data (8 x 302 pieces) peak at 3.98 GiB allocated, 4.40 reserved")
++    ap.add_argument("--canvas-rows", type=Path, default=None, help="arm M4: a folder with canvas_train.jsonl (parity/build_canvas_rows.mjs): the second read's pass")
++    ap.add_argument("--canvas-tokens", type=int, default=4096, help="padded tokens per canvas batch (rows x longest row)")
+     ap.add_argument("--checkpoint-minutes", type=float, default=15., help="full checkpoint every so often, about 1.8 GB each")
+     ap.add_argument("--cache", default=str(Path.home() / ".cache/diagram-vss-modernbert/hf"))
+     ap.add_argument("--lock-dir", type=Path, default=Path.home() / ".cache/diagram-vss-modernbert/locks")
+@@ -496,7 +606,7 @@
+ def main(argv=None):
+     a = parse_args(argv)
+     repo = Path(__file__).resolve().parents[2]
+-    if a.work.resolve().is_relative_to(repo) or a.data.resolve().is_relative_to(repo):
++    if a.work.resolve().is_relative_to(repo) or a.data.resolve().is_relative_to(repo) or (a.canvas_rows is not None and a.canvas_rows.resolve().is_relative_to(repo)):
+         raise SystemExit("Data and checkpoints must stay outside git")
+     with ExitStack() as ownership:
+         ownership.enter_context(RunLock(a.work / ".run.lock"))

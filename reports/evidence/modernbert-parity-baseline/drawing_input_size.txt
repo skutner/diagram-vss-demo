@@ -1,0 +1,11 @@
+every scenario and scene turn (1126 turns):
+  no words of the message that made them: pieces p50 125, p90 209, max 670; over 128: 540, over 256: 36, over 512: 6
+  its first 10 words: pieces p50 301, p90 516, max 1651; over 128: 913, over 256: 684, over 512: 119
+  all its words: pieces p50 366, p90 627, max 2117; over 128: 948, over 256: 771, over 512: 205
+turns that need the drawing (119 turns):
+  no words of the message that made them: pieces p50 150, p90 211, max 240; over 128: 75, over 256: 0, over 512: 0
+  its first 10 words: pieces p50 363, p90 497, max 672; over 128: 110, over 256: 92, over 512: 11
+  all its words: pieces p50 420, p90 591, max 817; over 128: 111, over 256: 97, over 512: 23
+second call when fill says context or description: 139 of 1126 turns = 12.3%; catches 63 of 119 that need the drawing
+also when a written name is neither on the canvas nor made in the message: 228 of 1126 = 20.2%; catches 97 of 119
+shapes on the canvas: p50 14, p90 26, max 77

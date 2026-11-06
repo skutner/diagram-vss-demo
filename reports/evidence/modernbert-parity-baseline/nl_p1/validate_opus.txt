@@ -1,0 +1,78 @@
+
+HARD FAILURES (59):
+  tr-01-012 [engine] wire 2: There is no shape named "Library". Shapes on the canvas: Depot, Harbor, Mill.
+  tr-01-035 [engine] wire 1: circle1 is a shape; it can't become a text. To write on it, label it: label circle1 "…".
+  tr-05-043 [engine] mention m1: I can't find a shape showing "Rejected" on the canvas.
+  tr-11-038 [setup] @ga3: color=tan is not a known answer (expected red | orange | yellow | gold | lime | green | teal | cyan | blue | navy | indigo | purple | magenta | pink | brown | gray | black | white)
+  tr-11-045 [setup] @ap1: color=beige is not a known answer (expected red | orange | yellow | gold | lime | green | teal | cyan | blue | navy | indigo | purple | magenta | pink | brown | gray | black | white)
+  tr-11-045 [setup] @ap2: color=beige is not a known answer (expected red | orange | yellow | gold | lime | green | teal | cyan | blue | navy | indigo | purple | magenta | pink | brown | gray | black | white)
+  tr-11-045 [setup] @ap3: color=beige is not a known answer (expected red | orange | yellow | gold | lime | green | teal | cyan | blue | navy | indigo | purple | magenta | pink | brown | gray | black | white)
+  tr-11-045 [setup] @ap4: color=beige is not a known answer (expected red | orange | yellow | gold | lime | green | teal | cyan | blue | navy | indigo | purple | magenta | pink | brown | gray | black | white)
+  tr-12-007 [engine] wire 1: There is no shape named "school". Shapes on the canvas: BusStop.
+  tr-12-010 [engine] wire 1: There is no shape named "printer". Shapes on the canvas: Server, Pc1.
+  tr-12-047 [setup] @bp4: color=beige is not a known answer (expected red | orange | yellow | gold | lime | green | teal | cyan | blue | navy | indigo | purple | magenta | pink | brown | gray | black | white)
+  tr-12-047 [setup] @bp5: There is no shape named "Head". The canvas is empty.
+  tr-12-047 [setup] @bp6: color=beige is not a known answer (expected red | orange | yellow | gold | lime | green | teal | cyan | blue | navy | indigo | purple | magenta | pink | brown | gray | black | white)
+  tr-02-007 [engine] mention m1: I can't find a square in the left on the canvas.
+  tr-02-008 [engine] mention m1: I can't find a yellow circle on the canvas. (after an earlier failure in this session)
+  tr-02-008 [engine] mention m2: I can't find a square in the right on the canvas. (after an earlier failure in this session)
+  tr-02-010 [engine] mention m2: I can't find a square in the right on the canvas. (after an earlier failure in this session)
+  tr-02-013 [engine] wire 1: position=onTop needs an anchor shape. (after an earlier failure in this session)
+  tr-02-022 [engine] mention m2: I can't find a shape showing ""Call customer"" on the canvas.
+  tr-02-022 [engine] mention m5: I can't find a shape showing ""Send template"" on the canvas.
+  tr-02-023 [engine] wire 1: There is no arrow between diamond1 and rectangle2. (after an earlier failure in this session)
+  tr-02-023 [engine] wire 2: There is no arrow between diamond1 and circle1. (after an earlier failure in this session)
+  tr-02-024 [engine] mention m3: I can't find a shape showing ""Close ticket"" on the canvas. (after an earlier failure in this session)
+  tr-02-035 [engine] wire 1: There is no shape named "Bed1". Shapes on the canvas: Field, circle1, circle2, circle3, circle4.
+  tr-02-035 [engine] wire 2: There is no shape named "Bed1". Shapes on the canvas: Field, circle1, circle2, circle3, circle4.
+  tr-02-036 [engine] wire 1: There is no shape named "Bed2". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-036 [engine] wire 2: There is no shape named "Bed2". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-037 [engine] wire 1: There is no shape named "Bed3". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-037 [engine] wire 2: There is no shape named "Bed3". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-038 [engine] wire 1: There is no shape named "Bed4". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-039 [engine] wire 1: There is no shape named "Bed1". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-040 [engine] wire 1: There is no shape named "Bed2". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-041 [engine] wire 1: There is no shape named "Bed4". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-042 [engine] wire 1: There is no shape named "Bed4". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-042 [engine] wire 2: There is no shape named "Bed4". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-043 [engine] wire 1: There is no shape named "Bed1". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-043 [engine] wire 2: There is no shape named "Bed2". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-043 [engine] wire 3: There is no shape named "Bed3". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-043 [engine] wire 4: There is no shape named "Bed4". Shapes on the canvas: Field, circle1, circle2, circle3, circle4. (after an earlier failure in this session)
+  tr-02-047 [engine] wire 1: There is no shape named "Bed1". Shapes on the canvas: Field, circle1, circle2, circle3, circle4, circle5. (after an earlier failure in this session)
+  tr-02-048 [engine] wire 1: There is no shape named "Bed1". Shapes on the canvas: Field, circle1, circle2, circle3, circle4, circle5. (after an earlier failure in this session)
+  tr-06-016 [engine] mention m1: I can't find a circle in the top right on the canvas.
+  tr-06-016 [engine] mention m2: I can't find a circle in the bottom left on the canvas.
+  tr-06-016 [engine] mention m3: I can't find a circle in the bottom right on the canvas.
+  tr-06-021 [engine] mention m1: I can't find a shape showing ""Close as false alarm"" on the canvas.
+  tr-06-022 [engine] mention m1: I can't find a shape showing ""Page on-call"" on the canvas. (after an earlier failure in this session)
+  tr-06-025 [engine] mention m2: I can't find a shape showing ""Apply fix"" on the canvas. (after an earlier failure in this session)
+  tr-06-025 [engine] mention m4: I can't find a shape showing ""Escalate to lead"" on the canvas. (after an earlier failure in this session)
+  tr-06-027 [engine] wire 1: There is no shape named "Verify". The closest names on the canvas: Triage, Investigate, circle1, circle2, circle3, and 3 others. (after an earlier failure in this session)
+  tr-10-008 [engine] mention m1: I can't find a large shape on the canvas.
+  tr-10-009 [engine] mention m2: I can't find a green shape on the canvas. (after an earlier failure in this session)
+  tr-10-009 [engine] mention m3: I can't find a green shape on the canvas. (after an earlier failure in this session)
+  tr-14-023 [engine] mention m2: I can't find a shape showing ""top field"" on the canvas.
+  tr-14-029 [engine] mention m1: I can't find a shape showing ""dump bucket"" on the canvas. (after an earlier failure in this session)
+  tr-14-038 [engine] mention m1: I can't find a circle showing "3" on the canvas.
+  tr-14-039 [engine] mention m1: I can't find a circle showing "2" on the canvas. (after an earlier failure in this session)
+  tr-14-039 [engine] mention m2: I can't find a circle showing "4" on the canvas. (after an earlier failure in this session)
+  tr-14-042 [engine] mention m1: I can't find a circle showing "5" on the canvas. (after an earlier failure in this session)
+  tr-14-042 [engine] mention m2: I can't find a circle showing "1" on the canvas. (after an earlier failure in this session)
+
+The engine asks (not a failure) (8):
+  tr-04-041 [history] wire 1: There is nothing to undo.
+  tr-04-042 [history] wire 1: There is nothing to undo.
+  tr-04-043 [history] wire 1: There is nothing to undo.
+  tr-04-044 [history] wire 1: There is nothing to undo.
+  tr-04-045 [history] wire 1: There is nothing to undo.
+  tr-11-043 [history] wire 1: There is nothing to undo.
+  tr-13-019 [clarify] mention m1: Which shape showing "hatch"? Hatch1 (middle left) and Hatch2 (center). Reply with a name.
+  tr-06-015 [clarify] mention m1: Which circle in the top left? circle1 (top left) and circle2 (top left). Reply with a name.
+
+Summary: 706 saved texts in 14 file(s), 706 annotated rows in 14 file(s), 818 wires, 88 rows with no wire
+  sessions 13, paraphrase groups 21, rows replayed 703, not replayed 3
+  by kind: {"short":74,"long":33,"reference":31,"fragment":33,"complaint":42,"indirect":35,"dictated":49,"typos":38,"nothing_to_do":17,"self_correction":18,"ambiguous":10,"translated":50,"session":172,"paraphrase":104}
+  hard failures 59 {"engine":51,"setup":8}, the engine asks 8, warnings 0
+  --write: names and groups changed on 703 row(s) in 14 file(s); marked unreliable or left alone: 82
+RESULT: FAIL

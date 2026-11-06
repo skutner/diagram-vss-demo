@@ -1,0 +1,978 @@
+{
+  "schema": "arm-export-receipt-v1",
+  "passed": false,
+  "rule": "passed = PyTorch and Node decode every text the same; the runtime checks before it have already held",
+  "weights": {
+    "sha256": "4fa24ad61c061dec0e628a2cd4ea5443af8c76bd5e2e4447775ae44a6ac9749a",
+    "epoch": 8,
+    "update": 15144,
+    "total": 15144,
+    "full_schedule": true,
+    "max_updates": 0,
+    "source_file": "checkpoint.pt",
+    "source_changes_since_training": []
+  },
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "torch_vs_node": {
+    "texts": 20,
+    "counts": {
+      "act": {
+        "agree": 19,
+        "total": 20
+      },
+      "classes": {
+        "agree": 879,
+        "total": 880
+      },
+      "tags": {
+        "agree": 1940,
+        "total": 1942
+      },
+      "cuts": {
+        "agree": 19,
+        "total": 20
+      },
+      "pieces": {
+        "agree": 20,
+        "total": 20
+      }
+    },
+    "differences": [
+      {
+        "text": "Belt ranks for the dojo newsletter, shown as shapes. Make White a white circle, ",
+        "chars": 223,
+        "differences": [
+          {
+            "key": "act",
+            "torch": "create",
+            "node": "move",
+            "margin": 0.1051
+          }
+        ]
+      },
+      {
+        "text": "Alright, I run a small roastery and my investor wants to see how a bag of coffee",
+        "chars": 1200,
+        "differences": [
+          {
+            "key": "tag:6",
+            "torch": "B-target",
+            "node": "O",
+            "margin": 0.0446
+          }
+        ]
+      },
+      {
+        "text": "Caf\u00e9 na\u00efve \u6771\u4eac \ud83d\ude00 e\u0301 _ \uff11\uff12",
+        "chars": 23,
+        "differences": [
+          {
+            "key": "class:color",
+            "torch": null,
+            "node": "indigo",
+            "margin": 0.4399
+          }
+        ]
+      },
+      {
+        "text": "connect A to B; connect A to B; connect A to B; connect A to B; connect A to B; ",
+        "chars": 1280,
+        "differences": [
+          {
+            "key": "cut",
+            "torch": [
+              [
+                16,
+                30
+              ],
+              [
+                32,
+                46
+              ],
+              [
+                48,
+                63
+              ],
+              [
+                64,
+                79
+              ],
+              [
+                80,
+                95
+              ],
+              [
+                96,
+                110
+              ],
+              [
+                112,
+                126
+              ],
+              [
+                128,
+                142
+              ],
+              [
+                144,
+                158
+              ],
+              [
+                160,
+                174
+              ],
+              [
+                176,
+                190
+              ],
+              [
+                192,
+                207
+              ],
+              [
+                208,
+                222
+              ],
+              [
+                224,
+                238
+              ],
+              [
+                240,
+                254
+              ],
+              [
+                256,
+                270
+              ],
+              [
+                272,
+                286
+              ],
+              [
+                288,
+                302
+              ],
+              [
+                304,
+                318
+              ],
+              [
+                320,
+                334
+              ],
+              [
+                336,
+                350
+              ],
+              [
+                352,
+                366
+              ],
+              [
+                368,
+                382
+              ],
+              [
+                384,
+                398
+              ],
+              [
+                400,
+                414
+              ],
+              [
+                416,
+                430
+              ],
+              [
+                432,
+                446
+              ],
+              [
+                448,
+                462
+              ],
+              [
+                464,
+                478
+              ],
+              [
+                480,
+                494
+              ],
+              [
+                496,
+                510
+              ],
+              [
+                512,
+                526
+              ],
+              [
+                528,
+                542
+              ],
+              [
+                544,
+                558
+              ],
+              [
+                560,
+                574
+              ],
+              [
+                576,
+                590
+              ],
+              [
+                592,
+                606
+              ],
+              [
+                608,
+                622
+              ],
+              [
+                624,
+                638
+              ],
+              [
+                640,
+                654
+              ],
+              [
+                656,
+                670
+              ],
+              [
+                672,
+                686
+              ],
+              [
+                688,
+                702
+              ],
+              [
+                704,
+                718
+              ],
+              [
+                720,
+                734
+              ],
+              [
+                736,
+                750
+              ],
+              [
+                752,
+                766
+              ],
+              [
+                768,
+                782
+              ],
+              [
+                784,
+                798
+              ],
+              [
+                800,
+                814
+              ],
+              [
+                816,
+                830
+              ],
+              [
+                832,
+                846
+              ],
+              [
+                848,
+                862
+              ],
+              [
+                864,
+                878
+              ],
+              [
+                880,
+                894
+              ],
+              [
+                896,
+                910
+              ],
+              [
+                912,
+                926
+              ],
+              [
+                928,
+                942
+              ],
+              [
+                944,
+                958
+              ],
+              [
+                960,
+                974
+              ],
+              [
+                976,
+                990
+              ],
+              [
+                992,
+                1006
+              ],
+              [
+                1008,
+                1022
+              ],
+              [
+                1024,
+                1038
+              ],
+              [
+                1040,
+                1054
+              ],
+              [
+                1056,
+                1070
+              ],
+              [
+                1072,
+                1086
+              ],
+              [
+                1088,
+                1102
+              ],
+              [
+                1104,
+                1118
+              ],
+              [
+                1120,
+                1134
+              ],
+              [
+                1136,
+                1150
+              ],
+              [
+                1152,
+                1166
+              ],
+              [
+                1168,
+                1182
+              ],
+              [
+                1184,
+                1198
+              ],
+              [
+                1200,
+                1214
+              ],
+              [
+                1216,
+                1230
+              ],
+              [
+                1232,
+                1246
+              ],
+              [
+                1248,
+                1262
+              ],
+              [
+                1264,
+                1278
+              ]
+            ],
+            "node": [
+              [
+                16,
+                30
+              ],
+              [
+                32,
+                46
+              ],
+              [
+                48,
+                62
+              ],
+              [
+                64,
+                78
+              ],
+              [
+                80,
+                94
+              ],
+              [
+                96,
+                110
+              ],
+              [
+                112,
+                126
+              ],
+              [
+                128,
+                142
+              ],
+              [
+                144,
+                158
+              ],
+              [
+                160,
+                174
+              ],
+              [
+                176,
+                190
+              ],
+              [
+                192,
+                206
+              ],
+              [
+                208,
+                222
+              ],
+              [
+                224,
+                238
+              ],
+              [
+                240,
+                254
+              ],
+              [
+                256,
+                270
+              ],
+              [
+                272,
+                286
+              ],
+              [
+                288,
+                302
+              ],
+              [
+                304,
+                318
+              ],
+              [
+                320,
+                334
+              ],
+              [
+                336,
+                350
+              ],
+              [
+                352,
+                366
+              ],
+              [
+                368,
+                382
+              ],
+              [
+                384,
+                398
+              ],
+              [
+                400,
+                414
+              ],
+              [
+                416,
+                430
+              ],
+              [
+                432,
+                446
+              ],
+              [
+                448,
+                462
+              ],
+              [
+                464,
+                478
+              ],
+              [
+                480,
+                494
+              ],
+              [
+                496,
+                510
+              ],
+              [
+                512,
+                526
+              ],
+              [
+                528,
+                542
+              ],
+              [
+                544,
+                558
+              ],
+              [
+                560,
+                574
+              ],
+              [
+                576,
+                590
+              ],
+              [
+                592,
+                606
+              ],
+              [
+                608,
+                622
+              ],
+              [
+                624,
+                638
+              ],
+              [
+                640,
+                654
+              ],
+              [
+                656,
+                670
+              ],
+              [
+                672,
+                686
+              ],
+              [
+                688,
+                702
+              ],
+              [
+                704,
+                718
+              ],
+              [
+                720,
+                734
+              ],
+              [
+                736,
+                750
+              ],
+              [
+                752,
+                766
+              ],
+              [
+                768,
+                782
+              ],
+              [
+                784,
+                798
+              ],
+              [
+                800,
+                814
+              ],
+              [
+                816,
+                830
+              ],
+              [
+                832,
+                846
+              ],
+              [
+                848,
+                862
+              ],
+              [
+                864,
+                878
+              ],
+              [
+                880,
+                894
+              ],
+              [
+                896,
+                910
+              ],
+              [
+                912,
+                926
+              ],
+              [
+                928,
+                942
+              ],
+              [
+                944,
+                958
+              ],
+              [
+                960,
+                974
+              ],
+              [
+                976,
+                990
+              ],
+              [
+                992,
+                1006
+              ],
+              [
+                1008,
+                1022
+              ],
+              [
+                1024,
+                1038
+              ],
+              [
+                1040,
+                1054
+              ],
+              [
+                1056,
+                1070
+              ],
+              [
+                1072,
+                1086
+              ],
+              [
+                1088,
+                1102
+              ],
+              [
+                1104,
+                1118
+              ],
+              [
+                1120,
+                1134
+              ],
+              [
+                1136,
+                1150
+              ],
+              [
+                1152,
+                1166
+              ],
+              [
+                1168,
+                1182
+              ],
+              [
+                1184,
+                1198
+              ],
+              [
+                1200,
+                1214
+              ],
+              [
+                1216,
+                1230
+              ],
+              [
+                1232,
+                1246
+              ],
+              [
+                1248,
+                1262
+              ],
+              [
+                1264,
+                1278
+              ]
+            ],
+            "torch_info": {
+              "truncated": false,
+              "unreadFrom": null
+            },
+            "node_info": {
+              "truncated": false,
+              "unreadFrom": null
+            }
+          }
+        ]
+      },
+      {
+        "text": "\ufeffdraw\u0085circle\u001cA",
+        "chars": 14,
+        "differences": [
+          {
+            "key": "tag:4",
+            "torch": "B-target",
+            "node": "B-name",
+            "margin": 0.667
+          }
+        ]
+      }
+    ],
+    "per_text": [
+      {
+        "chars": 18,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 22,
+        "pieces": 6,
+        "words": 4,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 11,
+        "words": 7,
+        "agree": true
+      },
+      {
+        "chars": 51,
+        "pieces": 17,
+        "words": 13,
+        "agree": true
+      },
+      {
+        "chars": 66,
+        "pieces": 17,
+        "words": 15,
+        "agree": true
+      },
+      {
+        "chars": 91,
+        "pieces": 22,
+        "words": 19,
+        "agree": true
+      },
+      {
+        "chars": 144,
+        "pieces": 38,
+        "words": 34,
+        "agree": true
+      },
+      {
+        "chars": 223,
+        "pieces": 54,
+        "words": 50,
+        "agree": false
+      },
+      {
+        "chars": 299,
+        "pieces": 78,
+        "words": 71,
+        "agree": true
+      },
+      {
+        "chars": 584,
+        "pieces": 138,
+        "words": 119,
+        "agree": true
+      },
+      {
+        "chars": 1200,
+        "pieces": 302,
+        "words": 267,
+        "agree": false
+      },
+      {
+        "chars": 0,
+        "pieces": 2,
+        "words": 0,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 10,
+        "words": 8,
+        "agree": true
+      },
+      {
+        "chars": 23,
+        "pieces": 22,
+        "words": 8,
+        "agree": false
+      },
+      {
+        "chars": 1280,
+        "pieces": 402,
+        "words": 400,
+        "agree": false
+      },
+      {
+        "chars": 3900,
+        "pieces": 512,
+        "words": 900,
+        "agree": true
+      },
+      {
+        "chars": 14,
+        "pieces": 9,
+        "words": 5,
+        "agree": false
+      },
+      {
+        "chars": 17,
+        "pieces": 11,
+        "words": 9,
+        "agree": true
+      },
+      {
+        "chars": 13,
+        "pieces": 5,
+        "words": 3,
+        "agree": true
+      },
+      {
+        "chars": 15,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      }
+    ]
+  },
+  "python_ort_vs_node": {
+    "fixtures": 41,
+    "singles": 39,
+    "batches": 2,
+    "ids": true,
+    "outputs": true,
+    "decoded": true,
+    "cuts": true,
+    "readMany": true,
+    "max_abs": [
+      0.0002865791320800781,
+      6.4849853515625e-05,
+      0.00017118453979492188
+    ]
+  },
+  "float_vs_torch_max_abs": [
+    4.369020462036133e-05,
+    4.57763671875e-05,
+    2.384185791015625e-05
+  ],
+  "sdpa_vs_eager_max_abs": [
+    2.47955322265625e-05,
+    3.4332275390625e-05,
+    2.1576881408691406e-05
+  ],
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.001
+  },
+  "cases_where_q8_decodes_differently_from_float": [
+    "single-03",
+    "single-05",
+    "single-07",
+    "single-12",
+    "single-13",
+    "single-14",
+    "batch-message-512",
+    "extra-07-128",
+    "extra-07-512",
+    "extra-09-512",
+    "extra-10-128"
+  ],
+  "conversion": {
+    "blocks": 93,
+    "quantizers": 91
+  },
+  "float_graph_files": {
+    "model_float.onnx": {
+      "sha256": "8aa9015144ea69657be178e95cdae667f8ca80e67a3e751fb8a69b1af8d3310d",
+      "bytes": 600667368
+    }
+  },
+  "shards": [
+    "model_quantized.onnx_data",
+    "model_quantized.onnx_data_1"
+  ],
+  "files": {
+    "config.json": {
+      "sha256": "14ac47ed3d742d718e840e543dde693e0e42dfdf55cbaf359ae05bc7060fb9f3",
+      "bytes": 565281
+    },
+    "conversion.json": {
+      "sha256": "898f2657edf9b528ac12823edf2ba1b31312acd91d6c7fcc753648b632c5ddf5",
+      "bytes": 64404
+    },
+    "export_parity.json": {
+      "sha256": "e14c50e2fa9aa51ddc7e93036364867f6db31db316bf29d1fe6a3b3d98eea1f9",
+      "bytes": 481
+    },
+    "onnx/model_quantized.onnx": {
+      "sha256": "49d0507bc7e772edc998ce4318f3fe98dab8763db4d06370699512c11b68fb5f",
+      "bytes": 1490593
+    },
+    "onnx/model_quantized.onnx_data": {
+      "sha256": "7f6f8b7dba5c5dfbf5b7cc1119cc4e07f5b5ceb241732b3f390513e59415516d",
+      "bytes": 93974296
+    },
+    "onnx/model_quantized.onnx_data_1": {
+      "sha256": "03d8f42c6884aef85369c32dcd17354b6fc535931b97407b8d45c141d915ac44",
+      "bytes": 56159232
+    },
+    "references.json": {
+      "sha256": "fb011d3200e58dacec2facf391e267d29f0991ae629e108a9c22bf197b45ba6e",
+      "bytes": 7543044
+    },
+    "special_tokens_map.json": {
+      "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "bytes": 694
+    },
+    "tokenizer.json": {
+      "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "bytes": 3583228
+    },
+    "tokenizer_config.json": {
+      "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "bytes": 20840
+    }
+  },
+  "source_changes_since_training": [],
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "python": "3.12.16",
+    "python_onnxruntime": "1.29.0"
+  }
+}

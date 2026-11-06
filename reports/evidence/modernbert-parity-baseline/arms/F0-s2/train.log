@@ -1,0 +1,40 @@
+start 2026-11-06 03:59:13
+{"update": 50, "loss": 3.2645, "value_right": 7, "value_rows": 398, "act": 0.275, "word_tags": 0.951706910907577, "passed": false}
+{"update": 100, "loss": 0.9648, "value_right": 56, "value_rows": 398, "act": 0.92, "word_tags": 0.9991673605328892, "passed": false}
+{"update": 150, "loss": 0.3846, "value_right": 105, "value_rows": 398, "act": 0.995, "word_tags": 1.0, "passed": false}
+{"update": 200, "loss": 0.0857, "value_right": 199, "value_rows": 398, "act": 1.0, "word_tags": 1.0, "passed": false}
+{"update": 250, "loss": 0.0501, "value_right": 362, "value_rows": 398, "act": 1.0, "word_tags": 1.0, "passed": false}
+{"update": 300, "loss": 0.0206, "value_right": 398, "value_rows": 398, "act": 1.0, "word_tags": 1.0, "passed": true}
+{"overfit_gate": "passed", "stopped_by": null, "updates": 300, "failures": [], "memory": {"rss_gib": 1.88, "available_gib": 22.419, "peak_allocated_gib": 2.737, "peak_reserved_gib": 2.787}}
+overfit gate exit 0
+{"preflight": {"request_tokens": 1696, "message_tokens": 2416, "longest_request": 53, "longest_message": 302, "requests_over_cap": 0, "messages_over_cap": 0, "rss_gib": 1.934, "available_gib": 22.455, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.275}}
+{"epoch": 1, "update": 1706, "of": 13648, "elapsed": 252, "memory": {"rss_gib": 1.931, "available_gib": 22.624, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.404}}
+{"epoch": 2, "update": 3412, "of": 13648, "elapsed": 486, "memory": {"rss_gib": 1.938, "available_gib": 22.465, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.404}}
+{"epoch": 3, "update": 5118, "of": 13648, "elapsed": 720, "memory": {"rss_gib": 1.937, "available_gib": 22.493, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.404}}
+{"epoch": 4, "update": 6824, "of": 13648, "elapsed": 955, "memory": {"rss_gib": 1.937, "available_gib": 22.458, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.404}}
+{"epoch": 5, "update": 8530, "of": 13648, "elapsed": 1192, "memory": {"rss_gib": 1.937, "available_gib": 22.48, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.404}}
+{"epoch": 6, "update": 10236, "of": 13648, "elapsed": 1427, "memory": {"rss_gib": 1.937, "available_gib": 22.43, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.404}}
+{"epoch": 7, "update": 11942, "of": 13648, "elapsed": 1663, "memory": {"rss_gib": 1.937, "available_gib": 22.465, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.404}}
+{"epoch": 8, "update": 13648, "of": 13648, "elapsed": 1898, "memory": {"rss_gib": 1.937, "available_gib": 22.454, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.404}}
+{"status": "complete", "full_schedule": true, "epoch": 8, "update": 13648, "elapsed": 1899.8499900789975, "total": 13648, "memory": {"rss_gib": 1.938, "available_gib": 22.45, "peak_allocated_gib": 3.983, "peak_reserved_gib": 4.404}}
+training exit 0
+/home/skutner/browserLLM/diagram-vss-demo/training/neural/parity/arm_export.py:117: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(model, x, str(path), dynamo=False, opset_version=17,
+/home/skutner/.cache/diagram-vss-modernbert/venv/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:196: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  inverted_mask = torch.tensor(1.0, dtype=dtype) - expanded_mask
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+WARNING:root:Inference failed or unsupported type to quantize for tensor '/encoder/Unsqueeze_6_output_0', type is tensor_type {
+  elem_type: 7
+  shape {
+    dim {
+      dim_value: 1
+    }
+    dim {
+      dim_param: "unk__6"
+    }
+  }
+}
+.
+{"folder": "/home/skutner/.cache/diagram-vss-modernbert/arms/F0-s2/export/modernbert-F0-s2", "passed": false, "full_schedule": true, "update": 13648, "texts": 20, "counts": {"act": {"agree": 20, "total": 20}, "classes": {"agree": 819, "total": 820}, "tags": {"agree": 1949, "total": 1950}, "cuts": {"agree": 19, "total": 20}, "pieces": {"agree": 20, "total": 20}}, "differences_in_texts": 3, "shards": ["model_quantized.onnx_data", "model_quantized.onnx_data_1"], "blocks": 93, "quantizers": 91, "float_max_abs": [3.147125244140625e-05, 3.62396240234375e-05, 1.9788742065429688e-05], "sdpa_max_abs": [1.4781951904296875e-05, 1.9073486328125e-05, 8.58306884765625e-06], "node_max_abs": [0.00010919570922851562, 4.57763671875e-05, 6.651878356933594e-05]}
+export exit 2 (2 = PyTorch and Node differ on near ties: reported, not a gate)
+end 2026-11-06 04:33:13

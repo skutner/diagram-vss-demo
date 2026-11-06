@@ -1,0 +1,6 @@
+llm_train/scenes_r3: 701 turns; same effect as Opus: loose 687 = 98.0%, strict 672 = 95.9%; as GPT, loose 95.1%; as either, loose 693 = 98.9%; where the two teachers agree (687): 679 = 98.8%; parse errors 0, turns with engine errors 0
+   differences: {"edges":2,"position":1,"answer":7,"size":3,"fill":1}
+llm_train/scenes_r3b: 96 turns; same effect as Opus: loose 93 = 96.9%, strict 93 = 96.9%; as GPT, loose 100.0%; as either, loose 96 = 100.0%; where the two teachers agree (93): 93 = 100.0%; parse errors 0, turns with engine errors 0
+   differences: {"fill":2,"answer":1}
+llm_bench/scenes_test: 166 turns; same effect as Opus: loose 160 = 96.4%, strict 157 = 94.6%; as GPT, loose 95.2%; as either, loose 164 = 98.8%; where the two teachers agree (162): 160 = 98.8%; parse errors 0, turns with engine errors 1
+   differences: {"fill":2,"answer":2,"name":1,"resized differently":1,"size":1}

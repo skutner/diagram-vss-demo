@@ -1,0 +1,8 @@
+Blind annotation pilot, 2026-11-05: scenes winter (41 turns) and kitchen (25 turns), one brief for all, first pass, no engine, annotators told not to read the translations, the annotations or the example sources. Compliance was not enforced by the tool.
+Agent usage as reported by the app when each finished (tokens include reading about 36 KB of specs):
+  Haiku 5.5 medium   79,506 tokens  128 s
+  Sonnet 5.5 medium  56,452 tokens   63 s  (wrote its rows through a small script, not with the Write tool)
+  Opus 5.5 medium    66,421 tokens  115 s
+  Opus 5.5 high      66,956 tokens  144 s
+Opus medium and Opus high wrote the same type and args on 66 of 66 turns (spans and triggers differ on 4). Sonnet medium and Opus medium differ in type or args on 4 turns.
+The rows themselves stayed in the session's scratchpad and are not in the repository. Scores: annotation_pilot.txt.

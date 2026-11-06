@@ -1,0 +1,1522 @@
+{
+ "schema": "arm-free-run-v1",
+ "reader": "modernbert",
+ "model": "/home/skutner/.cache/diagram-vss-modernbert/arms/F0-s0/export/modernbert-F0-s0",
+ "model_files_sha256": "a02e4571539d0250db2adb7b107ef814601699346cc279f904f4a4836258f641",
+ "confidence_file": "/home/skutner/.cache/diagram-vss-modernbert/arms/F0-s0/eval/cal-fresh2-short3-nl_a.confidence.json",
+ "calibrated_on": [
+  "fresh2",
+  "short3",
+  "nl_a"
+ ],
+ "threshold_cost10": 0.9156426921592415,
+ "code": {
+  "free_run_set.mjs": "a6b97e280e7d5f9341f718dd3fc63f640e21453a70d2ecf0c195329db4d78771"
+ },
+ "sets": {
+  "nl_b": {
+   "all": {
+    "use": "evaluation",
+    "modes": {
+     "all": {
+      "sessions": 17,
+      "same_final_drawing": 0,
+      "mean_share_percent_of_what_the_session_changed": {
+       "shapes": 10.78125,
+       "arrows": 18.75,
+       "groups": 0
+      },
+      "mean_share_percent_whole_drawing": {
+       "shapes": 38.753501,
+       "arrows": 31.018519,
+       "groups": 0
+      },
+      "questions_with_a_gold_answer": 0,
+      "questions_same_answer": 0,
+      "steps_left_out_as_unreliable": 54,
+      "engine_errors": 68,
+      "per_session": [
+       {
+        "session": "nlb-01-leak",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 3,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-01-refund",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 6,
+        "gold_errors": 0
+       },
+       {
+        "session": "rehearsal",
+        "steps": 5,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 3,
+        "gold_errors": 0
+       },
+       {
+        "session": "weather",
+        "steps": 3,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 1
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 6
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 1
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-03-s1",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 1,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 4,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-03-s2",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 0
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 4,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 4,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-05-s1",
+        "steps": 2,
+        "shares": {
+         "shapes": {
+          "same": 1,
+          "total": 2
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null
+        ],
+        "engine_errors": 3,
+        "gold_errors": 2
+       },
+       {
+        "session": "nlb-05-s2",
+        "steps": 7,
+        "shares": {
+         "shapes": {
+          "same": 1,
+          "total": 2
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 4
+         },
+         "arrows": {
+          "same": 1,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 6,
+        "gold_errors": 2
+       },
+       {
+        "session": "nlb-05-s3",
+        "steps": 3,
+        "shares": {
+         "shapes": {
+          "same": 3,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 1
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 4,
+          "total": 8
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 1
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 2
+       },
+       {
+        "session": "nlb-07-cell",
+        "steps": 2,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 1
+       },
+       {
+        "session": "nlb-07-eclipse",
+        "steps": 3,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 6,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-07-storm",
+        "steps": 3,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 6
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 2,
+        "gold_errors": 0
+       },
+       {
+        "session": "journey1",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 2
+         },
+         "arrows": {
+          "same": 1,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 5
+         },
+         "arrows": {
+          "same": 2,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 0
+       },
+       {
+        "session": "ticket1",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 1
+         },
+         "arrows": {
+          "same": 1,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 4
+         },
+         "arrows": {
+          "same": 3,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 2,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-11-tank",
+        "steps": 8,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 7
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 5,
+        "gold_errors": 1
+       },
+       {
+        "session": "nlb-11-treehouse",
+        "steps": 13,
+        "shares": {
+         "shapes": {
+          "same": 1,
+          "total": 8
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 4,
+          "total": 10
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 5,
+        "gold_errors": 2
+       },
+       {
+        "session": "nlb-11-recital",
+        "steps": 16,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 8
+         },
+         "arrows": {
+          "same": 0,
+          "total": 7
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 1,
+          "total": 7
+         },
+         "arrows": {
+          "same": 3,
+          "total": 8
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 16,
+        "gold_errors": 0
+       }
+      ]
+     },
+     "gate": {
+      "sessions": 17,
+      "same_final_drawing": 2,
+      "mean_share_percent_of_what_the_session_changed": {
+       "shapes": 0,
+       "arrows": 0,
+       "groups": null
+      },
+      "mean_share_percent_whole_drawing": {
+       "shapes": 45.644258,
+       "arrows": 26.388889,
+       "groups": null
+      },
+      "questions_with_a_gold_answer": 0,
+      "questions_same_answer": 0,
+      "steps_left_out_as_unreliable": 54,
+      "engine_errors": 0,
+      "per_session": [
+       {
+        "session": "nlb-01-leak",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-01-refund",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "rehearsal",
+        "steps": 5,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "weather",
+        "steps": 3,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 1
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-03-s1",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 1,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-03-s2",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 0
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 4,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-05-s1",
+        "steps": 2,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 2
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 2
+       },
+       {
+        "session": "nlb-05-s2",
+        "steps": 7,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 4
+         },
+         "arrows": {
+          "same": 1,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 2
+       },
+       {
+        "session": "nlb-05-s3",
+        "steps": 3,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": true,
+        "questions": [
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 2
+       },
+       {
+        "session": "nlb-07-cell",
+        "steps": 2,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 1
+       },
+       {
+        "session": "nlb-07-eclipse",
+        "steps": 3,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-07-storm",
+        "steps": 3,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 6
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "journey1",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 2
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 5
+         },
+         "arrows": {
+          "same": 1,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "ticket1",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 1
+         },
+         "arrows": {
+          "same": 0,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 4
+         },
+         "arrows": {
+          "same": 2,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "nlb-11-tank",
+        "steps": 8,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 1
+       },
+       {
+        "session": "nlb-11-treehouse",
+        "steps": 13,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 7
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": true,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 2
+       },
+       {
+        "session": "nlb-11-recital",
+        "steps": 16,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 8
+         },
+         "arrows": {
+          "same": 0,
+          "total": 7
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 1,
+          "total": 7
+         },
+         "arrows": {
+          "same": 3,
+          "total": 8
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       }
+      ]
+     }
+    },
+    "do_nothing_floor": {
+     "sessions": 17,
+     "same_final_drawing": 2,
+     "mean_share_percent_of_what_the_session_changed": {
+      "shapes": 0,
+      "arrows": 0,
+      "groups": null
+     },
+     "mean_share_percent_whole_drawing": {
+      "shapes": 45.644258,
+      "arrows": 26.388889,
+      "groups": null
+     },
+     "questions_with_a_gold_answer": 0,
+     "questions_same_answer": 0,
+     "steps_left_out_as_unreliable": 54,
+     "engine_errors": 0
+    }
+   }
+  }
+ },
+ "notes": [
+  "Each reader reads its own drawing; the shares count only what the session changed beyond its setup (session_lib.mjs); do_nothing_floor is a reader that executes nothing."
+ ]
+}

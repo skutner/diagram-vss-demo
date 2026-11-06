@@ -1,0 +1,7 @@
+Opus 5.5 vs gpt-6.1-sol, 1139 turns, one turn at a time from the same drawing:
+  strict (exact positions and sizes): 1070 = 93.9%
+  positions within 40 px:             1105 = 97.0%
+  loose (60 px, size ratio 1.30):     1118 = 98.2%
+each on its own history, loose: 888 = 78.0% of turns; final drawing the same in 26 of 35 examples (scenes: 15 of 24)
+  held_out: 322 turns, strict 96.0%, loose 98.8%
+  training_scene: 817 turns, strict 93.1%, loose 97.9%

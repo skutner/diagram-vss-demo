@@ -1,0 +1,54 @@
+start 2026-11-06 02:39:35
+NO HELD-OUT: fixed 8 epochs, last epoch kept; numbers below on evaluation sets that are part of the training data are the FIT on the training data, not a test
+base distilbert-base-uncased: 67.4M parameters, device cuda, fp16 True; train 54584 held-out 0; acts 52, class keys 41 (431 classes), tags 35
+cut: 24698 train messages; word pieces per message: median 14, max 287; 0 of 24698 exceed 512 (the words beyond are read as outside every request)
+act none: 0/54584 train rows = 0.0%; weight 1 (not above 40%)
+/home/skutner/browserLLM/diagram-vss-demo/training/neural/finetune_roles.py:310: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  scaler.step(opt); scaler.update(); sch.step(); loss_sum += loss.item(); n += 1; step += 1
+epoch 1: loss 1.7445  (no held-out)  (148s)
+epoch 2: loss 0.2450  (no held-out)  (289s)
+epoch 3: loss 0.1526  (no held-out)  (417s)
+epoch 4: loss 0.1070  (no held-out)  (537s)
+epoch 5: loss 0.0710  (no held-out)  (651s)
+epoch 6: loss 0.0526  (no held-out)  (759s)
+epoch 7: loss 0.0365  (no held-out)  (866s)
+epoch 8: loss 0.0277  (no held-out)  (973s)
+
+last epoch (8) kept; there is no held-out score. Per key: right/gold (+ produced where the gold has none), on the sets below (eval_sample1000 is TRAINING data here)
+  blind                  n=   60  requests read right 0.9167  act 1.0000
+      anchor 8/8 · arrow 2/2 · axis 1/1 · color 10/10 · comparison 1/1 · count 1/1 · desc:color 1/1 · desc:notColor 1/1 · desc:quantifier 6/7 +1 · desc:shape 4/5 · direction 2/2 · distance 1/1 · fill:anchor 8/8 · fill:from 7/9 · fill:target 30/30 +1 · fill:to 6/6 · from 7/7 · implied:scale 0/0 +1 · label 2/2 · layout 1/1 · name 2/2 · pairing 1/2 · position 5/8 · property 3/3 · shape 12/12 · size 4/4 · style 1/1 · superlative 1/1 +1 · target 25/25 · to 6/6
+      name-roles per filler kind (kind read right / value read right / gold): description 5/5/7 (71.4%) · written 46/46/46 (100.0%)  ->  description accuracy 5/7
+  broad                  n=  118  requests read right 0.8729  act 0.9831
+      anchor 15/15 · arrow 2/2 · axis 2/2 · color 29/29 · comparison 1/1 · count 3/3 · desc:color 2/3 · desc:notColor 0/1 · desc:quantifier 8/9 · desc:recency 2/2 · desc:shape 13/13 · direction 3/3 · distance 2/2 · fill:anchor 15/15 · fill:from 15/17 · fill:target 53/54 +1 · fill:to 14/14 · from 14/14 · implied:scale 0/0 +1 · kind 1/1 · label 4/4 · layout 2/2 · name 5/5 · notColor 1/1 · pairing 1/2 · position 11/17 · property 6/6 · shape 32/33 · size 8/8 · style 2/2 · superlative 2/3 · target 43/43 +2 · to 14/14
+      name-roles per filler kind (kind read right / value read right / gold): context 0/0/1 (0.0%) · description 11/9/13 (69.2%) · written 86/86/86 (100.0%)  ->  description accuracy 9/13
+  hand                   n=   40  requests read right 0.8750  act 1.0000
+      anchor 5/5 · axis 2/2 · color 10/10 · count 1/1 · desc:notColor 0/1 · desc:quantifier 3/4 +2 · desc:shape 4/4 · direction 1/1 · distance 1/1 · fill:anchor 5/5 · fill:from 5/7 · fill:target 19/19 +1 · fill:to 4/4 · from 5/5 · implied:scale 0/0 +1 · label 1/1 · layout 1/1 · name 2/2 · notColor 1/1 · pairing 2/2 · position 3/4 · property 1/2 · shape 7/7 · size 3/3 · style 1/1 · superlative 2/2 · target 17/17 · to 4/4
+      name-roles per filler kind (kind read right / value read right / gold): description 2/1/4 (25.0%) · written 31/31/31 (100.0%)  ->  description accuracy 1/4
+  heldout_formulations   n=  300  requests read right 0.6867  act 1.0000
+      anchor 37/37 · arrow 10/10 · axis 9/9 +1 · color 98/98 · count 14/14 · desc2:color 0/9 · desc2:recency 0/2 +1 · desc2:shape 1/13 · desc:color 17/46 +3 · desc:notColor 0/19 · desc:quantifier 36/42 · desc:recency 3/3 +2 · desc:shape 87/97 · fill:anchor 53/53 +2 · fill:from 75/85 +3 · fill:target 103/104 +1 · fill:to 75/77 · from 50/50 · label 26/26 · name 27/28 · notColor 1/1 · pairing 2/11 · position 51/81 · shape 92/94 · size 24/24 · style 24/24 · target 62/63 · to 54/54
+      name-roles per filler kind (kind read right / value read right / gold): description 106/41/115 (35.7%) · written 200/200/204 (98.0%)  ->  description accuracy 41/115
+  new_identities         n=  300  requests read right 0.7400  act 0.9900
+      anchor 23/24 +1 · arrow 6/8 +1 · axis 5/5 · color 75/75 · count 3/3 · desc2:color 0/2 · desc2:shape 0/3 · desc:color 8/37 · desc:notColor 1/5 · desc:quantifier 33/47 · desc:recency 3/3 · desc:shape 71/82 · direction 6/6 · distance 4/4 · fill:anchor 39/39 · fill:from 47/65 +1 · fill:target 136/143 +13 · fill:to 39/40 · from 36/40 · implied:scale 0/0 +8 · label 16/16 · layout 11/11 · name 24/25 · notColor 0/1 · pairing 3/16 · position 36/58 · property 9/9 · shape 65/70 +1 · size 23/23 · style 13/13 · target 99/99 +5 · to 31/31
+      name-roles per filler kind (kind read right / value read right / gold): description 70/35/93 (37.6%) · written 191/189/194 (97.4%)  ->  description accuracy 35/93
+  sample1000             n= 4858  requests read right 0.9792  act 0.9998
+      anchor 850/850 · arrow 152/158 +2 · axis 68/72 · color 1194/1199 · comparison 79/79 · count 54/54 · desc:color 12/18 +1 · desc:notColor 4/13 · desc:quantifier 46/52 +2 · desc:recency 34/36 +2 · desc:shape 52/62 +1 · direction 34/34 +3 · distance 34/34 · fill:anchor 908/915 +3 · fill:from 935/944 · fill:target 2784/2805 +1 · fill:to 656/660 +1 · from 878/878 · implied:scale 21/21 · kind 36/36 · label 110/110 · layout 102/102 · name 198/198 · notColor 45/54 · pairing 252/252 · position 901/914 · property 49/49 · shape 719/723 +1 · size 503/506 · style 136/139 · superlative 359/359 · target 2484/2484 · to 605/605
+      name-roles per filler kind (kind read right / value read right / gold): context 387/387/414 (93.5%) · description 90/69/101 (68.3%) · written 4806/4806/4809 (99.9%)  ->  description accuracy 69/101
+  seen                   n=  300  requests read right 0.8000  act 0.9967
+      anchor 32/33 · arrow 5/5 · axis 5/5 · color 73/74 · count 9/9 · desc2:color 0/2 · desc2:recency 0/0 +1 · desc2:shape 0/3 · desc:color 11/34 +2 · desc:notColor 0/2 · desc:quantifier 20/28 · desc:recency 2/3 · desc:shape 59/63 · direction 10/10 · distance 9/9 · fill:anchor 39/41 · fill:from 41/47 +3 · fill:target 163/170 +12 · fill:to 34/35 +1 · from 32/33 · implied:scale 0/0 +5 · label 15/15 · layout 7/7 · name 22/22 · notColor 0/1 · pairing 3/8 · position 35/55 · property 8/8 · shape 60/61 · size 16/16 · style 7/7 · target 125/129 +1 · to 26/26
+      name-roles per filler kind (kind read right / value read right / gold): description 59/33/72 (45.8%) · written 218/215/221 (97.3%)  ->  description accuracy 33/72
+  cut train: n 24698, spans gold 54579, spans predicted 54728, exact 54219, precision 0.9907, recall 0.9934, f1 0.9920, word accuracy 0.9987
+  cut eval_sample1000: n 1000, spans gold 4856, spans predicted 4883, exact 4810, precision 0.9851, recall 0.9905, f1 0.9878, word accuracy 0.9983
+/home/skutner/browserLLM/diagram-vss-demo/training/neural/finetune_roles.py:229: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(model, (x["input_ids"], x["attention_mask"]), os.path.join(ox, "model.onnx"), dynamo=False, opset_version=14,
+/home/skutner/.cache/diagram-vss-modernbert/venv/lib/python3.12/site-packages/transformers/models/distilbert/modeling_distilbert.py:215: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  mask, torch.tensor(torch.finfo(scores.dtype).min)
+onnx fp32 vs torch: max |diff| token 4.77e-06, seq 1.53e-05, cut 6.44e-06
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+differs: "move it there" {"act":["move","move"],"classes":[{"position":"between","fill:anchor":"context","fill:target":"context"},{"position":"between","fill:target":"context"}],"tags":["O O O","O O O"],"ids":true}
+node makeReader q8 vs torch on 50 requests: word pieces 50/50, act 50/50, classes 49/50, tags 50/50 (35 tags, 41 class keys)
+node cut() vs torch on 20 whole messages: spans identical 19/20
+{"ids":"50/50","act":"50/50","classes":"49/50","tags":"50/50","cut":"19/20"} 
+
+wrote /home/skutner/.cache/diagram-vss-modernbert/arms/SOP-F0-s0/export/sop-bert-F0-s0 (68.0 MB q8); README.md inside
+training exit 0
+end 2026-11-06 02:56:24

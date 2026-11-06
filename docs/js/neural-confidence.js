@@ -57,20 +57,22 @@ export function signals(result, si) {
   const wordsOfSpan = (s) => ws.map((w, i) => i).filter((i) => ws[i].start >= s.start && ws[i].end <= s.end);
   const vp = [], vm = [], np = [], fp = [], fm = [], tp = [], tm = [], dp = [], dm = [];
   const low = { val: null, none: null, fill: null, tag: null, desc: null }, lower = (slot, p, x) => { if (!low[slot] || p < low[slot].p) low[slot] = Object.assign({ p }, x); };
-  let ctx = 0, nRoles = 0;
+  let ctx = 0, nRoles = 0; const drawn = [];
   for (const k of keys) {
     const r = a.keys[k];
-    const cls = clsIdx[k] != null ? headOf(k) : null;
+    // the value head of this key: its class head, or the head for a value the request does not write (implied:<key>, only in a model built with it), read the same way
+    const vk = clsIdx[k] != null ? k : clsIdx["implied:" + k] != null ? "implied:" + k : null, cls = vk ? headOf(vk) : null;
     if (cls) {
       const pr = softmax(cls), bi = argmax(pr), [x1, x2] = top2(pr);
-      if (bi === 0) { np.push(pr[0]); lower("none", pr[0], { key: k }); } else { vp.push(pr[bi]); vm.push(x1 - x2); lower("val", pr[bi], { key: k, value: RD.classes[clsIdx[k]][1][bi] }); }
+      if (bi === 0) { np.push(pr[0]); lower("none", pr[0], { key: k }); } else { vp.push(pr[bi]); vm.push(x1 - x2); lower("val", pr[bi], { key: k, value: RD.classes[clsIdx[vk]][1][bi] }); }
     }
     const fk = "fill:" + k;
     let fl = null;
     if (clsIdx[fk] != null) { fl = headOf(fk); const pr = softmax(fl), bi = argmax(pr), [x1, x2] = top2(pr); fp.push(pr[bi]); fm.push(x1 - x2); lower("fill", pr[bi], { key: k, fill: RD.classes[clsIdx[fk]][1][bi], value: r ? show(r.value) : "" }); }
     if (!r || r.value == null) continue;
     nRoles++;
-    if (cls) { /* a value head: in the minimum of the probabilities only */ }
+    if (clsIdx[k] != null || r.implied) { /* a value head: in the minimum of the probabilities only (a number read from tags with an implied head beside it goes on to the tags) */ }
+    else if (r.drawing) drawn.push(k);   // answered by the second read (arm M4): its own signals below
     else if (r.fill === "context") { ctx++; (detail.ctx || (detail.ctx = [])).push({ key: k, value: show(r.value) }); }
     else if (r.fill === "description") {
       for (const k2 of (r.descPre === "desc2:" ? RD.desc2_keys : RD.desc_keys) || []) { const dl = headOf((r.descPre || "desc:") + k2), pr = softmax(dl), bi = argmax(pr); if (bi !== 0 && r.span.includes(k2 + "=")) { dp.push(pr[bi]); const [x1, x2] = top2(pr); dm.push(x1 - x2); lower("desc", pr[bi], { key: k, desc: r.span }); } }
@@ -80,6 +82,19 @@ export function signals(result, si) {
     }
   }
   const mn = (a2) => (a2.length ? Math.min(...a2) : null);
+  /* the second read (docs/js/neural.js, arm M4): the tags on the drawing's names that answered a role, their lowest probability and margin; how many
+     roles it answered and was asked for; how many lines of the drawing its cap left out. Every request of a reading that had the drawing carries these
+     keys (null / 0 when the request had no second read), so that a fit can read them (training/neural/calibrate_modernbert.mjs DRAW_NAMES); a model or a
+     caller without the drawing gets none of them. */
+  if (J.drawing) {
+    const D = a.drawing && a.drawing.read && a.drawing.read.logits ? a.drawing : null, dp2 = [], dm2 = [];
+    if (D) { const dws = wordsOf(D.text);
+      for (const k of drawn) for (const s of (D.found[k] && D.found[k].spans) || []) dws.forEach((w, i) => {
+        if (w.start < s.start || w.end > s.end || !D.read.logits.tok[i]) return;
+        const q = softmax(D.read.logits.tok[i]), [x1, x2] = top2(q); dp2.push(q[argmax(q)]); dm2.push(x1 - x2); lower("draw", q[argmax(q)], { key: k, word: w.w });
+      }); }
+    f.draw_tag_p_min = mn(dp2); f.draw_tag_margin_min = mn(dm2); f.draw_roles = drawn.length; f.draw_roles_asked = D ? D.keys.length : 0; f.draw_lines_cut = D ? D.dropped : 0;
+  }
   f.val_p_min = mn(vp); f.val_margin_min = mn(vm); f.none_p_min = mn(np);
   f.fill_p_min = mn(fp); f.fill_margin_min = mn(fm); f.ctx_fill = ctx;
   f.tag_p_min = mn(tp); f.tag_margin_min = mn(tm);

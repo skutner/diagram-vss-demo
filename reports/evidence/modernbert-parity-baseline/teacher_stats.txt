@@ -1,0 +1,5 @@
+turns 1139
+a created shape named with a word the message does not hold: gpt-6.1-sol 75 turns, Opus 5.5 0 turns
+more non-mention wires than Opus: gpt-6.1-sol 45 turns; repair records on gpt-6.1-sol turns: 80; Opus changed after its first pass: 9
+Opus turns with a name the message does not write: 34; the names the previous turn touched (ctx.last) hold all of them on 11, at least one on 15
+Opus values not written in digits in the message: {"count":34,"scale":11,"distance":14} scale values: {"1.25":5,"0.67":5,"0.8":1}

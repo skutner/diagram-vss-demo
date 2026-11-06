@@ -1,0 +1,77 @@
+{
+ "messages": 7,
+ "identical": 5,
+ "identical_share": 0.7142857142857143,
+ "shared_tokens": 920,
+ "delta_lp_p99": 0.12248080968856812,
+ "delta_lp_max": 0.48854827880859375,
+ "identical_outputs_delta_lp_max": 0.7223607301698394,
+ "divergences": 2,
+ "divergences_not_near_tie": 1,
+ "rows": [
+  {
+   "id": "col-0001",
+   "identical": false,
+   "shared_tokens": 63,
+   "native_tokens": 85,
+   "browser_tokens": 176,
+   "divergence_margin_nats": 0.060211181640625
+  },
+  {
+   "id": "col-0002",
+   "identical": true,
+   "shared_tokens": 50,
+   "native_tokens": 50,
+   "browser_tokens": 50,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "col-0003",
+   "identical": true,
+   "shared_tokens": 73,
+   "native_tokens": 73,
+   "browser_tokens": 73,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "col-0004",
+   "identical": true,
+   "shared_tokens": 76,
+   "native_tokens": 76,
+   "browser_tokens": 76,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "col-0005",
+   "identical": true,
+   "shared_tokens": 72,
+   "native_tokens": 72,
+   "browser_tokens": 72,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "col-0006",
+   "identical": true,
+   "shared_tokens": 547,
+   "native_tokens": 557,
+   "browser_tokens": 558,
+   "divergence_margin_nats": 0.2632579207420349
+  },
+  {
+   "id": "col-0007",
+   "identical": false,
+   "shared_tokens": 39,
+   "native_tokens": 105,
+   "browser_tokens": 49,
+   "divergence_margin_nats": 0.36844444274902344
+  }
+ ],
+ "gate": "FAIL",
+ "reasons": [
+  "only 7 messages (need 30)",
+  "identical outputs 71.4% (need 90%)",
+  "p99 |delta logprob| 0.12248080968856812 (need <= 0.02)",
+  "on identical outputs a token log-probability differs by 0.7223607301698394 (need <= 0.02, which bounds every request score)",
+  "1 divergences not at a near tie (or no margin recorded)"
+ ]
+}

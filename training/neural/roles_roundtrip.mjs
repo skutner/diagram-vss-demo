@@ -7,6 +7,7 @@
 //   node training/neural/roles_roundtrip.mjs <reader.json> <messages.jsonl> <out.jsonl> [<tokenizer folder, default docs/model/neural/sop-bert>]
 // messages.jsonl (written by roles_roundtrip.py): {id, text, names, wires (gold, non-pending), cut: [B/I/O per word], words,
 //   rows: [{text, words, tags, act, ct: [class target per class head], wi: gold wire index}]}
+// IMPLIED_SCALE=1 (make_roles.py): `scale` is compared as well, by its number and on either side; bench-canon.js, which skips it, stays as it is.
 // out.jsonl: {id, gold: [{o: right|wrong|missing, miss: [[key, got, want]], got}], extra: [{act, got, src}], units, unitsNoRow, wordsDiffer}
 import { readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -35,6 +36,8 @@ R.max_length = R.max_length || 128;
 const nA = R.acts.length, nT = R.tags.length, nC = R.classes.reduce((s, [, v]) => s + v.length, 0), offs = [];
 { let o = nA; for (const [, v] of R.classes) { offs.push(o); o += v.length; } }
 const HI = 20;   // the one-hot logit
+const CMP_SCALE = process.env.IMPLIED_SCALE === "1";
+const scaleOf = (a) => (a && a.scale != null ? +a.scale : null);
 
 // makeReader's prep(): the position of each word's first word piece (the same loop, the same limit)
 function firsts(text, limit) {
@@ -120,6 +123,7 @@ for (const r of msgs) {
   for (const [i, j] of pairs) {
     usedP.add(i);
     const miss = Object.entries(gold[j].want).filter(([k, v]) => (mains[i].got[k] ?? "∅") !== v).map(([k, v]) => [k, mains[i].got[k] ?? "∅", v]);
+    if (CMP_SCALE) { const g = scaleOf(mains[i].n.args), w = scaleOf(r.wires[j].args); if (g !== w) miss.push(["scale", g == null ? "∅" : String(g), w == null ? "∅" : String(w)]); }
     const extraKeys = Object.keys(mains[i].got).filter((k) => !(k in gold[j].want));   // produced keys the gold does not have (not scored; reported)
     G[j] = { o: miss.length ? "wrong" : "right", miss, got: mains[i].got, extraKeys };
   }

@@ -1,0 +1,138 @@
+{
+ "writer:gpt-6.1-sol": {
+  "messages": 300,
+  "requested": 426,
+  "right": 291,
+  "wrong": 103,
+  "extras": 44,
+  "right_share": 0.683099
+ },
+ "writer:claude-opus-5-5": {
+  "messages": 310,
+  "requested": 374,
+  "right": 293,
+  "wrong": 38,
+  "extras": 19,
+  "right_share": 0.783422
+ },
+ "kind:ambiguous": {
+  "messages": 22,
+  "requested": 12,
+  "right": 10,
+  "wrong": 0,
+  "extras": 0,
+  "right_share": 0.833333
+ },
+ "kind:complaint": {
+  "messages": 34,
+  "requested": 43,
+  "right": 35,
+  "wrong": 5,
+  "extras": 4,
+  "right_share": 0.813953
+ },
+ "kind:dictated": {
+  "messages": 23,
+  "requested": 48,
+  "right": 32,
+  "wrong": 10,
+  "extras": 6,
+  "right_share": 0.666667
+ },
+ "kind:fragment": {
+  "messages": 18,
+  "requested": 5,
+  "right": 3,
+  "wrong": 1,
+  "extras": 2,
+  "right_share": 0.6
+ },
+ "kind:indirect": {
+  "messages": 35,
+  "requested": 15,
+  "right": 8,
+  "wrong": 3,
+  "extras": 6,
+  "right_share": 0.533333
+ },
+ "kind:long": {
+  "messages": 43,
+  "requested": 205,
+  "right": 140,
+  "wrong": 48,
+  "extras": 21,
+  "right_share": 0.682927
+ },
+ "kind:nothing_to_do": {
+  "messages": 27,
+  "requested": 0,
+  "right": 0,
+  "wrong": 0,
+  "extras": 0,
+  "right_share": null
+ },
+ "kind:paraphrase": {
+  "messages": 125,
+  "requested": 135,
+  "right": 113,
+  "wrong": 13,
+  "extras": 10,
+  "right_share": 0.837037
+ },
+ "kind:reference": {
+  "messages": 38,
+  "requested": 40,
+  "right": 28,
+  "wrong": 8,
+  "extras": 4,
+  "right_share": 0.7
+ },
+ "kind:self_correction": {
+  "messages": 30,
+  "requested": 39,
+  "right": 31,
+  "wrong": 3,
+  "extras": 1,
+  "right_share": 0.794872
+ },
+ "kind:session": {
+  "messages": 139,
+  "requested": 155,
+  "right": 105,
+  "wrong": 39,
+  "extras": 6,
+  "right_share": 0.677419
+ },
+ "kind:short": {
+  "messages": 30,
+  "requested": 28,
+  "right": 25,
+  "wrong": 2,
+  "extras": 0,
+  "right_share": 0.892857
+ },
+ "kind:translated": {
+  "messages": 21,
+  "requested": 39,
+  "right": 30,
+  "wrong": 4,
+  "extras": 1,
+  "right_share": 0.769231
+ },
+ "kind:typos": {
+  "messages": 25,
+  "requested": 36,
+  "right": 24,
+  "wrong": 5,
+  "extras": 2,
+  "right_share": 0.666667
+ },
+ "all": {
+  "messages": 610,
+  "requested": 800,
+  "right": 584,
+  "wrong": 141,
+  "extras": 63,
+  "right_share": 0.73
+ }
+}

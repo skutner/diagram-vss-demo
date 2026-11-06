@@ -1,0 +1,81 @@
+# M4: collect_set gives the reader the drawing (inert for a model without reader.drawing) and refuses a message whose id is in DIR/canvas/canvas_train.jsonl. Base training/neural/parity/collect_set.mjs sha256 a83cfa00e0dc54b8b86646b0d531ee1d41b9851ebb98935085e0b037867bc387. Changes the code hashes of a collection's manifest: apply between collections.
+--- a/training/neural/parity/collect_set.mjs
++++ b/training/neural/parity/collect_set.mjs
+@@ -9,6 +9,9 @@
+ // train.jsonl rows (a trigger is seen when its words occur one after the other in a training request: a fallback, said in the manifest).
+ // Context of a read: names = the row's names and group names; last = [] for a single message; in a session (rows with a session, in file
+ // order) what the gold of the previous step touched, the gold played on the drawing of the first step's setup (scene_readers.mjs).
++// The drawing (ctx.drawing, read only by a model whose reader has `drawing`, arm M4): a session's gold drawing with the source text of the shapes its
++// steps made (drawing-lines.js noteMessage), a row's setup, else the row's names and groups alone (canvas_lib.mjs namesState).
++// A request the second read marks drawingCut (a shape it means may be in the part of the drawing the cap left out) is recorded as truncated: held, as neural.js gateReader.
+ // One process, one message at a time, a progress line every 100 messages. OUT.jsonl is appended record by record; OUT.jsonl.manifest.json
+ // binds reader, model files, sets, code and runtime. Run it again with the same arguments after a stop: it keeps the complete records,
+ // repairs a record cut in half by the stop (and says so), refuses a changed model, set, data or code, and checks the final file. A message
+@@ -25,9 +28,11 @@
+ import { EXECUTION_POLICY } from '../modernbert_parity.mjs';
+ import { loadSets, contextNames } from './sets.mjs';
+ import { buildRecord, seenFunction, ngramInventory, startSystem, playGold, refsOf, RECORD_SCHEMA } from './arm_lib.mjs';
++import { namesState } from './canvas_lib.mjs';
++const DL = createRequire(import.meta.url)('../../../docs/js/drawing-lines.js');
+ 
+ const CODE = ['training/neural/parity/collect_set.mjs', 'training/neural/parity/arm_lib.mjs', 'training/neural/parity/sets.mjs', 'training/neural/parity/parity_lib.mjs',
+-  'training/neural/calibrate_modernbert.mjs', 'docs/js/neural.js', 'docs/js/neural-confidence.js', 'docs/js/logic.js', 'docs/js/bench-canon.js', 'docs/js/vss-composer.js', 'training/sketch/layer_common.mjs'];
++  'training/neural/calibrate_modernbert.mjs', 'docs/js/neural.js', 'docs/js/neural-confidence.js', 'docs/js/drawing-lines.js', 'training/neural/parity/canvas_lib.mjs', 'docs/js/logic.js', 'docs/js/bench-canon.js', 'docs/js/vss-composer.js', 'training/sketch/layer_common.mjs'];
+ const READERS = ['modernbert', 'sop', 'rules'];
+ 
+ export function filesOf(dir) {
+@@ -64,6 +69,8 @@
+     if (!existsSync(p)) { if (f === 'train.jsonl') throw new Error(p + ' is missing'); continue; }
+     for (const l of readFileSync(p, 'utf8').split('\n')) { if (!l.trim()) continue; const r = JSON.parse(l); if (r.id != null) ids.add(String(r.id)); if (typeof r.text === 'string') texts.add(norm(r.text)); }
+   }
++  const canvas = resolve(dir, 'canvas/canvas_train.jsonl');   // arm M4's second-read rows (build_canvas_rows.mjs): id "<message id>#<wire>"
++  if (existsSync(canvas)) for (const l of readFileSync(canvas, 'utf8').split('\n')) if (l.trim()) ids.add(String(JSON.parse(l).id).replace(/#\d+$/, ''));
+   const byId = items.filter(it => ids.has(it.id)).map(it => it.id), byText = items.filter(it => texts.has(norm(it.text))).map(it => it.id);
+   if (byId.length) throw new Error(`${byId.length} evaluated messages have the id of a training row (${byId.slice(0, 5).join(', ')}...): not an evaluation of this arm`);
+   if (byText.length && !allowText) throw new Error(`${byText.length} evaluated messages have the text of a training row (${byText.slice(0, 5).join(', ')}...). Not an evaluation set for this arm; --allow-text-overlap accepts it and marks the records`);
+@@ -116,7 +123,7 @@
+     if (f && Object.values(f).some(v => v != null && !Number.isFinite(v))) f = null;   // never executed at a threshold: fail closed
+     const refs = [...new Set(Object.values(n.args || {}).flatMap(refsOf))];
+     return { node: n, mentions: refs.map(id => byId.get(id)).filter(x => x && x.type === 'mention'), span: unitOf(n, text), src: n.unit?.src ?? n.src ?? '', f, act: f ? sig.act : null,
+-      truncated: !!result.joint.reads[si]?.truncated, wireId: n.unit.id, dependencies: [...new Set(refs.map(id => owner.get(id)).filter(id => id && id !== n.unit.id))] };
++      truncated: !!result.joint.reads[si]?.truncated || !!n.unit?.drawingCut, wireId: n.unit.id, dependencies: [...new Set(refs.map(id => owner.get(id)).filter(id => id && id !== n.unit.id))] };
+   });
+   return { mains, allNodes: nodes, unread: result.unread || [], cutInfo: m.cutInfo(text) };
+ }
+@@ -165,14 +172,14 @@
+       else { N = await loadNeural(folder); manifest.runtime = N.runtime; }
+     }
+     atomicJSON(manifestPath, manifest);
+-    let count = 0, session = null, G = null, last = [], namesMismatch = [], goldErrors = 0;
++    let count = 0, session = null, G = null, last = [], namesMismatch = [], goldErrors = 0, src = null;
+     const t0 = Date.now();
+     try {
+       for (const it of items) {
+         // the gold drawing of a session, step by step (also for the steps already done: the replay is cheap and the state must be there)
+         if (it.session != null) {
+-          if (it.session !== session) { session = it.session; G = startSystem(it.setup); last = []; goldErrors += G.errors.length; }
+-        } else { session = null; G = null; last = []; }
++          if (it.session !== session) { session = it.session; G = startSystem(it.setup); last = []; goldErrors += G.errors.length; src = new Map(); }
++        } else { session = null; G = null; last = []; src = null; }
+         const names = contextNames(it);
+         if (G) {
+           const st = G.s.world.state, eng = st.shapes.map(s => s.name).concat((st.groups || []).map(g => g.name));
+@@ -186,7 +193,8 @@
+               if (S) r.world.state = cp(S.world.state);
+               run = { reader, ...runOfRules(r.formalize(it.text, { names: names.slice(), last: last.slice() }).nodes, it.text) };
+             } else {
+-              const result = await N.neural.formalize(it.text, { names: names.slice(), last: last.slice() }, { update: nextContext, signals: true });
++              const drawing = G ? { state: cp(G.s.world.state), sources: new Map(src) } : it.setup ? { state: startSystem(it.setup).s.world.state, sources: new Map() } : { state: namesState(it), sources: new Map() };
++              const result = await N.neural.formalize(it.text, { names: names.slice(), last: last.slice(), drawing }, { update: nextContext, signals: true });
+               run = { reader, cut: 'own', ...runOfNeural(result, N.m, it.text) };
+             }
+           } catch (e) { error = String(e && e.message || e); run = { reader, cut: reader === 'rules' ? 'rules' : 'own', mains: [], allNodes: [], unread: [], cutInfo: null, error }; failed.push(it.id); console.error(`FAILED ${it.id}: ${error}`); }
+@@ -194,7 +202,7 @@
+           if (overlapIds.has(it.id)) rec.train_text_overlap = true;
+           appendFileSync(out, JSON.stringify(rec) + '\n'); doneIds.add(it.id);
+         }
+-        if (G) { const res = playGold(G.s, it.wires); goldErrors += (res.errors || []).length; last = touched(G.s, res); }
++        if (G) { const before = G.s.world.state.shapes.map(s => s.name), res = playGold(G.s, it.wires); goldErrors += (res.errors || []).length; last = touched(G.s, res); DL.noteMessage(src, before, G.s.world.state, it.text, res.steps); }
+         if (++count % 100 === 0) console.error(`${count} of ${items.length} messages (${reader}${folder ? ', ' + basename(folder) : ''}), ${((Date.now() - t0) / 1000).toFixed(0)} s`);
+       }
+     } finally { if (N) await N.dispose(); }

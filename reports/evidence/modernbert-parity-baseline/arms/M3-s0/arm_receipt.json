@@ -1,0 +1,321 @@
+{
+  "schema": "arm-export-receipt-v1",
+  "passed": false,
+  "rule": "passed = PyTorch and Node decode every text the same; the runtime checks before it have already held",
+  "weights": {
+    "sha256": "975eaddd8eb2a564790100d57b69b8d227a5e6dac1852872688c4c61786d307d",
+    "epoch": 8,
+    "update": 15352,
+    "total": 15352,
+    "full_schedule": true,
+    "max_updates": 0,
+    "source_file": "checkpoint.pt",
+    "source_changes_since_training": []
+  },
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "torch_vs_node": {
+    "texts": 20,
+    "counts": {
+      "act": {
+        "agree": 20,
+        "total": 20
+      },
+      "classes": {
+        "agree": 937,
+        "total": 940
+      },
+      "tags": {
+        "agree": 1957,
+        "total": 1959
+      },
+      "cuts": {
+        "agree": 20,
+        "total": 20
+      },
+      "pieces": {
+        "agree": 20,
+        "total": 20
+      }
+    },
+    "differences": [
+      {
+        "text": "Desk setup. A new shape: huge teal square, named Mat, at the bottom. Make the La",
+        "chars": 142,
+        "differences": [
+          {
+            "key": "class:position",
+            "torch": null,
+            "node": "left",
+            "margin": 0.2811
+          },
+          {
+            "key": "class:size",
+            "torch": null,
+            "node": "huge",
+            "margin": 0.9277
+          }
+        ]
+      },
+      {
+        "text": "Caf\u00e9 na\u00efve \u6771\u4eac \ud83d\ude00 e\u0301 _ \uff11\uff12",
+        "chars": 23,
+        "differences": [
+          {
+            "key": "tag:3",
+            "torch": "B-label",
+            "node": "I-label",
+            "margin": 0.3581
+          },
+          {
+            "key": "tag:7",
+            "torch": "O",
+            "node": "I-label",
+            "margin": 0.9325
+          }
+        ]
+      },
+      {
+        "text": "connect A to B; connect A to B; connect A to B; connect A to B; connect A to B; ",
+        "chars": 1280,
+        "differences": [
+          {
+            "key": "class:fill:from",
+            "torch": null,
+            "node": "written",
+            "margin": 0.3227
+          }
+        ]
+      }
+    ],
+    "per_text": [
+      {
+        "chars": 18,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 22,
+        "pieces": 7,
+        "words": 4,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 12,
+        "words": 6,
+        "agree": true
+      },
+      {
+        "chars": 51,
+        "pieces": 15,
+        "words": 13,
+        "agree": true
+      },
+      {
+        "chars": 66,
+        "pieces": 22,
+        "words": 17,
+        "agree": true
+      },
+      {
+        "chars": 91,
+        "pieces": 20,
+        "words": 18,
+        "agree": true
+      },
+      {
+        "chars": 142,
+        "pieces": 44,
+        "words": 37,
+        "agree": false
+      },
+      {
+        "chars": 221,
+        "pieces": 56,
+        "words": 46,
+        "agree": true
+      },
+      {
+        "chars": 298,
+        "pieces": 73,
+        "words": 66,
+        "agree": true
+      },
+      {
+        "chars": 583,
+        "pieces": 160,
+        "words": 142,
+        "agree": true
+      },
+      {
+        "chars": 1200,
+        "pieces": 302,
+        "words": 267,
+        "agree": true
+      },
+      {
+        "chars": 0,
+        "pieces": 2,
+        "words": 0,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 10,
+        "words": 8,
+        "agree": true
+      },
+      {
+        "chars": 23,
+        "pieces": 22,
+        "words": 8,
+        "agree": false
+      },
+      {
+        "chars": 1280,
+        "pieces": 402,
+        "words": 400,
+        "agree": false
+      },
+      {
+        "chars": 3900,
+        "pieces": 512,
+        "words": 900,
+        "agree": true
+      },
+      {
+        "chars": 14,
+        "pieces": 9,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 17,
+        "pieces": 11,
+        "words": 9,
+        "agree": true
+      },
+      {
+        "chars": 13,
+        "pieces": 5,
+        "words": 3,
+        "agree": true
+      },
+      {
+        "chars": 15,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      }
+    ]
+  },
+  "python_ort_vs_node": {
+    "fixtures": 41,
+    "singles": 39,
+    "batches": 2,
+    "ids": true,
+    "outputs": true,
+    "decoded": true,
+    "cuts": true,
+    "readMany": true,
+    "max_abs": [
+      0.00011110305786132812,
+      4.863739013671875e-05,
+      3.4689903259277344e-05
+    ]
+  },
+  "float_vs_torch_max_abs": [
+    9.059906005859375e-05,
+    3.814697265625e-05,
+    2.8848648071289062e-05
+  ],
+  "sdpa_vs_eager_max_abs": [
+    2.193450927734375e-05,
+    2.288818359375e-05,
+    1.52587890625e-05
+  ],
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.001
+  },
+  "cases_where_q8_decodes_differently_from_float": [
+    "single-03",
+    "single-05",
+    "single-12",
+    "batch-message-512",
+    "request-view-of-long-message",
+    "extra-06-128",
+    "extra-06-512"
+  ],
+  "conversion": {
+    "blocks": 93,
+    "quantizers": 91
+  },
+  "float_graph_files": {
+    "model_float.onnx": {
+      "sha256": "d4d63ec5d0a95fe7368b90abd5aca1af83a0aaa5cddbcab08847422274db8006",
+      "bytes": 600799636
+    }
+  },
+  "shards": [
+    "model_quantized.onnx_data",
+    "model_quantized.onnx_data_1"
+  ],
+  "files": {
+    "config.json": {
+      "sha256": "442c3c09fa8156d58109bd2fbeda54a51f6dfe0d98d95078c6f39ea569fc7bb3",
+      "bytes": 581460
+    },
+    "conversion.json": {
+      "sha256": "4409d86da8fb63f156e3bd696245caff14fe3bf62eb9ec3a29553e544afaf73c",
+      "bytes": 64404
+    },
+    "export_parity.json": {
+      "sha256": "74ddb8b7819f1af9d7b52f562ec803bca1f896262bfc22e9a0350ca1f1a7e1f5",
+      "bytes": 423
+    },
+    "onnx/model_quantized.onnx": {
+      "sha256": "7b82bde233785fcbcb0469609e77084014d307822adfb64c5f6dade3536fd21d",
+      "bytes": 1490808
+    },
+    "onnx/model_quantized.onnx_data": {
+      "sha256": "a17aad62ecc37215b79916f9ef85a37ec1cb5fd7cddb1b0383d7c19d44332cf2",
+      "bytes": 93974468
+    },
+    "onnx/model_quantized.onnx_data_1": {
+      "sha256": "747167aaddb76739d6a0d3d551e98ed16f16c779633b64494d1d9e38e8587383",
+      "bytes": 56192256
+    },
+    "references.json": {
+      "sha256": "5ce7ff82b951d3d184a82368ac706c264c3ad42e655f71e1092cce4b7e489c26",
+      "bytes": 7645755
+    },
+    "special_tokens_map.json": {
+      "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "bytes": 694
+    },
+    "tokenizer.json": {
+      "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "bytes": 3583228
+    },
+    "tokenizer_config.json": {
+      "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "bytes": 20840
+    }
+  },
+  "source_changes_since_training": [],
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "python": "3.12.16",
+    "python_onnxruntime": "1.29.0"
+  }
+}

@@ -1,0 +1,4 @@
+reader rules, every request executed, teacher's drawing before each turn, 5 s
+all: 1139 turns; same as Opus or GPT: loose 675 = 59.3%, strict 658 = 57.8%; same as Opus: loose 58.6%
+held_out: 322 turns; same as Opus or GPT: loose 248 = 77.0%, strict 245 = 76.1%; same as Opus: loose 76.4%
+training_scene: 817 turns; same as Opus or GPT: loose 427 = 52.3%, strict 413 = 50.6%; same as Opus: loose 51.5%

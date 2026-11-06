@@ -1,0 +1,50 @@
+{"id":"tr-14-001","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"im making a dungeon for my dnd group. big gray square in the middle thats the entrance hall, write Entrance Hall on it"}
+{"id":"tr-14-002","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"then a smaller room to the right"}
+{"id":"tr-14-003","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"thats the armoury"}
+{"id":"tr-14-004","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"brown. armourys are brown idk"}
+{"id":"tr-14-005","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"another room above the hall, crypt, purple"}
+{"id":"tr-14-006","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"SKELETONS in the crypt!! 3 tiny white circles"}
+{"id":"tr-14-007","domain":"dnd dungeon map","kind":"self_correction","session":"tr-14-dungeon","text":"no wait theres 4 of us playing so 4 skeletons"}
+{"id":"tr-14-008","domain":"dnd dungeon map","kind":"complaint","session":"tr-14-dungeon","text":"they went on top of the word crypt, i cant read it"}
+{"id":"tr-14-009","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"hall goes to armoury. hall goes to crypt too"}
+{"id":"tr-14-010","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"the crypt one dotted tho cos its a secret door"}
+{"id":"tr-14-011","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"boss room!!! red, massive, top right corner"}
+{"id":"tr-14-012","domain":"dnd dungeon map","kind":"indirect","session":"tr-14-dungeon","text":"how do u even get to the boss from the armoury rn. u cant"}
+{"id":"tr-14-013","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"yellow star in there = treasure"}
+{"id":"tr-14-014","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"and a trap on the way to the armoury, lil orange triangle between it and the hall"}
+{"id":"tr-14-015","domain":"dnd dungeon map","kind":"session","session":"tr-14-dungeon","text":"how many rooms is that"}
+{"id":"tr-14-016","domain":"dnd dungeon map","kind":"reference","session":"tr-14-dungeon","text":"the first room looks boring tbh. make it darker or sth"}
+{"id":"tr-14-017","domain":"dnd dungeon map","kind":"nothing_to_do","session":"tr-14-dungeon","text":"can u roll a d20 for me lol"}
+{"id":"tr-14-018","domain":"dairy farm milking routine","kind":"dictated","session":"tr-14-milking","setup":"@c1 command action=create shape=rectangle name=Yard label=\"Collecting yard\" color=green size=large position=left","text":"okay so thats the collecting yard thats where they all stand of a morning next is the parlour put that to the right of it nice big blue one"}
+{"id":"tr-14-019","domain":"dairy farm milking routine","kind":"session","session":"tr-14-milking","text":"and they go from the yard into the parlour"}
+{"id":"tr-14-020","domain":"dairy farm milking routine","kind":"dictated","session":"tr-14-milking","text":"now in the parlour you do your teat dip first and then the cluster goes on so two little boxes inside it teat dip then cluster"}
+{"id":"tr-14-021","domain":"dairy farm milking routine","kind":"session","session":"tr-14-milking","text":"dip goes to cluster"}
+{"id":"tr-14-022","domain":"dairy farm milking routine","kind":"dictated","session":"tr-14-milking","text":"after the parlour they walk out through the foot bath so foot bath next along up at the top there"}
+{"id":"tr-14-023","domain":"dairy farm milking routine","kind":"dictated","session":"tr-14-milking","text":"and then that goes back to the field uh the top field not the bottom one call it top field"}
+{"id":"tr-14-024","domain":"dairy farm milking routine","kind":"dictated","session":"tr-14-milking","text":"get down fly get down sorry that wasn't for you"}
+{"id":"tr-14-025","domain":"dairy farm milking routine","kind":"dictated","session":"tr-14-milking","text":"right the milk goes a different way from the cows so from the cluster to the bulk tank and the bulk tank is a big white circle bottom right"}
+{"id":"tr-14-026","domain":"dairy farm milking routine","kind":"session","session":"tr-14-milking","text":"that line blue so you know its milk"}
+{"id":"tr-14-027","domain":"dairy farm milking routine","kind":"dictated","session":"tr-14-milking","text":"tanker comes twice a week right that next to the bulk tank"}
+{"id":"tr-14-028","domain":"dairy farm milking routine","kind":"self_correction","session":"tr-14-milking","text":"no sorry its every other day now he changed it in the spring so change that"}
+{"id":"tr-14-029","domain":"dairy farm milking routine","kind":"dictated","session":"tr-14-milking","text":"any cow with mastitis her milk doesn't go in the tank so a red one from the cluster to a dump bucket and you'll have to make the dump bucket somewhere near the bottom"}
+{"id":"tr-14-030","domain":"dairy farm milking routine","kind":"complaint","session":"tr-14-milking","text":"that foot bath is too close to the yard the way you've got it it looks like they go through it before they're milked and they don't"}
+{"id":"tr-14-031","domain":"dairy farm milking routine","kind":"session","session":"tr-14-milking","text":"sick pen off the foot bath small one"}
+{"id":"tr-14-032","domain":"dairy farm milking routine","kind":"session","session":"tr-14-milking","text":"whats going into the bulk tank just the one yeah"}
+{"id":"tr-14-033","domain":"dairy farm milking routine","kind":"dictated","session":"tr-14-milking","text":"stick morning milking at the top for the title and thats it the lad can follow that i think"}
+{"id":"tr-14-034","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"Good day. My daughter marries in June and it falls to me to make the plan of the tables. Please make on the top one long table for the spouses and the parents."}
+{"id":"tr-14-035","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"Under her put please five round tables, all of one size."}
+{"id":"tr-14-036","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"Give them the numbers from 1 until 5."}
+{"id":"tr-14-037","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"The long one must have written Young Couple and Parents."}
+{"id":"tr-14-038","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"Table 3 is the family of the groom, these sit together. Make her green so that I remember."}
+{"id":"tr-14-039","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"And the number 2 is of my sister. Now I see that she stays very near of the long table and the sister of my husband not, it will be a scandal. Change between them the 2 and the 4."}
+{"id":"tr-14-040","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"Also the musicians need a place. On the right, near the wall."}
+{"id":"tr-14-041","domain":"wedding seating plan","kind":"session","session":"tr-14-wedding","text":"Uncle Radu cannot stay near of the musicians because of the ear. In which table is he, it is the 5, is that not the closest?"}
+{"id":"tr-14-042","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"Then the 5 goes to the left and you bring the 1 in her place."}
+{"id":"tr-14-043","domain":"wedding seating plan","kind":"session","session":"tr-14-wedding","text":"A table for the children, more small, yellow, by the door."}
+{"id":"tr-14-044","domain":"wedding seating plan","kind":"complaint","session":"tr-14-wedding","text":"There is no door in the drawing, I did not tell you. The door is at the bottom left. You make there one small brown rectangle with the word Door and the table of the children you put beside."}
+{"id":"tr-14-045","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"From where the guests enter until the long table they must see a free way, for the entrance of the bride. It seems to me that the tables close it."}
+{"id":"tr-14-046","domain":"wedding seating plan","kind":"session","session":"tr-14-wedding","text":"How many round tables do we have now, with the one of the children?"}
+{"id":"tr-14-047","domain":"wedding seating plan","kind":"translated","session":"tr-14-wedding","text":"Write under the title of the drawing the date, 14 June."}
+{"id":"tr-14-048","domain":"wedding seating plan","kind":"session","session":"tr-14-wedding","text":"There is no title, you are right, excuse me. Make it: Maria and Andrei."}
+{"id":"tr-14-049","domain":"wedding seating plan","kind":"nothing_to_do","session":"tr-14-wedding","text":"How much should we give per person to the restaurant, do you know, in June the prices are bigger?"}
+{"id":"tr-14-050","domain":"wedding seating plan","kind":"nothing_to_do","session":"tr-14-wedding","text":"Thank you very much, you have much patience. I show it to my daughter tonight."}

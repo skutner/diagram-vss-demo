@@ -1,0 +1,263 @@
+{
+ "rows": 20,
+ "row_ids": [
+  "tr-01-001",
+  "tr-01-002",
+  "tr-01-003",
+  "tr-01-005",
+  "tr-01-007",
+  "tr-01-008",
+  "tr-01-009",
+  "tr-01-011",
+  "tr-01-012",
+  "tr-01-013",
+  "tr-01-015",
+  "tr-01-017",
+  "tr-01-018",
+  "tr-01-019",
+  "tr-01-021",
+  "tr-01-022",
+  "tr-01-023",
+  "tr-01-024",
+  "tr-01-025",
+  "tr-01-026"
+ ],
+ "tokens_per_row": [
+  131,
+  279,
+  125,
+  124,
+  167,
+  118,
+  134,
+  119,
+  284,
+  159,
+  198,
+  147,
+  109,
+  158,
+  204,
+  113,
+  131,
+  119,
+  144,
+  98
+ ],
+ "target_tokens_per_row": [
+  18,
+  49,
+  12,
+  21,
+  33,
+  12,
+  37,
+  17,
+  42,
+  12,
+  19,
+  37,
+  14,
+  16,
+  67,
+  13,
+  14,
+  13,
+  13,
+  15
+ ],
+ "settings": {
+  "r": 16,
+  "alpha": 32,
+  "lr": 0.0002,
+  "batch": 4,
+  "steps": 100,
+  "device": "cpu",
+  "threads": 6
+ },
+ "tokenization_differs_from_gguf": 0,
+ "lora_modules": 196,
+ "trainable_params": 10092544,
+ "loss_before": 4.914106559753418,
+ "train_seconds": 2500.2,
+ "seconds_per_update": 25.0,
+ "log": [
+  {
+   "step": 10,
+   "loss": 0.61478,
+   "elapsed": 108.9
+  },
+  {
+   "step": 20,
+   "loss": 0.15207,
+   "elapsed": 397.5
+  },
+  {
+   "step": 30,
+   "loss": 0.05085,
+   "elapsed": 733.2
+  },
+  {
+   "step": 40,
+   "loss": 0.00592,
+   "elapsed": 954.8
+  },
+  {
+   "step": 50,
+   "loss": 0.00662,
+   "elapsed": 1208.1
+  },
+  {
+   "step": 60,
+   "loss": 0.00135,
+   "elapsed": 1454.3
+  },
+  {
+   "step": 70,
+   "loss": 0.00142,
+   "elapsed": 1680.0
+  },
+  {
+   "step": 80,
+   "loss": 0.0007,
+   "elapsed": 2017.5
+  },
+  {
+   "step": 90,
+   "loss": 0.00042,
+   "elapsed": 2254.5
+  },
+  {
+   "step": 100,
+   "loss": 0.00046,
+   "elapsed": 2500.2
+  }
+ ],
+ "loss_after": 0.0003742709755897522,
+ "exact_rows": 20,
+ "passed": true,
+ "outputs": [
+  {
+   "id": "tr-01-001",
+   "equal": true,
+   "got": "[Walk-in] command action=create shape=rectangle color=blue name=Walk-in",
+   "want": "[Walk-in] command action=create shape=rectangle color=blue name=Walk-in"
+  },
+  {
+   "id": "tr-01-002",
+   "equal": true,
+   "got": "[stick] command action=move target=Fryer position=right\n[in the middle under everything] command action=move target=Pass position=bottom\n[should say] command action=label target=Salad label=\"Cold station\"",
+   "want": "[stick] command action=move target=Fryer position=right\n[in the middle under everything] command action=move target=Pass position=bottom\n[should say] command action=label target=Salad label=\"Cold station\""
+  },
+  {
+   "id": "tr-01-003",
+   "equal": true,
+   "got": "[bigger] command action=resize target=Salad",
+   "want": "[bigger] command action=resize target=Salad"
+  },
+  {
+   "id": "tr-01-005",
+   "equal": true,
+   "got": "[goes] command action=move target=Oven position=leftOf anchor=Grill",
+   "want": "[goes] command action=move target=Oven position=leftOf anchor=Grill"
+  },
+  {
+   "id": "tr-01-007",
+   "equal": true,
+   "got": "[add] command action=create shape=rectangle label=\"dish pit\" position=bottom\n[connect] command action=connect from=Bussing to=$new",
+   "want": "[add] command action=create shape=rectangle label=\"dish pit\" position=bottom\n[connect] command action=connect from=Bussing to=$new"
+  },
+  {
+   "id": "tr-01-008",
+   "equal": true,
+   "got": "[delete] command action=delete target=Dessert",
+   "want": "[delete] command action=delete target=Dessert"
+  },
+  {
+   "id": "tr-01-009",
+   "equal": true,
+   "got": "[same size as] command action=equalize target=Fridge property=size anchor=Freezer\n[puit] command action=arrange target=Fridge,Freezer layout=row",
+   "want": "[same size as] command action=equalize target=Fridge property=size anchor=Freezer\n[puit] command action=arrange target=Fridge,Freezer layout=row"
+  },
+  {
+   "id": "tr-01-011",
+   "equal": true,
+   "got": "[Depot to] command action=connect from=Depot to=Airport",
+   "want": "[Depot to] command action=connect from=Depot to=Airport"
+  },
+  {
+   "id": "tr-01-012",
+   "equal": true,
+   "got": "[take out] command action=delete target=Library\n[the arrow] command action=disconnect from=Depot to=Library\n[make] command action=set target=Depot color=red",
+   "want": "[take out] command action=delete target=Library\n[the arrow] command action=disconnect from=Depot to=Library\n[make] command action=set target=Depot color=red"
+  },
+  {
+   "id": "tr-01-013",
+   "equal": true,
+   "got": "[drops out] command action=delete target=Mill",
+   "want": "[drops out] command action=delete target=Mill"
+  },
+  {
+   "id": "tr-01-015",
+   "equal": true,
+   "got": "[why is there an arrow] command action=disconnect from=Mill to=Depot",
+   "want": "[why is there an arrow] command action=disconnect from=Mill to=Depot"
+  },
+  {
+   "id": "tr-01-017",
+   "equal": true,
+   "got": "[add] command action=create name=Bakery position=rightOf anchor=Harbor\n[draw] command action=connect from=Harbor to=$new arrow=none",
+   "want": "[add] command action=create name=Bakery position=rightOf anchor=Harbor\n[draw] command action=connect from=Harbor to=$new arrow=none"
+  },
+  {
+   "id": "tr-01-018",
+   "equal": true,
+   "got": "[make] command action=set target=Library color=teal",
+   "want": "[make] command action=set target=Library color=teal"
+  },
+  {
+   "id": "tr-01-019",
+   "equal": true,
+   "got": "[which stops go out of] question ask=neighbors target=Depot",
+   "want": "[which stops go out of] question ask=neighbors target=Depot"
+  },
+  {
+   "id": "tr-01-021",
+   "equal": true,
+   "got": "[go] command action=create name=drums position=top\n[me on guitar] command action=create name=guitar position=bottomLeft\n[bass] command action=create name=bass position=bottomRight\n[the singer] command action=create name=singer position=bottom\n[put] command action=create name=amps",
+   "want": "[go] command action=create name=drums position=top\n[me on guitar] command action=create name=guitar position=bottomLeft\n[bass] command action=create name=bass position=bottomRight\n[the singer] command action=create name=singer position=bottom\n[put] command action=create name=amps"
+  },
+  {
+   "id": "tr-01-022",
+   "equal": true,
+   "got": "[Add] command action=create name=keyboard position=left",
+   "want": "[Add] command action=create name=keyboard position=left"
+  },
+  {
+   "id": "tr-01-023",
+   "equal": true,
+   "got": "[go] command action=move target=Drums position=top",
+   "want": "[go] command action=move target=Drums position=top"
+  },
+  {
+   "id": "tr-01-024",
+   "equal": true,
+   "got": "[in front of] command action=toFront target=Monitor",
+   "want": "[in front of] command action=toFront target=Monitor"
+  },
+  {
+   "id": "tr-01-025",
+   "equal": true,
+   "got": "[swap] command action=swap target=Guitar,Bass",
+   "want": "[swap] command action=swap target=Guitar,Bass"
+  },
+  {
+   "id": "tr-01-026",
+   "equal": true,
+   "got": "[monitors] command action=create name=monitors count=4",
+   "want": "[monitors] command action=create name=monitors count=4"
+  }
+ ],
+ "peak_rss_gib": 8.41,
+ "wall_seconds": 2769.9
+}

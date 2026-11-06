@@ -1,0 +1,729 @@
+{
+ "sets": [
+  "nl_a"
+ ],
+ "messages": 610,
+ "losses": {
+  "json": {
+   "blocked: it has an anchor without a position": 6,
+   "blocked: anchor: “Internal” is neither a name on the drawing": 1,
+   "blocked: it uses what “need a printer in there” would make, ": 1,
+   "blocked: name “FrontDesk” is not in the words of the request": 1,
+   "blocked: it uses what “add the reception pc on left of switc": 1,
+   "description key label": 39,
+   "description key layer": 2,
+   "blocked: label “security scan?” is not in the words of the r": 1,
+   "blocked: name “Tests” is not in the words of the request": 1,
+   "blocked: label “cancellation path” is not in the words of th": 1,
+   "key scale not in the contract for resize": 13,
+   "blocked: label “product card” is not in the words of the req": 1,
+   "blocked: label “phone number” is not in the words of the req": 1,
+   "blocked: label “planned admissions” is not in the words of t": 1,
+   "blocked: label “damaged returns” is not in the words of the ": 1,
+   "key object not in the contract for create": 10,
+   "blocked: from: “mouth” is neither a name on the drawing nor ": 1,
+   "blocked: label “Viktor 1946” is not in the words of the requ": 1,
+   "blocked: label “serves four” is not in the words of the requ": 1,
+   "key position not in the contract for duplicate": 9,
+   "blocked: target: “herbs” is neither a name on the drawing no": 1,
+   "description key anchor": 2,
+   "key label not in the contract for count": 2,
+   "blocked: target: “archive” is neither a name on the drawing ": 1,
+   "key target not in the contract for disconnect": 1,
+   "blocked: label “rejected” is not in the words of the request": 1,
+   "blocked: label “Refunds over £500 need Jess's approval” is n": 1,
+   "description key size": 3,
+   "blocked: label “kids' entertainer from 3 until 5” is not in ": 1,
+   "blocked: label “12:30 Lunch” is not in the words of the requ": 1,
+   "blocked: label “1:30 Workshop” is not in the words of the re": 1,
+   "blocked: label “10.15 Keynote” is not in the words of the re": 1,
+   "blocked: label “signing from eight fifteen till nine” is not": 1,
+   "blocked: to: “Dunning” is neither a name on the drawing nor ": 1,
+   "$new with no earlier create": 1,
+   "blocked: label “max 3s” is not in the words of the request": 1,
+   "key topic not in the contract for help": 4,
+   "blocked: label “PCI scope” is not in the words of the reques": 1,
+   "blocked: name “reception” is not in the words of the request": 1,
+   "blocked: to: “reimbursement” is neither a name on the drawin": 1,
+   "blocked: target: “corner” is neither a name on the drawing n": 1,
+   "blocked: label “Dr Barbu” is not in the words of the request": 1,
+   "blocked: count must be a whole number from 1 to 12": 1,
+   "key count not in the contract for undo": 1,
+   "blocked: position above needs an anchor (relative to which s": 1,
+   "blocked: name “Aisha” is not in the words of the request": 1
+  },
+  "lines_t": {}
+ },
+ "arms": {
+  "json": {
+   "nl_a/calibration": {
+    "opus": {
+     "requested": 408,
+     "right": 341,
+     "wrong": 11,
+     "not_done": 56,
+     "extras": 0,
+     "executed": 352,
+     "execution_precision": 0.96875,
+     "right_share": 0.835784,
+     "cost_score": 56.617647
+    },
+    "either": {
+     "requested": 451,
+     "right": 343,
+     "wrong": 9,
+     "not_done": 99,
+     "extras": 0,
+     "executed": 352,
+     "execution_precision": 0.974432,
+     "right_share": 0.760532,
+     "cost_score": 56.097561
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      },
+      "direction": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      },
+      "direction": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      }
+     }
+    }
+   },
+   "nl_a/development": {
+    "opus": {
+     "requested": 392,
+     "right": 299,
+     "wrong": 23,
+     "not_done": 70,
+     "extras": 0,
+     "executed": 322,
+     "execution_precision": 0.928571,
+     "right_share": 0.762755,
+     "cost_score": 17.602041
+    },
+    "either": {
+     "requested": 412,
+     "right": 300,
+     "wrong": 22,
+     "not_done": 90,
+     "extras": 0,
+     "executed": 322,
+     "execution_precision": 0.931677,
+     "right_share": 0.728155,
+     "cost_score": 19.417476
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 392,
+       "right": 283,
+       "wrong": 70,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.721939,
+       "cost_score": -157.397959
+      },
+      "direction": {
+       "requested": 392,
+       "right": 282,
+       "wrong": 71,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.719388,
+       "cost_score": -160.204082
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 373,
+       "right": 262,
+       "wrong": 91,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.702413,
+       "cost_score": -278.284182
+      },
+      "direction": {
+       "requested": 373,
+       "right": 261,
+       "wrong": 92,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.699732,
+       "cost_score": -281.233244
+      }
+     }
+    }
+   }
+  },
+  "lines_t": {
+   "nl_a/calibration": {
+    "opus": {
+     "requested": 408,
+     "right": 408,
+     "wrong": 0,
+     "not_done": 0,
+     "extras": 0,
+     "executed": 408,
+     "execution_precision": 1,
+     "right_share": 1,
+     "cost_score": 100
+    },
+    "either": {
+     "requested": 451,
+     "right": 408,
+     "wrong": 0,
+     "not_done": 43,
+     "extras": 0,
+     "executed": 408,
+     "execution_precision": 1,
+     "right_share": 0.904656,
+     "cost_score": 90.465632
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      },
+      "direction": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      },
+      "direction": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      }
+     }
+    }
+   },
+   "nl_a/development": {
+    "opus": {
+     "requested": 392,
+     "right": 392,
+     "wrong": 0,
+     "not_done": 0,
+     "extras": 0,
+     "executed": 392,
+     "execution_precision": 1,
+     "right_share": 1,
+     "cost_score": 100
+    },
+    "either": {
+     "requested": 412,
+     "right": 392,
+     "wrong": 0,
+     "not_done": 20,
+     "extras": 0,
+     "executed": 392,
+     "execution_precision": 1,
+     "right_share": 0.951456,
+     "cost_score": 95.145631
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 392,
+       "right": 283,
+       "wrong": 70,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.721939,
+       "cost_score": -157.397959
+      },
+      "direction": {
+       "requested": 392,
+       "right": 282,
+       "wrong": 71,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.719388,
+       "cost_score": -160.204082
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 373,
+       "right": 262,
+       "wrong": 91,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.702413,
+       "cost_score": -278.284182
+      },
+      "direction": {
+       "requested": 373,
+       "right": 261,
+       "wrong": 92,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.699732,
+       "cost_score": -281.233244
+      }
+     }
+    }
+   }
+  },
+  "nothing": {
+   "nl_a/calibration": {
+    "opus": {
+     "requested": 408,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 408,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "either": {
+     "requested": 451,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 451,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      },
+      "direction": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      },
+      "direction": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      }
+     }
+    }
+   },
+   "nl_a/development": {
+    "opus": {
+     "requested": 392,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 392,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "either": {
+     "requested": 412,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 412,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 392,
+       "right": 283,
+       "wrong": 70,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.721939,
+       "cost_score": -157.397959
+      },
+      "direction": {
+       "requested": 392,
+       "right": 282,
+       "wrong": 71,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.719388,
+       "cost_score": -160.204082
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 373,
+       "right": 262,
+       "wrong": 91,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.702413,
+       "cost_score": -278.284182
+      },
+      "direction": {
+       "requested": 373,
+       "right": 261,
+       "wrong": 92,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.699732,
+       "cost_score": -281.233244
+      }
+     }
+    }
+   }
+  },
+  "lines_t_wrong_action": {
+   "nl_a/calibration": {
+    "opus": {
+     "requested": 408,
+     "right": 8,
+     "wrong": 20,
+     "not_done": 380,
+     "extras": 313,
+     "executed": 341,
+     "execution_precision": 0.02346,
+     "right_share": 0.019608,
+     "cost_score": -814.215686
+    },
+    "either": {
+     "requested": 451,
+     "right": 8,
+     "wrong": 20,
+     "not_done": 423,
+     "extras": 313,
+     "executed": 341,
+     "execution_precision": 0.02346,
+     "right_share": 0.017738,
+     "cost_score": -736.585366
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      },
+      "direction": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      },
+      "direction": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      }
+     }
+    }
+   },
+   "nl_a/development": {
+    "opus": {
+     "requested": 392,
+     "right": 2,
+     "wrong": 18,
+     "not_done": 372,
+     "extras": 312,
+     "executed": 332,
+     "execution_precision": 0.006024,
+     "right_share": 0.005102,
+     "cost_score": -841.326531
+    },
+    "either": {
+     "requested": 412,
+     "right": 2,
+     "wrong": 18,
+     "not_done": 392,
+     "extras": 312,
+     "executed": 332,
+     "execution_precision": 0.006024,
+     "right_share": 0.004854,
+     "cost_score": -800.485437
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 392,
+       "right": 283,
+       "wrong": 70,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.721939,
+       "cost_score": -157.397959
+      },
+      "direction": {
+       "requested": 392,
+       "right": 282,
+       "wrong": 71,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.719388,
+       "cost_score": -160.204082
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 373,
+       "right": 262,
+       "wrong": 91,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.702413,
+       "cost_score": -278.284182
+      },
+      "direction": {
+       "requested": 373,
+       "right": 261,
+       "wrong": 92,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.699732,
+       "cost_score": -281.233244
+      }
+     }
+    }
+   }
+  },
+  "lines_t_shuffled": {
+   "nl_a/calibration": {
+    "opus": {
+     "requested": 408,
+     "right": 61,
+     "wrong": 55,
+     "not_done": 292,
+     "extras": 286,
+     "executed": 402,
+     "execution_precision": 0.151741,
+     "right_share": 0.14951,
+     "cost_score": -820.833333
+    },
+    "either": {
+     "requested": 451,
+     "right": 63,
+     "wrong": 54,
+     "not_done": 334,
+     "extras": 285,
+     "executed": 402,
+     "execution_precision": 0.156716,
+     "right_share": 0.13969,
+     "cost_score": -737.694013
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      },
+      "direction": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      },
+      "direction": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      }
+     }
+    }
+   },
+   "nl_a/development": {
+    "opus": {
+     "requested": 392,
+     "right": 27,
+     "wrong": 52,
+     "not_done": 313,
+     "extras": 319,
+     "executed": 398,
+     "execution_precision": 0.067839,
+     "right_share": 0.068878,
+     "cost_score": -939.540816
+    },
+    "either": {
+     "requested": 412,
+     "right": 27,
+     "wrong": 52,
+     "not_done": 333,
+     "extras": 319,
+     "executed": 398,
+     "execution_precision": 0.067839,
+     "right_share": 0.065534,
+     "cost_score": -893.932039
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 392,
+       "right": 283,
+       "wrong": 70,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.721939,
+       "cost_score": -157.397959
+      },
+      "direction": {
+       "requested": 392,
+       "right": 282,
+       "wrong": 71,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.719388,
+       "cost_score": -160.204082
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 373,
+       "right": 262,
+       "wrong": 91,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.702413,
+       "cost_score": -278.284182
+      },
+      "direction": {
+       "requested": 373,
+       "right": 261,
+       "wrong": 92,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.699732,
+       "cost_score": -281.233244
+      }
+     }
+    }
+   }
+  }
+ }
+}

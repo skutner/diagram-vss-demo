@@ -1,0 +1,13 @@
+nl_a: 610 messages, 800 requests (opus labels); drawing: setup 426, replay 168, names 16; session steps after an unreliable one (kept): 26; engine errors in setups and replays: 11
+need the drawing (nl_needs.py rule): requests 269 of 800 = 33.6%; messages 225 of 610 = 36.9% (gpt labels: 225 of 610 = 36.9%)
+input pieces (request + lines, before the cap), every request: p50 52, p90 92, max 204; over 512: 0 of 800 = 0.0%
+   requests that need the drawing: p50 57, p90 100, max 204; over 512: 0 of 269 = 0.0%
+the shapes a request needing the drawing means, under the cap of 512: within the cap 250, a description the engine did not resolve 10, not on the drawing 9
+   cut off by the cap: 0 of 269 = 0.0% (these requests would be held)
+trigger, per request (SOP-BERT's heads; a request SOP-BERT cut overlapping it):
+   fill says context or description: fires on 217 of 800 = 27.1%; catches 107 of 269 = 39.8% of those that need the drawing
+   also a written name neither on the drawing nor made earlier in the message (neural.js): fires on 421 of 800 = 52.6%; catches 187 of 269 = 69.5%
+   the same with "made anywhere in the message" (drawing_input_size.mjs): fires on 421 of 800 = 52.6%; catches 187 of 269 = 69.5%
+   requests that need the drawing with no overlapping request in SOP-BERT's cut: 33
+trigger, per message: fill only fires on 228 of 610 = 37.4%, catches 119 of 225 = 52.9%; with names (earlier) fires on 368 of 610 = 60.3%, catches 179 of 225 = 79.6%; (anywhere) fires on 368 of 610 = 60.3%, catches 179 of 225 = 79.6%
+by kind, requests that need the drawing caught (earlier rule): long 20/33, short 8/9, reference 26/34, complaint 9/19, typos 5/11, indirect 3/7, ambiguous 3/3, dictated 7/11, nothing_to_do 0/0, session 41/58, self_correction 15/17, translated 14/18, fragment 2/2, paraphrase 34/47

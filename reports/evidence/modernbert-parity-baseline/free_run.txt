@@ -1,0 +1,12 @@
+teachers, each on its own drawing, loose: same drawing as a teacher on 888 of 1139 turns = 78.0%; final drawing the same in 26 of 35 examples
+  the 24 scenes: same drawing on 74.6% of 987 turns; final drawing the same in 15 of 24; in the final drawing the same, mean over the scenes: shapes 95.4%, arrows 98.2%, groups 100.0%
+nothing, each on its own drawing, loose: same drawing as a teacher on 30 of 1139 turns = 2.6%; final drawing the same in 0 of 35 examples
+  the 24 scenes: same drawing on 2.6% of 987 turns; final drawing the same in 0 of 24; in the final drawing the same, mean over the scenes: shapes 0.0%, arrows 0.0%, groups 0.0%
+rules, each on its own drawing, loose: same drawing as a teacher on 176 of 1139 turns = 15.5%; final drawing the same in 11 of 35 examples
+  the 24 scenes: same drawing on 2.5% of 987 turns; final drawing the same in 0 of 24; in the final drawing the same, mean over the scenes: shapes 12.1%, arrows 7.2%, groups 8.3%
+sop, each on its own drawing, loose: same drawing as a teacher on 152 of 1139 turns = 13.3%; final drawing the same in 8 of 35 examples
+  the 24 scenes: same drawing on 2.4% of 987 turns; final drawing the same in 0 of 24; in the final drawing the same, mean over the scenes: shapes 19.5%, arrows 26.6%, groups 18.3%
+sop at gate cost, each on its own drawing, loose: same drawing as a teacher on 49 of 1139 turns = 4.3%; final drawing the same in 2 of 35 examples
+  the 24 scenes: same drawing on 2.6% of 987 turns; final drawing the same in 0 of 24; in the final drawing the same, mean over the scenes: shapes 1.9%, arrows 0.0%, groups 0.0%
+modernbert, each on its own drawing, loose: same drawing as a teacher on 31 of 1139 turns = 2.7%; final drawing the same in 0 of 35 examples
+  the 24 scenes: same drawing on 2.4% of 987 turns; final drawing the same in 0 of 24; in the final drawing the same, mean over the scenes: shapes 0.5%, arrows 17.6%, groups 19.4%

@@ -1,0 +1,31 @@
+# M4 (second step): draw_* keys on every request of a reading with the drawing. Base docs/js/neural-confidence.js sha256 9c4065421a26a8444fe2f768b2ed9f1f96cdd05c6d8b6e0ee94c7b10d8f4273c
+--- a/docs/js/neural-confidence.js
++++ b/docs/js/neural-confidence.js
+@@ -82,15 +82,18 @@
+     }
+   }
+   const mn = (a2) => (a2.length ? Math.min(...a2) : null);
+-  /* the second read (docs/js/neural.js, arm M4; only when the request had one): the tags on the drawing's names that answered a role, their lowest
+-     probability and margin; how many roles it answered; how many lines of the drawing its cap left out. A model without it gets none of these keys. */
+-  if (a.drawing && a.drawing.read && a.drawing.read.logits) {
+-    const D = a.drawing, dws = wordsOf(D.text), dp2 = [], dm2 = [];
+-    for (const k of drawn) for (const s of (D.found[k] && D.found[k].spans) || []) dws.forEach((w, i) => {
+-      if (w.start < s.start || w.end > s.end || !D.read.logits.tok[i]) return;
+-      const q = softmax(D.read.logits.tok[i]), [x1, x2] = top2(q); dp2.push(q[argmax(q)]); dm2.push(x1 - x2); lower("draw", q[argmax(q)], { key: k, word: w.w });
+-    });
+-    f.draw_tag_p_min = mn(dp2); f.draw_tag_margin_min = mn(dm2); f.draw_roles = drawn.length; f.draw_roles_asked = D.keys.length; f.draw_lines_cut = D.dropped;
++  /* the second read (docs/js/neural.js, arm M4): the tags on the drawing's names that answered a role, their lowest probability and margin; how many
++     roles it answered and was asked for; how many lines of the drawing its cap left out. Every request of a reading that had the drawing carries these
++     keys (null / 0 when the request had no second read), so that a fit can read them (training/neural/calibrate_modernbert.mjs DRAW_NAMES); a model or a
++     caller without the drawing gets none of them. */
++  if (J.drawing) {
++    const D = a.drawing && a.drawing.read && a.drawing.read.logits ? a.drawing : null, dp2 = [], dm2 = [];
++    if (D) { const dws = wordsOf(D.text);
++      for (const k of drawn) for (const s of (D.found[k] && D.found[k].spans) || []) dws.forEach((w, i) => {
++        if (w.start < s.start || w.end > s.end || !D.read.logits.tok[i]) return;
++        const q = softmax(D.read.logits.tok[i]), [x1, x2] = top2(q); dp2.push(q[argmax(q)]); dm2.push(x1 - x2); lower("draw", q[argmax(q)], { key: k, word: w.w });
++      }); }
++    f.draw_tag_p_min = mn(dp2); f.draw_tag_margin_min = mn(dm2); f.draw_roles = drawn.length; f.draw_roles_asked = D ? D.keys.length : 0; f.draw_lines_cut = D ? D.dropped : 0;
+   }
+   f.val_p_min = mn(vp); f.val_margin_min = mn(vm); f.none_p_min = mn(np);
+   f.fill_p_min = mn(fp); f.fill_margin_min = mn(fm); f.ctx_fill = ctx;

@@ -1,0 +1,204 @@
+{
+ "a": {
+  "file": "/home/skutner/.cache/diagram-vss-modernbert/arms/F0-s0/nlb/nlb.score.json",
+  "reader": "modernbert",
+  "artifact": "a02e4571539d0250db2adb7b107ef814601699346cc279f904f4a4836258f641",
+  "calibrated_on": [
+   "fresh2",
+   "short3",
+   "nl_a"
+  ],
+  "threshold_cost10": 0.9156426921592415
+ },
+ "b": {
+  "file": "/home/skutner/.cache/diagram-vss-modernbert/arms/SOP-F0-s0/nlb/nlb.score.json",
+  "reader": "sop",
+  "artifact": "d49d22ed467c713d2d58e1f653778459f08931b395664850999e514a7c69bc4d",
+  "calibrated_on": [
+   "fresh2",
+   "short3",
+   "nl_a"
+  ],
+  "threshold_cost10": 0.8825649909685067
+ },
+ "seed": 20261105,
+ "resamples": 1000,
+ "note": "difference = cost score of A minus B on the same messages; ci95 resamples the session, else the paraphrase group, else the message; the gate variants use each arm's own cost-10 threshold",
+ "comparisons": {
+  "nl_b/all": {
+   "messages": 601,
+   "resampled_units": 387,
+   "unit": "session, else paraphrase group, else message",
+   "variants": {
+    "opus.today.all": {
+     "a": -1337.1148,
+     "b": -1386.1345,
+     "difference": 49.0196,
+     "ci95": [
+      -16.6441,
+      114.9573
+     ],
+     "p_sign_flip": 0.1292
+    },
+    "opus.today.gate": {
+     "a": -5.8824,
+     "b": -5.3221,
+     "difference": -0.5602,
+     "ci95": [
+      -7.7259,
+      7.7465
+     ],
+     "p_sign_flip": 0.7848
+    },
+    "opus.direction.all": {
+     "a": -1337.1148,
+     "b": -1386.1345,
+     "difference": 49.0196,
+     "ci95": [
+      -16.6441,
+      114.9573
+     ],
+     "p_sign_flip": 0.1292
+    },
+    "opus.direction.gate": {
+     "a": -5.8824,
+     "b": -5.3221,
+     "difference": -0.5602,
+     "ci95": [
+      -7.7259,
+      7.7465
+     ],
+     "p_sign_flip": 0.7848
+    },
+    "either.today.all": {
+     "a": -1225.097,
+     "b": -1276.0673,
+     "difference": 50.9702,
+     "ci95": [
+      -9.3628,
+      111.1656
+     ],
+     "p_sign_flip": 0.0943
+    },
+    "either.today.gate": {
+     "a": -2.5873,
+     "b": -4.9159,
+     "difference": 2.3286,
+     "ci95": [
+      -3.2634,
+      9.429
+     ],
+     "p_sign_flip": 0.6188
+    },
+    "either.direction.all": {
+     "a": -1225.097,
+     "b": -1276.0673,
+     "difference": 50.9702,
+     "ci95": [
+      -9.3628,
+      111.1656
+     ],
+     "p_sign_flip": 0.0943
+    },
+    "either.direction.gate": {
+     "a": -2.5873,
+     "b": -4.9159,
+     "difference": 2.3286,
+     "ci95": [
+      -3.2634,
+      9.429
+     ],
+     "p_sign_flip": 0.6188
+    }
+   },
+   "train_text_overlap_messages": 1,
+   "without_train_text_overlap": {
+    "messages": 600,
+    "resampled_units": 386,
+    "unit": "session, else paraphrase group, else message",
+    "variants": {
+     "opus.today.all": {
+      "a": -1339.1304,
+      "b": -1388.2188,
+      "difference": 49.0884,
+      "ci95": [
+       -13.0258,
+       113.8199
+      ],
+      "p_sign_flip": 0.1317
+     },
+     "opus.today.gate": {
+      "a": -5.8906,
+      "b": -5.3296,
+      "difference": -0.561,
+      "ci95": [
+       -8.5165,
+       7.4419
+      ],
+      "p_sign_flip": 0.7895
+     },
+     "opus.direction.all": {
+      "a": -1339.1304,
+      "b": -1388.2188,
+      "difference": 49.0884,
+      "ci95": [
+       -13.0258,
+       113.8199
+      ],
+      "p_sign_flip": 0.1317
+     },
+     "opus.direction.gate": {
+      "a": -5.8906,
+      "b": -5.3296,
+      "difference": -0.561,
+      "ci95": [
+       -8.5165,
+       7.4419
+      ],
+      "p_sign_flip": 0.7895
+     },
+     "either.today.all": {
+      "a": -1226.8135,
+      "b": -1277.8497,
+      "difference": 51.0363,
+      "ci95": [
+       -6.7133,
+       112.5
+      ],
+      "p_sign_flip": 0.0945
+     },
+     "either.today.gate": {
+      "a": -2.5907,
+      "b": -4.9223,
+      "difference": 2.3316,
+      "ci95": [
+       -3.9241,
+       8.7719
+      ],
+      "p_sign_flip": 0.621
+     },
+     "either.direction.all": {
+      "a": -1226.8135,
+      "b": -1277.8497,
+      "difference": 51.0363,
+      "ci95": [
+       -6.7133,
+       112.5
+      ],
+      "p_sign_flip": 0.0945
+     },
+     "either.direction.gate": {
+      "a": -2.5907,
+      "b": -4.9223,
+      "difference": 2.3316,
+      "ci95": [
+       -3.9241,
+       8.7719
+      ],
+      "p_sign_flip": 0.621
+     }
+    }
+   }
+  }
+ }
+}

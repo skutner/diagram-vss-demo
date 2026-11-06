@@ -1,0 +1,13 @@
+turns: 1139 = 100.0%
+out of the shipped ModernBERT layout: 232 = 20.4%
+several wires: 87 = 7.6%
+need context: 119 = 10.4%
+  a name not written: 34 = 3.0%
+  a description not written: 86 = 7.6%
+no request: 28 = 2.5%
+words per message p50, p90, p99, max: 8 16 24 32
+wires per turn: 1:1024 2:76 0:28 3:8 4:1 5:1 6:1
+actions: create:523 set:94 connect:88 group:63 label:43 delete:42 move:34 undo:22 toFront:20 resize:14 rename:12 duplicate:8 swap:6 arrange:4 equalize:4 align:3 distribute:3 reverse:2 disconnect:1
+questions: check:50 count:37 extreme:22 describe:18 path:16 list:16 property:14 nearest:14 neighbors:11 groupOf:8 members:7 cycle:4 degree:4 exists:3 reachable:2 connected:1
+keys: action:986 shape:613 color:602 name:488 target:440 size:352 position:312 at:257 anchor:233 ask:227 label:145 from:126 to:118 width:112 height:112 distance:89 arrow:53 style:45 layer:44 fill:39 layout:37 count:36 superlative:36 direction:30 property:18 scale:11 kind:11 outline:7 comparison:6 axis:6 pairing:5 quantifier:1
+not in the shipped ModernBERT layout: key:width:112 key:height:112 value:shape=any:49 description:size:36 description:label:33 value:fill=faint:10 value:position=onTop:5 value:position=inside:2 description:position:2 description:anchor:2 value:outline=gold:1 value:fill=solid:1

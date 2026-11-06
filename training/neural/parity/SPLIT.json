@@ -1,0 +1,6 @@
+{
+  "about": "Frozen split of the built-in examples for MODERNBERT_PARITY_PLAN.md, written before any training run of that plan. The goal is natural language in general (owner, 2026-11-05), so the examples are a check: they are reported and nothing is chosen on them. held_out: never trained on by any arm (the 4 test scenes of llm_bench/scenes_test are development data for sessions). training_scenes: their annotated rows (llm_train/scenes_r3, llm_train/scenes_r3b) are training data from arm M2s on, like any data; a score on them from then on is reported as fit on training data.",
+  "frozen": "2026-11-05",
+  "held_out": ["quick", "star", "traffic", "zoo", "house", "login", "org", "solar", "states", "network", "cartoon", "story", "living", "town", "grancard", "playground"],
+  "training_scenes": ["farm", "city", "space", "reef", "pump", "circuit", "floorplan", "barchart", "jungle", "bauhaus", "poster", "sunrise", "recycle", "winter", "pirate", "factory", "harbour", "kitchen", "busstop", "garden"]
+}

@@ -1,0 +1,51 @@
+{"id":"nl-11-001","domain":"coffee roaster logo","kind":"session","session":"logo","text":"big circle in the middle, dark brown"}
+{"id":"nl-11-002","domain":"coffee roaster logo","kind":"session","session":"logo","text":"smaller one inside it. cream"}
+{"id":"nl-11-003","domain":"coffee roaster logo","kind":"session","session":"logo","text":"ok white then"}
+{"id":"nl-11-004","domain":"coffee roaster logo","kind":"session","session":"logo","text":"orange diamond on top of the white, not too big"}
+{"id":"nl-11-005","domain":"coffee roaster logo","kind":"fragment","session":"logo","text":"bit bigger"}
+{"id":"nl-11-006","domain":"coffee roaster logo","kind":"session","session":"logo","text":"under the circle write Hearth & Bean"}
+{"id":"nl-11-007","domain":"coffee roaster logo","kind":"session","session":"logo","text":"can that be in a serif font"}
+{"id":"nl-11-008","domain":"coffee roaster logo","kind":"session","session":"logo","text":"forget it. three little stars above, gold"}
+{"id":"nl-11-009","domain":"coffee roaster logo","kind":"complaint","session":"logo","text":"theyre all bunched up"}
+{"id":"nl-11-010","domain":"coffee roaster logo","kind":"short","session":"logo","text":"undo"}
+{"id":"nl-11-011","domain":"coffee roaster logo","kind":"self_correction","session":"logo","text":"no wait bring them back, just space them out"}
+{"id":"nl-11-012","domain":"coffee roaster logo","kind":"reference","session":"logo","text":"call the orange thing Flame"}
+{"id":"nl-11-013","domain":"coffee roaster logo","kind":"session","session":"logo","text":"tagline below the name: roasted on tuesdays"}
+{"id":"nl-11-014","domain":"coffee roaster logo","kind":"session","session":"logo","text":"smaller than the name though"}
+{"id":"nl-11-015","domain":"coffee roaster logo","kind":"session","session":"logo","text":"Flame a touch more red?"}
+{"id":"nl-11-016","domain":"coffee roaster logo","kind":"session","session":"logo","text":"group the lot as Logo"}
+{"id":"nl-11-017","domain":"coffee roaster logo","kind":"session","session":"logo","text":"and shove it left a bit, want room for a second version"}
+{"id":"nl-11-018","domain":"coffee roaster logo","kind":"nothing_to_do","session":"logo","text":"nice. that'll do for today"}
+{"id":"nl-11-019","domain":"city bus route","kind":"session","session":"route42","setup":"@c1 command action=create shape=circle color=blue name=Depot label=Depot position=left\n@c2 command action=create shape=circle color=blue name=Market label=Market position=rightOf anchor=Depot\n@c3 command action=create shape=circle color=blue name=Station label=Station position=rightOf anchor=Market\n@c4 command action=connect from=Depot,Market,Station pairing=chain arrow=none","text":"next stop after Station is Hospital"}
+{"id":"nl-11-020","domain":"city bus route","kind":"session","session":"route42","text":"then Mill Road, then Schools"}
+{"id":"nl-11-021","domain":"city bus route","kind":"session","session":"route42","text":"same line joining them as the others pls"}
+{"id":"nl-11-022","domain":"city bus route","kind":"session","session":"route42","text":"Hospital red, its the interchange"}
+{"id":"nl-11-023","domain":"city bus route","kind":"fragment","session":"route42","text":"bigger too"}
+{"id":"nl-11-024","domain":"city bus route","kind":"session","session":"route42","text":"how many stops have we got now"}
+{"id":"nl-11-025","domain":"city bus route","kind":"session","session":"route42","text":"one short. Library goes between market and station"}
+{"id":"nl-11-026","domain":"city bus route","kind":"indirect","session":"route42","text":"the Mill Road to Schools bit only runs mornings so it shouldnt look like the rest"}
+{"id":"nl-11-027","domain":"city bus route","kind":"session","session":"route42","text":"yes dotted is good"}
+{"id":"nl-11-028","domain":"city bus route","kind":"session","session":"route42","text":"put 7 min on depot-market"}
+{"id":"nl-11-029","domain":"city bus route","kind":"session","session":"route42","text":"12 on the next one"}
+{"id":"nl-11-030","domain":"city bus route","kind":"session","session":"route42","text":"is Library still hooked up to Station"}
+{"id":"nl-11-031","domain":"city bus route","kind":"session","session":"route42","text":"last stop square not round"}
+{"id":"nl-11-032","domain":"city bus route","kind":"session","session":"route42","text":"pale yellow box behind the last three, thats zone 2"}
+{"id":"nl-11-033","domain":"city bus route","kind":"session","session":"route42","text":"write Zone 2 on it"}
+{"id":"nl-11-034","domain":"city bus route","kind":"session","session":"route42","text":"title up top, Route 42 weekdays"}
+{"id":"nl-11-035","domain":"city bus route","kind":"session","session":"route42","text":"export pdf"}
+{"id":"nl-11-036","domain":"online shop order flow","kind":"session","session":"orders","setup":"@c1 command action=create shape=rectangle name=Cart position=topLeft\n@c2 command action=create shape=rectangle name=Checkout position=rightOf anchor=Cart\n@c3 command action=create shape=diamond color=yellow name=Payment position=rightOf anchor=Checkout\n@c4 command action=connect from=Cart,Checkout,Payment pairing=chain","text":"payment ok -> Warehouse"}
+{"id":"nl-11-037","domain":"online shop order flow","kind":"session","session":"orders","text":"failed goes back to checkout, dashed, red"}
+{"id":"nl-11-038","domain":"online shop order flow","kind":"session","session":"orders","text":"wh should be a hexagon"}
+{"id":"nl-11-039","domain":"online shop order flow","kind":"session","session":"orders","text":"Packing then Shipped after it"}
+{"id":"nl-11-040","domain":"online shop order flow","kind":"short","session":"orders","text":"shipped green"}
+{"id":"nl-11-041","domain":"online shop order flow","kind":"session","session":"orders","text":"Refund box under Payment"}
+{"id":"nl-11-042","domain":"online shop order flow","kind":"session","session":"orders","text":"shipped to refund, label returns"}
+{"id":"nl-11-043","domain":"online shop order flow","kind":"self_correction","session":"orders","text":"hm wrong, should be a Returned step after Shipped and refund comes off that. drop the arrow i just made"}
+{"id":"nl-11-044","domain":"online shop order flow","kind":"session","session":"orders","text":"what points at Refund now"}
+{"id":"nl-11-045","domain":"online shop order flow","kind":"session","session":"orders","text":"Notify off Shipped, dotted"}
+{"id":"nl-11-046","domain":"online shop order flow","kind":"typos","session":"orders","text":"rename notfy to Email"}
+{"id":"nl-11-047","domain":"online shop order flow","kind":"session","session":"orders","text":"everything on one row except refund and email"}
+{"id":"nl-11-048","domain":"online shop order flow","kind":"complaint","session":"orders","text":"runs off the right edge now"}
+{"id":"nl-11-049","domain":"online shop order flow","kind":"session","session":"orders","text":"which ones have nothing going out"}
+{"id":"nl-11-050","domain":"online shop order flow","kind":"session","session":"orders","text":"fine, Refund and Email are meant to be ends. make both gray"}
+{"id":"nl-11-051","domain":"online shop order flow","kind":"session","session":"orders","text":"done, ty"}

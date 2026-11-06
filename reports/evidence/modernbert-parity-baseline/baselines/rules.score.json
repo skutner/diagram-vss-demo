@@ -1,0 +1,6771 @@
+{
+ "schema": "arm-score-v1",
+ "reader": "rules",
+ "artifact": "rules:715da7ed6b783350d3d167f7d477fbd58cfa722b69c877904552321ce6fcdc0e",
+ "threshold_cost10": null,
+ "calibrated_on": [],
+ "sets": {
+  "fresh2": {
+   "calibration": {
+    "messages": 195,
+    "requested": 596,
+    "produced": 595,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 596,
+        "right": 364,
+        "wrong": 105,
+        "not_done": 127,
+        "extras": 126,
+        "executed": 595,
+        "execution_precision": 0.611765,
+        "right_share": 0.610738,
+        "cost_score": -326.510067
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 553,
+          "right": 351,
+          "wrong": 101,
+          "not_done": 101,
+          "extras": 0,
+          "executed": 452,
+          "execution_precision": 0.776549,
+          "right_share": 0.63472,
+          "cost_score": -119.168174
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 43,
+          "right": 13,
+          "wrong": 4,
+          "not_done": 26,
+          "extras": 0,
+          "executed": 17,
+          "execution_precision": 0.764706,
+          "right_share": 0.302326,
+          "cost_score": -62.790698
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 126,
+          "executed": 126,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 596,
+          "right": 364,
+          "wrong": 105,
+          "not_done": 127,
+          "extras": 126,
+          "executed": 595,
+          "execution_precision": 0.611765,
+          "right_share": 0.610738,
+          "cost_score": -326.510067
+         }
+        }
+       },
+       "by_writer": {
+        "opus_a": {
+         "all_executed": {
+          "requested": 136,
+          "right": 69,
+          "wrong": 29,
+          "not_done": 38,
+          "extras": 20,
+          "executed": 118,
+          "execution_precision": 0.584746,
+          "right_share": 0.507353,
+          "cost_score": -309.558824
+         }
+        },
+        "opus_b": {
+         "all_executed": {
+          "requested": 135,
+          "right": 86,
+          "wrong": 24,
+          "not_done": 25,
+          "extras": 30,
+          "executed": 140,
+          "execution_precision": 0.614286,
+          "right_share": 0.637037,
+          "cost_score": -336.296296
+         }
+        },
+        "opus_c": {
+         "all_executed": {
+          "requested": 184,
+          "right": 118,
+          "wrong": 28,
+          "not_done": 38,
+          "extras": 36,
+          "executed": 182,
+          "execution_precision": 0.648352,
+          "right_share": 0.641304,
+          "cost_score": -283.695652
+         }
+        },
+        "opus_d": {
+         "all_executed": {
+          "requested": 141,
+          "right": 91,
+          "wrong": 24,
+          "not_done": 26,
+          "extras": 40,
+          "executed": 155,
+          "execution_precision": 0.587097,
+          "right_share": 0.64539,
+          "cost_score": -389.361702
+         }
+        }
+       }
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 596,
+        "right": 364,
+        "wrong": 105,
+        "not_done": 127,
+        "extras": 126,
+        "executed": 595,
+        "execution_precision": 0.611765,
+        "right_share": 0.610738,
+        "cost_score": -326.510067
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 553,
+          "right": 351,
+          "wrong": 101,
+          "not_done": 101,
+          "extras": 0,
+          "executed": 452,
+          "execution_precision": 0.776549,
+          "right_share": 0.63472,
+          "cost_score": -119.168174
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 43,
+          "right": 13,
+          "wrong": 4,
+          "not_done": 26,
+          "extras": 0,
+          "executed": 17,
+          "execution_precision": 0.764706,
+          "right_share": 0.302326,
+          "cost_score": -62.790698
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 126,
+          "executed": 126,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 596,
+          "right": 364,
+          "wrong": 105,
+          "not_done": 127,
+          "extras": 126,
+          "executed": 595,
+          "execution_precision": 0.611765,
+          "right_share": 0.610738,
+          "cost_score": -326.510067
+         }
+        }
+       },
+       "by_writer": {
+        "opus_a": {
+         "all_executed": {
+          "requested": 136,
+          "right": 69,
+          "wrong": 29,
+          "not_done": 38,
+          "extras": 20,
+          "executed": 118,
+          "execution_precision": 0.584746,
+          "right_share": 0.507353,
+          "cost_score": -309.558824
+         }
+        },
+        "opus_b": {
+         "all_executed": {
+          "requested": 135,
+          "right": 86,
+          "wrong": 24,
+          "not_done": 25,
+          "extras": 30,
+          "executed": 140,
+          "execution_precision": 0.614286,
+          "right_share": 0.637037,
+          "cost_score": -336.296296
+         }
+        },
+        "opus_c": {
+         "all_executed": {
+          "requested": 184,
+          "right": 118,
+          "wrong": 28,
+          "not_done": 38,
+          "extras": 36,
+          "executed": 182,
+          "execution_precision": 0.648352,
+          "right_share": 0.641304,
+          "cost_score": -283.695652
+         }
+        },
+        "opus_d": {
+         "all_executed": {
+          "requested": 141,
+          "right": 91,
+          "wrong": 24,
+          "not_done": 26,
+          "extras": 40,
+          "executed": 155,
+          "execution_precision": 0.587097,
+          "right_share": 0.64539,
+          "cost_score": -389.361702
+         }
+        }
+       }
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 2,
+      "executed_smaller": 2,
+      "right_with_direction": 1,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 2,
+      "executed_smaller": 2,
+      "right_with_direction": 1,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 3,
+    "excluding_train_text_overlap": {
+     "messages": 192,
+     "requested": 593,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "gold": {
+       "today": {
+        "all_executed": {
+         "requested": 593,
+         "right": 361,
+         "wrong": 105,
+         "not_done": 127,
+         "extras": 126,
+         "executed": 592,
+         "execution_precision": 0.609797,
+         "right_share": 0.608769,
+         "cost_score": -328.667791
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 593,
+         "right": 361,
+         "wrong": 105,
+         "not_done": 127,
+         "extras": 126,
+         "executed": 592,
+         "execution_precision": 0.609797,
+         "right_share": 0.608769,
+         "cost_score": -328.667791
+        }
+       }
+      }
+     }
+    },
+    "use": "calibration-part"
+   },
+   "test": {
+    "messages": 405,
+    "requested": 1313,
+    "produced": 1277,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 1313,
+        "right": 765,
+        "wrong": 239,
+        "not_done": 309,
+        "extras": 273,
+        "executed": 1277,
+        "execution_precision": 0.59906,
+        "right_share": 0.582635,
+        "cost_score": -331.683168
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 1194,
+          "right": 737,
+          "wrong": 227,
+          "not_done": 230,
+          "extras": 0,
+          "executed": 964,
+          "execution_precision": 0.764523,
+          "right_share": 0.617253,
+          "cost_score": -128.39196
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 119,
+          "right": 28,
+          "wrong": 12,
+          "not_done": 79,
+          "extras": 0,
+          "executed": 40,
+          "execution_precision": 0.7,
+          "right_share": 0.235294,
+          "cost_score": -77.310924
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 273,
+          "executed": 273,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 1313,
+          "right": 765,
+          "wrong": 239,
+          "not_done": 309,
+          "extras": 273,
+          "executed": 1277,
+          "execution_precision": 0.59906,
+          "right_share": 0.582635,
+          "cost_score": -331.683168
+         }
+        }
+       },
+       "by_writer": {
+        "opus_a": {
+         "all_executed": {
+          "requested": 378,
+          "right": 190,
+          "wrong": 75,
+          "not_done": 113,
+          "extras": 62,
+          "executed": 327,
+          "execution_precision": 0.58104,
+          "right_share": 0.502646,
+          "cost_score": -312.169312
+         }
+        },
+        "opus_b": {
+         "all_executed": {
+          "requested": 333,
+          "right": 211,
+          "wrong": 57,
+          "not_done": 65,
+          "extras": 55,
+          "executed": 323,
+          "execution_precision": 0.653251,
+          "right_share": 0.633634,
+          "cost_score": -272.972973
+         }
+        },
+        "opus_c": {
+         "all_executed": {
+          "requested": 287,
+          "right": 181,
+          "wrong": 52,
+          "not_done": 54,
+          "extras": 51,
+          "executed": 284,
+          "execution_precision": 0.637324,
+          "right_share": 0.630662,
+          "cost_score": -295.818815
+         }
+        },
+        "opus_d": {
+         "all_executed": {
+          "requested": 315,
+          "right": 183,
+          "wrong": 55,
+          "not_done": 77,
+          "extras": 105,
+          "executed": 343,
+          "execution_precision": 0.533528,
+          "right_share": 0.580952,
+          "cost_score": -449.84127
+         }
+        }
+       }
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 1313,
+        "right": 765,
+        "wrong": 239,
+        "not_done": 309,
+        "extras": 273,
+        "executed": 1277,
+        "execution_precision": 0.59906,
+        "right_share": 0.582635,
+        "cost_score": -331.683168
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 1194,
+          "right": 737,
+          "wrong": 227,
+          "not_done": 230,
+          "extras": 0,
+          "executed": 964,
+          "execution_precision": 0.764523,
+          "right_share": 0.617253,
+          "cost_score": -128.39196
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 119,
+          "right": 28,
+          "wrong": 12,
+          "not_done": 79,
+          "extras": 0,
+          "executed": 40,
+          "execution_precision": 0.7,
+          "right_share": 0.235294,
+          "cost_score": -77.310924
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 273,
+          "executed": 273,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 1313,
+          "right": 765,
+          "wrong": 239,
+          "not_done": 309,
+          "extras": 273,
+          "executed": 1277,
+          "execution_precision": 0.59906,
+          "right_share": 0.582635,
+          "cost_score": -331.683168
+         }
+        }
+       },
+       "by_writer": {
+        "opus_a": {
+         "all_executed": {
+          "requested": 378,
+          "right": 190,
+          "wrong": 75,
+          "not_done": 113,
+          "extras": 62,
+          "executed": 327,
+          "execution_precision": 0.58104,
+          "right_share": 0.502646,
+          "cost_score": -312.169312
+         }
+        },
+        "opus_b": {
+         "all_executed": {
+          "requested": 333,
+          "right": 211,
+          "wrong": 57,
+          "not_done": 65,
+          "extras": 55,
+          "executed": 323,
+          "execution_precision": 0.653251,
+          "right_share": 0.633634,
+          "cost_score": -272.972973
+         }
+        },
+        "opus_c": {
+         "all_executed": {
+          "requested": 287,
+          "right": 181,
+          "wrong": 52,
+          "not_done": 54,
+          "extras": 51,
+          "executed": 284,
+          "execution_precision": 0.637324,
+          "right_share": 0.630662,
+          "cost_score": -295.818815
+         }
+        },
+        "opus_d": {
+         "all_executed": {
+          "requested": 315,
+          "right": 183,
+          "wrong": 55,
+          "not_done": 77,
+          "extras": 105,
+          "executed": 343,
+          "execution_precision": 0.533528,
+          "right_share": 0.580952,
+          "cost_score": -449.84127
+         }
+        }
+       }
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 11,
+      "executed_smaller": 8,
+      "right_with_direction": 5,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 13,
+      "executed_smaller": 8,
+      "right_with_direction": 5,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 1,
+    "excluding_train_text_overlap": {
+     "messages": 404,
+     "requested": 1312,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "gold": {
+       "today": {
+        "all_executed": {
+         "requested": 1312,
+         "right": 764,
+         "wrong": 239,
+         "not_done": 309,
+         "extras": 273,
+         "executed": 1276,
+         "execution_precision": 0.598746,
+         "right_share": 0.582317,
+         "cost_score": -332.012195
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 1312,
+         "right": 764,
+         "wrong": 239,
+         "not_done": 309,
+         "extras": 273,
+         "executed": 1276,
+         "execution_precision": 0.598746,
+         "right_share": 0.582317,
+         "cost_score": -332.012195
+        }
+       }
+      }
+     }
+    },
+    "use": "evaluation"
+   }
+  },
+  "short3": {
+   "calibration": {
+    "messages": 173,
+    "requested": 212,
+    "produced": 166,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 212,
+        "right": 111,
+        "wrong": 28,
+        "not_done": 73,
+        "extras": 27,
+        "executed": 166,
+        "execution_precision": 0.668675,
+        "right_share": 0.523585,
+        "cost_score": -207.075472
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 176,
+          "right": 102,
+          "wrong": 26,
+          "not_done": 48,
+          "extras": 0,
+          "executed": 128,
+          "execution_precision": 0.796875,
+          "right_share": 0.579545,
+          "cost_score": -89.772727
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 36,
+          "right": 9,
+          "wrong": 2,
+          "not_done": 25,
+          "extras": 0,
+          "executed": 11,
+          "execution_precision": 0.818182,
+          "right_share": 0.25,
+          "cost_score": -30.555556
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 27,
+          "executed": 27,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 212,
+          "right": 111,
+          "wrong": 28,
+          "not_done": 73,
+          "extras": 27,
+          "executed": 166,
+          "execution_precision": 0.668675,
+          "right_share": 0.523585,
+          "cost_score": -207.075472
+         }
+        }
+       },
+       "by_writer": {}
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 212,
+        "right": 111,
+        "wrong": 28,
+        "not_done": 73,
+        "extras": 27,
+        "executed": 166,
+        "execution_precision": 0.668675,
+        "right_share": 0.523585,
+        "cost_score": -207.075472
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 176,
+          "right": 102,
+          "wrong": 26,
+          "not_done": 48,
+          "extras": 0,
+          "executed": 128,
+          "execution_precision": 0.796875,
+          "right_share": 0.579545,
+          "cost_score": -89.772727
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 36,
+          "right": 9,
+          "wrong": 2,
+          "not_done": 25,
+          "extras": 0,
+          "executed": 11,
+          "execution_precision": 0.818182,
+          "right_share": 0.25,
+          "cost_score": -30.555556
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 27,
+          "executed": 27,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 212,
+          "right": 111,
+          "wrong": 28,
+          "not_done": 73,
+          "extras": 27,
+          "executed": 166,
+          "execution_precision": 0.668675,
+          "right_share": 0.523585,
+          "cost_score": -207.075472
+         }
+        }
+       },
+       "by_writer": {}
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 1,
+      "executed_smaller": 1,
+      "right_with_direction": 1,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 1,
+      "executed_smaller": 1,
+      "right_with_direction": 1,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 8,
+    "excluding_train_text_overlap": {
+     "messages": 165,
+     "requested": 204,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "gold": {
+       "today": {
+        "all_executed": {
+         "requested": 204,
+         "right": 103,
+         "wrong": 28,
+         "not_done": 73,
+         "extras": 27,
+         "executed": 158,
+         "execution_precision": 0.651899,
+         "right_share": 0.504902,
+         "cost_score": -219.117647
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 204,
+         "right": 103,
+         "wrong": 28,
+         "not_done": 73,
+         "extras": 27,
+         "executed": 158,
+         "execution_precision": 0.651899,
+         "right_share": 0.504902,
+         "cost_score": -219.117647
+        }
+       }
+      }
+     }
+    },
+    "use": "calibration-part"
+   },
+   "test": {
+    "messages": 340,
+    "requested": 432,
+    "produced": 335,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 432,
+        "right": 243,
+        "wrong": 51,
+        "not_done": 138,
+        "extras": 41,
+        "executed": 335,
+        "execution_precision": 0.725373,
+        "right_share": 0.5625,
+        "cost_score": -156.712963
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 366,
+          "right": 221,
+          "wrong": 46,
+          "not_done": 99,
+          "extras": 0,
+          "executed": 267,
+          "execution_precision": 0.827715,
+          "right_share": 0.603825,
+          "cost_score": -65.300546
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 66,
+          "right": 22,
+          "wrong": 5,
+          "not_done": 39,
+          "extras": 0,
+          "executed": 27,
+          "execution_precision": 0.814815,
+          "right_share": 0.333333,
+          "cost_score": -42.424242
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 41,
+          "executed": 41,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 432,
+          "right": 243,
+          "wrong": 51,
+          "not_done": 138,
+          "extras": 41,
+          "executed": 335,
+          "execution_precision": 0.725373,
+          "right_share": 0.5625,
+          "cost_score": -156.712963
+         }
+        }
+       },
+       "by_writer": {}
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 432,
+        "right": 243,
+        "wrong": 51,
+        "not_done": 138,
+        "extras": 41,
+        "executed": 335,
+        "execution_precision": 0.725373,
+        "right_share": 0.5625,
+        "cost_score": -156.712963
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 366,
+          "right": 221,
+          "wrong": 46,
+          "not_done": 99,
+          "extras": 0,
+          "executed": 267,
+          "execution_precision": 0.827715,
+          "right_share": 0.603825,
+          "cost_score": -65.300546
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 66,
+          "right": 22,
+          "wrong": 5,
+          "not_done": 39,
+          "extras": 0,
+          "executed": 27,
+          "execution_precision": 0.814815,
+          "right_share": 0.333333,
+          "cost_score": -42.424242
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 41,
+          "executed": 41,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 432,
+          "right": 243,
+          "wrong": 51,
+          "not_done": 138,
+          "extras": 41,
+          "executed": 335,
+          "execution_precision": 0.725373,
+          "right_share": 0.5625,
+          "cost_score": -156.712963
+         }
+        }
+       },
+       "by_writer": {}
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 6,
+      "executed_smaller": 2,
+      "right_with_direction": 2,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 6,
+      "executed_smaller": 2,
+      "right_with_direction": 2,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 16,
+    "excluding_train_text_overlap": {
+     "messages": 324,
+     "requested": 416,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "gold": {
+       "today": {
+        "all_executed": {
+         "requested": 416,
+         "right": 229,
+         "wrong": 51,
+         "not_done": 136,
+         "extras": 41,
+         "executed": 321,
+         "execution_precision": 0.713396,
+         "right_share": 0.550481,
+         "cost_score": -166.105769
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 416,
+         "right": 229,
+         "wrong": 51,
+         "not_done": 136,
+         "extras": 41,
+         "executed": 321,
+         "execution_precision": 0.713396,
+         "right_share": 0.550481,
+         "cost_score": -166.105769
+        }
+       }
+      }
+     }
+    },
+    "use": "evaluation"
+   }
+  },
+  "collected_1": {
+   "all": {
+    "messages": 52,
+    "requested": 44,
+    "produced": 44,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 44,
+        "right": 14,
+        "wrong": 9,
+        "not_done": 21,
+        "extras": 21,
+        "executed": 44,
+        "execution_precision": 0.318182,
+        "right_share": 0.318182,
+        "cost_score": -650
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 39,
+          "right": 14,
+          "wrong": 7,
+          "not_done": 18,
+          "extras": 0,
+          "executed": 21,
+          "execution_precision": 0.666667,
+          "right_share": 0.358974,
+          "cost_score": -143.589744
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 5,
+          "right": 0,
+          "wrong": 2,
+          "not_done": 3,
+          "extras": 0,
+          "executed": 2,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -400
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 21,
+          "executed": 21,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "as_sent": {
+         "all_executed": {
+          "requested": 22,
+          "right": 6,
+          "wrong": 4,
+          "not_done": 12,
+          "extras": 9,
+          "executed": 19,
+          "execution_precision": 0.315789,
+          "right_share": 0.272727,
+          "cost_score": -563.636364
+         }
+        },
+        "corrected": {
+         "all_executed": {
+          "requested": 22,
+          "right": 8,
+          "wrong": 5,
+          "not_done": 9,
+          "extras": 12,
+          "executed": 25,
+          "execution_precision": 0.32,
+          "right_share": 0.363636,
+          "cost_score": -736.363636
+         }
+        }
+       },
+       "by_writer": {}
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 44,
+        "right": 14,
+        "wrong": 9,
+        "not_done": 21,
+        "extras": 21,
+        "executed": 44,
+        "execution_precision": 0.318182,
+        "right_share": 0.318182,
+        "cost_score": -650
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 39,
+          "right": 14,
+          "wrong": 7,
+          "not_done": 18,
+          "extras": 0,
+          "executed": 21,
+          "execution_precision": 0.666667,
+          "right_share": 0.358974,
+          "cost_score": -143.589744
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 5,
+          "right": 0,
+          "wrong": 2,
+          "not_done": 3,
+          "extras": 0,
+          "executed": 2,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -400
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 21,
+          "executed": 21,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "as_sent": {
+         "all_executed": {
+          "requested": 22,
+          "right": 6,
+          "wrong": 4,
+          "not_done": 12,
+          "extras": 9,
+          "executed": 19,
+          "execution_precision": 0.315789,
+          "right_share": 0.272727,
+          "cost_score": -563.636364
+         }
+        },
+        "corrected": {
+         "all_executed": {
+          "requested": 22,
+          "right": 8,
+          "wrong": 5,
+          "not_done": 9,
+          "extras": 12,
+          "executed": 25,
+          "execution_precision": 0.32,
+          "right_share": 0.363636,
+          "cost_score": -736.363636
+         }
+        }
+       },
+       "by_writer": {}
+      }
+     },
+     "teacher_opus": {
+      "today": {
+       "all_executed": {
+        "requested": 47,
+        "right": 8,
+        "wrong": 15,
+        "not_done": 24,
+        "extras": 21,
+        "executed": 44,
+        "execution_precision": 0.181818,
+        "right_share": 0.170213,
+        "cost_score": -748.93617
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 32,
+          "right": 7,
+          "wrong": 15,
+          "not_done": 10,
+          "extras": 0,
+          "executed": 22,
+          "execution_precision": 0.318182,
+          "right_share": 0.21875,
+          "cost_score": -446.875
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 15,
+          "right": 1,
+          "wrong": 0,
+          "not_done": 14,
+          "extras": 0,
+          "executed": 1,
+          "execution_precision": 1,
+          "right_share": 0.066667,
+          "cost_score": 6.666667
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 21,
+          "executed": 21,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "as_sent": {
+         "all_executed": {
+          "requested": 23,
+          "right": 3,
+          "wrong": 6,
+          "not_done": 14,
+          "extras": 10,
+          "executed": 19,
+          "execution_precision": 0.157895,
+          "right_share": 0.130435,
+          "cost_score": -682.608696
+         }
+        },
+        "corrected": {
+         "all_executed": {
+          "requested": 24,
+          "right": 5,
+          "wrong": 9,
+          "not_done": 10,
+          "extras": 11,
+          "executed": 25,
+          "execution_precision": 0.2,
+          "right_share": 0.208333,
+          "cost_score": -812.5
+         }
+        }
+       },
+       "by_writer": {}
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 47,
+        "right": 8,
+        "wrong": 15,
+        "not_done": 24,
+        "extras": 21,
+        "executed": 44,
+        "execution_precision": 0.181818,
+        "right_share": 0.170213,
+        "cost_score": -748.93617
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 32,
+          "right": 7,
+          "wrong": 15,
+          "not_done": 10,
+          "extras": 0,
+          "executed": 22,
+          "execution_precision": 0.318182,
+          "right_share": 0.21875,
+          "cost_score": -446.875
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 15,
+          "right": 1,
+          "wrong": 0,
+          "not_done": 14,
+          "extras": 0,
+          "executed": 1,
+          "execution_precision": 1,
+          "right_share": 0.066667,
+          "cost_score": 6.666667
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 21,
+          "executed": 21,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "as_sent": {
+         "all_executed": {
+          "requested": 23,
+          "right": 3,
+          "wrong": 6,
+          "not_done": 14,
+          "extras": 10,
+          "executed": 19,
+          "execution_precision": 0.157895,
+          "right_share": 0.130435,
+          "cost_score": -682.608696
+         }
+        },
+        "corrected": {
+         "all_executed": {
+          "requested": 24,
+          "right": 5,
+          "wrong": 9,
+          "not_done": 10,
+          "extras": 11,
+          "executed": 25,
+          "execution_precision": 0.2,
+          "right_share": 0.208333,
+          "cost_score": -812.5
+         }
+        }
+       },
+       "by_writer": {}
+      }
+     },
+     "teacher_either": {
+      "today": {
+       "all_executed": {
+        "requested": 49,
+        "right": 8,
+        "wrong": 15,
+        "not_done": 26,
+        "extras": 21,
+        "executed": 44,
+        "execution_precision": 0.181818,
+        "right_share": 0.163265,
+        "cost_score": -718.367347
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 32,
+          "right": 7,
+          "wrong": 15,
+          "not_done": 10,
+          "extras": 0,
+          "executed": 22,
+          "execution_precision": 0.318182,
+          "right_share": 0.21875,
+          "cost_score": -446.875
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 17,
+          "right": 1,
+          "wrong": 0,
+          "not_done": 16,
+          "extras": 0,
+          "executed": 1,
+          "execution_precision": 1,
+          "right_share": 0.058824,
+          "cost_score": 5.882353
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 21,
+          "executed": 21,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "as_sent": {
+         "all_executed": {
+          "requested": 24,
+          "right": 3,
+          "wrong": 6,
+          "not_done": 15,
+          "extras": 10,
+          "executed": 19,
+          "execution_precision": 0.157895,
+          "right_share": 0.125,
+          "cost_score": -654.166667
+         }
+        },
+        "corrected": {
+         "all_executed": {
+          "requested": 25,
+          "right": 5,
+          "wrong": 9,
+          "not_done": 11,
+          "extras": 11,
+          "executed": 25,
+          "execution_precision": 0.2,
+          "right_share": 0.2,
+          "cost_score": -780
+         }
+        }
+       },
+       "by_writer": {}
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 49,
+        "right": 8,
+        "wrong": 15,
+        "not_done": 26,
+        "extras": 21,
+        "executed": 44,
+        "execution_precision": 0.181818,
+        "right_share": 0.163265,
+        "cost_score": -718.367347
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 32,
+          "right": 7,
+          "wrong": 15,
+          "not_done": 10,
+          "extras": 0,
+          "executed": 22,
+          "execution_precision": 0.318182,
+          "right_share": 0.21875,
+          "cost_score": -446.875
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 17,
+          "right": 1,
+          "wrong": 0,
+          "not_done": 16,
+          "extras": 0,
+          "executed": 1,
+          "execution_precision": 1,
+          "right_share": 0.058824,
+          "cost_score": 5.882353
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 21,
+          "executed": 21,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "as_sent": {
+         "all_executed": {
+          "requested": 24,
+          "right": 3,
+          "wrong": 6,
+          "not_done": 15,
+          "extras": 10,
+          "executed": 19,
+          "execution_precision": 0.157895,
+          "right_share": 0.125,
+          "cost_score": -654.166667
+         }
+        },
+        "corrected": {
+         "all_executed": {
+          "requested": 25,
+          "right": 5,
+          "wrong": 9,
+          "not_done": 11,
+          "extras": 11,
+          "executed": 25,
+          "execution_precision": 0.2,
+          "right_share": 0.2,
+          "cost_score": -780
+         }
+        }
+       },
+       "by_writer": {}
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 0,
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 47,
+       "right": 36,
+       "wrong": 4,
+       "not_done": 7,
+       "extras": 2,
+       "right_share": 0.765957,
+       "cost_score": -51.06383
+      },
+      "direction": {
+       "requested": 47,
+       "right": 36,
+       "wrong": 4,
+       "not_done": 7,
+       "extras": 2,
+       "right_share": 0.765957,
+       "cost_score": -51.06383
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 42,
+       "right": 36,
+       "wrong": 4,
+       "not_done": 2,
+       "extras": 7,
+       "right_share": 0.857143,
+       "cost_score": -176.190476
+      },
+      "direction": {
+       "requested": 42,
+       "right": 36,
+       "wrong": 4,
+       "not_done": 2,
+       "extras": 7,
+       "right_share": 0.857143,
+       "cost_score": -176.190476
+      }
+     }
+    },
+    "gold_agreement_with_teachers": {
+     "gold_scored_against_opus": {
+      "today": {
+       "requested": 47,
+       "right": 20,
+       "wrong": 18,
+       "not_done": 9,
+       "extras": 6,
+       "right_share": 0.425532,
+       "cost_score": -468.085106
+      },
+      "direction": {
+       "requested": 47,
+       "right": 20,
+       "wrong": 18,
+       "not_done": 9,
+       "extras": 6,
+       "right_share": 0.425532,
+       "cost_score": -468.085106
+      }
+     },
+     "opus_scored_against_gold": {
+      "today": {
+       "requested": 44,
+       "right": 18,
+       "wrong": 20,
+       "not_done": 6,
+       "extras": 9,
+       "right_share": 0.409091,
+       "cost_score": -618.181818
+      },
+      "direction": {
+       "requested": 44,
+       "right": 18,
+       "wrong": 20,
+       "not_done": 6,
+       "extras": 9,
+       "right_share": 0.409091,
+       "cost_score": -618.181818
+      }
+     },
+     "gold_scored_against_gpt": {
+      "today": {
+       "requested": 42,
+       "right": 22,
+       "wrong": 16,
+       "not_done": 4,
+       "extras": 6,
+       "right_share": 0.52381,
+       "cost_score": -471.428571
+      },
+      "direction": {
+       "requested": 42,
+       "right": 22,
+       "wrong": 16,
+       "not_done": 4,
+       "extras": 6,
+       "right_share": 0.52381,
+       "cost_score": -471.428571
+      }
+     },
+     "gpt_scored_against_gold": {
+      "today": {
+       "requested": 44,
+       "right": 20,
+       "wrong": 18,
+       "not_done": 6,
+       "extras": 4,
+       "right_share": 0.454545,
+       "cost_score": -454.545455
+      },
+      "direction": {
+       "requested": 44,
+       "right": 20,
+       "wrong": 18,
+       "not_done": 6,
+       "extras": 4,
+       "right_share": 0.454545,
+       "cost_score": -454.545455
+      }
+     }
+    },
+    "use": "evaluation"
+   }
+  },
+  "scenes_test": {
+   "all": {
+    "messages": 166,
+    "requested": 163,
+    "produced": 130,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 163,
+        "right": 86,
+        "wrong": 23,
+        "not_done": 54,
+        "extras": 21,
+        "executed": 130,
+        "execution_precision": 0.661538,
+        "right_share": 0.527607,
+        "cost_score": -217.177914
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 116,
+          "right": 78,
+          "wrong": 18,
+          "not_done": 20,
+          "extras": 0,
+          "executed": 96,
+          "execution_precision": 0.8125,
+          "right_share": 0.672414,
+          "cost_score": -87.931034
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 47,
+          "right": 8,
+          "wrong": 5,
+          "not_done": 34,
+          "extras": 0,
+          "executed": 13,
+          "execution_precision": 0.615385,
+          "right_share": 0.170213,
+          "cost_score": -89.361702
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 21,
+          "executed": 21,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "session": {
+         "all_executed": {
+          "requested": 163,
+          "right": 86,
+          "wrong": 23,
+          "not_done": 54,
+          "extras": 21,
+          "executed": 130,
+          "execution_precision": 0.661538,
+          "right_share": 0.527607,
+          "cost_score": -217.177914
+         }
+        }
+       },
+       "by_writer": {}
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 163,
+        "right": 86,
+        "wrong": 23,
+        "not_done": 54,
+        "extras": 21,
+        "executed": 130,
+        "execution_precision": 0.661538,
+        "right_share": 0.527607,
+        "cost_score": -217.177914
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 116,
+          "right": 78,
+          "wrong": 18,
+          "not_done": 20,
+          "extras": 0,
+          "executed": 96,
+          "execution_precision": 0.8125,
+          "right_share": 0.672414,
+          "cost_score": -87.931034
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 47,
+          "right": 8,
+          "wrong": 5,
+          "not_done": 34,
+          "extras": 0,
+          "executed": 13,
+          "execution_precision": 0.615385,
+          "right_share": 0.170213,
+          "cost_score": -89.361702
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 21,
+          "executed": 21,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "session": {
+         "all_executed": {
+          "requested": 163,
+          "right": 86,
+          "wrong": 23,
+          "not_done": 54,
+          "extras": 21,
+          "executed": 130,
+          "execution_precision": 0.661538,
+          "right_share": 0.527607,
+          "cost_score": -217.177914
+         }
+        }
+       },
+       "by_writer": {}
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 2,
+      "executed_smaller": 2,
+      "right_with_direction": 1,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 2,
+      "executed_smaller": 2,
+      "right_with_direction": 1,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 2,
+    "excluding_train_text_overlap": {
+     "messages": 164,
+     "requested": 161,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "gold": {
+       "today": {
+        "all_executed": {
+         "requested": 161,
+         "right": 85,
+         "wrong": 22,
+         "not_done": 54,
+         "extras": 21,
+         "executed": 128,
+         "execution_precision": 0.664063,
+         "right_share": 0.52795,
+         "cost_score": -214.285714
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 161,
+         "right": 85,
+         "wrong": 22,
+         "not_done": 54,
+         "extras": 21,
+         "executed": 128,
+         "execution_precision": 0.664063,
+         "right_share": 0.52795,
+         "cost_score": -214.285714
+        }
+       }
+      }
+     }
+    },
+    "sessions": {
+     "all_executed": {
+      "sessions": 4,
+      "same_final_drawing": 0,
+      "mean_share_percent_of_what_the_session_changed": {
+       "shapes": 6.578947,
+       "arrows": 0,
+       "groups": 0
+      },
+      "mean_share_percent_whole_drawing": {
+       "shapes": 6.578947,
+       "arrows": 0,
+       "groups": 0
+      },
+      "questions_with_a_gold_answer": 42,
+      "questions_same_answer": 3,
+      "steps_left_out_as_unreliable": 0,
+      "engine_errors": 100,
+      "per_session": [
+       {
+        "session": "scenes_test/batch_01",
+        "steps": 40,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 18
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 3
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 18
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 3
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         false,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         false,
+         null,
+         null,
+         false,
+         false,
+         false,
+         null
+        ],
+        "engine_errors": 24,
+        "gold_errors": 0
+       },
+       {
+        "session": "scenes_test/batch_02",
+        "steps": 43,
+        "shares": {
+         "shapes": {
+          "same": 1,
+          "total": 19
+         },
+         "arrows": {
+          "same": 0,
+          "total": 8
+         },
+         "groups": {
+          "same": 0,
+          "total": 1
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 1,
+          "total": 19
+         },
+         "arrows": {
+          "same": 0,
+          "total": 8
+         },
+         "groups": {
+          "same": 0,
+          "total": 1
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         false,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         false,
+         false,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         false,
+         false,
+         null,
+         false,
+         true,
+         null
+        ],
+        "engine_errors": 29,
+        "gold_errors": 0
+       },
+       {
+        "session": "scenes_test/batch_03",
+        "steps": 41,
+        "shares": {
+         "shapes": {
+          "same": 4,
+          "total": 19
+         },
+         "arrows": {
+          "same": 0,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 3
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 4,
+          "total": 19
+         },
+         "arrows": {
+          "same": 0,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 3
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         null,
+         true,
+         null,
+         false,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         false,
+         null,
+         false,
+         null,
+         null,
+         true,
+         false,
+         false,
+         false,
+         null,
+         false,
+         null,
+         null
+        ],
+        "engine_errors": 19,
+        "gold_errors": 0
+       },
+       {
+        "session": "scenes_test/batch_04",
+        "steps": 42,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 22
+         },
+         "arrows": {
+          "same": 0,
+          "total": 7
+         },
+         "groups": {
+          "same": 0,
+          "total": 3
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 22
+         },
+         "arrows": {
+          "same": 0,
+          "total": 7
+         },
+         "groups": {
+          "same": 0,
+          "total": 3
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         false,
+         null,
+         null,
+         false,
+         null,
+         false,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         false,
+         false,
+         null,
+         false,
+         false,
+         null,
+         null,
+         false,
+         null
+        ],
+        "engine_errors": 28,
+        "gold_errors": 0
+       }
+      ]
+     }
+    },
+    "do_nothing_floor": {
+     "sessions": {
+      "sessions": 4,
+      "same_final_drawing": 0,
+      "mean_share_percent_of_what_the_session_changed": {
+       "shapes": 0,
+       "arrows": 0,
+       "groups": 0
+      },
+      "mean_share_percent_whole_drawing": {
+       "shapes": 0,
+       "arrows": 0,
+       "groups": 0
+      },
+      "questions_with_a_gold_answer": 42,
+      "questions_same_answer": 0,
+      "steps_left_out_as_unreliable": 0,
+      "engine_errors": 0
+     }
+    },
+    "use": "evaluation"
+   }
+  },
+  "nl_a": {
+   "calibration": {
+    "messages": 310,
+    "requested": 408,
+    "produced": 343,
+    "failed_messages": 0,
+    "views": {
+     "opus": {
+      "today": {
+       "all_executed": {
+        "requested": 408,
+        "right": 29,
+        "wrong": 108,
+        "not_done": 271,
+        "extras": 206,
+        "executed": 343,
+        "execution_precision": 0.084548,
+        "right_share": 0.071078,
+        "cost_score": -762.5
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 224,
+          "right": 25,
+          "wrong": 85,
+          "not_done": 114,
+          "extras": 0,
+          "executed": 110,
+          "execution_precision": 0.227273,
+          "right_share": 0.111607,
+          "cost_score": -368.303571
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 184,
+          "right": 4,
+          "wrong": 23,
+          "not_done": 157,
+          "extras": 0,
+          "executed": 27,
+          "execution_precision": 0.148148,
+          "right_share": 0.021739,
+          "cost_score": -122.826087
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 206,
+          "executed": 206,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 113,
+          "right": 3,
+          "wrong": 36,
+          "not_done": 74,
+          "extras": 67,
+          "executed": 106,
+          "execution_precision": 0.028302,
+          "right_share": 0.026549,
+          "cost_score": -908.849558
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 17,
+          "right": 4,
+          "wrong": 4,
+          "not_done": 9,
+          "extras": 4,
+          "executed": 12,
+          "execution_precision": 0.333333,
+          "right_share": 0.235294,
+          "cost_score": -447.058824
+         }
+        },
+        "ambiguous": {
+         "all_executed": {
+          "requested": 5,
+          "right": 3,
+          "wrong": 1,
+          "not_done": 1,
+          "extras": 7,
+          "executed": 11,
+          "execution_precision": 0.272727,
+          "right_share": 0.6,
+          "cost_score": -1540
+         }
+        },
+        "dictated": {
+         "all_executed": {
+          "requested": 21,
+          "right": 0,
+          "wrong": 7,
+          "not_done": 14,
+          "extras": 7,
+          "executed": 14,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -666.666667
+         }
+        },
+        "nothing_to_do": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 5,
+          "executed": 5,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "session": {
+         "all_executed": {
+          "requested": 63,
+          "right": 2,
+          "wrong": 15,
+          "not_done": 46,
+          "extras": 13,
+          "executed": 30,
+          "execution_precision": 0.066667,
+          "right_share": 0.031746,
+          "cost_score": -441.269841
+         }
+        },
+        "self_correction": {
+         "all_executed": {
+          "requested": 16,
+          "right": 0,
+          "wrong": 7,
+          "not_done": 9,
+          "extras": 12,
+          "executed": 19,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1187.5
+         }
+        },
+        "reference": {
+         "all_executed": {
+          "requested": 24,
+          "right": 0,
+          "wrong": 9,
+          "not_done": 15,
+          "extras": 6,
+          "executed": 15,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -625
+         }
+        },
+        "indirect": {
+         "all_executed": {
+          "requested": 8,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 8,
+          "extras": 18,
+          "executed": 18,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -2250
+         }
+        },
+        "fragment": {
+         "all_executed": {
+          "requested": 1,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 1,
+          "extras": 1,
+          "executed": 1,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        },
+        "translated": {
+         "all_executed": {
+          "requested": 18,
+          "right": 1,
+          "wrong": 4,
+          "not_done": 13,
+          "extras": 9,
+          "executed": 14,
+          "execution_precision": 0.071429,
+          "right_share": 0.055556,
+          "cost_score": -716.666667
+         }
+        },
+        "paraphrase": {
+         "all_executed": {
+          "requested": 90,
+          "right": 16,
+          "wrong": 19,
+          "not_done": 55,
+          "extras": 41,
+          "executed": 76,
+          "execution_precision": 0.210526,
+          "right_share": 0.177778,
+          "cost_score": -648.888889
+         }
+        },
+        "complaint": {
+         "all_executed": {
+          "requested": 22,
+          "right": 0,
+          "wrong": 3,
+          "not_done": 19,
+          "extras": 9,
+          "executed": 12,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -545.454545
+         }
+        },
+        "typos": {
+         "all_executed": {
+          "requested": 10,
+          "right": 0,
+          "wrong": 3,
+          "not_done": 7,
+          "extras": 7,
+          "executed": 10,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        }
+       },
+       "by_writer": {
+        "gpt-6.1-sol": {
+         "all_executed": {
+          "requested": 220,
+          "right": 10,
+          "wrong": 57,
+          "not_done": 153,
+          "extras": 112,
+          "executed": 179,
+          "execution_precision": 0.055866,
+          "right_share": 0.045455,
+          "cost_score": -763.636364
+         }
+        },
+        "claude-opus-5-5": {
+         "all_executed": {
+          "requested": 188,
+          "right": 19,
+          "wrong": 51,
+          "not_done": 118,
+          "extras": 94,
+          "executed": 164,
+          "execution_precision": 0.115854,
+          "right_share": 0.101064,
+          "cost_score": -761.170213
+         }
+        }
+       }
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 408,
+        "right": 29,
+        "wrong": 108,
+        "not_done": 271,
+        "extras": 206,
+        "executed": 343,
+        "execution_precision": 0.084548,
+        "right_share": 0.071078,
+        "cost_score": -762.5
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 224,
+          "right": 25,
+          "wrong": 85,
+          "not_done": 114,
+          "extras": 0,
+          "executed": 110,
+          "execution_precision": 0.227273,
+          "right_share": 0.111607,
+          "cost_score": -368.303571
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 184,
+          "right": 4,
+          "wrong": 23,
+          "not_done": 157,
+          "extras": 0,
+          "executed": 27,
+          "execution_precision": 0.148148,
+          "right_share": 0.021739,
+          "cost_score": -122.826087
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 206,
+          "executed": 206,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 113,
+          "right": 3,
+          "wrong": 36,
+          "not_done": 74,
+          "extras": 67,
+          "executed": 106,
+          "execution_precision": 0.028302,
+          "right_share": 0.026549,
+          "cost_score": -908.849558
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 17,
+          "right": 4,
+          "wrong": 4,
+          "not_done": 9,
+          "extras": 4,
+          "executed": 12,
+          "execution_precision": 0.333333,
+          "right_share": 0.235294,
+          "cost_score": -447.058824
+         }
+        },
+        "ambiguous": {
+         "all_executed": {
+          "requested": 5,
+          "right": 3,
+          "wrong": 1,
+          "not_done": 1,
+          "extras": 7,
+          "executed": 11,
+          "execution_precision": 0.272727,
+          "right_share": 0.6,
+          "cost_score": -1540
+         }
+        },
+        "dictated": {
+         "all_executed": {
+          "requested": 21,
+          "right": 0,
+          "wrong": 7,
+          "not_done": 14,
+          "extras": 7,
+          "executed": 14,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -666.666667
+         }
+        },
+        "nothing_to_do": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 5,
+          "executed": 5,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "session": {
+         "all_executed": {
+          "requested": 63,
+          "right": 2,
+          "wrong": 15,
+          "not_done": 46,
+          "extras": 13,
+          "executed": 30,
+          "execution_precision": 0.066667,
+          "right_share": 0.031746,
+          "cost_score": -441.269841
+         }
+        },
+        "self_correction": {
+         "all_executed": {
+          "requested": 16,
+          "right": 0,
+          "wrong": 7,
+          "not_done": 9,
+          "extras": 12,
+          "executed": 19,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1187.5
+         }
+        },
+        "reference": {
+         "all_executed": {
+          "requested": 24,
+          "right": 0,
+          "wrong": 9,
+          "not_done": 15,
+          "extras": 6,
+          "executed": 15,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -625
+         }
+        },
+        "indirect": {
+         "all_executed": {
+          "requested": 8,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 8,
+          "extras": 18,
+          "executed": 18,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -2250
+         }
+        },
+        "fragment": {
+         "all_executed": {
+          "requested": 1,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 1,
+          "extras": 1,
+          "executed": 1,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        },
+        "translated": {
+         "all_executed": {
+          "requested": 18,
+          "right": 1,
+          "wrong": 4,
+          "not_done": 13,
+          "extras": 9,
+          "executed": 14,
+          "execution_precision": 0.071429,
+          "right_share": 0.055556,
+          "cost_score": -716.666667
+         }
+        },
+        "paraphrase": {
+         "all_executed": {
+          "requested": 90,
+          "right": 16,
+          "wrong": 19,
+          "not_done": 55,
+          "extras": 41,
+          "executed": 76,
+          "execution_precision": 0.210526,
+          "right_share": 0.177778,
+          "cost_score": -648.888889
+         }
+        },
+        "complaint": {
+         "all_executed": {
+          "requested": 22,
+          "right": 0,
+          "wrong": 3,
+          "not_done": 19,
+          "extras": 9,
+          "executed": 12,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -545.454545
+         }
+        },
+        "typos": {
+         "all_executed": {
+          "requested": 10,
+          "right": 0,
+          "wrong": 3,
+          "not_done": 7,
+          "extras": 7,
+          "executed": 10,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        }
+       },
+       "by_writer": {
+        "gpt-6.1-sol": {
+         "all_executed": {
+          "requested": 220,
+          "right": 10,
+          "wrong": 57,
+          "not_done": 153,
+          "extras": 112,
+          "executed": 179,
+          "execution_precision": 0.055866,
+          "right_share": 0.045455,
+          "cost_score": -763.636364
+         }
+        },
+        "claude-opus-5-5": {
+         "all_executed": {
+          "requested": 188,
+          "right": 19,
+          "wrong": 51,
+          "not_done": 118,
+          "extras": 94,
+          "executed": 164,
+          "execution_precision": 0.115854,
+          "right_share": 0.101064,
+          "cost_score": -761.170213
+         }
+        }
+       }
+      }
+     },
+     "either": {
+      "today": {
+       "all_executed": {
+        "requested": 451,
+        "right": 29,
+        "wrong": 108,
+        "not_done": 314,
+        "extras": 206,
+        "executed": 343,
+        "execution_precision": 0.084548,
+        "right_share": 0.064302,
+        "cost_score": -689.800443
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 254,
+          "right": 25,
+          "wrong": 85,
+          "not_done": 144,
+          "extras": 0,
+          "executed": 110,
+          "execution_precision": 0.227273,
+          "right_share": 0.098425,
+          "cost_score": -324.80315
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 197,
+          "right": 4,
+          "wrong": 23,
+          "not_done": 170,
+          "extras": 0,
+          "executed": 27,
+          "execution_precision": 0.148148,
+          "right_share": 0.020305,
+          "cost_score": -114.720812
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 206,
+          "executed": 206,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 129,
+          "right": 3,
+          "wrong": 36,
+          "not_done": 90,
+          "extras": 67,
+          "executed": 106,
+          "execution_precision": 0.028302,
+          "right_share": 0.023256,
+          "cost_score": -796.124031
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 17,
+          "right": 4,
+          "wrong": 4,
+          "not_done": 9,
+          "extras": 4,
+          "executed": 12,
+          "execution_precision": 0.333333,
+          "right_share": 0.235294,
+          "cost_score": -447.058824
+         }
+        },
+        "ambiguous": {
+         "all_executed": {
+          "requested": 5,
+          "right": 3,
+          "wrong": 1,
+          "not_done": 1,
+          "extras": 7,
+          "executed": 11,
+          "execution_precision": 0.272727,
+          "right_share": 0.6,
+          "cost_score": -1540
+         }
+        },
+        "dictated": {
+         "all_executed": {
+          "requested": 24,
+          "right": 0,
+          "wrong": 7,
+          "not_done": 17,
+          "extras": 7,
+          "executed": 14,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -583.333333
+         }
+        },
+        "nothing_to_do": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 5,
+          "executed": 5,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "session": {
+         "all_executed": {
+          "requested": 64,
+          "right": 2,
+          "wrong": 15,
+          "not_done": 47,
+          "extras": 13,
+          "executed": 30,
+          "execution_precision": 0.066667,
+          "right_share": 0.03125,
+          "cost_score": -434.375
+         }
+        },
+        "self_correction": {
+         "all_executed": {
+          "requested": 16,
+          "right": 0,
+          "wrong": 7,
+          "not_done": 9,
+          "extras": 12,
+          "executed": 19,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1187.5
+         }
+        },
+        "reference": {
+         "all_executed": {
+          "requested": 28,
+          "right": 0,
+          "wrong": 9,
+          "not_done": 19,
+          "extras": 6,
+          "executed": 15,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -535.714286
+         }
+        },
+        "indirect": {
+         "all_executed": {
+          "requested": 12,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 12,
+          "extras": 18,
+          "executed": 18,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1500
+         }
+        },
+        "fragment": {
+         "all_executed": {
+          "requested": 3,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 3,
+          "extras": 1,
+          "executed": 1,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -333.333333
+         }
+        },
+        "translated": {
+         "all_executed": {
+          "requested": 18,
+          "right": 1,
+          "wrong": 4,
+          "not_done": 13,
+          "extras": 9,
+          "executed": 14,
+          "execution_precision": 0.071429,
+          "right_share": 0.055556,
+          "cost_score": -716.666667
+         }
+        },
+        "paraphrase": {
+         "all_executed": {
+          "requested": 100,
+          "right": 16,
+          "wrong": 19,
+          "not_done": 65,
+          "extras": 41,
+          "executed": 76,
+          "execution_precision": 0.210526,
+          "right_share": 0.16,
+          "cost_score": -584
+         }
+        },
+        "complaint": {
+         "all_executed": {
+          "requested": 25,
+          "right": 0,
+          "wrong": 3,
+          "not_done": 22,
+          "extras": 9,
+          "executed": 12,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -480
+         }
+        },
+        "typos": {
+         "all_executed": {
+          "requested": 10,
+          "right": 0,
+          "wrong": 3,
+          "not_done": 7,
+          "extras": 7,
+          "executed": 10,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        }
+       },
+       "by_writer": {
+        "gpt-6.1-sol": {
+         "all_executed": {
+          "requested": 248,
+          "right": 10,
+          "wrong": 57,
+          "not_done": 181,
+          "extras": 112,
+          "executed": 179,
+          "execution_precision": 0.055866,
+          "right_share": 0.040323,
+          "cost_score": -677.419355
+         }
+        },
+        "claude-opus-5-5": {
+         "all_executed": {
+          "requested": 203,
+          "right": 19,
+          "wrong": 51,
+          "not_done": 133,
+          "extras": 94,
+          "executed": 164,
+          "execution_precision": 0.115854,
+          "right_share": 0.093596,
+          "cost_score": -704.926108
+         }
+        }
+       }
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 451,
+        "right": 29,
+        "wrong": 108,
+        "not_done": 314,
+        "extras": 206,
+        "executed": 343,
+        "execution_precision": 0.084548,
+        "right_share": 0.064302,
+        "cost_score": -689.800443
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 254,
+          "right": 25,
+          "wrong": 85,
+          "not_done": 144,
+          "extras": 0,
+          "executed": 110,
+          "execution_precision": 0.227273,
+          "right_share": 0.098425,
+          "cost_score": -324.80315
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 197,
+          "right": 4,
+          "wrong": 23,
+          "not_done": 170,
+          "extras": 0,
+          "executed": 27,
+          "execution_precision": 0.148148,
+          "right_share": 0.020305,
+          "cost_score": -114.720812
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 206,
+          "executed": 206,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 129,
+          "right": 3,
+          "wrong": 36,
+          "not_done": 90,
+          "extras": 67,
+          "executed": 106,
+          "execution_precision": 0.028302,
+          "right_share": 0.023256,
+          "cost_score": -796.124031
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 17,
+          "right": 4,
+          "wrong": 4,
+          "not_done": 9,
+          "extras": 4,
+          "executed": 12,
+          "execution_precision": 0.333333,
+          "right_share": 0.235294,
+          "cost_score": -447.058824
+         }
+        },
+        "ambiguous": {
+         "all_executed": {
+          "requested": 5,
+          "right": 3,
+          "wrong": 1,
+          "not_done": 1,
+          "extras": 7,
+          "executed": 11,
+          "execution_precision": 0.272727,
+          "right_share": 0.6,
+          "cost_score": -1540
+         }
+        },
+        "dictated": {
+         "all_executed": {
+          "requested": 24,
+          "right": 0,
+          "wrong": 7,
+          "not_done": 17,
+          "extras": 7,
+          "executed": 14,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -583.333333
+         }
+        },
+        "nothing_to_do": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 5,
+          "executed": 5,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "session": {
+         "all_executed": {
+          "requested": 64,
+          "right": 2,
+          "wrong": 15,
+          "not_done": 47,
+          "extras": 13,
+          "executed": 30,
+          "execution_precision": 0.066667,
+          "right_share": 0.03125,
+          "cost_score": -434.375
+         }
+        },
+        "self_correction": {
+         "all_executed": {
+          "requested": 16,
+          "right": 0,
+          "wrong": 7,
+          "not_done": 9,
+          "extras": 12,
+          "executed": 19,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1187.5
+         }
+        },
+        "reference": {
+         "all_executed": {
+          "requested": 28,
+          "right": 0,
+          "wrong": 9,
+          "not_done": 19,
+          "extras": 6,
+          "executed": 15,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -535.714286
+         }
+        },
+        "indirect": {
+         "all_executed": {
+          "requested": 12,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 12,
+          "extras": 18,
+          "executed": 18,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1500
+         }
+        },
+        "fragment": {
+         "all_executed": {
+          "requested": 3,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 3,
+          "extras": 1,
+          "executed": 1,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -333.333333
+         }
+        },
+        "translated": {
+         "all_executed": {
+          "requested": 18,
+          "right": 1,
+          "wrong": 4,
+          "not_done": 13,
+          "extras": 9,
+          "executed": 14,
+          "execution_precision": 0.071429,
+          "right_share": 0.055556,
+          "cost_score": -716.666667
+         }
+        },
+        "paraphrase": {
+         "all_executed": {
+          "requested": 100,
+          "right": 16,
+          "wrong": 19,
+          "not_done": 65,
+          "extras": 41,
+          "executed": 76,
+          "execution_precision": 0.210526,
+          "right_share": 0.16,
+          "cost_score": -584
+         }
+        },
+        "complaint": {
+         "all_executed": {
+          "requested": 25,
+          "right": 0,
+          "wrong": 3,
+          "not_done": 22,
+          "extras": 9,
+          "executed": 12,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -480
+         }
+        },
+        "typos": {
+         "all_executed": {
+          "requested": 10,
+          "right": 0,
+          "wrong": 3,
+          "not_done": 7,
+          "extras": 7,
+          "executed": 10,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        }
+       },
+       "by_writer": {
+        "gpt-6.1-sol": {
+         "all_executed": {
+          "requested": 248,
+          "right": 10,
+          "wrong": 57,
+          "not_done": 181,
+          "extras": 112,
+          "executed": 179,
+          "execution_precision": 0.055866,
+          "right_share": 0.040323,
+          "cost_score": -677.419355
+         }
+        },
+        "claude-opus-5-5": {
+         "all_executed": {
+          "requested": 203,
+          "right": 19,
+          "wrong": 51,
+          "not_done": 133,
+          "extras": 94,
+          "executed": 164,
+          "execution_precision": 0.115854,
+          "right_share": 0.093596,
+          "cost_score": -704.926108
+         }
+        }
+       }
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 4,
+    "excluding_train_text_overlap": {
+     "messages": 306,
+     "requested": 404,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "opus": {
+       "today": {
+        "all_executed": {
+         "requested": 404,
+         "right": 26,
+         "wrong": 108,
+         "not_done": 270,
+         "extras": 206,
+         "executed": 340,
+         "execution_precision": 0.076471,
+         "right_share": 0.064356,
+         "cost_score": -770.792079
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 404,
+         "right": 26,
+         "wrong": 108,
+         "not_done": 270,
+         "extras": 206,
+         "executed": 340,
+         "execution_precision": 0.076471,
+         "right_share": 0.064356,
+         "cost_score": -770.792079
+        }
+       }
+      },
+      "either": {
+       "today": {
+        "all_executed": {
+         "requested": 447,
+         "right": 26,
+         "wrong": 108,
+         "not_done": 313,
+         "extras": 206,
+         "executed": 340,
+         "execution_precision": 0.076471,
+         "right_share": 0.058166,
+         "cost_score": -696.644295
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 447,
+         "right": 26,
+         "wrong": 108,
+         "not_done": 313,
+         "extras": 206,
+         "executed": 340,
+         "execution_precision": 0.076471,
+         "right_share": 0.058166,
+         "cost_score": -696.644295
+        }
+       }
+      }
+     }
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      },
+      "direction": {
+       "requested": 408,
+       "right": 301,
+       "wrong": 71,
+       "not_done": 36,
+       "extras": 43,
+       "right_share": 0.737745,
+       "cost_score": -205.637255
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      },
+      "direction": {
+       "requested": 415,
+       "right": 281,
+       "wrong": 91,
+       "not_done": 43,
+       "extras": 36,
+       "right_share": 0.677108,
+       "cost_score": -238.313253
+      }
+     }
+    },
+    "reading": {
+     "headline_view": "opus",
+     "ceiling": "teachers_agreement.gpt_scored_against_opus: gpt's requests scored against Opus's by the same pairing and value rule as the headline view",
+     "either_view": "an upper reading, not the headline: the requested actions are the union of the two teachers' requests (a gpt request that pairs with an Opus request shares its slot), each filled by one produced request at most"
+    },
+    "nothing_to_do": {
+     "all_executed": {
+      "messages": 9,
+      "requested_in_these": 0,
+      "actions_executed": 5,
+      "actions_executed_per_100_messages": 55.555556
+     }
+    },
+    "paraphrase": {
+     "all_executed": {
+      "groups": 19,
+      "wordings": 88,
+      "same_effect_share": 0.704545,
+      "changed_nothing_share": 0.704545,
+      "same_effect_as_gold_share": 0.386364,
+      "same_effect_as_either_teacher_share": 0.397727,
+      "setup_errors": 0
+     }
+    },
+    "sessions": {
+     "all_executed": {
+      "sessions": 10,
+      "same_final_drawing": 0,
+      "mean_share_percent_of_what_the_session_changed": {
+       "shapes": 0,
+       "arrows": 0,
+       "groups": null
+      },
+      "mean_share_percent_whole_drawing": {
+       "shapes": 33.416667,
+       "arrows": 32.936508,
+       "groups": null
+      },
+      "questions_with_a_gold_answer": 3,
+      "questions_same_answer": 0,
+      "steps_left_out_as_unreliable": 1,
+      "engine_errors": 10,
+      "per_session": [
+       {
+        "session": "nl-01-cloud",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 4
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 6
+         },
+         "arrows": {
+          "same": 0,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "nl-02-warehouse",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 9
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 9
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 0
+       },
+       {
+        "session": "family-eli",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 2
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 5
+         },
+         "arrows": {
+          "same": 2,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 2,
+        "gold_errors": 0
+       },
+       {
+        "session": "podcast_edit",
+        "steps": 16,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 7
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 8
+         },
+         "arrows": {
+          "same": 1,
+          "total": 7
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 2,
+        "gold_errors": 0
+       },
+       {
+        "session": "s07-billing",
+        "steps": 5,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 2,
+        "gold_errors": 1
+       },
+       {
+        "session": "s07-bottling",
+        "steps": 5,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 0
+       },
+       {
+        "session": "s08-corner",
+        "steps": 7,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 0
+       },
+       {
+        "session": "game-1",
+        "steps": 5,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 1
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 5,
+          "total": 6
+         },
+         "arrows": {
+          "same": 5,
+          "total": 6
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         false
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "map-1",
+        "steps": 5,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 6
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 6
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       },
+       {
+        "session": "halfway",
+        "steps": 2,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 1
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 4,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         false,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 0
+       }
+      ]
+     }
+    },
+    "do_nothing_floor": {
+     "paraphrase": {
+      "groups": 19,
+      "wordings": 88,
+      "same_effect_share": 1,
+      "changed_nothing_share": 1,
+      "same_effect_as_gold_share": 0.215909,
+      "same_effect_as_either_teacher_share": 0.227273,
+      "setup_errors": 0
+     },
+     "sessions": {
+      "sessions": 10,
+      "same_final_drawing": 0,
+      "mean_share_percent_of_what_the_session_changed": {
+       "shapes": 0,
+       "arrows": 0,
+       "groups": null
+      },
+      "mean_share_percent_whole_drawing": {
+       "shapes": 33.416667,
+       "arrows": 49.603175,
+       "groups": null
+      },
+      "questions_with_a_gold_answer": 3,
+      "questions_same_answer": 0,
+      "steps_left_out_as_unreliable": 1,
+      "engine_errors": 0
+     }
+    },
+    "use": "calibration-part"
+   },
+   "development": {
+    "messages": 300,
+    "requested": 392,
+    "produced": 290,
+    "failed_messages": 0,
+    "views": {
+     "opus": {
+      "today": {
+       "all_executed": {
+        "requested": 392,
+        "right": 22,
+        "wrong": 95,
+        "not_done": 275,
+        "extras": 173,
+        "executed": 290,
+        "execution_precision": 0.075862,
+        "right_share": 0.056122,
+        "cost_score": -678.061224
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 199,
+          "right": 18,
+          "wrong": 73,
+          "not_done": 108,
+          "extras": 0,
+          "executed": 91,
+          "execution_precision": 0.197802,
+          "right_share": 0.090452,
+          "cost_score": -357.788945
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 193,
+          "right": 4,
+          "wrong": 22,
+          "not_done": 167,
+          "extras": 0,
+          "executed": 26,
+          "execution_precision": 0.153846,
+          "right_share": 0.020725,
+          "cost_score": -111.917098
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 173,
+          "executed": 173,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "reference": {
+         "all_executed": {
+          "requested": 16,
+          "right": 0,
+          "wrong": 5,
+          "not_done": 11,
+          "extras": 6,
+          "executed": 11,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -687.5
+         }
+        },
+        "complaint": {
+         "all_executed": {
+          "requested": 21,
+          "right": 0,
+          "wrong": 6,
+          "not_done": 15,
+          "extras": 13,
+          "executed": 19,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -904.761905
+         }
+        },
+        "typos": {
+         "all_executed": {
+          "requested": 26,
+          "right": 2,
+          "wrong": 8,
+          "not_done": 16,
+          "extras": 7,
+          "executed": 17,
+          "execution_precision": 0.117647,
+          "right_share": 0.076923,
+          "cost_score": -569.230769
+         }
+        },
+        "indirect": {
+         "all_executed": {
+          "requested": 7,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 7,
+          "extras": 4,
+          "executed": 4,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -571.428571
+         }
+        },
+        "long": {
+         "all_executed": {
+          "requested": 92,
+          "right": 2,
+          "wrong": 19,
+          "not_done": 71,
+          "extras": 50,
+          "executed": 71,
+          "execution_precision": 0.028169,
+          "right_share": 0.021739,
+          "cost_score": -747.826087
+         }
+        },
+        "translated": {
+         "all_executed": {
+          "requested": 21,
+          "right": 0,
+          "wrong": 4,
+          "not_done": 17,
+          "extras": 9,
+          "executed": 13,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -619.047619
+         }
+        },
+        "ambiguous": {
+         "all_executed": {
+          "requested": 7,
+          "right": 4,
+          "wrong": 3,
+          "not_done": 0,
+          "extras": 4,
+          "executed": 11,
+          "execution_precision": 0.363636,
+          "right_share": 0.571429,
+          "cost_score": -942.857143
+         }
+        },
+        "session": {
+         "all_executed": {
+          "requested": 92,
+          "right": 4,
+          "wrong": 21,
+          "not_done": 67,
+          "extras": 19,
+          "executed": 44,
+          "execution_precision": 0.090909,
+          "right_share": 0.043478,
+          "cost_score": -430.434783
+         }
+        },
+        "dictated": {
+         "all_executed": {
+          "requested": 27,
+          "right": 0,
+          "wrong": 5,
+          "not_done": 22,
+          "extras": 10,
+          "executed": 15,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -555.555556
+         }
+        },
+        "nothing_to_do": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 17,
+          "executed": 17,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "self_correction": {
+         "all_executed": {
+          "requested": 23,
+          "right": 2,
+          "wrong": 8,
+          "not_done": 13,
+          "extras": 15,
+          "executed": 25,
+          "execution_precision": 0.08,
+          "right_share": 0.086957,
+          "cost_score": -991.304348
+         }
+        },
+        "fragment": {
+         "all_executed": {
+          "requested": 4,
+          "right": 0,
+          "wrong": 1,
+          "not_done": 3,
+          "extras": 3,
+          "executed": 4,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 11,
+          "right": 5,
+          "wrong": 2,
+          "not_done": 4,
+          "extras": 3,
+          "executed": 10,
+          "execution_precision": 0.5,
+          "right_share": 0.454545,
+          "cost_score": -409.090909
+         }
+        },
+        "paraphrase": {
+         "all_executed": {
+          "requested": 45,
+          "right": 3,
+          "wrong": 13,
+          "not_done": 29,
+          "extras": 13,
+          "executed": 29,
+          "execution_precision": 0.103448,
+          "right_share": 0.066667,
+          "cost_score": -571.111111
+         }
+        }
+       },
+       "by_writer": {
+        "gpt-6.1-sol": {
+         "all_executed": {
+          "requested": 206,
+          "right": 14,
+          "wrong": 47,
+          "not_done": 145,
+          "extras": 95,
+          "executed": 156,
+          "execution_precision": 0.089744,
+          "right_share": 0.067961,
+          "cost_score": -682.524272
+         }
+        },
+        "claude-opus-5-5": {
+         "all_executed": {
+          "requested": 186,
+          "right": 8,
+          "wrong": 48,
+          "not_done": 130,
+          "extras": 78,
+          "executed": 134,
+          "execution_precision": 0.059701,
+          "right_share": 0.043011,
+          "cost_score": -673.11828
+         }
+        }
+       }
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 392,
+        "right": 22,
+        "wrong": 95,
+        "not_done": 275,
+        "extras": 173,
+        "executed": 290,
+        "execution_precision": 0.075862,
+        "right_share": 0.056122,
+        "cost_score": -678.061224
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 199,
+          "right": 18,
+          "wrong": 73,
+          "not_done": 108,
+          "extras": 0,
+          "executed": 91,
+          "execution_precision": 0.197802,
+          "right_share": 0.090452,
+          "cost_score": -357.788945
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 193,
+          "right": 4,
+          "wrong": 22,
+          "not_done": 167,
+          "extras": 0,
+          "executed": 26,
+          "execution_precision": 0.153846,
+          "right_share": 0.020725,
+          "cost_score": -111.917098
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 173,
+          "executed": 173,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "reference": {
+         "all_executed": {
+          "requested": 16,
+          "right": 0,
+          "wrong": 5,
+          "not_done": 11,
+          "extras": 6,
+          "executed": 11,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -687.5
+         }
+        },
+        "complaint": {
+         "all_executed": {
+          "requested": 21,
+          "right": 0,
+          "wrong": 6,
+          "not_done": 15,
+          "extras": 13,
+          "executed": 19,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -904.761905
+         }
+        },
+        "typos": {
+         "all_executed": {
+          "requested": 26,
+          "right": 2,
+          "wrong": 8,
+          "not_done": 16,
+          "extras": 7,
+          "executed": 17,
+          "execution_precision": 0.117647,
+          "right_share": 0.076923,
+          "cost_score": -569.230769
+         }
+        },
+        "indirect": {
+         "all_executed": {
+          "requested": 7,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 7,
+          "extras": 4,
+          "executed": 4,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -571.428571
+         }
+        },
+        "long": {
+         "all_executed": {
+          "requested": 92,
+          "right": 2,
+          "wrong": 19,
+          "not_done": 71,
+          "extras": 50,
+          "executed": 71,
+          "execution_precision": 0.028169,
+          "right_share": 0.021739,
+          "cost_score": -747.826087
+         }
+        },
+        "translated": {
+         "all_executed": {
+          "requested": 21,
+          "right": 0,
+          "wrong": 4,
+          "not_done": 17,
+          "extras": 9,
+          "executed": 13,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -619.047619
+         }
+        },
+        "ambiguous": {
+         "all_executed": {
+          "requested": 7,
+          "right": 4,
+          "wrong": 3,
+          "not_done": 0,
+          "extras": 4,
+          "executed": 11,
+          "execution_precision": 0.363636,
+          "right_share": 0.571429,
+          "cost_score": -942.857143
+         }
+        },
+        "session": {
+         "all_executed": {
+          "requested": 92,
+          "right": 4,
+          "wrong": 21,
+          "not_done": 67,
+          "extras": 19,
+          "executed": 44,
+          "execution_precision": 0.090909,
+          "right_share": 0.043478,
+          "cost_score": -430.434783
+         }
+        },
+        "dictated": {
+         "all_executed": {
+          "requested": 27,
+          "right": 0,
+          "wrong": 5,
+          "not_done": 22,
+          "extras": 10,
+          "executed": 15,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -555.555556
+         }
+        },
+        "nothing_to_do": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 17,
+          "executed": 17,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "self_correction": {
+         "all_executed": {
+          "requested": 23,
+          "right": 2,
+          "wrong": 8,
+          "not_done": 13,
+          "extras": 15,
+          "executed": 25,
+          "execution_precision": 0.08,
+          "right_share": 0.086957,
+          "cost_score": -991.304348
+         }
+        },
+        "fragment": {
+         "all_executed": {
+          "requested": 4,
+          "right": 0,
+          "wrong": 1,
+          "not_done": 3,
+          "extras": 3,
+          "executed": 4,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 11,
+          "right": 5,
+          "wrong": 2,
+          "not_done": 4,
+          "extras": 3,
+          "executed": 10,
+          "execution_precision": 0.5,
+          "right_share": 0.454545,
+          "cost_score": -409.090909
+         }
+        },
+        "paraphrase": {
+         "all_executed": {
+          "requested": 45,
+          "right": 3,
+          "wrong": 13,
+          "not_done": 29,
+          "extras": 13,
+          "executed": 29,
+          "execution_precision": 0.103448,
+          "right_share": 0.066667,
+          "cost_score": -571.111111
+         }
+        }
+       },
+       "by_writer": {
+        "gpt-6.1-sol": {
+         "all_executed": {
+          "requested": 206,
+          "right": 14,
+          "wrong": 47,
+          "not_done": 145,
+          "extras": 95,
+          "executed": 156,
+          "execution_precision": 0.089744,
+          "right_share": 0.067961,
+          "cost_score": -682.524272
+         }
+        },
+        "claude-opus-5-5": {
+         "all_executed": {
+          "requested": 186,
+          "right": 8,
+          "wrong": 48,
+          "not_done": 130,
+          "extras": 78,
+          "executed": 134,
+          "execution_precision": 0.059701,
+          "right_share": 0.043011,
+          "cost_score": -673.11828
+         }
+        }
+       }
+      }
+     },
+     "either": {
+      "today": {
+       "all_executed": {
+        "requested": 412,
+        "right": 24,
+        "wrong": 94,
+        "not_done": 294,
+        "extras": 172,
+        "executed": 290,
+        "execution_precision": 0.082759,
+        "right_share": 0.058252,
+        "cost_score": -639.805825
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 210,
+          "right": 20,
+          "wrong": 72,
+          "not_done": 118,
+          "extras": 0,
+          "executed": 92,
+          "execution_precision": 0.217391,
+          "right_share": 0.095238,
+          "cost_score": -333.333333
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 202,
+          "right": 4,
+          "wrong": 22,
+          "not_done": 176,
+          "extras": 0,
+          "executed": 26,
+          "execution_precision": 0.153846,
+          "right_share": 0.019802,
+          "cost_score": -106.930693
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 172,
+          "executed": 172,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "reference": {
+         "all_executed": {
+          "requested": 16,
+          "right": 0,
+          "wrong": 5,
+          "not_done": 11,
+          "extras": 6,
+          "executed": 11,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -687.5
+         }
+        },
+        "complaint": {
+         "all_executed": {
+          "requested": 22,
+          "right": 0,
+          "wrong": 6,
+          "not_done": 16,
+          "extras": 13,
+          "executed": 19,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -863.636364
+         }
+        },
+        "typos": {
+         "all_executed": {
+          "requested": 28,
+          "right": 2,
+          "wrong": 8,
+          "not_done": 18,
+          "extras": 7,
+          "executed": 17,
+          "execution_precision": 0.117647,
+          "right_share": 0.071429,
+          "cost_score": -528.571429
+         }
+        },
+        "indirect": {
+         "all_executed": {
+          "requested": 9,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 9,
+          "extras": 4,
+          "executed": 4,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -444.444444
+         }
+        },
+        "long": {
+         "all_executed": {
+          "requested": 97,
+          "right": 3,
+          "wrong": 18,
+          "not_done": 76,
+          "extras": 50,
+          "executed": 71,
+          "execution_precision": 0.042254,
+          "right_share": 0.030928,
+          "cost_score": -697.938144
+         }
+        },
+        "translated": {
+         "all_executed": {
+          "requested": 22,
+          "right": 1,
+          "wrong": 4,
+          "not_done": 17,
+          "extras": 8,
+          "executed": 13,
+          "execution_precision": 0.076923,
+          "right_share": 0.045455,
+          "cost_score": -540.909091
+         }
+        },
+        "ambiguous": {
+         "all_executed": {
+          "requested": 7,
+          "right": 4,
+          "wrong": 3,
+          "not_done": 0,
+          "extras": 4,
+          "executed": 11,
+          "execution_precision": 0.363636,
+          "right_share": 0.571429,
+          "cost_score": -942.857143
+         }
+        },
+        "session": {
+         "all_executed": {
+          "requested": 97,
+          "right": 4,
+          "wrong": 21,
+          "not_done": 72,
+          "extras": 19,
+          "executed": 44,
+          "execution_precision": 0.090909,
+          "right_share": 0.041237,
+          "cost_score": -408.247423
+         }
+        },
+        "dictated": {
+         "all_executed": {
+          "requested": 30,
+          "right": 0,
+          "wrong": 5,
+          "not_done": 25,
+          "extras": 10,
+          "executed": 15,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -500
+         }
+        },
+        "nothing_to_do": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 17,
+          "executed": 17,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "self_correction": {
+         "all_executed": {
+          "requested": 24,
+          "right": 2,
+          "wrong": 8,
+          "not_done": 14,
+          "extras": 15,
+          "executed": 25,
+          "execution_precision": 0.08,
+          "right_share": 0.083333,
+          "cost_score": -950
+         }
+        },
+        "fragment": {
+         "all_executed": {
+          "requested": 4,
+          "right": 0,
+          "wrong": 1,
+          "not_done": 3,
+          "extras": 3,
+          "executed": 4,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 11,
+          "right": 5,
+          "wrong": 2,
+          "not_done": 4,
+          "extras": 3,
+          "executed": 10,
+          "execution_precision": 0.5,
+          "right_share": 0.454545,
+          "cost_score": -409.090909
+         }
+        },
+        "paraphrase": {
+         "all_executed": {
+          "requested": 45,
+          "right": 3,
+          "wrong": 13,
+          "not_done": 29,
+          "extras": 13,
+          "executed": 29,
+          "execution_precision": 0.103448,
+          "right_share": 0.066667,
+          "cost_score": -571.111111
+         }
+        }
+       },
+       "by_writer": {
+        "gpt-6.1-sol": {
+         "all_executed": {
+          "requested": 222,
+          "right": 15,
+          "wrong": 47,
+          "not_done": 160,
+          "extras": 94,
+          "executed": 156,
+          "execution_precision": 0.096154,
+          "right_share": 0.067568,
+          "cost_score": -628.378378
+         }
+        },
+        "claude-opus-5-5": {
+         "all_executed": {
+          "requested": 190,
+          "right": 9,
+          "wrong": 47,
+          "not_done": 134,
+          "extras": 78,
+          "executed": 134,
+          "execution_precision": 0.067164,
+          "right_share": 0.047368,
+          "cost_score": -653.157895
+         }
+        }
+       }
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 412,
+        "right": 24,
+        "wrong": 94,
+        "not_done": 294,
+        "extras": 172,
+        "executed": 290,
+        "execution_precision": 0.082759,
+        "right_share": 0.058252,
+        "cost_score": -639.805825
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 210,
+          "right": 20,
+          "wrong": 72,
+          "not_done": 118,
+          "extras": 0,
+          "executed": 92,
+          "execution_precision": 0.217391,
+          "right_share": 0.095238,
+          "cost_score": -333.333333
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 202,
+          "right": 4,
+          "wrong": 22,
+          "not_done": 176,
+          "extras": 0,
+          "executed": 26,
+          "execution_precision": 0.153846,
+          "right_share": 0.019802,
+          "cost_score": -106.930693
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 172,
+          "executed": 172,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "reference": {
+         "all_executed": {
+          "requested": 16,
+          "right": 0,
+          "wrong": 5,
+          "not_done": 11,
+          "extras": 6,
+          "executed": 11,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -687.5
+         }
+        },
+        "complaint": {
+         "all_executed": {
+          "requested": 22,
+          "right": 0,
+          "wrong": 6,
+          "not_done": 16,
+          "extras": 13,
+          "executed": 19,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -863.636364
+         }
+        },
+        "typos": {
+         "all_executed": {
+          "requested": 28,
+          "right": 2,
+          "wrong": 8,
+          "not_done": 18,
+          "extras": 7,
+          "executed": 17,
+          "execution_precision": 0.117647,
+          "right_share": 0.071429,
+          "cost_score": -528.571429
+         }
+        },
+        "indirect": {
+         "all_executed": {
+          "requested": 9,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 9,
+          "extras": 4,
+          "executed": 4,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -444.444444
+         }
+        },
+        "long": {
+         "all_executed": {
+          "requested": 97,
+          "right": 3,
+          "wrong": 18,
+          "not_done": 76,
+          "extras": 50,
+          "executed": 71,
+          "execution_precision": 0.042254,
+          "right_share": 0.030928,
+          "cost_score": -697.938144
+         }
+        },
+        "translated": {
+         "all_executed": {
+          "requested": 22,
+          "right": 1,
+          "wrong": 4,
+          "not_done": 17,
+          "extras": 8,
+          "executed": 13,
+          "execution_precision": 0.076923,
+          "right_share": 0.045455,
+          "cost_score": -540.909091
+         }
+        },
+        "ambiguous": {
+         "all_executed": {
+          "requested": 7,
+          "right": 4,
+          "wrong": 3,
+          "not_done": 0,
+          "extras": 4,
+          "executed": 11,
+          "execution_precision": 0.363636,
+          "right_share": 0.571429,
+          "cost_score": -942.857143
+         }
+        },
+        "session": {
+         "all_executed": {
+          "requested": 97,
+          "right": 4,
+          "wrong": 21,
+          "not_done": 72,
+          "extras": 19,
+          "executed": 44,
+          "execution_precision": 0.090909,
+          "right_share": 0.041237,
+          "cost_score": -408.247423
+         }
+        },
+        "dictated": {
+         "all_executed": {
+          "requested": 30,
+          "right": 0,
+          "wrong": 5,
+          "not_done": 25,
+          "extras": 10,
+          "executed": 15,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -500
+         }
+        },
+        "nothing_to_do": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 17,
+          "executed": 17,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "self_correction": {
+         "all_executed": {
+          "requested": 24,
+          "right": 2,
+          "wrong": 8,
+          "not_done": 14,
+          "extras": 15,
+          "executed": 25,
+          "execution_precision": 0.08,
+          "right_share": 0.083333,
+          "cost_score": -950
+         }
+        },
+        "fragment": {
+         "all_executed": {
+          "requested": 4,
+          "right": 0,
+          "wrong": 1,
+          "not_done": 3,
+          "extras": 3,
+          "executed": 4,
+          "execution_precision": 0,
+          "right_share": 0,
+          "cost_score": -1000
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 11,
+          "right": 5,
+          "wrong": 2,
+          "not_done": 4,
+          "extras": 3,
+          "executed": 10,
+          "execution_precision": 0.5,
+          "right_share": 0.454545,
+          "cost_score": -409.090909
+         }
+        },
+        "paraphrase": {
+         "all_executed": {
+          "requested": 45,
+          "right": 3,
+          "wrong": 13,
+          "not_done": 29,
+          "extras": 13,
+          "executed": 29,
+          "execution_precision": 0.103448,
+          "right_share": 0.066667,
+          "cost_score": -571.111111
+         }
+        }
+       },
+       "by_writer": {
+        "gpt-6.1-sol": {
+         "all_executed": {
+          "requested": 222,
+          "right": 15,
+          "wrong": 47,
+          "not_done": 160,
+          "extras": 94,
+          "executed": 156,
+          "execution_precision": 0.096154,
+          "right_share": 0.067568,
+          "cost_score": -628.378378
+         }
+        },
+        "claude-opus-5-5": {
+         "all_executed": {
+          "requested": 190,
+          "right": 9,
+          "wrong": 47,
+          "not_done": 134,
+          "extras": 78,
+          "executed": 134,
+          "execution_precision": 0.067164,
+          "right_share": 0.047368,
+          "cost_score": -653.157895
+         }
+        }
+       }
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 1,
+    "excluding_train_text_overlap": {
+     "messages": 299,
+     "requested": 391,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "opus": {
+       "today": {
+        "all_executed": {
+         "requested": 391,
+         "right": 21,
+         "wrong": 95,
+         "not_done": 275,
+         "extras": 173,
+         "executed": 289,
+         "execution_precision": 0.072664,
+         "right_share": 0.053708,
+         "cost_score": -680.051151
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 391,
+         "right": 21,
+         "wrong": 95,
+         "not_done": 275,
+         "extras": 173,
+         "executed": 289,
+         "execution_precision": 0.072664,
+         "right_share": 0.053708,
+         "cost_score": -680.051151
+        }
+       }
+      },
+      "either": {
+       "today": {
+        "all_executed": {
+         "requested": 411,
+         "right": 23,
+         "wrong": 94,
+         "not_done": 294,
+         "extras": 172,
+         "executed": 289,
+         "execution_precision": 0.079585,
+         "right_share": 0.055961,
+         "cost_score": -641.605839
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 411,
+         "right": 23,
+         "wrong": 94,
+         "not_done": 294,
+         "extras": 172,
+         "executed": 289,
+         "execution_precision": 0.079585,
+         "right_share": 0.055961,
+         "cost_score": -641.605839
+        }
+       }
+      }
+     }
+    },
+    "teachers_agreement": {
+     "gpt_scored_against_opus": {
+      "today": {
+       "requested": 392,
+       "right": 283,
+       "wrong": 70,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.721939,
+       "cost_score": -157.397959
+      },
+      "direction": {
+       "requested": 392,
+       "right": 282,
+       "wrong": 71,
+       "not_done": 39,
+       "extras": 20,
+       "right_share": 0.719388,
+       "cost_score": -160.204082
+      }
+     },
+     "opus_scored_against_gpt": {
+      "today": {
+       "requested": 373,
+       "right": 262,
+       "wrong": 91,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.702413,
+       "cost_score": -278.284182
+      },
+      "direction": {
+       "requested": 373,
+       "right": 261,
+       "wrong": 92,
+       "not_done": 20,
+       "extras": 39,
+       "right_share": 0.699732,
+       "cost_score": -281.233244
+      }
+     }
+    },
+    "reading": {
+     "headline_view": "opus",
+     "ceiling": "teachers_agreement.gpt_scored_against_opus: gpt's requests scored against Opus's by the same pairing and value rule as the headline view",
+     "either_view": "an upper reading, not the headline: the requested actions are the union of the two teachers' requests (a gpt request that pairs with an Opus request shares its slot), each filled by one produced request at most"
+    },
+    "nothing_to_do": {
+     "all_executed": {
+      "messages": 18,
+      "requested_in_these": 0,
+      "actions_executed": 17,
+      "actions_executed_per_100_messages": 94.444444
+     }
+    },
+    "paraphrase": {
+     "all_executed": {
+      "groups": 8,
+      "wordings": 37,
+      "same_effect_share": 0.594595,
+      "changed_nothing_share": 0.594595,
+      "same_effect_as_gold_share": 0.081081,
+      "same_effect_as_either_teacher_share": 0.081081,
+      "setup_errors": 0
+     }
+    },
+    "sessions": {
+     "all_executed": {
+      "sessions": 11,
+      "same_final_drawing": 1,
+      "mean_share_percent_of_what_the_session_changed": {
+       "shapes": 2,
+       "arrows": 14.285714,
+       "groups": null
+      },
+      "mean_share_percent_whole_drawing": {
+       "shapes": 31.185808,
+       "arrows": 29.047619,
+       "groups": null
+      },
+      "questions_with_a_gold_answer": 5,
+      "questions_same_answer": 0,
+      "steps_left_out_as_unreliable": 25,
+      "engine_errors": 31,
+      "per_session": [
+       {
+        "session": "nl-01-machine",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 5
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 5
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 0
+       },
+       {
+        "session": "nl-02-admission",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 6
+         },
+         "arrows": {
+          "same": 0,
+          "total": 3
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 4,
+        "gold_errors": 0
+       },
+       {
+        "session": "space-homework",
+        "steps": 4,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 2
+         },
+         "arrows": {
+          "same": 0,
+          "total": 2
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 5
+         },
+         "arrows": {
+          "same": 2,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         false
+        ],
+        "engine_errors": 1,
+        "gold_errors": 0
+       },
+       {
+        "session": "roof_garden",
+        "steps": 2,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 2
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 2
+       },
+       {
+        "session": "museum_escape",
+        "steps": 17,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 7
+         },
+         "arrows": {
+          "same": 0,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 9
+         },
+         "arrows": {
+          "same": 1,
+          "total": 5
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null
+        ],
+        "engine_errors": 8,
+        "gold_errors": 0
+       },
+       {
+        "session": "s08-week",
+        "steps": 5,
+        "shares": {
+         "shapes": {
+          "same": 1,
+          "total": 5
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 1,
+          "total": 7
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 1,
+        "gold_errors": 0
+       },
+       {
+        "session": "wed-1",
+        "steps": 6,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 12
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 12
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 4,
+        "gold_errors": 0
+       },
+       {
+        "session": "logo",
+        "steps": 8,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 0,
+          "total": 3
+         },
+         "arrows": {
+          "same": 0,
+          "total": 0
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 2,
+        "gold_errors": 2
+       },
+       {
+        "session": "route42",
+        "steps": 17,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 14
+         },
+         "arrows": {
+          "same": 0,
+          "total": 5
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 3,
+          "total": 17
+         },
+         "arrows": {
+          "same": 0,
+          "total": 5
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 3,
+        "gold_errors": 0
+       },
+       {
+        "session": "orders",
+        "steps": 16,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 9
+         },
+         "arrows": {
+          "same": 0,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 2,
+          "total": 9
+         },
+         "arrows": {
+          "same": 2,
+          "total": 6
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": false,
+        "questions": [
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         false,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null,
+         null
+        ],
+        "engine_errors": 6,
+        "gold_errors": 0
+       },
+       {
+        "session": "rpg-route",
+        "steps": 2,
+        "shares": {
+         "shapes": {
+          "same": 0,
+          "total": 0
+         },
+         "arrows": {
+          "same": 1,
+          "total": 1
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "shares_whole_drawing": {
+         "shapes": {
+          "same": 4,
+          "total": 4
+         },
+         "arrows": {
+          "same": 4,
+          "total": 4
+         },
+         "groups": {
+          "same": 0,
+          "total": 0
+         }
+        },
+        "same_final_drawing": true,
+        "questions": [
+         null,
+         null
+        ],
+        "engine_errors": 0,
+        "gold_errors": 0
+       }
+      ]
+     }
+    },
+    "do_nothing_floor": {
+     "paraphrase": {
+      "groups": 8,
+      "wordings": 37,
+      "same_effect_share": 1,
+      "changed_nothing_share": 1,
+      "same_effect_as_gold_share": 0,
+      "same_effect_as_either_teacher_share": 0,
+      "setup_errors": 0
+     },
+     "sessions": {
+      "sessions": 11,
+      "same_final_drawing": 0,
+      "mean_share_percent_of_what_the_session_changed": {
+       "shapes": 0,
+       "arrows": 0,
+       "groups": null
+      },
+      "mean_share_percent_whole_drawing": {
+       "shapes": 35.728716,
+       "arrows": 35,
+       "groups": null
+      },
+      "questions_with_a_gold_answer": 5,
+      "questions_same_answer": 0,
+      "steps_left_out_as_unreliable": 25,
+      "engine_errors": 0
+     }
+    },
+    "use": "evaluation"
+   }
+  },
+  "fresh2+short3": {
+   "calibration": {
+    "messages": 368,
+    "requested": 808,
+    "produced": 761,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 808,
+        "right": 475,
+        "wrong": 133,
+        "not_done": 200,
+        "extras": 153,
+        "executed": 761,
+        "execution_precision": 0.624179,
+        "right_share": 0.587871,
+        "cost_score": -295.173267
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 729,
+          "right": 453,
+          "wrong": 127,
+          "not_done": 149,
+          "extras": 0,
+          "executed": 580,
+          "execution_precision": 0.781034,
+          "right_share": 0.621399,
+          "cost_score": -112.071331
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 79,
+          "right": 22,
+          "wrong": 6,
+          "not_done": 51,
+          "extras": 0,
+          "executed": 28,
+          "execution_precision": 0.785714,
+          "right_share": 0.278481,
+          "cost_score": -48.101266
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 153,
+          "executed": 153,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 596,
+          "right": 364,
+          "wrong": 105,
+          "not_done": 127,
+          "extras": 126,
+          "executed": 595,
+          "execution_precision": 0.611765,
+          "right_share": 0.610738,
+          "cost_score": -326.510067
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 212,
+          "right": 111,
+          "wrong": 28,
+          "not_done": 73,
+          "extras": 27,
+          "executed": 166,
+          "execution_precision": 0.668675,
+          "right_share": 0.523585,
+          "cost_score": -207.075472
+         }
+        }
+       },
+       "by_writer": {
+        "opus_a": {
+         "all_executed": {
+          "requested": 136,
+          "right": 69,
+          "wrong": 29,
+          "not_done": 38,
+          "extras": 20,
+          "executed": 118,
+          "execution_precision": 0.584746,
+          "right_share": 0.507353,
+          "cost_score": -309.558824
+         }
+        },
+        "opus_b": {
+         "all_executed": {
+          "requested": 135,
+          "right": 86,
+          "wrong": 24,
+          "not_done": 25,
+          "extras": 30,
+          "executed": 140,
+          "execution_precision": 0.614286,
+          "right_share": 0.637037,
+          "cost_score": -336.296296
+         }
+        },
+        "opus_c": {
+         "all_executed": {
+          "requested": 184,
+          "right": 118,
+          "wrong": 28,
+          "not_done": 38,
+          "extras": 36,
+          "executed": 182,
+          "execution_precision": 0.648352,
+          "right_share": 0.641304,
+          "cost_score": -283.695652
+         }
+        },
+        "opus_d": {
+         "all_executed": {
+          "requested": 141,
+          "right": 91,
+          "wrong": 24,
+          "not_done": 26,
+          "extras": 40,
+          "executed": 155,
+          "execution_precision": 0.587097,
+          "right_share": 0.64539,
+          "cost_score": -389.361702
+         }
+        }
+       }
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 808,
+        "right": 475,
+        "wrong": 133,
+        "not_done": 200,
+        "extras": 153,
+        "executed": 761,
+        "execution_precision": 0.624179,
+        "right_share": 0.587871,
+        "cost_score": -295.173267
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 729,
+          "right": 453,
+          "wrong": 127,
+          "not_done": 149,
+          "extras": 0,
+          "executed": 580,
+          "execution_precision": 0.781034,
+          "right_share": 0.621399,
+          "cost_score": -112.071331
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 79,
+          "right": 22,
+          "wrong": 6,
+          "not_done": 51,
+          "extras": 0,
+          "executed": 28,
+          "execution_precision": 0.785714,
+          "right_share": 0.278481,
+          "cost_score": -48.101266
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 153,
+          "executed": 153,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 596,
+          "right": 364,
+          "wrong": 105,
+          "not_done": 127,
+          "extras": 126,
+          "executed": 595,
+          "execution_precision": 0.611765,
+          "right_share": 0.610738,
+          "cost_score": -326.510067
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 212,
+          "right": 111,
+          "wrong": 28,
+          "not_done": 73,
+          "extras": 27,
+          "executed": 166,
+          "execution_precision": 0.668675,
+          "right_share": 0.523585,
+          "cost_score": -207.075472
+         }
+        }
+       },
+       "by_writer": {
+        "opus_a": {
+         "all_executed": {
+          "requested": 136,
+          "right": 69,
+          "wrong": 29,
+          "not_done": 38,
+          "extras": 20,
+          "executed": 118,
+          "execution_precision": 0.584746,
+          "right_share": 0.507353,
+          "cost_score": -309.558824
+         }
+        },
+        "opus_b": {
+         "all_executed": {
+          "requested": 135,
+          "right": 86,
+          "wrong": 24,
+          "not_done": 25,
+          "extras": 30,
+          "executed": 140,
+          "execution_precision": 0.614286,
+          "right_share": 0.637037,
+          "cost_score": -336.296296
+         }
+        },
+        "opus_c": {
+         "all_executed": {
+          "requested": 184,
+          "right": 118,
+          "wrong": 28,
+          "not_done": 38,
+          "extras": 36,
+          "executed": 182,
+          "execution_precision": 0.648352,
+          "right_share": 0.641304,
+          "cost_score": -283.695652
+         }
+        },
+        "opus_d": {
+         "all_executed": {
+          "requested": 141,
+          "right": 91,
+          "wrong": 24,
+          "not_done": 26,
+          "extras": 40,
+          "executed": 155,
+          "execution_precision": 0.587097,
+          "right_share": 0.64539,
+          "cost_score": -389.361702
+         }
+        }
+       }
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 3,
+      "executed_smaller": 3,
+      "right_with_direction": 2,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 3,
+      "executed_smaller": 3,
+      "right_with_direction": 2,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 11,
+    "excluding_train_text_overlap": {
+     "messages": 357,
+     "requested": 797,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "gold": {
+       "today": {
+        "all_executed": {
+         "requested": 797,
+         "right": 464,
+         "wrong": 133,
+         "not_done": 200,
+         "extras": 153,
+         "executed": 750,
+         "execution_precision": 0.618667,
+         "right_share": 0.582183,
+         "cost_score": -300.627353
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 797,
+         "right": 464,
+         "wrong": 133,
+         "not_done": 200,
+         "extras": 153,
+         "executed": 750,
+         "execution_precision": 0.618667,
+         "right_share": 0.582183,
+         "cost_score": -300.627353
+        }
+       }
+      }
+     }
+    },
+    "use": "calibration-part"
+   },
+   "test": {
+    "messages": 745,
+    "requested": 1745,
+    "produced": 1612,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 1745,
+        "right": 1008,
+        "wrong": 290,
+        "not_done": 447,
+        "extras": 314,
+        "executed": 1612,
+        "execution_precision": 0.62531,
+        "right_share": 0.57765,
+        "cost_score": -288.366762
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 1560,
+          "right": 958,
+          "wrong": 273,
+          "not_done": 329,
+          "extras": 0,
+          "executed": 1231,
+          "execution_precision": 0.778229,
+          "right_share": 0.614103,
+          "cost_score": -113.589744
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 185,
+          "right": 50,
+          "wrong": 17,
+          "not_done": 118,
+          "extras": 0,
+          "executed": 67,
+          "execution_precision": 0.746269,
+          "right_share": 0.27027,
+          "cost_score": -64.864865
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 314,
+          "executed": 314,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 1313,
+          "right": 765,
+          "wrong": 239,
+          "not_done": 309,
+          "extras": 273,
+          "executed": 1277,
+          "execution_precision": 0.59906,
+          "right_share": 0.582635,
+          "cost_score": -331.683168
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 432,
+          "right": 243,
+          "wrong": 51,
+          "not_done": 138,
+          "extras": 41,
+          "executed": 335,
+          "execution_precision": 0.725373,
+          "right_share": 0.5625,
+          "cost_score": -156.712963
+         }
+        }
+       },
+       "by_writer": {
+        "opus_a": {
+         "all_executed": {
+          "requested": 378,
+          "right": 190,
+          "wrong": 75,
+          "not_done": 113,
+          "extras": 62,
+          "executed": 327,
+          "execution_precision": 0.58104,
+          "right_share": 0.502646,
+          "cost_score": -312.169312
+         }
+        },
+        "opus_b": {
+         "all_executed": {
+          "requested": 333,
+          "right": 211,
+          "wrong": 57,
+          "not_done": 65,
+          "extras": 55,
+          "executed": 323,
+          "execution_precision": 0.653251,
+          "right_share": 0.633634,
+          "cost_score": -272.972973
+         }
+        },
+        "opus_c": {
+         "all_executed": {
+          "requested": 287,
+          "right": 181,
+          "wrong": 52,
+          "not_done": 54,
+          "extras": 51,
+          "executed": 284,
+          "execution_precision": 0.637324,
+          "right_share": 0.630662,
+          "cost_score": -295.818815
+         }
+        },
+        "opus_d": {
+         "all_executed": {
+          "requested": 315,
+          "right": 183,
+          "wrong": 55,
+          "not_done": 77,
+          "extras": 105,
+          "executed": 343,
+          "execution_precision": 0.533528,
+          "right_share": 0.580952,
+          "cost_score": -449.84127
+         }
+        }
+       }
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 1745,
+        "right": 1008,
+        "wrong": 290,
+        "not_done": 447,
+        "extras": 314,
+        "executed": 1612,
+        "execution_precision": 0.62531,
+        "right_share": 0.57765,
+        "cost_score": -288.366762
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 1560,
+          "right": 958,
+          "wrong": 273,
+          "not_done": 329,
+          "extras": 0,
+          "executed": 1231,
+          "execution_precision": 0.778229,
+          "right_share": 0.614103,
+          "cost_score": -113.589744
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 185,
+          "right": 50,
+          "wrong": 17,
+          "not_done": 118,
+          "extras": 0,
+          "executed": 67,
+          "execution_precision": 0.746269,
+          "right_share": 0.27027,
+          "cost_score": -64.864865
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 314,
+          "executed": 314,
+          "execution_precision": 0,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "long": {
+         "all_executed": {
+          "requested": 1313,
+          "right": 765,
+          "wrong": 239,
+          "not_done": 309,
+          "extras": 273,
+          "executed": 1277,
+          "execution_precision": 0.59906,
+          "right_share": 0.582635,
+          "cost_score": -331.683168
+         }
+        },
+        "short": {
+         "all_executed": {
+          "requested": 432,
+          "right": 243,
+          "wrong": 51,
+          "not_done": 138,
+          "extras": 41,
+          "executed": 335,
+          "execution_precision": 0.725373,
+          "right_share": 0.5625,
+          "cost_score": -156.712963
+         }
+        }
+       },
+       "by_writer": {
+        "opus_a": {
+         "all_executed": {
+          "requested": 378,
+          "right": 190,
+          "wrong": 75,
+          "not_done": 113,
+          "extras": 62,
+          "executed": 327,
+          "execution_precision": 0.58104,
+          "right_share": 0.502646,
+          "cost_score": -312.169312
+         }
+        },
+        "opus_b": {
+         "all_executed": {
+          "requested": 333,
+          "right": 211,
+          "wrong": 57,
+          "not_done": 65,
+          "extras": 55,
+          "executed": 323,
+          "execution_precision": 0.653251,
+          "right_share": 0.633634,
+          "cost_score": -272.972973
+         }
+        },
+        "opus_c": {
+         "all_executed": {
+          "requested": 287,
+          "right": 181,
+          "wrong": 52,
+          "not_done": 54,
+          "extras": 51,
+          "executed": 284,
+          "execution_precision": 0.637324,
+          "right_share": 0.630662,
+          "cost_score": -295.818815
+         }
+        },
+        "opus_d": {
+         "all_executed": {
+          "requested": 315,
+          "right": 183,
+          "wrong": 55,
+          "not_done": 77,
+          "extras": 105,
+          "executed": 343,
+          "execution_precision": 0.533528,
+          "right_share": 0.580952,
+          "cost_score": -449.84127
+         }
+        }
+       }
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 17,
+      "executed_smaller": 10,
+      "right_with_direction": 7,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 19,
+      "executed_smaller": 10,
+      "right_with_direction": 7,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 17,
+    "excluding_train_text_overlap": {
+     "messages": 728,
+     "requested": 1728,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "gold": {
+       "today": {
+        "all_executed": {
+         "requested": 1728,
+         "right": 993,
+         "wrong": 290,
+         "not_done": 445,
+         "extras": 314,
+         "executed": 1597,
+         "execution_precision": 0.621791,
+         "right_share": 0.574653,
+         "cost_score": -292.071759
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 1728,
+         "right": 993,
+         "wrong": 290,
+         "not_done": 445,
+         "extras": 314,
+         "executed": 1597,
+         "execution_precision": 0.621791,
+         "right_share": 0.574653,
+         "cost_score": -292.071759
+        }
+       }
+      }
+     }
+    },
+    "use": "evaluation"
+   }
+  }
+ },
+ "notes": [
+  "Sessions here: each reader's executed requests, read in the gold context of every step (names from the row, last = what the gold of the previous step touched), are played on the reader's own drawing. Shares count only what the session changed beyond its setup; questions: the answers of the gold's question steps. The reader reading its own drawing is free_run_set.mjs.",
+  "Paraphrase: same_effect_share = largest set of wordings of a group whose drawings on the row's setup are the same (parity_lib diffs, loose), over all wordings; changed_nothing_share and same_effect_as_gold_share are beside it because a reader that does nothing is consistent."
+ ],
+ "per_message": {
+  "file": "/home/skutner/.cache/diagram-vss-modernbert/arms/baseline/rules.score.per_message.json",
+  "sha256": "530d67b22be004ce5240a16aca9e589b5bbd100d82283de5acd6e8b8b61a7629"
+ },
+ "confidence_file": null,
+ "record_files": [
+  "/home/skutner/.cache/diagram-vss-modernbert/arms/baseline/rules.jsonl"
+ ]
+}

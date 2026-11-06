@@ -150,6 +150,10 @@ export function validateCollection(records, manifest, recordsPath) {
 }
 
 export const NAMES = [['act_p',1],['act_margin',1],['act_negent',1],['act_prior',1],['val_p_min',1],['val_margin_min',1],['none_p_min',1],['fill_p_min',1],['fill_margin_min',1],['ctx_fill',-1],['tag_p_min',1],['tag_margin_min',1],['tag_all_min',1],['tag_stray',-1],['desc_p_min',1],['desc_margin_min',1],['cut_start',1],['cut_end',1],['cut_inner_min',1],['unk_share',-1],['split_share',-1],['n_words',1],['n_roles',1],['n_units',1]];
+/* the second read's signals (arm M4; docs/js/neural-confidence.js): a reading with the drawing gives them to every request (null / 0 without a second read).
+   A fit reads them only when every row it is fitted on carries all of them; for any other rows it reads NAMES alone, exactly as before. */
+export const DRAW_NAMES = [['draw_tag_p_min',1],['draw_tag_margin_min',1],['draw_roles',1],['draw_roles_asked',-1],['draw_lines_cut',-1]];
+export const namesOf = rows => rows.length && rows.every(x => x.f && DRAW_NAMES.every(([n]) => Object.hasOwn(x.f, n))) ? NAMES.concat(DRAW_NAMES) : NAMES;
 export const ASK_ALL = 1.0000001;
 export const isCalibration = id => BigInt('0x' + createHash('sha256').update(id).digest('hex')) % 3n === 0n;
 export function auroc(items) {
@@ -159,7 +163,7 @@ export function auroc(items) {
   for (const p of pos) for (const n of neg) s += p.c > n.c ? 1 : p.c === n.c ? .5 : 0;
   return s / (pos.length * neg.length);
 }
-function table(vals, sign) {
+export function table(vals, sign) {
   const v = vals.filter(x => x != null).map(x => x * sign).sort((a,b) => a-b), values = [], below = [];
   v.forEach((x,i) => { if (!i || x !== v[i-1]) { values.push(x); below.push(i); } });
   return { sign, binary: v.every(x => x === 0 || Math.abs(x) === 1), n: v.length, values, below };
@@ -192,10 +196,11 @@ export function fitModel(rows, lam) {
   for(const x of rows) { const c=counts[x.act] ||= [0,0]; c[0]+=x.o==='right'; c[1]++; }
   const act_prior=Object.fromEntries(Object.entries(counts).map(([k,[r,n]])=>[k,(r+overall*5)/(n+5)]));
   const raw=(x,n)=>n==='act_prior'?(act_prior[x.act]??overall):x.f[n];
-  const tables=Object.fromEntries(NAMES.map(([n,s])=>[n,table(rows.map(x=>raw(x,n)),s)]));
-  const vec=x=>NAMES.map(([n])=>percentile(tables[n],raw(x,n)));
+  const names=namesOf(rows);   // NAMES, plus DRAW_NAMES when every row carries them
+  const tables=Object.fromEntries(names.map(([n,s])=>[n,table(rows.map(x=>raw(x,n)),s)]));
+  const vec=x=>names.map(([n])=>percentile(tables[n],raw(x,n)));
   const w=logistic(rows.map(vec),rows.map(x=>x.o==='right'?1:0),lam);
-  return {reader:'modernbert',intercept:w[0],features:NAMES.map(([name],i)=>({name,weight:w[i+1]})),tables,act_prior,act_prior_default:overall};
+  return {reader:'modernbert',intercept:w[0],features:names.map(([name],i)=>({name,weight:w[i+1]})),tables,act_prior,act_prior_default:overall};
 }
 export function costThreshold(items, G, cost) {
   let best={threshold:ASK_ALL,score:0,executed:0};

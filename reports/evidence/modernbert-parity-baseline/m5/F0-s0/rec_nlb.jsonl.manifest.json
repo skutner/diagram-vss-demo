@@ -1,0 +1,96 @@
+{
+  "config": {
+    "schema": "arm-records-v1",
+    "reader": "modernbert",
+    "model": {
+      "folder": "/home/skutner/.cache/diagram-vss-modernbert/arms/F0-s0/export/modernbert-F0-s0",
+      "files": {
+        "arm_receipt.json": "ba4799db7df5fb1a1d12d7e75c518d006c0a6aec4b5360e7ba8dfbb82a911cfc",
+        "config.json": "0611c15f76b1129ec1b558bb8209465a5b7f33c12e68874d4cea596015def522",
+        "conversion.json": "5ad0a684fa9ec9554e7cec5f35497d97f46f4d30a4918258d15f66d2fc821324",
+        "export_parity.json": "90c972233af1882251b7a047e60a4fcf2afe81c3ae6f5c3263976ebf74a01894",
+        "onnx/model_quantized.onnx": "30fc9ed02418c3a211abc82f79029af4a75e4bebed77c9e741f7c83a69754061",
+        "onnx/model_quantized.onnx_data": "646b506037cf8378e4fadc958b2d3533eb68c73c596134435ab792f804d79716",
+        "onnx/model_quantized.onnx_data_1": "fbc08c2f6a28010738bf2874026cd904a98030c86b1892297f1876c4855a593f",
+        "references.json": "2a44b6bf433a8c10801d56214ac8549ae0ab71029d202d49555da538da6ffcbf",
+        "special_tokens_map.json": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+        "tokenizer.json": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+        "tokenizer_config.json": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560"
+      }
+    },
+    "artifacts_sha256": "a02e4571539d0250db2adb7b107ef814601699346cc279f904f4a4836258f641",
+    "train_data": {
+      "dir": "/home/skutner/.cache/diagram-vss-modernbert/arms/data/F0",
+      "train_sha256": "e2a3d87e29df2f2fa41de6b786ee4995e6af0cfe8c0e17d6f9f418ef5ff206e5",
+      "inventory": {
+        "source": "/home/skutner/.cache/diagram-vss-modernbert/arms/data/F0/trigger_inventory.json",
+        "exact": true,
+        "triggers": 3513,
+        "sha256": "54067f1ceb67aa11db0bc5d38f854c400cc02f262b7643f1ddff1bb45035ad19",
+        "definition": "make_data.split_messages annotation triggers (calibrate_modernbert.mjs trainingInventory)"
+      },
+      "text_overlap_allowed": true,
+      "text_overlap_ids": [
+        "nlb-03-048"
+      ]
+    },
+    "sets": [
+      {
+        "name": "nl_b",
+        "messages": 601,
+        "excluded": [],
+        "files": [
+          "nl_b/opus",
+          "nl_b/gpt"
+        ],
+        "teachers": [
+          "opus",
+          "gpt"
+        ],
+        "input_sha256": "f84f87ef106770452a7895fd4d0ab3f8a2c5d2d690a730c13ca3a273b62f6b1a"
+      }
+    ],
+    "code": {
+      "training/neural/parity/collect_set.mjs": "6b8b21b246978062bf91bde1ae39026eaafb3cc9e512596187f34853d274b421",
+      "training/neural/parity/arm_lib.mjs": "3ebe440fad4bdc6b741a6227986e32dce0eb41f68186f27854d7e6bab06e7dc2",
+      "training/neural/parity/sets.mjs": "5815a047cc46c1b6dd513eeebc42993d945b6a47f7500a9c9c9def2b1aa37a81",
+      "training/neural/parity/parity_lib.mjs": "e750ed25d8c8308b7d3c5ce3abd0bd2126cf20b77fde7bc3b0c48d45ff9a9b03",
+      "training/neural/calibrate_modernbert.mjs": "d109f742d0f099758a7ae153b6b23dbb9c6e3da83c4f7fd2680fdb1dc095131c",
+      "docs/js/neural.js": "60777fbb7723d63c9cea9a50aa1beb134044b83a81bcb6430e459d09415f1805",
+      "docs/js/neural-confidence.js": "c825a0b9d9e0c48fffe6d40e9eee1c603447510c5ac1828b2091d8022ce28fc7",
+      "docs/js/drawing-lines.js": "da81be5fa08eb9fe16b12915788ae256b48796594a17af5873c3c9e904809e45",
+      "training/neural/parity/canvas_lib.mjs": "3b6a7f6c7ea7898ab21166c8f699951c696af20ba001d8b6af4d5ceadcdf1291",
+      "docs/js/logic.js": "715da7ed6b783350d3d167f7d477fbd58cfa722b69c877904552321ce6fcdc0e",
+      "docs/js/bench-canon.js": "4e4bb98db55c2badc6725e42e04862a5893ffeb2cf4a83d2bbaf3cfc931f2cfb",
+      "docs/js/vss-composer.js": "37a012547531cdd194f9f99a5101ec328f810a11b770aced7d9e44c5b8c5a2b5",
+      "training/sketch/layer_common.mjs": "f41655370a5675e4476b0edb68b2af7576bfae7eec6723be751bfb04876fb78e"
+    },
+    "threads": "5"
+  },
+  "complete": true,
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "dtype": "q8",
+    "session_options": {
+      "graphOptimizationLevel": "basic",
+      "intraOpNumThreads": 5
+    },
+    "model_type": "modernbert"
+  },
+  "started": "2026-11-06T00:57:44.743Z",
+  "records": {
+    "count": 601,
+    "sha256": "a70067fec6da73f34f5e88c80462daa9e8bdd046f6225989c7e316ceb6856ef1"
+  },
+  "expected": 601,
+  "failed": [],
+  "finished": "2026-11-06T01:02:04.195Z",
+  "context": {
+    "session_steps_with_other_names_than_the_gold_drawing": 0,
+    "example_ids": [],
+    "gold_engine_errors": 36
+  }
+}

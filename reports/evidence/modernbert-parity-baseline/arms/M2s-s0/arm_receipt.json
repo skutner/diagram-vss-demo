@@ -1,0 +1,361 @@
+{
+  "schema": "arm-export-receipt-v1",
+  "passed": false,
+  "rule": "passed = PyTorch and Node decode every text the same; the runtime checks before it have already held",
+  "weights": {
+    "sha256": "e0a421fe7c04edb8ebf34bfb5c707f3e35863c5a75cbc80b452a31303ef2f6d7",
+    "epoch": 8,
+    "update": 13888,
+    "total": 13888,
+    "full_schedule": true,
+    "max_updates": 0,
+    "source_file": "checkpoint.pt",
+    "source_changes_since_training": []
+  },
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "torch_vs_node": {
+    "texts": 20,
+    "counts": {
+      "act": {
+        "agree": 19,
+        "total": 20
+      },
+      "classes": {
+        "agree": 859,
+        "total": 860
+      },
+      "tags": {
+        "agree": 1933,
+        "total": 1935
+      },
+      "cuts": {
+        "agree": 19,
+        "total": 20
+      },
+      "pieces": {
+        "agree": 20,
+        "total": 20
+      }
+    },
+    "differences": [
+      {
+        "text": "Make the ovals a brown triangle, and after that arrange them in a grid. Change a",
+        "chars": 142,
+        "differences": [
+          {
+            "key": "class:shape",
+            "torch": "triangle",
+            "node": null,
+            "margin": 0.2649
+          }
+        ]
+      },
+      {
+        "text": "Pottery studio flow for the community class, the instructor wants the process. C",
+        "chars": 295,
+        "differences": [
+          {
+            "key": "tag:49",
+            "torch": "O",
+            "node": "B-target",
+            "margin": 0.0957
+          }
+        ]
+      },
+      {
+        "text": "Alright, I run a small roastery and my investor wants to see how a bag of coffee",
+        "chars": 1200,
+        "differences": [
+          {
+            "key": "tag:49",
+            "torch": "B-from",
+            "node": "B-to",
+            "margin": 0.0533
+          }
+        ]
+      },
+      {
+        "text": "Caf\u00e9 na\u00efve \u6771\u4eac \ud83d\ude00 e\u0301 _ \uff11\uff12",
+        "chars": 23,
+        "differences": [
+          {
+            "key": "cut",
+            "torch": [
+              [
+                5,
+                10
+              ],
+              [
+                14,
+                24
+              ]
+            ],
+            "node": [
+              [
+                17,
+                24
+              ]
+            ],
+            "torch_info": {
+              "truncated": false,
+              "unreadFrom": null
+            },
+            "node_info": {
+              "truncated": false,
+              "unreadFrom": null
+            }
+          }
+        ]
+      },
+      {
+        "text": "A\u00a0B\u1680C\u2000D\u2028E\u2029F\u202fG\u205fH\u3000I",
+        "chars": 17,
+        "differences": [
+          {
+            "key": "act",
+            "torch": "arrange",
+            "node": "set",
+            "margin": 0.5176
+          }
+        ]
+      }
+    ],
+    "per_text": [
+      {
+        "chars": 18,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 22,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 33,
+        "pieces": 12,
+        "words": 6,
+        "agree": true
+      },
+      {
+        "chars": 49,
+        "pieces": 17,
+        "words": 11,
+        "agree": true
+      },
+      {
+        "chars": 62,
+        "pieces": 16,
+        "words": 12,
+        "agree": true
+      },
+      {
+        "chars": 86,
+        "pieces": 24,
+        "words": 19,
+        "agree": true
+      },
+      {
+        "chars": 142,
+        "pieces": 35,
+        "words": 31,
+        "agree": false
+      },
+      {
+        "chars": 222,
+        "pieces": 59,
+        "words": 51,
+        "agree": true
+      },
+      {
+        "chars": 295,
+        "pieces": 75,
+        "words": 67,
+        "agree": false
+      },
+      {
+        "chars": 595,
+        "pieces": 161,
+        "words": 123,
+        "agree": true
+      },
+      {
+        "chars": 1200,
+        "pieces": 302,
+        "words": 267,
+        "agree": false
+      },
+      {
+        "chars": 0,
+        "pieces": 2,
+        "words": 0,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 10,
+        "words": 8,
+        "agree": true
+      },
+      {
+        "chars": 23,
+        "pieces": 22,
+        "words": 8,
+        "agree": false
+      },
+      {
+        "chars": 1280,
+        "pieces": 402,
+        "words": 400,
+        "agree": true
+      },
+      {
+        "chars": 3900,
+        "pieces": 512,
+        "words": 900,
+        "agree": true
+      },
+      {
+        "chars": 14,
+        "pieces": 9,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 17,
+        "pieces": 11,
+        "words": 9,
+        "agree": false
+      },
+      {
+        "chars": 13,
+        "pieces": 5,
+        "words": 3,
+        "agree": true
+      },
+      {
+        "chars": 15,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      }
+    ]
+  },
+  "python_ort_vs_node": {
+    "fixtures": 41,
+    "singles": 39,
+    "batches": 2,
+    "ids": true,
+    "outputs": true,
+    "decoded": true,
+    "cuts": true,
+    "readMany": true,
+    "max_abs": [
+      0.0002541542053222656,
+      5.245208740234375e-05,
+      4.863739013671875e-05
+    ]
+  },
+  "float_vs_torch_max_abs": [
+    2.7179718017578125e-05,
+    4.1961669921875e-05,
+    2.2411346435546875e-05
+  ],
+  "sdpa_vs_eager_max_abs": [
+    1.4424324035644531e-05,
+    1.52587890625e-05,
+    1.621246337890625e-05
+  ],
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.001
+  },
+  "cases_where_q8_decodes_differently_from_float": [
+    "single-03",
+    "single-06",
+    "single-08",
+    "single-12",
+    "single-13",
+    "single-15",
+    "batch-message-512",
+    "request-view-of-long-message",
+    "extra-06-128",
+    "extra-06-512",
+    "extra-08-128",
+    "extra-08-512",
+    "extra-10-128",
+    "extra-10-512"
+  ],
+  "conversion": {
+    "blocks": 93,
+    "quantizers": 91
+  },
+  "float_graph_files": {
+    "model_float.onnx": {
+      "sha256": "e7d711f14b21fe4c73f92ebfaaae99c2b47fbf9075c7681b0d0b744f5c9d6a8d",
+      "bytes": 600645836
+    }
+  },
+  "shards": [
+    "model_quantized.onnx_data",
+    "model_quantized.onnx_data_1"
+  ],
+  "files": {
+    "config.json": {
+      "sha256": "2a6c7ac95ed087e9cad4d81a56f530842c1bd1cec313974804fb642f843796f9",
+      "bytes": 530780
+    },
+    "conversion.json": {
+      "sha256": "0a4178d53751a793cc096106e24461983408d6ad779ca9837238c8dc16f5b0db",
+      "bytes": 64404
+    },
+    "export_parity.json": {
+      "sha256": "ca9a3148c3dfc41cd0d0204d40703fdedb0b45cfc58d2db8bffe82496fa2d36e",
+      "bytes": 560
+    },
+    "onnx/model_quantized.onnx": {
+      "sha256": "b32cb0067e26d3079377597079fea32085af59dcfca22d168432ae7560c8cdc9",
+      "bytes": 1490558
+    },
+    "onnx/model_quantized.onnx_data": {
+      "sha256": "bb6630e98f66fb54c6ec8d5470103470eac1d13dffaa5920991f76510b4224ae",
+      "bytes": 93974268
+    },
+    "onnx/model_quantized.onnx_data_1": {
+      "sha256": "ca0e371228d6467365f478bbc58a60b69c4130b06f5b726b3bf1e1f860e15779",
+      "bytes": 56153856
+    },
+    "references.json": {
+      "sha256": "5ac2000ba45dd6efc5c7b26154bf162ea0cf3d4f388932f49c71a142ca4840cb",
+      "bytes": 7611844
+    },
+    "special_tokens_map.json": {
+      "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "bytes": 694
+    },
+    "tokenizer.json": {
+      "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "bytes": 3583228
+    },
+    "tokenizer_config.json": {
+      "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "bytes": 20840
+    }
+  },
+  "source_changes_since_training": [],
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "python": "3.12.16",
+    "python_onnxruntime": "1.29.0"
+  }
+}

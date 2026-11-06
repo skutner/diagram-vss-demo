@@ -1,0 +1,368 @@
+{
+ "partial": true,
+ "files": [
+  "/home/skutner/.cache/diagram-vss-qwen/runs/baseline/q8-shipped.nl_a.jsonl"
+ ],
+ "code": {
+  "training/qwen/finetune/score_qwen.mjs": "a46da0917f2502e47f1a95da468658e84ff17349cba9c27dc81a91a548a028f7",
+  "training/neural/parity/score_arm.mjs": "cab3e964abe143b50226677351c012c0fc8e1e61c562d3254ee582fea76bcf42",
+  "training/neural/parity/arm_lib.mjs": "a5401aeca711dde8186c352b431d588a3e6c7c62d6d0d15d44bd21db1356f548",
+  "training/neural/parity/sets.mjs": "51eb35e338857af0747f0db42b98808d6965274edc52b5bc1f3d141a4b32b00a",
+  "training/neural/parity/parity_lib.mjs": "e750ed25d8c8308b7d3c5ce3abd0bd2126cf20b77fde7bc3b0c48d45ff9a9b03",
+  "training/neural/calibrate_modernbert.mjs": "64e29df6b4c33afc60848e244f76aae5f05052ea86acc41d0a350e46752373fc",
+  "docs/js/bench-canon.js": "4e4bb98db55c2badc6725e42e04862a5893ffeb2cf4a83d2bbaf3cfc931f2cfb",
+  "docs/js/neural-confidence.js": "9c4065421a26a8444fe2f768b2ed9f1f96cdd05c6d8b6e0ee94c7b10d8f4273c",
+  "training/sketch/layer_common.mjs": "f41655370a5675e4476b0edb68b2af7576bfae7eec6723be751bfb04876fb78e"
+ },
+ "sets": {
+  "collected_1/all": {
+   "messages": 52,
+   "views": {
+    "gold": {
+     "requested": 44,
+     "right": 3,
+     "wrong": 13,
+     "not_done": 28,
+     "extras": 13,
+     "executed": 29,
+     "execution_precision": 0.103448,
+     "right_share": 0.068182,
+     "cost_score": -584.090909
+    },
+    "teacher_opus": {
+     "requested": 47,
+     "right": 3,
+     "wrong": 12,
+     "not_done": 32,
+     "extras": 14,
+     "executed": 29,
+     "execution_precision": 0.103448,
+     "right_share": 0.06383,
+     "cost_score": -546.808511
+    },
+    "teacher_either": {
+     "requested": 49,
+     "right": 3,
+     "wrong": 12,
+     "not_done": 34,
+     "extras": 14,
+     "executed": 29,
+     "execution_precision": 0.103448,
+     "right_share": 0.061224,
+     "cost_score": -524.489796
+    }
+   },
+   "views_direction": {
+    "gold": {
+     "requested": 44,
+     "right": 3,
+     "wrong": 13,
+     "not_done": 28,
+     "extras": 13,
+     "executed": 29,
+     "execution_precision": 0.103448,
+     "right_share": 0.068182,
+     "cost_score": -584.090909
+    },
+    "teacher_opus": {
+     "requested": 47,
+     "right": 3,
+     "wrong": 12,
+     "not_done": 32,
+     "extras": 14,
+     "executed": 29,
+     "execution_precision": 0.103448,
+     "right_share": 0.06383,
+     "cost_score": -546.808511
+    },
+    "teacher_either": {
+     "requested": 49,
+     "right": 3,
+     "wrong": 12,
+     "not_done": 34,
+     "extras": 14,
+     "executed": 29,
+     "execution_precision": 0.103448,
+     "right_share": 0.061224,
+     "cost_score": -524.489796
+    }
+   },
+   "nothing": {
+    "gold": {
+     "requested": 44,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 44,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "teacher_opus": {
+     "requested": 47,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 47,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "teacher_either": {
+     "requested": 49,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 49,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": {
+    "gpt_scored_against_opus": {
+     "requested": 47,
+     "right": 36,
+     "wrong": 4,
+     "not_done": 7,
+     "extras": 2,
+     "right_share": 0.765957,
+     "cost_score": -51.06383
+    },
+    "opus_scored_against_gpt": {
+     "requested": 42,
+     "right": 36,
+     "wrong": 4,
+     "not_done": 2,
+     "extras": 7,
+     "right_share": 0.857143,
+     "cost_score": -176.190476
+    }
+   },
+   "qwen": {
+    "invalid_outputs": 5,
+    "invalid_causes": {
+     "the output reached the limit of 16 requests, so requests after it may ": 4,
+     "the output was cut off at the token limit": 1,
+     "the output is not valid JSON (unterminated string at character 6404)": 1
+    },
+    "blocked_requests": 58,
+    "outputs_over_512_tokens": 7,
+    "ms_p50": 4599,
+    "ms_p90": 31410,
+    "ms_mean": 12545
+   }
+  },
+  "nl_a/calibration": {
+   "messages": 26,
+   "views": {
+    "opus": {
+     "requested": 32,
+     "right": 1,
+     "wrong": 6,
+     "not_done": 25,
+     "extras": 13,
+     "executed": 20,
+     "execution_precision": 0.05,
+     "right_share": 0.03125,
+     "cost_score": -590.625
+    },
+    "either": {
+     "requested": 36,
+     "right": 1,
+     "wrong": 6,
+     "not_done": 29,
+     "extras": 13,
+     "executed": 20,
+     "execution_precision": 0.05,
+     "right_share": 0.027778,
+     "cost_score": -525
+    }
+   },
+   "views_direction": {
+    "opus": {
+     "requested": 32,
+     "right": 1,
+     "wrong": 6,
+     "not_done": 25,
+     "extras": 13,
+     "executed": 20,
+     "execution_precision": 0.05,
+     "right_share": 0.03125,
+     "cost_score": -590.625
+    },
+    "either": {
+     "requested": 36,
+     "right": 1,
+     "wrong": 6,
+     "not_done": 29,
+     "extras": 13,
+     "executed": 20,
+     "execution_precision": 0.05,
+     "right_share": 0.027778,
+     "cost_score": -525
+    }
+   },
+   "nothing": {
+    "opus": {
+     "requested": 32,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 32,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "either": {
+     "requested": 36,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 36,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": {
+    "gpt_scored_against_opus": {
+     "requested": 32,
+     "right": 20,
+     "wrong": 9,
+     "not_done": 3,
+     "extras": 4,
+     "right_share": 0.625,
+     "cost_score": -343.75
+    },
+    "opus_scored_against_gpt": {
+     "requested": 33,
+     "right": 22,
+     "wrong": 7,
+     "not_done": 4,
+     "extras": 3,
+     "right_share": 0.666667,
+     "cost_score": -236.363636
+    }
+   },
+   "qwen": {
+    "invalid_outputs": 0,
+    "invalid_causes": {},
+    "blocked_requests": 25,
+    "outputs_over_512_tokens": 1,
+    "ms_p50": 10951,
+    "ms_p90": 60384,
+    "ms_mean": 25292
+   }
+  },
+  "nl_a/development": {
+   "messages": 27,
+   "views": {
+    "opus": {
+     "requested": 61,
+     "right": 0,
+     "wrong": 8,
+     "not_done": 53,
+     "extras": 11,
+     "executed": 19,
+     "execution_precision": 0,
+     "right_share": 0,
+     "cost_score": -311.47541
+    },
+    "either": {
+     "requested": 67,
+     "right": 0,
+     "wrong": 8,
+     "not_done": 59,
+     "extras": 11,
+     "executed": 19,
+     "execution_precision": 0,
+     "right_share": 0,
+     "cost_score": -283.58209
+    }
+   },
+   "views_direction": {
+    "opus": {
+     "requested": 61,
+     "right": 0,
+     "wrong": 8,
+     "not_done": 53,
+     "extras": 11,
+     "executed": 19,
+     "execution_precision": 0,
+     "right_share": 0,
+     "cost_score": -311.47541
+    },
+    "either": {
+     "requested": 67,
+     "right": 0,
+     "wrong": 8,
+     "not_done": 59,
+     "extras": 11,
+     "executed": 19,
+     "execution_precision": 0,
+     "right_share": 0,
+     "cost_score": -283.58209
+    }
+   },
+   "nothing": {
+    "opus": {
+     "requested": 61,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 61,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "either": {
+     "requested": 67,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 67,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": {
+    "gpt_scored_against_opus": {
+     "requested": 61,
+     "right": 47,
+     "wrong": 10,
+     "not_done": 4,
+     "extras": 6,
+     "right_share": 0.770492,
+     "cost_score": -185.245902
+    },
+    "opus_scored_against_gpt": {
+     "requested": 63,
+     "right": 45,
+     "wrong": 12,
+     "not_done": 6,
+     "extras": 4,
+     "right_share": 0.714286,
+     "cost_score": -182.539683
+    }
+   },
+   "qwen": {
+    "invalid_outputs": 0,
+    "invalid_causes": {},
+    "blocked_requests": 18,
+    "outputs_over_512_tokens": 0,
+    "ms_p50": 10894,
+    "ms_p90": 72333,
+    "ms_mean": 22878
+   }
+  }
+ }
+}

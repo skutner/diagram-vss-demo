@@ -1,0 +1,61 @@
+# M4: the page keeps each shape's source text and gives the drawing to the neural readers (inert unless the model's reader has drawing). Base docs/js/ui.js sha256 fddb4daae0ea46fef0d2e3e7a2ddf17fe6d33366e62bbc4c19134804a012eaf5, docs/index.html sha256 426871602b213e112cfd60066409b870cb178a3c742f703bbde89cfc3b0bb633
+--- a/docs/js/ui.js
++++ b/docs/js/ui.js
+@@ -151,8 +151,8 @@
+   qwenQ = p; return p;
+ }
+ /** a copy of a reader's drawing now, applied later in Qwen's queue (copyDrawing reads the source when it runs) */
+-function drawingOf(rd) { const c = x => JSON.parse(JSON.stringify(x)); return { state: c(rd.world.state), undo: c(rd.world.undoStack), redo: c(rd.world.redoStack), last: rd.last.slice(), focusCell: rd.focusCell && Object.assign({}, rd.focusCell) }; }
+-function setDrawing(rd, d) { rd.world.restore(d.state); rd.world.undoStack = d.undo; rd.world.redoStack = d.redo; rd.last = d.last; rd.focusCell = d.focusCell; rd.pending = null; rd.held = []; }
++function drawingOf(rd) { const c = x => JSON.parse(JSON.stringify(x)); return { state: c(rd.world.state), undo: c(rd.world.undoStack), redo: c(rd.world.redoStack), last: rd.last.slice(), focusCell: rd.focusCell && Object.assign({}, rd.focusCell), sources: [...(rd.sources || [])] }; }
++function setDrawing(rd, d) { rd.world.restore(d.state); rd.world.undoStack = d.undo; rd.world.redoStack = d.redo; rd.last = d.last; rd.focusCell = d.focusCell; rd.pending = null; rd.held = []; rd.sources = new Map(d.sources || []); }
+ /** the reader object without loading the model (Clear cache on a tab that never loaded it) */
+ async function loadReaderOnly() {
+   try { if (!QM) QM = await import(new URL('js/qwen-reader.js', document.baseURI).href); } catch (e) { console.error(e); return; }
+@@ -621,6 +621,9 @@
+ let spellEnabled = store.get(SPELL_OFF) !== '1', speller = null;
+ const spellP = (window.SpellKit ? SpellKit.load(new URL('model/', document.baseURI).href, engine.legend) : Promise.resolve(null)).then(s => { speller = s; return s; });
+ const canvasNames = rd => rd.world.state.shapes.map(s => s.name).concat((rd.world.state.groups || []).map(g => g.name));
++/* the text of the message that made each shape, per tab (rd.sources: lower-cased name -> message; docs/js/drawing-lines.js noteMessage). A reader trained
++   with the drawing as a second read (arm M4, its config's reader.drawing) reads it with the drawing's lines; every other reader ignores it. */
++const noteSources = (rd, before, result, text) => { if (typeof DrawingLines === 'undefined' || !result || !result.steps) return; DrawingLines.noteMessage(rd.sources || (rd.sources = new Map()), before, rd.world.state, text, result.steps); };
+ // cutting (owner, 2026-11-03 afternoon; replaces the one cut for all readers of 2026-11-02 and its setting): each tab reads the requests of
+ // its own cutter, the cut its confidence was fitted on. Rules: the Rules segmenter (logic.js); VSS: the VSS cutter (docs/model/micro/
+ // cutter_worlds8s.json, the composer's own cut); SOP-BERT: the BERT cutter (its cut head); VSS-BERT: the BERT cutter (combined.json's
+@@ -1290,7 +1293,7 @@
+   }
+   const overrides = Object.fromEntries(need.map(x => [x, env[x]]));
+   const list = (r.allNodes || []).filter(n => need.includes(n.id)).concat(h.nodes);
+-  const result = rd.engine.run(list, { overrides });
++  const srcBefore = rd.world.state.shapes.map(s => s.name), result = rd.engine.run(list, { overrides }); noteSources(rd, srcBefore, result, h.src);
+   Object.assign(env, result.env); h.doneAnyway = true; (r.anyway || (r.anyway = [])).push({ index: idx, src: h.src, nodes: list, result });
+   mark(); if (pend) pend.state = 'done anyway';
+   collectEvent(turn, { kind: 'anyway', reader: rid, index: idx, src: h.src });
+@@ -1537,7 +1540,7 @@
+       if (sv.state !== 'play') { trCount[sv.state === 'noop' || sv.state === 'unsupported' ? sv.state : 'unavailable']++; r.line = trLine(sv, r.ms); return r.line; }
+       trCount.played++;
+     }
+-    else if (rd.id === 'neural' || rd.id === 'modernbert') { const n = await (rd.id === 'modernbert' ? modernbert : neural).formalize(text, ctx, { signals: true }); r.ms = performance.now() - t0; r.neural = n; r.nodes = n.nodes; r.notes = n.notes.filter(x => !/couldn't find an action/.test(x)); }
++    else if (rd.id === 'neural' || rd.id === 'modernbert') { const n = await (rd.id === 'modernbert' ? modernbert : neural).formalize(text, Object.assign({}, ctx, { drawing: { state: rd.world.state, sources: rd.sources || new Map() } }), { signals: true }); r.ms = performance.now() - t0; r.neural = n; r.nodes = n.nodes; r.notes = n.notes.filter(x => !/couldn't find an action/.test(x)); }
+     else throw new Error(`no reader is defined for the tab ${rd.id}`);
+     if (!pk && !rec.raw) r.cutBy = cutOfRead(rd, r);   // each tab's own cutter (see "cutting")
+   } catch (e) { r.error = e; r.ms = performance.now() - t0; return { text: `The ${rd.label} reader failed: ${e.message}`, err: true, ms: r.ms }; }
+@@ -1595,7 +1598,7 @@
+     if (open.length && CLm) return { text: CLm.nothingReadText(open.map(p => p.input), open[open.length - 1].opts) + ask, ms };
+     return { text: (unread.length ? 'I didn’t get what to do there. Try something like “draw a red circle next to Start” or “what is connected to Start?”.' : 'I couldn’t turn that into anything I can do.') + ask, err: !ask, ms };
+   }
+-  const result = engine.run(nodes, { overrides }); r.result = result;
++  const srcBefore = world.state.shapes.map(s => s.name), result = engine.run(nodes, { overrides }); r.result = result; noteSources(rd, srcBefore, result, text);
+   // do what was understood; ask about the rest (a question never blocks the other wires of the message)
+   const asks = [], problems = [];
+   let clar = null;
+--- a/docs/index.html
++++ b/docs/index.html
+@@ -621,6 +621,7 @@
+ <script src="js/docs-concepts.js"></script>
+ <script src="js/docs-arch.js"></script>
+ <script src="js/docs.js"></script>
++<script src="js/drawing-lines.js"></script>
+ <script src="js/neural.js"></script>
+ <script type="module" src="js/bench-canon.js"></script>
+ <script src="js/collect.js"></script>
