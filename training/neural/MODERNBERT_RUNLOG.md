@@ -559,3 +559,130 @@ Commit verdict for the tree as it stands: **ready to commit when staged by path.
 One leniency is noted, not a finding (the reviewer's confidence about 40): a tag on part of a multi-word head ("box" in "big-box") now counts as the whole head, while training always tags the whole head. Requiring the span to equal the head would make it exact.
 
 The spec's wording was corrected: the number table applies to every number-valued key, not only to counts and distances.
+
+## Round 2 (`nl_p2`) and the learning curve: declared before any of it runs (2026-11-06 14:05)
+
+The owner, 2026-11-06, answering "write the next 1,500-message batch and run the learning curve?": "Yes, start it", and "we can use gpt models as well via codex to generate data if needed".
+
+**Data: `llm_train/nl_p2`, about 1,500 messages, 30 batches of about 50, ids `p2-NN-MMM`.** Same recipe as `nl_p1` (`NL_TRAIN_SPEC.md` and `NL_TEST_SPEC.md` are the writers' whole brief; texts saved before any label).
+- **Writers:**
+  - Claude: Sonnet 5.5 medium, 12 batches; Haiku 5.5 medium, 4 batches (terse, typos, dictated); Opus 5.5 medium, 4 batches.
+  - gpt-6.1-sol high by `codex exec`, 10 batches, each run in an empty folder holding only the two specs (the owner's offer, taken for a second writing style and to spend less of the weekly limit).
+  - gpt-6-astra writes no training text, so `nl_b`'s batches 07-12 (astra) stay written by a family that wrote no training text. `nl_b`'s batches 01-06 (gpt-6.1-sol) no longer do; `nl_b` results are reported by writer from now on.
+- **Domains:** none that appear in the `domain` fields of `nl_a`, `nl_b` or `nl_p1` (checked before the briefs go out).
+- **Batch focus, from the measured first causes** (on `nl_b`, F0: wrong act 387, extra on text with no request 323, cut 241; `nl_p1` had 17 nothing-to-do messages of 706): 6 batches focus on requests buried in chat, messages with no request, and long messages with several requests. As in `nl_p1`, a focus is per batch, never a quota per message. Also: 6 batches of step-by-step sessions, 4 of paraphrase groups, 14 of whole messages.
+- **Labels and gates, as `nl_p1`'s:** first labels Opus 5.5 medium, blind (the training labels); second labels gpt-6.1-sol high by `codex exec` (a check, never training labels); `validate_rows.mjs --write`; agreement by `folder_agreement.mjs` at least 0.9 x 73.0% = 65.7%, else it stops for diagnosis; adjudication by Opus 5.5 high, blind A/B, of every disagreement and every Opus label that fails in the engine; the round trip with `ROLE_TOO_RICH=context` (>= 95% right, <= 1% silent); no exact or normalised (case, spaces, punctuation) text shared with any test set.
+- **Departure from the plan:** the plan's second round sends only messages the model is unsure of to the annotators. This round labels every message, because the learning curve needs an unselected sample.
+- **If usage runs out before every batch passes:** the curve uses only the batches that passed every gate, and "100%" is that set; the report says how many.
+
+**The curve: 4 points x seeds 0 and 1, ModernBERT, F0's recipe (`arm_train.sh`), each evaluated by `arm_eval.sh` (its own confidence fit).**
+- **C0** = F0's list + `ROLE_TOO_RICH=context` (`ROLE_TOO_RICH=context WITH_L1=1 build_arm_data.sh L2`). It differs from F0 only by the rows the switch changes; that count is checked against F0 before training. C0 trains now, while round 2 is written.
+- **C25, C50, C100** = C0 + 25%, 50%, 100% of the messages of `nl_p1` and `nl_p2` together, nested: a message is in the share s when `sha256(session or group or id) mod 100 < s`, so sessions and paraphrase groups stay whole. Built from subset folders outside the repository.
+- **Primary measure:** `nl_a`, development and calibration parts together (about 800 requests, nothing trains on either), Opus view, every request executed: right per requested action. It needs no confidence fit. With both seeds, a point is the mean of the two.
+- **Reported, not used to decide:** cost at the cost-10 threshold on `nl_a` development; first causes (act, cut, extra on no request) on `nl_a`; fresh2 and short3 against C0 (no loss); `nl_b` by writer (read once already at M5, so it is not used to choose).
+- **Decision rule, fixed now** (the difference of two points = paired bootstrap over `nl_a` messages, seeds pooled, 95%):
+  1. **Still rising:** C100 minus C50 has its interval above 0. Then more data of this kind is worth a third round.
+  2. **Flat:** C100 minus C0 has its interval including 0. Then natural-language data at this share (at most about 8% of the training messages) does not move the reader; this does not show that more data at a larger share would not, and the next step would be a larger share (weighting or a smaller older list), not more of the same rounds.
+  3. **Slowing (inconclusive):** C100 minus C0 above 0 but C100 minus C50 not. Then the curve is reported with the right share per doubling of the natural-language messages, and the number of messages it would take to reach the M5 bar (0.75 c), as an extrapolation only. The owner decides.
+- **GPU:** the queue takes the GPU lock shared with the Qwen session (`~/.cache/diagram-vss-modernbert/locks/`) and waits for it between runs. `STOP_AT` is set to 2026-11-07 12:00 on every call.
+
+### Round 2: first steps, and the overlap gate made concrete before any curve result (14:13)
+
+- **C0's data** (`arms/data/C0`): 24,698 messages, 54,584 requests, round trip 99.92%, silent 0.01%. Against F0's rows: `train.jsonl` differs in 41 rows, `eval_sample1000.jsonl` in 2 (the `ROLE_TOO_RICH` rows of the older folders), every other file identical.
+- **C0 seed 0's overfit gate stopped on a GPU thermal slowdown** at 14:06 (the trainer's own clean stop, `clocks_event_reason_hw_thermal_slowdown`). Seed 1 passed its gate and trains; seed 0 is queued again after it (`C0-s0.thermal-1406` kept). Nothing else changes.
+- **Overlap with the test sets** (`parity/text_overlap.py`, every file under `llm_bench`): `nl_p1` shares 3 texts exactly ("undo", "undo that", "and from signoff to publish", the last copied from an example phrase of `NL_TRAIN_SPEC.md` that is also an `nl_a` text) and 2 more after normalising. The texts of `nl_p2` written so far share 2 ("undo", "make the title bigger"). By the gate declared at 14:05, **a training row whose text equals a test text, exactly or normalised, is left out of every curve point's data** (`parity/nl_share.py`; the saved folders are not changed). For `nl_p1` that is 5 of 706 rows. M3 trained on all of `nl_p1`, so it held these 5; that is noted, not rerun.
+- **The curve's measure, checked on existing arms** (`parity/curve_summary.py`, tested by `test_curve_summary.py`, 6/6): F0 10.8% (seeds 10.8, 11.0, 10.5), M2n 11.0%, M3 12.1% of 800 requests; M3 minus M2n +1.1 [+0.0, +2.3] over 365 units. These are known results, read again to check the tool (F0-s0's 86/800 equals its score file). The intervals resample messages, not seeds: across F0's three seeds the spread is 0.5 points.
+- **Writers:** Claude batches 01-18 written by 14:13 (19-20 running), gpt-6.1-sol's 21-30 running. First labels (Opus 5.5 medium) and second labels (gpt-6.1-sol high) started on the batches that exist.
+- **The Qwen session** was told by a message that the GPU lock is used by this queue; that session's permission mode held the message and it expired undelivered.
+
+### Round 2's data checks: texts, labels, agreement (14:35)
+
+- **Texts:** 1,518 messages in 30 batches (`nl_p2/texts`, hashes in `nl_p2/texts.sha256`, checked unchanged after labelling). Writers as declared: Sonnet 01-12, Haiku 13-16, Opus 17-20, gpt-6.1-sol 21-30. Kinds: session 353, paraphrase 210, long 137, nothing_to_do 115 (`nl_p1`: 17 of 706), short 106, reference 86, complaint 85, indirect 82, typos 74, dictated 69, fragment 62, self_correction 60, translated 46, ambiguous 33. 46 sessions, 43 paraphrase groups.
+- **Overlap with the test sets:** 3 exact ("undo", "make the title bigger", "bigger"), none longer after normalising; the three are left out of the curve's data by `nl_share.py`.
+- **First labels** (Opus 5.5 medium, 9 sessions) and **second labels** (gpt-6.1-sol high, 8 `codex exec` runs), each blind.
+- **Engine replay** (`validate_rows.mjs`, `reports/evidence/modernbert-parity-baseline/nl_p2/`): Opus 27 hard failures in 1,518 rows (span order 2, engine 23, the writers' setups 2), the engine asks 18; gpt 38 (engine 36, setups 2). `nl_p1`'s Opus labels had 59 in 706.
+- **Agreement** (`folder_agreement.mjs`): gpt scored against Opus 1,277 / 1,687 = **75.7%** (Opus against gpt 70.2%); the gate is 65.7%, so `nl_p2` goes on (`nl_p1`: 77.5%).
+- **Adjudication:** 414 rows (408 with a disagreement, 23 Opus engine failures, 17 both), 8 Opus 5.5 high sessions, blind A/B by `parity/adjudicate.py build` (the parameterised `nl_p1` scripts; brief `parity/ADJUDICATION.md`, the one `nl_p1` used).
+
+### Round 2's adjudication and the curve's data (14:46)
+
+- **Adjudication** (414 rows, 8 Opus 5.5 high sessions, blind A/B): kept Opus's label 235, chose gpt's 95, both the same 36, own label 48 (`parity/adjudicate.py merge`; key, outputs and report in `reports/evidence/modernbert-parity-baseline/nl_p2/`). 144 training labels change. First labels in `nl_p2/opus_first/`, final ones in `nl_p2/opus/` with an `adjudicated` field. As in `nl_p1`, rows whose training label is gpt's wires (95) are gpt's wires endorsed by the adjudicator under the spec.
+- **Engine replay after it:** hard failures 27 -> 39 (2 are the writers' setups). The rise is in sessions (mainly one orchard session, p2-22): a decision on one step changes what later steps refer to, so later rows fail "after an earlier failure in this session" and are marked unreliable. `nl_p1` ended at 40. As for `nl_p1`, these rows stay in the data (`make_roles.py` has no path that keeps a row as "ask").
+- **A finding on the spec, not acted on:** the adjudicators did not decide alike whether a one-word identity ("reception", "elm", "tombola") is a `name` or a `label`. Batch 4 made every such word a name; batches 2 and 6 made a plain common noun a label and kept names for explicit naming, headings and proper names. `ANNOTATION_SPEC.md` only says that several words are a label. The training labels hold both readings; no label was changed for this.
+- **The curve's data** is built now (`build_curve.sh`: `nl_share.py`, then `ROLE_TOO_RICH=context WITH_L1=1 EXTRA_NL=nl_pc<S> build_arm_data.sh L2`), and the queue C100-s0, C50-s0, C100-s1, C50-s1, C25-s0, C25-s1 starts after C0-s0's training.
+- **C0-s1** trained (14:06-14:44, rc 0; export parity "near ties", reported, not a gate, as for every earlier arm) and is being evaluated. C0-s0 trains next.
+
+### A candidate for after the curve, written before any curve point is read (15:05)
+
+From the Qwen session's read-only research (`training/qwen/QWEN3_FINETUNE_RUNLOG.md`, "Research: a better way to make training data"), sent to this session; recorded here so that it is fixed before the curve's result:
+- **Experiment W** (the declared "larger share" for a flat or slowing curve): C100's list with every `nl_p1` and `nl_p2` row repeated 4 times (about 26% natural rows; no older row removed), F0's recipe, seeds 0 and 1, measured as the curve (`nl_a`, 800 requests, every request executed, Opus view, paired bootstrap against C100). Bar: W minus C100 with its lower bound above 0, and fresh2 and short3 at each one's cost-10 threshold not below -10 against C100.
+- **If the curve is still rising:** a third round like `nl_p2`, focused on the causes measured on `nl_a`'s calibration part and the training rows, never its development part.
+- Neither runs without the owner's go: the GPU is promised to the Qwen session's Q2 after this curve (the owner's order), and W is two more runs (about 80 minutes).
+- For comparison, from that session: Qwen3-0.6B fine-tuned on F0's 24,698 messages (Q1) is right on 66/392 = 16.8% of `nl_a` development, every request executed, Opus view; SOP-BERT on the same rows 9.9%.
+
+### The learning curve: result (18:45). Case 3, slowing
+
+`parity/curve_summary.py` (`reports/evidence/modernbert-parity-baseline/curve/`): `nl_a`, calibration and development parts, 800 requests, Opus view, every request executed, right per requested action; seeds 0 and 1 pooled; 365 units.
+
+| point | natural-language training messages | right | seed 0 | seed 1 |
+|---|---:|---:|---:|---:|
+| C0 | 0 | 11.2% | 11.5% | 10.9% |
+| C50 | 1,153 | 14.0% | 13.5% | 14.5% |
+| C100 | 2,215 | 14.1% | 14.1% | 14.1% |
+
+- C50 minus C0: **+2.8 [+1.2, +4.4]**. C100 minus C50: **+0.1 [-0.9, +1.1]**. C100 minus C0: **+2.9 [+1.3, +4.6]**.
+- **By the rule declared at 14:05, this is case 3, slowing:** C100 minus C0 is above 0, C100 minus C50 is not. Not "still rising", so no third round of the same kind. C25 (seeds 0 and 1) is still training; it adds the first segment of the curve and cannot change the case.
+- **Right per doubling of the natural-language messages:** +0.1 points from C50 to C100. **Extrapolation** (only an extrapolation, as declared): the M5 bar on `nl_a` is 0.75 x 73.0% = 54.8%; at +0.1 points per doubling, more rounds of this kind do not reach it at any plausible size.
+- C0 equals F0 (10.9% with seeds 0 and 1; C0 minus F0 +0.3 [-0.8, +1.4]), as it should: `ROLE_TOO_RICH` alone changes nothing measurable.
+
+**Reported, not used to decide:**
+- `nl_a` development, every request executed (mean of the seeds): right 36 -> 47 -> 48; not done 188 -> 135 -> 121; extras 290 -> 228 -> 199; wrong 169 -> 211 -> 224 of 392. More requests are read; many of the newly read ones are wrong.
+- **First causes** (`curve/root_causes/`, mean of the seeds, `nl_a` development): wrong act 218 -> 157 -> 136; extra on text with no request 124 -> 100 -> 87; cut 166 -> 148 -> 142; a reference that needs the drawing 82 -> 93 -> 100; class value 35 -> 43 -> 43; name tags 20 -> 32 -> 34. The data keeps improving the act head and the no-request extras from C50 to C100; the share right stops rising because a request whose act is now read right falls to the next cause, mostly a reference only the drawing answers.
+- At the cost-10 threshold, `nl_a` development: cost -7.9 (C0) -> -2.4 (C50) -> -1.8 (C100), mean of the seeds; it still executes only 5-11 of 392.
+- fresh2 + short3 test at the threshold: cost 32.1 (C0) -> 36.6 (C50) -> 34.4 (C100); no loss.
+- **`nl_b`** (601 messages, read once already at M5, so not used to choose; `curve/nlb_by_writer.json`), C100 minus C0, every request executed, seeds pooled: all 7.6% -> 11.3%, **+3.7 [+2.2, +5.3]**; gpt-6-astra's half (a family that wrote no training text) 10.9% -> 13.9%, **+3.1 [+0.6, +5.5]**; gpt-6.1-sol's half (the family of `nl_p2`'s batches 21-30) 4.4% -> 8.7%, +4.4 [+2.5, +6.5]. The gain carries to a writer family the training never saw.
+
+### Decision after the curve: no third round; W runs once, after Q2 (18:50)
+
+**The owner's go**, relayed by the Qwen session, owner's words quoted: "tell it to ask the advisor and decide for itself", and "tell it to use opus xhigh as advisor same as you". Two advisors were asked before any run: the session's built-in advisor, and an Opus 5.5 xhigh reviewer (`plan-reviewer-xhigh`, read-only; it reran `curve_summary.py` and reproduced the numbers above).
+
+**Decision:**
+1. **No third round.** Only case 1 opens it, and the curve is case 3. Even at the upper end of C100 minus C50 (+1.1 points per doubling), 14.1% -> 54.8% takes about 37 doublings (about 2,215 x 2^37 messages); only one doubling is measured until C25 is in.
+2. **W runs once, as declared at 15:05,** with F0's recipe (8 epochs), seeds 0 and 1. The number of updates is not held equal to C100, because both ways of doing it add a new difference (`--max-updates` stops before the decay ends; `--epochs 7` cuts the older rows to 7 passes) and would be a change of recipe after a result.
+   - **Updates:** from request rows, not messages (`finetune_modernbert_batched.py`: `steps_per_epoch = math.ceil(len(rows) / a.batch)`). C100: 57,135 rows, 14,288 updates. W: 54,584 + 4 x 2,551 = 64,788 rows, 16,200 updates (+13.4%; the 25% said earlier is wrong). The extra updates are the repetition itself. Side effects, reported: the learning-rate schedule is 13% longer, and older messages get about 9% fewer cut-head passes (8 messages per update).
+   - **Natural share:** 26.4% of messages (8,860 of 33,558; the cut head), 15.7% of request rows (10,204 of 64,788; act, class and tag heads). C100: 8.2% and 4.5%.
+   - **Data:** `nl_share.py --copies 4` (copies 2-4 have id, session and group suffixed `_r2`-`_r4`, because `make_data.py` keeps a folder once and asserts unique ids; checked: copy 1 equals the plain share, and copies differ from it only in id, session and group). `make_roles.py` reads neither session nor group; `LABEL_FIXES_L2.jsonl` holds no `tr-`/`p2-` id.
+   - **Checks before training:** train.jsonl 64,788 rows; cut_train.jsonl 33,558; the trainer's total 16,200; without its `_r2`-`_r4` rows W's train.jsonl equals C100's; the eval files and reader.json equal C100's.
+   - **The bar, read now:** (1) `curve_summary.py C100=C100-s0,C100-s1 W=W-s0,W-s1`: W minus C100 passes only if its 95% lower end is above 0 (a lower end of exactly 0 is a miss, as for M2n). (2) fresh2 test and short3 test separately, each arm's own fit (`cal-fresh2-short3-nl_a`), `compare_arms.mjs` `gold.today.gate`: pass if the mean over the two seeds of W minus C100 is at least -10, read as the point difference (the declaration says "lower bound" only for clause 1, and short3's interval is about +-14 points wide). Reported, not gating: `nl_a` wrong and extras with every request executed, `nl_a` development cost at the threshold, first causes (watch the name-tag cause, which rose 20 -> 34 along the curve; W gives 4 times the weight to the 48 `unreliable` rows and to the name/label split noted at 14:46).
+3. **Order: C25, then the Qwen session's Q2, then W.** `arm_train.sh` only tests the lock and the trainer takes it non-blocking, so W must not be queued on the lock: it starts only after Q2's GPU part has ended (that session messages this one). `STOP_AT` is set explicitly. W's data is built and checked on the CPU meanwhile.
+4. **Nothing pre-declared beats W.** The drawing input trained on the natural data would be a new declaration; it addresses about 76 of C100's 100 reference causes (the "Reference causes" lines), against act 136, cut 142, no-request extras 87, and M4 reached 6.3% against its 60% bar. It is listed for the owner, not queued. After W: stop and report.
+
+**Corrections to the 18:45 entry** (the reviewer's; none changes the decision):
+- "A reference that needs the drawing 82 -> 93 -> 100" mixes two kinds. References the message does not write: 65 -> 66.5 -> 75.5. Names written in another request or a pronoun (the reasoning layer's): 16.5 -> 26 -> 24.5. The rise from C50 to C100 is in the first kind (+9), so the plateau's explanation holds, as an inference from totals, not a per-request trace.
+- "Keeps improving the no-request extras from C50 to C100": the seeds overlap (C50 106 / 94, C100 78 / 95). The act head's fall holds on both seeds (153 / 160 -> 139 / 133).
+- "fresh2 + short3: no loss" is a point estimate on the combined set; per set (seed means, at the threshold): fresh2 42.5 -> 45.5, short3 0.35 -> 0.69, no interval.
+- "Executes only 5-11 of 392": those are executions including extras; executed requests are 5-10.
+- "A writer family the training never saw" means "a family that wrote no training text".
+- The curve's evidence folder gets its summary file (`curve_summary.py --json`) once C25 is in.
+
+### W's data: built from C100's rows, not from repeated folders (18:54, before W runs)
+
+- **The pre-run check failed on the first build**, as the reviewer's check was meant to catch: `nl_share.py --copies 4` + `build_arm_data.sh` (kept as `arms/data/W.pipeline`, round trip 99.44%, silent 0.10%) gives a train.jsonl whose rows without the copies differ from C100's in 12 request rows, and a different `reader.json`. Cause: `make_roles.py` learns its number-word map from co-occurrence counts, so 4 copies push words over its thresholds: `reader.json` `number_words` gains "time" -> 20, "x6" -> 6, "same" -> 6, "zero" -> 3 and loses "up" -> 20, "stars" -> 2, "circles" -> 2, and 12 rows get different count tags (for example "charger x6": "x6" tagged as the count). That map is also read at reading time, so that W would change two things, not one.
+- **W is therefore built from C100's built rows** (`parity/repeat_rows.py arms/data/C100 arms/data/W 4 tr- p2-`): each row of train.jsonl and cut_train.jsonl whose id starts with `tr-` or `p2-` (only the natural rows have them: 0 in C0) is followed by 3 copies with the id suffixed `_r2`-`_r4`; every other file is C100's, byte for byte.
+- **Checked:** train.jsonl 64,788 rows (57,135 + 3 x 2,551), cut_train.jsonl 33,558 (26,913 + 3 x 2,215); without the copies both equal C100's, in order; every copy equals a row of its source message apart from the id; `reader.json`, `trigger_inventory.json`, `coverage.json`, the eval and held-out files are identical to C100's. So W differs from C100 only by the repetition (and the 13% more updates and longer schedule that come with it).
+- W trains after the Qwen session's Q2 has left the GPU: `arm_train.sh W 0`, then `W 1`, `STOP_AT` set, each evaluated with `arm_eval.sh W-sS arms/data/W C100-sS`.
+
+### The learning curve: C25 added (19:40). The case stands
+
+`reports/evidence/modernbert-parity-baseline/curve/curve_summary.json` (all four points, seeds 0 and 1 pooled, 800 `nl_a` requests):
+
+| point | natural messages | right | seed 0 | seed 1 |
+|---|---:|---:|---:|---:|
+| C0 | 0 | 11.2% | 11.5% | 10.9% |
+| C25 | 553 | 12.8% | 12.6% | 13.0% |
+| C50 | 1,153 | 14.0% | 13.5% | 14.5% |
+| C100 | 2,215 | 14.1% | 14.1% | 14.1% |
+
+- C25 minus C0 +1.6 [+0.2, +3.0]; C50 minus C25 +1.2 [-0.1, +2.5]; C100 minus C50 +0.1 [-0.9, +1.1]; C100 minus C0 +2.9 [+1.3, +4.6]. Case 3 (slowing), as at 18:45.
+- **Right per doubling:** +1.2 points (553 -> 1,153 messages), then +0.1 (1,153 -> 2,215). Extrapolation to the M5 bar (54.8% on `nl_a`): even at the larger of the two, +1.2 points per doubling, 14.1% -> 54.8% takes about 34 doublings; not reachable by rounds of this kind.
+- First causes, C25 (seed mean, `nl_a` development): wrong act 157.5, no-request extras 99, cut 153, references the request does not write 90.5. Along C0 -> C25 -> C50 -> C100, wrong act 218 -> 157.5 -> 157 -> 136.

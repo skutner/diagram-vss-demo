@@ -1,0 +1,50 @@
+{"id":"p2-02-001","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"big blue rectangle for the board, call it Board"}
+{"id":"p2-02-002","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"title at the top: Taco Wagon"}
+{"id":"p2-02-003","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"Tacos: small box inside, left side"}
+{"id":"p2-02-004","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"Burritos next to it"}
+{"id":"p2-02-005","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"then Drinks"}
+{"id":"p2-02-006","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"same size all three"}
+{"id":"p2-02-007","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"put 3 on tacos"}
+{"id":"p2-02-008","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"9 on the burritos, 2 on drinks"}
+{"id":"p2-02-009","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"hm cant read them, board is too dark. make it white"}
+{"id":"p2-02-010","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"tacos red, burritos orange, drinks blue"}
+{"id":"p2-02-011","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"star top right"}
+{"id":"p2-02-012","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"it says Special"}
+{"id":"p2-02-013","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"no, Today"}
+{"id":"p2-02-014","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"line from it to burritos"}
+{"id":"p2-02-015","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"dashed"}
+{"id":"p2-02-016","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"too crowded up there, move the star down a bit"}
+{"id":"p2-02-017","domain":"food truck menu board","kind":"session","session":"s02-truckmenu","text":"group the three food ones, Menu"}
+{"id":"p2-02-018","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","setup":"@c1 command action=create shape=circle color=orange name=Fire label=Campfire position=center","text":"tents in a ring round the fire"}
+{"id":"p2-02-019","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"six of them, green triangles"}
+{"id":"p2-02-020","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"ah sorry they're big, make em small"}
+{"id":"p2-02-021","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"Kitchen tent, brown rectangle, top left"}
+{"id":"p2-02-022","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"Latrines way over bottom right"}
+{"id":"p2-02-023","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"path from kitchen to the fire"}
+{"id":"p2-02-024","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"no arrow, just a line"}
+{"id":"p2-02-025","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"and one to latrines but dotted"}
+{"id":"p2-02-026","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"river along the bottom, long blue thing"}
+{"id":"p2-02-027","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"its covering the latrines"}
+{"id":"p2-02-028","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"push the river down"}
+{"id":"p2-02-029","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"leaders tent: yellow square near the kitchen"}
+{"id":"p2-02-030","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"wait that's a first aid, call it First aid"}
+{"id":"p2-02-031","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"red cross colour for it, so red"}
+{"id":"p2-02-032","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"how many tents do we have now"}
+{"id":"p2-02-033","domain":"scout camp layout","kind":"session","session":"s02-scoutcamp","text":"ok put the six tents in one group, Patrol tents"}
+{"id":"p2-02-034","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"Mixer. big gray rectangle, middle"}
+{"id":"p2-02-035","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"Mic 1 and Mic 2 on the left, small circles"}
+{"id":"p2-02-036","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"both into the mixer"}
+{"id":"p2-02-037","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"Guitar DI, same, below them"}
+{"id":"p2-02-038","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"and that one too"}
+{"id":"p2-02-039","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"Monitors on the right, two"}
+{"id":"p2-02-040","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"mixer feeds both"}
+{"id":"p2-02-041","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"mic arrows orange so I can see the mics"}
+{"id":"p2-02-042","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"Headphone amp, hexagon, under monitors"}
+{"id":"p2-02-043","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"from the mixer, thick if you can"}
+{"id":"p2-02-044","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"cant do thick? fine, blue then"}
+{"id":"p2-02-045","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"rename Monitors to Mains"}
+{"id":"p2-02-046","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"hang on I only wanted the first one to say that. the second is Nearfield"}
+{"id":"p2-02-047","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"Laptop at the very top with the little text Pro Tools"}
+{"id":"p2-02-048","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"mixer to laptop and back"}
+{"id":"p2-02-049","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"which things go into the mixer?"}
+{"id":"p2-02-050","domain":"recording studio patch plan","kind":"session","session":"s02-studio","text":"thanks that's the plan for tonight"}

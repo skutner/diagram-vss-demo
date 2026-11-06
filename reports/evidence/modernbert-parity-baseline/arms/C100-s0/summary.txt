@@ -1,0 +1,88 @@
+== cal-fresh2-short3-nl_a.score.json (threshold 0.9228085704698455)
+fresh2/test [gold] req 1313: all right 83.9% wrong 177 not done 35 extras 68 | gate right 682 wrong 5 asked 591 unread 35 extras 3 cost 45.8 auroc 0.9 | with direction: gate right 682 wrong 5
+short3/test [gold] req 432: all right 62.0% wrong 130 not done 34 extras 28 | gate right 53 wrong 5 asked 340 unread 34 extras 0 cost 0.7 auroc 0.8 | with direction: gate right 53 wrong 5
+collected_1/all [gold] req 44: all right 22.7% wrong 17 not done 17 extras 28 | gate right 0 wrong 1 asked 26 unread 17 extras 0 cost -22.7 auroc 0.6 | with direction: gate right 0 wrong 1
+collected_1/all [teacher_opus] req 47: all right 23.4% wrong 15 not done 21 extras 29 | gate right 0 wrong 1 asked 25 unread 21 extras 0 cost -21.3 auroc 0.7 | with direction: gate right 0 wrong 1
+collected_1/all [teacher_either] req 49: all right 22.4% wrong 15 not done 23 extras 29 | gate right 0 wrong 1 asked 25 unread 23 extras 0 cost -20.4 auroc 0.7 | with direction: gate right 0 wrong 1
+   teachers: gpt against opus 76.6%
+scenes_test/all [gold] req 163: all right 66.3% wrong 55 not done 0 extras 5 | gate right 46 wrong 0 asked 117 unread 0 extras 0 cost 28.2 auroc 0.9 | with direction: gate right 46 wrong 0
+nl_a/development [opus] req 392: all right 13.0% wrong 222 not done 119 extras 197 | gate right 7 wrong 0 asked 266 unread 119 extras 1 cost -0.8 auroc 0.9 | with direction: gate right 7 wrong 0
+nl_a/development [either] req 412: all right 13.3% wrong 218 not done 139 extras 197 | gate right 7 wrong 0 asked 266 unread 139 extras 1 cost -0.7 auroc 0.9 | with direction: gate right 7 wrong 0
+   teachers: gpt against opus 72.2%
+   nothing_to_do: {"all_executed": {"messages": 18, "requested_in_these": 0, "actions_executed": 11, "actions_executed_per_100_messages": 61.111111}, "at_threshold": {"messages": 18, "requested_in_these": 0, "actions_executed": 0, "actions_executed_per_100_messages": 0}}
+   paraphrase: {"all_executed": {"groups": 8, "wordings": 37, "same_effect_share": 0.459459, "changed_nothing_share": 0.432432, "same_effect_as_gold_share": 0.189189, "same_effect_as_either_teacher_share": 0.189189, "setup_errors": 0}, "at_threshold": {"groups": 8, "wordings": 37, "same_effect_share": 0.972973, "c
+fresh2+short3/test [gold] req 1745: all right 78.5% wrong 307 not done 69 extras 96 | gate right 735 wrong 10 asked 931 unread 69 extras 3 cost 34.7 auroc 0.9 | with direction: gate right 735 wrong 10
+== cal-fresh2-short3.score.json (threshold 0.9247751019646089)
+fresh2/test [gold] req 1313: all right 83.9% wrong 177 not done 35 extras 68 | gate right 704 wrong 6 asked 568 unread 35 extras 3 cost 46.8 auroc 0.9 | with direction: gate right 704 wrong 6
+short3/test [gold] req 432: all right 62.0% wrong 130 not done 34 extras 28 | gate right 80 wrong 6 asked 312 unread 34 extras 0 cost 4.6 auroc 0.8 | with direction: gate right 80 wrong 6
+collected_1/all [gold] req 44: all right 22.7% wrong 17 not done 17 extras 28 | gate right 2 wrong 0 asked 25 unread 17 extras 0 cost 4.5 auroc 0.7 | with direction: gate right 2 wrong 0
+collected_1/all [teacher_opus] req 47: all right 23.4% wrong 15 not done 21 extras 29 | gate right 2 wrong 0 asked 24 unread 21 extras 0 cost 4.3 auroc 0.7 | with direction: gate right 2 wrong 0
+collected_1/all [teacher_either] req 49: all right 22.4% wrong 15 not done 23 extras 29 | gate right 2 wrong 0 asked 24 unread 23 extras 0 cost 4.1 auroc 0.7 | with direction: gate right 2 wrong 0
+   teachers: gpt against opus 76.6%
+scenes_test/all [gold] req 163: all right 66.3% wrong 55 not done 0 extras 5 | gate right 61 wrong 0 asked 102 unread 0 extras 0 cost 37.4 auroc 0.9 | with direction: gate right 61 wrong 0
+nl_a/development [opus] req 392: all right 13.0% wrong 222 not done 119 extras 197 | gate right 9 wrong 1 asked 263 unread 119 extras 2 cost -5.4 auroc 0.9 | with direction: gate right 9 wrong 1
+nl_a/development [either] req 412: all right 13.3% wrong 218 not done 139 extras 197 | gate right 9 wrong 1 asked 263 unread 139 extras 2 cost -5.1 auroc 0.9 | with direction: gate right 9 wrong 1
+   teachers: gpt against opus 72.2%
+   nothing_to_do: {"all_executed": {"messages": 18, "requested_in_these": 0, "actions_executed": 11, "actions_executed_per_100_messages": 61.111111}, "at_threshold": {"messages": 18, "requested_in_these": 0, "actions_executed": 0, "actions_executed_per_100_messages": 0}}
+   paraphrase: {"all_executed": {"groups": 8, "wordings": 37, "same_effect_share": 0.459459, "changed_nothing_share": 0.432432, "same_effect_as_gold_share": 0.189189, "same_effect_as_either_teacher_share": 0.189189, "setup_errors": 0}, "at_threshold": {"groups": 8, "wordings": 37, "same_effect_share": 0.918919, "c
+fresh2+short3/test [gold] req 1745: all right 78.5% wrong 307 not done 69 extras 96 | gate right 784 wrong 12 asked 880 unread 69 extras 3 cost 36.3 auroc 0.9 | with direction: gate right 784 wrong 12
+== minus_prev.cal-fresh2-short3-nl_a.json: A modernbert minus B modernbert (cal-fresh2-short3-nl_a.score.json)
+   fresh2/test gold.today.all (headline): A -102.7 B -107.9 difference +5.2 [-13.9, +25.3]
+   fresh2/test gold.today.gate (headline): A 45.8 B 44.4 difference +1.4 [-4.3, +6.6]
+   short3/test gold.today.all (headline): A -303.7 B -357.6 difference +53.9 [+4.5, +100.7]
+   short3/test gold.today.gate (headline): A 0.7 B 1.2 difference -0.5 [-12.9, +12.6]
+   collected_1/all gold.today.all (headline): A -1000.0 B -970.5 difference -29.5 [-246.7, +193.9]
+   collected_1/all gold.today.gate (headline): A -22.7 B 0.0 difference -22.7 [-75.0, +0.0]
+   collected_1/all teacher_opus.today.all: A -912.8 B -931.9 difference +19.1 [-177.1, +228.6]
+   collected_1/all teacher_opus.today.gate: A -21.3 B 0.0 difference -21.3 [-69.8, +0.0]
+   scenes_test/all gold.today.all (headline): A -301.8 B -359.5 difference +57.7 [interval unusable: too few units (4 session)]
+   scenes_test/all gold.today.gate (headline): A 28.2 B 28.2 difference +0.0 [interval unusable: too few units (4 session)]
+   nl_a/development opus.today.all (headline): A -1055.9 B -1169.6 difference +113.8 [+34.0, +204.6]
+   nl_a/development opus.today.gate (headline): A -0.8 B -9.2 difference +8.4 [-3.3, +23.0]
+   fresh2+short3/test gold.today.all (headline): A -152.5 B -169.7 difference +17.2 [-2.0, +36.2]
+   fresh2+short3/test gold.today.gate (headline): A 34.7 B 33.7 difference +1.0 [-4.7, +6.1]
+== minus_prev.cal-fresh2-short3.json: A modernbert minus B modernbert (cal-fresh2-short3.score.json)
+   fresh2/test gold.today.all (headline): A -102.7 B -107.9 difference +5.2 [-13.9, +25.3]
+   fresh2/test gold.today.gate (headline): A 46.8 B 41.1 difference +5.6 [-0.8, +11.5]
+   short3/test gold.today.all (headline): A -303.7 B -357.6 difference +53.9 [+4.5, +100.7]
+   short3/test gold.today.gate (headline): A 4.6 B -0.5 difference +5.1 [-8.4, +18.0]
+   collected_1/all gold.today.all (headline): A -1000.0 B -970.5 difference -29.5 [-246.7, +193.9]
+   collected_1/all gold.today.gate (headline): A 4.5 B 4.5 difference +0.0 [+0.0, +0.0]
+   collected_1/all teacher_opus.today.all: A -912.8 B -931.9 difference +19.1 [-177.1, +228.6]
+   collected_1/all teacher_opus.today.gate: A 4.3 B 4.3 difference +0.0 [+0.0, +0.0]
+   scenes_test/all gold.today.all (headline): A -301.8 B -359.5 difference +57.7 [interval unusable: too few units (4 session)]
+   scenes_test/all gold.today.gate (headline): A 37.4 B 18.4 difference +19.0 [interval unusable: too few units (4 session)]
+   nl_a/development opus.today.all (headline): A -1055.9 B -1169.6 difference +113.8 [+34.0, +204.6]
+   nl_a/development opus.today.gate (headline): A -5.4 B -14.3 difference +8.9 [+1.3, +18.0]
+   fresh2+short3/test gold.today.all (headline): A -152.5 B -169.7 difference +17.2 [-2.0, +36.2]
+   fresh2+short3/test gold.today.gate (headline): A 36.3 B 30.8 difference +5.5 [-0.5, +11.2]
+== minus_sop.cal-fresh2-short3-nl_a.json: A modernbert minus B sop (sop.cal-fresh2-short3-nl_a.score.json)
+   fresh2/test gold.today.all (headline): A -102.7 B -161.3 difference +58.6 [+36.1, +81.6]
+   fresh2/test gold.today.gate (headline): A 45.8 B 31.9 difference +13.9 [+6.7, +20.1]
+   short3/test gold.today.all (headline): A -303.7 B -216.2 difference -87.5 [-142.6, -35.7]
+   short3/test gold.today.gate (headline): A 0.7 B -3.9 difference +4.6 [-9.5, +19.8]
+   collected_1/all gold.today.all (headline): A -1000.0 B -1022.7 difference +22.7 [-151.2, +190.7]
+   collected_1/all gold.today.gate (headline): A -22.7 B 0.0 difference -22.7 [-75.0, +0.0]
+   collected_1/all teacher_opus.today.all: A -912.8 B -980.9 difference +68.1 [-97.6, +236.7]
+   collected_1/all teacher_opus.today.gate: A -21.3 B 0.0 difference -21.3 [-69.8, +0.0]
+   scenes_test/all gold.today.all (headline): A -301.8 B -460.7 difference +158.9 [interval unusable: too few units (4 session)]
+   scenes_test/all gold.today.gate (headline): A 28.2 B 8.6 difference +19.6 [interval unusable: too few units (4 session)]
+   nl_a/development opus.today.all (headline): A -1055.9 B -1269.1 difference +213.3 [+132.3, +320.6]
+   nl_a/development opus.today.gate (headline): A -0.8 B -6.4 difference +5.6 [-0.3, +16.8]
+   fresh2+short3/test gold.today.all (headline): A -152.5 B -174.9 difference +22.4 [+1.8, +43.8]
+   fresh2+short3/test gold.today.gate (headline): A 34.7 B 23.0 difference +11.6 [+5.3, +17.6]
+== minus_sop.cal-fresh2-short3.json: A modernbert minus B sop (sop.cal-fresh2-short3.score.json)
+   fresh2/test gold.today.all (headline): A -102.7 B -161.3 difference +58.6 [+36.1, +81.6]
+   fresh2/test gold.today.gate (headline): A 46.8 B 39.7 difference +7.1 [+0.7, +13.4]
+   short3/test gold.today.all (headline): A -303.7 B -216.2 difference -87.5 [-142.6, -35.7]
+   short3/test gold.today.gate (headline): A 4.6 B -9.3 difference +13.9 [-4.6, +31.3]
+   collected_1/all gold.today.all (headline): A -1000.0 B -1022.7 difference +22.7 [-151.2, +190.7]
+   collected_1/all gold.today.gate (headline): A 4.5 B -22.7 difference +27.3 [+0.0, +73.9]
+   collected_1/all teacher_opus.today.all: A -912.8 B -980.9 difference +68.1 [-97.6, +236.7]
+   collected_1/all teacher_opus.today.gate: A 4.3 B -21.3 difference +25.5 [+0.0, +66.7]
+   scenes_test/all gold.today.all (headline): A -301.8 B -460.7 difference +158.9 [interval unusable: too few units (4 session)]
+   scenes_test/all gold.today.gate (headline): A 37.4 B 19.6 difference +17.8 [interval unusable: too few units (4 session)]
+   nl_a/development opus.today.all (headline): A -1055.9 B -1269.1 difference +213.3 [+132.3, +320.6]
+   nl_a/development opus.today.gate (headline): A -5.4 B -42.3 difference +37.0 [+17.3, +57.8]
+   fresh2+short3/test gold.today.all (headline): A -152.5 B -174.9 difference +22.4 [+1.8, +43.8]
+   fresh2+short3/test gold.today.gate (headline): A 36.3 B 27.6 difference +8.8 [+2.3, +15.6]

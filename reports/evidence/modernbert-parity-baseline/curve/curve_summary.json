@@ -1,0 +1,71 @@
+{
+ "measure": "nl_a calibration + development, Opus view, every request executed: right per requested action",
+ "points": {
+  "C0": {
+   "right_share": 0.1119,
+   "requested": 800,
+   "seeds": [
+    0.115,
+    0.1087
+   ]
+  },
+  "C25": {
+   "right_share": 0.1281,
+   "requested": 800,
+   "seeds": [
+    0.1263,
+    0.13
+   ]
+  },
+  "C50": {
+   "right_share": 0.14,
+   "requested": 800,
+   "seeds": [
+    0.135,
+    0.145
+   ]
+  },
+  "C100": {
+   "right_share": 0.1412,
+   "requested": 800,
+   "seeds": [
+    0.1412,
+    0.1412
+   ]
+  }
+ },
+ "differences": {
+  "C25 - C0": {
+   "diff": 0.0163,
+   "ci95": [
+    0.0024,
+    0.0304
+   ],
+   "units": 365
+  },
+  "C50 - C25": {
+   "diff": 0.0119,
+   "ci95": [
+    -0.0006,
+    0.025
+   ],
+   "units": 365
+  },
+  "C100 - C50": {
+   "diff": 0.0013,
+   "ci95": [
+    -0.0088,
+    0.0111
+   ],
+   "units": 365
+  },
+  "C100 - C0": {
+   "diff": 0.0294,
+   "ci95": [
+    0.013,
+    0.0461
+   ],
+   "units": 365
+  }
+ }
+}

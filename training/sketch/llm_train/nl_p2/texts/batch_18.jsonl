@@ -1,0 +1,52 @@
+{"id":"p2-18-001","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"drawing the layout of our wildlife rescue centre for the new volunteer handbook. start with a big light green area for the grounds"}
+{"id":"p2-18-002","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"reception at the bottom in the middle"}
+{"id":"p2-18-003","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"then the clinic above it"}
+{"id":"p2-18-004","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"bigger"}
+{"id":"p2-18-005","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"arrow reception to clinic, everything comes in that way"}
+{"id":"p2-18-006","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"intensive care on the right of the clinic. red"}
+{"id":"p2-18-007","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"clinic -> intensive care"}
+{"id":"p2-18-008","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"quarantine left of the clinic, yellow"}
+{"id":"p2-18-009","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"dashed arrow to it from the clinic"}
+{"id":"p2-18-010","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"hedgehog pens top left"}
+{"id":"p2-18-011","domain":"wildlife rescue centre","kind":"self_correction","session":"p2-18-s1","text":"actually there's 3 pens not one, small brown squares, next to each other"}
+{"id":"p2-18-012","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"bird aviary top right, a hexagon"}
+{"id":"p2-18-013","domain":"wildlife rescue centre","kind":"complaint","session":"p2-18-s1","text":"hm no that looks like a bolt. big circle instead"}
+{"id":"p2-18-014","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"write Aviary on it"}
+{"id":"p2-18-015","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"and the pond between the aviary and the pens"}
+{"id":"p2-18-016","domain":"wildlife rescue centre","kind":"fragment","session":"p2-18-s1","text":"blue obviously"}
+{"id":"p2-18-017","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"how many pens are there now"}
+{"id":"p2-18-018","domain":"wildlife rescue centre","kind":"session","session":"p2-18-s1","text":"ok title across the top: Hillside Wildlife Rescue"}
+{"id":"p2-18-019","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","setup":"@c1 command action=create shape=rectangle color=green fill=light layer=zone name=Field width=760 height=460 at=400,250\n@c2 command action=create shape=circle color=black size=small name=Post label=\"Handler's post\" position=bottom\n@c3 command action=create shape=square color=brown name=Pen label=\"Pen\" position=right","text":"ok so the course. the sheep get let out at the top end, put a small white circle up there called Lift"}
+{"id":"p2-18-020","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"the outrun goes from the post up to the lift. dashed line, no arrowhead"}
+{"id":"p2-18-021","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"fetch gates next, two of them, halfway down the middle"}
+{"id":"p2-18-022","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"closer together"}
+{"id":"p2-18-023","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"drive gates on the left side, also two"}
+{"id":"p2-18-024","domain":"sheepdog trial course","kind":"fragment","session":"p2-18-s2","text":"red ones"}
+{"id":"p2-18-025","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"then the cross drive gates on the right, same colour as the drive ones"}
+{"id":"p2-18-026","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"shedding ring, big circle in the middle of the field"}
+{"id":"p2-18-027","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"no fill, just a white outline"}
+{"id":"p2-18-028","domain":"sheepdog trial course","kind":"indirect","session":"p2-18-s2","text":"pen's miles away from the ring, the dog would never get them there in time"}
+{"id":"p2-18-029","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"arrow from the ring to the pen"}
+{"id":"p2-18-030","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"put the word Shed beside the ring"}
+{"id":"p2-18-031","domain":"sheepdog trial course","kind":"short","session":"p2-18-s2","text":"undo"}
+{"id":"p2-18-032","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"handler's post a bit bigger, the judges can't find it"}
+{"id":"p2-18-033","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"exhaust pen top right corner, gray"}
+{"id":"p2-18-034","domain":"sheepdog trial course","kind":"self_correction","session":"p2-18-s2","text":"and lift to exhaust... no, leave that, they walk them off by hand"}
+{"id":"p2-18-035","domain":"sheepdog trial course","kind":"session","session":"p2-18-s2","text":"that's it I think. are all six gates on there?"}
+{"id":"p2-18-036","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","setup":"@c1 command action=create shape=rectangle color=brown fill=light layer=zone name=Boathouse label=\"Boathouse\" width=500 height=300 at=300,200\n@c2 command action=create shape=rectangle color=gray name=Slipway label=\"Slipway\" position=bottom","text":"need the racks in now. eights along the back wall, long thin boxes, two of them"}
+{"id":"p2-18-037","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"fours below those"}
+{"id":"p2-18-038","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"singles stacked up the right side of the boathouse, four, small"}
+{"id":"p2-18-039","domain":"rowing club boathouse","kind":"complaint","session":"p2-18-s3","text":"too small, can't read them"}
+{"id":"p2-18-040","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"erg room. separate building, right of the boathouse"}
+{"id":"p2-18-041","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"ergs = 6 little gray squares inside it"}
+{"id":"p2-18-042","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"arrow boathouse to slipway, that's how the boats go out"}
+{"id":"p2-18-043","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"pontoon below the slipway"}
+{"id":"p2-18-044","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"wider, it's a long one"}
+{"id":"p2-18-045","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"colour it like wood"}
+{"id":"p2-18-046","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"coaching launch next to the pontoon, orange"}
+{"id":"p2-18-047","domain":"rowing club boathouse","kind":"fragment","session":"p2-18-s3","text":"small"}
+{"id":"p2-18-048","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"fuel store. keep it away from the erg room, top left of the page"}
+{"id":"p2-18-049","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"red, with FLAMMABLE written on it"}
+{"id":"p2-18-050","domain":"rowing club boathouse","kind":"complaint","session":"p2-18-s3","text":"why is it sitting on top of the eights"}
+{"id":"p2-18-051","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"get it out of the boathouse then, left of it"}
+{"id":"p2-18-052","domain":"rowing club boathouse","kind":"session","session":"p2-18-s3","text":"slipway and pontoon joined, plain line, no arrowhead"}

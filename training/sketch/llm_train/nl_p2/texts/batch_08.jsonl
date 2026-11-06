@@ -1,0 +1,50 @@
+{"id":"p2-08-001","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"marina plan. big grey rectangle for the quay, along the bottom"}
+{"id":"p2-08-002","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"now a pontoon sticking up from it, thin, call it A"}
+{"id":"p2-08-003","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"another one to the right, B"}
+{"id":"p2-08-004","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"six berths along A, little white squares, 3 each side"}
+{"id":"p2-08-005","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"same on B"}
+{"id":"p2-08-006","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"hm they overlap the pontoons. push them out a bit"}
+{"id":"p2-08-007","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"fuel dock, red triangle, far right"}
+{"id":"p2-08-008","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"and a line from the quay to it, dashed, thats the hose route"}
+{"id":"p2-08-009","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"harbour office text on the quay. says Harbour office"}
+{"id":"p2-08-010","domain":"marina berth plan","kind":"complaint","session":"p2-08-s1","text":"thats under the quay not on it"}
+{"id":"p2-08-011","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"the third berth on A is for the visitors, blue"}
+{"id":"p2-08-012","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"also the last one on B"}
+{"id":"p2-08-013","domain":"marina berth plan","kind":"fragment","session":"p2-08-s1","text":"Visitors, on both."}
+{"id":"p2-08-014","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"how many white berths are left"}
+{"id":"p2-08-015","domain":"marina berth plan","kind":"self_correction","session":"p2-08-s1","text":"make A longer. no B. the fuel dock end is too short"}
+{"id":"p2-08-016","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"Reception: small yellow circle by the office"}
+{"id":"p2-08-017","domain":"marina berth plan","kind":"session","session":"p2-08-s1","text":"good. undo the last one, its in the way"}
+{"id":"p2-08-018","domain":"puppet show set","kind":"session","session":"p2-08-s2","setup":"@c1 command action=create shape=rectangle name=Stage color=brown size=huge position=center","text":"puppet theatre for the kids. i made the stage. curtains next, red, left and right"}
+{"id":"p2-08-019","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"theyre too thick. half as wide"}
+{"id":"p2-08-020","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"a yellow moon, up top in the middle"}
+{"id":"p2-08-021","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"make it a star instead"}
+{"id":"p2-08-022","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"3 more, tiny, scattered"}
+{"id":"p2-08-023","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"the hill: green triangle, big, back left"}
+{"id":"p2-08-024","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"and a house on the hill. square, orange, small"}
+{"id":"p2-08-025","domain":"puppet show set","kind":"typos","session":"p2-08-s2","text":"put the wolf behnd the hill, a grey circel"}
+{"id":"p2-08-026","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"call him Wolf"}
+{"id":"p2-08-027","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"Pig box right side, pink"}
+{"id":"p2-08-028","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"arrow Wolf to Pig, red"}
+{"id":"p2-08-029","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"text on the stage floor: Act One"}
+{"id":"p2-08-030","domain":"puppet show set","kind":"complaint","session":"p2-08-s2","text":"it covered the pig"}
+{"id":"p2-08-031","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"bottom left then"}
+{"id":"p2-08-032","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"the house should say Straw"}
+{"id":"p2-08-033","domain":"puppet show set","kind":"session","session":"p2-08-s2","text":"and a second one beside it that says Bricks, bigger and red"}
+{"id":"p2-08-034","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"greenhouse 2 layout. glass outline first, a light blue box, wide"}
+{"id":"p2-08-035","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"three benches down the middle, brown, in a column"}
+{"id":"p2-08-036","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"label them Tomatoes, Peppers, Herbs from the top"}
+{"id":"p2-08-037","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"door at the left end, gray"}
+{"id":"p2-08-038","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"water tank, round, blue, top right corner"}
+{"id":"p2-08-039","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"pipe from the tank to each bench"}
+{"id":"p2-08-040","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"the herbs one dotted, its only drip"}
+{"id":"p2-08-041","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"Heater: red hexagon under the door"}
+{"id":"p2-08-042","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"too near the tomatoes, wont the leaves burn?"}
+{"id":"p2-08-043","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"slide it left a bit"}
+{"id":"p2-08-044","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"seedling tray x4, tiny green squares at the far end"}
+{"id":"p2-08-045","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"put them in a row on a bench of their own, white, call it Seedlings"}
+{"id":"p2-08-046","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"Peppers should say Chillies"}
+{"id":"p2-08-047","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"which benches have a pipe"}
+{"id":"p2-08-048","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"Seedlings needs one too, thin and blue"}
+{"id":"p2-08-049","domain":"plant nursery greenhouse","kind":"session","session":"p2-08-s3","text":"then group the three big benches as Beds"}
+{"id":"p2-08-050","domain":"plant nursery greenhouse","kind":"fragment","session":"p2-08-s3","text":"sorry, Beds not Bed"}

@@ -1,0 +1,50 @@
+{"id":"p2-28-001","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","setup":"@c1 command action=create shape=rectangle name=Plot color=brown fill=none width=500 height=320 position=center\n@c2 command action=create shape=text name=Heading label=\"Plot 18\" position=top","text":"Gate in the bottom edge, near the right.","wires":[]}
+{"id":"p2-28-002","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Path straight up from there.","wires":[]}
+{"id":"p2-28-003","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Shed top left. About a quarter of that width.","wires":[]}
+{"id":"p2-28-004","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Water butt beside it, little blue one.","wires":[]}
+{"id":"p2-28-005","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Two long beds to the left of the path.","wires":[]}
+{"id":"p2-28-006","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Upper one Potatoes, lower one Beans.","wires":[]}
+{"id":"p2-28-007","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Leave walking room between those.","wires":[]}
+{"id":"p2-28-008","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"A smaller bed opposite the beans. Strawberries.","wires":[]}
+{"id":"p2-28-009","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Pink for that, so I can spot it.","wires":[]}
+{"id":"p2-28-010","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Compost up in the spare corner on the right.","wires":[]}
+{"id":"p2-28-011","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Actually two bins there, side by side.","wires":[]}
+{"id":"p2-28-012","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"One says Filling, the other Ready.","wires":[]}
+{"id":"p2-28-013","domain":"allotment plot plan","kind":"complaint","session":"p2-28-allotment","text":"Can't read Ready against that brown. White writing please.","wires":[]}
+{"id":"p2-28-014","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Same for Filling.","wires":[]}
+{"id":"p2-28-015","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"How much empty space is there above the strawberries?","wires":[]}
+{"id":"p2-28-016","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Try a little greenhouse in that gap.","wires":[]}
+{"id":"p2-28-017","domain":"allotment plot plan","kind":"session","session":"p2-28-allotment","text":"Bit smaller. I still need to get round it with the barrow.","wires":[]}
+{"id":"p2-28-018","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","setup":"@c1 command action=create shape=rectangle name=Tank color=blue fill=light width=560 height=340 position=center\n@c2 command action=create shape=rectangle name=Sand color=yellow width=560 height=40 position=bottom","text":"sand needs to be inside the tank at the bottom","wires":[{"span":"sand needs to be inside the tank at the bottom","trigger":"inside","type":"command","args":{"action":"move","target":"Sand","position":"inside","anchor":"Tank"}}]}
+{"id":"p2-28-019","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"i want a goldfish in the middle","wires":[]}
+{"id":"p2-28-020","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"orange with a big tail","wires":[]}
+{"id":"p2-28-021","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"give him an eye too","wires":[]}
+{"id":"p2-28-022","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"his names Pickle write it under him","wires":[]}
+{"id":"p2-28-023","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"some bubbles coming from his mouth","wires":[]}
+{"id":"p2-28-024","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"upwards like hes breathing","wires":[]}
+{"id":"p2-28-025","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"green weed over on the left in the sand","wires":[]}
+{"id":"p2-28-026","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"taller than Pickle","wires":[]}
+{"id":"p2-28-027","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"a rock at the other end","wires":[]}
+{"id":"p2-28-028","domain":"aquarium picture","kind":"complaint","session":"p2-28-aquarium","text":"thats massive he cant swim past it!! make it littler","wires":[]}
+{"id":"p2-28-029","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"tiny snail on top of the rock","wires":[]}
+{"id":"p2-28-030","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"purple shell :)","wires":[]}
+{"id":"p2-28-031","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"can he have a friend near the weed","wires":[]}
+{"id":"p2-28-032","domain":"aquarium picture","kind":"self_correction","session":"p2-28-aquarium","text":"a blue fish no yellow actually","wires":[]}
+{"id":"p2-28-033","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"that ones Noodle","wires":[]}
+{"id":"p2-28-034","domain":"aquarium picture","kind":"session","session":"p2-28-aquarium","text":"put both names above them instead theyre down in the sand","wires":[]}
+{"id":"p2-28-035","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","setup":"@c1 command action=create shape=rectangle name=Front color=yellow width=480 height=360 position=center\n@c2 command action=create shape=rectangle name=Opening color=black width=300 height=180 position=inside anchor=Front","text":"Red curtains either side of the opening, please.","wires":[]}
+{"id":"p2-28-036","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Pulled back a little. We need to see the puppets.","wires":[]}
+{"id":"p2-28-037","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"A red bit across the top too.","wires":[]}
+{"id":"p2-28-038","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Above that, write Alfie's Theatre.","wires":[]}
+{"id":"p2-28-039","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Bigger letters. He'll want to read his name from the sofa.","wires":[]}
+{"id":"p2-28-040","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Little gold stars by the name, one each side.","wires":[]}
+{"id":"p2-28-041","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Now a shelf along the bottom of the opening.","wires":[]}
+{"id":"p2-28-042","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Brown, like the bit of wood I'll use.","wires":[]}
+{"id":"p2-28-043","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Underneath, a sign saying Next show: 3 o'clock.","wires":[]}
+{"id":"p2-28-044","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Give the sign a white background.","wires":[]}
+{"id":"p2-28-045","domain":"puppet theatre front","kind":"self_correction","session":"p2-28-theatre","text":"Blue round the outside. The sign, I mean, not the whole theatre.","wires":[]}
+{"id":"p2-28-046","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"A tiny ticket window down on the left.","wires":[{"span":"A tiny ticket window down on the left","trigger":"A tiny ticket window","type":"command","args":{"action":"create","object":"window","size":"tiny","position":"bottomLeft"}}]}
+{"id":"p2-28-047","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Tickets over that. 10p below it.","wires":[{"span":"Tickets over that","trigger":"Tickets","type":"command","args":{"action":"create","shape":"text","label":"Tickets","position":"above","anchor":"mention(size=tiny)"}},{"span":"10p below it","trigger":"10p","type":"command","args":{"action":"create","shape":"text","label":"10p","position":"below","anchor":"mention(size=tiny)"}}]}
+{"id":"p2-28-048","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Could the show time go a little to the right? Crowded now.","wires":[]}
+{"id":"p2-28-049","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Actually take the price off. His sister will insist on real money.","wires":[{"span":"take the price off","trigger":"take","type":"command","args":{"action":"delete","target":"mention(label=10p,shape=text)"}}]}
+{"id":"p2-28-050","domain":"puppet theatre front","kind":"session","session":"p2-28-theatre","text":"Last thing, a smiling sun in that empty bottom right corner.","wires":[{"span":"a smiling sun in that empty bottom right corner","trigger":"a smiling sun","type":"command","args":{"action":"create","object":"sun","position":"bottomRight"}}]}

@@ -1,0 +1,55 @@
+
+HARD FAILURES (38):
+  p2-04-015 [engine] wire 2: There is no shape named "Cox". Shapes on the canvas: Bow, Stroke.
+  p2-05-037 [engine] wire 1: rectangle1 is a shape; it can't become a text. To write on it, label it: label rectangle1 "…".
+  p2-07-023 [setup] @c3: position=below needs an anchor shape.
+  p2-09-048 [engine] wire 1: Note is a text; a text can't become a rectangle. Draw a rectangle and delete the text.
+  p2-09-048 [engine] wire 2: Note is a text; arrows join shapes. Connect the shape next to it instead.
+  p2-17-009 [engine] wire 1: circle1 is a shape; it can't become a text. To write on it, label it: label circle1 "…".
+  p2-17-009 [engine] mention m2: I can't find a text showing ""hops added at 60 min"" on the canvas.
+  p2-19-001 [engine] mention m1: I can't find a square near Entrance on the canvas.
+  p2-19-001 [engine] mention m2: I can't find a shape showing ""accessible booth"" on the canvas.
+  p2-23-014 [engine] wire 2: text1 is a text; arrows join shapes. Connect the shape next to it instead.
+  p2-25-018 [engine] wire 4: Spacing needs at least two shapes.
+  p2-29-005 [setup] does not parse: Line 2: "it" should look like question=answer
+  p2-02-033 [engine] wire 1: "Patrol tents" can't be a name: use letters, digits, - or _ and start with a letter.
+  p2-03-019 [engine] mention m1: There are no shapes on the canvas.
+  p2-08-036 [engine] mention m2: There is no shape named "mention(label=Tomatoes)". Shapes on the canvas: rectangle1, circle1, circle2, circle3.
+  p2-08-046 [engine] mention m1: I can't find a shape showing "Peppers" on the canvas. (after an earlier failure in this session)
+  p2-22-004 [engine] mention m1: I can't find a shape in the top showing "apple" on the canvas.
+  p2-22-004 [engine] mention m2: I can't find a shape in the center showing "apple" on the canvas.
+  p2-22-007 [engine] mention m1: I can't find a shape in the bottom showing "benches" on the canvas. (after an earlier failure in this session)
+  p2-22-012 [engine] mention m1: I can't find a shape in the top showing "apple" on the canvas. (after an earlier failure in this session)
+  p2-22-013 [engine] mention m1: I can't find a shape in the top showing "apple" on the canvas. (after an earlier failure in this session)
+  p2-22-013 [engine] mention m2: I can't find a text showing "Discovery" on the canvas. (after an earlier failure in this session)
+  p2-22-013 [engine] mention m3: I can't find a text showing ""James Grieve"" on the canvas. (after an earlier failure in this session)
+  p2-22-023 [engine] mention m1: There are no texts showing "zero" on the canvas.
+  p2-22-024 [engine] mention m1: I can't find a text right of Walken showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-025 [engine] mention m2: I can't find a text showing "seven" on the canvas. (after an earlier failure in this session)
+  p2-22-025 [engine] mention m3: I can't find a text showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m1: I can't find a text showing ""Round 1"" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m3: I can't find a text showing "seven" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m4: I can't find a text showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m6: I can't find a text showing "seven" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m7: I can't find a text showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-027 [engine] mention m1: I can't find a text showing ""Round 1"" on the canvas. (after an earlier failure in this session)
+  p2-22-027 [engine] mention m2: I can't find a text showing "Total" on the canvas. (after an earlier failure in this session)
+  p2-22-032 [engine] mention m3: There are no texts showing "seven" on the canvas. (after an earlier failure in this session)
+  p2-22-032 [engine] mention m4: There are no texts showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-046 [engine] mention m2: I can't find a shape right of Laptop showing "speakers" on the canvas.
+  p2-23-022 [engine] mention m1: I can't find a shape in the right showing "places" on the canvas.
+
+The engine asks (not a failure) (7):
+  p2-07-046 [history] wire 1: There is nothing to undo.
+  p2-13-014 [history] wire 1: There is nothing to undo.
+  p2-17-017 [history] wire 1: There is nothing to undo.
+  p2-17-023 [clarify] mention m2: Which rectangle? Rack1 (middle left) and Rack2 (middle right). Reply with a name.
+  p2-17-049 [history] wire 1: There is nothing to undo.
+  p2-11-028 [clarify] mention m1: Which shape showing ""Baby care""? circle1 (middle left) and Nappies (center). Reply with a name.
+  p2-23-020 [clarify] mention m1: Which shape in the left showing "places"? circle2 (top left), circle3 (top left), circle4 (top left) and circle5 (top left). Reply with a name.
+
+Summary: 1518 saved texts in 30 file(s), 1518 annotated rows in 30 file(s), 1704 wires, 306 rows with no wire
+  sessions 46, paraphrase groups 43, rows replayed 1516, not replayed 2
+  by kind: {"short":106,"reference":86,"fragment":62,"long":137,"complaint":85,"indirect":82,"typos":74,"dictated":69,"nothing_to_do":115,"self_correction":60,"ambiguous":33,"translated":46,"session":353,"paraphrase":210}
+  hard failures 38 {"engine":36,"setup":2}, the engine asks 7, warnings 0
+RESULT: FAIL

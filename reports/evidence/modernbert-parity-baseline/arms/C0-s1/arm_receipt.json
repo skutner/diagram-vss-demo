@@ -1,0 +1,489 @@
+{
+  "schema": "arm-export-receipt-v1",
+  "passed": false,
+  "rule": "passed = PyTorch and Node decode every text the same; the runtime checks before it have already held",
+  "weights": {
+    "sha256": "201e9eafbc43eb39d109849970e5ad86a3eab5da0b342a54e508fb3e393a0e6e",
+    "epoch": 8,
+    "update": 13648,
+    "total": 13648,
+    "full_schedule": true,
+    "max_updates": 0,
+    "source_file": "checkpoint.pt",
+    "source_changes_since_training": []
+  },
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "torch_vs_node": {
+    "texts": 20,
+    "counts": {
+      "act": {
+        "agree": 17,
+        "total": 20
+      },
+      "classes": {
+        "agree": 819,
+        "total": 820
+      },
+      "tags": {
+        "agree": 1926,
+        "total": 1950
+      },
+      "cuts": {
+        "agree": 20,
+        "total": 20
+      },
+      "pieces": {
+        "agree": 20,
+        "total": 20
+      }
+    },
+    "differences": [
+      {
+        "text": "Get rid of the newest square and the oldest circle. Then tell me how many square",
+        "chars": 89,
+        "differences": [
+          {
+            "key": "class:desc:recency",
+            "torch": "oldest",
+            "node": "newest",
+            "margin": 0.0639
+          }
+        ]
+      },
+      {
+        "text": "This is for tomorrow's review. Reset the defaults! Which shapes can be reached f",
+        "chars": 148,
+        "differences": [
+          {
+            "key": "act",
+            "torch": "toFront",
+            "node": "create",
+            "margin": 0.1694
+          }
+        ]
+      },
+      {
+        "text": "Okay, so my kids and I are designing a board game map and I want to fix up a few",
+        "chars": 603,
+        "differences": [
+          {
+            "key": "act",
+            "torch": "set",
+            "node": "create",
+            "margin": 0.0576
+          }
+        ]
+      },
+      {
+        "text": "Alright, I run a small roastery and my investor wants to see how a bag of coffee",
+        "chars": 1200,
+        "differences": [
+          {
+            "key": "tag:81",
+            "torch": "O",
+            "node": "B-target",
+            "margin": 0.0012
+          }
+        ]
+      },
+      {
+        "text": "Caf\u00e9 na\u00efve \u6771\u4eac \ud83d\ude00 e\u0301 _ \uff11\uff12",
+        "chars": 23,
+        "differences": [
+          {
+            "key": "act",
+            "torch": "label",
+            "node": "set",
+            "margin": 0.7489
+          }
+        ]
+      },
+      {
+        "text": "connect A to B; connect A to B; connect A to B; connect A to B; connect A to B; ",
+        "chars": 1280,
+        "differences": [
+          {
+            "key": "tag:6",
+            "torch": "B-from",
+            "node": "O",
+            "margin": 0.0933
+          },
+          {
+            "key": "tag:11",
+            "torch": "B-from",
+            "node": "O",
+            "margin": 0.0757
+          },
+          {
+            "key": "tag:23",
+            "torch": "O",
+            "node": "B-from",
+            "margin": 0.1227
+          },
+          {
+            "key": "tag:43",
+            "torch": "O",
+            "node": "B-from",
+            "margin": 0.0514
+          },
+          {
+            "key": "tag:48",
+            "torch": "O",
+            "node": "B-from",
+            "margin": 0.1554
+          },
+          {
+            "key": "tag:53",
+            "torch": "O",
+            "node": "B-from",
+            "margin": 0.084
+          },
+          {
+            "key": "tag:58",
+            "torch": "O",
+            "node": "B-from",
+            "margin": 0.2062
+          }
+        ]
+      },
+      {
+        "text": "draw circle. draw circle. draw circle. draw circle. draw circle. draw circle. dr",
+        "chars": 3900,
+        "differences": [
+          {
+            "key": "tag:7",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.1948
+          },
+          {
+            "key": "tag:10",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.0951
+          },
+          {
+            "key": "tag:13",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.0644
+          },
+          {
+            "key": "tag:16",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.0719
+          },
+          {
+            "key": "tag:19",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.1403
+          },
+          {
+            "key": "tag:22",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.1194
+          },
+          {
+            "key": "tag:25",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.1365
+          },
+          {
+            "key": "tag:28",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.0821
+          },
+          {
+            "key": "tag:31",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.1463
+          },
+          {
+            "key": "tag:34",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.0584
+          },
+          {
+            "key": "tag:37",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.1256
+          },
+          {
+            "key": "tag:40",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.1119
+          },
+          {
+            "key": "tag:43",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.114
+          },
+          {
+            "key": "tag:46",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.0806
+          },
+          {
+            "key": "tag:49",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.0894
+          },
+          {
+            "key": "tag:52",
+            "torch": "O",
+            "node": "I-items",
+            "margin": 0.0715
+          }
+        ]
+      }
+    ],
+    "per_text": [
+      {
+        "chars": 18,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 22,
+        "pieces": 8,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 33,
+        "pieces": 8,
+        "words": 6,
+        "agree": true
+      },
+      {
+        "chars": 49,
+        "pieces": 15,
+        "words": 10,
+        "agree": true
+      },
+      {
+        "chars": 64,
+        "pieces": 17,
+        "words": 13,
+        "agree": true
+      },
+      {
+        "chars": 89,
+        "pieces": 21,
+        "words": 19,
+        "agree": false
+      },
+      {
+        "chars": 148,
+        "pieces": 36,
+        "words": 32,
+        "agree": false
+      },
+      {
+        "chars": 225,
+        "pieces": 57,
+        "words": 52,
+        "agree": true
+      },
+      {
+        "chars": 299,
+        "pieces": 81,
+        "words": 64,
+        "agree": true
+      },
+      {
+        "chars": 603,
+        "pieces": 146,
+        "words": 139,
+        "agree": false
+      },
+      {
+        "chars": 1200,
+        "pieces": 302,
+        "words": 267,
+        "agree": false
+      },
+      {
+        "chars": 0,
+        "pieces": 2,
+        "words": 0,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 10,
+        "words": 8,
+        "agree": true
+      },
+      {
+        "chars": 23,
+        "pieces": 22,
+        "words": 8,
+        "agree": false
+      },
+      {
+        "chars": 1280,
+        "pieces": 402,
+        "words": 400,
+        "agree": false
+      },
+      {
+        "chars": 3900,
+        "pieces": 512,
+        "words": 900,
+        "agree": false
+      },
+      {
+        "chars": 14,
+        "pieces": 9,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 17,
+        "pieces": 11,
+        "words": 9,
+        "agree": true
+      },
+      {
+        "chars": 13,
+        "pieces": 5,
+        "words": 3,
+        "agree": true
+      },
+      {
+        "chars": 15,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      }
+    ]
+  },
+  "python_ort_vs_node": {
+    "fixtures": 41,
+    "singles": 39,
+    "batches": 2,
+    "ids": true,
+    "outputs": true,
+    "decoded": true,
+    "cuts": true,
+    "readMany": true,
+    "max_abs": [
+      0.00020360946655273438,
+      5.340576171875e-05,
+      0.00012159347534179688
+    ]
+  },
+  "float_vs_torch_max_abs": [
+    3.075599670410156e-05,
+    3.814697265625e-05,
+    3.147125244140625e-05
+  ],
+  "sdpa_vs_eager_max_abs": [
+    2.372264862060547e-05,
+    1.811981201171875e-05,
+    1.2874603271484375e-05
+  ],
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.001
+  },
+  "cases_where_q8_decodes_differently_from_float": [
+    "single-03",
+    "single-05",
+    "single-06",
+    "single-12",
+    "single-13",
+    "batch-message-512",
+    "request-view-of-long-message",
+    "extra-05-128",
+    "extra-05-512",
+    "extra-06-128",
+    "extra-06-512",
+    "extra-09-128",
+    "extra-10-128"
+  ],
+  "conversion": {
+    "blocks": 93,
+    "quantizers": 91
+  },
+  "float_graph_files": {
+    "model_float.onnx": {
+      "sha256": "49866301958ed75c8f9a3e43001a4ed9e148f7ae92ed65ed7586134d047ada85",
+      "bytes": 600584316
+    }
+  },
+  "shards": [
+    "model_quantized.onnx_data",
+    "model_quantized.onnx_data_1"
+  ],
+  "files": {
+    "config.json": {
+      "sha256": "5bf4392905ae30f5cf5c4760660c6954604a399ae0047457af90a15f57bec4fe",
+      "bytes": 509575
+    },
+    "conversion.json": {
+      "sha256": "8c4366d7c4970937b31eded7aba9b3eaa20937be6310153d095f52202f02cbf7",
+      "bytes": 64404
+    },
+    "export_parity.json": {
+      "sha256": "5bc7f20b9c629ed1dcceca1e36f790ae6ed9d87865b2836ee81c71edb143e9de",
+      "bytes": 544
+    },
+    "onnx/model_quantized.onnx": {
+      "sha256": "ebade65f1e782b52e2c8bf22f6c93377e1ed28fb63d2161b570c2b0a1fc21668",
+      "bytes": 1490442
+    },
+    "onnx/model_quantized.onnx_data": {
+      "sha256": "41f7812afe6a1dad6219c6173f533384dce5cccff79afeada142d093cb7e14a8",
+      "bytes": 93974204
+    },
+    "onnx/model_quantized.onnx_data_1": {
+      "sha256": "a1aa8d5f449bf83750c951cce84ba2da91c354f016812604c7d192404f6d555b",
+      "bytes": 56138496
+    },
+    "references.json": {
+      "sha256": "7c79463967e9f2ec027c0191d940fdeeacd406caebbfe6cbcde6e08b4585073f",
+      "bytes": 6970590
+    },
+    "special_tokens_map.json": {
+      "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "bytes": 694
+    },
+    "tokenizer.json": {
+      "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "bytes": 3583228
+    },
+    "tokenizer_config.json": {
+      "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "bytes": 20840
+    }
+  },
+  "source_changes_since_training": [],
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "python": "3.12.16",
+    "python_onnxruntime": "1.29.0"
+  }
+}

@@ -1,0 +1,426 @@
+{
+  "schema": "arm-export-receipt-v1",
+  "passed": false,
+  "rule": "passed = PyTorch and Node decode every text the same; the runtime checks before it have already held",
+  "weights": {
+    "sha256": "bd577863cea95eb953ab2a5be34eb7c1774f490294cc79a7fdf3c30b2297be96",
+    "epoch": 8,
+    "update": 13984,
+    "total": 13984,
+    "full_schedule": true,
+    "max_updates": 0,
+    "source_file": "checkpoint.pt",
+    "source_changes_since_training": []
+  },
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "torch_vs_node": {
+    "texts": 20,
+    "counts": {
+      "act": {
+        "agree": 19,
+        "total": 20
+      },
+      "classes": {
+        "agree": 979,
+        "total": 980
+      },
+      "tags": {
+        "agree": 1956,
+        "total": 1961
+      },
+      "cuts": {
+        "agree": 18,
+        "total": 20
+      },
+      "pieces": {
+        "agree": 20,
+        "total": 20
+      }
+    },
+    "differences": [
+      {
+        "text": "Flag2 is a small white triangle, I'm fairly sure. Is Tent2 red? Please move Flag",
+        "chars": 145,
+        "differences": [
+          {
+            "key": "class:color",
+            "torch": "white",
+            "node": "red",
+            "margin": 0.7524
+          }
+        ]
+      },
+      {
+        "text": "Bakery shift board for the new starters, the steps are in the wrong order. Swap ",
+        "chars": 225,
+        "differences": [
+          {
+            "key": "tag:2",
+            "torch": "O",
+            "node": "I-label",
+            "margin": 0.1446
+          }
+        ]
+      },
+      {
+        "text": "Band setup for our practice room, I'm drawing where everyone stands. Put Piano, ",
+        "chars": 300,
+        "differences": [
+          {
+            "key": "tag:1",
+            "torch": "O",
+            "node": "I-label",
+            "margin": 0.1052
+          }
+        ]
+      },
+      {
+        "text": "",
+        "chars": 0,
+        "differences": [
+          {
+            "key": "act",
+            "torch": "create",
+            "node": "label",
+            "margin": 0.6912
+          }
+        ]
+      },
+      {
+        "text": "Caf\u00e9 na\u00efve \u6771\u4eac \ud83d\ude00 e\u0301 _ \uff11\uff12",
+        "chars": 23,
+        "differences": [
+          {
+            "key": "cut",
+            "torch": [
+              [
+                0,
+                10
+              ],
+              [
+                14,
+                24
+              ]
+            ],
+            "node": [
+              [
+                0,
+                10
+              ],
+              [
+                17,
+                24
+              ]
+            ],
+            "torch_info": {
+              "truncated": false,
+              "unreadFrom": null
+            },
+            "node_info": {
+              "truncated": false,
+              "unreadFrom": null
+            }
+          }
+        ]
+      },
+      {
+        "text": "draw circle. draw circle. draw circle. draw circle. draw circle. draw circle. dr",
+        "chars": 3900,
+        "differences": [
+          {
+            "key": "cut",
+            "torch": [
+              [
+                2189,
+                2195
+              ],
+              [
+                2197,
+                2208
+              ]
+            ],
+            "node": [
+              [
+                2202,
+                2208
+              ]
+            ],
+            "torch_info": {
+              "truncated": true,
+              "unreadFrom": 2210
+            },
+            "node_info": {
+              "truncated": true,
+              "unreadFrom": 2210
+            }
+          }
+        ]
+      },
+      {
+        "text": "A\u00a0B\u1680C\u2000D\u2028E\u2029F\u202fG\u205fH\u3000I",
+        "chars": 17,
+        "differences": [
+          {
+            "key": "tag:2",
+            "torch": "B-target",
+            "node": "I-label",
+            "margin": 0.2053
+          },
+          {
+            "key": "tag:5",
+            "torch": "B-target",
+            "node": "I-items",
+            "margin": 0.627
+          },
+          {
+            "key": "tag:7",
+            "torch": "B-target",
+            "node": "I-label",
+            "margin": 0.199
+          }
+        ]
+      }
+    ],
+    "per_text": [
+      {
+        "chars": 18,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 22,
+        "pieces": 7,
+        "words": 4,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 11,
+        "words": 9,
+        "agree": true
+      },
+      {
+        "chars": 50,
+        "pieces": 13,
+        "words": 11,
+        "agree": true
+      },
+      {
+        "chars": 64,
+        "pieces": 20,
+        "words": 16,
+        "agree": true
+      },
+      {
+        "chars": 89,
+        "pieces": 25,
+        "words": 22,
+        "agree": true
+      },
+      {
+        "chars": 145,
+        "pieces": 43,
+        "words": 35,
+        "agree": false
+      },
+      {
+        "chars": 225,
+        "pieces": 57,
+        "words": 51,
+        "agree": false
+      },
+      {
+        "chars": 300,
+        "pieces": 72,
+        "words": 68,
+        "agree": false
+      },
+      {
+        "chars": 597,
+        "pieces": 143,
+        "words": 135,
+        "agree": true
+      },
+      {
+        "chars": 1200,
+        "pieces": 302,
+        "words": 267,
+        "agree": true
+      },
+      {
+        "chars": 0,
+        "pieces": 2,
+        "words": 0,
+        "agree": false
+      },
+      {
+        "chars": 34,
+        "pieces": 10,
+        "words": 8,
+        "agree": true
+      },
+      {
+        "chars": 23,
+        "pieces": 22,
+        "words": 8,
+        "agree": false
+      },
+      {
+        "chars": 1280,
+        "pieces": 402,
+        "words": 400,
+        "agree": true
+      },
+      {
+        "chars": 3900,
+        "pieces": 512,
+        "words": 900,
+        "agree": false
+      },
+      {
+        "chars": 14,
+        "pieces": 9,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 17,
+        "pieces": 11,
+        "words": 9,
+        "agree": false
+      },
+      {
+        "chars": 13,
+        "pieces": 5,
+        "words": 3,
+        "agree": true
+      },
+      {
+        "chars": 15,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      }
+    ]
+  },
+  "python_ort_vs_node": {
+    "fixtures": 41,
+    "singles": 39,
+    "batches": 2,
+    "ids": true,
+    "outputs": true,
+    "decoded": true,
+    "cuts": true,
+    "readMany": true,
+    "max_abs": [
+      0.00039321184158325195,
+      7.915496826171875e-05,
+      0.00028443336486816406
+    ]
+  },
+  "float_vs_torch_max_abs": [
+    2.288818359375e-05,
+    4.57763671875e-05,
+    1.9550323486328125e-05
+  ],
+  "sdpa_vs_eager_max_abs": [
+    1.52587890625e-05,
+    2.288818359375e-05,
+    1.2993812561035156e-05
+  ],
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.001
+  },
+  "cases_where_q8_decodes_differently_from_float": [
+    "single-00",
+    "single-03",
+    "single-05",
+    "single-06",
+    "single-08",
+    "single-09",
+    "single-12",
+    "single-15",
+    "batch-request-128",
+    "batch-message-512",
+    "request-view-of-long-message",
+    "extra-06-128",
+    "extra-06-512",
+    "extra-07-128",
+    "extra-07-512",
+    "extra-08-128",
+    "extra-08-512",
+    "extra-10-512"
+  ],
+  "conversion": {
+    "blocks": 93,
+    "quantizers": 91
+  },
+  "float_graph_files": {
+    "model_float.onnx": {
+      "sha256": "799099047a26419c69cf1f8f1f2a62712b8e27dde5981887fb140d68e07d2989",
+      "bytes": 600922676
+    }
+  },
+  "shards": [
+    "model_quantized.onnx_data",
+    "model_quantized.onnx_data_1"
+  ],
+  "files": {
+    "config.json": {
+      "sha256": "f0f285299ef4906a3ef9a1b7d3fb44c25fc84ed904309391d96708f1cfe4ac6a",
+      "bytes": 537033
+    },
+    "conversion.json": {
+      "sha256": "c9f767b19802249c8a84af534aea0157b2fb7c52e057d76b576df5d3f9e8a161",
+      "bytes": 64404
+    },
+    "export_parity.json": {
+      "sha256": "df545f6a5f39ac19ad30f13a0015c1af30ab579c7d221a7ced1ca67ab55c5b2e",
+      "bytes": 630
+    },
+    "onnx/model_quantized.onnx": {
+      "sha256": "57a92cd3f1bcd1df4ac7945e5c0cc972b89a55789ac092e4dac003255b50dd02",
+      "bytes": 1491000
+    },
+    "onnx/model_quantized.onnx_data": {
+      "sha256": "09c6407cea189f3a0cf2eeab56dd534e888786ad3052ddd445afe5713847ed91",
+      "bytes": 93974636
+    },
+    "onnx/model_quantized.onnx_data_1": {
+      "sha256": "3a270dd8cf58d253c5534bf224230d3a0959bf2d60ef4a41625341b763dcfa1a",
+      "bytes": 56222976
+    },
+    "references.json": {
+      "sha256": "98021ee90700e82a98b7cc57c0e24200b3bb4bf9092314b09982c4d22ab90f23",
+      "bytes": 7357741
+    },
+    "special_tokens_map.json": {
+      "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "bytes": 694
+    },
+    "tokenizer.json": {
+      "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "bytes": 3583228
+    },
+    "tokenizer_config.json": {
+      "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "bytes": 20840
+    }
+  },
+  "source_changes_since_training": [],
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "python": "3.12.16",
+    "python_onnxruntime": "1.29.0"
+  }
+}

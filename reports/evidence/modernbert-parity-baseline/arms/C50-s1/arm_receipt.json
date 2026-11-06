@@ -1,0 +1,450 @@
+{
+  "schema": "arm-export-receipt-v1",
+  "passed": false,
+  "rule": "passed = PyTorch and Node decode every text the same; the runtime checks before it have already held",
+  "weights": {
+    "sha256": "43c915998109f52d968a00c5da72b869aa6a853b773a523d58d8c421f9bb4467",
+    "epoch": 8,
+    "update": 13984,
+    "total": 13984,
+    "full_schedule": true,
+    "max_updates": 0,
+    "source_file": "checkpoint.pt",
+    "source_changes_since_training": []
+  },
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "torch_vs_node": {
+    "texts": 20,
+    "counts": {
+      "act": {
+        "agree": 20,
+        "total": 20
+      },
+      "classes": {
+        "agree": 979,
+        "total": 980
+      },
+      "tags": {
+        "agree": 1956,
+        "total": 1961
+      },
+      "cuts": {
+        "agree": 19,
+        "total": 20
+      },
+      "pieces": {
+        "agree": 20,
+        "total": 20
+      }
+    },
+    "differences": [
+      {
+        "text": "Move each square up then title the diagram \"Notes\"",
+        "chars": 50,
+        "differences": [
+          {
+            "key": "class:desc:quantifier",
+            "torch": "all",
+            "node": null,
+            "margin": 0.4193
+          }
+        ]
+      },
+      {
+        "text": "Maintenance schedule for the night crew. Track, Signal and Depot are the three w",
+        "chars": 597,
+        "differences": [
+          {
+            "key": "tag:11",
+            "torch": "B-from",
+            "node": "O",
+            "margin": 0.0099
+          }
+        ]
+      },
+      {
+        "text": "Alright, I run a small roastery and my investor wants to see how a bag of coffee",
+        "chars": 1200,
+        "differences": [
+          {
+            "key": "tag:49",
+            "torch": "B-from",
+            "node": "O",
+            "margin": 0.1141
+          }
+        ]
+      },
+      {
+        "text": "Caf\u00e9 na\u00efve \u6771\u4eac \ud83d\ude00 e\u0301 _ \uff11\uff12",
+        "chars": 23,
+        "differences": [
+          {
+            "key": "tag:6",
+            "torch": "I-label",
+            "node": "O",
+            "margin": 0.0473
+          }
+        ]
+      },
+      {
+        "text": "connect A to B; connect A to B; connect A to B; connect A to B; connect A to B; ",
+        "chars": 1280,
+        "differences": [
+          {
+            "key": "tag:1",
+            "torch": "O",
+            "node": "B-from",
+            "margin": 0.2554
+          },
+          {
+            "key": "cut",
+            "torch": [
+              [
+                0,
+                1038
+              ],
+              [
+                1048,
+                1054
+              ],
+              [
+                1064,
+                1070
+              ],
+              [
+                1072,
+                1086
+              ],
+              [
+                1088,
+                1102
+              ],
+              [
+                1104,
+                1118
+              ],
+              [
+                1120,
+                1134
+              ],
+              [
+                1136,
+                1166
+              ],
+              [
+                1168,
+                1182
+              ],
+              [
+                1184,
+                1198
+              ],
+              [
+                1200,
+                1214
+              ],
+              [
+                1216,
+                1230
+              ],
+              [
+                1232,
+                1246
+              ],
+              [
+                1248,
+                1262
+              ],
+              [
+                1264,
+                1278
+              ]
+            ],
+            "node": [
+              [
+                0,
+                1198
+              ],
+              [
+                1200,
+                1214
+              ],
+              [
+                1216,
+                1230
+              ],
+              [
+                1232,
+                1246
+              ],
+              [
+                1248,
+                1262
+              ],
+              [
+                1264,
+                1278
+              ]
+            ],
+            "torch_info": {
+              "truncated": false,
+              "unreadFrom": null
+            },
+            "node_info": {
+              "truncated": false,
+              "unreadFrom": null
+            }
+          }
+        ]
+      },
+      {
+        "text": "A\u00a0B\u1680C\u2000D\u2028E\u2029F\u202fG\u205fH\u3000I",
+        "chars": 17,
+        "differences": [
+          {
+            "key": "tag:8",
+            "torch": "B-target",
+            "node": "B-name",
+            "margin": 0.0049
+          }
+        ]
+      }
+    ],
+    "per_text": [
+      {
+        "chars": 18,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 22,
+        "pieces": 7,
+        "words": 4,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 11,
+        "words": 9,
+        "agree": true
+      },
+      {
+        "chars": 50,
+        "pieces": 13,
+        "words": 11,
+        "agree": false
+      },
+      {
+        "chars": 64,
+        "pieces": 20,
+        "words": 16,
+        "agree": true
+      },
+      {
+        "chars": 89,
+        "pieces": 25,
+        "words": 22,
+        "agree": true
+      },
+      {
+        "chars": 145,
+        "pieces": 43,
+        "words": 35,
+        "agree": true
+      },
+      {
+        "chars": 225,
+        "pieces": 57,
+        "words": 51,
+        "agree": true
+      },
+      {
+        "chars": 300,
+        "pieces": 72,
+        "words": 68,
+        "agree": true
+      },
+      {
+        "chars": 597,
+        "pieces": 143,
+        "words": 135,
+        "agree": false
+      },
+      {
+        "chars": 1200,
+        "pieces": 302,
+        "words": 267,
+        "agree": false
+      },
+      {
+        "chars": 0,
+        "pieces": 2,
+        "words": 0,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 10,
+        "words": 8,
+        "agree": true
+      },
+      {
+        "chars": 23,
+        "pieces": 22,
+        "words": 8,
+        "agree": false
+      },
+      {
+        "chars": 1280,
+        "pieces": 402,
+        "words": 400,
+        "agree": false
+      },
+      {
+        "chars": 3900,
+        "pieces": 512,
+        "words": 900,
+        "agree": true
+      },
+      {
+        "chars": 14,
+        "pieces": 9,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 17,
+        "pieces": 11,
+        "words": 9,
+        "agree": false
+      },
+      {
+        "chars": 13,
+        "pieces": 5,
+        "words": 3,
+        "agree": true
+      },
+      {
+        "chars": 15,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      }
+    ]
+  },
+  "python_ort_vs_node": {
+    "fixtures": 41,
+    "singles": 39,
+    "batches": 2,
+    "ids": true,
+    "outputs": true,
+    "decoded": true,
+    "cuts": true,
+    "readMany": true,
+    "max_abs": [
+      0.0001552104949951172,
+      0.00014495849609375,
+      0.00017344951629638672
+    ]
+  },
+  "float_vs_torch_max_abs": [
+    3.6716461181640625e-05,
+    0.000102996826171875,
+    2.9325485229492188e-05
+  ],
+  "sdpa_vs_eager_max_abs": [
+    1.621246337890625e-05,
+    1.71661376953125e-05,
+    1.049041748046875e-05
+  ],
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.001
+  },
+  "cases_where_q8_decodes_differently_from_float": [
+    "single-03",
+    "single-05",
+    "single-08",
+    "single-12",
+    "single-13",
+    "single-15",
+    "batch-message-512",
+    "extra-03-128",
+    "extra-03-512",
+    "extra-09-128",
+    "extra-09-512",
+    "extra-10-128",
+    "extra-10-512"
+  ],
+  "conversion": {
+    "blocks": 93,
+    "quantizers": 91
+  },
+  "float_graph_files": {
+    "model_float.onnx": {
+      "sha256": "d335c7db8c152706ccbe016d5bcd67dbf3604b204cd23aafc0b3504b98ae73a2",
+      "bytes": 600922676
+    }
+  },
+  "shards": [
+    "model_quantized.onnx_data",
+    "model_quantized.onnx_data_1"
+  ],
+  "files": {
+    "config.json": {
+      "sha256": "795003891c95a70de8d32522dda85cbc6585a96d04e3cba8c730b2278dac8fa7",
+      "bytes": 537033
+    },
+    "conversion.json": {
+      "sha256": "a7365c4d4a08c324c9ec0e394f8861fd16a1b0b6f452284f2a52825cd8185911",
+      "bytes": 64404
+    },
+    "export_parity.json": {
+      "sha256": "180a755c04e4530ca9353e5ceb4c631db7f5895955353650ad3e2b7cef5f5f98",
+      "bytes": 527
+    },
+    "onnx/model_quantized.onnx": {
+      "sha256": "cb6e9fb9a380ea4d4338b187364e8f47569d9963673bce5bd91a9e1a578dc092",
+      "bytes": 1491000
+    },
+    "onnx/model_quantized.onnx_data": {
+      "sha256": "ad21b038f794f2c1c47615291d2b10313b78ee5f7e70fa8546824044abcbd448",
+      "bytes": 93974636
+    },
+    "onnx/model_quantized.onnx_data_1": {
+      "sha256": "99e7a97f766ecff41b345b2a1ee132bc949db80835ed7dc666d6c004d69ce542",
+      "bytes": 56222976
+    },
+    "references.json": {
+      "sha256": "fe14cd93acc70cf8d612e029d861bebe6e633ffecab3b2bb01498ee59447b56b",
+      "bytes": 7346485
+    },
+    "special_tokens_map.json": {
+      "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "bytes": 694
+    },
+    "tokenizer.json": {
+      "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "bytes": 3583228
+    },
+    "tokenizer_config.json": {
+      "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "bytes": 20840
+    }
+  },
+  "source_changes_since_training": [],
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "python": "3.12.16",
+    "python_onnxruntime": "1.29.0"
+  }
+}

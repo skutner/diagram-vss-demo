@@ -1,0 +1,56 @@
+
+HARD FAILURES (27):
+  p2-10-011 [span] wire 2: span comes before the wire above it, not in the order stated: "Biscuit goes to"
+  p2-19-048 [span] wire 2: span comes before the wire above it, not in the order stated: "just the line to her"
+  p2-04-015 [engine] wire 2: There is no shape named "Cox". Shapes on the canvas: Bow, Stroke.
+  p2-07-023 [setup] @c3: position=below needs an anchor shape.
+  p2-07-050 [engine] wire 2: There is no shape named "Van2". Shapes on the canvas: Van1, Sunshine.
+  p2-09-048 [engine] wire 1: Note is a text; a text can't become a rectangle. Draw a rectangle and delete the text.
+  p2-09-048 [engine] wire 2: Note is a text; arrows join shapes. Connect the shape next to it instead.
+  p2-17-009 [engine] wire 1: circle1 is a shape; it can't become a text. To write on it, label it: label circle1 "…".
+  p2-19-048 [engine] wire 2: There is no shape named "Treasurer". Shapes on the canvas: President, VP, Secretary.
+  p2-21-024 [engine] wire 3: There is no shape named "Reject". Shapes on the canvas: Pick, Inspect, Place, diamond1.
+  p2-23-014 [engine] wire 2: There is no arrow between Door and text1.
+  p2-24-001 [engine] mention m1: I can't find a shape showing ""Advice only"" on the canvas.
+  p2-27-007 [engine] wire 1: position=below needs an anchor shape.
+  p2-29-005 [setup] does not parse: Line 2: "it" should look like question=answer
+  p2-02-033 [engine] wire 1: A group needs at least two shapes, e.g. "group Start, Process and Check as Pipeline".
+  p2-08-040 [engine] mention m2: I can't find a shape showing "Herbs" on the canvas.
+  p2-08-046 [engine] mention m1: I can't find a shape showing "Peppers" on the canvas. (after an earlier failure in this session)
+  p2-22-007 [engine] mention m1: I can't find a shape in the bottom showing "benches" on the canvas.
+  p2-22-023 [engine] mention m1: There are no texts showing "0" on the canvas.
+  p2-22-024 [engine] mention m1: I can't find a text showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m3: I can't find a text showing "7" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m4: I can't find a text showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-046 [engine] mention m1: I can't find a shape in the left showing "speakers" on the canvas.
+  p2-22-049 [engine] mention m1: I can't find a shape showing "L" on the canvas. (after an earlier failure in this session)
+  p2-22-049 [engine] mention m2: I can't find a shape showing "R" on the canvas. (after an earlier failure in this session)
+  p2-23-021 [engine] mention m1: I can't find a shape showing "Accessible" on the canvas.
+  p2-23-022 [engine] mention m1: I can't find a shape in the right on the canvas. (after an earlier failure in this session)
+
+The engine asks (not a failure) (18):
+  p2-07-037 [history] wire 1: There is nothing to undo.
+  p2-07-046 [history] wire 1: There is nothing to undo.
+  p2-12-050 [clarify] mention m1: Which gray rectangle? Gate1 (top left) and Gate2 (middle left). Reply with a name.
+  p2-13-014 [history] wire 1: There is nothing to undo.
+  p2-13-017 [clarify] mention m1: Which square? Exit1 (bottom left) and Exit2 (bottom right). Reply with a name.
+  p2-17-017 [history] wire 1: There is nothing to undo.
+  p2-17-023 [clarify] mention m2: Which rectangle? Rack1 (middle left) and Rack2 (middle right). Reply with a name.
+  p2-17-049 [history] wire 1: There is nothing to undo.
+  p2-19-023 [clarify] mention m1: Which zone? Ward3 (middle left) and Ward4 (middle right). Reply with a name.
+  p2-19-048 [history] wire 1: There is nothing to undo.
+  p2-03-053 [clarify] mention m1: Which green shape? circle1 (top center), circle2 (center), circle3 (center) and circle4 (bottom center). Reply with a name.
+  p2-08-011 [clarify] mention m1: Which small white square? square1 (middle right), square2 (middle right), square3 (bottom right), square4 (bottom right), square5 (bottom right), square6 (bottom right), square7 (bottom center), square8 (bottom right), square9 (bottom right), square10 (bottom right), square11 (middle right) and square12 (middle right). Reply with a name.
+  p2-08-036 [clarify] mention m1: Which brown shape? circle1 (top center), circle2 (center) and circle3 (bottom center). Reply with a name.
+  p2-08-036 [clarify] mention m2: Which brown shape? circle1 (top center), circle2 (center) and circle3 (bottom center). Reply with a name.
+  p2-08-036 [clarify] mention m3: Which brown shape? circle1 (top center), circle2 (center) and circle3 (bottom center). Reply with a name.
+  p2-14-046 [clarify] mention m1: Which small square? square1 (top center), square2 (top center), square3 (top right) and square4 (middle left). Reply with a name.
+  p2-22-046 [clarify] mention m2: Which shape in the right showing "speakers"? circle3 (top right) and circle4 (bottom right). Reply with a name.
+  p2-23-020 [clarify] mention m1: Which shape in the left? circle1 (top left), circle2 (top left), circle3 (top left) and circle5 (top left). Reply with a name.
+
+Summary: 1518 saved texts in 30 file(s), 1518 annotated rows in 30 file(s), 1687 wires, 270 rows with no wire
+  sessions 46, paraphrase groups 43, rows replayed 1516, not replayed 2
+  by kind: {"short":106,"reference":86,"fragment":62,"long":137,"complaint":85,"indirect":82,"typos":74,"dictated":69,"nothing_to_do":115,"self_correction":60,"ambiguous":33,"translated":46,"session":353,"paraphrase":210}
+  hard failures 27 {"span":2,"engine":23,"setup":2}, the engine asks 18, warnings 0
+  --write: names and groups changed on 1516 row(s) in 30 file(s); marked unreliable or left alone: 38
+RESULT: FAIL

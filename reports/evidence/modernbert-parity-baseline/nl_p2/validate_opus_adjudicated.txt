@@ -1,0 +1,64 @@
+
+HARD FAILURES (39):
+  p2-04-015 [engine] wire 2: There is no shape named "Cox". Shapes on the canvas: Bow, Stroke.
+  p2-07-023 [setup] @c3: position=below needs an anchor shape.
+  p2-09-048 [engine] wire 1: Note is a text; a text can't become a rectangle. Draw a rectangle and delete the text.
+  p2-09-048 [engine] wire 2: Note is a text; arrows join shapes. Connect the shape next to it instead.
+  p2-23-014 [engine] wire 2: text1 is a text; arrows join shapes. Connect the shape next to it instead.
+  p2-24-001 [engine] mention m1: I can't find a shape showing ""Advice only"" on the canvas.
+  p2-29-005 [setup] does not parse: Line 2: "it" should look like question=answer
+  p2-02-033 [engine] wire 1: A group needs at least two shapes, e.g. "group Start, Process and Check as Pipeline".
+  p2-08-009 [engine] mention m1: I can't find a shape showing "quay" on the canvas.
+  p2-08-016 [engine] mention m1: I can't find a shape showing ""Harbour office"" on the canvas. (after an earlier failure in this session)
+  p2-08-040 [engine] mention m2: I can't find a shape showing "Herbs" on the canvas.
+  p2-08-046 [engine] mention m1: I can't find a shape showing "Peppers" on the canvas. (after an earlier failure in this session)
+  p2-22-002 [engine] mention m1: There are no shapes showing "apple" on the canvas.
+  p2-22-003 [engine] mention m1: I can't find a shape in the bottom showing "apple" on the canvas. (after an earlier failure in this session)
+  p2-22-004 [engine] mention m1: I can't find a shape in the top showing "apple" on the canvas. (after an earlier failure in this session)
+  p2-22-004 [engine] mention m2: I can't find a shape in the center showing "apple" on the canvas. (after an earlier failure in this session)
+  p2-22-004 [engine] mention m3: I can't find a shape showing "pear" on the canvas. (after an earlier failure in this session)
+  p2-22-007 [engine] mention m1: I can't find a shape in the bottom showing "benches" on the canvas. (after an earlier failure in this session)
+  p2-22-007 [engine] mention m2: I can't find a shape showing "pear" on the canvas. (after an earlier failure in this session)
+  p2-22-012 [engine] mention m1: I can't find a shape in the top showing "apple" on the canvas. (after an earlier failure in this session)
+  p2-22-013 [engine] mention m1: I can't find a shape in the top showing "apple" on the canvas. (after an earlier failure in this session)
+  p2-22-013 [engine] mention m2: I can't find a text showing "Discovery" on the canvas. (after an earlier failure in this session)
+  p2-22-013 [engine] mention m3: I can't find a text showing ""James Grieve"" on the canvas. (after an earlier failure in this session)
+  p2-22-013 [engine] mention m4: I can't find a text showing "Conference" on the canvas. (after an earlier failure in this session)
+  p2-22-023 [engine] mention m1: There are no texts showing "0" on the canvas.
+  p2-22-024 [engine] mention m1: I can't find a text showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-025 [engine] mention m2: I can't find a text showing "7" on the canvas. (after an earlier failure in this session)
+  p2-22-025 [engine] mention m3: I can't find a text showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m1: I can't find a text showing ""Round 1"" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m3: I can't find a text showing "7" on the canvas. (after an earlier failure in this session)
+  p2-22-026 [engine] mention m4: I can't find a text showing "6" on the canvas. (after an earlier failure in this session)
+  p2-22-027 [engine] mention m1: I can't find a text showing ""Round 1"" on the canvas. (after an earlier failure in this session)
+  p2-22-027 [engine] mention m2: I can't find a text showing "Total" on the canvas. (after an earlier failure in this session)
+  p2-22-028 [engine] mention m1: I can't find a text showing ""Round 2"" on the canvas. (after an earlier failure in this session)
+  p2-22-046 [engine] mention m1: There is no shape named "mention(label=Laptop)". The closest names on the canvas: Bed, Room, Window, Door, circle1, and 8 others.
+  p2-22-046 [engine] mention m2: There is no shape named "mention(label=Laptop)". The closest names on the canvas: Bed, Room, Window, Door, circle1, and 8 others.
+  p2-22-049 [engine] mention m1: I can't find a shape showing "L" on the canvas. (after an earlier failure in this session)
+  p2-22-049 [engine] mention m2: I can't find a shape showing "R" on the canvas. (after an earlier failure in this session)
+  p2-23-022 [engine] mention m1: I can't find a shape in the right showing "places" on the canvas.
+
+The engine asks (not a failure) (14):
+  p2-07-037 [history] wire 1: There is nothing to undo.
+  p2-07-046 [history] wire 1: There is nothing to undo.
+  p2-12-050 [clarify] mention m1: Which gray rectangle? Gate1 (top left) and Gate2 (middle left). Reply with a name.
+  p2-13-014 [history] wire 1: There is nothing to undo.
+  p2-13-017 [clarify] mention m1: Which square? Exit1 (bottom left) and Exit2 (bottom right). Reply with a name.
+  p2-17-017 [history] wire 1: There is nothing to undo.
+  p2-17-023 [clarify] mention m2: Which rectangle? Rack1 (middle left) and Rack2 (middle right). Reply with a name.
+  p2-17-049 [history] wire 1: There is nothing to undo.
+  p2-19-023 [clarify] mention m1: Which zone? Ward3 (middle left) and Ward4 (middle right). Reply with a name.
+  p2-08-011 [clarify] mention m1: Which small white square? square1 (middle right), square2 (middle right), square3 (middle right), square4 (bottom right), square5 (bottom right), square6 (bottom right), square7 (bottom center), square8 (bottom right), square9 (bottom right), square10 (bottom center), square11 (top center) and square12 (top right). Reply with a name. (after an earlier failure in this session)
+  p2-08-036 [clarify] mention m1: Which brown shape? circle1 (top center), circle2 (center) and circle3 (bottom center). Reply with a name.
+  p2-08-036 [clarify] mention m2: Which brown shape? circle1 (top center), circle2 (center) and circle3 (bottom center). Reply with a name.
+  p2-08-036 [clarify] mention m3: Which brown shape? circle1 (top center), circle2 (center) and circle3 (bottom center). Reply with a name.
+  p2-23-020 [clarify] mention m1: Which shape in the left showing "places"? circle2 (top left), circle3 (top left), circle4 (top left) and circle5 (top left). Reply with a name.
+
+Summary: 1518 saved texts in 30 file(s), 1518 annotated rows in 30 file(s), 1733 wires, 264 rows with no wire
+  sessions 46, paraphrase groups 43, rows replayed 1516, not replayed 2
+  by kind: {"short":106,"reference":86,"fragment":62,"long":137,"complaint":85,"indirect":82,"typos":74,"dictated":69,"nothing_to_do":115,"self_correction":60,"ambiguous":33,"translated":46,"session":353,"paraphrase":210}
+  hard failures 39 {"engine":37,"setup":2}, the engine asks 14, warnings 0
+  --write: names and groups changed on 87 row(s) in 9 file(s); marked unreliable or left alone: 50
+RESULT: FAIL

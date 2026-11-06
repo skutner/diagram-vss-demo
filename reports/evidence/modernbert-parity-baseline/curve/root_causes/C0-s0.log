@@ -1,0 +1,4 @@
+collected_1/all [teacher_opus, direction] requested 47: right 12 wrong 16 not done 19 extras 29; causes: oracle 0, teachers 0, input 0, cut 7, spurious 12, act 30, ref 10, class 4, name 1, other 0
+scenes_test/all [gold, direction] requested 163: right 104 wrong 54 not done 5 extras 15; causes: oracle 18, teachers 0, input 0, cut 3, spurious 7, act 10, ref 14, class 11, name 11, other 0
+nl_a/development [opus, direction] requested 392: right 35 wrong 172 not done 185 extras 290; causes: oracle 3, teachers 0, input 0, cut 170, spurious 120, act 219, ref 80, class 33, name 22, other 0
+fresh2+short3/test [gold, direction] requested 1745: right 1358 wrong 309 not done 78 extras 123; causes: oracle 15, teachers 0, input 0, cut 78, spurious 42, act 97, ref 121, class 75, name 82, other 0

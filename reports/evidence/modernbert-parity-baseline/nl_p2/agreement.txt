@@ -1,0 +1,475 @@
+{
+ "folder": "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p2",
+ "messages": 1518,
+ "totals_today": {
+  "all": {
+   "gpt_scored_against_opus": {
+    "requested": 1687,
+    "right": 1277,
+    "wrong": 263,
+    "not_done": 147,
+    "extras": 164,
+    "right_share": 0.756965,
+    "cost_score": -177.415531
+   },
+   "opus_scored_against_gpt": {
+    "requested": 1704,
+    "right": 1197,
+    "wrong": 343,
+    "not_done": 164,
+    "extras": 147,
+    "right_share": 0.702465,
+    "cost_score": -217.312207
+   }
+  },
+  "calibration": {
+   "gpt_scored_against_opus": {
+    "requested": 777,
+    "right": 589,
+    "wrong": 121,
+    "not_done": 67,
+    "extras": 89,
+    "right_share": 0.758044,
+    "cost_score": -194.465894
+   },
+   "opus_scored_against_gpt": {
+    "requested": 799,
+    "right": 561,
+    "wrong": 149,
+    "not_done": 89,
+    "extras": 67,
+    "right_share": 0.702128,
+    "cost_score": -200.125156
+   }
+  },
+  "development": {
+   "gpt_scored_against_opus": {
+    "requested": 910,
+    "right": 688,
+    "wrong": 142,
+    "not_done": 80,
+    "extras": 75,
+    "right_share": 0.756044,
+    "cost_score": -162.857143
+   },
+   "opus_scored_against_gpt": {
+    "requested": 905,
+    "right": 636,
+    "wrong": 194,
+    "not_done": 75,
+    "extras": 80,
+    "right_share": 0.702762,
+    "cost_score": -232.486188
+   }
+  }
+ }
+}
+messages with a disagreement: 408 of 1518; unreliable among them: 18
+p2-01-005	wrong 0	not_done 1	extras 0
+p2-01-006	wrong 0	not_done 0	extras 1
+p2-01-008	wrong 1	not_done 0	extras 0
+p2-01-011	wrong 0	not_done 2	extras 0
+p2-01-019	wrong 0	not_done 1	extras 0
+p2-01-021	wrong 1	not_done 0	extras 0
+p2-01-023	wrong 0	not_done 0	extras 1
+p2-01-028	wrong 0	not_done 0	extras 1
+p2-01-031	wrong 0	not_done 0	extras 2
+p2-01-032	wrong 0	not_done 1	extras 0
+p2-01-037	wrong 1	not_done 0	extras 0
+p2-01-039	wrong 1	not_done 2	extras 1
+p2-01-042	wrong 0	not_done 1	extras 0
+p2-01-049	wrong 0	not_done 0	extras 1
+p2-02-018	wrong 0	not_done 1	extras 0
+p2-02-019	wrong 0	not_done 1	extras 1
+p2-02-022	wrong 1	not_done 0	extras 0
+p2-02-025	wrong 1	not_done 0	extras 0
+p2-02-030	wrong 1	not_done 0	extras 0
+p2-02-031	wrong 1	not_done 0	extras 0
+p2-02-032	wrong 1	not_done 0	extras 0
+p2-02-033	wrong 1	not_done 0	extras 0
+p2-02-039	wrong 1	not_done 0	extras 0
+p2-02-040	wrong 1	not_done 0	extras 0
+p2-02-042	wrong 1	not_done 0	extras 0
+p2-02-045	wrong 1	not_done 0	extras 0
+p2-02-046	wrong 0	not_done 1	extras 2
+p2-03-003	wrong 0	not_done 1	extras 1
+p2-03-018	wrong 0	not_done 1	extras 1
+p2-03-019	wrong 0	not_done 0	extras 1
+p2-03-022	wrong 1	not_done 0	extras 0
+p2-03-023	wrong 1	not_done 0	extras 0
+p2-03-024	wrong 1	not_done 0	extras 0
+p2-03-026	wrong 1	not_done 0	extras 0
+p2-03-027	wrong 0	not_done 1	extras 0
+p2-03-031	wrong 1	not_done 0	extras 0
+p2-03-035	wrong 0	not_done 0	extras 1
+p2-03-038	wrong 1	not_done 0	extras 0
+p2-03-040	wrong 2	not_done 0	extras 0
+p2-03-042	wrong 0	not_done 0	extras 1
+p2-03-044	wrong 0	not_done 0	extras 1
+p2-03-053	wrong 1	not_done 0	extras 0
+p2-04-024	wrong 0	not_done 1	extras 0
+p2-04-027	wrong 0	not_done 1	extras 1
+p2-04-031	wrong 1	not_done 0	extras 0
+p2-05-008	wrong 0	not_done 1	extras 1
+p2-05-011	wrong 1	not_done 1	extras 0
+p2-05-018	wrong 1	not_done 0	extras 0
+p2-05-030	wrong 0	not_done 0	extras 1
+p2-05-033	wrong 0	not_done 0	extras 1
+p2-05-037	wrong 0	not_done 1	extras 2
+p2-05-040	wrong 0	not_done 0	extras 1
+p2-05-041	wrong 2	not_done 0	extras 2
+p2-05-048	wrong 0	not_done 0	extras 1
+p2-05-049	wrong 0	not_done 1	extras 1
+p2-05-050	wrong 0	not_done 1	extras 0
+p2-06-008	wrong 4	not_done 0	extras 0
+p2-06-014	wrong 2	not_done 0	extras 0
+p2-06-016	wrong 3	not_done 0	extras 0
+p2-06-017	wrong 0	not_done 1	extras 1
+p2-06-025	wrong 2	not_done 0	extras 0
+p2-06-026	wrong 2	not_done 0	extras 0
+p2-06-027	wrong 1	not_done 0	extras 0
+p2-06-028	wrong 0	not_done 2	extras 0
+p2-06-040	wrong 0	not_done 0	extras 1
+p2-06-041	wrong 0	not_done 0	extras 1
+p2-06-042	wrong 0	not_done 1	extras 1
+p2-06-045	wrong 3	not_done 0	extras 2
+p2-06-046	wrong 0	not_done 0	extras 1
+p2-06-048	wrong 3	not_done 0	extras 0
+p2-07-003	wrong 0	not_done 1	extras 0
+p2-07-012	wrong 0	not_done 0	extras 2
+p2-07-014	wrong 1	not_done 0	extras 0
+p2-07-022	wrong 0	not_done 1	extras 2
+p2-07-029	wrong 0	not_done 1	extras 1
+p2-07-030	wrong 1	not_done 0	extras 0
+p2-07-037	wrong 0	not_done 1	extras 1
+p2-07-038	wrong 0	not_done 1	extras 0
+p2-07-040	wrong 0	not_done 0	extras 1
+p2-07-043	wrong 1	not_done 1	extras 2
+p2-07-050	wrong 1	not_done 0	extras 0
+p2-08-002	wrong 1	not_done 0	extras 0
+p2-08-006	wrong 0	not_done 0	extras 1
+p2-08-008	wrong 1	not_done 0	extras 0
+p2-08-009	wrong 0	not_done 1	extras 1
+p2-08-010	wrong 0	not_done 1	extras 0
+p2-08-011	wrong 0	not_done 1	extras 0
+p2-08-012	wrong 1	not_done 0	extras 0
+p2-08-013	wrong 0	not_done 1	extras 0
+p2-08-016	wrong 1	not_done 0	extras 0
+p2-08-018	wrong 2	not_done 0	extras 0
+p2-08-019	wrong 1	not_done 0	extras 0
+p2-08-021	wrong 1	not_done 0	extras 0
+p2-08-022	wrong 0	not_done 1	extras 2
+p2-08-025	wrong 0	not_done 0	extras 1
+p2-08-026	wrong 1	not_done 0	extras 0
+p2-08-029	wrong 0	not_done 1	extras 1
+p2-08-031	wrong 0	not_done 1	extras 0
+p2-08-032	wrong 1	not_done 0	extras 0
+p2-08-033	wrong 0	not_done 1	extras 4
+p2-08-036	wrong 3	not_done 0	extras 0
+p2-08-039	wrong 1	not_done 0	extras 0
+p2-08-040	wrong 1	not_done 0	extras 0
+p2-08-041	wrong 1	not_done 0	extras 0	unreliable
+p2-08-047	wrong 1	not_done 0	extras 0	unreliable
+p2-08-048	wrong 1	not_done 0	extras 0	unreliable
+p2-08-050	wrong 0	not_done 0	extras 1	unreliable
+p2-09-005	wrong 1	not_done 0	extras 1
+p2-09-006	wrong 0	not_done 1	extras 0
+p2-09-011	wrong 1	not_done 0	extras 0
+p2-09-012	wrong 1	not_done 0	extras 0
+p2-09-015	wrong 0	not_done 1	extras 2
+p2-09-024	wrong 1	not_done 0	extras 0
+p2-09-030	wrong 1	not_done 0	extras 0
+p2-09-031	wrong 2	not_done 0	extras 0
+p2-09-033	wrong 2	not_done 0	extras 0
+p2-09-037	wrong 1	not_done 0	extras 0
+p2-09-044	wrong 0	not_done 1	extras 1
+p2-10-003	wrong 1	not_done 0	extras 0
+p2-10-006	wrong 1	not_done 0	extras 0
+p2-10-011	wrong 1	not_done 0	extras 0
+p2-10-012	wrong 1	not_done 1	extras 0
+p2-10-014	wrong 0	not_done 0	extras 1
+p2-10-015	wrong 1	not_done 0	extras 0
+p2-10-016	wrong 1	not_done 0	extras 0
+p2-10-023	wrong 0	not_done 1	extras 0
+p2-10-029	wrong 1	not_done 0	extras 0
+p2-10-031	wrong 2	not_done 0	extras 0
+p2-10-039	wrong 0	not_done 1	extras 1
+p2-10-040	wrong 0	not_done 1	extras 1
+p2-10-046	wrong 0	not_done 0	extras 1
+p2-11-003	wrong 1	not_done 0	extras 0
+p2-11-017	wrong 0	not_done 1	extras 1
+p2-11-023	wrong 0	not_done 1	extras 1
+p2-11-026	wrong 1	not_done 0	extras 0
+p2-11-027	wrong 0	not_done 1	extras 1
+p2-11-031	wrong 0	not_done 0	extras 1
+p2-11-033	wrong 1	not_done 1	extras 1
+p2-11-034	wrong 0	not_done 1	extras 0
+p2-11-035	wrong 0	not_done 2	extras 0
+p2-11-039	wrong 0	not_done 0	extras 1
+p2-11-046	wrong 1	not_done 0	extras 0
+p2-11-047	wrong 1	not_done 0	extras 0
+p2-12-018	wrong 1	not_done 0	extras 0
+p2-12-022	wrong 0	not_done 1	extras 1
+p2-12-024	wrong 0	not_done 1	extras 1
+p2-12-025	wrong 1	not_done 0	extras 0
+p2-12-038	wrong 1	not_done 0	extras 0
+p2-12-045	wrong 1	not_done 0	extras 0
+p2-12-050	wrong 0	not_done 1	extras 0
+p2-13-004	wrong 0	not_done 0	extras 1
+p2-13-007	wrong 0	not_done 0	extras 1
+p2-13-012	wrong 1	not_done 0	extras 1
+p2-13-015	wrong 0	not_done 0	extras 1
+p2-13-017	wrong 0	not_done 1	extras 0
+p2-13-028	wrong 0	not_done 0	extras 2
+p2-13-034	wrong 0	not_done 0	extras 1
+p2-14-011	wrong 1	not_done 0	extras 0
+p2-14-014	wrong 1	not_done 0	extras 0
+p2-14-016	wrong 1	not_done 0	extras 0
+p2-14-020	wrong 1	not_done 0	extras 0
+p2-14-022	wrong 1	not_done 0	extras 0
+p2-14-023	wrong 1	not_done 0	extras 0
+p2-14-025	wrong 1	not_done 0	extras 0
+p2-14-026	wrong 1	not_done 0	extras 0
+p2-14-029	wrong 1	not_done 0	extras 0
+p2-14-033	wrong 1	not_done 0	extras 0
+p2-14-035	wrong 1	not_done 0	extras 0
+p2-14-037	wrong 1	not_done 0	extras 0
+p2-14-040	wrong 1	not_done 0	extras 0
+p2-14-042	wrong 1	not_done 0	extras 0
+p2-14-043	wrong 1	not_done 0	extras 0
+p2-14-045	wrong 0	not_done 1	extras 1
+p2-14-046	wrong 1	not_done 0	extras 0
+p2-14-049	wrong 1	not_done 0	extras 0
+p2-14-050	wrong 1	not_done 0	extras 0
+p2-15-001	wrong 1	not_done 0	extras 0
+p2-15-003	wrong 1	not_done 0	extras 1
+p2-15-004	wrong 0	not_done 0	extras 1
+p2-15-007	wrong 1	not_done 0	extras 0
+p2-15-012	wrong 1	not_done 0	extras 2
+p2-15-013	wrong 0	not_done 0	extras 1
+p2-15-016	wrong 1	not_done 0	extras 1
+p2-15-017	wrong 1	not_done 0	extras 2
+p2-15-030	wrong 1	not_done 0	extras 0
+p2-15-034	wrong 0	not_done 0	extras 2
+p2-15-038	wrong 0	not_done 0	extras 1
+p2-15-039	wrong 1	not_done 0	extras 0
+p2-15-040	wrong 1	not_done 0	extras 0
+p2-15-047	wrong 1	not_done 0	extras 0
+p2-15-048	wrong 1	not_done 0	extras 0
+p2-15-049	wrong 1	not_done 0	extras 0
+p2-15-050	wrong 1	not_done 0	extras 0
+p2-16-004	wrong 0	not_done 1	extras 1
+p2-16-023	wrong 0	not_done 0	extras 1
+p2-16-034	wrong 0	not_done 0	extras 2
+p2-16-035	wrong 1	not_done 0	extras 1
+p2-16-036	wrong 1	not_done 0	extras 2
+p2-16-040	wrong 0	not_done 1	extras 0
+p2-16-045	wrong 1	not_done 0	extras 2
+p2-16-046	wrong 0	not_done 0	extras 1
+p2-17-003	wrong 0	not_done 0	extras 1
+p2-17-009	wrong 0	not_done 0	extras 1
+p2-17-011	wrong 0	not_done 1	extras 2
+p2-17-012	wrong 0	not_done 0	extras 1
+p2-17-023	wrong 1	not_done 0	extras 0
+p2-17-029	wrong 1	not_done 0	extras 0
+p2-17-031	wrong 0	not_done 0	extras 1
+p2-17-036	wrong 1	not_done 0	extras 5
+p2-17-047	wrong 1	not_done 0	extras 0
+p2-17-052	wrong 0	not_done 0	extras 1
+p2-18-001	wrong 1	not_done 0	extras 0
+p2-18-002	wrong 1	not_done 0	extras 0
+p2-18-003	wrong 1	not_done 0	extras 0
+p2-18-004	wrong 1	not_done 0	extras 0
+p2-18-005	wrong 1	not_done 0	extras 0
+p2-18-006	wrong 1	not_done 0	extras 0
+p2-18-007	wrong 1	not_done 0	extras 0
+p2-18-008	wrong 1	not_done 0	extras 0
+p2-18-009	wrong 1	not_done 0	extras 0
+p2-18-011	wrong 0	not_done 1	extras 0
+p2-18-015	wrong 1	not_done 0	extras 0
+p2-18-016	wrong 1	not_done 0	extras 0
+p2-18-017	wrong 1	not_done 0	extras 0
+p2-18-025	wrong 0	not_done 1	extras 0
+p2-18-035	wrong 0	not_done 0	extras 1
+p2-18-038	wrong 1	not_done 0	extras 0
+p2-18-041	wrong 1	not_done 0	extras 0
+p2-18-043	wrong 1	not_done 0	extras 0
+p2-18-044	wrong 1	not_done 0	extras 0
+p2-18-045	wrong 1	not_done 0	extras 0
+p2-18-046	wrong 1	not_done 0	extras 0
+p2-18-052	wrong 1	not_done 0	extras 0
+p2-19-001	wrong 3	not_done 0	extras 1
+p2-19-004	wrong 1	not_done 0	extras 0
+p2-19-011	wrong 1	not_done 0	extras 0
+p2-19-012	wrong 1	not_done 0	extras 0
+p2-19-013	wrong 1	not_done 0	extras 0
+p2-19-017	wrong 1	not_done 0	extras 1
+p2-19-020	wrong 1	not_done 0	extras 1
+p2-19-021	wrong 1	not_done 0	extras 1
+p2-19-023	wrong 0	not_done 1	extras 0
+p2-19-032	wrong 0	not_done 1	extras 1
+p2-19-034	wrong 0	not_done 1	extras 0
+p2-19-046	wrong 1	not_done 0	extras 3
+p2-19-048	wrong 0	not_done 2	extras 1
+p2-19-052	wrong 1	not_done 0	extras 0
+p2-20-001	wrong 1	not_done 0	extras 0
+p2-20-003	wrong 1	not_done 0	extras 0
+p2-20-012	wrong 2	not_done 0	extras 0
+p2-20-015	wrong 0	not_done 1	extras 2
+p2-20-016	wrong 0	not_done 1	extras 0
+p2-20-024	wrong 0	not_done 1	extras 0
+p2-20-037	wrong 0	not_done 1	extras 1
+p2-20-042	wrong 1	not_done 0	extras 1
+p2-20-043	wrong 0	not_done 1	extras 0
+p2-20-045	wrong 0	not_done 1	extras 1
+p2-20-047	wrong 0	not_done 1	extras 0
+p2-21-003	wrong 0	not_done 0	extras 2
+p2-21-008	wrong 2	not_done 0	extras 0
+p2-21-009	wrong 0	not_done 1	extras 0
+p2-21-010	wrong 1	not_done 0	extras 1
+p2-21-012	wrong 1	not_done 0	extras 0
+p2-21-013	wrong 2	not_done 0	extras 0
+p2-21-015	wrong 0	not_done 0	extras 2
+p2-21-016	wrong 1	not_done 0	extras 0
+p2-21-018	wrong 1	not_done 0	extras 0
+p2-21-019	wrong 0	not_done 1	extras 0
+p2-21-023	wrong 3	not_done 0	extras 0
+p2-21-024	wrong 2	not_done 1	extras 0
+p2-21-026	wrong 1	not_done 0	extras 0
+p2-21-030	wrong 0	not_done 1	extras 1
+p2-21-031	wrong 1	not_done 0	extras 0
+p2-21-035	wrong 1	not_done 0	extras 0
+p2-21-037	wrong 0	not_done 1	extras 0
+p2-21-043	wrong 3	not_done 0	extras 2
+p2-21-044	wrong 0	not_done 1	extras 1
+p2-21-046	wrong 1	not_done 0	extras 0
+p2-22-002	wrong 1	not_done 0	extras 0
+p2-22-003	wrong 1	not_done 0	extras 0
+p2-22-004	wrong 2	not_done 0	extras 0
+p2-22-005	wrong 1	not_done 0	extras 0
+p2-22-010	wrong 1	not_done 0	extras 0	unreliable
+p2-22-012	wrong 1	not_done 0	extras 0	unreliable
+p2-22-013	wrong 1	not_done 0	extras 0	unreliable
+p2-22-016	wrong 1	not_done 0	extras 0	unreliable
+p2-22-019	wrong 1	not_done 0	extras 0
+p2-22-022	wrong 1	not_done 0	extras 0
+p2-22-023	wrong 1	not_done 0	extras 0
+p2-22-024	wrong 1	not_done 0	extras 0	unreliable
+p2-22-025	wrong 1	not_done 0	extras 0	unreliable
+p2-22-026	wrong 1	not_done 0	extras 0	unreliable
+p2-22-028	wrong 3	not_done 0	extras 0	unreliable
+p2-22-032	wrong 1	not_done 0	extras 0	unreliable
+p2-22-033	wrong 1	not_done 0	extras 0	unreliable
+p2-22-035	wrong 1	not_done 0	extras 0
+p2-22-036	wrong 1	not_done 0	extras 0
+p2-22-037	wrong 1	not_done 0	extras 0
+p2-22-038	wrong 1	not_done 0	extras 0
+p2-22-039	wrong 1	not_done 0	extras 0
+p2-22-040	wrong 1	not_done 0	extras 0
+p2-22-041	wrong 1	not_done 0	extras 0
+p2-22-042	wrong 1	not_done 0	extras 0
+p2-22-043	wrong 1	not_done 0	extras 0
+p2-22-046	wrong 2	not_done 0	extras 0
+p2-22-047	wrong 1	not_done 0	extras 0	unreliable
+p2-22-049	wrong 1	not_done 0	extras 0	unreliable
+p2-22-050	wrong 1	not_done 0	extras 0	unreliable
+p2-23-003	wrong 0	not_done 1	extras 1
+p2-23-007	wrong 1	not_done 0	extras 0
+p2-23-009	wrong 1	not_done 0	extras 0
+p2-23-013	wrong 0	not_done 0	extras 1
+p2-23-014	wrong 1	not_done 1	extras 1
+p2-23-017	wrong 0	not_done 1	extras 0
+p2-23-019	wrong 2	not_done 0	extras 1
+p2-23-020	wrong 1	not_done 0	extras 0
+p2-23-021	wrong 0	not_done 1	extras 0
+p2-23-022	wrong 1	not_done 0	extras 0	unreliable
+p2-23-025	wrong 0	not_done 0	extras 1
+p2-23-026	wrong 0	not_done 1	extras 0
+p2-23-030	wrong 1	not_done 0	extras 0
+p2-23-032	wrong 1	not_done 0	extras 0
+p2-23-037	wrong 0	not_done 1	extras 1
+p2-23-038	wrong 1	not_done 0	extras 0
+p2-23-040	wrong 0	not_done 1	extras 1
+p2-23-049	wrong 0	not_done 0	extras 1
+p2-24-001	wrong 2	not_done 1	extras 0
+p2-24-012	wrong 1	not_done 0	extras 0
+p2-24-014	wrong 1	not_done 0	extras 0
+p2-24-018	wrong 0	not_done 0	extras 1
+p2-24-027	wrong 2	not_done 0	extras 1
+p2-24-043	wrong 0	not_done 0	extras 1
+p2-24-044	wrong 1	not_done 0	extras 1
+p2-24-045	wrong 1	not_done 0	extras 0
+p2-24-047	wrong 1	not_done 0	extras 0
+p2-24-050	wrong 0	not_done 1	extras 0
+p2-25-010	wrong 0	not_done 0	extras 1
+p2-25-014	wrong 0	not_done 1	extras 0
+p2-25-018	wrong 3	not_done 0	extras 1
+p2-25-026	wrong 0	not_done 1	extras 0
+p2-25-028	wrong 0	not_done 0	extras 1
+p2-25-030	wrong 1	not_done 0	extras 0
+p2-25-031	wrong 1	not_done 0	extras 0
+p2-25-032	wrong 0	not_done 0	extras 1
+p2-25-037	wrong 1	not_done 0	extras 0
+p2-25-038	wrong 0	not_done 0	extras 3
+p2-25-043	wrong 0	not_done 0	extras 1
+p2-26-004	wrong 1	not_done 0	extras 0
+p2-26-023	wrong 1	not_done 0	extras 0
+p2-27-001	wrong 1	not_done 0	extras 0
+p2-27-005	wrong 0	not_done 1	extras 1
+p2-27-006	wrong 0	not_done 1	extras 0
+p2-27-009	wrong 1	not_done 0	extras 0
+p2-27-011	wrong 0	not_done 3	extras 0
+p2-27-016	wrong 0	not_done 1	extras 0
+p2-27-017	wrong 0	not_done 0	extras 1
+p2-27-021	wrong 1	not_done 3	extras 0
+p2-27-031	wrong 2	not_done 0	extras 0
+p2-27-032	wrong 0	not_done 1	extras 0
+p2-27-037	wrong 0	not_done 1	extras 1
+p2-27-039	wrong 0	not_done 1	extras 0
+p2-27-041	wrong 0	not_done 1	extras 0
+p2-28-001	wrong 0	not_done 1	extras 0
+p2-28-002	wrong 0	not_done 1	extras 0
+p2-28-003	wrong 0	not_done 1	extras 0
+p2-28-004	wrong 0	not_done 1	extras 0
+p2-28-005	wrong 0	not_done 1	extras 0
+p2-28-008	wrong 0	not_done 1	extras 0
+p2-28-009	wrong 0	not_done 1	extras 0
+p2-28-010	wrong 0	not_done 1	extras 0
+p2-28-011	wrong 0	not_done 1	extras 0
+p2-28-012	wrong 0	not_done 2	extras 0
+p2-28-016	wrong 0	not_done 1	extras 0
+p2-28-017	wrong 0	not_done 1	extras 0
+p2-28-019	wrong 0	not_done 1	extras 0
+p2-28-020	wrong 0	not_done 1	extras 0
+p2-28-021	wrong 0	not_done 1	extras 0
+p2-28-022	wrong 0	not_done 2	extras 0
+p2-28-023	wrong 0	not_done 1	extras 0
+p2-28-024	wrong 0	not_done 1	extras 0
+p2-28-025	wrong 0	not_done 1	extras 0
+p2-28-026	wrong 0	not_done 1	extras 0
+p2-28-027	wrong 0	not_done 1	extras 0
+p2-28-028	wrong 0	not_done 1	extras 0
+p2-28-029	wrong 0	not_done 1	extras 0
+p2-28-030	wrong 0	not_done 1	extras 0
+p2-28-031	wrong 0	not_done 1	extras 0
+p2-28-032	wrong 0	not_done 1	extras 0
+p2-28-033	wrong 0	not_done 1	extras 0
+p2-28-034	wrong 0	not_done 1	extras 0
+p2-28-035	wrong 0	not_done 1	extras 0
+p2-28-037	wrong 0	not_done 1	extras 0
+p2-28-038	wrong 0	not_done 1	extras 0
+p2-28-039	wrong 0	not_done 1	extras 0
+p2-28-040	wrong 0	not_done 1	extras 0
+p2-28-041	wrong 0	not_done 1	extras 0
+p2-28-042	wrong 0	not_done 1	extras 0
+p2-28-043	wrong 0	not_done 1	extras 0
+p2-28-044	wrong 0	not_done 1	extras 0
+p2-28-045	wrong 0	not_done 1	extras 0
+p2-28-048	wrong 0	not_done 1	extras 0
+p2-29-005	wrong 1	not_done 0	extras 2
+p2-29-012	wrong 1	not_done 0	extras 1
+p2-29-013	wrong 0	not_done 1	extras 0
+p2-29-027	wrong 1	not_done 0	extras 0
+p2-29-039	wrong 1	not_done 0	extras 1
+p2-29-043	wrong 0	not_done 0	extras 1
+p2-29-048	wrong 0	not_done 0	extras 1

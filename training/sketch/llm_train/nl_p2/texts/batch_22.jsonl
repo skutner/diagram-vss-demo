@@ -1,0 +1,50 @@
+{"id":"p2-22-001","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","setup":"@c1 command action=create shape=rectangle name=Plot color=green fill=faint layer=zone width=600 height=360 at=400,260\n@c2 command action=create shape=rectangle name=Gate label=Gate position=top\n@c3 command action=create shape=text name=Title label=\"Community orchard\" position=topLeft","text":"Three apple trees down the left fence."}
+{"id":"p2-22-002","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"A bit further into the plot. Need to get behind them with the mower."}
+{"id":"p2-22-003","domain":"community orchard plan","kind":"self_correction","session":"p2-22-orchard","text":"Bottom apple is a plum. Sorry, pear. We didn't get the plum in the end."}
+{"id":"p2-22-004","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"Top one's Discovery, middle James Grieve, pear is Conference. Names beside them please."}
+{"id":"p2-22-005","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"Path from the gate down the middle, wide enough for the wheelbarrow."}
+{"id":"p2-22-006","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"Two benches on the right of that facing the trees."}
+{"id":"p2-22-007","domain":"community orchard plan","kind":"fragment","session":"p2-22-orchard","text":"Lower bench nearer the pear"}
+{"id":"p2-22-008","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"Compost bays in the bottom right. Two, side by side."}
+{"id":"p2-22-009","domain":"community orchard plan","kind":"complaint","session":"p2-22-orchard","text":"That's practically against the bench. Compost right back in the corner please, nobody wants to sit in it."}
+{"id":"p2-22-010","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"Tap just inside the gate on the right."}
+{"id":"p2-22-011","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"Show the hose going from there along the tree side of the path. Dashes maybe."}
+{"id":"p2-22-012","domain":"community orchard plan","kind":"reference","session":"p2-22-orchard","text":"Is Discovery still inside the boundary? Looks very close up there."}
+{"id":"p2-22-013","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"Shift it down a touch and give all three tree names bigger writing."}
+{"id":"p2-22-014","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"A note under the plan: Keep mulch clear of trunks."}
+{"id":"p2-22-015","domain":"community orchard plan","kind":"session","session":"p2-22-orchard","text":"Call the whole thing Mill Lane orchard. That's the name on the gate application."}
+{"id":"p2-22-016","domain":"community orchard plan","kind":"typos","session":"p2-22-orchard","text":"litle tool store by tap too, on same side. forgot we agreed that"}
+{"id":"p2-22-017","domain":"community orchard plan","kind":"nothing_to_do","session":"p2-22-orchard","text":"Lovely, I can take that to the volunteers now."}
+{"id":"p2-22-018","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","setup":"@c1 command action=create shape=text name=Title label=\"Friday Quiz\" position=top\n@c2 command action=create shape=rectangle name=Late label=\"The Late Arrivals\" width=220 height=50 at=180,130\n@c3 command action=create shape=rectangle name=Walken label=\"Quiztopher Walken\" width=220 height=50 position=below anchor=Late","text":"No Idea underneath those as the third team."}
+{"id":"p2-22-019","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"Scores to the right. All on zero."}
+{"id":"p2-22-020","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"6 November under the title."}
+{"id":"p2-22-021","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"Title just Pub Quiz, lose Friday."}
+{"id":"p2-22-022","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"The Late Arrivals get 8."}
+{"id":"p2-22-023","domain":"pub quiz scoreboard","kind":"fragment","session":"p2-22-quiz","text":"Other two 6 each"}
+{"id":"p2-22-024","domain":"pub quiz scoreboard","kind":"self_correction","session":"p2-22-quiz","text":"Walken six, no seven. Found their bonus answer."}
+{"id":"p2-22-025","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"Round 1 above that score column."}
+{"id":"p2-22-026","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"Total column further right. Same scores there for now, leave a gap for round two."}
+{"id":"p2-22-027","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"Round 2 in that gap then."}
+{"id":"p2-22-028","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"9 for the arrivals, 5 Walken, 8 No Idea. That's round two."}
+{"id":"p2-22-029","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"Update the totals as well please."}
+{"id":"p2-22-030","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"Highest total at the top. Keep each team's scores with them."}
+{"id":"p2-22-031","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"No Idea is apparently No Eye Deer. They are very insistent."}
+{"id":"p2-22-032","domain":"pub quiz scoreboard","kind":"complaint","session":"p2-22-quiz","text":"Walken's name is touching their 7. More room between the names and scores."}
+{"id":"p2-22-033","domain":"pub quiz scoreboard","kind":"session","session":"p2-22-quiz","text":"Tie-break space along the bottom. Empty until we need it."}
+{"id":"p2-22-034","domain":"pub quiz scoreboard","kind":"nothing_to_do","session":"p2-22-quiz","text":"Good, readable from the back now. I'll be back after the music round."}
+{"id":"p2-22-035","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","setup":"@c1 command action=create shape=rectangle name=Room label=Bedroom fill=none width=600 height=360 at=400,250\n@c2 command action=create shape=rectangle name=Window label=Window position=top\n@c3 command action=create shape=rectangle name=Door label=Door position=bottomLeft\n@c4 command action=create shape=rectangle name=Bed label=Bed width=180 height=100 position=right","text":"Desk under the window. That's where the laptop lives."}
+{"id":"p2-22-036","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","text":"Laptop in the middle of it, little speakers either side."}
+{"id":"p2-22-037","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","text":"Chair below the desk facing up."}
+{"id":"p2-22-038","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","text":"Mic stand left of the chair. Leave a person-sized gap."}
+{"id":"p2-22-039","domain":"bedroom recording setup","kind":"self_correction","session":"p2-22-studio","text":"Guitar on the bed, nah against the left wall. Need somewhere to sleep still."}
+{"id":"p2-22-040","domain":"bedroom recording setup","kind":"fragment","session":"p2-22-studio","text":"Headphones on desk too"}
+{"id":"p2-22-041","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","text":"Little box by the laptop called Scarlett."}
+{"id":"p2-22-042","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","text":"Mic cable to Scarlett then usb from Scarlett to laptop."}
+{"id":"p2-22-043","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","text":"Headphones plug into Scarlett too. Show that in a different colour so I can follow it."}
+{"id":"p2-22-044","domain":"bedroom recording setup","kind":"complaint","session":"p2-22-studio","text":"The cable looks like it's going into the chair now. It starts at the mic, can you take it round the chair?"}
+{"id":"p2-22-045","domain":"bedroom recording setup","kind":"typos","session":"p2-22-studio","text":"speakers back to scarlett aswell. forgot those"}
+{"id":"p2-22-046","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","text":"Write L and R on them. As I'm sitting in the chair."}
+{"id":"p2-22-047","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","text":"Wardrobe bottom right, door opens toward the bed."}
+{"id":"p2-22-048","domain":"bedroom recording setup","kind":"indirect","session":"p2-22-studio","text":"Bed's too close to that now. Could slide up the wall a bit."}
+{"id":"p2-22-049","domain":"bedroom recording setup","kind":"session","session":"p2-22-studio","text":"Put Recording layout at the top. And a reminder beside the speakers: off when using mic."}
+{"id":"p2-22-050","domain":"bedroom recording setup","kind":"reference","session":"p2-22-studio","text":"Can I still get from the door to the chair without stepping over a cable?"}
