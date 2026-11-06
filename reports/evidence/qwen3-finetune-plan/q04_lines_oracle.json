@@ -1,0 +1,1208 @@
+{
+ "tool": "training/qwen/finetune/lines_oracle.mjs",
+ "keys_from": [
+  "llm_train/sonnet_msg",
+  "llm_train/haiku_msg",
+  "llm_train/sonnet_msg2",
+  "llm_train/haiku_msg2",
+  "llm_train/sonnet_long",
+  "llm_bench/fresh1/sonnet",
+  "llm_bench/fresh1/haiku",
+  "llm_train/sonnet_short",
+  "llm_train/haiku_short",
+  "llm_bench/sonnet_spans",
+  "llm_bench/haiku_spans",
+  "llm_train/opus_train_a",
+  "llm_train/opus_train_b",
+  "llm_train/opus_train_c",
+  "llm_train/opus_train_d",
+  "llm_train/opus_gen_1",
+  "llm_train/opus_gen_2",
+  "llm_train/synth_rules",
+  "llm_train/synth_rules_ops",
+  "llm_train/synth_rules_ext",
+  "llm_train/ops_formulations",
+  "llm_train/opus_ext_1",
+  "llm_train/synth_combo",
+  "llm_train/scenes_r3",
+  "llm_train/scenes_r3b",
+  "llm_train/opus_r3_gaps",
+  "llm_train/opus_tgt_1",
+  "llm_train/opus_tgt_2",
+  "llm_train/ops_groups",
+  "llm_train/ops_positions",
+  "llm_train/opus_short_r2",
+  "llm_train/nl_p1"
+ ],
+ "learned": {
+  "acts": 52,
+  "desc_keys": [
+   "color",
+   "label",
+   "layer",
+   "notColor",
+   "position",
+   "quantifier",
+   "recency",
+   "shape",
+   "size"
+  ],
+  "rows": 28136,
+  "wires": 61390
+ },
+ "inputs_sha256": {
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_01.jsonl": "1343cf98af9d66e3d39dd0f71ef79caa4d930a3d994276c700d7b4b30e9ad8b4",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_02.jsonl": "91603c8d696f827bc795275740e41dcd0ba53a382d368d5fa1de01aa68c22e7a",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_03.jsonl": "5b66a1575dcc17f5beeca4dd69123231a1f1b2f28cf353562b7b0888f58dc713",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_04.jsonl": "9cd6cd90e9a1829ece6107b811c19766c875c9321f60089c46f012b9e2544def",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_05.jsonl": "f10e98272ad47b95513fade8aaf04fc0027497cb623fa59708f91ce72480bc63",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_06.jsonl": "7a6ddf351a9bf94ba9eac316f3dd467c47a91debc666a503b6c92ccb3d02e3cb",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_07.jsonl": "c765e69c771d1a5921cbb9c6393a5dca1175164d091c521231b9a54a02efd2c2",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_08.jsonl": "3c3a0fe59438b06d28d5c58f09a3a876ce7782cf8a74791fb49303e51e8c2dfd",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_09.jsonl": "17a63ecf36a106057495904e7076ecbecc7ad5fb662066e4ef5b1ce47b5bc9d4",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_10.jsonl": "62437e1eca05e61e6cdf2744131f79cf80403c909253a39a76badf196d525f57",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_11.jsonl": "13b491146f1ba9ce9b4ecf3055ada1d5de3dc925b9c4fb22c4033ad2f59d9e3e",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg/msg_12.jsonl": "52c54e7c60c5824192e07cdb1e33fa3590e6ccc936925c8e4764b3828b7830de",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_01.jsonl": "27902f12bc54e835274c633b8a17efd0fbc018b18473a1c908ae7a54a54b297f",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_02.jsonl": "7d8091a3ed1b1c4b812210757adbc57d97406baf274a6178ac82695817c49b74",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_03.jsonl": "d74c5c07d61d9211639b31ddb1ec7250433adcdf1199e16c9ff46ecebcdbf9c7",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_04.jsonl": "869bd9a45fd95778eb7370ac33b2c3d145bcc367f7e49899de4ec2b4cbccae0c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_05.jsonl": "b0abd448f07389e01fb86d7098c6150b369f4709b24653e56d1115b23e8b917f",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_06.jsonl": "1213f52cc1994c22fe680f994f1fba84610ac879f7d5227b2ef19bfc5f52090b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_07.jsonl": "dc65a3ccf72605a367dab868a4f55b880148f2e4d03875baaa222cea30ecff42",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_08.jsonl": "c02e3be5a7b26db0a4aca82bb3cc92486ff21b2d8f53c15c670a0451453520c8",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_09.jsonl": "e11dd23663fc5cb4a62224340c08943f0d1b0e53336e7b6a33d8d8e783cefb32",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_10.jsonl": "2dda7f0772dafc37c4589478ab518f6ba12daa8db2ecfd89eddfa151e265bfb6",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_11.jsonl": "dfa3d60ce927ab1b63d8ae5ff7a399115342b43d5845c553e405b14a4c95809b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg/msg_12.jsonl": "3b441a86df4cc089a46f967b851ac5bff36a04cdf10d31028be53970ff6bc5cb",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_01.jsonl": "df308b65b51b3ec785099b912d445e09d9913e2a2b233dae92be609271bc024b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_02.jsonl": "09852a9904beae444510330ed5e5b82fa4d4d3f2e706c42301ab1f3d0c2ede40",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_03.jsonl": "9beb547bedc30c33adc91800d888aeb7e7fd0f270d6f5b2816d59ce05dc0e3a2",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_04.jsonl": "54151f419f7a37f209c4d900e95d5daa7847b190a5b42d6a359d49c33d4bf0f9",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_05.jsonl": "24e61afef48c8924bbbe1c4653d79d961629b1d35a00fb57533fce5e6de54971",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_06.jsonl": "b5b2b9c0000064e1235488d48411dd78cc4520c10f14617546eee4413d42c8af",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_07.jsonl": "4dfc5bf076bd55c712975f28cd951ae562624bbb2f07a60ccb2f1b50dd6564bb",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_08.jsonl": "01f5644d78eb1ee9e4268109a83d1cb540534f35e00838b5aa32ead70dbf6c2c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_09.jsonl": "97dc2db774b1a3cd6b701a4c9852853b1c7deeac89f9dbc510cca6ff48750847",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_10.jsonl": "7bcfb643fc0622e94c9f374637c1304649eac11b347010bd9ee24ccb13b6864e",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_11.jsonl": "0842801921abc1109b4b1687f482d2d98a424e4f54259965047e6aed083000d3",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_msg2/msg_12.jsonl": "2bb06dd09613554ea58c58b9db661930728079ce25447059768eb6bae1001387",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_01.jsonl": "831945785f5f996716a69590ec0abc7959b2171bf75eb02fa44831a30ad721c6",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_02.jsonl": "c978a87b359fbd97a845642a222ef4b93e129e05abc3aa247ec833726155591c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_03.jsonl": "af1d40e4c52d356c2efaa8b0cdefbe51b7c273968559dbf8533a4620bfe4da18",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_04.jsonl": "64b249bf5fc744d16d5a40c715b2bd398b8bdec31696cd58ba9fb472f7023b90",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_05.jsonl": "1e79404d784deb531c11e899e293d86e08f86b9ffc7f0552363947332ebe182d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_06.jsonl": "786d8fb73c22aaa3fb47def15af1bc4865e8b3d279927e0e81e21ab31bab2eff",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_07.jsonl": "6753fe12e4e30571e97021853a4f652b81b5b6fabb57aa05ca6c96c54c1fe23a",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_08.jsonl": "9202e0c44d484233c45f21fff705104b2c4564f38b45934524b28f38d6e9df1d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_09.jsonl": "753279467b5b7070360769fdb2d5fb05dec4b5e603660d3c11a9d23ec2d24b1e",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_10.jsonl": "1a4110f4a02de39a63599a258e67270fe69d082f2c34f992bf55125cb27497a7",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_11.jsonl": "c3173b1e506f583bfe8e0192e220add346bb17ec05ce020d3d7260c9a4763985",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_msg2/msg_12.jsonl": "f813dec36032facb4de53be8f17adf7bb7ac0f8fd2db098f0ed081d106aae5f3",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_01.jsonl": "8b73007632a66a67b97aee2ea37957163b3ea4e3b247f312cde166831fb83f97",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_02.jsonl": "08e15b8c5164406b4ef5913b3740e51e9958f3ca15fb8cf6c41e3f122bb373ee",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_03.jsonl": "626c24e5aa7b171b0e48ae51e7ea1d52aade4eaa6965b3294c63a02dde7dca3c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_04.jsonl": "ee934e7ea4116d48919deed7c52039a7403bb5138b36fc71f7bbd4c463cfb2b3",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_05.jsonl": "20ebc6d2a67d583bb37ff143135c5dba3d847d395e2ba65f2b8c55ee0b7611cb",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_06.jsonl": "7790b39417072e3f8f67f57cc7d637a1ab5bfeb394062f5ac495cee33e72b7e9",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_07.jsonl": "54d6c662ffe9da3420bfbef5e0b296a873e4cc875c82d69b0979e7c1ffc57fe2",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_08.jsonl": "4d07cd1eb854fe8d3c32e7b9593519e12530899c3513c4c9a0ab5acd6261f962",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_09.jsonl": "403eb3c82ddcacaaa29b2f9be56b0fe486df159e1390f7c3c89ffa395c3644a2",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_10.jsonl": "106d32666a843752dfa4ff6033a52db98c536778082cd14db8e0fb5f221e5513",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_11.jsonl": "37f956204ff8d140126ed870f1853cec1bba4325c906ec7b39f24591188c31f1",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_long/msg_12.jsonl": "cf4527a8202cf9748d41f5223ef10071d39466cb988ee2b70b4fcde7ae422a54",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_01.jsonl": "20d248451a7a45b529519487202bcc02c7687e87b6e65301f59933e86bd5420b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_02.jsonl": "cac63a2306a349827d4dd3f43d56324835e0d57673e9a0bce61ef2e6550d9ea1",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_03.jsonl": "3eead1e2b63f46a5097e0ed26246abb8b3a3b34cd7b549640e6064c1ca182c8c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_04.jsonl": "6f310b19205e5c5142156a630653a22c58c1c953d3a26673b8cf8e0929a7b871",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_05.jsonl": "2c6e7c23d5320b2e04662b2397b89bea3fc4aadcf3aa2077bd146a83e9536626",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_06.jsonl": "e7316d44c772d19bd8c9dabd4ff565250dff2f99f321b0539d23acf0a6669a2e",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_07.jsonl": "c46658c93b75b7aa8b044d99ef97bd581d5eb3b62d541335d5fbbf1c58b77387",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_08.jsonl": "7ac0cc6fabcd554b6c392fcf2ab01e682b16551adb3c0400b849159f0f91f614",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_09.jsonl": "2691636c08db4ede7dc46e381aa240c02ecc7f87eaa7fdce7602a29e8cab90ed",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/sonnet/batch_10.jsonl": "818cd77967287189d37a6ddaeba6115e05c3e7889c2bc7ca8feb391813f03bed",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_01.jsonl": "7490e2bcd403aeb4632e8813a3b716caae42813f6bb5354266a8c9362244474b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_02.jsonl": "843faed8d261fd5cd3486df59644e62e7181cd0857be2edb3b70b1cf950067d0",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_03.jsonl": "faf4348a24dc6ed84567d5cb3394077cda6a1d2c849c27ff3635d27ba4e22248",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_04.jsonl": "750b5060e51f135556329954457de49e640ff4621230229dd05a6ddf956a71db",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_05.jsonl": "655106354d1997313ca8e3e9ea026ed4c0bcd863794f00e59ef4b03158e4f488",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_06.jsonl": "a3a80da1c8d445720697ecd0306e8ea854e93ca7189ef09b48bdf69a5722b729",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_07.jsonl": "f9182c617132fd104f8cbc6c97c78788f8413048ccaa5e44279b635727abf7ff",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_08.jsonl": "d64ac0d4c11353a960318934f9a1e5c79f83210f0fea609be5aa499d7b82cbe8",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_09.jsonl": "3942f047a8cb397476dc5264524827779e72ca754ae72b07b8bcf4a36f6d4b3f",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/fresh1/haiku/batch_10.jsonl": "d0c4d147df32a0438fce7a7c39aab562af8961087c652a8e195b5258b0a34484",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_01.jsonl": "12bca076baf260d17233b5755e91b4d8250a55dc6c40d4259914f54547784fe5",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_02.jsonl": "225e1d7beab94c0601c44e0f006cb0a4762c8e20a260f70bec5fd34697ef9bc4",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_03.jsonl": "240a3f64279d91b415fc52a611246e74167e2da65c3ca5deb463141a5257604c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_04.jsonl": "fc38c5d9dd0e158b3bcccb08a9e1b1021614e2a445902ed8ada14d0333803445",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_05.jsonl": "6b6f7607d407f89481dcef3d56ebeffd6c69d0c2afbfb5c7693bab4c3d7bbd36",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_06.jsonl": "2f23d889f36a74916a04fcc28669033dd54290c80e3a5b48db7d897bbe9fbd43",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_07.jsonl": "dd70a2ff23e198343c925e8e6a4111fb37ea939a35cff1de0d21e9fe87d665e3",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_08.jsonl": "7022a44ee50897cc69c05810e775aa915129e8dcd9733ff57750926e6fed95d2",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_09.jsonl": "b4f42a6bb48782f51abd2ce489a4e8c6c4686f3b267422b92e38597f04619d6d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_10.jsonl": "48868e2dd42d955bcffebc69dfe972cc7585f72184a868dd90ba1ba50648c444",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_11.jsonl": "97e0a89c3c4bc57262a9fcf131328f904fc3ade6cfd126e4d5a1b675233852ac",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_12.jsonl": "c8c7f68c7d232f71aa030ffae3146e0996896a26eb75525333df53952cb4f93d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_13.jsonl": "87b72bca1fe760a3c25950654e4f711e3865848c4ffdc9a2f3400accaa0a66c4",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_14.jsonl": "a4dbf4b22871d792c1df0566f06fa1e6833afb03e1ace0d3dc82014f176bdb2b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/sonnet_short/msg_15.jsonl": "1a9a381c6dd01db7ecc26be32d344fbc1d62e81c130b7688ca0d972614b96b9d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_01.jsonl": "a801d479492c1e9e8d376b304933d0e3f4a788172ed260e0ff8745180e908f6b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_02.jsonl": "9a071d53aec4815283d618790105f43b821530aa57b8739f2806ab105ba5319f",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_03.jsonl": "b3f9bdd4813bebb117b45c88837005593d9ceb64f32afd5e46bb3a746c86c1d8",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_04.jsonl": "7564dbec3fe66cb1e6e05c9150fb0c392a53743f13e3a62d538d1573ebf0da88",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_05.jsonl": "de3554dff6e422a3738451033da1c19e335b06eb109fd3e395bfd52c4e9ee668",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_06.jsonl": "acb4062414b5c8b97fa2643f1c2da074a940537d76ae3b0c95b6a9210cff7f74",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_07.jsonl": "d42b22bdd1dacdff16e5937520836cb8e007ac36fa968b6e8a92c43c5ba1ed35",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_08.jsonl": "5f608203dc3a314eed2c9ba970c45cbf3e3caf60c379f972a31fa0ff2e7acc9d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_09.jsonl": "29b1de92bcfd15d72113245089b62251f602ec3342b01087699cac0016d8f219",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_10.jsonl": "7d8003ceeeac60277b8c1086b9eb4cef7eba538576ffde96ce93fd7daf8753de",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_11.jsonl": "ee993dec2a75f5f0b29223a62d3ac678334eafa25bf2c0221acac8b34383f642",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_12.jsonl": "5105c74c787a3a98fa8c3ed698a706dbb52cf6eb270d1fa2afe95a7e8eadde9d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_13.jsonl": "865b8152e37a2e653254ad59ef55f228b3f3da87b792625ddae5bfb706124b1a",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_14.jsonl": "6c26d2bd2776016cf0d0af4aab7b3841fe3408679d60ee367856f35df3e9e4b5",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/haiku_short/msg_15.jsonl": "069c4fb358b699b9c07d305248e5f2f198dc82ed0efa6d20237d53ac70b07b67",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_01.jsonl": "0dbc91c43b38b330da1020e3725b978528a161db1e96929da6cefb5583e9d5bf",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_02.jsonl": "865baa6337144566df18d9bda6195a31dba0517b94c2022c67ef1a0158e24b03",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_03.jsonl": "1268a9ba45b92291552aed6618c4fc4ad578ae7e241463bae845a81b75292289",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_04.jsonl": "d26c50cd65d5caceeae547b7314b61f1fa889fd12df73cf0948213f1266f4e5d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_05.jsonl": "8cf38931e12ac7541dc8092d7b848274a4173357ce0120225db45c91433493df",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_06.jsonl": "377de30e9223f502e1d35b0700f3aa29ed982d391f618210f27c0056743c5a38",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_07.jsonl": "60060869811bfb9df96b787ae55bc12d7d6ce60af36ff0bf705ef9be4ee70e85",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_08.jsonl": "20e35b7223755edadca58a5cb89180a5f00048a220ab63de9f8ea37ae5d58c1b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_09.jsonl": "f78c3c32818159ef3bc2b3c4998d565f7143f18065b99b95705df93ec090d292",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/sonnet_spans/batch_10.jsonl": "66539297f87fdd79734853d8a420a1aa8393a102b68534c1a4567afb1b8145e7",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_01.jsonl": "4936c6d3c8872a3e3625e207779ab51a3a6932630501b98de6fc7e1fb43b5256",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_02.jsonl": "187b138cd8b089705c48ce8c1149c88e20c36ae4f892f9c282a9f08e64fff2e7",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_03.jsonl": "d06022d9b04d37fa70a4e872a07d7bbff50bd88797f44573b703f38d75b98c54",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_04.jsonl": "9107383ed33499fc589bd5aa5bdc05b49956d92b4d7f807b84a5edf39dc41283",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_05.jsonl": "c33fe4767c731eda2190b6d6fd049bf0a64724aa5e20b3af41502b36b2d389d7",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_06.jsonl": "1543ddb5fde635ce0f69140ef31069859594e45c524cefb20b846e56ba8d2d08",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_07.jsonl": "29db6e024cec94c88c8f426fb5d1c55485f777664cfe51c590077a500c60016c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_08.jsonl": "16132ba3c69ca353ca6e98f84e9dec439911e61437f0fdb9ff8230413c7c1a8f",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_09.jsonl": "a2dd4fd344623e55d1e679d39c3e89a7678a64179be14b696fab72edf169cec8",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_bench/haiku_spans/batch_10.jsonl": "909ef431c609d6b83b101e2d8ae8f2513f60dfdf3179b2c21708e7828069f374",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_train_a/msg_01.jsonl": "c672cb403fd44b9aa8c30ed85b856c9e43839ef3bb4a6981e2eb724c90962b5c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_train_b/msg_01.jsonl": "f73b37e1b5bb43efa438488c90220ee01e00e65477fedbc2026119ed9006b31e",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_train_c/msg_01.jsonl": "4d2b865357708ea1382e9f7fa7488e36002289cd045b5e2a4147420efb3098ff",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_train_d/msg_01.jsonl": "73925b8970319eb55dbe8ff4f6b4d213f77d74765b451448e324dd1b7aa0fd4d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_gen_1/msg_01.jsonl": "615e6578ba7ce979f5b00c2dd0c3244739f46d4d9337e8776a55f5d62215a1e6",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_gen_2/msg_01.jsonl": "35e64ce69dd91212c9d5ea93d669a0329b6a85e765e43f6110d0d8d292dbaf7a",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules/msg_01.jsonl": "7ca85ea297a3b7e3fa6984fcc9153b8afad93baa9eaf42253b99f6a1b39359a1",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules/msg_02.jsonl": "3e66576024e089385bd482ce35845eead506c73bf7a510cd70c9042a5132b956",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules/msg_03.jsonl": "e3bdb742a146dada2a73a165d8895a8c0ab84c837a1d28a022343458e91fe1a2",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules/msg_04.jsonl": "affe5a63aff419694816c69d1922fbee547c89dc2539752e356ef3cc4e26a817",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules/msg_05.jsonl": "70fe00404b6c4f2702631681397e633277d23da0bdc1637664d583673642e13e",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules/msg_06.jsonl": "e221c0211e71b6033b0d774fceb4d9e0d626b69795778bd11822b1e6a6beff53",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules/msg_07.jsonl": "3d0a313604157499e25f6cdea5bb239200127d289497c44ce2016fa83d1f1d76",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules/msg_08.jsonl": "5bba2fe6399ae846666d5a99ca910c95799ceaa94ca184dc3aa62a38b249e9ef",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules/msg_09.jsonl": "8fed56327475238112595bf03f663017f8bdf33b53815a2e3592bf4dfc131371",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules_ops/msg_01.jsonl": "2e44dc34a67588a4e540ceba1ca6e0b4f0c8129d2f4e141c64e1b75becbdb9b0",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules_ops/msg_02.jsonl": "9da6fc062c62238978d65425174153a9dcbddec426af30253a8de913c6d4c29d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules_ext/msg_01.jsonl": "641ffa3206c3819094b26b464ce53182354adb71edec254ddb168f94f862fb98",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules_ext/msg_02.jsonl": "5b42d6a478f3de2479d1a60c0706816440b30657805f1f915dff70e893860d6f",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_rules_ext/msg_03.jsonl": "98bce7417ef9a8318c8a36ada5e21f30b74867d437eec0feb3297939cf63a3b3",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_formulations/msg_01.jsonl": "66e3699be9ccf6b3cd75f66337f64f5b846d2ea5fe70575116b81402baef1ee5",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_ext_1/msg_01.jsonl": "f525a0ded0360f62156a0c7a4b50fe03d274b07f61f62043ad52888016b9c9bd",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_ext_1/msg_02.jsonl": "d557ff6eb8bc168368965e9f0a219dc6b934fe96c9e219c57f896ec5b5a6e58d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_ext_1/msg_03.jsonl": "8ff510dbc2a017de8723f1eac3947ee4dfa05d7d9a82ef6290e29a926977b798",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_ext_1/msg_04.jsonl": "0000e6ecc0a24069c3db69dcd30a1c3fa40270b9c65094849bc8c4c335310362",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_ext_1/msg_05.jsonl": "a7dae07d8a444339586cd7a774d158123d100e43633709c67e2ef3d7052a85e9",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_combo/msg_01.jsonl": "ddc3f6d5e20f6b40d0f3d9df6c2a1d6da98b50f3898cc36d657d62ee679a810e",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_combo/msg_02.jsonl": "cc560428699908513e9ebb46ef95c3bfa51880e9c51d53d7d9119c47636d3f0b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/synth_combo/msg_03.jsonl": "c734b3a84942891015b0035b56b2c047ee28550b4d06f0772a5f8fa3c4f6ac97",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_01.jsonl": "1fbe4564533ab84198869ed186b03786ea9b5082c524e3c787075a42cf941e0b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_02.jsonl": "a99df4b30cc4a4c15466c2a464004c7a5179b52f03f603463c143a6ad1826524",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_03.jsonl": "e847d1606148c666368630df315950644954e9654f684d97fb961df602156834",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_04.jsonl": "2e038ce98dbb4c663c39e8d7cf6dda401753dacbde2be10b96f5068fc8eee962",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_05.jsonl": "0a36365082bfdb8cf1510fa22dba4ea553c35aaa6b14be27f3bea94d2bb1032c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_06.jsonl": "7474e714b05abafb92f02035e73f2447f15437cfe679985bde6356f59ed48575",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_07.jsonl": "3d085a7158cd3aafb71e783511a3f447e9bda157766368679a059af825b62cc5",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_08.jsonl": "c50d27fc9fa88c918a348e1b4b09c1e4c4898de813cf66d1e1c113590bbf5561",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_09.jsonl": "ee2662b59f133f3cc4bf283109f520d09724bbf1e63639095e5042d20e47d676",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_10.jsonl": "d18acb30e462a8638e9cab7c7ba8bfa0f032027ecfd3a94c0f9ffd34652ceb23",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_11.jsonl": "e50bdd1ae3563b6d6e932f88336dbfe385b70a2522bd8241f6ffaa7f4ef16116",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_12.jsonl": "db88d8057c835d6ef4a382e09ddec10dd9f873a16a14ac9a967ef29300459d4b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_13.jsonl": "0322ad32e33232500e6bf29daf3e16fb9e4cbd831cec78b414c0c5b9251ee126",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_14.jsonl": "8772af592eda8c6730203d9691f9c905cf771d7940dd6ac841258731d4fcdd45",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_15.jsonl": "3eacc3a20b4ec931088358d69026ca4403d027b2819c67b5f4a835d5b1997527",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3/msg_16.jsonl": "76ae6192d87f9740e167c5d3cf9cce91881b620bcc3df7c8cc36803e290cb3b4",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3b/msg_21.jsonl": "44155af8ad9a48f957584efa8923df3b49b1ad5ea82d347fbcf39d19cbf5f013",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3b/msg_22.jsonl": "b4e8fca6d282d62489a1d977762a80d2faed114ad2a0223bfd9d1b8349b35e9c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3b/msg_23.jsonl": "54142a24bb55993da02b6a02a7b3bcb5da5b617c5b527a17eb46958cba401598",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/scenes_r3b/msg_24.jsonl": "5b285dd2065968c2223ac8d650a51e0c342681339b1c199fd412731b1fbe8694",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_r3_gaps/msg_01.jsonl": "d7f656357ff495e316975171c4c2fb7efc82ad13bbe7e441813883f00fb55380",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_r3_gaps/msg_02.jsonl": "5ae2a31883d8a07dfb2d21dc236dfdc7f81871a1731c0c90703daa98b8aa0028",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_tgt_1/msg_01.jsonl": "a628612fb97c1245fab1d3d885ccd0838eb334bb609e32756c5a2ca711f9d8af",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_tgt_2/msg_01.jsonl": "16c08191c7ca15f0d2f574fc547560e62a7c5c9e73a59375d33d36d9f55e6a84",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_01.jsonl": "ddef1a314f0d703120ae4b7688a6cf2ad8447e2897ee5453f57ecb74866a50d5",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_02.jsonl": "b51dbe40529d744b2c3bba71cae772e0a9153030afaf0f2957ed3fc201492b39",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_03.jsonl": "e585ce8429262b4e2d43de2f4c3358377bfc426d8a3bda116ef29d43ee0a0467",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_04.jsonl": "a355b60824862e08500c5bac7e6efd37ed8da55cbd7b6766b589aa8e98e31032",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_05.jsonl": "1477b3ab2502a6bd90000d95cf635feb1fded9011a28f624beb6a96822139ecc",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_06.jsonl": "8b579e918c67c178914a6457cf84ec0368c1cb4c49b0d725d46b20facb755f3e",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_07.jsonl": "53b3c7178c435ea79bb969dcc2d0391e2f3e386f28e398cb003729d323b427f0",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_08.jsonl": "b6f65299d8070d63190f798f3303d37d10b76bbc47324591415a1deb08acc5f9",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_09.jsonl": "4208d0993b562c14e9294bdbb4f3978d06a2c97aaec58c5a243b228e4a963c24",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_10.jsonl": "bcee7fbac0c7264b2d25e1b5bdc69a848753c7cb54ea199a244e22cf944d114a",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_11.jsonl": "8c49e149a7631df2b8ac506be9863a0d7c37655f6b2dd3c8412df25c1e4e3597",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_groups/msg_12.jsonl": "2c78cc72a46fb2aa71b9e0461383fbecb9332393c67a180bda78d9fe656af332",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_01.jsonl": "a4485c942c88f88c382cc77b3672e878490cf653996c948dee54090b5b8dd55e",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_02.jsonl": "214f617f22af8a63b9d18f05480e485ebfa79253e2ffdd6f108f35553db266f6",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_03.jsonl": "e0f704e8ea6be0e842eafbab321f040a31a15d2f65da5d6a7b86370a7ae8f2bd",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_04.jsonl": "da2635a753fcd4aeec49517be7ad95240cad9c384131f10fec5be4bb71e6b52c",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_05.jsonl": "a142115e474a47fe400768fdf18bbf6473b1fbaaab89a4aa1e212bd78087be24",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_06.jsonl": "6984ce3012417fc291092a0c8c47efb7971249f8bf32d79f7c9307e8956ba85a",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_07.jsonl": "d481134a080a203c58807c75a331e988ebddbd211ac7d7992d1f77e8e4c6c9d8",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_08.jsonl": "1609f3d510f0b0cd3cc872585f6948da31f31302101907a37868df74ca47c392",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_09.jsonl": "f4d7726a9d4440bda3744c11c2f20dc6486a5eee0bad4452df6b97b7d74458f3",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_10.jsonl": "b153e71219658722af33f1cbd9fc8fd44d01af9e521e837ada33a3a6bb354291",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_11.jsonl": "93643e08c14966f288d38686957a7f437e22c8b41e1c22f782176d6e884ec1c4",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/ops_positions/msg_12.jsonl": "39bbb486658d03b8f315b1665aff0b53caa3e736eb66ae47653bbc30608a117b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_short_r2/msg_01.jsonl": "18ea50f0a3323af968a563cd1d5e4677d56c6f9e1b80a509718715a8638a3781",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_short_r2/msg_02.jsonl": "638cda58ca9e1d2e88792fce6fcac56cf6b71239a7a038ec135714e13d4d20fe",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_short_r2/msg_03.jsonl": "b757aeb19bcea424c3aab62690849d772d81bbaec3adf82f8c8779e81056fb1b",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/opus_short_r2/msg_04.jsonl": "b71f2c9c812cd4338e3ebe51858029900465030011febd510d0e80f5f725ba09",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_01.jsonl": "53e662cab7a4ce2d7a463f1e5c6e21515f125cf3f9b5da37121473fe6519a3ce",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_02.jsonl": "b98f19f3db6e1ade9deeb38372c01b4938efd19386306db1ff99a292cee16849",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_03.jsonl": "17db7dc0cfe80787d5bef3fb3647911599b887c306d71d0145e2e18c37788da3",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_04.jsonl": "59dc2038f84ce758f183fc473a30701d04a5ede662546bbf83e7934f31eb47d9",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_05.jsonl": "38d04005059aa41192bca0395f5aba9621b54bef15a574bbccc7d79529870910",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_06.jsonl": "f501f6ff60873d0d22fd9398db4e56bec4d981d6cfbb0b612ca06c8ec37f3493",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_07.jsonl": "7efabbdab7d952b7a707ffdb34b22e41b42fed1c105adfe94ebe76462ec8f52d",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_08.jsonl": "8150da6ab90cc48c59f5f7ac67f2d28cb5564261809d671ef9cf63a1b0068eeb",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_09.jsonl": "487eec550d196a76f7f4e28130a5ee187dce7656bf6f9afb67a88f087f99d3d3",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_10.jsonl": "51e64cb69a7ad1b831be11f4e0eff315211d525c577076f4a3ba2ed7787f8ca9",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_11.jsonl": "6e1fed3991ea7da91a8cdb0154a546fa7f10c4bddef25a3c3f0a0b51bb18fef4",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_12.jsonl": "d4997a0f82c9357aea7333e0cdd1c9e246d8b8a6607a2bf2f50f75e468982347",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_13.jsonl": "27c26c6394bdda5ee42a5cbc497d2aeb77999384248a0a2d5f10d3e55ef9ffcd",
+  "/home/skutner/browserLLM/diagram-vss-demo/training/sketch/llm_train/nl_p1/opus/batch_14.jsonl": "94c99b73ff50bd020c06ebff503eec426c2813831b283dbe9968d695cbb5544e"
+ },
+ "code": {
+  "training/qwen/finetune/lines_oracle.mjs": "4fe72be2a68da02b783090d26a46fee1906dd412d3436d23bf719e370980a5d0",
+  "training/qwen/finetune/lines_reader.mjs": "8c2ad5ab6b42e07ff9e1944fb3ab6499cf99d86a23c09a2ccf96375166226635",
+  "training/qwen/finetune/lines_format.mjs": "f69f196ebeda8d5549e054936fa920ac3bd15f6e77d6df4cc3c7bdabfcb3fe91",
+  "training/neural/parity/score_arm.mjs": "477449ca977240ed0b20a9ffcf42ae53eddd5220c74bbdf3e658bdec4be74ff2",
+  "training/neural/parity/arm_lib.mjs": "3ebe440fad4bdc6b741a6227986e32dce0eb41f68186f27854d7e6bab06e7dc2",
+  "training/neural/parity/parity_lib.mjs": "e750ed25d8c8308b7d3c5ce3abd0bd2126cf20b77fde7bc3b0c48d45ff9a9b03",
+  "docs/js/logic.js": "715da7ed6b783350d3d167f7d477fbd58cfa722b69c877904552321ce6fcdc0e"
+ },
+ "rule": "a gold request passes when the validator does not hold it and it reads back to the same type and key=value strings; gate >= 99.5% on nl_a and on every training folder",
+ "results": {
+  "plain": {
+   "nl_a": {
+    "messages": 584,
+    "requests": 777,
+    "pass": 770,
+    "pass_share": 0.99099,
+    "meets_995": false,
+    "causes": {
+     "the words of label=… 1946 are not in the message": 1,
+     "disconnect does not take target (in the training data)": 1,
+     "the words of name=… are not in the message": 1,
+     "a description does not take anchor (in the training data)": 1,
+     "count does not take label (in the training data)": 1,
+     "the words of label=… 3s are not in the message": 1,
+     "the words of label=… scope are not in the message": 1
+    },
+    "examples": {
+     "the words of label=… 1946 are not in the message": [
+      "nl-03-018"
+     ],
+     "disconnect does not take target (in the training data)": [
+      "nl-06-002"
+     ],
+     "the words of name=… are not in the message": [
+      "nl-06-012"
+     ],
+     "a description does not take anchor (in the training data)": [
+      "nl-06-014"
+     ],
+     "count does not take label (in the training data)": [
+      "nl-06-018"
+     ],
+     "the words of label=… 3s are not in the message": [
+      "nl-07-039"
+     ],
+     "the words of label=… scope are not in the message": [
+      "nl-07-051"
+     ]
+    },
+    "unreliable_rows_apart": {
+     "messages": 26,
+     "requests": 23,
+     "pass": 18,
+     "pass_share": 0.78261,
+     "meets_995": false,
+     "causes": {
+      "… is neither on the drawing, nor written in the message, nor created earlier": 2,
+      "a description does not take anchor (in the training data)": 1,
+      "count does not take label (in the training data)": 1,
+      "the words of label=… & Bean are neither in the message nor on the drawing": 1
+     },
+     "examples": {
+      "… is neither on the drawing, nor written in the message, nor created earlier": [
+       "nl-05-003",
+       "nl-05-008"
+      ],
+      "a description does not take anchor (in the training data)": [
+       "nl-05-014"
+      ],
+      "count does not take label (in the training data)": [
+       "nl-05-017"
+      ],
+      "the words of label=… & Bean are neither in the message nor on the drawing": [
+       "nl-11-013"
+      ]
+     }
+    }
+   },
+   "llm_train/sonnet_msg": {
+    "messages": 600,
+    "requests": 3127,
+    "pass": 3127,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/haiku_msg": {
+    "messages": 600,
+    "requests": 2304,
+    "pass": 2304,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/sonnet_msg2": {
+    "messages": 600,
+    "requests": 2789,
+    "pass": 2789,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/haiku_msg2": {
+    "messages": 600,
+    "requests": 2001,
+    "pass": 2001,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/sonnet_long": {
+    "messages": 240,
+    "requests": 2562,
+    "pass": 2561,
+    "pass_share": 0.99961,
+    "meets_995": true,
+    "causes": {
+     "… is neither on the drawing, nor written in the message, nor created earlier": 1
+    },
+    "examples": {
+     "… is neither on the drawing, nor written in the message, nor created earlier": [
+      "sl-0170"
+     ]
+    }
+   },
+   "llm_bench/fresh1/sonnet": {
+    "messages": 500,
+    "requests": 3030,
+    "pass": 3030,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_bench/fresh1/haiku": {
+    "messages": 500,
+    "requests": 2514,
+    "pass": 2514,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/sonnet_short": {
+    "messages": 1500,
+    "requests": 1500,
+    "pass": 1500,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/haiku_short": {
+    "messages": 1500,
+    "requests": 1500,
+    "pass": 1500,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_bench/sonnet_spans": {
+    "messages": 500,
+    "requests": 2173,
+    "pass": 2173,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_bench/haiku_spans": {
+    "messages": 500,
+    "requests": 2202,
+    "pass": 2202,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_train_a": {
+    "messages": 300,
+    "requests": 994,
+    "pass": 994,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_train_b": {
+    "messages": 300,
+    "requests": 891,
+    "pass": 891,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_train_c": {
+    "messages": 300,
+    "requests": 1059,
+    "pass": 1059,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_train_d": {
+    "messages": 300,
+    "requests": 1015,
+    "pass": 1015,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_gen_1": {
+    "messages": 300,
+    "requests": 991,
+    "pass": 991,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_gen_2": {
+    "messages": 300,
+    "requests": 1094,
+    "pass": 1094,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/synth_rules": {
+    "messages": 8404,
+    "requests": 11707,
+    "pass": 11707,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/synth_rules_ops": {
+    "messages": 1374,
+    "requests": 1470,
+    "pass": 1468,
+    "pass_share": 0.99864,
+    "meets_995": true,
+    "causes": {
+     "the words of name=… are not in the message": 2
+    },
+    "examples": {
+     "the words of name=… are not in the message": [
+      "so-00494",
+      "so-01361"
+     ]
+    }
+   },
+   "llm_train/synth_rules_ext": {
+    "messages": 2783,
+    "requests": 3664,
+    "pass": 3664,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/ops_formulations": {
+    "messages": 700,
+    "requests": 733,
+    "pass": 733,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_ext_1": {
+    "messages": 500,
+    "requests": 743,
+    "pass": 743,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/synth_combo": {
+    "messages": 1497,
+    "requests": 4521,
+    "pass": 4521,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/scenes_r3": {
+    "messages": 701,
+    "requests": 714,
+    "pass": 714,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/scenes_r3b": {
+    "messages": 96,
+    "requests": 94,
+    "pass": 94,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_r3_gaps": {
+    "messages": 136,
+    "requests": 147,
+    "pass": 147,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_tgt_1": {
+    "messages": 300,
+    "requests": 941,
+    "pass": 941,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_tgt_2": {
+    "messages": 300,
+    "requests": 1023,
+    "pass": 1023,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/ops_groups": {
+    "messages": 480,
+    "requests": 1693,
+    "pass": 1693,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/ops_positions": {
+    "messages": 464,
+    "requests": 1022,
+    "pass": 1022,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_short_r2": {
+    "messages": 255,
+    "requests": 345,
+    "pass": 345,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/nl_p1": {
+    "messages": 673,
+    "requests": 791,
+    "pass": 783,
+    "pass_share": 0.98989,
+    "meets_995": false,
+    "causes": {
+     "the words of label=… are not in the message": 4,
+     "… is neither on the drawing, nor written in the message, nor created earlier": 2,
+     "label=… is not in the message": 1,
+     "the words of label=… Okafor are not in the message": 1
+    },
+    "examples": {
+     "the words of label=… are not in the message": [
+      "tr-01-047",
+      "tr-05-033",
+      "tr-05-033"
+     ],
+     "label=… is not in the message": [
+      "tr-09-046"
+     ],
+     "… is neither on the drawing, nor written in the message, nor created earlier": [
+      "tr-11-045",
+      "tr-12-047"
+     ],
+     "the words of label=… Okafor are not in the message": [
+      "tr-13-004"
+     ]
+    },
+    "unreliable_rows_apart": {
+     "messages": 33,
+     "requests": 36,
+     "pass": 25,
+     "pass_share": 0.69444,
+     "meets_995": false,
+     "causes": {
+      "… is neither on the drawing, nor written in the message, nor created earlier": 11
+     },
+     "examples": {
+      "… is neither on the drawing, nor written in the message, nor created earlier": [
+       "tr-02-039",
+       "tr-02-040",
+       "tr-02-041"
+      ]
+     }
+    }
+   }
+  },
+  "number_table": {
+   "nl_a": {
+    "messages": 584,
+    "requests": 777,
+    "pass": 770,
+    "pass_share": 0.99099,
+    "meets_995": false,
+    "causes": {
+     "the words of label=… 1946 are not in the message": 1,
+     "disconnect does not take target (in the training data)": 1,
+     "the words of name=… are not in the message": 1,
+     "a description does not take anchor (in the training data)": 1,
+     "count does not take label (in the training data)": 1,
+     "the words of label=… 3s are not in the message": 1,
+     "the words of label=… scope are not in the message": 1
+    },
+    "examples": {
+     "the words of label=… 1946 are not in the message": [
+      "nl-03-018"
+     ],
+     "disconnect does not take target (in the training data)": [
+      "nl-06-002"
+     ],
+     "the words of name=… are not in the message": [
+      "nl-06-012"
+     ],
+     "a description does not take anchor (in the training data)": [
+      "nl-06-014"
+     ],
+     "count does not take label (in the training data)": [
+      "nl-06-018"
+     ],
+     "the words of label=… 3s are not in the message": [
+      "nl-07-039"
+     ],
+     "the words of label=… scope are not in the message": [
+      "nl-07-051"
+     ]
+    },
+    "unreliable_rows_apart": {
+     "messages": 26,
+     "requests": 23,
+     "pass": 18,
+     "pass_share": 0.78261,
+     "meets_995": false,
+     "causes": {
+      "… is neither on the drawing, nor written in the message, nor created earlier": 2,
+      "a description does not take anchor (in the training data)": 1,
+      "count does not take label (in the training data)": 1,
+      "the words of label=… & Bean are neither in the message nor on the drawing": 1
+     },
+     "examples": {
+      "… is neither on the drawing, nor written in the message, nor created earlier": [
+       "nl-05-003",
+       "nl-05-008"
+      ],
+      "a description does not take anchor (in the training data)": [
+       "nl-05-014"
+      ],
+      "count does not take label (in the training data)": [
+       "nl-05-017"
+      ],
+      "the words of label=… & Bean are neither in the message nor on the drawing": [
+       "nl-11-013"
+      ]
+     }
+    }
+   },
+   "llm_train/sonnet_msg": {
+    "messages": 600,
+    "requests": 3127,
+    "pass": 3127,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/haiku_msg": {
+    "messages": 600,
+    "requests": 2304,
+    "pass": 2304,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/sonnet_msg2": {
+    "messages": 600,
+    "requests": 2789,
+    "pass": 2789,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/haiku_msg2": {
+    "messages": 600,
+    "requests": 2001,
+    "pass": 2001,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/sonnet_long": {
+    "messages": 240,
+    "requests": 2562,
+    "pass": 2561,
+    "pass_share": 0.99961,
+    "meets_995": true,
+    "causes": {
+     "… is neither on the drawing, nor written in the message, nor created earlier": 1
+    },
+    "examples": {
+     "… is neither on the drawing, nor written in the message, nor created earlier": [
+      "sl-0170"
+     ]
+    }
+   },
+   "llm_bench/fresh1/sonnet": {
+    "messages": 500,
+    "requests": 3030,
+    "pass": 3030,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_bench/fresh1/haiku": {
+    "messages": 500,
+    "requests": 2514,
+    "pass": 2514,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/sonnet_short": {
+    "messages": 1500,
+    "requests": 1500,
+    "pass": 1500,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/haiku_short": {
+    "messages": 1500,
+    "requests": 1500,
+    "pass": 1500,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_bench/sonnet_spans": {
+    "messages": 500,
+    "requests": 2173,
+    "pass": 2173,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_bench/haiku_spans": {
+    "messages": 500,
+    "requests": 2202,
+    "pass": 2202,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_train_a": {
+    "messages": 300,
+    "requests": 994,
+    "pass": 994,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_train_b": {
+    "messages": 300,
+    "requests": 891,
+    "pass": 891,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_train_c": {
+    "messages": 300,
+    "requests": 1059,
+    "pass": 1059,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_train_d": {
+    "messages": 300,
+    "requests": 1015,
+    "pass": 1015,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_gen_1": {
+    "messages": 300,
+    "requests": 991,
+    "pass": 991,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_gen_2": {
+    "messages": 300,
+    "requests": 1094,
+    "pass": 1094,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/synth_rules": {
+    "messages": 8404,
+    "requests": 11707,
+    "pass": 11707,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/synth_rules_ops": {
+    "messages": 1374,
+    "requests": 1470,
+    "pass": 1468,
+    "pass_share": 0.99864,
+    "meets_995": true,
+    "causes": {
+     "the words of name=… are not in the message": 2
+    },
+    "examples": {
+     "the words of name=… are not in the message": [
+      "so-00494",
+      "so-01361"
+     ]
+    }
+   },
+   "llm_train/synth_rules_ext": {
+    "messages": 2783,
+    "requests": 3664,
+    "pass": 3664,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/ops_formulations": {
+    "messages": 700,
+    "requests": 733,
+    "pass": 733,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_ext_1": {
+    "messages": 500,
+    "requests": 743,
+    "pass": 743,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/synth_combo": {
+    "messages": 1497,
+    "requests": 4521,
+    "pass": 4521,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/scenes_r3": {
+    "messages": 701,
+    "requests": 714,
+    "pass": 714,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/scenes_r3b": {
+    "messages": 96,
+    "requests": 94,
+    "pass": 94,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_r3_gaps": {
+    "messages": 136,
+    "requests": 147,
+    "pass": 147,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_tgt_1": {
+    "messages": 300,
+    "requests": 941,
+    "pass": 941,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_tgt_2": {
+    "messages": 300,
+    "requests": 1023,
+    "pass": 1023,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/ops_groups": {
+    "messages": 480,
+    "requests": 1693,
+    "pass": 1693,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/ops_positions": {
+    "messages": 464,
+    "requests": 1022,
+    "pass": 1022,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/opus_short_r2": {
+    "messages": 255,
+    "requests": 345,
+    "pass": 345,
+    "pass_share": 1,
+    "meets_995": true,
+    "causes": {},
+    "examples": {}
+   },
+   "llm_train/nl_p1": {
+    "messages": 673,
+    "requests": 791,
+    "pass": 786,
+    "pass_share": 0.99368,
+    "meets_995": false,
+    "causes": {
+     "… is neither on the drawing, nor written in the message, nor created earlier": 2,
+     "the words of label=… are not in the message": 1,
+     "label=… is not in the message": 1,
+     "the words of label=… Okafor are not in the message": 1
+    },
+    "examples": {
+     "the words of label=… are not in the message": [
+      "tr-05-033"
+     ],
+     "label=… is not in the message": [
+      "tr-09-046"
+     ],
+     "… is neither on the drawing, nor written in the message, nor created earlier": [
+      "tr-11-045",
+      "tr-12-047"
+     ],
+     "the words of label=… Okafor are not in the message": [
+      "tr-13-004"
+     ]
+    },
+    "unreliable_rows_apart": {
+     "messages": 33,
+     "requests": 36,
+     "pass": 25,
+     "pass_share": 0.69444,
+     "meets_995": false,
+     "causes": {
+      "… is neither on the drawing, nor written in the message, nor created earlier": 11
+     },
+     "examples": {
+      "… is neither on the drawing, nor written in the message, nor created earlier": [
+       "tr-02-039",
+       "tr-02-040",
+       "tr-02-041"
+      ]
+     }
+    }
+   }
+  }
+ },
+ "scored_nl_a": {
+  "development": {
+   "opus": {
+    "today": {
+     "requested": 392,
+     "right": 387,
+     "wrong": 0,
+     "not_done": 5,
+     "extras": 0,
+     "executed": 387,
+     "execution_precision": 1,
+     "right_share": 0.987245,
+     "cost_score": 98.72449
+    },
+    "direction": {
+     "requested": 392,
+     "right": 387,
+     "wrong": 0,
+     "not_done": 5,
+     "extras": 0,
+     "executed": 387,
+     "execution_precision": 1,
+     "right_share": 0.987245,
+     "cost_score": 98.72449
+    }
+   },
+   "either": {
+    "today": {
+     "requested": 412,
+     "right": 387,
+     "wrong": 0,
+     "not_done": 25,
+     "extras": 0,
+     "executed": 387,
+     "execution_precision": 1,
+     "right_share": 0.93932,
+     "cost_score": 93.932039
+    },
+    "direction": {
+     "requested": 412,
+     "right": 387,
+     "wrong": 0,
+     "not_done": 25,
+     "extras": 0,
+     "executed": 387,
+     "execution_precision": 1,
+     "right_share": 0.93932,
+     "cost_score": 93.932039
+    }
+   }
+  },
+  "calibration": {
+   "opus": {
+    "today": {
+     "requested": 408,
+     "right": 401,
+     "wrong": 0,
+     "not_done": 7,
+     "extras": 0,
+     "executed": 401,
+     "execution_precision": 1,
+     "right_share": 0.982843,
+     "cost_score": 98.284314
+    },
+    "direction": {
+     "requested": 408,
+     "right": 401,
+     "wrong": 0,
+     "not_done": 7,
+     "extras": 0,
+     "executed": 401,
+     "execution_precision": 1,
+     "right_share": 0.982843,
+     "cost_score": 98.284314
+    }
+   },
+   "either": {
+    "today": {
+     "requested": 451,
+     "right": 401,
+     "wrong": 0,
+     "not_done": 50,
+     "extras": 0,
+     "executed": 401,
+     "execution_precision": 1,
+     "right_share": 0.889135,
+     "cost_score": 88.913525
+    },
+    "direction": {
+     "requested": 451,
+     "right": 401,
+     "wrong": 0,
+     "not_done": 50,
+     "extras": 0,
+     "executed": 401,
+     "execution_precision": 1,
+     "right_share": 0.889135,
+     "cost_score": 88.913525
+    }
+   }
+  }
+ }
+}

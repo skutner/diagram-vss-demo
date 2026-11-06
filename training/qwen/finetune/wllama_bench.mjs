@@ -3,7 +3,8 @@
 // log-probabilities against the native records; (2) time per message as the browser reader would spend it. A second variant measures the
 // prompt a fine-tuned reader could use: a one-line system prompt, the drawing and the message, generation without the JSON grammar
 // (the speed of decoding depends on the context length and the number of tokens, not on what is written).
-//   node wllama_bench.mjs --gguf FILE --native RECORDS.jsonl --out OUT.json [--n 8] [--short 6] [--threads 1]
+//   node wllama_bench.mjs --gguf FILE --native RECORDS.jsonl --out OUT.json [--n 8] [--from 0] [--short 6] [--threads 1]
+// --from k: start at the k-th native record (to split one parity run over parallel one-thread instances; --short 0 for those)
 // Serves the two wllama files, the GGUF and a blank page from 127.0.0.1; nothing else. PLAYWRIGHT: path of a playwright package.
 import { createServer } from 'node:http';
 import { readFileSync, writeFileSync, statSync, createReadStream } from 'node:fs';
@@ -17,7 +18,7 @@ import { startSystem } from '../../neural/parity/arm_lib.mjs';
 
 const ROOT = resolve(new URL('../../..', import.meta.url).pathname);
 const A = process.argv.slice(2), opt = k => { const i = A.indexOf('--' + k); return i >= 0 ? A[i + 1] : null; };
-const gguf = opt('gguf'), nativeFile = opt('native'), outFile = opt('out'), N = +(opt('n') || 8), NS = +(opt('short') || 6), threads = +(opt('threads') || 1);
+const gguf = opt('gguf'), nativeFile = opt('native'), outFile = opt('out'), N = +(opt('n') || 8), FROM = +(opt('from') || 0), NS = +(opt('short') || 6), threads = +(opt('threads') || 1);
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT || '/home/skutner/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 
@@ -27,7 +28,7 @@ const wireDocs = Object.fromEntries([...S0.engine.wireTypes].map(([t, w]) => [t,
 const prompt = buildPrompt(spec, reader, wireDocs), schema = buildSchema(spec);
 const SHORT_SYSTEM = 'Write the diagram editor requests in this message, one per line.';
 
-const native = readFileSync(nativeFile, 'utf8').split('\n').filter(Boolean).map(l => JSON.parse(l)).filter(r => r.qwen && !r.error).slice(0, N);
+const native = readFileSync(nativeFile, 'utf8').split('\n').filter(Boolean).map(l => JSON.parse(l)).filter(r => r.qwen && !r.error).slice(FROM, FROM + N);
 const items = new Map(loadSets([...new Set(native.map(r => r.set))]).flatMap(s => s.items).map(it => [it.id, it]));
 const shipped = native.map(r => { const it = items.get(r.id); return { id: r.id, body: Object.assign({ messages: [{ role: 'system', content: prompt }, { role: 'user', content: userContent(contextNames(it), it.text) }],
   response_format: { type: 'json_schema', json_schema: { name: 'diagram_requests', schema, strict: true } } }, reader.request) }; });

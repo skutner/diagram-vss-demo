@@ -127,7 +127,7 @@ for (const it of items) {
       run = runOf(rd);
       q = { ok: rd.v.ok, errors: rd.v.errors, blocked: rd.mapped.analyses.filter(a => a.blocked).map(a => ({ id: a.id, errors: a.errors })), raw: rd.raw, finish: rd.finish,
         scores: rd.scores.map(s => ({ min: s.min, weakest: s.weakest, missing: s.missing })), not_understood: rd.v.notUnderstood || [], ms, usage: res.usage || null,
-        timings: res.timings || null, prompt_tail_ok: typeof rd.vb.prompt === 'string' ? rd.vb.prompt.endsWith(THINK_OFF_SUFFIX) : null, drawing_chars: drawing.length,
+        timings: res.timings || null, prompt: process.env.KEEP_PROMPT ? (typeof rd.vb.prompt === 'string' ? rd.vb.prompt : null) : undefined, prompt_tail_ok: typeof rd.vb.prompt === 'string' ? rd.vb.prompt.endsWith(THINK_OFF_SUFFIX) : null, drawing_chars: drawing.length,
         // per generated token: id, log-probability, and the second-best log-probability when top_logprobs >= 2 (the parity gate's margin)
         tokens: (res.choices?.[0]?.logprobs?.content || []).map(t => [t.id, t.logprob, t.top_logprobs?.[1]?.logprob ?? null]) };
     } catch (e) { error = String(e && e.message || e); run = { reader: 'qwen', cut: 'own', mains: [], allNodes: [], unread: [], cutInfo: null, error }; console.error(`FAILED ${it.id}: ${error}`); }

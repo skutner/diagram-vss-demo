@@ -1,0 +1,469 @@
+{
+ "records": "/home/skutner/.cache/diagram-vss-qwen/runs/q06/zero.native50.jsonl",
+ "weights": null,
+ "dtype": "bf16",
+ "messages": 50,
+ "greedy_identical": 40,
+ "greedy_identical_share": 0.8,
+ "tokens": 2044,
+ "delta_p50": 4.530368642008398e-06,
+ "delta_p99": 0.15705770701169966,
+ "delta_max": 0.4639630913734436,
+ "rows": [
+  {
+   "id": "nl-01-001",
+   "set": "nl_a",
+   "tokens": 133,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.044277966022491455
+  },
+  {
+   "id": "nl-01-002",
+   "set": "nl_a",
+   "tokens": 10,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.05336181819438934
+  },
+  {
+   "id": "nl-01-007",
+   "set": "nl_a",
+   "tokens": 12,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.023193717002868652
+  },
+  {
+   "id": "nl-01-008",
+   "set": "nl_a",
+   "tokens": 36,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.3858470320701599
+  },
+  {
+   "id": "nl-01-009",
+   "set": "nl_a",
+   "tokens": 17,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.07947847247123718
+  },
+  {
+   "id": "nl-01-010",
+   "set": "nl_a",
+   "tokens": 13,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.056981444358825684
+  },
+  {
+   "id": "nl-01-011",
+   "set": "nl_a",
+   "tokens": 36,
+   "greedy_identical": false,
+   "first_divergence": 9,
+   "divergence_margin_nats": 0.25,
+   "delta_max": 0.18871504068374634
+  },
+  {
+   "id": "nl-01-012",
+   "set": "nl_a",
+   "tokens": 19,
+   "greedy_identical": false,
+   "first_divergence": 18,
+   "divergence_margin_nats": 0.0,
+   "delta_max": 0.243739515542984
+  },
+  {
+   "id": "nl-01-013",
+   "set": "nl_a",
+   "tokens": 23,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.07827228307723999
+  },
+  {
+   "id": "nl-01-015",
+   "set": "nl_a",
+   "tokens": 36,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.0889337956905365
+  },
+  {
+   "id": "nl-01-016",
+   "set": "nl_a",
+   "tokens": 29,
+   "greedy_identical": false,
+   "first_divergence": 1,
+   "divergence_margin_nats": 0.125,
+   "delta_max": 0.27013832330703735
+  },
+  {
+   "id": "nl-01-018",
+   "set": "nl_a",
+   "tokens": 7,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.018800996243953705
+  },
+  {
+   "id": "nl-01-022",
+   "set": "nl_a",
+   "tokens": 42,
+   "greedy_identical": false,
+   "first_divergence": 12,
+   "divergence_margin_nats": 0.3750000596046448,
+   "delta_max": 0.4159342646598816
+  },
+  {
+   "id": "nl-01-024",
+   "set": "nl_a",
+   "tokens": 14,
+   "greedy_identical": false,
+   "first_divergence": 13,
+   "divergence_margin_nats": 0.375,
+   "delta_max": 0.21520614624023438
+  },
+  {
+   "id": "nl-01-031",
+   "set": "nl_a",
+   "tokens": 29,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.19818729162216187
+  },
+  {
+   "id": "nl-01-032",
+   "set": "nl_a",
+   "tokens": 18,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.14679184556007385
+  },
+  {
+   "id": "nl-01-035",
+   "set": "nl_a",
+   "tokens": 8,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.14625579118728638
+  },
+  {
+   "id": "nl-01-036",
+   "set": "nl_a",
+   "tokens": 20,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.0361102819442749
+  },
+  {
+   "id": "nl-01-039",
+   "set": "nl_a",
+   "tokens": 31,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.15699324011802673
+  },
+  {
+   "id": "nl-01-040",
+   "set": "nl_a",
+   "tokens": 12,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.0833941251039505
+  },
+  {
+   "id": "nl-01-041",
+   "set": "nl_a",
+   "tokens": 34,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.11438745260238647
+  },
+  {
+   "id": "nl-01-042",
+   "set": "nl_a",
+   "tokens": 56,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.12269699573516846
+  },
+  {
+   "id": "nl-01-043",
+   "set": "nl_a",
+   "tokens": 141,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.10684046149253845
+  },
+  {
+   "id": "nl-01-044",
+   "set": "nl_a",
+   "tokens": 32,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.07469433546066284
+  },
+  {
+   "id": "nl-01-047",
+   "set": "nl_a",
+   "tokens": 22,
+   "greedy_identical": false,
+   "first_divergence": 11,
+   "divergence_margin_nats": 0.375,
+   "delta_max": 0.2976806163787842
+  },
+  {
+   "id": "nl-01-049",
+   "set": "nl_a",
+   "tokens": 37,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.06964990496635437
+  },
+  {
+   "id": "nl-02-007",
+   "set": "nl_a",
+   "tokens": 29,
+   "greedy_identical": false,
+   "first_divergence": 0,
+   "divergence_margin_nats": 0.125,
+   "delta_max": 0.1518821120262146
+  },
+  {
+   "id": "nl-02-011",
+   "set": "nl_a",
+   "tokens": 34,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.08159375190734863
+  },
+  {
+   "id": "nl-02-012",
+   "set": "nl_a",
+   "tokens": 15,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.14844712615013123
+  },
+  {
+   "id": "nl-02-013",
+   "set": "nl_a",
+   "tokens": 24,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.216746985912323
+  },
+  {
+   "id": "nl-02-014",
+   "set": "nl_a",
+   "tokens": 22,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.04030899703502655
+  },
+  {
+   "id": "nl-02-015",
+   "set": "nl_a",
+   "tokens": 50,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.16380825638771057
+  },
+  {
+   "id": "nl-02-016",
+   "set": "nl_a",
+   "tokens": 64,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.10081255435943604
+  },
+  {
+   "id": "nl-02-017",
+   "set": "nl_a",
+   "tokens": 161,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.08954653143882751
+  },
+  {
+   "id": "nl-02-019",
+   "set": "nl_a",
+   "tokens": 7,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.08699449896812439
+  },
+  {
+   "id": "nl-02-021",
+   "set": "nl_a",
+   "tokens": 213,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.08842258900403976
+  },
+  {
+   "id": "nl-02-022",
+   "set": "nl_a",
+   "tokens": 16,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.11710643768310547
+  },
+  {
+   "id": "nl-02-023",
+   "set": "nl_a",
+   "tokens": 31,
+   "greedy_identical": false,
+   "first_divergence": 18,
+   "divergence_margin_nats": 0.75,
+   "delta_max": 0.4639630913734436
+  },
+  {
+   "id": "nl-02-024",
+   "set": "nl_a",
+   "tokens": 24,
+   "greedy_identical": false,
+   "first_divergence": 23,
+   "divergence_margin_nats": 0.4999999701976776,
+   "delta_max": 0.3523508906364441
+  },
+  {
+   "id": "nl-02-028",
+   "set": "nl_a",
+   "tokens": 30,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.09908038377761841
+  },
+  {
+   "id": "nl-02-029",
+   "set": "nl_a",
+   "tokens": 46,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.08004416525363922
+  },
+  {
+   "id": "nl-02-030",
+   "set": "nl_a",
+   "tokens": 42,
+   "greedy_identical": false,
+   "first_divergence": 0,
+   "divergence_margin_nats": 0.25,
+   "delta_max": 0.18503409624099731
+  },
+  {
+   "id": "nl-02-032",
+   "set": "nl_a",
+   "tokens": 10,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.11079099774360657
+  },
+  {
+   "id": "nl-02-033",
+   "set": "nl_a",
+   "tokens": 49,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.07644033432006836
+  },
+  {
+   "id": "nl-02-034",
+   "set": "nl_a",
+   "tokens": 49,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.2180192768573761
+  },
+  {
+   "id": "nl-02-035",
+   "set": "nl_a",
+   "tokens": 9,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.05002033710479736
+  },
+  {
+   "id": "nl-02-037",
+   "set": "nl_a",
+   "tokens": 22,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.01858067512512207
+  },
+  {
+   "id": "nl-02-038",
+   "set": "nl_a",
+   "tokens": 26,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.13657349348068237
+  },
+  {
+   "id": "nl-02-041",
+   "set": "nl_a",
+   "tokens": 169,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.1071990430355072
+  },
+  {
+   "id": "nl-02-042",
+   "set": "nl_a",
+   "tokens": 35,
+   "greedy_identical": true,
+   "first_divergence": null,
+   "divergence_margin_nats": null,
+   "delta_max": 0.22139883041381836
+  }
+ ],
+ "gate": "FAIL",
+ "reasons": [
+  "greedy identical 40/50 (need 95%)",
+  "p99 |delta| 0.15705770701169966 (need <= 0.05)"
+ ]
+}

@@ -1,0 +1,276 @@
+{
+ "messages": 32,
+ "identical": 20,
+ "identical_share": 0.625,
+ "shared_tokens": 2709,
+ "delta_lp_p99": 0.18261051177978516,
+ "delta_lp_max": 0.6267094612121582,
+ "identical_outputs_delta_lp_max": 0.6267094612121582,
+ "divergences": 12,
+ "divergences_not_near_tie": 6,
+ "rows": [
+  {
+   "id": "fo-0007",
+   "identical": false,
+   "shared_tokens": 211,
+   "native_tokens": 565,
+   "browser_tokens": 617,
+   "divergence_margin_nats": 0.2355518341064453
+  },
+  {
+   "id": "fo-0014",
+   "identical": false,
+   "shared_tokens": 0,
+   "native_tokens": 107,
+   "browser_tokens": 267,
+   "divergence_margin_nats": 0.11900323629379272
+  },
+  {
+   "id": "fo-0016",
+   "identical": false,
+   "shared_tokens": 0,
+   "native_tokens": 396,
+   "browser_tokens": 412,
+   "divergence_margin_nats": 0.13295745849609375
+  },
+  {
+   "id": "fo-0019",
+   "identical": true,
+   "shared_tokens": 53,
+   "native_tokens": 53,
+   "browser_tokens": 53,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0021",
+   "identical": false,
+   "shared_tokens": 70,
+   "native_tokens": 94,
+   "browser_tokens": 199,
+   "divergence_margin_nats": 0.024965286254882812
+  },
+  {
+   "id": "fo-0022",
+   "identical": true,
+   "shared_tokens": 49,
+   "native_tokens": 49,
+   "browser_tokens": 49,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0024",
+   "identical": false,
+   "shared_tokens": 31,
+   "native_tokens": 82,
+   "browser_tokens": 51,
+   "divergence_margin_nats": 0.04291534423828125
+  },
+  {
+   "id": "fo-0029",
+   "identical": true,
+   "shared_tokens": 82,
+   "native_tokens": 82,
+   "browser_tokens": 82,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0036",
+   "identical": true,
+   "shared_tokens": 70,
+   "native_tokens": 70,
+   "browser_tokens": 70,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0038",
+   "identical": true,
+   "shared_tokens": 104,
+   "native_tokens": 104,
+   "browser_tokens": 104,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0044",
+   "identical": true,
+   "shared_tokens": 76,
+   "native_tokens": 76,
+   "browser_tokens": 76,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0046",
+   "identical": false,
+   "shared_tokens": 24,
+   "native_tokens": 48,
+   "browser_tokens": 59,
+   "divergence_margin_nats": 0.20035356283187866
+  },
+  {
+   "id": "fo-0050",
+   "identical": true,
+   "shared_tokens": 75,
+   "native_tokens": 75,
+   "browser_tokens": 75,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0053",
+   "identical": false,
+   "shared_tokens": 0,
+   "native_tokens": 211,
+   "browser_tokens": 86,
+   "divergence_margin_nats": 0.02896106243133545
+  },
+  {
+   "id": "fo-0056",
+   "identical": true,
+   "shared_tokens": 73,
+   "native_tokens": 73,
+   "browser_tokens": 73,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0060",
+   "identical": true,
+   "shared_tokens": 66,
+   "native_tokens": 66,
+   "browser_tokens": 66,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0061",
+   "identical": true,
+   "shared_tokens": 92,
+   "native_tokens": 92,
+   "browser_tokens": 92,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0068",
+   "identical": false,
+   "shared_tokens": 152,
+   "native_tokens": 152,
+   "browser_tokens": 152,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0069",
+   "identical": false,
+   "shared_tokens": 154,
+   "native_tokens": 164,
+   "browser_tokens": 278,
+   "divergence_margin_nats": 0.017438888549804688
+  },
+  {
+   "id": "fo-0073",
+   "identical": true,
+   "shared_tokens": 77,
+   "native_tokens": 77,
+   "browser_tokens": 77,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0075",
+   "identical": true,
+   "shared_tokens": 73,
+   "native_tokens": 73,
+   "browser_tokens": 73,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0080",
+   "identical": false,
+   "shared_tokens": 0,
+   "native_tokens": 513,
+   "browser_tokens": 163,
+   "divergence_margin_nats": 0.03174400329589844
+  },
+  {
+   "id": "fo-0084",
+   "identical": true,
+   "shared_tokens": 49,
+   "native_tokens": 49,
+   "browser_tokens": 49,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0086",
+   "identical": false,
+   "shared_tokens": 0,
+   "native_tokens": 94,
+   "browser_tokens": 132,
+   "divergence_margin_nats": 0.04056549072265625
+  },
+  {
+   "id": "fo-0098",
+   "identical": true,
+   "shared_tokens": 66,
+   "native_tokens": 66,
+   "browser_tokens": 66,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0101",
+   "identical": true,
+   "shared_tokens": 79,
+   "native_tokens": 79,
+   "browser_tokens": 79,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0109",
+   "identical": false,
+   "shared_tokens": 514,
+   "native_tokens": 636,
+   "browser_tokens": 611,
+   "divergence_margin_nats": 0.36610227823257446
+  },
+  {
+   "id": "fo-0112",
+   "identical": true,
+   "shared_tokens": 55,
+   "native_tokens": 55,
+   "browser_tokens": 55,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0117",
+   "identical": true,
+   "shared_tokens": 83,
+   "native_tokens": 83,
+   "browser_tokens": 83,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0121",
+   "identical": true,
+   "shared_tokens": 90,
+   "native_tokens": 90,
+   "browser_tokens": 90,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0122",
+   "identical": true,
+   "shared_tokens": 79,
+   "native_tokens": 79,
+   "browser_tokens": 79,
+   "divergence_margin_nats": null
+  },
+  {
+   "id": "fo-0123",
+   "identical": true,
+   "shared_tokens": 162,
+   "native_tokens": 162,
+   "browser_tokens": 162,
+   "divergence_margin_nats": null
+  }
+ ],
+ "gate": "FAIL",
+ "reasons": [
+  "identical outputs 62.5% (need 90%)",
+  "p99 |delta logprob| 0.18261051177978516 (need <= 0.02)",
+  "on identical outputs a token log-probability differs by 0.6267094612121582 (need <= 0.02, which bounds every request score)",
+  "6 divergences not at a near tie (or no margin recorded)"
+ ]
+}

@@ -1,0 +1,4 @@
+477449ca977240ed0b20a9ffcf42ae53eddd5220c74bbdf3e658bdec4be74ff2  training/neural/parity/score_arm.mjs
+3ebe440fad4bdc6b741a6227986e32dce0eb41f68186f27854d7e6bab06e7dc2  training/neural/parity/arm_lib.mjs
+4e4bb98db55c2badc6725e42e04862a5893ffeb2cf4a83d2bbaf3cfc931f2cfb  docs/js/bench-canon.js
+317f41c0c3b08ccaa59671bea7eea17fd76f1fdeaca6c7099214b68f808d6f9d  training/neural/parity/compare_arms.mjs

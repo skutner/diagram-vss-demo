@@ -1,0 +1,559 @@
+{"id": "sm-0008", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0055", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0099", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0117", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0131", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0141", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sm-0162", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0176", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0201", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0225", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0263", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0275", "wire": 5, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0287", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0323", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0353", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sm-0358", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0362", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0415", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0417", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0498", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0521", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0553", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0574", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm-0588", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0014", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sm2-0058", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0194", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0225", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0272", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0303", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0340", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0353", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0397", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0414", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0419", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0446", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0469", "wire": 3, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sm2-0475", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0480", "wire": 3, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sm2-0487", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0502", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0544", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0555", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0560", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0577", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0583", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sm2-0595", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "hm2-0030", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0048", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "hm2-0052", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "hm2-0068", "wire": 2, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "hm2-0142", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0173", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "hm2-0203", "wire": 3, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0215", "wire": 2, "scale": 1.25, "why": "\"resize Depot2 a little, it looks lost\": a bit bigger, by the reason after the span"}
+{"id": "hm2-0240", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0279", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "hm2-0284", "wire": 2, "scale": 2, "why": "\"much bigger\""}
+{"id": "hm2-0289", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0291", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0296", "wire": 4, "scale": 2, "why": "\"much bigger\""}
+{"id": "hm2-0357", "wire": 3, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0395", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0437", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0453", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0490", "wire": 2, "scale": 0.8, "why": "\"Resize Sink5 a little, it blocks the aisle\": a bit smaller, by the reason after the span"}
+{"id": "hm2-0524", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0557", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "hm2-0596", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sl-0002", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0020", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0022", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0044", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0047", "wire": 7, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0067", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0069", "wire": 7, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0073", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0083", "wire": 5, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0084", "wire": 7, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0090", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0102", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0118", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0132", "wire": 5, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0157", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0165", "wire": 7, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sl-0178", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0179", "wire": 7, "scale": 1.25, "why": "\"the Draft to be a bit larger than the Outline. Enlarge the Draft\": the amount is before the span"}
+{"id": "sl-0186", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0191", "wire": 11, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0225", "wire": 11, "scale": 1.25, "why": "\"Make the Mid a bit bigger, enlarge him\": the amount is before the span"}
+{"id": "sl-0226", "wire": 14, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sl-0238", "wire": 7, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sl-0239", "wire": 7, "scale": 0.67, "why": "self-correction, \"bigger, no wait, smaller\": the final wish"}
+{"id": "fs-0008", "wire": 0, "scale": 0.5, "why": "\"a lot smaller\": the mirror of 2, as the Rules read it"}
+{"id": "fs-0021", "wire": 5, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "fs-0055", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "fs-0062", "wire": 11, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "fs-0079", "wire": 0, "scale": 1.25, "why": "\"much larger. Wait, actualy just a bit larger\": the final wish, outside the span"}
+{"id": "fs-0101", "wire": 7, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "fs-0121", "wire": 5, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "fs-0122", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "fs-0129", "wire": 13, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "fs-0286", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "fs-0370", "wire": 12, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "fs-0417", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "fs-0438", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "fs-0451", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "fh-0006", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "fh-0009", "wire": 3, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "fh-0050", "wire": 5, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "fh-0077", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "fh-0194", "wire": 4, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "fh-0195", "wire": 7, "scale": 1.25, "why": "\"make Chart a bit bigger, resize it\": the amount is before the span"}
+{"id": "ts-0014", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ts-0046", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-0146", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-0286", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-0346", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-0446", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ts-0574", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-0645", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ts-0646", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-0774", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-0857", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-0948", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-1059", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ts-1160", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-1271", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-1397", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ts-1451", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "th-0037", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "th-0136", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "th-0237", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "th-0238", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "th-0338", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "th-0437", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "th-0438", "wire": 0, "scale": 2, "why": "\"much bigger\""}
+{"id": "th-0538", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "th-0637", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "th-0638", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "th-0738", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "th-0838", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "th-0935", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "th-1036", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "th-1136", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "th-1335", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "th-1336", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "th-1436", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0011", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "s-0035", "wire": 1, "scale": 0.5, "why": "\"shrink the Closet to nothing much\": much smaller"}
+{"id": "s-0058", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "s-0081", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0084", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0099", "wire": 3, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "s-0111", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0125", "wire": 2, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "s-0153", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0200", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0249", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0273", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0316", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0344", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0389", "wire": 3, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "s-0403", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "s-0413", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0413", "wire": 1, "scale": 0.5, "why": "\"Shrink Trial and shrink Paid even more\": more than the 0.67 of Trial"}
+{"id": "s-0426", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0428", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0440", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0470", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "s-0500", "wire": 4, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "h-0002", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "h-0212", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "h-0250", "wire": 1, "scale": 1.25, "why": "\"Resize Frame2 a bit, since the photo is bigger now\": a bit bigger, by the reason after the span"}
+{"id": "h-0267", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "h-0276", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "h-0375", "wire": 0, "scale": 1.25, "why": "\"Enlarge the blue squares a little\": \"a little\" is after the span"}
+{"id": "ot-0002", "wire": 5, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-0031", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0036", "wire": 8, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0037", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ot-0099", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0102", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0110", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0192", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0235", "wire": 5, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0249", "wire": 6, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0346", "wire": 3, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-0357", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ot-0364", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0367", "wire": 4, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ot-0383", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-0461", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0472", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-0496", "wire": 3, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-0501", "wire": 3, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ot-0624", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-0645", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0655", "wire": 8, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0669", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0695", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ot-0741", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-0767", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0799", "wire": 3, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ot-0840", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0871", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0887", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-0936", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-0955", "wire": 5, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ot-0961", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ot-1031", "wire": 3, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ot-1044", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-1056", "wire": 4, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-1077", "wire": 7, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-1120", "wire": 8, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ot-1151", "wire": 4, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ot-1187", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0020", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0023", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "og-0101", "wire": 4, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "og-0110", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "og-0154", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0191", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "og-0211", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0219", "wire": 7, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "og-0226", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "og-0245", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0251", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0283", "wire": 12, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "og-0286", "wire": 7, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "og-0296", "wire": 5, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "og-0308", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "og-0327", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "og-0329", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0341", "wire": 6, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "og-0363", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0379", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0388", "wire": 7, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0494", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0519", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0574", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "og-0597", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "og-0599", "wire": 8, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-00026", "wire": 0, "scale": 0.5, "why": "\"a lot smaller\": the mirror of 2, as the Rules read it"}
+{"id": "sr-00059", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-00113", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-00117", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00119", "wire": 0, "scale": 0.5, "why": "\"a lot smaller\": the mirror of 2, as the Rules read it"}
+{"id": "sr-00169", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00366", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-00372", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-00388", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00406", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00419", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00506", "wire": 1, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-00571", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00720", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00752", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00791", "wire": 1, "scale": 0.5, "why": "\"a lot smaller\": the mirror of 2, as the Rules read it"}
+{"id": "sr-00921", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00935", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-00989", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-00990", "wire": 0, "scale": 2, "why": "\"much bigger\""}
+{"id": "sr-01021", "wire": 1, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-01068", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01076", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01085", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01209", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01357", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-01406", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01464", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01492", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-01540", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01549", "wire": 0, "scale": 2, "why": "\"much bigger\""}
+{"id": "sr-01595", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-01609", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-01628", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01707", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01792", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01856", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-01953", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-01995", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-02019", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-02151", "wire": 1, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-02292", "wire": 0, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-02352", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-02404", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-02407", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-02479", "wire": 1, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-02563", "wire": 0, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-02963", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-02996", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-03025", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-03237", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-03406", "wire": 0, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-03454", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-03564", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-03700", "wire": 1, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-03734", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-03749", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-03770", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-03787", "wire": 0, "scale": 0.5, "why": "\"half the size\""}
+{"id": "sr-03830", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-03857", "wire": 0, "scale": 0.5, "why": "\"half the size\""}
+{"id": "sr-03858", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-03902", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-03910", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-03916", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-03918", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-03921", "wire": 0, "scale": 2, "why": "\"much bigger\""}
+{"id": "sr-03948", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-04172", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-04185", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-04410", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-04446", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-04454", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-04554", "wire": 1, "scale": 0.5, "why": "\"half the size\""}
+{"id": "sr-04587", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-04711", "wire": 0, "scale": 2, "why": "\"much bigger\""}
+{"id": "sr-04735", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-04748", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-04760", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-04891", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-04926", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-04959", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-05018", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-05220", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-05268", "wire": 0, "scale": 0.5, "why": "\"half the size\""}
+{"id": "sr-05284", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-05338", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sr-05384", "wire": 0, "scale": 0.5, "why": "\"half the size\""}
+{"id": "sr-05403", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-05445", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-05445", "wire": 1, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-05534", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-05536", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-05596", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-05633", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-05670", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-05679", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-05688", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-05777", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-05976", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06164", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06172", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06188", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-06215", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06273", "wire": 0, "scale": 2, "why": "\"much bigger\""}
+{"id": "sr-06310", "wire": 0, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-06336", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06386", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-06449", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06455", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-06504", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-06531", "wire": 0, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-06547", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06592", "wire": 1, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-06770", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06880", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06882", "wire": 0, "scale": 0.5, "why": "\"half the size\""}
+{"id": "sr-06919", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06964", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-06994", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07018", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-07024", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07044", "wire": 0, "scale": 0.5, "why": "\"a lot smaller\": the mirror of 2, as the Rules read it"}
+{"id": "sr-07096", "wire": 0, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-07385", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07407", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-07421", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07424", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07494", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-07498", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-07656", "wire": 1, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-07666", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sr-07688", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07752", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07763", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07764", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sr-07791", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07847", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-07963", "wire": 0, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-08069", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-08081", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-08094", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-08285", "wire": 1, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-08297", "wire": 0, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-08303", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-08384", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-08392", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-08419", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-08492", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-08590", "wire": 0, "scale": 2, "why": "\"much bigger\""}
+{"id": "sr-08681", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-08723", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-08733", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-08809", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-08828", "wire": 1, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sr-08916", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-08919", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-09026", "wire": 1, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sr-09057", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-09108", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sr-09115", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sr-09199", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "so-00029", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "so-00079", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "so-00111", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "so-00254", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "so-00331", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "so-00341", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "so-00400", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "so-00420", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "so-00732", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "so-00801", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "so-00806", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "so-00855", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "so-01177", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "so-01291", "wire": 2, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "so-01425", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "so-01429", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "se-00194", "wire": 1, "scale": 0.5, "why": "\"half the size\""}
+{"id": "se-00396", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "se-00854", "wire": 1, "scale": 2, "why": "\"much bigger\""}
+{"id": "se-00996", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "se-01046", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "se-01786", "wire": 1, "scale": 0.5, "why": "\"half the size\""}
+{"id": "se-02339", "wire": 0, "scale": 2, "why": "\"much bigger\""}
+{"id": "se-03052", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "se-03106", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "se-03364", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "se-03396", "wire": 0, "scale": 2, "why": "\"much bigger\""}
+{"id": "ops-0678", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "oe1-0017", "wire": 1, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "oe1-0084", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "oe1-0212", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "oe1-0270", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "oe1-0338", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "oe1-0426", "wire": 0, "scale": 0.67, "why": "arrow \"thinner\": with no scale the engine thickens it"}
+{"id": "sc-00001", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-00001", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-00034", "wire": 1, "scale": 2, "why": "\"much bigger\""}
+{"id": "sc-00154", "wire": 0, "scale": 0.5, "why": "\"a lot smaller\": the mirror of 2, as the Rules read it"}
+{"id": "sc-00160", "wire": 3, "scale": 2, "why": "\"much bigger\""}
+{"id": "sc-00162", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-00192", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00194", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-00209", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-00247", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-00250", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-00316", "wire": 2, "scale": 0.5, "why": "\"half the size\""}
+{"id": "sc-00350", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00391", "wire": 1, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-00391", "wire": 2, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-00406", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00413", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00434", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-00454", "wire": 2, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-00489", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00497", "wire": 3, "scale": 2, "why": "\"much bigger\""}
+{"id": "sc-00514", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00572", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00605", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00623", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-00627", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00633", "wire": 1, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-00683", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-00684", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-00690", "wire": 3, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-00703", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00707", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-00710", "wire": 3, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-00713", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-00761", "wire": 0, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sc-00884", "wire": 2, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-00918", "wire": 3, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-00934", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-00972", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-00987", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01028", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01074", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01082", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01128", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-01130", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-01139", "wire": 0, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-01154", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-01154", "wire": 3, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-01225", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01227", "wire": 2, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-01245", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01247", "wire": 1, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-01280", "wire": 1, "scale": 3, "why": "\"3 times bigger\""}
+{"id": "sc-01281", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01284", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01292", "wire": 2, "scale": 2, "why": "\"twice\", \"double\""}
+{"id": "sc-01293", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01297", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01317", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01329", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01354", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01398", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01400", "wire": 0, "scale": 0.5, "why": "\"a lot smaller\": the mirror of 2, as the Rules read it"}
+{"id": "sc-01405", "wire": 1, "scale": 2, "why": "\"much bigger\""}
+{"id": "sc-01409", "wire": 1, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc-01426", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01430", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc-01471", "wire": 2, "scale": 0.5, "why": "\"a lot smaller\": the mirror of 2, as the Rules read it"}
+{"id": "sc-01472", "wire": 4, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc-01487", "wire": 3, "scale": 0.5, "why": "\"half the size\""}
+{"id": "sc3-01-045", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc3-02-037", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc3-04-041", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc3-06-033", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc3-12-022", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "sc3-13-021", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc3-15-005", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "sc3-18-025", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "sc3-19-022", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "or3g-0095", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "or3g-0119", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0001", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ox-0039", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ox-0066", "wire": 5, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0079", "wire": 5, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ox-0108", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ox-0176", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ox-0182", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0236", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0246", "wire": 0, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ox-0254", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0257", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0276", "wire": 3, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ox-0290", "wire": 3, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ox-0321", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0369", "wire": 1, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "ox-0389", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0397", "wire": 4, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0474", "wire": 0, "scale": 0.8, "why": "\"a bit smaller\""}
+{"id": "ox-0495", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "ox-0592", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g1-006", "wire": 2, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "g1-019", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g2-022", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g3-023", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g4-011", "wire": 2, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "g4-017", "wire": 0, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g4-033", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g5-009", "wire": 3, "scale": 1.25, "why": "\"a bit bigger\""}
+{"id": "g5-033", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g6-040", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g7-040", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g8-026", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g9-031", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g10-019", "wire": 2, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "g11-015", "wire": 3, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "op-0118", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "or2-0015", "wire": 0, "scale": 0.67, "why": "self-correction, \"bigger. hmm no, smaller\": the final wish"}
+{"id": "or2-0153", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}
+{"id": "or2-0303", "wire": 1, "scale": 0.67, "why": "\"smaller\", \"shrink\""}

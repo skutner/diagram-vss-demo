@@ -1,0 +1,648 @@
+{
+ "partial": false,
+ "files": [
+  "/home/skutner/.cache/diagram-vss-qwen/runs/q03/shipped.nl_a.jsonl",
+  "/home/skutner/.cache/diagram-vss-qwen/runs/q03/shipped.collected_1.jsonl",
+  "/home/skutner/.cache/diagram-vss-qwen/runs/q03/shipped.scenes_test.jsonl",
+  "/home/skutner/.cache/diagram-vss-qwen/runs/q03/shipped.fresh2_short3.jsonl"
+ ],
+ "code": {
+  "training/qwen/finetune/score_qwen.mjs": "a46da0917f2502e47f1a95da468658e84ff17349cba9c27dc81a91a548a028f7",
+  "training/neural/parity/score_arm.mjs": "477449ca977240ed0b20a9ffcf42ae53eddd5220c74bbdf3e658bdec4be74ff2",
+  "training/neural/parity/arm_lib.mjs": "3ebe440fad4bdc6b741a6227986e32dce0eb41f68186f27854d7e6bab06e7dc2",
+  "training/neural/parity/sets.mjs": "5815a047cc46c1b6dd513eeebc42993d945b6a47f7500a9c9c9def2b1aa37a81",
+  "training/neural/parity/parity_lib.mjs": "e750ed25d8c8308b7d3c5ce3abd0bd2126cf20b77fde7bc3b0c48d45ff9a9b03",
+  "training/neural/calibrate_modernbert.mjs": "d109f742d0f099758a7ae153b6b23dbb9c6e3da83c4f7fd2680fdb1dc095131c",
+  "docs/js/bench-canon.js": "4e4bb98db55c2badc6725e42e04862a5893ffeb2cf4a83d2bbaf3cfc931f2cfb",
+  "docs/js/neural-confidence.js": "c825a0b9d9e0c48fffe6d40e9eee1c603447510c5ac1828b2091d8022ce28fc7",
+  "training/sketch/layer_common.mjs": "f41655370a5675e4476b0edb68b2af7576bfae7eec6723be751bfb04876fb78e"
+ },
+ "sets": {
+  "fresh2/test": {
+   "messages": 405,
+   "views": {
+    "gold": {
+     "requested": 1313,
+     "right": 64,
+     "wrong": 82,
+     "not_done": 1167,
+     "extras": 147,
+     "executed": 293,
+     "execution_precision": 0.21843,
+     "right_share": 0.048743,
+     "cost_score": -169.535415
+    }
+   },
+   "views_direction": {
+    "gold": {
+     "requested": 1313,
+     "right": 64,
+     "wrong": 82,
+     "not_done": 1167,
+     "extras": 147,
+     "executed": 293,
+     "execution_precision": 0.21843,
+     "right_share": 0.048743,
+     "cost_score": -169.535415
+    }
+   },
+   "nothing": {
+    "gold": {
+     "requested": 1313,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 1313,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": null,
+   "qwen": {
+    "invalid_outputs": 4,
+    "invalid_causes": {
+     "the output reached the limit of 8 not-understood parts": 3,
+     "the output reached the limit of 16 requests, so requests after it may ": 1
+    },
+    "blocked_requests": 517,
+    "outputs_over_512_tokens": 36,
+    "ms_p50": 733,
+    "ms_p90": 3209,
+    "ms_mean": 1311
+   }
+  },
+  "fresh2/calibration": {
+   "messages": 195,
+   "views": {
+    "gold": {
+     "requested": 596,
+     "right": 35,
+     "wrong": 53,
+     "not_done": 508,
+     "extras": 73,
+     "executed": 161,
+     "execution_precision": 0.217391,
+     "right_share": 0.058725,
+     "cost_score": -205.536913
+    }
+   },
+   "views_direction": {
+    "gold": {
+     "requested": 596,
+     "right": 35,
+     "wrong": 53,
+     "not_done": 508,
+     "extras": 73,
+     "executed": 161,
+     "execution_precision": 0.217391,
+     "right_share": 0.058725,
+     "cost_score": -205.536913
+    }
+   },
+   "nothing": {
+    "gold": {
+     "requested": 596,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 596,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": null,
+   "qwen": {
+    "invalid_outputs": 1,
+    "invalid_causes": {
+     "the output reached the limit of 8 not-understood parts": 1
+    },
+    "blocked_requests": 243,
+    "outputs_over_512_tokens": 19,
+    "ms_p50": 771,
+    "ms_p90": 3310,
+    "ms_mean": 1286
+   }
+  },
+  "short3/test": {
+   "messages": 340,
+   "views": {
+    "gold": {
+     "requested": 432,
+     "right": 51,
+     "wrong": 48,
+     "not_done": 333,
+     "extras": 104,
+     "executed": 203,
+     "execution_precision": 0.251232,
+     "right_share": 0.118056,
+     "cost_score": -340.046296
+    }
+   },
+   "views_direction": {
+    "gold": {
+     "requested": 432,
+     "right": 51,
+     "wrong": 48,
+     "not_done": 333,
+     "extras": 104,
+     "executed": 203,
+     "execution_precision": 0.251232,
+     "right_share": 0.118056,
+     "cost_score": -340.046296
+    }
+   },
+   "nothing": {
+    "gold": {
+     "requested": 432,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 432,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": null,
+   "qwen": {
+    "invalid_outputs": 1,
+    "invalid_causes": {
+     "the output reached the limit of 16 requests, so requests after it may ": 1
+    },
+    "blocked_requests": 225,
+    "outputs_over_512_tokens": 4,
+    "ms_p50": 462,
+    "ms_p90": 839,
+    "ms_mean": 593
+   }
+  },
+  "short3/calibration": {
+   "messages": 173,
+   "views": {
+    "gold": {
+     "requested": 212,
+     "right": 21,
+     "wrong": 38,
+     "not_done": 153,
+     "extras": 53,
+     "executed": 112,
+     "execution_precision": 0.1875,
+     "right_share": 0.099057,
+     "cost_score": -419.339623
+    }
+   },
+   "views_direction": {
+    "gold": {
+     "requested": 212,
+     "right": 21,
+     "wrong": 38,
+     "not_done": 153,
+     "extras": 53,
+     "executed": 112,
+     "execution_precision": 0.1875,
+     "right_share": 0.099057,
+     "cost_score": -419.339623
+    }
+   },
+   "nothing": {
+    "gold": {
+     "requested": 212,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 212,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": null,
+   "qwen": {
+    "invalid_outputs": 3,
+    "invalid_causes": {
+     "the output reached the limit of 16 requests, so requests after it may ": 3
+    },
+    "blocked_requests": 99,
+    "outputs_over_512_tokens": 3,
+    "ms_p50": 456,
+    "ms_p90": 978,
+    "ms_mean": 676
+   }
+  },
+  "collected_1/all": {
+   "messages": 52,
+   "views": {
+    "gold": {
+     "requested": 44,
+     "right": 3,
+     "wrong": 13,
+     "not_done": 28,
+     "extras": 16,
+     "executed": 32,
+     "execution_precision": 0.09375,
+     "right_share": 0.068182,
+     "cost_score": -652.272727
+    },
+    "teacher_opus": {
+     "requested": 47,
+     "right": 3,
+     "wrong": 12,
+     "not_done": 32,
+     "extras": 17,
+     "executed": 32,
+     "execution_precision": 0.09375,
+     "right_share": 0.06383,
+     "cost_score": -610.638298
+    },
+    "teacher_either": {
+     "requested": 49,
+     "right": 3,
+     "wrong": 12,
+     "not_done": 34,
+     "extras": 17,
+     "executed": 32,
+     "execution_precision": 0.09375,
+     "right_share": 0.061224,
+     "cost_score": -585.714286
+    }
+   },
+   "views_direction": {
+    "gold": {
+     "requested": 44,
+     "right": 3,
+     "wrong": 13,
+     "not_done": 28,
+     "extras": 16,
+     "executed": 32,
+     "execution_precision": 0.09375,
+     "right_share": 0.068182,
+     "cost_score": -652.272727
+    },
+    "teacher_opus": {
+     "requested": 47,
+     "right": 3,
+     "wrong": 12,
+     "not_done": 32,
+     "extras": 17,
+     "executed": 32,
+     "execution_precision": 0.09375,
+     "right_share": 0.06383,
+     "cost_score": -610.638298
+    },
+    "teacher_either": {
+     "requested": 49,
+     "right": 3,
+     "wrong": 12,
+     "not_done": 34,
+     "extras": 17,
+     "executed": 32,
+     "execution_precision": 0.09375,
+     "right_share": 0.061224,
+     "cost_score": -585.714286
+    }
+   },
+   "nothing": {
+    "gold": {
+     "requested": 44,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 44,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "teacher_opus": {
+     "requested": 47,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 47,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "teacher_either": {
+     "requested": 49,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 49,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": {
+    "gpt_scored_against_opus": {
+     "requested": 47,
+     "right": 36,
+     "wrong": 4,
+     "not_done": 7,
+     "extras": 2,
+     "right_share": 0.765957,
+     "cost_score": -51.06383
+    },
+    "opus_scored_against_gpt": {
+     "requested": 42,
+     "right": 36,
+     "wrong": 4,
+     "not_done": 2,
+     "extras": 7,
+     "right_share": 0.857143,
+     "cost_score": -176.190476
+    }
+   },
+   "qwen": {
+    "invalid_outputs": 4,
+    "invalid_causes": {
+     "the output reached the limit of 16 requests, so requests after it may ": 3,
+     "the output was cut off at the token limit": 1,
+     "the output is not valid JSON (unterminated string at character 6404)": 1
+    },
+    "blocked_requests": 70,
+    "outputs_over_512_tokens": 7,
+    "ms_p50": 521,
+    "ms_p90": 3303,
+    "ms_mean": 1319
+   }
+  },
+  "scenes_test/all": {
+   "messages": 166,
+   "views": {
+    "gold": {
+     "requested": 163,
+     "right": 25,
+     "wrong": 60,
+     "not_done": 78,
+     "extras": 44,
+     "executed": 129,
+     "execution_precision": 0.193798,
+     "right_share": 0.153374,
+     "cost_score": -622.699387
+    }
+   },
+   "views_direction": {
+    "gold": {
+     "requested": 163,
+     "right": 25,
+     "wrong": 60,
+     "not_done": 78,
+     "extras": 44,
+     "executed": 129,
+     "execution_precision": 0.193798,
+     "right_share": 0.153374,
+     "cost_score": -622.699387
+    }
+   },
+   "nothing": {
+    "gold": {
+     "requested": 163,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 163,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": null,
+   "qwen": {
+    "invalid_outputs": 2,
+    "invalid_causes": {
+     "the output was cut off at the token limit": 1,
+     "the output is not valid JSON (unterminated string at character 5873)": 1,
+     "the output reached the limit of 16 requests, so requests after it may ": 1
+    },
+    "blocked_requests": 89,
+    "outputs_over_512_tokens": 3,
+    "ms_p50": 492,
+    "ms_p90": 1070,
+    "ms_mean": 695
+   }
+  },
+  "nl_a/calibration": {
+   "messages": 310,
+   "views": {
+    "opus": {
+     "requested": 408,
+     "right": 20,
+     "wrong": 67,
+     "not_done": 321,
+     "extras": 128,
+     "executed": 215,
+     "execution_precision": 0.093023,
+     "right_share": 0.04902,
+     "cost_score": -473.039216
+    },
+    "either": {
+     "requested": 451,
+     "right": 21,
+     "wrong": 66,
+     "not_done": 364,
+     "extras": 128,
+     "executed": 215,
+     "execution_precision": 0.097674,
+     "right_share": 0.046563,
+     "cost_score": -425.498891
+    }
+   },
+   "views_direction": {
+    "opus": {
+     "requested": 408,
+     "right": 20,
+     "wrong": 67,
+     "not_done": 321,
+     "extras": 128,
+     "executed": 215,
+     "execution_precision": 0.093023,
+     "right_share": 0.04902,
+     "cost_score": -473.039216
+    },
+    "either": {
+     "requested": 451,
+     "right": 21,
+     "wrong": 66,
+     "not_done": 364,
+     "extras": 128,
+     "executed": 215,
+     "execution_precision": 0.097674,
+     "right_share": 0.046563,
+     "cost_score": -425.498891
+    }
+   },
+   "nothing": {
+    "opus": {
+     "requested": 408,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 408,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "either": {
+     "requested": 451,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 451,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": {
+    "gpt_scored_against_opus": {
+     "requested": 408,
+     "right": 301,
+     "wrong": 71,
+     "not_done": 36,
+     "extras": 43,
+     "right_share": 0.737745,
+     "cost_score": -205.637255
+    },
+    "opus_scored_against_gpt": {
+     "requested": 415,
+     "right": 281,
+     "wrong": 91,
+     "not_done": 43,
+     "extras": 36,
+     "right_share": 0.677108,
+     "cost_score": -238.313253
+    }
+   },
+   "qwen": {
+    "invalid_outputs": 2,
+    "invalid_causes": {
+     "the output reached the limit of 16 requests, so requests after it may ": 2
+    },
+    "blocked_requests": 250,
+    "outputs_over_512_tokens": 18,
+    "ms_p50": 505,
+    "ms_p90": 1371,
+    "ms_mean": 816
+   }
+  },
+  "nl_a/development": {
+   "messages": 300,
+   "views": {
+    "opus": {
+     "requested": 392,
+     "right": 13,
+     "wrong": 73,
+     "not_done": 306,
+     "extras": 121,
+     "executed": 207,
+     "execution_precision": 0.062802,
+     "right_share": 0.033163,
+     "cost_score": -491.581633
+    },
+    "either": {
+     "requested": 412,
+     "right": 13,
+     "wrong": 73,
+     "not_done": 326,
+     "extras": 121,
+     "executed": 207,
+     "execution_precision": 0.062802,
+     "right_share": 0.031553,
+     "cost_score": -467.718447
+    }
+   },
+   "views_direction": {
+    "opus": {
+     "requested": 392,
+     "right": 13,
+     "wrong": 73,
+     "not_done": 306,
+     "extras": 121,
+     "executed": 207,
+     "execution_precision": 0.062802,
+     "right_share": 0.033163,
+     "cost_score": -491.581633
+    },
+    "either": {
+     "requested": 412,
+     "right": 13,
+     "wrong": 73,
+     "not_done": 326,
+     "extras": 121,
+     "executed": 207,
+     "execution_precision": 0.062802,
+     "right_share": 0.031553,
+     "cost_score": -467.718447
+    }
+   },
+   "nothing": {
+    "opus": {
+     "requested": 392,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 392,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    },
+    "either": {
+     "requested": 412,
+     "right": 0,
+     "wrong": 0,
+     "not_done": 412,
+     "extras": 0,
+     "executed": 0,
+     "execution_precision": null,
+     "right_share": 0,
+     "cost_score": 0
+    }
+   },
+   "teachers_agreement": {
+    "gpt_scored_against_opus": {
+     "requested": 392,
+     "right": 283,
+     "wrong": 70,
+     "not_done": 39,
+     "extras": 20,
+     "right_share": 0.721939,
+     "cost_score": -157.397959
+    },
+    "opus_scored_against_gpt": {
+     "requested": 373,
+     "right": 262,
+     "wrong": 91,
+     "not_done": 20,
+     "extras": 39,
+     "right_share": 0.702413,
+     "cost_score": -278.284182
+    }
+   },
+   "qwen": {
+    "invalid_outputs": 5,
+    "invalid_causes": {
+     "the output reached the limit of 16 requests, so requests after it may ": 5
+    },
+    "blocked_requests": 237,
+    "outputs_over_512_tokens": 14,
+    "ms_p50": 500,
+    "ms_p90": 1440,
+    "ms_mean": 874
+   }
+  }
+ }
+}

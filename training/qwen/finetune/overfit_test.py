@@ -1,6 +1,7 @@
 """overfit_test.py: can LoRA on the shipped Qwen3 weights learn the line format on a few of its own training rows?
 
-  python overfit_test.py --examples EX.jsonl --gguf GGUF --base DIR --out OUT.json [--rows 20] [--steps 100] [--device cpu|cuda]
+  python overfit_test.py --examples EX.jsonl --gguf GGUF --base DIR --out OUT.json [--rows 20] [--steps 100] [--device cpu|cuda] [--base-dtype fp32|bf16]
+  (--base-dtype bf16: the frozen base in BF16 with SDPA and non-reentrant checkpointing, as train_qwen.py; needed on the 6 GiB card)
 
 Fixed before the run (the gate of the plan's step Q1): LoRA r=16, alpha=32 on q,k,v,o,gate,up,down of all 28 layers, AdamW lr 2e-4,
 batch 4, no weight decay, FP32 (CPU) or BF16 autocast (GPU), seed 0; the first `rows` examples of EX.jsonl that have at least one request.
@@ -15,7 +16,7 @@ from qwen_lib import load_gguf_weights, build_model, add_lora, lora_params, Tok,
 ap = argparse.ArgumentParser()
 ap.add_argument('--examples', required=True); ap.add_argument('--gguf', required=True); ap.add_argument('--base', required=True)
 ap.add_argument('--out', required=True); ap.add_argument('--rows', type=int, default=20); ap.add_argument('--steps', type=int, default=100)
-ap.add_argument('--device', default='cpu'); ap.add_argument('--threads', type=int, default=6); ap.add_argument('--batch', type=int, default=4)
+ap.add_argument('--device', default='cpu'); ap.add_argument('--base-dtype', default='fp32'); ap.add_argument('--threads', type=int, default=6); ap.add_argument('--batch', type=int, default=4)
 a = ap.parse_args()
 torch.manual_seed(0); torch.set_num_threads(a.threads)
 t0 = time.time()
@@ -23,7 +24,7 @@ rows = [r for r in map(json.loads, open(a.examples)) if r['requests'] > 0][:a.ro
 tok = Tok(os.path.join(a.base, 'tokenizer.json'))
 ex = [tok.example(r['system'], r['user'], r['target']) for r in rows]
 report = {'rows': len(rows), 'row_ids': [r['id'] for r in rows], 'tokens_per_row': [len(i) for i, _ in ex], 'target_tokens_per_row': [sum(m) for _, m in ex],
-          'settings': {'r': 16, 'alpha': 32, 'lr': 2e-4, 'batch': a.batch, 'steps': a.steps, 'device': a.device, 'threads': a.threads}}
+          'settings': {'base_dtype': a.base_dtype, 'r': 16, 'alpha': 32, 'lr': 2e-4, 'batch': a.batch, 'steps': a.steps, 'device': a.device, 'threads': a.threads}}
 
 if os.environ.get('TOKCHECK'):   # the same text through the GGUF's tokenizer (llama-server /tokenize with special tokens parsed)
     import urllib.request
@@ -35,10 +36,12 @@ if os.environ.get('TOKCHECK'):   # the same text through the GGUF's tokenizer (l
     report['tokenization_differs_from_gguf'] = bad
 
 weights, _ = load_gguf_weights(a.gguf)
-model = build_model(os.path.join(a.base, 'config.json'), weights)
+model = build_model(os.path.join(a.base, 'config.json'), weights, dtype=torch.bfloat16 if a.base_dtype == 'bf16' else torch.float32)
 del weights
 n_lora = add_lora(model, 16, 32)
 dev = torch.device(a.device); model.to(dev); model.train()
+if a.base_dtype == 'bf16':   # as train_qwen.py: the frozen base in BF16, SDPA, non-reentrant gradient checkpointing (the 6 GiB card)
+    model.config._attn_implementation = 'sdpa'; model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={'use_reentrant': False}); model.config.use_cache = False
 params = lora_params(model)
 report['lora_modules'] = n_lora; report['trainable_params'] = sum(p.numel() for p in params)
 opt = torch.optim.AdamW(params, lr=2e-4, weight_decay=0.0)
@@ -67,6 +70,7 @@ def full_loss():
 @torch.no_grad()
 def decode_all():
     model.eval(); exact = 0; outs = []
+    if a.base_dtype == 'bf16': model.config.use_cache = True
     for r in rows:
         ids = torch.tensor([tok.ids(render(r['system'], r['user']))], device=dev)
         want = tok.ids(r['target'] + '<|im_end|>')

@@ -1,0 +1,13 @@
+{"torch": "2.15.0+cu132", "bf16": true, "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU", "free_gib": 5.54}
+{"mode": "lora", "bs": 4, "len": 256, "ckpt": false, "trainable": 10092544, "s_per_step": 0.2779, "rows_per_s": 14.4, "tokens_per_s": 3685, "peak_alloc_gib": 3.74, "peak_reserved_gib": 3.87}
+{"mode": "lora", "bs": 8, "len": 256, "ckpt": false, "trainable": 10092544, "oom": true}
+{"mode": "lora", "bs": 16, "len": 256, "ckpt": false, "trainable": 10092544, "oom": true}
+{"mode": "lora", "bs": 32, "len": 256, "ckpt": false, "trainable": 10092544, "oom": true}
+{"mode": "lora", "bs": 4, "len": 512, "ckpt": false, "trainable": 10092544, "oom": true}
+{"mode": "lora", "bs": 8, "len": 512, "ckpt": false, "trainable": 10092544, "oom": true}
+{"mode": "lora", "bs": 2, "len": 1024, "ckpt": false, "trainable": 10092544, "oom": true}
+{"mode": "lora", "bs": 32, "len": 256, "ckpt": true, "trainable": 10092544, "error": "element 0 of tensors does not require grad and does not have a grad_fn"}
+{"mode": "lora", "bs": 16, "len": 512, "ckpt": true, "trainable": 10092544, "error": "element 0 of tensors does not require grad and does not have a grad_fn"}
+{"mode": "lora", "bs": 8, "len": 1024, "ckpt": true, "trainable": 10092544, "error": "element 0 of tensors does not require grad and does not have a grad_fn"}
+{"mode": "full-adamw-fp32", "bs": 4, "len": 256, "ckpt": true, "trainable": 440467456, "s_per_step": 0.1086, "rows_per_s": 36.8, "tokens_per_s": 9432, "peak_alloc_gib": 3.7, "peak_reserved_gib": 4.04}
+{"mode": "full-sgd-bf16", "bs": 8, "len": 256, "ckpt": true, "trainable": 440467456, "s_per_step": 0.1648, "rows_per_s": 48.5, "tokens_per_s": 12428, "peak_alloc_gib": 2.26, "peak_reserved_gib": 2.49}

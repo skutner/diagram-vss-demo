@@ -1,0 +1,10 @@
+fresh2/calibration [fit] 195 msgs 596 req: all executed right 520 wrong 68 extras 34 cost -83.892617; gate right 327 wrong 4 asked 257 unread 8 extras 1 auroc 0.909351 cost 46.47651
+fresh2/test [evaluation] 405 msgs 1313 req: all executed right 1105 wrong 175 extras 68 cost -100.913938; gate right 666 wrong 8 asked 606 unread 33 extras 2 auroc 0.911539 cost 43.107388
+short3/calibration [fit] 173 msgs 212 req: all executed right 132 wrong 56 extras 20 cost -296.226415; gate right 46 wrong 2 asked 140 unread 24 extras 1 auroc 0.80622 cost 7.54717
+short3/test [evaluation] 340 msgs 432 req: all executed right 267 wrong 116 extras 44 cost -308.564815; gate right 74 wrong 9 asked 300 unread 49 extras 1 auroc 0.82905 cost -6.018519
+collected_1/all [evaluation] 52 msgs 44 req: all executed right 12 wrong 17 extras 23 cost -881.818182; gate right 1 wrong 0 asked 28 unread 15 extras 0 auroc 0.577083 cost 2.272727
+scenes_test/all [evaluation] 166 msgs 163 req: all executed right 104 wrong 55 extras 13 cost -353.374233; gate right 49 wrong 0 asked 110 unread 4 extras 0 auroc 0.886595 cost 30.06135
+nl_a/calibration [fit] 310 msgs 408 req: all executed right 48 wrong 187 extras 281 cost -1135.294118; gate right 12 wrong 1 asked 222 unread 173 extras 4 auroc 0.931624 cost -9.313725
+nl_a/development [evaluation] 300 msgs 392 req: all executed right 40 wrong 175 extras 272 cost -1130.102041; gate right 4 wrong 2 asked 209 unread 177 extras 2 auroc 0.870358 cost -9.183673
+fresh2+short3/calibration [fit] 368 msgs 808 req: all executed right 652 wrong 124 extras 54 cost -139.60396; gate right 373 wrong 6 asked 397 unread 32 extras 2 auroc 0.891251 cost 36.262376
+fresh2+short3/test [evaluation] 745 msgs 1745 req: all executed right 1372 wrong 291 extras 112 cost -152.320917; gate right 740 wrong 17 asked 906 unread 82 extras 3 auroc 0.894519 cost 30.945559

@@ -1,0 +1,1665 @@
+{
+ "summary": {
+  "variant": "names",
+  "n": 40,
+  "errors": 0,
+  "threads": 1,
+  "multithread": false,
+  "libllama": "b11364-46ca246",
+  "gpu_layers": 0,
+  "gpu": {
+   "navigator_gpu": true,
+   "adapter": null
+  },
+  "load_ms": 1959,
+  "machine": {
+   "cpu": "12th Gen Intel(R) Core(TM) i7-12700H",
+   "logical_cpus": 20,
+   "loadavg_before": [
+    1.4,
+    1.14,
+    1.11
+   ],
+   "loadavg_after": [
+    1.01,
+    1.17,
+    1.16
+   ],
+   "ac_online": "1",
+   "governor": "powersave",
+   "platform_profile": "performance"
+  },
+  "ms_p50": 61593,
+  "ms_p95": 67954,
+  "ms_max": 68355,
+  "bar_ms_p95": 10000,
+  "meets_bar": false,
+  "prefill_ms_per_token": 143.5,
+  "decode_ms_per_token": 231.5,
+  "prompt_new_tokens": [
+   53,
+   45,
+   39,
+   42,
+   20,
+   37,
+   21,
+   23,
+   40,
+   22,
+   23,
+   45,
+   29,
+   41,
+   38,
+   45,
+   61,
+   15,
+   31,
+   26,
+   34,
+   32,
+   19,
+   46,
+   32,
+   39,
+   32,
+   15,
+   19,
+   40,
+   47,
+   47,
+   38,
+   26,
+   48,
+   48,
+   23,
+   38,
+   38,
+   46
+  ],
+  "cached_tokens": [
+   0,
+   40,
+   26,
+   26,
+   26,
+   26,
+   26,
+   38,
+   26,
+   26,
+   34,
+   34,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   35,
+   35,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26,
+   26
+  ],
+  "generated": [
+   256,
+   256,
+   1,
+   256,
+   256,
+   256,
+   256,
+   256,
+   1,
+   256,
+   256,
+   1,
+   1,
+   1,
+   1,
+   256,
+   256,
+   256,
+   1,
+   256,
+   1,
+   256,
+   256,
+   1,
+   256,
+   1,
+   256,
+   256,
+   256,
+   1,
+   256,
+   256,
+   1,
+   1,
+   1,
+   256,
+   256,
+   1,
+   256,
+   256
+  ],
+  "max_load1_during": 1.69,
+  "grammar": {
+   "file": "/home/skutner/.cache/diagram-vss-qwen/arms/grammar.ALL.gbnf",
+   "sha256": "5ae21609fad60a2c04e598bb10f989e5b3e671ceed1bdb96dd1bcf859010468b"
+  },
+  "natural": true,
+  "wall_s": 1690
+ },
+ "command": "/home/skutner/browserLLM/diagram-vss-demo/training/qwen/finetune/time_bench.mjs --gguf /home/skutner/.cache/diagram-vss-qwen/runs/q06/export-smoke/export.gguf --out /home/skutner/browserLLM/diagram-vss-demo/reports/evidence/qwen3-finetune-plan/q07_time.grammar_addendum.grammar.json --variant names --n 40 --natural --grammar /home/skutner/.cache/diagram-vss-qwen/arms/grammar.ALL.gbnf",
+ "gguf": "/home/skutner/.cache/diagram-vss-qwen/runs/q06/export-smoke/export.gguf",
+ "code": {
+  "training/qwen/finetune/time_bench.mjs": "f9c1f10ddd56bbdfd5897b696e01abf4f3bf8cdfa7e14fdaffdf11ee766e5191",
+  "training/qwen/finetune/make_examples.mjs": "978bfd3f9136007441b161e06f7e374e9b8ade3be7c34bd12db0a865c74044c6",
+  "training/qwen/finetune/lines_format.mjs": "f69f196ebeda8d5549e054936fa920ac3bd15f6e77d6df4cc3c7bdabfcb3fe91",
+  "docs/vendor/wllama-3.8.1/index.min.js": "834d7be963172248caf13c6f2ae786009b43edfeefc85eeadc20609e8447d118",
+  "docs/vendor/wllama-3.8.1/wllama.wasm": "551f13439366eff11e057b1b91fe46a7fdac29d56d67372d4c5f19a549dfe70c"
+ },
+ "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+ "results": [
+  {
+   "id": "nl-01-002",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.69,
+   "load1_after": 1.23,
+   "ms": 65075.89999999851,
+   "forced_tokens": null,
+   "content": "[both] command action=connect from=Switch to=Firewall\n[current] command action=set target=Switch arrow=both\n[arrow] command action=set target=Switch arrow=both\n[new] command action=set target=Firewall arrow=both\n[new] command action=set target=Switch arrow=both\n[new] command action=set target=Firewall arrow=both\n[new] command action=set target=Switch arrow=both\n[new] command action=set target=Firewall arrow=both\n[new] command action=set target=Switch arrow=both\n[new] command action=set target=Firewall arrow=both\n[new] command action=set target=Switch arrow=both\n[new] command action=set target=Firewall arrow=both\n[new] command action=set target=Switch arrow=both\n[new] command action=set target=Firewall arrow=both\n[new] command action=set target=Switch arrow=both\n[new] command action=set target=Firewall arrow=both\n[both] command action=connect from=Switch to=Firewall\n[new] command action=set target=Firewall arrow=both\n[new] command action=set target=Switch arrow=both\n[arrow] command action=set target=Switch arrow=both\n",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 53,
+    "total_tokens": 309,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    }
+   },
+   "timings": {
+    "cache_n": 0,
+    "prompt_n": 53,
+    "prompt_ms": 7316.3,
+    "prompt_per_token_ms": 138.0433962264151,
+    "prompt_per_second": 7.244098793105804,
+    "predicted_n": 256,
+    "predicted_ms": 57739.599,
+    "predicted_per_token_ms": 226.4298,
+    "predicted_per_second": 4.416379822797176
+   },
+   "prompt_n": 53,
+   "cache_n": 0,
+   "prompt_ms": 7316.3,
+   "predicted_n": 256,
+   "predicted_ms": 57739.599
+  },
+  {
+   "id": "nl-01-008",
+   "session": null,
+   "requests": 2,
+   "has_drawing": false,
+   "load1_before": 1.23,
+   "load1_after": 1.1,
+   "ms": 67793.70000000298,
+   "forced_tokens": null,
+   "content": "[goes to] command action=connect from=GuestWiFi to=Switch\n[run] command action=connect from=Switch to=Firewall\n[write] command action=create name=quantifier label=only position=leftOf anchor=Internet\n[take] command action=move target=GuestWiPhi position=below\n[run] command action=connect from=Firewall to=Internet\n[new] command action=create name=quantifier label=only position=top anchor=Internet\n[new] command action=create name=quantifier label=only position=top anchor=Internet\n[new] command action=create name=quantifier label=only position=top anchor=Internet\n[new] command action=create name=quantifier label=only position=top anchor=Internet\n[new] command action=connect from=Firewall to=Internet\n[new] command action=connect from=Quantifier to=Internet\n[new] command action=connect from=quantifier to=Internet\n[new] command action=connect from=quantifier to=Internet\n[run] command action=connect from=quantifier to=Internet\n[write] command action=create name=quantifier label=only position=top anchor=Internet\n[run] command action=connect from=quant",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 85,
+    "total_tokens": 341,
+    "prompt_tokens_details": {
+     "cached_tokens": 40
+    }
+   },
+   "timings": {
+    "cache_n": 40,
+    "prompt_n": 45,
+    "prompt_ms": 6544.699,
+    "prompt_per_token_ms": 145.43775555555555,
+    "prompt_per_second": 6.875793676683985,
+    "predicted_n": 256,
+    "predicted_ms": 61233.401,
+    "predicted_per_token_ms": 240.1309843137255,
+    "predicted_per_second": 4.16439387385979
+   },
+   "prompt_n": 45,
+   "cache_n": 40,
+   "prompt_ms": 6544.699,
+   "predicted_n": 256,
+   "predicted_ms": 61233.401
+  },
+  {
+   "id": "nl-01-015",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.1,
+   "load1_after": 1.09,
+   "ms": 5562.70000000298,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 65,
+    "total_tokens": 66,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 39,
+    "prompt_ms": 5549.3,
+    "prompt_per_token_ms": 142.2897435897436,
+    "prompt_per_second": 7.027913430522768,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 39,
+   "cache_n": 26,
+   "prompt_ms": 5549.3,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-01-016",
+   "session": null,
+   "requests": 2,
+   "has_drawing": false,
+   "load1_before": 1.09,
+   "load1_after": 1.1,
+   "ms": 65997.80000000447,
+   "forced_tokens": null,
+   "content": "[Give it a red outline] command action=set target=mention(color=green) shape=square outline=red\n[underneath] command action=move target=mention(color=green) position=below\n[new] command action=move target='encrypted' position=below\n[new] command action=move target='encrypted' position=above\n[new] command action=move target=mention(color=green) position=below\n[new] command action=move target=mention(color=green) position=above\n[new] command action=move target=mention(color=green) position=below\n[new] command action=move target=mention(color=green) position=above\n[new] command action=move target=mention(color=green) position=below\n[new] command action=move target=mention(color=green) position=above\n[new] command action=move target=mention(color=green) position=below\n[new] command action=move target=mention(color=green) position=above\n[new] command action=move target=mention(color=green) position=below\n[new] command action=move target=mention(color=green) position=above\n[new] command action=move target=mention(color=green) position=",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 68,
+    "total_tokens": 324,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 42,
+    "prompt_ms": 5988.701,
+    "prompt_per_token_ms": 142.58811904761905,
+    "prompt_per_second": 7.013207037719867,
+    "predicted_n": 256,
+    "predicted_ms": 59999.499,
+    "predicted_per_token_ms": 235.29215294117648,
+    "predicted_per_second": 4.250035487796323
+   },
+   "prompt_n": 42,
+   "cache_n": 26,
+   "prompt_ms": 5988.701,
+   "predicted_n": 256,
+   "predicted_ms": 59999.499
+  },
+  {
+   "id": "nl-01-018",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.1,
+   "load1_after": 1.04,
+   "ms": 61055,
+   "forced_tokens": null,
+   "content": "[Insert] command action=create template=process name=approval position=above anchor=Deploy\n[new] command action=create template=process name=Deployment position=top\n[new] command action=create template=process name=Tests position=below anchor=Deploy\n[new] command action=create template=process name=Deploy position=top\n[new] command action=align target=approval axis=vertical direction=up\n[new] command action=align target=Approval axis=horizontal direction=right\n[new] command action=align target=Tests axis=vertical direction=down\n[new] command action=align target=Deployment axis=vertical direction=up\n[new] command action=align target=Build axis=horizontal direction=right\n[new] command action=align target=Tests axis=vertical direction=left\n[new] command action=align target=Deploy axis=vertical direction=up\n[above] command action=align target=Approval axis=vertical direction=up\n[below] command action=align target=Tests axis=vertical direction=left\n[below] command action=align target=Deploy axis=vertical direction=up\n[align] command action=align target=Approval axis=horizontal direction=right\n[align]",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 46,
+    "total_tokens": 302,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 20,
+    "prompt_ms": 2849.799,
+    "prompt_per_token_ms": 142.48995,
+    "prompt_per_second": 7.018038816070887,
+    "predicted_n": 256,
+    "predicted_ms": 58192.5,
+    "predicted_per_token_ms": 228.2058823529412,
+    "predicted_per_second": 4.382007990720454
+   },
+   "prompt_n": 20,
+   "cache_n": 26,
+   "prompt_ms": 2849.799,
+   "predicted_n": 256,
+   "predicted_ms": 58192.5
+  },
+  {
+   "id": "nl-01-031",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.04,
+   "load1_after": 1.01,
+   "ms": 64155.60000000149,
+   "forced_tokens": null,
+   "content": "[go] command action=move target=Open position=top anchor=Locked\n[on] command action=connect from=Open to=Locked\n[new] command action=create name=expire shape=rectangle\n[new] command action=create name=arrow size=large color=red\n[new] command action=create name=exclamation size=large shape=ellipse color=yellow\n[new] command action=connect from=exclamation to=arrow\n[new] command action=connect from=exclamation to=exclamation\n[go] command action=move target=exclamation position=bottom anchor=arrow\n[new] command action=connect from=exclamation to=arrow\n[new] command action=connect from=exclamation to=exclamation\n[back] command action=reverse target=mention(Open,Locked)\n[new] command action=create name=mention(Open,Locked) size=large position=bottom anchor=exclamation\n[go] command action=move target=mention(Open,Locked) position=bottom anchor=exclamation\n[new] command action=connect from=mention(Open,Locked) to=arrow\n[back] command action=reverse target=mention(Open,Locked)\n[new] command action=create name",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 63,
+    "total_tokens": 319,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 37,
+    "prompt_ms": 5252.7,
+    "prompt_per_token_ms": 141.96486486486486,
+    "prompt_per_second": 7.0439964208883055,
+    "predicted_n": 256,
+    "predicted_ms": 58889.499,
+    "predicted_per_token_ms": 230.9392117647059,
+    "predicted_per_second": 4.330143817321319
+   },
+   "prompt_n": 37,
+   "cache_n": 26,
+   "prompt_ms": 5252.7,
+   "predicted_n": 256,
+   "predicted_ms": 58889.499
+  },
+  {
+   "id": "nl-01-035",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.01,
+   "load1_after": 1,
+   "ms": 60620.80000000447,
+   "forced_tokens": null,
+   "content": "[Save] command action=set target=Save size=large\n[newest] command action=delete target=Save\n[delete] command action=delete target=Password\n[email] command action=set target=Email size=medium\n[Email] command action=set target=Email size=medium\n[Password] command action=set target=Password size=medium\n[newest] command action=delete target=Save\n[newest] command action=delete target=Password\n[newest] command action=delete target=Header\n[newest] command action=delete target=Email\n[delete] command action=delete target=Header\n[delete] command action=delete target=Email\n[delete] command action=delete target=Password\n[delete] command action=delete target=Save\n[newest] command action=delete target=Header\n[delete] command action=delete target=Email\n[delete] command action=delete target=Password\n[delete] command action=delete target=Save\n[newest] command action=delete target=Header\n[delete] command action=delete target=Email\n[delete] command action=delete target=Password\n[delete] command action=delete target=Save\n[newest] command action",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 47,
+    "total_tokens": 303,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 21,
+    "prompt_ms": 2975.501,
+    "prompt_per_token_ms": 141.69052380952382,
+    "prompt_per_second": 7.057634999954629,
+    "predicted_n": 256,
+    "predicted_ms": 57632.1,
+    "predicted_per_token_ms": 226.00823529411764,
+    "predicted_per_second": 4.424617530855201
+   },
+   "prompt_n": 21,
+   "cache_n": 26,
+   "prompt_ms": 2975.501,
+   "predicted_n": 256,
+   "predicted_ms": 57632.1
+  },
+  {
+   "id": "nl-01-036",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1,
+   "load1_after": 1.03,
+   "ms": 61593,
+   "forced_tokens": null,
+   "content": "[Put] command action=move target=quantifier=extreme\n[Leave] command action=set target=mention(color=blue,quantifier=extreme) shape=rectangle\n[newest] command action=move target=quantifier=extreme\n[newest] command action=set target=quantifier=extreme shape=rectangle\n[newest] command action=move target=quantifier=extreme\n[newest] command action=set target=quantifier=extreme shape=rectangle\n[newest] command action=move target=quantifier=extreme\n[newest] command action=set target=quantifier=extreme shape=rectangle\n[quantifier=extreme] command action=move target=quantifier=extreme\n[newest] command action=move target=quantifier=extreme\n[newest] command action=set target=quantifier=extreme shape=rectangle\n[newest] command action=move target=quantifier=extreme\n[quantifier=extreme] command action=move target=quantifier=extreme\n[quantifier=extreme] command action=set target=quantifier=extreme shape=rectangle\n[newest] command action=move target=quantifier=extreme\n[",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 61,
+    "total_tokens": 317,
+    "prompt_tokens_details": {
+     "cached_tokens": 38
+    }
+   },
+   "timings": {
+    "cache_n": 38,
+    "prompt_n": 23,
+    "prompt_ms": 3312.8,
+    "prompt_per_token_ms": 144.03478260869565,
+    "prompt_per_second": 6.942767447476455,
+    "predicted_n": 256,
+    "predicted_ms": 58267.7,
+    "predicted_per_token_ms": 228.5007843137255,
+    "predicted_per_second": 4.3763525932892495
+   },
+   "prompt_n": 23,
+   "cache_n": 38,
+   "prompt_ms": 3312.8,
+   "predicted_n": 256,
+   "predicted_ms": 58267.7
+  },
+  {
+   "id": "nl-01-039",
+   "session": null,
+   "requests": 2,
+   "has_drawing": false,
+   "load1_before": 1.03,
+   "load1_after": 1.03,
+   "ms": 5712.30000000447,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 66,
+    "total_tokens": 67,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 40,
+    "prompt_ms": 5699.699,
+    "prompt_per_token_ms": 142.49247499999998,
+    "prompt_per_second": 7.017914454780858,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 40,
+   "cache_n": 26,
+   "prompt_ms": 5699.699,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-01-040",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.03,
+   "load1_after": 1.01,
+   "ms": 60940.60000000149,
+   "forced_tokens": null,
+   "content": "[Swap] command action=swap target=Delete,Cancel\n[new] command action=create shape=circle\n[Create] command action=create shape=triangle\n[Create] command action=create shape=square\n[Create] command action=create shape=circle\n[new] command action=create shape=triangle\n[new] command action=create shape=square\n[Create] command action=create shape=circle\n[Create] command action=create shape=triangle\n[new] command action=create shape=square\n[Create] command action=create shape=circle\n[Create] command action=create shape=triangle\n[Create] command action=create shape=square\n[Create] command action=create shape=circle\n[Create] command action=create shape=triangle\n[Create] command action=create shape=square\n[Create] command action=create shape=circle\n[Create] command action=create shape=triangle\n[Create] command action=create shape=square\n[new] command action=create shape=triangle\n[Create] command action=create shape=square\n[Create] command action=create shape=circle\n[Create] command action=create shape=triangle\n[Create] command action=create shape=square\n[Create] command action=create shape=circle\n[Create] command action=create shape=",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 48,
+    "total_tokens": 304,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 22,
+    "prompt_ms": 3127.2,
+    "prompt_per_token_ms": 142.14545454545453,
+    "prompt_per_second": 7.035047326682016,
+    "predicted_n": 256,
+    "predicted_ms": 57803.8,
+    "predicted_per_token_ms": 226.68156862745099,
+    "predicted_per_second": 4.411474678135347
+   },
+   "prompt_n": 22,
+   "cache_n": 26,
+   "prompt_ms": 3127.2,
+   "predicted_n": 256,
+   "predicted_ms": 57803.8
+  },
+  {
+   "id": "nl-01-041",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.01,
+   "load1_after": 1,
+   "ms": 61734.19999999553,
+   "forced_tokens": null,
+   "content": "[Can the red button trade places with it?] question ask=check target=Cancel color=red\n[trade] command action=swap target=Cancel\n[new] command action=move target=Cancel position=left\n[Can the red button trade places with it] question ask=check target=Cancel color=red\n[new] command action=swap target=Cancel\n[new] command action=move target=Cancel position=left\n[new] question ask=check target=Cancel color=red\n[new] command action=swap target=Cancel\n[new] command action=move target=Cancel position=left\n[new] question ask=check target=Cancel color=red\n[new] command action=swap target=Cancel\n[new] command action=move target=Cancel position=left\n[Can the red button trade places with it] question ask=check target=Cancel color=red\n[new] command action=swap target=Cancel\n[new] command action=move target=Cancel position=left\n[new] question ask=check target=Cancel color=red\n[new] command action=swap target=Cancel\n[new] command action=move target=Cancel position=left\n[new] question ask=check target=Cancel color=red\n[",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 57,
+    "total_tokens": 313,
+    "prompt_tokens_details": {
+     "cached_tokens": 34
+    }
+   },
+   "timings": {
+    "cache_n": 34,
+    "prompt_n": 23,
+    "prompt_ms": 3299.4,
+    "prompt_per_token_ms": 143.45217391304348,
+    "prompt_per_second": 6.970964417772929,
+    "predicted_n": 256,
+    "predicted_ms": 58421.1,
+    "predicted_per_token_ms": 229.10235294117646,
+    "predicted_per_second": 4.364861325788114
+   },
+   "prompt_n": 23,
+   "cache_n": 34,
+   "prompt_ms": 3299.4,
+   "predicted_n": 256,
+   "predicted_ms": 58421.1
+  },
+  {
+   "id": "nl-01-042",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1,
+   "load1_after": 1,
+   "ms": 6492.60000000149,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 79,
+    "total_tokens": 80,
+    "prompt_tokens_details": {
+     "cached_tokens": 34
+    }
+   },
+   "timings": {
+    "cache_n": 34,
+    "prompt_n": 45,
+    "prompt_ms": 6480.7,
+    "prompt_per_token_ms": 144.01555555555555,
+    "prompt_per_second": 6.943694354004968,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 45,
+   "cache_n": 34,
+   "prompt_ms": 6480.7,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-01-044",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1,
+   "load1_after": 1,
+   "ms": 4112.79999999702,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 55,
+    "total_tokens": 56,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 29,
+    "prompt_ms": 4103.6,
+    "prompt_per_token_ms": 141.50344827586207,
+    "prompt_per_second": 7.066965591188224,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 29,
+   "cache_n": 26,
+   "prompt_ms": 4103.6,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-01-047",
+   "session": null,
+   "requests": 2,
+   "has_drawing": false,
+   "load1_before": 1,
+   "load1_after": 1,
+   "ms": 5840.39999999851,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 67,
+    "total_tokens": 68,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 41,
+    "prompt_ms": 5830.7,
+    "prompt_per_token_ms": 142.21219512195123,
+    "prompt_per_second": 7.031745759514295,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 41,
+   "cache_n": 26,
+   "prompt_ms": 5830.7,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-02-007",
+   "session": null,
+   "requests": 2,
+   "has_drawing": false,
+   "load1_before": 1,
+   "load1_after": 1,
+   "ms": 5417.89999999851,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 64,
+    "total_tokens": 65,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 38,
+    "prompt_ms": 5408.6,
+    "prompt_per_token_ms": 142.33157894736843,
+    "prompt_per_second": 7.025847723995119,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 38,
+   "cache_n": 26,
+   "prompt_ms": 5408.6,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-02-015",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1,
+   "load1_after": 1.09,
+   "ms": 65325.80000000447,
+   "forced_tokens": null,
+   "content": "[can] question ask=help topic=quantifier\n[how to get] question ask=help topic=quantifier\n[new] command action=create shape=rectangle label=connectFromTo\n[connectFromTo] rule\n[connectFromTo] command action=connect from=quantifier to=quantifier label=connectFromTo\n[new] command action=create shape=rectangle label=inspect\n[inspect] command action=move target=quantifier position=left anchor=inspect\n[new] command action=create shape=rectangle label=stock\n[stock] command action=create position=left anchor=inspect\n[new] command action=connect from=quantifier to=inspect label=connectFromTo\n[new] command action=create shape=rectangle label=quantifier\n[new] command action=connect from=quantifier to=inspect label=connectFromTo\n[new] command action=create shape=rectangle label=connectFromTo\n[new] command action=connect from=quantifier to=inspect label=connectFromTo\n[new] command action=create shape=rectangle label=quantifier\n[new] command action=connect from=quantifier to=inspect label=connectFromTo\n[new] command action=create shape=rectangle label=quant",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 71,
+    "total_tokens": 327,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 45,
+    "prompt_ms": 6427.1,
+    "prompt_per_token_ms": 142.82444444444445,
+    "prompt_per_second": 7.001602589037045,
+    "predicted_n": 256,
+    "predicted_ms": 58889.2,
+    "predicted_per_token_ms": 230.93803921568627,
+    "predicted_per_second": 4.330165802897645
+   },
+   "prompt_n": 45,
+   "cache_n": 26,
+   "prompt_ms": 6427.1,
+   "predicted_n": 256,
+   "predicted_ms": 58889.2
+  },
+  {
+   "id": "nl-02-016",
+   "session": null,
+   "requests": 2,
+   "has_drawing": false,
+   "load1_before": 1.09,
+   "load1_after": 1.03,
+   "ms": 68354.5,
+   "forced_tokens": null,
+   "content": "[That's] command action=move target=Wall position=near anchor=shelves,Rack1,Rack2,Rack3\n[shorten] command action=resize target=middle\n[new] command action=move target=shelves,Rack1,Rack2,Rack3 position=near anchor=Wall\n[new] command action=move target=Rack1,Rack2,Rack3 position=near anchor=Wall\n[new] command action=move target=Rack1,Rack2,Rack3 position=near anchor=Wall\n[new] command action=move target=Rack1,Rack2,Rack3 position=near anchor=Wall\n[new] command action=move target=Rack1,Rack2,Rack3 position=near anchor=Wall\n[new] command action=move target=Rack1,Rack2,Rack3 position=near anchor=Wall\n[new] command action=move target=Rack1,Rack2,Rack3 position=near anchor=Wall\n[new] command action=move target=Rack1,Rack2,Rack3 position=near anchor=Wall\n[new] command action=move target=Rack1,Rack2,Rack3 position=near anchor=Wall\n[new] command action",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 87,
+    "total_tokens": 343,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 61,
+    "prompt_ms": 8770.2,
+    "prompt_per_token_ms": 143.7737704918033,
+    "prompt_per_second": 6.955371599279378,
+    "predicted_n": 256,
+    "predicted_ms": 59572,
+    "predicted_per_token_ms": 233.6156862745098,
+    "predicted_per_second": 4.280534479285571
+   },
+   "prompt_n": 61,
+   "cache_n": 26,
+   "prompt_ms": 8770.2,
+   "predicted_n": 256,
+   "predicted_ms": 59572
+  },
+  {
+   "id": "nl-02-022",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.03,
+   "load1_after": 1.01,
+   "ms": 59602.19999999553,
+   "forced_tokens": null,
+   "content": "[below] command action=move target=Review position=below\n[newest] command action=move target=Results position=below\n[newest] command action=move target=Results position=above\n[newest] command action=move target=Results position=below\n[newest] command action=move target=Results position=above\n[newest] command action=move target=Results position=above\n[newest] command action=move target=Results position=below\n[newest] command action=move target=Results position=above\n[newest] command action=move target=Results position=below\n[newest] command action=move target=Results position=above\n[newest] command action=move target=Results position=below\n[newest] command action=move target=Results position=above\n[below] command action=move target=Results position=below\n[above] command action=move target=Results position=above\n[newest] command action=move target=Results position=above\n[below] command action=move target=Results position=below\n[above] command action=move target=Results position=above\n[below] command action=move target=Results position=below\n[above] command",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 41,
+    "total_tokens": 297,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 15,
+    "prompt_ms": 2138.4,
+    "prompt_per_token_ms": 142.56,
+    "prompt_per_second": 7.014590347923681,
+    "predicted_n": 256,
+    "predicted_ms": 57451.399,
+    "predicted_per_token_ms": 225.2996039215686,
+    "predicted_per_second": 4.438534212195599
+   },
+   "prompt_n": 15,
+   "cache_n": 26,
+   "prompt_ms": 2138.4,
+   "predicted_n": 256,
+   "predicted_ms": 57451.399
+  },
+  {
+   "id": "nl-02-024",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.01,
+   "load1_after": 1.01,
+   "ms": 4488.29999999702,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 57,
+    "total_tokens": 58,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 31,
+    "prompt_ms": 4475.501,
+    "prompt_per_token_ms": 144.371,
+    "prompt_per_second": 6.926598832175437,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 31,
+   "cache_n": 26,
+   "prompt_ms": 4475.501,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-02-028",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.01,
+   "load1_after": 1.18,
+   "ms": 63862.19999999553,
+   "forced_tokens": null,
+   "content": "[failed inspection] command action=move target=inspect position=below\n[Add] command action=create template=matrix size=small\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from=inspect to=Store\n[new] command action=connect from",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 52,
+    "total_tokens": 308,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 26,
+    "prompt_ms": 3753.999,
+    "prompt_per_token_ms": 144.3845769230769,
+    "prompt_per_second": 6.925947502916224,
+    "predicted_n": 256,
+    "predicted_ms": 60099.001,
+    "predicted_per_token_ms": 235.68235686274508,
+    "predicted_per_second": 4.242998980964758
+   },
+   "prompt_n": 26,
+   "cache_n": 26,
+   "prompt_ms": 3753.999,
+   "predicted_n": 256,
+   "predicted_ms": 60099.001
+  },
+  {
+   "id": "nl-02-029",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.18,
+   "load1_after": 1.17,
+   "ms": 4925.4000000059605,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 69,
+    "total_tokens": 70,
+    "prompt_tokens_details": {
+     "cached_tokens": 35
+    }
+   },
+   "timings": {
+    "cache_n": 35,
+    "prompt_n": 34,
+    "prompt_ms": 4913.001,
+    "prompt_per_token_ms": 144.5000294117647,
+    "prompt_per_second": 6.9204138163212265,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 34,
+   "cache_n": 35,
+   "prompt_ms": 4913.001,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-02-030",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.17,
+   "load1_after": 1.06,
+   "ms": 64405.69999999553,
+   "forced_tokens": null,
+   "content": "[quantifier] command action=connect from=Inspect to=Wash\n[quantifier] command action=connect from=Inspect to=Wash\n[quantifier] command action=connect from=Inspect to=Wash\n[can stay] command action=set target=Wash from=Inspect\n[forward] command action=move target=Wash position=top\n[new] command action=connect from=inspect to=Wash\n[new] command action=connect from=Wash to=Inspect\n[can stay] command action=set target=Wash from=Inspect\n[forward] command action=move target=Wash position=top\n[new] command action=connect from=Wash to=Inspect\n[new] command action=connect from=inspect to=Wash\n[quantifier] command action=connect from=inspect to=Wash\n[new] command action=connect from=Wash to=Inspect\n[quantifier] command action=connect from=Wash to=Inspect\n[new] command action=connect from=inspect to=Wash\n[new] command action=connect from=Wash to=Inspect\n[quantifier] command action=connect from=inspect to=Wash\n[new] command action=connect from=Wash to=Inspect\n[forward] command",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 67,
+    "total_tokens": 323,
+    "prompt_tokens_details": {
+     "cached_tokens": 35
+    }
+   },
+   "timings": {
+    "cache_n": 35,
+    "prompt_n": 32,
+    "prompt_ms": 4606.599,
+    "prompt_per_token_ms": 143.95621875,
+    "prompt_per_second": 6.946556450865378,
+    "predicted_n": 256,
+    "predicted_ms": 59790.9,
+    "predicted_per_token_ms": 234.47411764705882,
+    "predicted_per_second": 4.264863047721309
+   },
+   "prompt_n": 32,
+   "cache_n": 35,
+   "prompt_ms": 4606.599,
+   "predicted_n": 256,
+   "predicted_ms": 59790.9
+  },
+  {
+   "id": "nl-02-032",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.06,
+   "load1_after": 1.16,
+   "ms": 61823,
+   "forced_tokens": null,
+   "content": "[is] command action=connect from=Invoice to=Loss style=dashed\n[is] command action=connect from=Invoice to=Loss style=dashed\n[new] command action=create shape=ellipse position=top anchor=Invoice anchor=Loss\n[new] command action=create shape=circle position=top anchor=Invoice anchor=Loss\n[new] command action=connect from=Invoice to=Loss style=dashed\n[new] command action=create shape=circle position=top anchor=Invoice anchor=Loss\n[new] command action=connect from=Invoice to=Loss style=dashed\n[new] command action=connect from=Invoice to=Loss style=dashed\n[is] command action=connect from=Invoice to=Loss style=dashed\n[is] command action=connect from=Invoice to=Loss style=dashed\n[new] command action=connect from=Invoice to=Loss style=dashed\n[new] command action=connect from=Invoice to=Loss style=dashed\n[is] command action=connect from=Invoice to=Loss style=dashed\n[new] command action=connect from=Invoice to=Loss style=dashed\n[is] command action=connect from=Invoice to=Loss style=dashed\n[new] command action=connect from",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 45,
+    "total_tokens": 301,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 19,
+    "prompt_ms": 2698.6,
+    "prompt_per_token_ms": 142.03157894736842,
+    "prompt_per_second": 7.040687764025791,
+    "predicted_n": 256,
+    "predicted_ms": 59111.5,
+    "predicted_per_token_ms": 231.80980392156863,
+    "predicted_per_second": 4.313881393637448
+   },
+   "prompt_n": 19,
+   "cache_n": 26,
+   "prompt_ms": 2698.6,
+   "predicted_n": 256,
+   "predicted_ms": 59111.5
+  },
+  {
+   "id": "nl-02-033",
+   "session": null,
+   "requests": 2,
+   "has_drawing": false,
+   "load1_before": 1.16,
+   "load1_after": 1.14,
+   "ms": 6693.29999999702,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 72,
+    "total_tokens": 73,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 46,
+    "prompt_ms": 6680.101,
+    "prompt_per_token_ms": 145.21958695652174,
+    "prompt_per_second": 6.886123428373314,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 46,
+   "cache_n": 26,
+   "prompt_ms": 6680.101,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-02-037",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.14,
+   "load1_after": 1.42,
+   "ms": 65002.80000000447,
+   "forced_tokens": null,
+   "content": "[unconfirmed] command action=set target=mention(color=yellow) size=large\n[mention] command action=set target=mention(color=yellow) size=small\n[mention] command action=delete\n[new] command action=delete target=mention(color=yellow)\n[new] command action=set target=new color=yellow size=large\n[new] command action=set target=new color=yellow size=small\n[new] command action=set target=new color=yellow size=large\n[new] command action=set target=new color=yellow size=small\n[new] command action=set target=new color=yellow size=large\n[new] command action=set target=new color=yellow size=small\n[new] command action=set target=new color=yellow size=large\n[new] command action=set target=new color=yellow size=small\n[new] command action=delete target=mention(color=yellow)\n[new] command action=set target=new color=yellow size=large\n[new] command action=set target=new color=yellow size=small\n[new] command action=set target=new color=yellow size=large\n[new] command action=set target=new color=yellow size=small\n[new] command action=set target=new color=yellow size=large\n[new] command action=set",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 58,
+    "total_tokens": 314,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 32,
+    "prompt_ms": 4616.2,
+    "prompt_per_token_ms": 144.25625,
+    "prompt_per_second": 6.932108660803259,
+    "predicted_n": 256,
+    "predicted_ms": 60376.8,
+    "predicted_per_token_ms": 236.77176470588236,
+    "predicted_per_second": 4.2234765671582455
+   },
+   "prompt_n": 32,
+   "cache_n": 26,
+   "prompt_ms": 4616.2,
+   "predicted_n": 256,
+   "predicted_ms": 60376.8
+  },
+  {
+   "id": "nl-02-038",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.42,
+   "load1_after": 1.39,
+   "ms": 5646.0999999940395,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 65,
+    "total_tokens": 66,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 39,
+    "prompt_ms": 5633.6,
+    "prompt_per_token_ms": 144.45128205128205,
+    "prompt_per_second": 6.922749218971883,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 39,
+   "cache_n": 26,
+   "prompt_ms": 5633.6,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-02-042",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.39,
+   "load1_after": 1.31,
+   "ms": 64585.39999999851,
+   "forced_tokens": null,
+   "content": "[over 5k] command action=toFront\n[needs] command action=toFront\n[change] command action=toFront\n[not] command action=toFront\n[new] command action=set target=mention(over 5k) size=large\n[asap] command action=toFront\n[new] command action=set target=mention(over 5k) size=large\n[new] command action=set target=mention(over 5k) size=large\n[new] command action=set target=mention(over 5k) size=large\n[new] command action=set target=mention(over 5k) size=large\n[new] command action=set target=mention(over 5k) size=large\n[new] command action=set target=mention(over 5k) size=large\n[new] command action=set target=mention(over 5k) size=large\n[not] command action=toFront\n[change] command action=toFront\n[new] command action=set target=mention(over 5k) size=large\n[asap] command action=toFront\n[new] command action=set target=mention(over 5k) size=large",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 58,
+    "total_tokens": 314,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 32,
+    "prompt_ms": 4608.3,
+    "prompt_per_token_ms": 144.009375,
+    "prompt_per_second": 6.943992361608402,
+    "predicted_n": 256,
+    "predicted_ms": 59967.299,
+    "predicted_per_token_ms": 235.16587843137253,
+    "predicted_per_second": 4.252317583955215
+   },
+   "prompt_n": 32,
+   "cache_n": 26,
+   "prompt_ms": 4608.3,
+   "predicted_n": 256,
+   "predicted_ms": 59967.299
+  },
+  {
+   "id": "nl-02-045",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.31,
+   "load1_after": 1.34,
+   "ms": 61625.69999999553,
+   "forced_tokens": null,
+   "content": "[Undo] command action=undo\n[new] command action=create template=list items=Manager,Finance\n[new] command action=create template=tree items=Manager,Finance\n[check] command action=connect from=Manager to=Finance\n[connect] command action=connect from=Manager to=Finance\n[check] command action=connect from=Finance to=Manager\n[connect] command action=connect from=Finance to=Manager\n[check] command action=connect from=Manager to=Finance\n[connect] command action=connect from=Manager to=Finance\n[check] command action=connect from=Finance to=Manager\n[connect] command action=connect from=Manager to=Finance\n[check] command action=connect from=Finance to=Manager\n[connect] command action=connect from=Manager to=Finance\n[check] command action=connect from=Manager to=Finance\n[connect] command action=connect from=Manager to=Finance\n[check] command action=connect from=Finance to=Manager\n[connect] command action=connect from=Manager to=Finance\n[check] command action=connect from=Finance to=Manager\n[connect] command action=connect from=Manager",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 41,
+    "total_tokens": 297,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 15,
+    "prompt_ms": 2174.099,
+    "prompt_per_token_ms": 144.93993333333336,
+    "prompt_per_second": 6.899409824483613,
+    "predicted_n": 256,
+    "predicted_ms": 59437.701,
+    "predicted_per_token_ms": 233.08902352941178,
+    "predicted_per_second": 4.2902063119837015
+   },
+   "prompt_n": 15,
+   "cache_n": 26,
+   "prompt_ms": 2174.099,
+   "predicted_n": 256,
+   "predicted_ms": 59437.701
+  },
+  {
+   "id": "nl-02-048",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.34,
+   "load1_after": 1.2,
+   "ms": 61880.39999999851,
+   "forced_tokens": null,
+   "content": "[should be] command action=move target=Finance position=above anchor=Operations\n[new] command action=move target=Request position=below anchor=Operations\n[new] command action=move target=Finance position=above anchor=Operations\n[above] command action=move target=Finance position=above anchor=Operations\n[new] command action=move target=Request position=below anchor=Operations\n[new] command action=move target=Finance position=above anchor=Operations\n[above] command action=move target=Request position=below anchor=Operations\n[new] command action=move target=Request position=below anchor=Operations\n[new] command action=move target=Finance position=above anchor=Operations\n[above] command action=move target=Request position=below anchor=Operations\n[new] command action=move target=Finance position=above anchor=Operations\n[above] command action=move target=Request position=below anchor=Operations\n[above] command action=move target=Request position=below anchor=Operations\n[above] command action=move target=Finance position=above anchor=Operations\n[above] command action=move target=Request position=below anchor=Operations\n[above] command action=move",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 45,
+    "total_tokens": 301,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 19,
+    "prompt_ms": 2752.999,
+    "prompt_per_token_ms": 144.8946842105263,
+    "prompt_per_second": 6.901564439362311,
+    "predicted_n": 256,
+    "predicted_ms": 59114.601,
+    "predicted_per_token_ms": 231.82196470588235,
+    "predicted_per_second": 4.313655098509419
+   },
+   "prompt_n": 19,
+   "cache_n": 26,
+   "prompt_ms": 2752.999,
+   "predicted_n": 256,
+   "predicted_ms": 59114.601
+  },
+  {
+   "id": "nl-03-002",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.2,
+   "load1_after": 1.19,
+   "ms": 5824.30000000447,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 66,
+    "total_tokens": 67,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 40,
+    "prompt_ms": 5811.299,
+    "prompt_per_token_ms": 145.282475,
+    "prompt_per_second": 6.88314265020609,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 40,
+   "cache_n": 26,
+   "prompt_ms": 5811.299,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-03-004",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.19,
+   "load1_after": 1.5,
+   "ms": 67918.5,
+   "forced_tokens": null,
+   "content": "[completely] command action=move target=Sun position=top\n[new] command action=move target=Leaf position=top\n[new] command action=move target=Water position=top\n[new] command action=move target=Stem position=top\n[new] command action=move target=Sun position=inside\n[new] command action=move target=Leaf position=inside\n[new] command action=move target=Water position=inside\n[new] command action=move target=Stem position=inside\n[new] command action=move target=Sun position=top\n[new] command action=move target=Leaf position=top\n[new] command action=move target=Water position=top\n[new] command action=move target=Stem position=top\n[new] command action=move target=Sun position=inside\n[new] command action=move target=Leaf position=inside\n[new] command action=move target=Water position=inside\n[new] command action=move target=Stem position=inside\n[new] command action=move target=Sun position=top\n[new] command action=move target=Leaf position=top\n[new] command action=move",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 73,
+    "total_tokens": 329,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 47,
+    "prompt_ms": 6822.301,
+    "prompt_per_token_ms": 145.15534042553193,
+    "prompt_per_second": 6.889171263478407,
+    "predicted_n": 256,
+    "predicted_ms": 61086.3,
+    "predicted_per_token_ms": 239.55411764705883,
+    "predicted_per_second": 4.17442208809504
+   },
+   "prompt_n": 47,
+   "cache_n": 26,
+   "prompt_ms": 6822.301,
+   "predicted_n": 256,
+   "predicted_ms": 61086.3
+  },
+  {
+   "id": "nl-03-005",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.5,
+   "load1_after": 1.57,
+   "ms": 67953.80000000447,
+   "forced_tokens": null,
+   "content": "[put] command action=move target=Battery position=below anchor=Switch\n[keep] command action=connect from=Battery to=Switch\n[new] command action=connect from=Switch to=Light\n[new] command action=connect from=Light to=Switch\n[new] command action=connect from=Switch to=Battery\n[new] command action=connect from=Switch to=Light\n[new] command action=connect from=Light to=Switch\n[new] command action=connect from=Battery to=Switch\n[new] command action=connect from=Switch to=Light\n[new] command action=connect from=Battery to=Switch\n[new] command action=connect from=Switch to=Light\n[new] command action=connect from=Light to=Switch\n[new] command action=connect from=Battery to=Switch\n[keep] command action=connect from=Switch to=Light\n[new] command action=connect from=Switch to=Light\n[new] command action=connect from=Light to=Switch\n[keep] command action=connect from=Battery to=Switch\n[new] command action=connect from=Switch to=Light\n[new] command action=connect from=Light to=Switch\n[keep",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 73,
+    "total_tokens": 329,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 47,
+    "prompt_ms": 6836,
+    "prompt_per_token_ms": 145.4468085106383,
+    "prompt_per_second": 6.875365710942072,
+    "predicted_n": 256,
+    "predicted_ms": 61103.2,
+    "predicted_per_token_ms": 239.62039215686272,
+    "predicted_per_second": 4.173267521177287
+   },
+   "prompt_n": 47,
+   "cache_n": 26,
+   "prompt_ms": 6836,
+   "predicted_n": 256,
+   "predicted_ms": 61103.2
+  },
+  {
+   "id": "nl-03-007",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.57,
+   "load1_after": 1.53,
+   "ms": 5512.70000000298,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 64,
+    "total_tokens": 65,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 38,
+    "prompt_ms": 5500.699,
+    "prompt_per_token_ms": 144.75523684210526,
+    "prompt_per_second": 6.908212938028422,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 38,
+   "cache_n": 26,
+   "prompt_ms": 5500.699,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-03-009",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.53,
+   "load1_after": 1.48,
+   "ms": 3773.0999999940395,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 52,
+    "total_tokens": 53,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 26,
+    "prompt_ms": 3763.8,
+    "prompt_per_token_ms": 144.76153846153846,
+    "prompt_per_second": 6.907912216377066,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 26,
+   "cache_n": 26,
+   "prompt_ms": 3763.8,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-03-017",
+   "session": null,
+   "requests": 2,
+   "has_drawing": false,
+   "load1_before": 1.48,
+   "load1_after": 1.41,
+   "ms": 6969.5,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 74,
+    "total_tokens": 75,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 48,
+    "prompt_ms": 6961.001,
+    "prompt_per_token_ms": 145.02085416666668,
+    "prompt_per_second": 6.89555999201839,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 48,
+   "cache_n": 26,
+   "prompt_ms": 6961.001,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-03-018",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.41,
+   "load1_after": 1.42,
+   "ms": 68162.20000000298,
+   "forced_tokens": null,
+   "content": "[mention] command action=connect from=Grandfather to=1946\n[stand] command action=move target=1948 position=above\n[correct] rule\n[stand] command action=move target=1946 position=above\n[new] command action=create template=process name=1946\n[new] command action=create template=process name=1947\n[new] command action=connect from=1946 to=1947\n[new] command action=connect from=1947 to=1948\n[new] rule\n[new] command action=create template=process name=1948\n[new] command action=set target=1948 size=small\n[new] command action=create template=process name=1949\n[new] command action=create template=process name=1950\n[new] command action=connect from=1949 to=1950\n[new] command action=connect from=1950 to=1949\n[new] rule\n[new] command action=set target=1949 size=medium\n",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 74,
+    "total_tokens": 330,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 48,
+    "prompt_ms": 7003.7,
+    "prompt_per_token_ms": 145.91041666666666,
+    "prompt_per_second": 6.853520282136585,
+    "predicted_n": 256,
+    "predicted_ms": 61148.6,
+    "predicted_per_token_ms": 239.798431372549,
+    "predicted_per_second": 4.170169063559918
+   },
+   "prompt_n": 48,
+   "cache_n": 26,
+   "prompt_ms": 7003.7,
+   "predicted_n": 256,
+   "predicted_ms": 61148.6
+  },
+  {
+   "id": "nl-03-019",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.42,
+   "load1_after": 1.14,
+   "ms": 62481.09999999404,
+   "forced_tokens": null,
+   "content": "[Who] question ask=extreme superlative=mostConnected\n[mention] question ask=connected target=mention\n[mention] question ask=extreme superlative=mostConnected\n[mention] question ask=extreme superlative=mostConnected\n[new] question ask=connected target=mention\n[new] question ask=extreme superlative=mostConnected\n[new] question ask=extreme superlative=mostConnected\n[mention] question ask=extreme superlative=mostConnected\n[new] question ask=connected target=mention\n[new] question ask=extreme superlative=mostConnected\n[new] question ask=extreme superlative=mostConnected\n[mention] question ask=extreme superlative=mostConnected\n[new] question ask=connected target=mention\n[mention] question ask=extreme superlative=mostConnected\n[new] question ask=connected target=mention\n[mention] question ask=extreme superlative=mostConnected\n[new] question ask=extreme superlative=mostConnected\n[new] question ask=connected target=mention\n[mention] question ask=extreme",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 49,
+    "total_tokens": 305,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 23,
+    "prompt_ms": 3262.9,
+    "prompt_per_token_ms": 141.86521739130436,
+    "prompt_per_second": 7.04894419075056,
+    "predicted_n": 256,
+    "predicted_ms": 59206.299,
+    "predicted_per_token_ms": 232.18156470588235,
+    "predicted_per_second": 4.306974161651279
+   },
+   "prompt_n": 23,
+   "cache_n": 26,
+   "prompt_ms": 3262.9,
+   "predicted_n": 256,
+   "predicted_ms": 59206.299
+  },
+  {
+   "id": "nl-03-025",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.14,
+   "load1_after": 1.13,
+   "ms": 5411.5999999940395,
+   "forced_tokens": null,
+   "content": "",
+   "err": null,
+   "finish": "stop",
+   "usage": {
+    "completion_tokens": 1,
+    "prompt_tokens": 64,
+    "total_tokens": 65,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 38,
+    "prompt_ms": 5399.901,
+    "prompt_per_token_ms": 142.10265789473684,
+    "prompt_per_second": 7.037166051747986,
+    "predicted_n": 1,
+    "predicted_ms": 0.001,
+    "predicted_per_token_ms": 0,
+    "predicted_per_second": 0
+   },
+   "prompt_n": 38,
+   "cache_n": 26,
+   "prompt_ms": 5399.901,
+   "predicted_n": 1,
+   "predicted_ms": 0.001
+  },
+  {
+   "id": "nl-03-036",
+   "session": null,
+   "requests": 2,
+   "has_drawing": false,
+   "load1_before": 1.13,
+   "load1_after": 1.04,
+   "ms": 65093.69999999553,
+   "forced_tokens": null,
+   "content": "[At] command action=move target=fear position=leftOf anchor=fear\n[put] command action=create template=funnel label=excitement size=large position=rightOf anchor=fear\n[both] fact color=black shape=rectangle position=top anchor=fear\n[for] fact target=mention(anchor=firstSchoolDay) color=black shape=rectangle position=bottom anchor=fear\n[new] command action=create template=funnel label=quantifier size=large position=leftOf anchor=fear\n[new] command action=create template=funnel label=quantifier size=large position=top anchor=fear\n[new] command action=create template=funnel label=quantifier size=large position=bottom anchor=fear\n[new] command action=create template=funnel label=quantifier size=large position=leftOf anchor=fear\n[new] command action=create template=funnel label=quantifier size=large position=top anchor=fear\n[new] command action=create template=funnel label=quantifier size=large position=bottom anchor=fear\n[new] command action=create template=funnel label=quantifier size=large position=leftOf anchor=fear\n[new] command action=create template=fun",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 64,
+    "total_tokens": 320,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 38,
+    "prompt_ms": 5396.999,
+    "prompt_per_token_ms": 142.02628947368422,
+    "prompt_per_second": 7.040949979794327,
+    "predicted_n": 256,
+    "predicted_ms": 59687.501,
+    "predicted_per_token_ms": 234.068631372549,
+    "predicted_per_second": 4.27225123732354
+   },
+   "prompt_n": 38,
+   "cache_n": 26,
+   "prompt_ms": 5396.999,
+   "predicted_n": 256,
+   "predicted_ms": 59687.501
+  },
+  {
+   "id": "nl-03-044",
+   "session": null,
+   "requests": 1,
+   "has_drawing": false,
+   "load1_before": 1.04,
+   "load1_after": 1.01,
+   "ms": 67259,
+   "forced_tokens": null,
+   "content": "[shape] command action=arrange target=mention(Star) layout=circle\n[falling] command action=arrange target=mention(Star) layout=circle\n[line] command action=create shape=diamond position=below anchor=mention(Star)\n[falling down] command action=arrange target=mention(Star) layout=circle\n[whoosh] question ask=help topic=arrange\n[not falling off] question ask=check target=mention(Star) position=above anchor=mention(Star)\n[falling off] question ask=check target=mention(Star) position=below anchor=mention(Star)\n[mention] command action=toFront target=mention(Star) target=mention(Star) target=Star\n[falling off] question ask=check position=below anchor=mention(Star)\n[not falling off] question ask=check position=above anchor=mention(Star)\n[falling down] question ask=check position=below anchor=mention(Star)\n[mention(Star)] command action=toFront target=mention(Star) target=mention(Star) target=Star\n[whoosh] question ask=help",
+   "err": null,
+   "finish": "length",
+   "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 72,
+    "total_tokens": 328,
+    "prompt_tokens_details": {
+     "cached_tokens": 26
+    }
+   },
+   "timings": {
+    "cache_n": 26,
+    "prompt_n": 46,
+    "prompt_ms": 6559.3,
+    "prompt_per_token_ms": 142.59347826086957,
+    "prompt_per_second": 7.012943454332016,
+    "predicted_n": 256,
+    "predicted_ms": 60686.999,
+    "predicted_per_token_ms": 237.98823137254902,
+    "predicted_per_second": 4.201888447309777
+   },
+   "prompt_n": 46,
+   "cache_n": 26,
+   "prompt_ms": 6559.3,
+   "predicted_n": 256,
+   "predicted_ms": 60686.999
+  }
+ ]
+}

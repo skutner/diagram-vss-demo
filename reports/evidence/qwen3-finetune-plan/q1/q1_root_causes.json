@@ -1,0 +1,251 @@
+{
+ "nl_a/development": {
+  "messages": 300,
+  "requested": 392,
+  "right": 66,
+  "causes": {
+   "seen": {
+    "wrong value": 62,
+    "held by the validator": 38,
+    "missing request": 49,
+    "wrong value: reference": 12
+   },
+   "unseen": {
+    "wrong value": 40,
+    "missing request": 86,
+    "held by the validator": 30,
+    "wrong value: reference": 9
+   },
+   "unannotated": {},
+   "unpaired extras": {
+    "extra request": 131
+   }
+  },
+  "held_by_first_error": {
+   "template=… is not a legend value of template": 15,
+   "shape=… is not a legend value of shape": 15,
+   "ask=… is not a legend question": 8,
+   "topic=… is not a legend value of topic": 8,
+   "bad key=…": 7,
+   "action=… is not a legend action": 7,
+   "position=… is not a legend value of position": 7,
+   "the words of items=… are not in the message": 7,
+   "at must be two numbers x,y": 5,
+   "the trigger […] is not in the message": 4,
+   "path does not take avoiding (in the training data)": 3,
+   "color=… is not a legend value of color": 3,
+   "forget does not take target (in the training data)": 2,
+   "quantifier=… is not a legend value of quantifier": 2,
+   "style=… is not a legend value of style": 2,
+   "it uses what an earlier request would create, which could not be read": 2,
+   "the words of name=… are not in the message": 2,
+   "set does not take value (in the training data)": 2,
+   "size=… is not a legend value of size": 2,
+   "aspect=… is not a legend value of aspect": 1,
+   "delete does not take position (in the training data)": 1,
+   "superlative=… is not a legend value of superlative": 1,
+   "a description does not take above (in the training data)": 1,
+   "respace does not take position (in the training data)": 1,
+   "a description does not take left (in the training data)": 1,
+   "a description does not take right (in the training data)": 1,
+   "the key label twice": 1,
+   "layout=… is not a legend value of layout": 1,
+   "kind=… is not a legend value of kind": 1,
+   "create does not take kind (in the training data)": 1,
+   "fact does not take open (in the training data)": 1,
+   "property=… is not a legend value of property": 1,
+   "create does not take on (in the training data)": 1,
+   "fact does not take date (in the training data)": 1,
+   "connect does not take size (in the training data)": 1,
+   "pairing=… is not a legend value of pairing": 1,
+   "the words of label=… are not in the message": 1,
+   "table2 is neither on the drawing, nor written in the message, nor crea": 1,
+   "the key action twice": 1,
+   "a description does not take region (in the training data)": 1,
+   "set does not take label (in the training data)": 1,
+   "a description does not take not (in the training data)": 1,
+   "fact does not take style (in the training data)": 1,
+   "set does not take notShape (in the training data)": 1,
+   "count must be a number": 1,
+   "fact does not take at (in the training data)": 1
+  },
+  "examples": {
+   "wrong value": [
+    "nl-01-003",
+    "nl-01-004",
+    "nl-01-019",
+    "nl-01-026"
+   ],
+   "extra request": [
+    "nl-01-003",
+    "nl-01-004",
+    "nl-01-006",
+    "nl-01-014"
+   ],
+   "missing request": [
+    "nl-01-006",
+    "nl-01-017",
+    "nl-01-017",
+    "nl-01-019"
+   ],
+   "held by the validator": [
+    "nl-01-014",
+    "nl-01-014",
+    "nl-01-014",
+    "nl-01-014"
+   ],
+   "wrong value: reference": [
+    "nl-01-019",
+    "nl-01-019",
+    "nl-02-027",
+    "nl-02-031"
+   ]
+  }
+ },
+ "fresh2/test": {
+  "messages": 405,
+  "requested": 1313,
+  "right": 1218,
+  "causes": {
+   "seen": {
+    "wrong value: reference": 13,
+    "missing request": 29,
+    "wrong value": 21,
+    "held by the validator": 6,
+    "unreadable line": 3
+   },
+   "unseen": {
+    "wrong value": 6,
+    "missing request": 10,
+    "wrong value: reference": 5,
+    "held by the validator": 2
+   },
+   "unannotated": {},
+   "unpaired extras": {
+    "extra request": 27
+   }
+  },
+  "held_by_first_error": {
+   "bad key=…": 2,
+   "shape=… is not a legend value of shape": 2,
+   "position=… is not a legend value of position": 2,
+   "the trigger […] is not in the message": 2,
+   "template=… is not a legend value of template": 1,
+   "set does not take position (in the training data)": 1,
+   "count does not take connected (in the training data)": 1,
+   "recency=… is not a legend value of recency": 1,
+   "set does not take property (in the training data)": 1,
+   "the words of name=… are not in the message": 1,
+   "scheme=… is not a legend value of scheme": 1,
+   "nearest does not take anchor2 (in the training data)": 1,
+   "ask=… is not a legend question": 1
+  },
+  "examples": {
+   "wrong value: reference": [
+    "fo-0012",
+    "fo-0052",
+    "fo-0052",
+    "fo-0160"
+   ],
+   "missing request": [
+    "fo-0013",
+    "fo-0027",
+    "fo-0035",
+    "fo-0076"
+   ],
+   "wrong value": [
+    "fo-0013",
+    "fo-0066",
+    "fo-0083",
+    "fo-0096"
+   ],
+   "held by the validator": [
+    "fo-0025",
+    "fo-0076",
+    "fo-0118",
+    "fo-0118"
+   ],
+   "extra request": [
+    "fo-0090",
+    "fo-0135",
+    "fo-0147",
+    "fo-0165"
+   ],
+   "unreadable line": [
+    "fo-0557",
+    "fo-0557",
+    "fo-0557"
+   ]
+  }
+ },
+ "short3/test": {
+  "messages": 340,
+  "requested": 432,
+  "right": 356,
+  "causes": {
+   "seen": {
+    "held by the validator": 8,
+    "wrong value": 21,
+    "wrong value: reference": 7,
+    "missing request": 22
+   },
+   "unseen": {
+    "missing request": 8,
+    "wrong value": 6,
+    "wrong value: reference": 3,
+    "held by the validator": 1
+   },
+   "unannotated": {},
+   "unpaired extras": {
+    "extra request": 15
+   }
+  },
+  "held_by_first_error": {
+   "the words of items=… are not in the message": 3,
+   "layer=… is not a legend value of layer": 1,
+   "position=… is not a legend value of position": 1,
+   "arrange does not take count (in the training data)": 1,
+   "create does not take kind (in the training data)": 1,
+   "layout=… is not a legend value of layout": 1,
+   "topic=… is not a legend value of topic": 1,
+   "set does not take name (in the training data)": 1,
+   "$new with no earlier create in this output": 1,
+   "connect does not take size (in the training data)": 1,
+   "at must be two numbers x,y": 1,
+   "ask=… is not a legend question": 1,
+   "groupOf does not take anchor (in the training data)": 1
+  },
+  "examples": {
+   "held by the validator": [
+    "s3-0002",
+    "s3-0166",
+    "s3-0215",
+    "s3-0236"
+   ],
+   "wrong value": [
+    "s3-0006",
+    "s3-0025",
+    "s3-0062",
+    "s3-0074"
+   ],
+   "missing request": [
+    "s3-0008",
+    "s3-0073",
+    "s3-0079",
+    "s3-0087"
+   ],
+   "extra request": [
+    "s3-0008",
+    "s3-0073",
+    "s3-0079",
+    "s3-0194"
+   ],
+   "wrong value: reference": [
+    "s3-0027",
+    "s3-0067",
+    "s3-0109",
+    "s3-0146"
+   ]
+  }
+ }
+}

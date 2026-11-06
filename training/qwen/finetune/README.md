@@ -23,4 +23,17 @@ runs, data, pilot rows; not in git): `~/.cache/diagram-vss-qwen/`. Python runs i
 | `parity_check.mjs` | the native-against-browser parity gate of the plan's Q0.2 |
 | `pilot_score.mjs` | the blind labelling pilot against the two teachers of `nl_a`, per action and by engine effect |
 | `teachers_by_writer.mjs` | the teachers' agreement on `nl_a` by writer and kind |
+| `lists.mjs` | the training folder lists of the arms (F0 = the encoders' first-run list, M2, `nl_p1`) |
+| `lines_reader.mjs` | the reader side of the line format: parser, validator, the validator's context (`readerContext`), wires through `K.parse`, GBNF grammar; keys per act learned from training gold |
+| `lines_oracle.mjs` | Q0.4: training and `nl_a` gold through the validator (pass >= 99.5%), with and without L1's number table |
+| `line_scores.mjs` | per-request confidence signals from the runtime's token log-probabilities (top-2) |
+| `collect_lines.mjs` | a line-format reader's records on the parity sets, native llama-server or wllama in headless Chromium (sharded) |
+| `calibrate_qwen.mjs` | the calibrate_arm.mjs protocol with the Qwen signals |
+| `compare_qwen.mjs` | a copy of compare_arms.mjs plus the right share (`test_compare_qwen.mjs` checks it reproduces the original) |
+| `test_qwen_lines.mjs` | tests of the reader, the scores and the calibration |
+| `time_bench.mjs` | Q0.7: time per message in wllama, forced to the gold's length in the line format |
+| `train_qwen.py` | the LoRA trainer of the arms (resumable, deadline), merge onto the exact FP32 weights |
+| `teacher_forced.py` | Q0.6: a PyTorch model teacher-forced on native records (zero arm, export) |
+| `own_rows.mjs` | Q1 (a): the arm on 1,000 of its own training rows |
+| `q03_baseline.sh` | Q0.3: the shipped reader on all sets, native GPU (b11364 CUDA), under the GPU lock |
 | `PREREG_BASELINE.md` | how the shipped reader's baseline is read, written before it finished |
