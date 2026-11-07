@@ -1,0 +1,80 @@
+capture: 352 of 352 messages ok; failed: 0
+nl_a: 300 messages, 277 with a held request, 668 held requests: 88 pass (13.2%); name any word 147 (22.0%); fail: {"names no word":521,"names only words that are not in the request":59}
+collected_1: 52 messages, 48 with a held request, 77 held requests: 7 pass (9.1%); name any word 14 (18.2%); fail: {"names no word":63,"names only words that are not in the request":7}
+total: 95 of 745 pass (12.8%); rule met (every question passes, capture complete): false
+bug causes (failing questions by what they show):
+  296	names no word | the words could mean two different things: ACT or ACT
+  189	names no word | only one of the two readers found a request here
+  123	names no word | NAMES was taken from the conversation; the name was not written
+  117	names no word | not sure where this request starts
+  111	names no word | not sure what kind of request this is
+  73	names no word | nothing was read from it besides the action
+  62	names only words that are not in the request | requests read as X are often read wrong
+  52	names no word | little was read from it besides the action
+  28	names only words that are not in the request | only one of the two readers found a request here
+  23	names only words that are not in the request | the words could mean two different things: ACT or ACT
+  15	names no word | not sure which shape the description means
+  13	names no word | the two readers read the shape (V or V) differently
+  12	names no word | the reading was close to another reading
+  9	names no word | the two readers read the shape it is placed against (V or V) differently
+  9	names no word | part of the request is unexplained by the reading
+  9	names no word | not sure where it starts
+  7	names no word | not sure about the shape it is about
+  6	names no word | not sure whether it names the shape it is placed against
+  6	names no word | the two readers read the text (V or V) differently
+  5	names no word | not sure whether it names the shape it is about
+  3	names only words that are not in the request | it needs X first, and that was not done
+  3	names no word | read in the layout world, which is often wrong
+  3	names no word | the reading is right most of the time, but not often enough to act without asking
+  2	names no word | the two readers read the position (V or V) differently
+  2	names no word | not sure whether it gives a shape
+  2	names no word | the two readers read the pattern (V or V) differently
+  1	names no word | the two readers read where the arrow starts (Running or Paused) and where the arrow ends (Paused or nothing) differently
+  1	names no word | the two readers read the direction (V or V) differently
+  1	names only words that are not in the request | the two readers read which shape it is about (the new shape or Header) differently
+  1	names no word | the two readers read which shape it is about (Afternoon or Header) differently
+  1	names no word | not sure how to read the word X
+  1	names no word | the two readers read which shape it is about (Db or Restart) differently
+  1	names no word | not sure where this request ends
+  1	names no word | the two readers read which shape it is about (nothing or Sea) differently
+  1	names only words that are not in the request | the two readers read the text (V or V) differently
+  1	names no word | the two readers read which shape it is about (N or American) differently
+  1	names no word | the two readers read which shape it is about (Archive or nothing) differently
+  1	names no word | the two readers read how many (N or nothing) and the shape (nothing or circle) differently
+  1	names only words that are not in the request | the two readers read which shape it is about (Camp and Cave or Camp) differently
+  1	names only words that are not in the request | the two readers read the x,y position (nothing or N,N) differently
+  1	names no word | the two readers read where the arrow starts (Press, Oven and Cooling or Oven) and where the arrow ends (Oven or nothing) differently
+  1	names no word | the two readers read the name (V or V) differently
+  1	names only words that are not in the request | the two readers read which shape it is about (Ms or DPO) differently
+  1	names only words that are not in the request | the two readers read where the arrow ends (Issuer and Switch or Switch) differently
+  1	names only words that are not in the request | the two readers read which shape it is about (Door or Desk) differently
+  1	names no word | the two readers read which shape it is about (Reading, Stacks, Entrance and others or nothing) and where the arrow starts (nothing or Local) differently
+  1	names no word | the two readers read the size (V or V) differently
+  1	names no word | the two readers read which shape it is about (nothing or Entrance) differently
+  1	names no word | the two readers read which shape it is about (nothing or all the rectangles) and the colour (nothing or blue) differently
+  1	names no word | the two readers read which shape it is about (Red or the red shape) differently
+  1	names no word | the two readers read which shape it is about (Red or everything) differently
+  1	names no word | the two readers read where the arrow ends (nothing or Enache) differently
+  1	names no word | the two readers read which shape it is about (Box or Summary) differently
+  1	names no word | the two readers read which shape it is about (Excess and Damage or Excess) differently
+  1	names no word | the two readers read which diagram form (target or nothing) and the shape (nothing or circle) differently
+  1	names no word | not sure whether it gives a color
+  1	names no word | the two readers read the colour (V or V) differently
+  1	names no word | the two readers read the line style (V or V) differently
+  1	names only words that are not in the request | the two readers read the colour (V or V) differently
+  1	names only words that are not in the request | X was taken to mean HighStreet, Number12 and Church; the name was not written
+  1	names no word | the two readers read which shape it is about (nothing or Task1, Task2, Task3 and others) differently
+  1	names no word | the two readers read which shape it is about (DoneCol, Task1, Task2 and others or Done) differently
+  1	names no word | not sure about where the connection ends
+  1	names no word | read in the links world, which is often wrong
+  1	names no word | the two readers read where the arrow starts (Mill or Mill and Road) differently
+  1	names no word | not sure whether it names where the connection ends
+  1	names no word | the two readers read which shape it is about (Village, Swamp and Keep or Murk) differently
+  1	names no word | the two readers read how they are connected (nothing or chain) differently
+  1	names only words that are not in the request | the two readers read the about (V or V) differently
+  1	names no word | the two readers read which shape it is about (N and N or nothing) differently
+  1	names no word | the two readers read which shape it is about (the shape or nothing) differently
+  1	names only words that are not in the request | the two readers read what the question is about (undo or nothing) differently
+  1	names no word | not sure whether it gives an outline
+  1	names no word | not sure whether it gives a size
+  1	names no word | not sure whether it gives a template
