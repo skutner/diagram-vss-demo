@@ -1,6 +1,6 @@
 # Natural language after the small readers: a proposal
 
-Date 2026-11-07. Base commit `c266319`. Status: **proposed**. Nothing in this plan has run. No GPU or LLM run starts before the owner
+Date 2026-11-07. Base commit `c266319`. Status: **proposed, revised after review** (section 8). Nothing in this plan has run. No GPU or LLM run starts before the owner
 answers the decisions in section 6. It follows the closing of the ModernBERT natural-language line (`training/neural/MODERNBERT_RUNLOG.md`,
 "The owner's decision after W") and of the Qwen3 line (`training/qwen/QWEN3_FINETUNE_RUNLOG.md`, "Q2 result").
 
@@ -48,8 +48,10 @@ Beside these: about 120 requests not done and about 200 extras per seed. A reade
 row: C100 from about 48 to about 106 of 392 right (27%), an upper bound and an inference.
 
 "Written only in another sentence" includes references the reasoning layer is meant to fill (AGENTS.md: "a name stated in an earlier
-sentence is left as a reference for the reasoning layer"). The evaluation scores the reader alone: 29 C100-s0 records hold an unfilled
-`mention()` value, which counts as wrong.
+sentence is left as a reference for the reasoning layer"). Not all of it: SOP-BERT and ModernBERT write a "description" as a `mention`
+wire that the engine resolves (`docs/js/neural.js:145`), and some of those are confident wrong executions, not open references
+(C100-s0 `nl-01-004`: gold target "guestwifi,staffwifi", output `mention(quantifier=all)`, which acts on every shape). On `nl_a`
+development, 18 C100-s0 requests are paired, wrong and carry a `mention(` value where the gold has none (36 records hold one anywhere).
 
 ## 2. The question
 
@@ -59,18 +61,27 @@ requests can be executed safely, by which reader, and at what cost in the browse
 ## 3. Step 0: an answer key that is not one of the readers
 
 Every comparison below needs it. Today the key is Opus's labels, so any reader built on Opus scores well by construction, and gpt
-scores well in the "either" view. No LLM reader is measured before Step 0.
+scores well in the "either" view. No LLM reader is measured before Step 0, and no result of an option is read on the old key.
 
-- **0a. Adjudicate the disagreements.** The 168 `nl_a` messages where Opus and gpt differ, blind A/B by Opus 5.5 high, as `nl_p2`'s
-  were (`parity/adjudicate.py`, `parity/ADJUDICATION.md`). New: the adjudicator may answer **ask** (the message does not decide it;
-  asking is the right outcome), counted as "not done is right" for that request. The result goes to a new folder `nl_a/key/`;
-  `nl_a/opus/` and `nl_a/gpt/` stay unchanged.
-- **0b. Check the requests where both agree.** Agreed labels are not proof. A random sample of 100 agreed requests (seed fixed), checked
-  by the owner (D4) or by a third model family that labelled none of `nl_a` (gpt-6-astra, which wrote `nl_b`), blind. If more than 5
-  of 100 are wrong, stop and report: the agreed labels cannot serve as the key.
-- **0c. Score what the demo runs.** Measure the reader together with the reasoning layer's context filling (`docs/js/vss-context.js`),
-  or count an unfilled reference as not done instead of wrong (AGENTS.md: not a reader error). Report both. Rescore C100, SOP-BERT,
-  Q1 and Q2 on the key: no new reading, the records exist.
+- **0a. Adjudicate by a model family that labelled no part of `nl_a`.** The rows `adjudicate.py build` selects: the 168 messages where
+  Opus and gpt differ plus the messages whose Opus label fails in the engine, 179 in all; also gpt's engine failures (added to the
+  selection). Two blind adjudicators per row: gpt-6-astra (it wrote `nl_b` and labelled nothing in `nl_a`) and Opus 5.5 high, each
+  choosing A, B, both acceptable, own, or **ask** (the message does not decide it; holding is the right outcome). Report how often the
+  two agree, and the split Opus / gpt / own / ask. Where they disagree, the owner decides (D4), or the row becomes "ask".
+  The result goes to a new folder `nl_a/key/`; `nl_a/opus/` and `nl_a/gpt/` stay unchanged. The key's session rows after a changed row
+  are replayed (`validate_rows.mjs` on the key, `names` recomputed): 14 of 21 sessions hold a disagreement, with 97 later rows.
+- **0b. Check what both teachers agreed on, by message.** A fixed-seed random sample of 60 messages from those without a disagreement
+  (about 80 requests), labelled blind by gpt-6-astra (it sees the text and the drawing, not the teachers' label), then compared with the
+  agreed label. A difference is adjudicated as in 0a. Defined: **wrong** = contradicts `ANNOTATION_SPEC.md` or what the message says;
+  a debatable choice the spec leaves open is not wrong. Reported: the wrong rate with its 95% interval (Wilson). Bar: the upper end at
+  most 6%. Above it the agreed labels are not a key and the plan stops for the owner. Sampling by message also finds requests that both
+  teachers missed.
+- **0c. Rescore the existing records on the key.** The records were made against Opus's gold and `loadRecords` refuses them once the
+  gold changes (`arm_lib.mjs:179`, `recordDiffers` `arm_lib.mjs:102`). A key view re-pairs the stored produced requests with the key,
+  as `teacherRecord` does for the teachers (`arm_lib.mjs:83`). Thresholds: kept as fitted on the old calibration labels (declared now,
+  so nothing is refitted after seeing key scores), and a refit on the key reported beside it. No new reading.
+  Unresolved references: a value counts as **not done** (0 cost) only for the forms AGENTS.md names, a pronoun, `$new`, or a name
+  written in an earlier sentence of the message; an engine-resolved description (`mention(...)`) is scored as executed.
 
 ## 4. The options
 
@@ -80,36 +91,43 @@ Each is written out with hypothesis, measure and threshold and shown to the owne
 
 The small readers hold back most natural requests, and that is the honest outcome. What the person then sees decides whether the editor
 is usable. AGENTS.md already requires the question to name the words not understood.
-- **A1.** On `nl_a` development and `collected_1`, every held request: does the question name the words it did not understand and the
-  forms it does understand? Measure the share that does. Threshold: 100%; anything less is a bug list.
-- **A2.** Fill references from the context (0c). The about 40 values per seed written in another sentence are partly the context
-  filler's job. Measure: requests right, reader plus filler, against the reader alone, at the same threshold, paired.
+- **A1.** For the reader the demo runs by default, on `nl_a` development and `collected_1`, every held request: the message shown to the
+  person, captured from the demo's own code path. A tool lists, per held request, the words the question names and the legend forms it
+  offers. Pass: every question names at least one word of the request it could not read. Anything less is a bug list, fixed in the demo
+  (a bug fix, no approval needed).
+- **A2. Not run without D6.** Filling references from the context exists only behind the VSS reader (`vss-context.js` takes a VSS
+  reading; `vss-composer.js:58` is its only importer). Putting a filler behind SOP-BERT, ModernBERT or Qwen is a new layer in their
+  pipeline and needs the owner's approval (AGENTS.md).
 
-### B. Is model size the lever? (offline, on this machine; no browser work)
+### B. Is model size the lever? (offline, on this machine; needs D7)
 
 - **Hypothesis:** a larger model reads natural phrasing that 0.6B cannot.
-- **B1, prompt only, no training:** Qwen3-1.7B, 4B and 8B (GGUF, Q4_K_M, native llama.cpp on the RTX 3060's 6 GiB; 8B partly
-  offloaded), the legend and the annotation spec in the prompt, the same output format as the Qwen reader. `nl_a` development, scored
-  against the key, every request executed and at each model's own cost-10 threshold (calibration part).
-- **B2, only if B1 shows a rise with size:** LoRA fine-tune of the largest size that fits 6 GiB, on Q1's training list. That is a
-  recipe change against Q1's full fine-tune, so it is declared on its own.
-- **Read:** if right share does not rise with size, the limit is not the model, and a bigger browser reader is not worth building.
-  If it does, the browser limits decide (D3).
+- **B1, prompt only, no training:** Qwen3-0.6B, 1.7B, 4B and 8B (GGUF Q4_K_M, native llama.cpp on the RTX 3060's 6 GiB; 8B partly
+  offloaded), the legend and the annotation spec in the prompt, the same output format as the Qwen reader. `nl_a` development on the
+  key, every request executed and at each model's own cost-10 threshold (fitted on the calibration part).
+- **Bar:** 8B minus 0.6B, paired right share with every request executed, 95% lower end above 0; and the same at each one's threshold
+  (cost score) reported. If the bar is missed, model size is not the lever and B stops.
+- **What it can decide:** only whether size matters. Native numbers are development numbers (the Qwen run log, Q0.2), and no size above
+  0.6B fits the 800 MB bundle at Q4; any browser use goes through D3.
+- **B2 is not part of this plan.** Fine-tuning 4B or 8B in 6 GiB means QLoRA, and the GGUF export (`write_gguf.py`) handles only the
+  0.6B Q8_0 container. If B1 passes, B2 is declared on its own.
 
 ### C. An LLM in the loop (needs D1 and D2)
 
 - **The design:** the browser reader executes what it is sure of; the requests it holds go to a large model, which executes only under
   its own confidence.
 - **The open question is that confidence.** Section 1 shows a frontier model executing everything is not safe.
-- **Pilots on existing labels only** (no new LLM runs), scored against the key:
-  - **C1.** Two frontier models agree: execute a request where Opus and gpt agree, ask otherwise. Its precision is known only through
-    0b's sample, because the key equals their shared label.
-  - **C2.** The small reader and the LLM agree: execute C100's request only where it equals gpt's label.
-- **C3, a new run:** one model sampled twice, executing where the two samples agree. Only if C1 or C2 shows a gain.
-- **Threshold, per pilot:** cost score at its threshold above C100's at its own threshold, paired, 95% lower end above 0, and a
-  confidently-wrong rate no higher than C100's.
-- **The product step comes after, as its own formal plan with review:** where the model runs, who holds the key and what leaves the
-  browser.
+- **Pilots on existing labels, descriptive only (they gate nothing):** on agreed requests the key equals the teachers' shared label,
+  so a pilot built on that label cannot be wrong there.
+  - **C1.** Two frontier models agree: execute where Opus and gpt agree, ask otherwise. Its precision is estimated only from 0b's
+    independent check, with that interval; coverage from the key.
+  - **C2.** The small reader and gpt agree: execute C100's request only where it equals gpt's label; scored only on the rows where the
+    key differs from gpt's label or 0b checked it.
+- **C3, the measured pilot, a new run (needs D1):** a model family that labelled none of the key (or two samples of one model) executes
+  where its readings agree, on `nl_a` development, scored on the key. Bar: cost score at its threshold above C100's at its own
+  threshold, paired, 95% lower end above 0, and a confidently-wrong rate no higher than C100's.
+- **The product step comes after, as its own formal plan with review:** where the model runs, who holds the key, what leaves the
+  browser, and the browser's limits on calling an API directly (CORS).
 
 ### D. Not proposed: more training data of the same kind
 
@@ -123,46 +141,73 @@ real sessions recorded in the demo (target: a few hundred requests, labelled by 
 
 ## 5. Order
 
-1. Step 0, on the CPU plus LLM labelling: 0a about 168 messages, 0b 100 requests, 0c no new runs.
-2. A1 and A2: CPU only, minutes.
-3. Pilots C1 and C2: CPU only, minutes; only if D1 does not rule an LLM out.
-4. B1: GPU, about 1 to 3 h for three sizes on 392 + 408 requests (estimate). B2 only on B1's result.
-5. E: whenever the owner records sessions.
-6. A product change (C's product step or a bigger browser reader) only after the owner's decision on these results.
+1. The tools of section 7 with their tests (CPU).
+2. Step 0: 0a (about 180 rows, two adjudicators), 0b (60 messages), 0c (no new reading). LLM labelling runs in normal subscription
+   sessions (Claude subagents, `codex exec` for the gpt models); the API-credit route is paused.
+3. A1 (CPU, minutes). A2 only on D6.
+4. C1 and C2 (CPU, minutes, descriptive). C3 only on D1.
+5. B1 only on D7: GPU, about 1 to 3 h for four sizes (estimate).
+6. E whenever the owner records sessions.
+7. A product change only after the owner's decision on these results.
 
 ## 6. Decisions for the owner
 
 - **D1. Is an LLM in the loop in scope?** AGENTS.md: "The research question of this project is a reader that says clearly where it is
   not sure, not one that approximates well: for approximations there are LLMs." Options: (a) no: the research stays with the small
-  readers, and the plan is Step 0, A and B; (b) yes, as a fallback for held requests: Step 0, A, the C pilots, then a product plan.
+  readers, and the plan is Step 0, A and B; (b) yes, as a fallback for held requests: Step 0, A, the C pilots and C3, then a product plan.
 - **D2. If yes, where the large model runs.** GitHub Pages holds no secret.
-  - A key the person types, kept only in their browser.
+  - A key the person types, kept only in their browser (subject to the provider allowing browser calls).
   - A small proxy server.
   - A local model server.
   - In every case the person's messages leave the browser. A key is never committed.
 - **D3. The browser limits for a bigger browser reader:** keep or relax?
   - Each reader's model bundle under 800,000,000 bytes (`reports/browser-models-under-800mb.md`); Qwen3-0.6B Q8_0 is 639,446,688.
   - wllama on one thread with WebGPU off (owner's settings, 2026-11-04). Multithreading needs headers GitHub Pages cannot send.
-  - The 10 s p95 bar, already missed by Qwen3-0.6B on one thread (`QWEN3_FINETUNE_PLAN.md`: 30-40 s per message with the shipped
-    prompt).
-- **D4. The key.** Is Opus 5.5 high blind adjudication with "ask" allowed acceptable for 0a? For 0b, does the owner check 100 agreed
-  requests, or does a third model family?
+  - Time: Qwen3-0.6B measured p95 14.7 s with names only and 31.3 s with the drawing (Qwen run log, Q0.7), against a 10 s p95 bar.
+- **D4. The key.** gpt-6-astra and Opus 5.5 as the two blind adjudicators of 0a and the checker of 0b; the owner decides the rows where
+  the adjudicators disagree, or they become "ask". Acceptable, or does the owner check them instead?
 - **D5. Real sessions (E).** Will the owner, or others, record sessions in the demo for a real test set?
+- **D6. A reference filler behind the neural readers (A2)?** A new layer in their pipeline.
+- **D7. B1: new models and their download.** Qwen3-1.7B, 4B and 8B GGUF (about 1 to 5 GB each), offline only, never shipped.
 
 ## 7. Commands
 
 Existing:
 ```bash
 node training/neural/parity/folder_agreement.mjs training/sketch/llm_bench/nl_a ~/.cache/diagram-vss-modernbert/nl_a_agreement.json
-python3 training/neural/parity/adjudicate.py build training/sketch/llm_bench/nl_a WORK 6 ~/.cache/diagram-vss-modernbert/nl_a_agreement.json reports/evidence/modernbert-parity-baseline/nl_a/validate_opus.txt reports/evidence/modernbert-parity-baseline/nl_a/validate_gpt.txt
 node training/neural/parity/score_arm.mjs CONFIDENCE.json OUT.score.json REC_FS.jsonl REC_NL.jsonl REC_CS.jsonl
 node training/neural/parity/compare_arms.mjs A.score.json B.score.json OUT.json
 ```
 
 To write (each with a test, before use):
-- `adjudicate.py`: an `ask` choice, and `merge --out nl_a/key` that writes the key folder instead of rewriting `opus/`.
-- `sets.mjs`: load `nl_a/key/` as the gold when present, and report which key a score used.
-- `parity/agree_gate.mjs RECORDS.jsonl --second gpt --key key`: the C1 and C2 pilots, scored by `score_arm.mjs`'s rules.
-- `parity/wrong_values_span.mjs`: the split of section 1, by the request's own text, kept with the evidence.
-- B1's runner: native llama.cpp with the Qwen reader's output format and scorer (`training/qwen/finetune/`), owned with the Qwen
-  session.
+- `adjudicate.py`:
+  - `build` also selects gpt's engine failures;
+  - two adjudicators per row, and the agreement between them;
+  - an `ask` choice;
+  - `merge --out KEYDIR`, writing the key folder;
+  - `merge --write` refuses any folder under `llm_bench` unless `--out` is given, so `nl_a/opus` cannot be rewritten.
+- The key's session replay: `validate_rows.mjs` on `nl_a/key`, with `names` recomputed.
+- `sets.mjs`, `arm_lib.mjs`, `score_arm.mjs`:
+  - an explicit `--gold key` option, never chosen automatically when the folder exists;
+  - a key view that re-pairs stored produced requests, like `teacherRecord`;
+  - the "ask" wire form and its rule: holding it is right (0 cost), executing it is wrong;
+  - the reference rule of 0c;
+  - every score file names its gold.
+- `parity/check_sample.py`: 0b's message sample (seed 20261107), the blind items and the Wilson interval.
+- `parity/agree_gate.mjs RECORDS.jsonl`: the C1 and C2 pilots, descriptive.
+- `parity/wrong_values_span.mjs`: the split of section 1, by the request's own text, kept with the evidence (its scratch version
+  reproduces 61/77/42/37/5 and 56/76/38/51/5).
+- A1's tool: the held requests' questions from the demo's code path, with the words they name.
+- B1's runner (only on D7): native llama.cpp with the Qwen reader's output format and scorer (`training/qwen/finetune/`).
+
+## 8. Review
+
+Initial review by `plan-reviewer` (Opus 5.5 high), 2026-11-07, verdict REVISE. Its findings are applied above:
+- The C pilots passed by construction; they are now descriptive, and C3 is the measured pilot.
+- Rescoring needed scorer and record changes (`arm_lib.mjs:102`, `:179`) and an "ask" rule; these are now listed.
+- The reference rule covered `mention()` outputs that are wrong executions; it is now limited, and the count is 18, not 29.
+- Opus adjudicating its own disagreements was circular; there are now two adjudicators, one from a family new to `nl_a`.
+- 0b had no definition of wrong, the wrong unit and too loose a bar; it is now 60 messages, a Wilson upper end of 6% or less, blind.
+- B had no owner approval and no bar; D7 and a bar are added, and B2 is removed.
+
+Every section 1 number was checked by the reviewer, who reran the two CPU scripts; the only mismatch was the 29.
