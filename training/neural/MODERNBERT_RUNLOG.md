@@ -722,3 +722,4 @@ W-s0 resumed from update 16,198 and W-s1 from update 1; both finished the full s
 - Reading (inference): giving the natural rows 4 times the weight moves a few requests from cut and act errors to class and extras, and the total does not move. As the curve said, the limit is not how much weight the natural rows get.
 
 **Decision, as declared:** W was the last pre-declared ModernBERT step on natural language. Nothing further is queued. The drawing input trained on natural data stays an owner option (18:50, point 4), not declared and not run. The Qwen3 line stopped at Q2 for the same reading (`training/qwen/QWEN3_FINETUNE_RUNLOG.md`, 23:20).
+- Correction to the line above ("-25.8 better / +12.0 worse"): W minus C100, `nl_a` development, every request executed, cost: W-s0 +25.8 (better), W-s1 -12.0 (worse); intervals as given, both include 0.
