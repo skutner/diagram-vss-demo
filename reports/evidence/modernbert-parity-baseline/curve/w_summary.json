@@ -1,0 +1,31 @@
+{
+ "measure": "nl_a calibration + development, Opus view, every request executed: right per requested action",
+ "points": {
+  "C100": {
+   "right_share": 0.1412,
+   "requested": 800,
+   "seeds": [
+    0.1412,
+    0.1412
+   ]
+  },
+  "W": {
+   "right_share": 0.1431,
+   "requested": 800,
+   "seeds": [
+    0.1462,
+    0.14
+   ]
+  }
+ },
+ "differences": {
+  "W - C100": {
+   "diff": 0.0019,
+   "ci95": [
+    -0.0098,
+    0.0134
+   ],
+   "units": 365
+  }
+ }
+}

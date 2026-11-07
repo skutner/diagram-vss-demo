@@ -1,0 +1,87 @@
+{
+  "recipe": "five message folds (index mod 5, in set order); fold-local priors and percentiles; L2 grid 0.01, 0.1, 1, 10; thresholds of the cost levels on out-of-fold scores",
+  "reader": "modernbert",
+  "artifact": "b12cd1cff73b3ba6a80735fe4d42689a8abe008dd9bf804ad6adce6155f196a9",
+  "calibration": {
+    "sets": [
+      "fresh2",
+      "short3"
+    ],
+    "messages": 368,
+    "requested": 808,
+    "produced": 824,
+    "l2": 10,
+    "oof_auroc": 0.8495020005920606,
+    "by_set": {
+      "fresh2": {
+        "messages": 195,
+        "requested": 596,
+        "produced": 616
+      },
+      "short3": {
+        "messages": 173,
+        "requested": 212,
+        "produced": 208
+      }
+    },
+    "without_confidence_signals": 0,
+    "truncated": 0,
+    "failed_messages": 0
+  },
+  "fit_status": "fitted",
+  "fit_available": true,
+  "levels_out_of_fold": {
+    "cost1": {
+      "threshold": 0.6153675600008253,
+      "score": 66.95544554455446,
+      "executed": 717
+    },
+    "cost2": {
+      "threshold": 0.6959158459620797,
+      "score": 57.42574257425742,
+      "executed": 653
+    },
+    "cost5": {
+      "threshold": 0.8329729754707159,
+      "score": 42.82178217821782,
+      "executed": 478
+    },
+    "cost": {
+      "threshold": 0.8589133036934314,
+      "score": 33.04455445544555,
+      "executed": 421
+    },
+    "cost20": {
+      "threshold": 0.9192948306236675,
+      "score": 19.925742574257427,
+      "executed": 224
+    }
+  },
+  "out_of_fold_at_cost10": {
+    "requested": 808,
+    "right": 407,
+    "wrong": 7,
+    "asked": 362,
+    "unread": 32,
+    "extras": 7,
+    "executed": 421,
+    "execution_precision": 0.9667458432304038,
+    "wrong_execution_share": 0.0332541567695962,
+    "right_share": 0.5037128712871287,
+    "cost_score": 33.04455445544555
+  },
+  "ignored_records": {
+    "fresh2/test": 405,
+    "short3/test": 340,
+    "collected_1/all": 52,
+    "scenes_test/all": 166,
+    "nl_a/calibration": 310,
+    "nl_a/development": 300
+  },
+  "labels": "calibration label = outcome against the gold of the set (Opus for nl_a), the headline view; scale not compared",
+  "record_files": [
+    "/home/skutner/.cache/diagram-vss-modernbert/arms/W-s0/eval/rec_fs.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/arms/W-s0/eval/rec_cs.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/arms/W-s0/eval/rec_nl.jsonl"
+  ]
+}

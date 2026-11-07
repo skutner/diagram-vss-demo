@@ -700,3 +700,25 @@ From the Qwen session's read-only research (`training/qwen/QWEN3_FINETUNE_RUNLOG
 - **At 22:11:56 the GPU's firmware crashed** (kernel log: `NVRM: Xid (PCI:0000:01:00): 120, GSP task exception: store address misaligned`, then `Xid ... 154, GPU recovery action changed from 0x0 (None) to 0x1 (GPU Reset Required)`; driver 595.99.02, open kernel module). No ModernBERT job was on the GPU then: W had been stopped at 21:54 and the GPU had no compute process. The Claude desktop app restarted at the same time, which ended the Qwen session's CPU and browser collection at 22:11 (that session's report).
 - With the host's memory free again (22 GB available, no headless browser left), this session resumed W at 22:28 (`queue_w2.sh`, a memory check of at least 8 GiB before each seed). Both runs stopped in the overfit gate's device check, before any training: `RuntimeError: GPU recovery action must be None: Reset` (`finetune_modernbert.py` `cuda_health`). Nothing was trained, written to the checkpoints or evaluated; W-s0's checkpoint (update 16,198) and W-s1's (update 1) are unchanged.
 - `nvidia-smi` reports `gpu_recovery_action Reset` and "GPU requires reset" for temperature and clocks. Clearing it needs root (`nvidia-smi --gpu-reset`, which also needs the device unused, and `gnome-shell` holds `/dev/nvidia*`) or a reboot: the owner's action, not this session's. W resumes from its checkpoints after that, with `queue_w2.sh`, unchanged.
+
+### W resumes after the reboot; its deadline moved (2026-11-07 15:05, before W runs)
+
+- The owner rebooted the host (up since 14:58). `nvidia-smi`: recovery action None, 36 C, driver 595.99.02 (unchanged); no compute process, the lock free, 27 GiB available. Both checkpoints are as at 21:52 and 21:54; the trainer's resume contract (`IDENTITY_KEYS`: settings, data, sources, device, versions, ...) holds no deadline.
+- **`STOP_AT` moves from 2026-11-07 12:00 to 2026-11-07 20:00.** It was a run deadline, not a result rule: no W result exists, and the declared data, recipe, seeds, updates and bar are unchanged. The owner's "continue" after the reboot is the go.
+- W resumes with `queue_w2.sh` (this deadline): W-s0 from update 16,198, W-s1 from update 1, each evaluated against C100 of its seed.
+
+### W: result (2026-11-07 16:00). **Miss**; the natural-language line of ModernBERT stops here
+
+W-s0 resumed from update 16,198 and W-s1 from update 1; both finished the full schedule (16,200 updates; `train rc 0` at 15:04 and 15:45; export exit 2, near ties, reported as always) and were evaluated against C100 of their seed (queue done 15:53).
+
+**The bar, as declared at 18:50:**
+1. `curve_summary.py C100=C100-s0,C100-s1 W=W-s0,W-s1` (`reports/evidence/modernbert-parity-baseline/curve/w_summary.json`): C100 14.1% of 800 (seeds 14.1%, 14.1%), W 14.3% (14.6%, 14.0%); **W minus C100 +0.2 points [-1.0, +1.3]** over 365 units. The lower end is not above 0: **miss.**
+2. `gold.today.gate`, W minus C100, mean over seeds: fresh2 test -2.6 / -2.7, mean -2.7; short3 test +7.2 / +11.3, mean +9.3. Both at least -10: pass. (Clause 2 alone does not pass W.)
+
+**Reported, not gating:**
+- `nl_a` development, every request executed, cost: -25.8 better / +12.0 worse by seed (W-s0 +25.8 [-50.4, +107.5], W-s1 -12.0 [-108.4, +69.0]).
+- `nl_a` development at the cost-10 threshold: W-s0 -1.5 [-7.2, +1.8]; **W-s1 -16.8 [-30.3, -5.7]** (worse, p 0.015).
+- First causes, `nl_a` development (seed means, C100 -> W): wrong act 136 -> 132.5; cut 141.5 -> 129.5; no-request extras 86.5 -> 90.5; references the request does not write 100 -> 96.5; class 42.5 -> 46; name 34 -> 34. Right 47.5 -> 49.5 of 392. Files: `curve/root_causes/W-s{0,1}.{md,json,log}`.
+- Reading (inference): giving the natural rows 4 times the weight moves a few requests from cut and act errors to class and extras, and the total does not move. As the curve said, the limit is not how much weight the natural rows get.
+
+**Decision, as declared:** W was the last pre-declared ModernBERT step on natural language. Nothing further is queued. The drawing input trained on natural data stays an owner option (18:50, point 4), not declared and not run. The Qwen3 line stopped at Q2 for the same reading (`training/qwen/QWEN3_FINETUNE_RUNLOG.md`, 23:20).

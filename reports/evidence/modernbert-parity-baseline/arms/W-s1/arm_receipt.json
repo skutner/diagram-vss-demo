@@ -1,0 +1,608 @@
+{
+  "schema": "arm-export-receipt-v1",
+  "passed": false,
+  "rule": "passed = PyTorch and Node decode every text the same; the runtime checks before it have already held",
+  "weights": {
+    "sha256": "a118fc19028b156fdbeb59a15c2fbcf93afdcf4d8b4fac2c0051dc79db3484a6",
+    "epoch": 8,
+    "update": 16200,
+    "total": 16200,
+    "full_schedule": true,
+    "max_updates": 0,
+    "source_file": "checkpoint.pt",
+    "source_changes_since_training": []
+  },
+  "export_mode": "weight-only-u8-fp32",
+  "execution_policy": {
+    "graph_optimization": "basic",
+    "arithmetic": "float32",
+    "weight_storage": "uint8"
+  },
+  "torch_vs_node": {
+    "texts": 20,
+    "counts": {
+      "act": {
+        "agree": 20,
+        "total": 20
+      },
+      "classes": {
+        "agree": 978,
+        "total": 980
+      },
+      "tags": {
+        "agree": 1957,
+        "total": 1960
+      },
+      "cuts": {
+        "agree": 17,
+        "total": 20
+      },
+      "pieces": {
+        "agree": 20,
+        "total": 20
+      }
+    },
+    "differences": [
+      {
+        "text": "Our robotics competition field needs a clear layout for the drive team. Move Ram",
+        "chars": 308,
+        "differences": [
+          {
+            "key": "tag:33",
+            "torch": "B-target",
+            "node": "O",
+            "margin": 0.2317
+          }
+        ]
+      },
+      {
+        "text": "Caf\u00e9 na\u00efve \u6771\u4eac \ud83d\ude00 e\u0301 _ \uff11\uff12",
+        "chars": 23,
+        "differences": [
+          {
+            "key": "tag:3",
+            "torch": "I-label",
+            "node": "O",
+            "margin": 0.062
+          }
+        ]
+      },
+      {
+        "text": "connect A to B; connect A to B; connect A to B; connect A to B; connect A to B; ",
+        "chars": 1280,
+        "differences": [
+          {
+            "key": "class:arrow",
+            "torch": null,
+            "node": "none",
+            "margin": 0.0975
+          },
+          {
+            "key": "cut",
+            "torch": [
+              [
+                0,
+                46
+              ],
+              [
+                56,
+                60
+              ],
+              [
+                72,
+                76
+              ],
+              [
+                88,
+                92
+              ],
+              [
+                104,
+                105
+              ],
+              [
+                120,
+                121
+              ],
+              [
+                1184,
+                1193
+              ],
+              [
+                1197,
+                1198
+              ],
+              [
+                1200,
+                1214
+              ],
+              [
+                1216,
+                1230
+              ],
+              [
+                1232,
+                1247
+              ],
+              [
+                1248,
+                1263
+              ],
+              [
+                1264,
+                1278
+              ]
+            ],
+            "node": [
+              [
+                0,
+                46
+              ],
+              [
+                56,
+                60
+              ],
+              [
+                72,
+                76
+              ],
+              [
+                80,
+                92
+              ],
+              [
+                104,
+                105
+              ],
+              [
+                120,
+                121
+              ],
+              [
+                1184,
+                1193
+              ],
+              [
+                1197,
+                1198
+              ],
+              [
+                1200,
+                1214
+              ],
+              [
+                1216,
+                1230
+              ],
+              [
+                1232,
+                1247
+              ],
+              [
+                1248,
+                1278
+              ]
+            ],
+            "torch_info": {
+              "truncated": false,
+              "unreadFrom": null
+            },
+            "node_info": {
+              "truncated": false,
+              "unreadFrom": null
+            }
+          }
+        ]
+      },
+      {
+        "text": "draw circle. draw circle. draw circle. draw circle. draw circle. draw circle. dr",
+        "chars": 3900,
+        "differences": [
+          {
+            "key": "class:desc:shape",
+            "torch": "circle",
+            "node": null,
+            "margin": 0.1575
+          },
+          {
+            "key": "cut",
+            "torch": [
+              [
+                2132,
+                2136
+              ],
+              [
+                2145,
+                2149
+              ],
+              [
+                2158,
+                2162
+              ],
+              [
+                2171,
+                2175
+              ]
+            ],
+            "node": [
+              [
+                1942,
+                1948
+              ],
+              [
+                1955,
+                1961
+              ],
+              [
+                1963,
+                1974
+              ],
+              [
+                1976,
+                1987
+              ],
+              [
+                1989,
+                2000
+              ],
+              [
+                2002,
+                2013
+              ],
+              [
+                2015,
+                2026
+              ],
+              [
+                2028,
+                2039
+              ],
+              [
+                2041,
+                2052
+              ],
+              [
+                2054,
+                2065
+              ],
+              [
+                2067,
+                2078
+              ],
+              [
+                2080,
+                2091
+              ],
+              [
+                2093,
+                2104
+              ],
+              [
+                2106,
+                2117
+              ],
+              [
+                2119,
+                2130
+              ],
+              [
+                2132,
+                2143
+              ],
+              [
+                2145,
+                2156
+              ],
+              [
+                2158,
+                2169
+              ],
+              [
+                2171,
+                2182
+              ]
+            ],
+            "torch_info": {
+              "truncated": true,
+              "unreadFrom": 2210
+            },
+            "node_info": {
+              "truncated": true,
+              "unreadFrom": 2210
+            }
+          }
+        ]
+      },
+      {
+        "text": "\ufeffdraw\u0085circle\u001cA",
+        "chars": 14,
+        "differences": [
+          {
+            "key": "tag:4",
+            "torch": "B-label",
+            "node": "B-name",
+            "margin": 2.1702
+          }
+        ]
+      },
+      {
+        "text": "A\u00a0B\u1680C\u2000D\u2028E\u2029F\u202fG\u205fH\u3000I",
+        "chars": 17,
+        "differences": [
+          {
+            "key": "cut",
+            "torch": [
+              [
+                0,
+                3
+              ],
+              [
+                4,
+                7
+              ],
+              [
+                8,
+                11
+              ],
+              [
+                12,
+                17
+              ]
+            ],
+            "node": [
+              [
+                0,
+                3
+              ],
+              [
+                4,
+                17
+              ]
+            ],
+            "torch_info": {
+              "truncated": false,
+              "unreadFrom": null
+            },
+            "node_info": {
+              "truncated": false,
+              "unreadFrom": null
+            }
+          }
+        ]
+      }
+    ],
+    "per_text": [
+      {
+        "chars": 18,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      },
+      {
+        "chars": 22,
+        "pieces": 9,
+        "words": 4,
+        "agree": true
+      },
+      {
+        "chars": 35,
+        "pieces": 9,
+        "words": 7,
+        "agree": true
+      },
+      {
+        "chars": 53,
+        "pieces": 25,
+        "words": 16,
+        "agree": true
+      },
+      {
+        "chars": 69,
+        "pieces": 20,
+        "words": 17,
+        "agree": true
+      },
+      {
+        "chars": 92,
+        "pieces": 25,
+        "words": 21,
+        "agree": true
+      },
+      {
+        "chars": 134,
+        "pieces": 33,
+        "words": 29,
+        "agree": true
+      },
+      {
+        "chars": 219,
+        "pieces": 69,
+        "words": 57,
+        "agree": true
+      },
+      {
+        "chars": 308,
+        "pieces": 73,
+        "words": 65,
+        "agree": false
+      },
+      {
+        "chars": 595,
+        "pieces": 150,
+        "words": 134,
+        "agree": true
+      },
+      {
+        "chars": 1200,
+        "pieces": 302,
+        "words": 267,
+        "agree": true
+      },
+      {
+        "chars": 0,
+        "pieces": 2,
+        "words": 0,
+        "agree": true
+      },
+      {
+        "chars": 34,
+        "pieces": 10,
+        "words": 8,
+        "agree": true
+      },
+      {
+        "chars": 23,
+        "pieces": 22,
+        "words": 8,
+        "agree": false
+      },
+      {
+        "chars": 1280,
+        "pieces": 402,
+        "words": 400,
+        "agree": false
+      },
+      {
+        "chars": 3900,
+        "pieces": 512,
+        "words": 900,
+        "agree": false
+      },
+      {
+        "chars": 14,
+        "pieces": 9,
+        "words": 5,
+        "agree": false
+      },
+      {
+        "chars": 17,
+        "pieces": 11,
+        "words": 9,
+        "agree": false
+      },
+      {
+        "chars": 13,
+        "pieces": 5,
+        "words": 3,
+        "agree": true
+      },
+      {
+        "chars": 15,
+        "pieces": 7,
+        "words": 5,
+        "agree": true
+      }
+    ]
+  },
+  "python_ort_vs_node": {
+    "fixtures": 41,
+    "singles": 39,
+    "batches": 2,
+    "ids": true,
+    "outputs": true,
+    "decoded": true,
+    "cuts": true,
+    "readMany": true,
+    "max_abs": [
+      6.699562072753906e-05,
+      0.000415802001953125,
+      8.738040924072266e-05
+    ]
+  },
+  "float_vs_torch_max_abs": [
+    0.00011897087097167969,
+    0.0003032684326171875,
+    5.549192428588867e-05
+  ],
+  "sdpa_vs_eager_max_abs": [
+    2.6226043701171875e-05,
+    8.7738037109375e-05,
+    1.3172626495361328e-05
+  ],
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.001
+  },
+  "cases_where_q8_decodes_differently_from_float": [
+    "single-03",
+    "single-04",
+    "single-05",
+    "single-06",
+    "single-07",
+    "single-08",
+    "single-12",
+    "single-13",
+    "single-14",
+    "single-15",
+    "batch-message-512",
+    "request-view-of-long-message",
+    "extra-08-128",
+    "extra-08-512",
+    "extra-10-512"
+  ],
+  "conversion": {
+    "blocks": 93,
+    "quantizers": 91
+  },
+  "float_graph_files": {
+    "model_float.onnx": {
+      "sha256": "7946ad1c2f473b0ad3ef948d834a51fdccc1fb1be4e242b676407afff4d2ba18",
+      "bytes": 601082628
+    }
+  },
+  "shards": [
+    "model_quantized.onnx_data",
+    "model_quantized.onnx_data_1"
+  ],
+  "files": {
+    "config.json": {
+      "sha256": "45d919d79a5e5cab8a4ba2fe0f38339f13376301ca1b2134494f9dcebfb01bcb",
+      "bytes": 720144
+    },
+    "conversion.json": {
+      "sha256": "1edc8261bce638c8209677633d515614155a78fd08df530b041f2d23427446ee",
+      "bytes": 64404
+    },
+    "export_parity.json": {
+      "sha256": "60cb355721be985a927612abd6764e999fcf64f61e8707b119f0ece65e82b587",
+      "bytes": 572
+    },
+    "onnx/model_quantized.onnx": {
+      "sha256": "373e4fa95b2d4b9352b0db756c336cf6947947f097984303f88d0f731998a361",
+      "bytes": 1491260
+    },
+    "onnx/model_quantized.onnx_data": {
+      "sha256": "0787d58cf2c08b33b2c41f3b1e47202c3a1e28e693d0d19a455b6ea128e02c90",
+      "bytes": 93974844
+    },
+    "onnx/model_quantized.onnx_data_1": {
+      "sha256": "a2ba250d1246e867ae2b2dc9e2ab7698d7b3d6ae83ea02e615093eed500d66fe",
+      "bytes": 56262912
+    },
+    "references.json": {
+      "sha256": "f56b27b337a5b4c3b5fd40de717fe89ddcddb5122404f1b82d60ac66db37c70d",
+      "bytes": 7471572
+    },
+    "special_tokens_map.json": {
+      "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+      "bytes": 694
+    },
+    "tokenizer.json": {
+      "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+      "bytes": 3583228
+    },
+    "tokenizer_config.json": {
+      "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560",
+      "bytes": 20840
+    }
+  },
+  "source_changes_since_training": [],
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "python": "3.12.16",
+    "python_onnxruntime": "1.29.0"
+  }
+}
