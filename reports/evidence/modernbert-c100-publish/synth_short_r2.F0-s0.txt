@@ -1,0 +1,36 @@
+## F0-s0: n 1997, every request executed right 76.7%; cost gate (thr 0.9156): right 514 (25.7%), wrong 55, asked 1428, wrong share of executions 9.7%; texts also in train.jsonl 18; errors 0; 1183 s
+  move             n  172  all  92.4%  gate R/W/A 19/0/153
+  connect          n  172  all  95.9%  gate R/W/A 149/0/23
+  delete           n  171  all  95.3%  gate R/W/A 14/0/157
+  set              n  171  all  98.2%  gate R/W/A 130/0/41
+  create           n  169  all  93.5%  gate R/W/A 27/0/142
+  arrow_unlabel    n   80  all   0.0%  gate R/W/A 0/0/80
+  outline_set      n   80  all  26.3%  gate R/W/A 0/0/80
+  arrow_label      n   80  all  95.0%  gate R/W/A 2/0/78
+  arrow_style      n   80  all  98.8%  gate R/W/A 0/0/80
+  outline_create   n   79  all   0.0%  gate R/W/A 0/0/79
+  at_xy            n   79  all  98.7%  gate R/W/A 37/0/42
+  undo             n   76  all  98.7%  gate R/W/A 41/0/35
+  redo             n   76  all 100.0%  gate R/W/A 30/0/46
+  outline_q        n   73  all   0.0%  gate R/W/A 0/48/25
+  size_desc        n   72  all   0.0%  gate R/W/A 0/5/67
+  tpl_items        n   71  all  98.6%  gate R/W/A 0/0/71
+  free_text        n   64  all  98.4%  gate R/W/A 49/0/15
+  every_arrow      n   61  all  93.4%  gate R/W/A 0/0/61
+  tpl_count        n   56  all 100.0%  gate R/W/A 0/0/56
+  layout_op        n   47  all 100.0%  gate R/W/A 0/0/47
+  undo_count       n   47  all   0.0%  gate R/W/A 0/2/45
+  count_arrows     n   21  all 100.0%  gate R/W/A 16/0/5
+  WRONG "what's the border color of Clean" -> @n1 question ask=property property=color target=Clean (want {"ask":"property","property":"outline","target":"Clean"})
+  WRONG "what is the border of Booting" -> @n1 question ask=property property=label target=Booting (want {"ask":"property","property":"outline","target":"Booting"})
+  WRONG "cool. now what is the outline colour of Eggs" -> @n1 question ask=property property=color target=Eggs (want {"ask":"property","property":"outline","target":"Eggs"})
+  WRONG "what is the border of Te" -> @n1 question ask=property property=label target=Te (want {"ask":"property","property":"outline","target":"Te"})
+  WRONG "undo that twice" -> @n1 command action=undo (want {"action":"undo","count":"2"})
+  WRONG "what's the border color of Wr2" -> @n1 question ask=property property=color target=Wr2 (want {"ask":"property","property":"outline","target":"Wr2"})
+  WRONG "what's the border color of Switch1" -> @n1 question ask=property property=color target=Switch1 (want {"ask":"property","property":"outline","target":"Switch1"})
+  WRONG "what is the border of Plant" -> @n1 question ask=property property=label target=Plant (want {"ask":"property","property":"outline","target":"Plant"})
+  WRONG "what is the outline colour of Search" -> @n1 question ask=property property=color target=Search (want {"ask":"property","property":"outline","target":"Search"})
+  WRONG "how many large rectangles are there" -> @n1 question ask=count shape=rectangle (want {"ask":"count","shape":"rectangle","size":"large"})
+  WRONG "please undo twice" -> @n1 command action=undo (want {"action":"undo","count":"2"})
+  WRONG "what's the border color of Coil" -> @n1 question ask=property property=color target=Coil (want {"ask":"property","property":"outline","target":"Coil"})
+{"label":"F0-s0","n":1997,"all_right":1532,"g_right":514,"g_wrong":55,"g_asked":1428,"overlap":18,"errors":0,"byForm":{"create":{"n":169,"all_right":158,"g_right":27,"g_wrong":0,"g_asked":142},"arrow_unlabel":{"n":80,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":80},"free_text":{"n":64,"all_right":63,"g_right":49,"g_wrong":0,"g_asked":15},"move":{"n":172,"all_right":159,"g_right":19,"g_wrong":0,"g_asked":153},"outline_set":{"n":80,"all_right":21,"g_right":0,"g_wrong":0,"g_asked":80},"delete":{"n":171,"all_right":163,"g_right":14,"g_wrong":0,"g_asked":157},"set":{"n":171,"all_right":168,"g_right":130,"g_wrong":0,"g_asked":41},"size_desc":{"n":72,"all_right":0,"g_right":0,"g_wrong":5,"g_asked":67},"arrow_label":{"n":80,"all_right":76,"g_right":2,"g_wrong":0,"g_asked":78},"undo":{"n":76,"all_right":75,"g_right":41,"g_wrong":0,"g_asked":35},"outline_q":{"n":73,"all_right":0,"g_right":0,"g_wrong":48,"g_asked":25},"connect":{"n":172,"all_right":165,"g_right":149,"g_wrong":0,"g_asked":23},"redo":{"n":76,"all_right":76,"g_right":30,"g_wrong":0,"g_asked":46},"tpl_items":{"n":71,"all_right":70,"g_right":0,"g_wrong":0,"g_asked":71},"layout_op":{"n":47,"all_right":47,"g_right":0,"g_wrong":0,"g_asked":47},"outline_create":{"n":79,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":79},"arrow_style":{"n":80,"all_right":79,"g_right":0,"g_wrong":0,"g_asked":80},"at_xy":{"n":79,"all_right":78,"g_right":37,"g_wrong":0,"g_asked":42},"undo_count":{"n":47,"all_right":0,"g_right":0,"g_wrong":2,"g_asked":45},"every_arrow":{"n":61,"all_right":57,"g_right":0,"g_wrong":0,"g_asked":61},"count_arrows":{"n":21,"all_right":21,"g_right":16,"g_wrong":0,"g_asked":5},"tpl_count":{"n":56,"all_right":56,"g_right":0,"g_wrong":0,"g_asked":56}}}

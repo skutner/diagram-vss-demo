@@ -1,0 +1,36 @@
+## M1-s0: n 1997, every request executed right 75.6%; cost gate (thr 0.8787): right 668 (33.5%), wrong 123, asked 1206, wrong share of executions 15.5%; texts also in train.jsonl 18; errors 0; 1192 s
+  move             n  172  all  77.9%  gate R/W/A 35/0/137
+  connect          n  172  all  97.1%  gate R/W/A 147/0/25
+  delete           n  171  all 100.0%  gate R/W/A 17/0/154
+  set              n  171  all 100.0%  gate R/W/A 149/0/22
+  create           n  169  all  97.0%  gate R/W/A 67/0/102
+  arrow_unlabel    n   80  all   0.0%  gate R/W/A 0/35/45
+  outline_set      n   80  all  37.5%  gate R/W/A 0/2/78
+  arrow_label      n   80  all 100.0%  gate R/W/A 28/0/52
+  arrow_style      n   80  all 100.0%  gate R/W/A 19/0/61
+  outline_create   n   79  all   1.3%  gate R/W/A 0/1/78
+  at_xy            n   79  all  96.2%  gate R/W/A 36/0/43
+  undo             n   76  all  93.4%  gate R/W/A 46/0/30
+  redo             n   76  all  88.2%  gate R/W/A 19/0/57
+  outline_q        n   73  all   0.0%  gate R/W/A 0/64/9
+  size_desc        n   72  all   0.0%  gate R/W/A 0/19/53
+  tpl_items        n   71  all  97.2%  gate R/W/A 19/0/52
+  free_text        n   64  all 100.0%  gate R/W/A 61/0/3
+  every_arrow      n   61  all  98.4%  gate R/W/A 14/0/47
+  tpl_count        n   56  all  75.0%  gate R/W/A 0/0/56
+  layout_op        n   47  all  89.4%  gate R/W/A 0/0/47
+  undo_count       n   47  all   0.0%  gate R/W/A 0/2/45
+  count_arrows     n   21  all 100.0%  gate R/W/A 11/0/10
+  WRONG "remove the label of the arrow from Plankton to Seal" -> @n1 command action=label from=Plankton to=Seal (want {"action":"label","label":"","from":"Plankton","to":"Seal"})
+  WRONG "what is the outline colour of Alice" -> @n1 question ask=property property=color target=Alice (want {"ask":"property","property":"outline","target":"Alice"})
+  WRONG "draw a blue square with a gold border" -> @n1 command action=create shape=square color=blue (want {"action":"create","shape":"square","color":"blue","outline":"gold"})
+  WRONG "erase the huge hexagons" -> @m1 mention quantifier=all shape=hexagon | @n1 command action=delete target=$m1 (want {"action":"delete","target":"mention(quantifier=all,shape=hexagon,size=huge)"})
+  WRONG "remove the label from the arrow from Navbar to Logo" -> @n1 command action=label from=Navbar to=Logo (want {"action":"label","label":"","from":"Navbar","to":"Logo"})
+  WRONG "what is the outline of Prologue" -> @n1 question ask=property property=shape target=Prologue (want {"ask":"property","property":"outline","target":"Prologue"})
+  WRONG "remove the label from the arrow from Bathroom to Cellar" -> @n1 command action=label from=Bathroom to=Cellar (want {"action":"label","label":"","from":"Bathroom","to":"Cellar"})
+  WRONG "what's the border color of Clean" -> @n1 question ask=property property=color target=Clean (want {"ask":"property","property":"outline","target":"Clean"})
+  WRONG "what is the border of Booting" -> @n1 question ask=property property=label target=Booting (want {"ask":"property","property":"outline","target":"Booting"})
+  WRONG "remove the label of the arrow from Vision to Pricing" -> @n1 command action=label from=Vision to=Pricing (want {"action":"label","label":"","from":"Vision","to":"Pricing"})
+  WRONG "cool. now what is the outline colour of Eggs" -> @n1 question ask=property property=color target=Eggs (want {"ask":"property","property":"outline","target":"Eggs"})
+  WRONG "remove the label of the arrow from Factory to Hub" -> @n1 command action=label from=Factory to=Hub (want {"action":"label","label":"","from":"Factory","to":"Hub"})
+{"label":"M1-s0","n":1997,"all_right":1510,"g_right":668,"g_wrong":123,"g_asked":1206,"overlap":18,"errors":0,"byForm":{"create":{"n":169,"all_right":164,"g_right":67,"g_wrong":0,"g_asked":102},"arrow_unlabel":{"n":80,"all_right":0,"g_right":0,"g_wrong":35,"g_asked":45},"free_text":{"n":64,"all_right":64,"g_right":61,"g_wrong":0,"g_asked":3},"move":{"n":172,"all_right":134,"g_right":35,"g_wrong":0,"g_asked":137},"outline_set":{"n":80,"all_right":30,"g_right":0,"g_wrong":2,"g_asked":78},"delete":{"n":171,"all_right":171,"g_right":17,"g_wrong":0,"g_asked":154},"set":{"n":171,"all_right":171,"g_right":149,"g_wrong":0,"g_asked":22},"size_desc":{"n":72,"all_right":0,"g_right":0,"g_wrong":19,"g_asked":53},"arrow_label":{"n":80,"all_right":80,"g_right":28,"g_wrong":0,"g_asked":52},"undo":{"n":76,"all_right":71,"g_right":46,"g_wrong":0,"g_asked":30},"outline_q":{"n":73,"all_right":0,"g_right":0,"g_wrong":64,"g_asked":9},"connect":{"n":172,"all_right":167,"g_right":147,"g_wrong":0,"g_asked":25},"redo":{"n":76,"all_right":67,"g_right":19,"g_wrong":0,"g_asked":57},"tpl_items":{"n":71,"all_right":69,"g_right":19,"g_wrong":0,"g_asked":52},"layout_op":{"n":47,"all_right":42,"g_right":0,"g_wrong":0,"g_asked":47},"outline_create":{"n":79,"all_right":1,"g_right":0,"g_wrong":1,"g_asked":78},"arrow_style":{"n":80,"all_right":80,"g_right":19,"g_wrong":0,"g_asked":61},"at_xy":{"n":79,"all_right":76,"g_right":36,"g_wrong":0,"g_asked":43},"undo_count":{"n":47,"all_right":0,"g_right":0,"g_wrong":2,"g_asked":45},"every_arrow":{"n":61,"all_right":60,"g_right":14,"g_wrong":0,"g_asked":47},"count_arrows":{"n":21,"all_right":21,"g_right":11,"g_wrong":0,"g_asked":10},"tpl_count":{"n":56,"all_right":42,"g_right":0,"g_wrong":0,"g_asked":56}}}

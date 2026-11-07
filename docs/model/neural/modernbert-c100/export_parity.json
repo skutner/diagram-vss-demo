@@ -1,0 +1,27 @@
+{
+  "float_max_abs": [
+    3.6213546991348267e-05,
+    3.814697265625e-05,
+    2.7894973754882812e-05
+  ],
+  "sdpa_vs_eager_max_abs": [
+    1.811981201171875e-05,
+    2.6702880859375e-05,
+    1.1444091796875e-05
+  ],
+  "cases_where_q8_decodes_differently_from_float": [
+    "single-05",
+    "single-06",
+    "single-08",
+    "single-13",
+    "single-15",
+    "batch-message-512",
+    "request-view-of-long-message",
+    "extra-07-128",
+    "extra-07-512",
+    "extra-09-128",
+    "extra-09-512",
+    "extra-10-128",
+    "extra-10-512"
+  ]
+}

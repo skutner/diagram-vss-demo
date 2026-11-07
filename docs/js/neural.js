@@ -675,8 +675,9 @@ const QA_MODEL = 'qa-distilbert-squad';
 /* SOP-BERT, the joint model (training/neural/finetune_roles.py --name sop-bert: the cut, then act, values, names and descriptions in one
    batched call). When versions.json lists neural/sop-bert, the demo loads it alone; until then the pair above. */
 const READER_MODEL = 'sop-bert';
-/* model id (of the form <owner>/<name>, as transformers.js requires) -> folder under docs/model/neural/ */
-const OURS = { 'ours/modernbert': 'modernbert', 'ours/sop-bert': 'sop-bert', 'ours/act-distilbert': 'act-distilbert', 'ours/act-deberta-xsmall': 'act-deberta-xsmall', 'ours/qa-distilbert-squad': 'qa-distilbert-squad' };
+/* model id (of the form <owner>/<name>, as transformers.js requires) -> folder under docs/model/neural/. The ModernBERT tab reads the
+   retrained arm C100-s0 (docs/model/neural/modernbert-c100/README.md); docs/model/neural/modernbert/ is the first experiment, no longer read. */
+const OURS = { 'ours/modernbert': 'modernbert-c100', 'ours/sop-bert': 'sop-bert', 'ours/act-distilbert': 'act-distilbert', 'ours/act-deberta-xsmall': 'act-deberta-xsmall', 'ours/qa-distilbert-squad': 'qa-distilbert-squad' };
 const MODELS = {
   reader: 'ours/' + READER_MODEL, act: 'ours/' + ACT_MODEL, qa: 'ours/' + QA_MODEL,
   /* baselines of the headless comparison (training/laptop: neural_score.mjs, zs_check.mjs, zs_eval.mjs); the demo never loads them */
@@ -839,7 +840,7 @@ function makeCache() {
 async function pruneStale() {
   try {
     if (typeof caches === 'undefined' || !(await caches.has(CACHE))) return 0;
-    const keep = [...modelsFor(), ...(['sop-bert', 'modernbert'].filter(name => NVERS['neural/' + name]).flatMap(name => ['ours/' + name]))];
+    const keep = [...modelsFor(), ...['ours/sop-bert', 'ours/modernbert'].filter(id => NVERS['neural/' + OURS[id]])];
     const c = await caches.open(CACHE), cur = new Set(keep.flatMap(id => filesOf(id).map(f => storeKey(id, f))));
     const prefixes = [`${MODEL_ROOT}neural/`, ...Object.keys(REVISIONS).map(id => `${HF}${id}/resolve/`)];
     let n = 0;
@@ -848,11 +849,14 @@ async function pruneStale() {
   } catch (e) { return 0; }
 }
 /** the URL of the fitted confidence of the joint model (docs/js/neural-confidence.js; training/sketch/PRECISION_BERT.md), with its version
-    from versions.json: docs/model/confidence/sop-bert.json?v=<version> (null outside the browser) */
+    from versions.json: docs/model/confidence/sop-bert.json?v=<version> (null outside the browser). A reader whose model folder is not
+    named after it reads the confidence file of that folder (modernbert -> confidence/modernbert-c100.json, fitted for that model). */
+const CONF_FILE = { modernbert: OURS['ours/modernbert'] };
 async function confidenceUrl(readerName = READER_MODEL) {
   if (!MODEL_ROOT) return null;
   await loadVersions();
-  return `${MODEL_ROOT}confidence/${readerName}.json?v=${encodeURIComponent(NVERS['confidence/' + readerName + '.json'] || 'unversioned')}`;
+  const name = CONF_FILE[readerName] || readerName;
+  return `${MODEL_ROOT}confidence/${name}.json?v=${encodeURIComponent(NVERS['confidence/' + name + '.json'] || 'unversioned')}`;
 }
 const looksNetwork = e => /failed to fetch|networkerror|load failed|network|dynamically imported module|importing a module script failed|err_|timeout|cors/i.test(String(e && e.message || e)) || (e && e.name === 'TypeError' && /fetch/i.test(String(e.message)));
 /** load the demo's model(s) (status() must say published); the `m` object create() takes */

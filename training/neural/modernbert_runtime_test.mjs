@@ -85,22 +85,26 @@ test('unpublished ModernBERT refuses loading without choosing legacy classifier 
 });
 test('external chunks participate in status, URLs, bytes and cached checks', async () => {
   const sizes = { 'config.json': 10, 'tokenizer.json': 20, 'tokenizer_config.json': 30, 'onnx/model_quantized.onnx': 40, 'onnx/model_quantized.onnx_data': 50, 'onnx/model_quantized.onnx_data_1': 60 };
-  const b = browser({ files: { 'neural/modernbert': 'v2' }, sizes: { 'neural/modernbert': sizes } });
+  const b = browser({ files: { 'neural/modernbert-c100': 'v2' }, sizes: { 'neural/modernbert-c100': sizes } });
   assert.equal((await b.kit.status('modernbert')).published, true);
   assert.equal(b.kit.bytesOf('ours/modernbert'), 210);
   const urls = b.kit.urlsFor('modernbert'); assert.equal(urls.length, 6);
   for (const url of urls.slice(0, -1)) b.entries.add(url);
   assert.equal(await b.kit.cached('modernbert'), false);
   b.entries.add(urls.at(-1)); assert.equal(await b.kit.cached('modernbert'), true);
-  const bad = browser({ files: { 'neural/modernbert': 'v2' }, sizes: { 'neural/modernbert': { ...sizes, 'onnx/model_quantized.onnx_data_1': undefined } } });
+  // the confidence file is the one fitted for the folder the tab reads; SOP-BERT keeps its own name
+  assert.match(await b.kit.confidenceUrl('modernbert'), /\/model\/confidence\/modernbert-c100\.json\?v=/);
+  assert.match(await b.kit.confidenceUrl('sop-bert'), /\/model\/confidence\/sop-bert\.json\?v=/);
+  const bad = browser({ files: { 'neural/modernbert-c100': 'v2' }, sizes: { 'neural/modernbert-c100': { ...sizes, 'onnx/model_quantized.onnx_data_1': undefined } } });
   assert.equal((await bad.kit.status('modernbert')).published, false);
 });
 test('cache pruning retains the union of both readers and all chunks', async () => {
   const sizes = { 'config.json': 10, 'tokenizer.json': 20, 'tokenizer_config.json': 30, 'onnx/model_quantized.onnx': 40, 'onnx/model_quantized.onnx_data': 50, 'onnx/model_quantized.onnx_data_1': 60 };
-  const b = browser({ files: { 'neural/modernbert': 'm2', 'neural/sop-bert': 's1' }, sizes: { 'neural/modernbert': sizes } });
+  const b = browser({ files: { 'neural/modernbert-c100': 'm2', 'neural/sop-bert': 's1' }, sizes: { 'neural/modernbert-c100': sizes } });
   await b.kit.status('modernbert');
   const union = [...b.kit.urlsFor(), ...b.kit.urlsFor('modernbert')];
   for (const url of union) b.entries.add(url);
+  // the first experiment's folder (docs/model/neural/modernbert/), no longer read: its cached chunk is stale
   b.entries.add('https://example.test/model/neural/modernbert/onnx/model_quantized.onnx_data?v=m1');
   b.entries.add('https://elsewhere.test/user-file');
   assert.equal(await b.kit.pruneStale(), 1);

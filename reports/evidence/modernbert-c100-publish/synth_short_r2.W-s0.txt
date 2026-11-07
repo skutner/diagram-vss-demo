@@ -1,0 +1,36 @@
+## W-s0: n 1997, every request executed right 79.2%; cost gate (thr 0.9322): right 595 (29.8%), wrong 28, asked 1374, wrong share of executions 4.5%; texts also in train.jsonl 18; errors 0; 1189 s
+  move             n  172  all  92.4%  gate R/W/A 37/0/135
+  connect          n  172  all  98.8%  gate R/W/A 162/0/10
+  delete           n  171  all  97.7%  gate R/W/A 24/0/147
+  set              n  171  all  96.5%  gate R/W/A 169/0/2
+  create           n  169  all 100.0%  gate R/W/A 17/0/152
+  arrow_unlabel    n   80  all   0.0%  gate R/W/A 0/0/80
+  outline_set      n   80  all  45.0%  gate R/W/A 8/4/68
+  arrow_label      n   80  all 100.0%  gate R/W/A 0/0/80
+  arrow_style      n   80  all 100.0%  gate R/W/A 23/0/57
+  outline_create   n   79  all   1.3%  gate R/W/A 0/0/79
+  at_xy            n   79  all  98.7%  gate R/W/A 16/0/63
+  undo             n   76  all  98.7%  gate R/W/A 32/0/44
+  redo             n   76  all 100.0%  gate R/W/A 47/0/29
+  outline_q        n   73  all   0.0%  gate R/W/A 0/17/56
+  size_desc        n   72  all  23.6%  gate R/W/A 15/7/50
+  tpl_items        n   71  all 100.0%  gate R/W/A 0/0/71
+  free_text        n   64  all 100.0%  gate R/W/A 37/0/27
+  every_arrow      n   61  all  91.8%  gate R/W/A 3/0/58
+  tpl_count        n   56  all 100.0%  gate R/W/A 0/0/56
+  layout_op        n   47  all  87.2%  gate R/W/A 0/0/47
+  undo_count       n   47  all   0.0%  gate R/W/A 0/0/47
+  count_arrows     n   21  all 100.0%  gate R/W/A 5/0/16
+  WRONG "erase the huge hexagons" -> @m1 mention quantifier=all shape=hexagon | @n1 command action=delete target=$m1 (want {"action":"delete","target":"mention(quantifier=all,shape=hexagon,size=huge)"})
+  WRONG "what is the border of Booting" -> @n1 question ask=property property=size target=Booting (want {"ask":"property","property":"outline","target":"Booting"})
+  WRONG "what's the border color of Wr2" -> @n1 question ask=property property=color target=Wr2 (want {"ask":"property","property":"outline","target":"Wr2"})
+  WRONG "erase the small triangles" -> @m1 mention quantifier=all shape=triangle | @n1 command action=delete target=$m1 (want {"action":"delete","target":"mention(quantifier=all,shape=triangle,size=small)"})
+  WRONG "what's the border color of Switch1" -> @n1 question ask=property property=color target=Switch1 (want {"ask":"property","property":"outline","target":"Switch1"})
+  WRONG "what is the outline colour of Search" -> @n1 question ask=property property=color target=Search (want {"ask":"property","property":"outline","target":"Search"})
+  WRONG "what's the border color of Coil" -> @n1 question ask=property property=color target=Coil (want {"ask":"property","property":"outline","target":"Coil"})
+  WRONG "give Icing a purple outline" -> @n1 command action=set outline=cyan target=Icing (want {"action":"set","target":"Icing","outline":"purple"})
+  WRONG "erase the big circles" -> @m1 mention quantifier=all shape=circle | @n1 command action=delete target=$m1 (want {"action":"delete","target":"mention(quantifier=all,shape=circle,size=large)"})
+  WRONG "what's the border color of Cdn" -> @n1 question ask=property property=color target=Cdn (want {"ask":"property","property":"outline","target":"Cdn"})
+  WRONG "erase the huge triangles" -> @m1 mention quantifier=all shape=triangle | @n1 command action=delete target=$m1 (want {"action":"delete","target":"mention(quantifier=all,shape=triangle,size=huge)"})
+  WRONG "what's the border color of Sales" -> @n1 question ask=property property=color target=Sales (want {"ask":"property","property":"outline","target":"Sales"})
+{"label":"W-s0","n":1997,"all_right":1582,"g_right":595,"g_wrong":28,"g_asked":1374,"overlap":18,"errors":0,"byForm":{"create":{"n":169,"all_right":169,"g_right":17,"g_wrong":0,"g_asked":152},"arrow_unlabel":{"n":80,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":80},"free_text":{"n":64,"all_right":64,"g_right":37,"g_wrong":0,"g_asked":27},"move":{"n":172,"all_right":159,"g_right":37,"g_wrong":0,"g_asked":135},"outline_set":{"n":80,"all_right":36,"g_right":8,"g_wrong":4,"g_asked":68},"delete":{"n":171,"all_right":167,"g_right":24,"g_wrong":0,"g_asked":147},"set":{"n":171,"all_right":165,"g_right":169,"g_wrong":0,"g_asked":2},"size_desc":{"n":72,"all_right":17,"g_right":15,"g_wrong":7,"g_asked":50},"arrow_label":{"n":80,"all_right":80,"g_right":0,"g_wrong":0,"g_asked":80},"undo":{"n":76,"all_right":75,"g_right":32,"g_wrong":0,"g_asked":44},"outline_q":{"n":73,"all_right":0,"g_right":0,"g_wrong":17,"g_asked":56},"connect":{"n":172,"all_right":170,"g_right":162,"g_wrong":0,"g_asked":10},"redo":{"n":76,"all_right":76,"g_right":47,"g_wrong":0,"g_asked":29},"tpl_items":{"n":71,"all_right":71,"g_right":0,"g_wrong":0,"g_asked":71},"layout_op":{"n":47,"all_right":41,"g_right":0,"g_wrong":0,"g_asked":47},"outline_create":{"n":79,"all_right":1,"g_right":0,"g_wrong":0,"g_asked":79},"arrow_style":{"n":80,"all_right":80,"g_right":23,"g_wrong":0,"g_asked":57},"at_xy":{"n":79,"all_right":78,"g_right":16,"g_wrong":0,"g_asked":63},"undo_count":{"n":47,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":47},"every_arrow":{"n":61,"all_right":56,"g_right":3,"g_wrong":0,"g_asked":58},"count_arrows":{"n":21,"all_right":21,"g_right":5,"g_wrong":0,"g_asked":16},"tpl_count":{"n":56,"all_right":56,"g_right":0,"g_wrong":0,"g_asked":56}}}

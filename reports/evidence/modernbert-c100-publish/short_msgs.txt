@@ -1,0 +1,20 @@
+draw a circle
+Add a circle.
+draw a red circle
+add a big blue square
+make a triangle
+add a green diamond called Gate
+draw a star
+add a box named Queue
+make Start red
+make Process bigger
+connect Start to Process
+connect Check to Done with a dashed arrow
+move Done below Check
+put Done to the right of Start
+delete Process
+rename Check to Review
+make Check a circle
+how many shapes are there
+undo
+align Start and Process horizontally

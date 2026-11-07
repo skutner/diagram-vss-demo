@@ -1,0 +1,20 @@
+"draw a circle"                    -> @s1 command action=create shape=circle
+"Add a circle."                    -> @s1 command action=create shape=circle
+"draw a red circle"                -> @s1 command action=create shape=circle color=red
+"add a big blue square"            -> @s1 command action=create shape=square size=large color=blue
+"make a triangle"                  -> @s1 command action=create shape=triangle
+"add a green diamond called Gate"  -> @s1 command action=create shape=diamond color=green name=Gate
+"draw a star"                      -> @s1 command action=create shape=star
+"add a box named Queue"            -> @s1 command action=create shape=rectangle name=Queue
+"make Start red"                   -> @s1 command action=set color=red target=Start
+"make Process bigger"              -> @s1 command action=resize scale=1.5 target=Process
+"connect Start to Process"         -> @s1 command action=connect from=Start to=Process
+"connect Check to Done with a dashed arrow" -> @s1 command action=connect from=Check to=Done style=dashed
+"move Done below Check"            -> @s1 command action=move target=Done position=below anchor=Check
+"put Done to the right of Start"   -> @s1 command action=move target=Done position=rightOf anchor=Start
+"delete Process"                   -> @s1 command action=delete target=Process
+"rename Check to Review"           -> @s1 command action=rename name=Review target=Check
+"make Check a circle"              -> @s1 command action=set shape=circle target=Check
+"how many shapes are there"        -> @s1 question ask=count
+"undo"                             -> @s1 command action=undo
+"align Start and Process horizontally" -> @s1 command action=align target=Start,Process axis=horizontal

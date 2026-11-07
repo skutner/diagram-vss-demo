@@ -1,0 +1,24 @@
+## published: n 1997, every request executed right 36.3%; cost gate (thr 0.9766): right 0 (0.0%), wrong 0, asked 1997, wrong share of executions -%; texts also in train.jsonl 18; errors 0; 1176 s
+  move             n  172  all   1.2%  gate R/W/A 0/0/172
+  connect          n  172  all  98.8%  gate R/W/A 0/0/172
+  delete           n  171  all  97.7%  gate R/W/A 0/0/171
+  set              n  171  all   9.9%  gate R/W/A 0/0/171
+  create           n  169  all   3.0%  gate R/W/A 0/0/169
+  arrow_unlabel    n   80  all   0.0%  gate R/W/A 0/0/80
+  outline_set      n   80  all   0.0%  gate R/W/A 0/0/80
+  arrow_label      n   80  all  93.8%  gate R/W/A 0/0/80
+  arrow_style      n   80  all   8.8%  gate R/W/A 0/0/80
+  outline_create   n   79  all   0.0%  gate R/W/A 0/0/79
+  at_xy            n   79  all  62.0%  gate R/W/A 0/0/79
+  undo             n   76  all  93.4%  gate R/W/A 0/0/76
+  redo             n   76  all  89.5%  gate R/W/A 0/0/76
+  outline_q        n   73  all   0.0%  gate R/W/A 0/0/73
+  size_desc        n   72  all   0.0%  gate R/W/A 0/0/72
+  tpl_items        n   71  all   0.0%  gate R/W/A 0/0/71
+  free_text        n   64  all  98.4%  gate R/W/A 0/0/64
+  every_arrow      n   61  all   0.0%  gate R/W/A 0/0/61
+  tpl_count        n   56  all   0.0%  gate R/W/A 0/0/56
+  layout_op        n   47  all  44.7%  gate R/W/A 0/0/47
+  undo_count       n   47  all   0.0%  gate R/W/A 0/0/47
+  count_arrows     n   21  all  47.6%  gate R/W/A 0/0/21
+{"label":"published","n":1997,"all_right":725,"g_right":0,"g_wrong":0,"g_asked":1997,"overlap":18,"errors":0,"byForm":{"create":{"n":169,"all_right":5,"g_right":0,"g_wrong":0,"g_asked":169},"arrow_unlabel":{"n":80,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":80},"free_text":{"n":64,"all_right":63,"g_right":0,"g_wrong":0,"g_asked":64},"move":{"n":172,"all_right":2,"g_right":0,"g_wrong":0,"g_asked":172},"outline_set":{"n":80,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":80},"delete":{"n":171,"all_right":167,"g_right":0,"g_wrong":0,"g_asked":171},"set":{"n":171,"all_right":17,"g_right":0,"g_wrong":0,"g_asked":171},"size_desc":{"n":72,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":72},"arrow_label":{"n":80,"all_right":75,"g_right":0,"g_wrong":0,"g_asked":80},"undo":{"n":76,"all_right":71,"g_right":0,"g_wrong":0,"g_asked":76},"outline_q":{"n":73,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":73},"connect":{"n":172,"all_right":170,"g_right":0,"g_wrong":0,"g_asked":172},"redo":{"n":76,"all_right":68,"g_right":0,"g_wrong":0,"g_asked":76},"tpl_items":{"n":71,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":71},"layout_op":{"n":47,"all_right":21,"g_right":0,"g_wrong":0,"g_asked":47},"outline_create":{"n":79,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":79},"arrow_style":{"n":80,"all_right":7,"g_right":0,"g_wrong":0,"g_asked":80},"at_xy":{"n":79,"all_right":49,"g_right":0,"g_wrong":0,"g_asked":79},"undo_count":{"n":47,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":47},"every_arrow":{"n":61,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":61},"count_arrows":{"n":21,"all_right":10,"g_right":0,"g_wrong":0,"g_asked":21},"tpl_count":{"n":56,"all_right":0,"g_right":0,"g_wrong":0,"g_asked":56}}}

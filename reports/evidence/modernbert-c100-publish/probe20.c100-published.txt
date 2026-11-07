@@ -1,0 +1,22 @@
+## C100-s0 as published (docs/model/neural/modernbert-c100)  cost threshold 0.9228
+HOLD conf=0.672  "draw a circle"                    -> @n1 command action=create shape=circle
+HOLD conf=0.481  "Add a circle."                    -> @n1 command action=create shape=circle
+HOLD conf=0.761  "draw a red circle"                -> @n1 command action=create shape=circle color=red
+RUN  conf=0.953  "add a big blue square"            -> @n1 command action=create shape=square size=large color=blue
+HOLD conf=0.883  "make a triangle"                  -> @n1 command action=create shape=triangle
+HOLD conf=0.565  "add a green diamond called Gate"  -> @n1 command action=create shape=diamond color=green name=Gate
+HOLD conf=0.749  "draw a star"                      -> @n1 command action=create shape=star
+HOLD conf=0.697  "add a box named Queue"            -> @n1 command action=create shape=rectangle name=Queue
+RUN  conf=0.992  "make Start red"                   -> @n1 command action=set color=red target=Start
+HOLD conf=0.922  "make Process bigger"              -> @n1 command action=resize target=Process
+RUN  conf=0.980  "connect Start to Process"         -> @n1 command action=connect from=Start to=Process
+RUN  conf=0.979  "connect Check to Done with a dashed arrow" -> @n1 command action=connect from=Check to=Done style=dashed
+RUN  conf=0.994  "move Done below Check"            -> @n1 command action=move target=Done position=below anchor=Check
+RUN  conf=0.977  "put Done to the right of Start"   -> @n1 command action=move target=Done position=rightOf anchor=Start
+RUN  conf=0.927  "delete Process"                   -> @n1 command action=delete target=Process
+RUN  conf=0.987  "rename Check to Review"           -> @n1 command action=rename name=Review target=Check
+RUN  conf=0.992  "make Check a circle"              -> @n1 command action=set shape=circle target=Check
+HOLD conf=0.868  "how many shapes are there"        -> @n1 question ask=count
+RUN  conf=0.942  "undo"                             -> @n1 command action=undo
+RUN  conf=0.960  "align Start and Process horizontally" -> @n1 command action=align target=Start,Process axis=horizontal
+executed 11/20

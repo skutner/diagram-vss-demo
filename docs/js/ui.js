@@ -2330,7 +2330,7 @@ function renderReaderSettings(rd) {
     };
     return `<h3 class="sub">ModernBERT reader</h3>${readerFacts(rd)}<div id="modern-box">${modernBoxHTML()}</div>
       <p class="intro">An independent ModernBERT diagram parser with its own trained action, role, value, name and cut heads. It reads into its own drawing and uses only its own confidence. Its settings do not change SOP-BERT, the votes or VSS-BERT.</p>
-      <p class="note">Model <code>neural/modernbert</code>${modern.status?.info?.['ours/modernbert'] ? `, version <code>${escH(modern.status.info['ours/modernbert'].version)}</code>` : ''}. Confidence <code>confidence/modernbert.json</code>${modern.conf.url ? ` (<a href="${escH(modern.conf.url)}" target="_blank" rel="noopener">source</a>)` : ''}. ${modern.conf.error ? escH(modern.conf.error.message) + '. Every request is held.' : spec ? 'Loaded.' : 'Not loaded.'}</p>
+      <p class="note">Model <code>neural/modernbert-c100</code> (the retrained arm C100-s0)${modern.status?.info?.['ours/modernbert'] ? `, version <code>${escH(modern.status.info['ours/modernbert'].version)}</code>` : ''}. Confidence <code>confidence/modernbert-c100.json</code>${modern.conf.url ? ` (<a href="${escH(modern.conf.url)}" target="_blank" rel="noopener">source</a>)` : ''}. ${modern.conf.error ? escH(modern.conf.error.message) + '. Every request is held.' : spec ? 'Loaded.' : 'Not loaded.'}</p>
       <p class="note">Requests are limited to 128 pieces and messages to 512. A request that exceeds the limit is held; an omitted message suffix is reported as unread. Missing confidence or a missing safety threshold holds every request, including at Execute all.</p>
       ${levelTableHTML('modern-gate', modernGate, GATE_LEVELS.map(row))}${sharedNote}`;
   }

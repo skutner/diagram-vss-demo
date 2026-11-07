@@ -1,0 +1,22 @@
+## first experiment (docs/model/neural/modernbert)  cost threshold 0.9766
+HOLD conf=0.193  "draw a circle"                    -> @n1 command action=create shape=triangle
+HOLD conf=0.086  "Add a circle."                    -> @n1 command action=create shape=triangle
+HOLD conf=0.110  "draw a red circle"                -> @n1 command action=create shape=circle color=red
+HOLD conf=0.137  "add a big blue square"            -> @n1 command action=create shape=square size=small color=white
+HOLD conf=0.248  "make a triangle"                  -> @n1 command action=create shape=triangle
+HOLD conf=0.041  "add a green diamond called Gate"  -> @n1 command action=create shape=circle name=Gate
+HOLD conf=0.129  "draw a star"                      -> @n1 command action=create shape=triangle
+HOLD conf=0.288  "add a box named Queue"            -> @n1 command action=create shape=circle name=Queue
+HOLD conf=0.597  "make Start red"                   -> @n1 command action=set color=red target=Start
+HOLD conf=0.903  "make Process bigger"              -> @n1 command action=resize target=Process
+HOLD conf=0.957  "connect Start to Process"         -> @n1 command action=connect from=Start to=Process
+HOLD conf=0.602  "connect Check to Done with a dashed arrow" -> @n1 command action=connect from=Check to=Done
+HOLD conf=0.947  "move Done below Check"            -> @n1 command action=move target=Done position=below anchor=Check
+HOLD conf=0.931  "put Done to the right of Start"   -> @n1 command action=move target=Done position=rightOf anchor=Start
+HOLD conf=0.768  "delete Process"                   -> @n1 command action=delete target=Process
+HOLD conf=0.885  "rename Check to Review"           -> @n1 command action=rename name=Review target=Check
+HOLD conf=0.127  "make Check a circle"              -> @n1 command action=set target=Check
+HOLD conf=0.124  "how many shapes are there"        -> @n1 question ask=count
+HOLD conf=0.889  "undo"                             -> @n1 command action=undo
+HOLD conf=0.841  "align Start and Process horizontally" -> @n1 command action=align target=Start,Process axis=horizontal
+executed 0/20

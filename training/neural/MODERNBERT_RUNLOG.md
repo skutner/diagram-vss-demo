@@ -740,3 +740,40 @@ W-s0 resumed from update 16,198 and W-s1 from update 1; both finished the full s
 - C100 stays the best ModernBERT arm on natural language. Nothing is queued.
 - No GPU job of this session is running, and the GPU lock is free.
 - The demo is unchanged.
+
+### The demo's ModernBERT tab reads C100-s0 (2026-11-07)
+
+**Why.** The owner reported that the ModernBERT tab cannot read "draw a circle". Diagnosis: the published model (the first experiment, one epoch,
+`docs/model/neural/modernbert/`) reads the action right and the shape wrong (`create shape=triangle`, confidence 0.193 against 0.9766);
+`reports/modernbert.md` already records the same kind of error. Every arm trained with SOP-BERT's recipe reads it as `create shape=circle`.
+**The owner's words**, after the comparison below: "let’s go with your recommendations" (the recommendation: prepare C100-s0, uncommitted);
+then, after the review: "commit and push".
+
+**Not the plan's adoption.** The adoption bar of `MODERNBERT_PARITY_PLAN.md` (beat the SOP-BERT control on `nl_b` by 5 points) was not met
+by any arm, and is still not. The owner's choice rests on short, literal commands, the validation AGENTS.md names for production:
+`synth_short_r2` (1,997 synthetic commands, the Rules' reading as gold; not a training folder of any arm, but 18 of its texts also occur in
+the arms' `train.jsonl`), read by a scratch scorer
+(`reports/evidence/modernbert-c100-publish/`; not `score_arm.mjs`, extras not counted, seed 0 only).
+- Core forms (1,007 messages), every request executed, right: first experiment 49.7%, M1 93.8%, F0 95.7%, C100 95.7%, W 97.4%; at each
+  arm's cost-10 threshold, right / wrong: 0/0, 480/0, 410/0, 474/3, 488/0.
+- All 1,997 at the threshold, right / wrong, cost: first 0/0, 0; M1 668/123, -28.1; F0 514/55, -1.8; C100 636/39, +12.3; W 595/28, +15.8.
+- C100 over W: close on this set; C100 is this log's best arm on natural language, and W-s1 was worse than C100-s1 on `nl_a` at the threshold.
+
+**What changed:** `docs/model/neural/modernbert-c100/` (the arm's export folder byte for byte, its `arm_receipt.json` and a
+README), `docs/model/confidence/modernbert-c100.json` (the arm's `cal-fresh2-short3-nl_a` fit, threshold 0.9228), `docs/js/neural.js`
+(`OURS` maps `ours/modernbert` to the new folder; the cache pruning keeps the folder `OURS` names; `confidenceUrl` reads the confidence file
+of that folder), `docs/js/ui.js` (the Settings note names the new files), `docs/model/versions.json` (`stamp_models.py`),
+`training/neural/modernbert_runtime_test.mjs` (the fixtures name the new folder; a stale chunk of the old folder is still pruned).
+
+**What replaced the canonical export and the Chrome run** (declared at 21:48 above to go with adoption): the canonical chain cannot take an arm
+(`export_modernbert.py` accepts only the first experiment's checkpoint; the checkers need its candidate manifest; the Chrome check is
+written for macOS), and no receipt was written by hand. Instead: the arm's own receipt (Python ORT against Node, 41/41 fixtures; PyTorch
+against Node near ties reported, `passed: false` by its strict rule, as every arm); the page served locally in the desktop app's browser,
+which loads the new folder and confidence file and gives the same readings and confidences as Node on five messages, to three decimals;
+`modernbert_runtime_test.mjs` 9/9 (with `MODERNBERT_TOKENIZER` set; two of them fail if `OURS` names the old folder); `regress.sh` exit 0,
+unchanged. An independent review (Opus, high) found nothing blocking; its one finding (the 18 texts shared with training were not mentioned
+everywhere) is fixed.
+
+**Left to the owner:** the five-reader run on GitHub Pages, and whether to remove `docs/model/neural/modernbert/`
+and `docs/model/confidence/modernbert.json` (no longer read by the page; `parity/readers.mjs`, `shipped_decode_check.mjs`, `canvas_lib.mjs`
+and `training/qwen/check_deployed.mjs` still name them, as the model they measured).
