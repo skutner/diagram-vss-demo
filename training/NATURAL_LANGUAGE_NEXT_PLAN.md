@@ -1,6 +1,6 @@
 # Natural language after the small readers: a proposal
 
-Date 2026-11-07. Base commit `c266319`. Status: **proposed, revised after review** (section 8). Nothing in this plan has run. No GPU or LLM run starts before the owner
+Date 2026-11-07. Base commit `c266319`. Status: **closed, not run, except A1** (section 9). Nothing in this plan has run. No GPU or LLM run starts before the owner
 answers the decisions in section 6. It follows the closing of the ModernBERT natural-language line (`training/neural/MODERNBERT_RUNLOG.md`,
 "The owner's decision after W") and of the Qwen3 line (`training/qwen/QWEN3_FINETUNE_RUNLOG.md`, "Q2 result").
 
@@ -211,3 +211,21 @@ Initial review by `plan-reviewer` (Opus 5.5 high), 2026-11-07, verdict REVISE. I
 - B had no owner approval and no bar; D7 and a bar are added, and B2 is removed.
 
 Every section 1 number was checked by the reviewer, who reran the two CPU scripts; the only mismatch was the 29.
+
+## 9. Decisions (2026-11-07): closed, not run, except A1
+
+The owner first asked for the whole plan to be implemented, then, after a conflicting decision relayed from the Qwen session (its
+advisor, at the owner's request: "have the advisor make all these decisions"), chose this session's suggestion: "go with your
+suggestion". What stands:
+1. **No hosted model (Opus or gpt) reads messages in the product now (D1, D2).** A provider key in a static Pages site would be
+   exposed, and a backend is a product decision. gpt-vs-Opus agreement (73.0%) stays a reference, not a target.
+2. **B1 is not run, and nothing is downloaded (D7).** Qwen3-0.6B already misses the 10 s p95 bar (Q0.7: 14.7 s names, 31.3 s drawing),
+   so no larger size can ship (inference).
+3. **No answer-key work.** Step 0 (0a, 0b, 0c), the C1/C2/C3 pilots, the "ask" outcome and A2's filler are dropped. Opus's labels stay
+   the gold, with the "either" view as the cross-check; the cost formula and the fitted thresholds are unchanged.
+4. **The demo is unchanged** by this plan, except for bug fixes A1 may find (a separate, reported change).
+5. **A1 runs** (section 4.A): on the existing records, does every held request's question name at least one word it could not read?
+   Its pass rule is pre-registered in `training/NATURAL_LANGUAGE_RUNLOG.md` before it is computed.
+6. **Next, outside this plan:**
+   - real sessions recorded in the demo (E), the largest gap;
+   - the parked demo fixes in `future_improvements_ideas.md` (P3, P6, never drop a value silently).
