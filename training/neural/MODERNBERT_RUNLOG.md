@@ -723,3 +723,20 @@ W-s0 resumed from update 16,198 and W-s1 from update 1; both finished the full s
 
 **Decision, as declared:** W was the last pre-declared ModernBERT step on natural language. Nothing further is queued. The drawing input trained on natural data stays an owner option (18:50, point 4), not declared and not run. The Qwen3 line stopped at Q2 for the same reading (`training/qwen/QWEN3_FINETUNE_RUNLOG.md`, 23:20).
 - Correction to the line above ("-25.8 better / +12.0 worse"): W minus C100, `nl_a` development, every request executed, cost: W-s0 +25.8 (better), W-s1 -12.0 (worse); intervals as given, both include 0.
+
+### The owner's decision after W (2026-11-07 16:50): the natural-language line of ModernBERT is closed
+
+**The owner's words:** "lets go with your recommendations". The recommendation (this session, after W and after the Qwen session's wrong-value diagnosis):
+- **No more training runs of this kind.** That means no third data round, no reweighting, and no drawing-input run on the natural data.
+- **Why the drawing input is not run:** the wrong-value diagnosis (`training/qwen/finetune/wrong_values.mjs`; `reports/evidence/qwen3-finetune-plan/diagnosis/wrong_values.C100-s{0,1}.json`, made by the Qwen session) splits C100's wrong values on `nl_a` development (222 / 226 per seed, paired requests) into:
+  - needs the drawing: 61 / 56 (27% / 25%);
+  - a legend value or paraphrase: 77 / 76;
+  - only values written in the message: 80 / 89.
+
+  If a drawing input fixed every value that needs the drawing, C100 would go from about 48 to about 106 of 392 right, about 27%. That is an upper bound and an inference, with the ~120 not-done requests and the extras unchanged. The M5 bar is 54.8%. The larger parts are reading failures that the drawing does not touch.
+- **What the gap needs instead:** a reader with more capacity for natural phrasing, or another way of handling natural language. Neither is declared here; any such step is a new plan.
+
+**State:**
+- C100 stays the best ModernBERT arm on natural language. Nothing is queued.
+- No GPU job of this session is running, and the GPU lock is free.
+- The demo is unchanged.
