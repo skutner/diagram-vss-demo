@@ -1,0 +1,129 @@
+{
+ "pairs": 270,
+ "wrong": 226,
+ "per_request": {
+  "needs the drawing": 56,
+  "a reference ($new)": 5,
+  "needs a legend value or paraphrase": 76,
+  "only values written in the message": 89
+ },
+ "by_kind": {
+  "key left out; gold a shape name not written (needs the drawing)": 41,
+  "key left out; gold written in the message": 140,
+  "wrong value; gold a shape name not written (needs the drawing)": 22,
+  "wrong value; gold a reference ($new/$...)": 3,
+  "wrong value; gold written in the message": 59,
+  "key left out; gold not written (legend value or paraphrase)": 71,
+  "extra key the gold does not have": 34,
+  "wrong value; gold not written (legend value or paraphrase)": 38,
+  "key left out; gold a reference ($new/$...)": 5
+ },
+ "by_act_key": {
+  "create anchor": 43,
+  "create position": 38,
+  "create label": 36,
+  "connect from": 35,
+  "create name": 27,
+  "connect to": 26,
+  "set target": 19,
+  "label target": 17,
+  "move target": 16,
+  "create shape": 15,
+  "move anchor": 12,
+  "connect label": 12,
+  "move position": 9,
+  "label label": 8,
+  "create object": 6
+ },
+ "examples": {
+  "key left out; gold a shape name not written (needs the drawing)": [
+   "nl-01-003 target: want \"firewall\" got undefined | The red one needs to sit between the two wireless boxes, with the grey one still above it.",
+   "nl-01-003 anchor: want \"staffwifi,guestwifi\" got undefined | The red one needs to sit between the two wireless boxes, with the grey one still above it.",
+   "nl-01-021 target: want \"signoff\" got undefined | The step immediately before the green one needs an owner: Release captain.",
+   "nl-01-023 to: want \"lastgood\" got undefined | rollback shoud go back to last good relase not all way to commit. can u fix arrow only",
+   "nl-01-033 from: want \"recovering\" got undefined | Can you get from the one at the bottom back to Idle without passing through Error?",
+   "nl-02-005 anchor: want \"mention(label=wait for confirmation),transfer\" got undefined | I'm putting together the induction sheet for our ward, and the bed bit is getting lost her",
+   "nl-02-018 target: want \"chillera,chillerb,chillerc\" got undefined | Those three narrow grey rectangles can be one group called Cold storage. Don't include the",
+   "nl-02-020 anchor: want \"bottomwall\" got undefined | Please give more distance to the door and the scale. At present the pallet cannot make its",
+   "nl-03-023 to: want \"oven\" got undefined | Nooo the cake doesn't go back into the raw batter! That last arrow is the wrong way round."
+  ],
+  "key left out; gold written in the message": [
+   "nl-01-003 position: want \"between\" got undefined | The red one needs to sit between the two wireless boxes, with the grey one still above it.",
+   "nl-01-014 label: want \"public entry\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-014 name: want \"application\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-014 name: want \"data\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-014 linked: want \"requests\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-014 label: want \"app instances\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-014 name: want \"requests\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-014 position: want \"top\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-017 anchor: want \"test,prod\" got undefined | The production must stay at the right hand of the testing. Please enclose each in his own "
+  ],
+  "wrong value; gold a shape name not written (needs the drawing)": [
+   "nl-01-004 target: want \"guestwifi,staffwifi\" got \"mention(quantifier=all)\" | No, those are two different wireless networks. You've put them so close together that it l",
+   "nl-02-009 to: want \"bedrequest\" got \"$new\" | could you um make a second line for planned admissions coming in from the clinic not throu",
+   "nl-03-040 target: want \"space\" got \"mention(quantifier=all)\" | more room round the middle",
+   "nl-03-043 target: want \"hull\" got \"mention(shape=triangle)\" | That's not a boat now it's a hat!! Turn the triangle upside down again and put the sail ba",
+   "nl-04-043 target: want \"alien\" got \"mention()\" | Could I have a second copy of the whole green face, placed to the right of the original? S",
+   "nl-04-043 anchor: want \"alien\" got \"mention(color=green)\" | Could I have a second copy of the whole green face, placed to the right of the original? S",
+   "nl-04-047 from: want \"bake,$new,ice\" got \"bake\" | We forgot that the cake has to cool down. Can you put a box saying Cool after the baking a",
+   "nl-08-010 from: want \"coverage\" got \"$new\" | From the rhomb of covering must to leave two arrows: one goes to refusal, the other to a n",
+   "nl-08-047 anchor: want \"summary\" got \"mention(recency=oldest,shape=rectangle)\" | middle box up over the first one pls"
+  ],
+  "wrong value; gold a reference ($new/$...)": [
+   "nl-01-005 from: want \"$new\" got \"pc\" | pls add the reception pc on left of switch and conect it. name is FrontDesk not front desk",
+   "nl-01-019 from: want \"$new\" got \"yes\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-019 from: want \"$new\" got \"deploy\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack"
+  ],
+  "wrong value; gold written in the message": [
+   "nl-01-005 to: want \"switch\" got \"pc\" | pls add the reception pc on left of switch and conect it. name is FrontDesk not front desk",
+   "nl-01-017 from: want \"prod\" got \"$new\" | The production must stay at the right hand of the testing. Please enclose each in his own ",
+   "nl-01-017 to: want \"test\" got \"production\" | The production must stay at the right hand of the testing. Please enclose each in his own ",
+   "nl-01-019 anchor: want \"tests\" got \"commit\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-027 from: want \"paused\" got \"running\" | Running can go to Paused on pause. resume goes back.",
+   "nl-01-027 to: want \"running\" got \"paused\" | Running can go to Paused on pause. resume goes back.",
+   "nl-01-030 to: want \"disconnected\" got \"connecting\" | The firmware folks and the app folks are using 'connected' to mean different things, which",
+   "nl-01-030 from: want \"connecting\" got \"ready\" | The firmware folks and the app folks are using 'connected' to mean different things, which",
+   "nl-01-034 target: want \"email,password,save\" got \"save\" | This is the account screen for the demo, not the finished design. Please move Save changes"
+  ],
+  "key left out; gold not written (legend value or paraphrase)": [
+   "nl-01-014 layer: want \"zone\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-014 layer: want \"zone\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-014 layer: want \"zone\" got undefined | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-017 layer: want \"zone\" got undefined | The production must stay at the right hand of the testing. Please enclose each in his own ",
+   "nl-01-017 count: want \"2\" got undefined | The production must stay at the right hand of the testing. Please enclose each in his own ",
+   "nl-01-019 position: want \"rightof\" got undefined | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-034 position: want \"near\" got undefined | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 target: want \"mention(quantifier=all)\" got undefined | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 shape: want \"text\" got undefined | This is the account screen for the demo, not the finished design. Please move Save changes"
+  ],
+  "extra key the gold does not have": [
+   "nl-01-014 label: want undefined got \"data\" | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-014 label: want undefined got \"work\" | We are still choosing a provider, so please don't turn this into a wall of AWS icons. Thre",
+   "nl-01-017 shape: want undefined got \"rectangle\" | The production must stay at the right hand of the testing. Please enclose each in his own ",
+   "nl-01-034 anchor: want undefined got \"$new\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 position: want undefined got \"near\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-045 shape: want undefined got \"rectangle\" | if db red dont restart it!! add call DBA before that restart box pls",
+   "nl-02-004 target: want undefined got \"text1\" | Colour that urgent route red. Actually orange, red is already the fire evacuation colour o",
+   "nl-02-009 label: want undefined got \"planned admissions\" | could you um make a second line for planned admissions coming in from the clinic not throu",
+   "nl-02-031 label: want undefined got \"email\" | I'm trying to untangle the file before counsel's conference. Put the claim in the centre: "
+  ],
+  "wrong value; gold not written (legend value or paraphrase)": [
+   "nl-01-028 from: want \"running,paused\" got \"mention()\" | stop from either active state returns to Idle. Keep those lines outside the triangle.",
+   "nl-01-029 target: want \"running,paused\" got \"paused\" | Paused is still blue. I asked for both active states to be orange, including the one that'",
+   "nl-01-034 anchor: want \"mention(label=email address,recency=newest)\" got \"$new\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-045 position: want \"above\" got \"near\" | if db red dont restart it!! add call DBA before that restart box pls",
+   "nl-02-031 from: want \"mention(label=1998 transfer),survey,mention(label=email chain)\" got \"$new\" | I'm trying to untangle the file before counsel's conference. Put the claim in the centre: ",
+   "nl-02-031 to: want \"mention(label=disputed boundary)\" got \"$new\" | I'm trying to untangle the file before counsel's conference. Put the claim in the centre: ",
+   "nl-02-031 anchor: want \"mention(label=disputed boundary)\" got \"claim\" | I'm trying to untangle the file before counsel's conference. Put the claim in the centre: ",
+   "nl-05-002 target: want \"mention(label=veg beds,position=left)\" got \"mention()\" | call the left one herbs, other one tomatoes",
+   "nl-05-003 target: want \"herbs,tomatoes\" got \"mention(quantifier=all)\" | more room between those. wheelbarrow needs through"
+  ],
+  "key left out; gold a reference ($new/$...)": [
+   "nl-01-038 anchor: want \"$new\" got undefined | on the mobile one put the basket up top by the logo then underneath uh a search bar full w",
+   "nl-02-027 from: want \"$new\" got undefined | start a separate path for the blank sorry the reagent blank not an empty box have it join ",
+   "nl-02-031 from: want \"$new\" got undefined | I'm trying to untangle the file before counsel's conference. Put the claim in the centre: ",
+   "nl-11-020 anchor: want \"$new\" got undefined | then Mill Road, then Schools",
+   "nl-12-008 to: want \"$new\" got undefined | Please to put at the side of the funnel one box of the clients lost and to make enter in h"
+  ]
+ }
+}

@@ -1,0 +1,126 @@
+{
+ "pairs": 224,
+ "wrong": 149,
+ "per_request": {
+  "needs the drawing": 34,
+  "a reference ($new)": 4,
+  "needs a legend value or paraphrase": 61,
+  "only values written in the message": 50
+ },
+ "by_kind": {
+  "wrong value; gold a shape name not written (needs the drawing)": 31,
+  "wrong value; gold a reference ($new/$...)": 5,
+  "key left out; gold written in the message": 54,
+  "extra key the gold does not have": 71,
+  "wrong value; gold written in the message": 50,
+  "wrong value; gold not written (legend value or paraphrase)": 42,
+  "key left out; gold not written (legend value or paraphrase)": 41,
+  "key left out; gold a shape name not written (needs the drawing)": 8,
+  "key left out; gold a reference ($new/$...)": 1
+ },
+ "by_act_key": {
+  "command:create label": 40,
+  "command:create anchor": 35,
+  "command:create position": 32,
+  "command:create name": 23,
+  "command:create shape": 20,
+  "command:connect from": 15,
+  "command:set target": 12,
+  "command:connect to": 10,
+  "command:create linked": 9,
+  "command:connect label": 8,
+  "command:move target": 7,
+  "command:create object": 7,
+  "command:move anchor": 6,
+  "command:connect arrow": 4,
+  "command:resize target": 4
+ },
+ "examples": {
+  "wrong value; gold a shape name not written (needs the drawing)": [
+   "nl-01-003 target: want \"firewall\" got \"internet\" | The red one needs to sit between the two wireless boxes, with the grey one still above it.",
+   "nl-01-003 anchor: want \"staffwifi,guestwifi\" got \"switch,staffwifi\" | The red one needs to sit between the two wireless boxes, with the grey one still above it.",
+   "nl-02-005 anchor: want \"mention(label=wait for confirmation),transfer\" got \"$new\" | I'm putting together the induction sheet for our ward, and the bed bit is getting lost her",
+   "nl-03-023 to: want \"oven\" got \"batter\" | Nooo the cake doesn't go back into the raw batter! That last arrow is the wrong way round.",
+   "nl-03-039 target: want \"sportb\" got \"sporta\" | sports is there twcie get rid of the one down botom",
+   "nl-03-040 target: want \"space\" got \"mention(layer=zone)\" | more room round the middle",
+   "nl-03-043 target: want \"hull\" got \"mention(shape=triangle)\" | That's not a boat now it's a hat!! Turn the triangle upside down again and put the sail ba",
+   "nl-04-027 target: want \"checkin\" got \"desk,sign,cakes,books\" | Our welcome desk and its Start here sign belong down in the lower left corner. Please take",
+   "nl-04-029 target: want \"checkin\" got \"cakes,books\" | The cake and book stalls can stay. It's the grouped desk and sign that need relocating to "
+  ],
+  "wrong value; gold a reference ($new/$...)": [
+   "nl-01-005 from: want \"$new\" got \"frontdesk\" | pls add the reception pc on left of switch and conect it. name is FrontDesk not front desk",
+   "nl-01-019 from: want \"$new\" got \"commit\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-019 from: want \"$new\" got \"deploy\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-02-009 from: want \"$new\" got \"emergency,$new\" | could you um make a second line for planned admissions coming in from the clinic not throu",
+   "nl-12-008 to: want \"$new\" got \"clients\" | Please to put at the side of the funnel one box of the clients lost and to make enter in h"
+  ],
+  "key left out; gold written in the message": [
+   "nl-01-019 label: want \"yes\" got undefined | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-019 label: want \"no\" got undefined | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-026 label: want \"start\" got undefined | Start with Idle and Running. start takes Idle to Running.",
+   "nl-01-027 label: want \"resume\" got undefined | Running can go to Paused on pause. resume goes back.",
+   "nl-01-030 label: want \"handshake times out\" got undefined | The firmware folks and the app folks are using 'connected' to mean different things, which",
+   "nl-01-030 label: want \"successful retry\" got undefined | The firmware folks and the app folks are using 'connected' to mean different things, which",
+   "nl-01-030 label: want \"three failures\" got undefined | The firmware folks and the app folks are using 'connected' to mean different things, which",
+   "nl-01-034 direction: want \"left\" got undefined | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 anchor: want \"password\" got undefined | This is the account screen for the demo, not the finished design. Please move Save changes"
+  ],
+  "extra key the gold does not have": [
+   "nl-01-019 arrow: want undefined got \"none\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-019 shape: want undefined got \"text\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-034 axis: want undefined got \"horizontal\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 shape: want undefined got \"text\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-037 outline: want undefined got \"none\" | Why is 'Forgot password?' a giant box? It's just a link. Lose the border and make it look ",
+   "nl-01-038 shape: want undefined got \"text\" | on the mobile one put the basket up top by the logo then underneath uh a search bar full w",
+   "nl-01-038 label: want undefined got \"basket\" | on the mobile one put the basket up top by the logo then underneath uh a search bar full w",
+   "nl-01-038 shape: want undefined got \"text\" | on the mobile one put the basket up top by the logo then underneath uh a search bar full w",
+   "nl-01-045 shape: want undefined got \"rectangle\" | if db red dont restart it!! add call DBA before that restart box pls"
+  ],
+  "wrong value; gold written in the message": [
+   "nl-01-019 label: want \"security scan?\" got \"check it works\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-019 anchor: want \"tests\" got \"deploy\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-030 from: want \"connecting\" got \"disconnected\" | The firmware folks and the app folks are using 'connected' to mean different things, which",
+   "nl-01-030 to: want \"disconnected\" got \"connecting\" | The firmware folks and the app folks are using 'connected' to mean different things, which",
+   "nl-01-034 anchor: want \"email,password\" got \"header\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 target: want \"email,password,save\" got \"save,header\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 label: want \"we'll send a verification message if they change it\" got \"send a verification message if they change it\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 position: want \"below\" got \"near\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 label: want \"error message\" got \"invalid email\" | This is the account screen for the demo, not the finished design. Please move Save changes"
+  ],
+  "wrong value; gold not written (legend value or paraphrase)": [
+   "nl-01-019 position: want \"near\" got \"below\" | I'm showing this to finance, so the internal job names aren't helping us. Call Build 'Pack",
+   "nl-01-029 target: want \"running,paused\" got \"paused\" | Paused is still blue. I asked for both active states to be orange, including the one that'",
+   "nl-01-034 anchor: want \"mention(label=email address,recency=newest)\" got \"header\" | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-038 position: want \"near\" got \"above\" | on the mobile one put the basket up top by the logo then underneath uh a search bar full w",
+   "nl-02-005 position: want \"below\" got \"rightof\" | I'm putting together the induction sheet for our ward, and the bed bit is getting lost her",
+   "nl-02-005 to: want \"mention(label=wait for confirmation)\" got \"$new\" | I'm putting together the induction sheet for our ward, and the bed bit is getting lost her",
+   "nl-02-005 position: want \"between\" got \"rightof\" | I'm putting together the induction sheet for our ward, and the bed bit is getting lost her",
+   "nl-04-045 position: want \"rightof\" got \"right\" | Please reproduce this complete alien at his right side. The first alien must remain where ",
+   "nl-04-047 position: want \"between\" got \"rightof\" | We forgot that the cake has to cool down. Can you put a box saying Cool after the baking a"
+  ],
+  "key left out; gold not written (legend value or paraphrase)": [
+   "nl-01-034 position: want \"near\" got undefined | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-034 shape: want \"text\" got undefined | This is the account screen for the demo, not the finished design. Please move Save changes",
+   "nl-01-045 position: want \"above\" got undefined | if db red dont restart it!! add call DBA before that restart box pls",
+   "nl-02-004 from: want \"triage\" got undefined | Colour that urgent route red. Actually orange, red is already the fire evacuation colour o",
+   "nl-02-004 to: want \"assessment\" got undefined | Colour that urgent route red. Actually orange, red is already the fire evacuation colour o",
+   "nl-02-005 shape: want \"rectangle\" got undefined | I'm putting together the induction sheet for our ward, and the bed bit is getting lost her",
+   "nl-02-036 shape: want \"rectangle\" got undefined | How many documents link directly to the allegation in the middle, without going through a ",
+   "nl-03-030 shape: want \"text\" got undefined | Write serves six at the top. Four! I keep forgetting Tom and Liv aren't coming.",
+   "nl-03-034 shape: want \"any\" got undefined | How many things have I got off Planets now?"
+  ],
+  "key left out; gold a shape name not written (needs the drawing)": [
+   "nl-04-042 anchor: want \"alien\" got undefined | He needs a twin! Make another one just like him on the right, eyes and everything. Keep th",
+   "nl-04-043 anchor: want \"alien\" got undefined | Could I have a second copy of the whole green face, placed to the right of the original? S",
+   "nl-04-049 anchor: want \"bake,ice\" got undefined | If my son follows this he's going to put icing on a hot cake. Give him a Cool stage on the",
+   "nl-06-040 anchor: want \"man\" got undefined | Give him a speech bubble saying oh no. Actually it's silent, make it a thought bubble. No ",
+   "nl-08-040 anchor: want \"y2\" got undefined | hi so I'm the new intern in the faculty office and my boss gave me this half finished thin",
+   "nl-09-005 from: want \"vapour\" got undefined | label the arrow condensation",
+   "nl-09-005 to: want \"cloud\" got undefined | label the arrow condensation",
+   "nl-12-031 to: want \"rcb\" got undefined | Our under-12s keep chasing the ball in a big group, so I want one simple picture to hold u"
+  ],
+  "key left out; gold a reference ($new/$...)": [
+   "nl-11-020 anchor: want \"$new\" got undefined | then Mill Road, then Schools"
+  ]
+ }
+}

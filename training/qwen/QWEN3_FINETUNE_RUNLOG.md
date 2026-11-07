@@ -614,3 +614,48 @@ Collection complete (observed): 1,941 records, 8 shards complete, 0 failures in 
   - Inferred: as with Q1 and the ModernBERT arms, the limit on `nl_a` is the values the model writes for natural messages, not how many rows there are.
 - **Integrity note:** the 22:11 kill split the collection into two runs, on the same GGUF and code (merge_shards accepted all 8 shards). The resume kept each session's drawing right: `collect_lines.mjs:147` plays the gold program (`playGold`) for every item, including skipped ones, so re-collected items were checked against the correct world (observed in the code). The GPU crash at 22:11:56 came after training and the GPU fidelity check had ended (21:00).
 - D5: Qwen stays a second reader. It missed the 10 s p95 bar at Q0.7 (names 14.7 s, drawing 31.3 s).
+
+### 2026-11-07 ~16:45 — Wrong-value diagnosis on `nl_a` development (owner's "yes", CPU only, no training)
+Tool: `training/qwen/finetune/wrong_values.mjs`. It is approximate: a value counts as "written" when every one of its words appears in the message. Evidence: `reports/evidence/qwen3-finetune-plan/diagnosis/wrong_values.{Q1,Q2,C100-s0,C100-s1}.json`.
+
+Each request that pairs with gold but is wrong gets one class, checked in this order:
+1. A differing value is a shape name the message does not write: it needs the drawing.
+2. Otherwise a legend value or paraphrase the message does not write.
+3. Otherwise a `$` reference.
+4. Otherwise every differing value is written in the message.
+
+| arm | wrong (paired) | needs the drawing | legend value or paraphrase | a reference | only values written in the message |
+|---|---|---|---|---|---|
+| Q1 | 123 | 30 (24%) | 49 (40%) | 4 | 40 (33%) |
+| Q2 | 149 | 34 (23%) | 61 (41%) | 4 | 50 (34%) |
+| ModernBERT C100-s0 | 222 | 61 (27%) | 77 (35%) | 4 | 80 (36%) |
+| ModernBERT C100-s1 | 226 | 56 (25%) | 76 (34%) | 5 | 89 (39%) |
+
+**Observed (spot-check of 27 examples):**
+- "Needs the drawing" means the message picks the shape by colour, place or role ("the red one", "the one down bottom"), and the names-only prompt does not contain those.
+- "Legend value or paraphrase" is mostly the position word (near / above / rightof / between), plus mentions by label. Several of these are judgement calls where the gold is debatable ("up top by the logo": near against above).
+- "Written" covers dropped connect labels ("start takes Idle to Running": label left out), swapped from/to, and labels cut or reworded.
+
+**Inferred:**
+- About a quarter of the wrong values cannot be fixed by text data. They need the drawing in the input.
+- About a third are copy or assignment errors that more natural examples could reduce. That is the class Q2 and W tried and did not move at the gate.
+- About two fifths are position or legend choices, where label noise caps what any data can reach.
+
+**Not covered:** missing requests (65), held requests (38) and extras (125). The word match counts a common word ("below") as written even when it is not the user's choice.
+- **Check (observed, `training/neural/MODERNBERT_RUNLOG.md`):** C100 knows the drawing by names only. The drawing as input was ModernBERT's M4, which missed its `nl_a` bar (6.3% against 60%; line 658). ModernBERT's own root causes reach the same reading: "a reference that needs the drawing" goes 82 → 93 → 100 over the curve (line 640). The C100 rows in the table stand.
+- **Caveats:**
+  - This classifies only the paired wrong values (149 for Q2). Extras (125), missing (65) and held (38) are not classified.
+  - The gate runs at cost-10, where about 10-22 of 392 requests are executed. It mostly measures whether a model knows when it is right, and this diagnosis does not look at confidence. "The limit is the values" holds for every request executed, not for the gate.
+
+### Decision (advisor, Opus, at the owner's request): no new training data
+- Four results agree:
+  - the curve slowed;
+  - W missed;
+  - Q2 missed;
+  - the only class data could help (values written in the message) rose from 40 to 50 with Q2's data.
+- About a quarter of the wrong values need the drawing, and about two fifths are position or legend choices with debatable gold.
+- The one candidate the evidence supports is the input (the drawing), not data. For Qwen, D2 blocks Q3, and drawing input took 31.3 s p95. For ModernBERT, M4 (the drawing input) missed, and "the drawing input trained on natural data" is an owner option, not declared.
+- **Nothing runs without the owner.**
+- Optional CPU check, to size the label noise: rerun `wrong_values.mjs` on the 61 "legend or paraphrase" requests with the second labeller's gold.
+- **Refinement from the ModernBERT session (its check, not rerun here):** `wrong_values.mjs` counts a gold value as "written" when it appears anywhere in the message. Checked against each request's own text instead, C100-s0's 80 "only values written in the message" split into 37 in the request's own words, 42 only in another sentence of the message, and 1 that moves to "needs the drawing". So about half of that class is a value taken from the wrong request (assignment), not a value miscopied from the request's own words. The "needs the drawing" share does not change.
+- **The owner closed the ModernBERT natural-language line (`c266319`): no more data rounds, no drawing-input run.** With Q2's miss, both lines are closed.
