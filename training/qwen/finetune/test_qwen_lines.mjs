@@ -56,6 +56,12 @@ v = readOutput(spec, '[Add] command action=create shape=blob label="main pump"\n
 check('a description by a label only a held line would set is held', v.requests[1].blocked, JSON.stringify(v.requests[1].errors));
 v = readOutput(spec, '[Add] command action=create shape=rectangle label="main pump"\n[move] command action=move target=mention(label=main pump) direction=left', 'stop', ctx3);
 check('the same description after an unheld line passes', !v.requests[1].blocked, JSON.stringify(v.requests[1].errors));
+v = readOutput(spec, '[Add] command action=create shape=blob label="main pump"\n[move] command action=move target=mention(label="main pump") direction=left', 'stop', ctx3);
+check('review: a quoted description label set only by a held line is held', v.requests[1].blocked, JSON.stringify(v.requests[1].errors));
+v = readOutput(spec, '[Add] command action=create shape=rectangle label="main pump"\n[move] command action=move target=mention(label="main pump") direction=left', 'stop', ctx3);
+check('review: the quoted form passes after an unheld line, and reaches the engine without quote characters', !v.requests[1].blocked && JSON.stringify(toNodes(spec, v).nodes.find(n => n.type === 'mention').args.label) === '"main pump"', JSON.stringify(toNodes(spec, v).nodes.map(n => n.args)));
+v = readOutput(spec, '[Add] command action=create shape=blob label=Payments\n[connect] command action=connect from=Payments to=Tank', 'stop', { text: 'Add a box labelled Payments and connect Payments to Tank', names: ['Tank'], labels: [] });
+check('review: a plain name only a held line\'s label would show is held', v.requests[1].blocked, JSON.stringify(v.requests[1].errors));
 v = readOutput(spec, '[connect] command action=connect from=Art to=Tank', 'stop', { text: 'Start: connect the flow to Tank', names: ['Tank'], labels: [] });
 check('M1: a name inside a longer word of the message is not "written in the message"', v.requests[0].blocked, JSON.stringify(v.requests[0].errors));
 v = readOutput(spec, '[connect] command action=connect from=mention(label=Cold room) to=Tank', 'stop', ctx);

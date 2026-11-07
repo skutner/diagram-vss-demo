@@ -5,16 +5,20 @@
   "right": 66,
   "causes": {
    "seen": {
-    "wrong value": 62,
-    "held by the validator": 38,
-    "missing request": 49,
-    "wrong value: reference": 12
+    "wrong value": 74,
+    "held by the validator (same act)": 31,
+    "wrong act (an extra of another act on its words)": 23,
+    "missing request (nothing on its words)": 18,
+    "held by the validator (another act)": 14,
+    "unreadable line in the output": 1
    },
    "unseen": {
-    "wrong value": 40,
-    "missing request": 86,
-    "held by the validator": 30,
-    "wrong value: reference": 9
+    "wrong value": 49,
+    "wrong act (an extra of another act on its words)": 33,
+    "held by the validator (same act)": 13,
+    "unreadable line in the output": 4,
+    "missing request (nothing on its words)": 54,
+    "held by the validator (another act)": 12
    },
    "unannotated": {},
    "unpaired extras": {
@@ -74,7 +78,7 @@
     "nl-01-003",
     "nl-01-004",
     "nl-01-019",
-    "nl-01-026"
+    "nl-01-019"
    ],
    "extra request": [
     "nl-01-003",
@@ -82,23 +86,35 @@
     "nl-01-006",
     "nl-01-014"
    ],
-   "missing request": [
+   "wrong act (an extra of another act on its words)": [
     "nl-01-006",
+    "nl-01-014",
     "nl-01-017",
-    "nl-01-017",
-    "nl-01-019"
+    "nl-01-020"
    ],
-   "held by the validator": [
+   "held by the validator (same act)": [
+    "nl-01-014",
+    "nl-01-014",
+    "nl-01-014",
+    "nl-01-033"
+   ],
+   "unreadable line in the output": [
     "nl-01-014",
     "nl-01-014",
     "nl-01-014",
     "nl-01-014"
    ],
-   "wrong value: reference": [
+   "missing request (nothing on its words)": [
+    "nl-01-017",
     "nl-01-019",
-    "nl-01-019",
-    "nl-02-027",
-    "nl-02-031"
+    "nl-01-020",
+    "nl-01-023"
+   ],
+   "held by the validator (another act)": [
+    "nl-01-021",
+    "nl-02-001",
+    "nl-02-003",
+    "nl-02-005"
    ]
   }
  },
@@ -108,17 +124,18 @@
   "right": 1218,
   "causes": {
    "seen": {
-    "wrong value: reference": 13,
-    "missing request": 29,
-    "wrong value": 21,
-    "held by the validator": 6,
-    "unreadable line": 3
+    "wrong value": 34,
+    "missing request (nothing on its words)": 26,
+    "held by the validator (same act)": 4,
+    "wrong act (an extra of another act on its words)": 5,
+    "unreadable line in the output": 3
    },
    "unseen": {
-    "wrong value": 6,
-    "missing request": 10,
-    "wrong value: reference": 5,
-    "held by the validator": 2
+    "wrong value": 11,
+    "missing request (nothing on its words)": 5,
+    "wrong act (an extra of another act on its words)": 5,
+    "held by the validator (another act)": 1,
+    "held by the validator (same act)": 1
    },
    "unannotated": {},
    "unpaired extras": {
@@ -141,29 +158,29 @@
    "ask=… is not a legend question": 1
   },
   "examples": {
-   "wrong value: reference": [
+   "wrong value": [
     "fo-0012",
+    "fo-0013",
     "fo-0052",
-    "fo-0052",
-    "fo-0160"
+    "fo-0052"
    ],
-   "missing request": [
+   "missing request (nothing on its words)": [
     "fo-0013",
     "fo-0027",
     "fo-0035",
     "fo-0076"
    ],
-   "wrong value": [
-    "fo-0013",
-    "fo-0066",
-    "fo-0083",
-    "fo-0096"
-   ],
-   "held by the validator": [
+   "held by the validator (same act)": [
     "fo-0025",
-    "fo-0076",
     "fo-0118",
-    "fo-0118"
+    "fo-0388",
+    "fo-0495"
+   ],
+   "wrong act (an extra of another act on its words)": [
+    "fo-0090",
+    "fo-0237",
+    "fo-0355",
+    "fo-0459"
    ],
    "extra request": [
     "fo-0090",
@@ -171,7 +188,10 @@
     "fo-0147",
     "fo-0165"
    ],
-   "unreadable line": [
+   "held by the validator (another act)": [
+    "fo-0335"
+   ],
+   "unreadable line in the output": [
     "fo-0557",
     "fo-0557",
     "fo-0557"
@@ -184,16 +204,17 @@
   "right": 356,
   "causes": {
    "seen": {
-    "held by the validator": 8,
-    "wrong value": 21,
-    "wrong value: reference": 7,
-    "missing request": 22
+    "held by the validator (same act)": 8,
+    "wrong value": 28,
+    "wrong act (an extra of another act on its words)": 8,
+    "missing request (nothing on its words)": 10,
+    "held by the validator (another act)": 4
    },
    "unseen": {
-    "missing request": 8,
-    "wrong value": 6,
-    "wrong value: reference": 3,
-    "held by the validator": 1
+    "wrong act (an extra of another act on its words)": 7,
+    "wrong value": 9,
+    "held by the validator (another act)": 1,
+    "held by the validator (same act)": 1
    },
    "unannotated": {},
    "unpaired extras": {
@@ -216,7 +237,7 @@
    "groupOf does not take anchor (in the training data)": 1
   },
   "examples": {
-   "held by the validator": [
+   "held by the validator (same act)": [
     "s3-0002",
     "s3-0166",
     "s3-0215",
@@ -225,14 +246,14 @@
    "wrong value": [
     "s3-0006",
     "s3-0025",
-    "s3-0062",
-    "s3-0074"
+    "s3-0027",
+    "s3-0062"
    ],
-   "missing request": [
+   "wrong act (an extra of another act on its words)": [
     "s3-0008",
     "s3-0073",
     "s3-0079",
-    "s3-0087"
+    "s3-0194"
    ],
    "extra request": [
     "s3-0008",
@@ -240,11 +261,17 @@
     "s3-0079",
     "s3-0194"
    ],
-   "wrong value: reference": [
-    "s3-0027",
-    "s3-0067",
-    "s3-0109",
-    "s3-0146"
+   "held by the validator (another act)": [
+    "s3-0087",
+    "s3-0107",
+    "s3-0140",
+    "s3-0363"
+   ],
+   "missing request (nothing on its words)": [
+    "s3-0093",
+    "s3-0137",
+    "s3-0146",
+    "s3-0193"
    ]
   }
  }

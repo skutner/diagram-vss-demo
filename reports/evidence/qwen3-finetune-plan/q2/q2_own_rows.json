@@ -1,0 +1,237 @@
+{
+ "tool": "training/qwen/finetune/own_rows.mjs",
+ "server": "http://127.0.0.1:8101",
+ "examples": "/home/skutner/.cache/diagram-vss-qwen/arms/Q2/examples.jsonl",
+ "examples_sha256": "511d076a38fc8b1ae37084363051af923238bf6eb7148753eccc91844d3f0178",
+ "n": 1000,
+ "seed": 0,
+ "failed": 0,
+ "cut": 0,
+ "exact_text": 820,
+ "today": {
+  "requested": 2277,
+  "right": 2203,
+  "wrong": 37,
+  "not_done": 37,
+  "extras": 12,
+  "executed": 2252,
+  "execution_precision": 0.978242,
+  "right_share": 0.967501,
+  "cost_score": 75.230567
+ },
+ "direction": {
+  "requested": 2277,
+  "right": 2203,
+  "wrong": 37,
+  "not_done": 37,
+  "extras": 12,
+  "executed": 2252,
+  "execution_precision": 0.978242,
+  "right_share": 0.967501,
+  "cost_score": 75.230567
+ },
+ "threshold_95": "right_share >= 0.95",
+ "seconds": 787,
+ "misses": [
+  {
+   "id": "sm-0040",
+   "target": "[Duplicate] command action=duplicate target=Rack1 count=3\n[row] command action=arrange target=mention(recency=newest,shape=rectangle) layout=row\n[shove] command action=move target=DockB direction=left distance=100\n[to the back] command action=toBack target=DockA\n[How many] question ask=count",
+   "raw": "[Duplicate] command action=duplicate target=Rack1 count=3\n[put] command action=arrange target=$new layout=row\n[shove] command action=move target=DockB direction=left distance=100\n[to the back] command action=toBack target=DockA\n[How many] question ask=count"
+  },
+  {
+   "id": "sm-0081",
+   "target": "[Connect] command action=connect from=Central to=North,South,East arrow=none\n[label] command action=label target=Central label=Hub\n[connected to] question ask=connected target=North anchor=East",
+   "raw": "[Connect] command action=connect from=Central to=North,South,East arrow=none\n[give] command action=label target=Central label=Hub\n[connected to] question ask=connected target=North anchor=East"
+  },
+  {
+   "id": "sm-0178",
+   "target": "[chain] command action=connect from=Search,Result,Detail pairing=chain\n[Make] command action=set target=Result shape=rectangle\n[Detail a] command action=set target=Detail shape=rectangle size=large\n[Does] question ask=check target=Detail shape=rectangle\n[how many] question ask=count shape=rectangle",
+   "raw": "[chain] command action=connect from=Search,Result,Detail pairing=chain\n[Make] command action=set target=Result shape=rectangle\n[Detail] command action=set target=Detail shape=rectangle size=large\n[exist] question ask=exists shape=rectangle name=Detail\n[how many] question ask=count shape=rectangle"
+  },
+  {
+   "id": "sm-0215",
+   "target": "[one after the other] command action=connect from=Lead,Demo,Close pairing=chain\n[Make] command action=set target=Close size=large color=green shape=star\n[Lead a] command action=set target=Lead size=small color=gray shape=circle\n[path] question ask=path from=Lead to=Close",
+   "raw": "[to] command action=connect from=Lead,Demo,Close pairing=chain\n[Make] command action=set target=Close size=large color=green shape=star\n[Lead] command action=set target=Lead size=small color=gray shape=circle\n[path] question ask=path from=Lead to=Close"
+  },
+  {
+   "id": "sm-0244",
+   "target": "[goes to] command action=connect from=Browse,Add,Pay,Confirm pairing=next\n[degree] question ask=degree target=Pay\n[to the front] command action=toFront target=Pay",
+   "raw": "[Connect] command action=connect from=Browse,Add,Pay,Confirm pairing=next\n[degree] question ask=degree target=Pay\n[bring] command action=toFront target=Pay"
+  },
+  {
+   "id": "sm-0298",
+   "target": "[chained] command action=connect from=Admit,Treat,Discharge pairing=chain\n[Add] command action=connect from=Discharge to=Admit style=dashed arrow=none label=relapse\n[cycle] question ask=cycle\n[Color] command action=set target=Discharge color=lime\n[place] command action=move target=Discharge position=right",
+   "raw": "[chained] command action=connect from=Admit,Treat,Discharge pairing=chain\n[Add] command action=connect from=Discharge to=Admit style=dashed label=relapse\n[cycle] question ask=cycle\n[Color] command action=set target=Discharge color=lime\n[place] command action=move target=Discharge position=right"
+  },
+  {
+   "id": "sm-0394",
+   "target": "[grid] command action=arrange target=Reds,Blues,Greens,Yellows layout=grid\n[Reds red] command action=set target=Reds color=red\n[Colour] command action=set target=Blues color=blue\n[color] command action=set target=Greens color=green\n[and so on] command action=set target=Yellows color=yellow\n[Make] command action=set target=Greens size=huge\n[biggest] question ask=extreme superlative=biggest\n[smallest] question ask=extreme superlative=smallest",
+   "raw": "[in a grid] command action=arrange target=Reds,Blues,Greens,Yellows layout=grid\n[Colour] command action=set target=Reds color=red\n[so on] command action=set target=Blues color=red\n[Make] command action=set target=Greens size=huge\n[biggest] question ask=extreme superlative=biggest\n[smallest] question ask=extreme superlative=smallest"
+  },
+  {
+   "id": "sm-0462",
+   "target": "[link] command action=connect from=Cow1,Cow2,Cow3 to=Milking\n[Drop the link] command action=disconnect from=Cow3 to=Milking\n[Rename] command action=rename target=Cow3 name=Daisy\n[make] command action=set target=Daisy color=gray\n[rightmost] question ask=extreme superlative=rightmost\n[Is] question ask=check target=Daisy color=gray",
+   "raw": "[link] command action=connect from=Cow1,Cow2,Cow3 to=Milking\n[Drop] command action=disconnect from=Cow3 to=Milking\n[Rename] command action=rename target=Cow3 name=Daisy\n[make] command action=set target=Daisy color=gray\n[rightmost] question ask=extreme superlative=rightmost\n[Is] question ask=check target=Daisy color=gray"
+  },
+  {
+   "id": "sm-0500",
+   "target": "[Create] command action=create shape=hexagon color=teal name=Japan position=below anchor=Dream\n[a magenta hexagon] command action=create shape=hexagon color=magenta name=Peru position=rightOf anchor=Japan\n[Duplicate] command action=duplicate target=Japan\n[move] command action=move target=mention(recency=newest) position=above anchor=Dream\n[Swap] command action=swap target=Japan,Peru\n[Is] question ask=check target=Peru color=magenta\n[rightmost] question ask=extreme superlative=rightmost",
+   "raw": "[Create] command action=create shape=hexagon color=teal name=Japan position=below anchor=Dream\n[a magenta hexagon] command action=create shape=hexagon color=magenta name=Peru position=rightOf anchor=$new\n[Duplicate] command action=duplicate target=$new\n[move] command action=move target=$new position=above anchor=Dream\n[Swap] command action=swap target=$new,$new\n[Is] question ask=check target=$new color=magenta\n[rightmost] question ask=extreme superlative=rightmost"
+  },
+  {
+   "id": "sm-0512",
+   "target": "[move] command action=move target=Box1 direction=left distance=70\n[put under] command action=move target=Circle1 position=below anchor=Box2\n[color] question ask=property target=Circle1 property=color\n[big] question ask=check target=Circle1 size=large",
+   "raw": "[move] command action=move target=Box1 direction=left distance=70\n[put] command action=move target=Circle1 position=below anchor=Box2\n[color] question ask=property target=Circle1 property=color\n[big] question ask=check target=Circle1 size=large"
+  },
+  {
+   "id": "hm-0066",
+   "target": "[is above] fact target=Alarm position=above anchor=Lock\n[Set] command action=set target=Sensor color=red\n[How many red shapes] question ask=count color=red",
+   "raw": "[is above] fact target=Alarm position=above anchor=Lock\n[Set] command action=set target=Sensor color=red\n[How many] question ask=count color=red"
+  },
+  {
+   "id": "hm-0144",
+   "target": "[Connect] command action=connect from=Panel1,Panel2,Inverter pairing=chain\n[Set] command action=set target=Roof size=large color=gray shape=rectangle\n[below the Roof] question ask=check target=Inverter position=below anchor=Roof",
+   "raw": "[Connect] command action=connect from=Panel1,Panel2,Inverter pairing=chain\n[Set] command action=set target=Roof size=large color=gray shape=rectangle\n[below] question ask=check target=Inverter position=below anchor=Roof"
+  },
+  {
+   "id": "hm-0346",
+   "target": "[Bring] command action=toFront target=Encore\n[Send] command action=toBack target=Intro\n[Connect] command action=connect from=Intro,Ballad,Encore pairing=next\n[the rightmost] question ask=extreme superlative=rightmost",
+   "raw": "[Bring] command action=toFront target=Encore\n[Send] command action=toBack target=Intro\n[Connect] command action=connect from=Intro,Ballad,Encore pairing=next\n[rightmost] question ask=extreme superlative=rightmost"
+  },
+  {
+   "id": "hm-0417",
+   "target": "[Align] command action=align target=Aspirin,Ibuprofen,Syrup axis=vertical\n[Set] command action=set target=Syrup size=small color=green shape=ellipse\n[Make all the squares] command action=set target=mention(notcolor=green,quantifier=all,shape=square) color=teal\n[Which shapes are not] question ask=list notColor=green",
+   "raw": "[Align] command action=align target=Aspirin,Ibuprofen,Syrup axis=vertical\n[Set] command action=set target=Syrup size=small color=green shape=ellipse\n[Make] command action=set target=mention(notcolor=green,quantifier=all,shape=square) color=teal\n[Which shapes] question ask=list notColor=green"
+  },
+  {
+   "id": "sm2-0014",
+   "target": "[Rename] command action=rename target=Villain name=Baron\n[Shrink] command action=resize target=Hero scale=0.8",
+   "raw": "[Ditch] command action=delete target=Mentor\n[Rename] command action=rename target=Villain name=Baron\n[Shrink] command action=resize target=Hero scale=0.8"
+  },
+  {
+   "id": "sm2-0029",
+   "target": "[between] command action=move target=Pay position=between anchor=Order,Ship\n[linked to] question ask=connected target=Pay anchor=Ship",
+   "raw": "[Put] command action=move target=Pay position=between anchor=Order,Ship\n[linked to] question ask=connected target=Pay anchor=Ship"
+  },
+  {
+   "id": "sm2-0224",
+   "target": "[Replicate] command action=duplicate target=Home count=5\n[in a row] command action=arrange target=mention(quantifier=all,shape=circle) layout=row\n[Is] question ask=check target=Home shape=circle\n[rename] command action=rename target=Away name=Out",
+   "raw": "[Replicate] command action=duplicate target=Home count=5\n[put] command action=arrange target=mention(quantifier=all,shape=circle) layout=row\n[Is] question ask=check target=Home shape=circle\n[rename] command action=rename target=Away name=Out"
+  },
+  {
+   "id": "sm2-0230",
+   "target": "[go to] command action=connect from=Svc1,Svc2,Svc3 to=Bus style=dotted\n[in front of] command action=toFront target=Bus\n[degree] question ask=degree target=Bus",
+   "raw": "[go to] command action=connect from=Svc1,Svc2,Svc3 to=Bus style=dotted arrow=none\n[throw] command action=toFront target=Bus\n[degree] question ask=degree target=Bus"
+  },
+  {
+   "id": "sm2-0320",
+   "target": "[Sort out] command action=move target=App position=top\n[at the bottom] command action=move target=Db position=bottom\n[goes] command action=move target=Cache position=between anchor=App,Db\n[to the right of] command action=move target=Queue position=rightOf anchor=App\n[Connect] command action=connect from=App,Cache,Db pairing=chain\n[near] question ask=check target=Queue position=near anchor=Db\n[touch] question ask=neighbors target=Queue",
+   "raw": "[Sort out] command action=arrange layout=tree anchor=App position=top\n[at the bottom] command action=move target=Db position=bottom\n[between] command action=move target=Cache position=between anchor=App,Db\n[to the right of] command action=move target=Queue position=rightOf anchor=App\n[Connect] command action=connect from=App,Cache,Db pairing=chain\n[near] question ask=check target=Queue position=near anchor=Db\n[touch] question ask=neighbors target=Queue"
+  },
+  {
+   "id": "sm2-0376",
+   "target": "[go into] command action=connect from=Cocoa,Milk to=Mug\n[Tint] command action=set target=Mug color=white size=huge\n[size] question ask=property target=Mug property=size\n[colour] question ask=property target=Mug property=color\n[Is] question ask=check target=Cocoa color=brown",
+   "raw": "[Wire] command action=connect from=Cocoa,Milk to=Mug\n[Tint] command action=set target=Mug color=white size=huge\n[size] question ask=property target=Mug property=size\n[colour] question ask=property target=Mug property=color\n[Is] question ask=check target=Cocoa color=brown"
+  },
+  {
+   "id": "sm2-0454",
+   "target": "[Wire] command action=connect from=Eve to=Fay,Gus,Hal\n[arrange] command action=arrange target=Fay,Gus,Hal layout=row\n[bigger than] question ask=check target=Gus comparison=bigger anchor=Hal\n[enlarge] command action=resize target=Eve\n[linked to] question ask=neighbors target=Eve",
+   "raw": "[Wire] command action=connect from=Eve to=Fay,Gus,Hal\n[arrange] command action=arrange target=Fay,Gus,Hal layout=row\n[bigger than] question ask=check target=Gus comparison=bigger anchor=Hal\n[enlarge] command action=resize target=Eve\n[directly linked to] question ask=neighbors target=Eve"
+  },
+  {
+   "id": "sm2-0517",
+   "target": "[is] fact target=Venus color=yellow\n[is] fact target=Mars color=red\n[Make] command action=set target=Venus,Mars size=huge\n[at the back] command action=toBack target=Mars\n[Swap] command action=swap target=Venus,Mars\n[left of] question ask=check target=Venus position=leftOf anchor=Mars\n[touch] question ask=connected target=Venus anchor=Mars",
+   "raw": "[is] fact target=Venus color=yellow\n[is] fact target=Mars color=red\n[Make] command action=set target=Mars,Venus size=huge\n[Put] command action=toBack target=Mars\n[Swap] command action=swap target=Mars,Venus\n[left of] question ask=check target=Venus position=leftOf anchor=Mars\n[touch] question ask=connected target=Venus anchor=Mars"
+  },
+  {
+   "id": "sm2-0555",
+   "target": "[link] command action=connect from=Egg,Larva,Pupa,Adult pairing=chain\n[Shrink] command action=resize target=Egg scale=0.67\n[enlarge] command action=resize target=Adult\n[biggest] question ask=extreme superlative=biggest\n[Can I get from] question ask=path from=Egg to=Adult",
+   "raw": "[link] command action=connect from=Egg,Larva,Pupa,Adult pairing=chain\n[Shrink] command action=resize target=Egg scale=0.67\n[enlarge] command action=resize target=Adult\n[biggest] question ask=extreme superlative=biggest\n[get from] question ask=path from=Egg to=Adult"
+  },
+  {
+   "id": "sm2-0557",
+   "target": "[Draw] command action=connect from=Boss to=Aid,Spy style=dashed arrow=none\n[Delete] command action=delete target=Spy\n[undo] command action=undo\n[reachable] question ask=path from=Boss to=Spy",
+   "raw": "[leads to] command action=connect from=Boss to=Aid,Spy arrow=both style=dashed\n[Delete] command action=delete target=Spy\n[undo] command action=undo\n[reachable from] question ask=path from=Boss to=Spy"
+  },
+  {
+   "id": "sm2-0564",
+   "target": "[Chain] command action=connect from=Extract,Load,Report pairing=chain\n[Distribute] command action=distribute target=Extract,Load,Report axis=horizontal\n[Rename] command action=rename target=Load name=Store\n[rightmost] question ask=extreme superlative=rightmost\n[Disconnect] command action=disconnect from=Store to=Report\n[reachable] question ask=reachable from=Extract",
+   "raw": "[Chain] command action=connect from=Extract,Load,Report pairing=chain\n[Distribute] command action=distribute target=Extract,Load,Report axis=horizontal\n[Rename] command action=rename target=Load name=Store\n[rightmost] question ask=extreme superlative=rightmost\n[Disconnect] command action=disconnect from=Store to=Report\n[reachable from] question ask=reachable from=Extract"
+  },
+  {
+   "id": "sm2-0577",
+   "target": "[leads to] command action=connect from=Dean,Prof,Ta pairing=chain\n[Put] command action=move target=Ta position=bottom\n[goes] command action=move target=Dean position=top\n[in front] command action=toFront target=Dean\n[Shrink] command action=resize target=Prof scale=0.67\n[Redo] command action=redo\n[rules] question ask=rules\n[Forget] command action=forget",
+   "raw": "[leads to] command action=connect from=Dean,Prof,Ta pairing=chain\n[Put] command action=move target=Ta position=bottom\n[goes to the top] command action=move target=Dean position=top\n[Shrink] command action=resize target=Prof scale=0.67\n[Redo] command action=redo\n[rules] question ask=rules\n[Forget] command action=forget"
+  },
+  {
+   "id": "hm2-0003",
+   "target": "[Stick] command action=create shape=ellipse color=purple name=Dan position=above anchor=Ana\n[point at] command action=connect from=Ana,Ben to=Carla\n[near] question ask=list position=near anchor=Carla",
+   "raw": "[Stick] command action=create shape=ellipse color=purple name=Dan position=above anchor=Ana\n[point at] command action=connect from=Ana,Ben to=Carla\n[Which shapes are near] question ask=list position=near anchor=Carla"
+  },
+  {
+   "id": "hm2-0009",
+   "target": "[Spawn] command action=create shape=rectangle color=teal name=Coo position=below anchor=Ceo\n[Tuck] command action=move target=Cfo position=near anchor=Cto\n[the most links] question ask=extreme superlative=mostConnected",
+   "raw": "[Spawn] command action=create shape=rectangle color=teal name=Coo position=below anchor=Ceo\n[Tuck] command action=move target=Cfo position=near anchor=Cto\n[most links] question ask=extreme superlative=mostConnected"
+  },
+  {
+   "id": "hm2-0091",
+   "target": "[both go to] command action=connect from=Tuna,Rice to=Miso\n[drag] command action=move target=Miso direction=down distance=40\n[farthest] question ask=nearest anchor=Tuna superlative=farthest",
+   "raw": "[go to] command action=connect from=Tuna,Rice to=Miso\n[drag] command action=move target=Miso direction=down distance=40\n[farthest] question ask=nearest anchor=Tuna superlative=farthest"
+  },
+  {
+   "id": "hm2-0099",
+   "target": "[calls] command action=connect from=Alice,Bob,Cara pairing=chain\n[tie] command action=connect from=Cara to=Alice\n[form a loop] question ask=cycle",
+   "raw": "[chain] command action=connect from=Alice,Bob,Cara pairing=chain\n[tie] command action=connect from=Cara to=Alice\n[loop] question ask=cycle"
+  },
+  {
+   "id": "hm2-0202",
+   "target": "[Send] command action=toBack target=Cache2\n[Duplicate] command action=duplicate target=Auth count=3\n[farthest] question ask=nearest anchor=Gateway superlative=farthest",
+   "raw": "[Send] command action=toBack target=Cache2\n[sit in the same tier] command action=group target=Gateway,Auth,Cache2\n[Duplicate] command action=duplicate target=Auth count=3\n[farthest from] question ask=nearest anchor=Gateway superlative=farthest"
+  },
+  {
+   "id": "hm2-0228",
+   "target": "[Rename] command action=rename target=Doing name=Active\n[bigger than] question ask=check target=Blocked comparison=bigger anchor=Done\n[Make] command action=set target=Blocked shape=rectangle color=red size=huge",
+   "raw": "[Rename] command action=rename target=Doing name=Active\n[bigger than] question ask=check target=Blocked comparison=bigger anchor=Done\n[Make] command action=set target=Blocked size=huge color=red shape=rectangle"
+  },
+  {
+   "id": "hm2-0236",
+   "target": "[Add] command action=create shape=square color=green count=3 position=near anchor=Result\n[Is there a path] question ask=path from=Hypothesis to=Conclusion\n[Link] command action=connect from=Test to=Result\n[how many] question ask=count shape=square",
+   "raw": "[Add] command action=create count=3 color=green shape=square position=near anchor=Result\n[Is there a path] question ask=path from=Hypothesis to=Conclusion\n[Link] command action=connect from=Test to=Result\n[how many] question ask=count shape=square"
+  },
+  {
+   "id": "sl-0018",
+   "target": "[put it] command action=create shape=hexagon color=gold name=Island position=near anchor=Map\n[Connect] command action=connect from=Map to=$new\n[link] command action=connect from=Hero,Villain to=$new\n[should be] command action=set target=Villain color=purple\n[rename] command action=rename target=Map name=Compass\n[Add a label] command action=label target=$new label=\"Ch. 3\"\n[to the front] command action=toFront target=Compass\n[connected to] question ask=connected target=Hero anchor=Villain\n[not purple] question ask=list notColor=purple",
+   "raw": "[First] command action=create shape=hexagon color=gold name=Island position=near anchor=Map\n[Connect] command action=connect from=Map to=$new\n[link] command action=connect from=Hero,Villain to=$new\n[should be] command action=set target=Villain color=purple\n[rename] command action=rename target=Map name=Compass\n[Add a label] command action=label target=$new label=\"Ch. 3\"\n[to the front] command action=toFront target=Compass\n[connected to] question ask=connected target=Hero anchor=Villain\n[not purple] question ask=list notColor=purple"
+  },
+  {
+   "id": "sl-0079",
+   "target": "[Make] command action=connect from=Ship,Crane,Depot,Truck pairing=chain\n[make] command action=set target=Crane size=huge\n[Truck] command action=set target=Truck size=tiny\n[Add] command action=create shape=square color=lime name=Customs position=between anchor=Depot,Truck\n[I want] command action=connect from=Depot,$new,Truck pairing=chain\n[disconnect] command action=disconnect from=Depot to=Truck\n[connected to] question ask=connected target=$new anchor=Crane\n[get from] question ask=path from=Ship to=Truck\n[biggest] question ask=extreme superlative=biggest",
+   "raw": "[chain] command action=connect from=Ship,Crane,Depot,Truck pairing=chain\n[make] command action=set target=Crane size=huge\n[Truck] command action=set target=Truck size=tiny\n[Add] command action=create shape=square color=lime name=Customs position=between anchor=Depot,Truck\n[disconnect] command action=disconnect from=Depot to=Truck\n[connected to] question ask=connected target=$new anchor=Crane\n[get from] question ask=path from=Ship to=Truck\n[biggest] question ask=extreme superlative=biggest"
+  },
+  {
+   "id": "sl-0118",
+   "target": "[Line] command action=align target=Flour,Sugar,Butter,Eggs axis=vertical\n[distribute] command action=distribute target=Flour,Sugar,Butter,Eggs axis=vertical\n[Make] command action=set target=Flour color=white\n[Sugar] command action=set target=Sugar color=pink\n[Butter] command action=set target=Butter color=yellow\n[Eggs] command action=set target=Eggs color=gold\n[shrink] command action=resize target=Flour scale=0.67\n[enlarge] command action=resize target=Eggs\n[Add] command action=create shape=square color=red name=Alert position=near anchor=Flour\n[connect] command action=connect from=$new to=Flour\n[topmost] question ask=extreme superlative=topmost\n[Is] question ask=check target=Butter color=yellow",
+   "raw": "[Line them up] command action=align target=Flour,Sugar,Butter,Eggs axis=vertical\n[distribute] command action=distribute target=Flour,Sugar,Butter,Eggs axis=vertical\n[Make] command action=set target=Flour color=white\n[Sugar] command action=set target=Sugar color=pink\n[Butter] command action=set target=Butter color=yellow\n[Eggs] command action=set target=Eggs color=gold\n[shrink] command action=resize target=Flour scale=0.67\n[enlarge] command action=resize target=Eggs\n[Add] command action=create shape=square color=red name=Alert position=near anchor=Flour\n[connect] command action=connect from=$new to=Flour\n[topmost] question ask=extreme superlative=topmost\n[Is] question ask=check target=Butter color=yellow"
+  },
+  {
+   "id": "sl-0150",
+   "target": "[Connect] command action=connect from=Vines,Press,Barrel,Bottle pairing=chain\n[Make] command action=set target=Vines color=green\n[Barrel] command action=set target=Barrel color=brown\n[can be] command action=set target=Press color=gray shape=hexagon\n[Bottle] command action=set target=Bottle color=gold shape=ellipse\n[Put] command action=arrange layout=row\n[distribute] command action=distribute target=mention(quantifier=all) axis=horizontal\n[Set] command action=set target=Barrel size=large\n[bigger than] question ask=check target=Barrel comparison=bigger anchor=Press\n[smallest] question ask=extreme superlative=smallest\n[Do I have any] question ask=exists color=red",
+   "raw": "[Connect] command action=connect from=Vines,Press,Barrel,Bottle pairing=chain\n[Make] command action=set target=Vines color=green\n[the Barrel] command action=set target=Barrel color=brown\n[can be] command action=set target=Press color=gray shape=hexagon\n[the Bottle] command action=set target=Bottle color=gold shape=ellipse\n[Put] command action=arrange layout=row\n[distribute] command action=distribute target=mention(quantifier=all) axis=horizontal\n[Set] command action=set target=Barrel size=large\n[bigger than] question ask=check target=Barrel comparison=bigger anchor=Press\n[smallest] question ask=extreme superlative=smallest\n[Do I have any] question ask=exists color=red"
+  },
+  {
+   "id": "fs-0023",
+   "target": "[is] fact target=Car color=red\n[Is] question ask=check target=Bus color=red\n[should be] command action=set target=Light size=small shape=circle\n[at the top] command action=move target=Light position=top\n[make] command action=set target=Light color=green\n[is] fact target=Bus color=yellow\n[Put] command action=move target=Car position=leftOf anchor=Bus\n[near] question ask=check target=Car position=near anchor=Light\n[Move] command action=move target=Light direction=right distance=60\n[connect] command action=connect from=Light to=Car,Bus\n[color of] question ask=property target=Light property=color\n[closest to] question ask=nearest anchor=Light superlative=closest\n[how many] question ask=count",
+   "raw": "[is] fact target=Car color=red\n[Is the Bus red] question ask=check target=Bus color=red\n[should be] command action=set target=Light size=small shape=circle\n[at the top] command action=move target=Light position=top\n[make] command action=set target=Light color=green\n[is] fact target=Bus color=yellow\n[Put] command action=move target=Car position=leftOf anchor=Bus\n[near] question ask=check target=Car position=near anchor=Light\n[Move] command action=move target=Light direction=right distance=60\n[connect] command action=connect from=Light to=Car,Bus\n[color] question ask=property target=Light property=color\n[closest] question ask=nearest anchor=Light superlative=closest\n[how many] question ask=count"
+  },
+  {
+   "id": "fs-0042",
+   "target": "[is next to] fact target=Lion position=near anchor=Zebra\n[is] fact target=Hippo position=below anchor=Zebra\n[Make] command action=set target=Lion size=large color=orange shape=circle\n[gets] command action=set target=Zebra color=white\n[bigger than] question ask=check target=Hippo comparison=bigger anchor=Lion\n[Put] command action=move target=Hippo direction=down distance=80",
+   "raw": "[is next to] fact target=Lion position=near anchor=Zebra\n[is left of] fact target=Hippo position=below anchor=Zebra\n[Make] command action=set target=Lion size=large color=orange shape=circle\n[gets] command action=set target=Zebra color=white\n[bigger than] question ask=check target=Hippo comparison=bigger anchor=Lion\n[Put] command action=move target=Hippo direction=down distance=80"
+  },
+  {
+   "id": "fs-0062",
+   "target": "[get from] question ask=path from=Plug to=Lamp\n[Line up] command action=align target=Plug,Fuse,Lamp axis=horizontal\n[Connect] command action=connect from=Plug,Fuse,Lamp pairing=chain\n[Make] command action=set target=Fuse color=red\n[Put] command action=move target=Plug position=left\n[in the middle] command action=move target=Fuse position=center\n[on the right] command action=move target=Lamp position=right\n[bigger than] question ask=check target=Fuse comparison=bigger anchor=Lamp\n[leftmost] question ask=extreme superlative=leftmost\n[connect directly to] question ask=connected target=Plug anchor=Lamp\n[reached from] question ask=reachable from=Plug\n[Shrink] command action=resize target=Lamp scale=0.67",
+   "raw": "[get from] question ask=path from=Plug to=Lamp\n[Line up] command action=align target=Plug,Fuse,Lamp axis=horizontal\n[Connect] command action=connect from=Plug,Fuse,Lamp pairing=chain\n[Make] command action=set target=Fuse color=red\n[Put] command action=move target=Plug position=left\n[in the middle] command action=move target=Fuse position=center\n[on the right] command action=move target=Lamp position=right\n[bigger than] question ask=check target=Fuse comparison=bigger anchor=Lamp\n[leftmost] question ask=extreme superlative=leftmost\n[connect directly to] question ask=connected target=Plug anchor=Lamp\n[can be reached from] question ask=reachable from=Plug\n[Shrink] command action=resize target=Lamp scale=0.67"
+  }
+ ]
+}

@@ -12,6 +12,10 @@ for (const f of shards) {
   const buf = readFileSync(f), m = JSON.parse(readFileSync(f + '.manifest.json', 'utf8')), lines = buf.toString('utf8').split('\n').filter(l => l.trim());
   if (m.complete !== true || m.records.count !== lines.length || m.records.sha256 !== sha(buf)) throw new Error(f + ': incomplete or changed shard');
   if (mans.length && m.artifacts_sha256 !== mans[0].artifacts_sha256) throw new Error(f + ': other artifacts than the first shard');
+  // the same collection in every shard: code, sets, part, examples (overlap), trigger inventory, keys; and the code of the files as they are now
+  if (mans.length) for (const k of ['code', 'sets', 'part', 'train_data', 'keys_file', 'grammar_sha256', 'number_words', 'input']) if (JSON.stringify(m[k]) !== JSON.stringify(mans[0][k])) throw new Error(`${f}: ${k} differs from the first shard`);
+  if (mans.length && JSON.stringify(m.overlap && m.overlap.examples_sha256) !== JSON.stringify(mans[0].overlap && mans[0].overlap.examples_sha256)) throw new Error(f + ': other training examples than the first shard');
+  for (const [cf, h] of Object.entries(m.code || {})) if (sha(readFileSync(new URL('../../../' + cf, import.meta.url))) !== h) throw new Error(`${f}: ${cf} changed since the shard was collected (re-collect it)`);
   mans.push(m);
   for (const l of lines) { const r = JSON.parse(l), k = r.set + '\0' + r.id; if (recs.has(k)) throw new Error('duplicate ' + k); recs.set(k, l); }
 }
@@ -22,6 +26,7 @@ if (recs.size !== items.length) throw new Error(`${recs.size} records for ${item
 const text = items.map(it => recs.get(it.set + '\0' + it.id)).join('\n') + '\n';
 writeFileSync(out, text);
 const m = { ...mans[0], tool: 'training/qwen/finetune/merge_shards.mjs of collect_lines.mjs shards', shard: null, shards: shards.map((f, i) => ({ file: f, sha256: mans[i].records.sha256, count: mans[i].records.count, runtime: mans[i].runtime || null })),
+  overlap: { ...(mans[0].overlap || {}), same_text: [...new Set(mans.flatMap(x => (x.overlap && x.overlap.same_text) || []))] },
   messages: items.length, complete: true, records: { count: items.length, sha256: sha(text) }, merged: new Date().toISOString() };
 writeFileSync(out + '.manifest.json', JSON.stringify(m, null, 1));
 console.log(JSON.stringify({ out, records: items.length, shards: shards.length }));

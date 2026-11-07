@@ -66,7 +66,9 @@ export function messageWords(text, numberWords = false) {
 // ---------------------------------------------------------------- the vocabulary
 const splitTop = v => { const o = []; let d = 0, c = ''; for (const ch of String(v)) { if (ch === '(') d++; if (ch === ')') d--; if (ch === ',' && d === 0) { o.push(c); c = ''; } else c += ch; } o.push(c); return o.map(s => s.trim()).filter(s => s.length); };
 const actOf = w => w.type === 'command' ? w.args.action : w.type === 'question' ? w.args.ask : w.type;
-const descOf = p => { const m = /^mention\((.*)\)$/s.exec(p); return m ? splitTop(m[1]).map(kv => { const i = kv.indexOf('='); return i < 0 ? [kv, ''] : [kv.slice(0, i).trim(), kv.slice(i + 1).trim()]; }) : null; };
+/** a description value as written: a JSON-quoted value ("main pump") is read unquoted, the same in the validator and in programOf */
+export const unq = v => { const t = String(v).trim(); if (t.length >= 2 && t[0] === '"' && t[t.length - 1] === '"') { try { return JSON.parse(t); } catch { return t; } } return t; };
+const descOf = p => { const m = /^mention\((.*)\)$/s.exec(p); return m ? splitTop(m[1]).map(kv => { const i = kv.indexOf('='); return i < 0 ? [kv, ''] : [kv.slice(0, i).trim(), unq(kv.slice(i + 1))]; }) : null; };
 
 /** training gold -> {act_keys: {act: [key]}, desc_keys: [key], rows, wires} (sorted, so the same data gives the same bytes) */
 export function learnKeys(wiresList) {
@@ -188,6 +190,7 @@ export function readOutput(spec, raw, finish, ctx, { numberWords = false, error 
           // a name is on the drawing, made by an earlier unheld request of this output, or its words are words of the message
           const pw = wordsOf(part), inMsg = pw.length > 0 && pw.every(x => mw.has(x));
           if (heldNames.has(lc(part)) && !known.has(lc(part))) R.errors.push(`${part} would be made by an earlier request that could not be read`);
+          else if (heldLabels.has(lc(part)) && !madeLabels.has(lc(part)) && !known.has(lc(part)) && !made.has(lc(part))) R.errors.push(`${part} would be shown by an earlier request that could not be read`);
           else if (!(known.has(lc(part)) || made.has(lc(part)) || inMsg)) R.errors.push(`${part} is neither on the drawing, nor written in the message, nor created earlier`);
         }
       }
@@ -259,7 +262,7 @@ export function programOf(wires) {
           const q = /^mention\((.*)\)$/.exec(p);
           if (q) {
             const mid = 'm' + (++mm);
-            lines.push(`@${mid} mention ` + q[1].split(',').map(kv => { const i = kv.indexOf('='), k = kv.slice(0, i).trim().replace(/^notcolor$/, 'notColor'), v = kv.slice(i + 1).trim(); return i < 0 ? kv : `${k}=${/\s/.test(v) ? JSON.stringify(v) : v}`; }).join(' '));
+            lines.push(`@${mid} mention ` + q[1].split(',').map(kv => { const i = kv.indexOf('='), k = kv.slice(0, i).trim().replace(/^notcolor$/, 'notColor'), v = unq(kv.slice(i + 1)); return i < 0 ? kv : `${k}=${/[\s"]/.test(v) ? JSON.stringify(v) : v}`; }).join(' '));
             return '$' + mid;
           }
           return p;

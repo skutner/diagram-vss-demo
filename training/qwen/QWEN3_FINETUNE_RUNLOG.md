@@ -485,3 +485,132 @@ Scored by `score_arm.mjs` (`q1/q1.score.json`), compared by `compare_qwen.mjs` w
   grammar: messages with an unreadable line or invalid 9 / 3; cut 0 / 1; requests held 130 / 49; requests produced (executed if all are)
   320 / 406; right 66 / 69. The grammar removes most unreadable and out-of-legend lines, and those become executed requests: 86 more
   produced for 3 more right. Not scored at the gate (the confidence was fitted without the grammar).
+
+## After Q1
+
+### The owner's next steps (14:58)
+
+Asked "what should we do next?", the recommendation was: 1 commit; 3 a natural-language data round; 4, only if wanted, the plan's Q2 (Q1's
+data plus `nl_p1` and the M2 folders), which needs the owner's override of Q1's stop rule. The owner, verbatim: "1,3 then 4".
+- **1**: committed as `1e46fb6` (not pushed; the message was amended before any push to say which files are not reviewed yet).
+- **3**: already running in the ModernBERT session (`nl_p2`, 1,518 messages, and its learning curve on the GPU; `MODERNBERT_RUNLOG.md`).
+  Not duplicated here. It has the GPU first (the owner's order).
+- **4**: the owner's "then 4" is taken as the override of Q1's stop rule for Q2, as described to him. Declared below.
+
+### Q2: declared before the run (14:58)
+
+- **Change from Q1:** Q1's data plus M2's 8 folders and `nl_p1` (adjudicated, `opus/`), names only, L2's overlay (559 of 559 lines apply on this
+  list). `~/.cache/diagram-vss-qwen/arms/Q2/examples.jsonl`: 28,103 messages, 61,354 requests. Q1's recipe unchanged (2 epochs, 32 rows per
+  update, so about 1,756 updates), with the 4,096-token micro-batch (memory only). `nl_p2` is not in Q2 (still being labelled; it gets its
+  own declaration after the ModernBERT curve says whether this data moves a reader).
+- **Same-data control: ModernBERT M3-s0** (F0 + M2s + M2n folders + `nl_p1`), the plan's "or the ModernBERT arm on the same list". Checked
+  against `arms/data/M3/train.jsonl`: the same ids and per-id request counts except 33 `nl_p1` rows marked `unreliable` that M3 trained and
+  Q2 leaves out (28 ids with requests, 36 requests, 0.06%), the plan's rule for unreliable session steps. 34 `nl_p1` resizes have no scale
+  (L2's overlay does not cover `nl_p1`); M3 had the same labels. M3-s0 re-scored with the pinned scorer (`controls/M3-s0.score.json`):
+  `nl_a` development every request executed 44/392, at its gate cost -7.4.
+- **Records, confidence, scorer:** as Q1 (browser runtime, 8 instances, `calibrate_qwen.mjs --cal fresh2,short3,nl_a`, `score_arm.mjs`,
+  `compare_qwen.mjs`), against Opus with direction, either teacher beside, the writes-nothing floor beside.
+- **Hypothesis (the plan's):** natural messages widen what it reads.
+- **It worked when (the plan's Q2, made precise now):**
+  - `nl_a` development: Q2 minus Q1, paired cost score **at each arm's own cost-10 threshold**, 95% interval above 0;
+  - below 0 on none of: `nl_a` development, fresh2 test, short3 test (the same paired comparison).
+  - `scenes_test` is reported, not gating: its interval rests on 4 sessions and is unusable (the ModernBERT log measured an 8.1% false-pass
+    rate there). Beside it: every request executed, and Q2 minus M3-s0.
+- **The learning curve (25%, 50%, 100%, seeds 0 and 1) is cut for time, stated now:** 6 more trainings on a GPU the owner gave to the
+  ModernBERT curve first. Q4's entry, which the curve decides, is not in this session's scope.
+- **Before any Q2 number is used:** a scoped review of `merge_shards.mjs`, `root_causes_qwen.mjs`, `q1_eval.sh` and the held-label fix (it
+  also covers what produced Q1's numbers; a defect there is corrected in Q1's entry, from the records' `qwen.raw`).
+- **GPU:** asked of the ModernBERT session, not taken between its runs. If no slot opens by 03:00 on 2026-11-07, Q2 is recorded as not
+  fitting and stops. On a miss: reported, no retry.
+
+### Coordination with the ModernBERT session (15:14)
+
+After the owner set both sessions to the same permission mode, the ModernBERT session answered: its queue of 7 curve runs holds the GPU
+until about 19:30-19:45 (its marker: "C25-s1 train rc" in its `queue_curve.out`); nothing of its takes the GPU after that; its CPU
+evaluations end about 20:10 (nice 10), and Qwen's browser instances at nice 10 may overlap. It owns the planning of the next data round for
+ModernBERT (its curve decides it, results about 20:15); Qwen's own data and the SOP Lang question are this session's. So Q2's training
+starts when that marker appears, with `flock -w` on the lock, and its browser collection runs at nice 10.
+
+### Scoped review of the Q1 evaluation tools (`code-reviewer`, Opus 5.5, max): no blocking finding; fixes (15:18)
+
+The reviewer reproduced Q1's numbers (`score_arm.mjs` re-run identical; calibration byte-identical; all 1,941 outputs re-validate with no
+difference; the merged order, shard slices, examples and GGUF hashes as declared; SOP-F0-s0 re-scored identical). Delegated, not rerun by me.
+- **Important, fixed:** a description label written quoted (`mention(label="main pump")`) escaped the held-label check and reached the
+  engine with quote characters. `lines_reader.mjs` reads a quoted description value unquoted, in the check and in `programOf` (gold is never
+  quoted: the Q0.4 oracle gives the same numbers). It fired 0 times in Q1 (the reviewer: the 2 quoted cases are wrong for other keys).
+  Also fixed (the reviewer's lower-confidence risk): a plain name that only a held line's label would show is held. 3 tests added; all pass.
+- **Minor, fixed:** `merge_shards.mjs` now refuses shards whose code, sets, part, inputs, keys, grammar or examples differ, and code that
+  changed since a shard was collected (checked: it refuses Q1's shards against today's `lines_reader.mjs`; Q1's merged file was made before
+  and stays valid); the merged overlap list is the union. `q1_eval.sh` stops when calibration fails (`pipefail`).
+- **Minor, fixed, and Q1's reading corrected:** `root_causes_qwen.mjs` now classifies by the place of the words, one-to-one. On `nl_a`
+  development (326 requested actions not right): wrong value (paired, same act) 123 (seen 74, unseen 49); wrong act (an extra of another
+  act on its words) 56; missing, nothing on its words, 72; held by the validator, same act 44, another act 26; unreadable line 5; extras 131
+  (`q1/q1_root_causes.json`, rewritten). **Correction of the Q1 entry above:** "right about the value or misses the request" was wrong: the
+  largest cause is a wrong value (123 paired requests wrong against 66 right), then a missing request (72) and a wrong act (56).
+- **(e), exact count (reviewer):** 26 messages with an unparseable line (1.34%) plus 1 cut; 23 if the 3 "key twice" lines are not parse
+  errors. The bar is 19.4 messages: a miss under every reading. The Q1 entry's 27 counted the cut message twice.
+
+### Research: a better way to make training data, and SOP Lang output (Opus 5.5, xhigh; read-only) (15:18)
+
+The owner asked: "check if there is a better approach to generate better training data. maybe fine tune qwen3 to generate soplang code?"
+Its findings (delegated; the evidence quoted in its report, kept in this session):
+- **Observed:** Q1 was trained on no natural-language messages (14,058 of F0's 24,698 are template-generated; the rest legend-aware LLM
+  writing). Q1 against either teacher 16.99%, against Opus 16.84%: the reference teacher barely matters. Requests with a seen trigger 19.1%
+  right, unseen 14.5%: trigger words are a small lever. `nl_p1` + `nl_p2` cover only 12-17% of `nl_a`'s unseen-trigger requests.
+- **Inferred:** the limit is the kind of text, not the labelling pipeline nor the teacher; forcing legend values (grammar) turns holds into
+  confident mistakes.
+- **Qwen3 writing SOP Lang directly: no gain.** The output costs the same tokens (16/44/231 against 16/46/206), the line format is already one
+  mechanical step from SOP Lang, and it would lose the trigger (a confidence signal, the "say which words" rule, the trigger check) and make
+  one bad reference fail the whole program. **Qwen3 as a writer or labeller of data: no.** It would write legend-worded text, and its labels
+  (16.8% right on natural text) would feed its own errors back (circular).
+- **Recommendation:** wait for the ModernBERT curve (about 20:15) and Q2. If the curve is flat or slowing: experiment W, the C100 list with
+  every natural row repeated 4 times (about 26% of rows), ModernBERT seeds 0 and 1, measured as the curve, bar W minus C100 above 0 and fresh2
+  /short3 not worse than -10 at the gate; port to Qwen only if it passes. If the curve is still rising: a third round of the `nl_p2` recipe,
+  aimed at causes measured on `nl_a`'s calibration half and training rows, never development. Do not start: SOP Lang output, any model of
+  ours writing or labelling data, choosing what to label by confidence, a new round before the curve's verdict.
+- Its open questions for the owner: any further Qwen data arm needs the owner again; data arms judged with every request executed or at
+  the gate (the gate executes 10-22 of 392 requests: little power); Q2 adds the M2 folders and `nl_p1` together, so it cannot say which moved
+  Qwen.
+- Sent to the ModernBERT session, which owns the next data round for ModernBERT (its curve decides it).
+
+### 16:35 — Advisor decisions on the open questions (before any Q2 score exists)
+
+- **How data arms are judged.** At each arm's own cost-10 threshold, as Q2's gate is already declared: Q2 minus Q1, paired, on nl_a dev, 95% interval above 0, no set below 0. "Every request executed" is reported next to it as a variant; if its sign disagrees, the report says so, but the gate decides. Later data arms (W, a third round) use the same rule; any change needs the owner.
+- **Push of `1e46fb6`.** Not pushed. The owner's "push it" was never sent, and `1e46fb6` lacks the reader fixes made after it. After Q2's verdict: one follow-up commit (fixes plus Q2 log), then one question to the owner about pushing both. Observed: branch `main`, origin/main at `1fa93a5`, no `.github/workflows` directory.
+- **Check (observed):** Q1 and Q2 calibrate the same way. Both go through `q1_eval.sh` (wllama collection, `calibrate_qwen.mjs --cal fresh2,short3,nl_a`), and `calibrate_qwen.mjs` is unchanged since 07:40, before Q1's calibration (14:14).
+
+### 21:05: Q2 GPU part (observed, `~/.cache/diagram-vss-qwen/arms/Q2/q2_run.log`)
+- 19:24 marker seen. 20:46 training rc 0: 1,758 updates, 2 epochs, 4,870 s, peak 3.51 GiB; final logged loss 0.048. Export rc 0. 21:00 native rc 0, fidelity rc 0.
+- Own rows on the exported GGUF (`q2/q2_own_rows.json`): 2,203/2,277 right (96.8%), 37 wrong, 37 not done, 12 extras, 0 cut. Passes the 95% check.
+- Export fidelity (`q2/q2_export_fidelity.json`, information only, as for Q1): 36/46 greedy identical, p99 0.161. The 50 native records went in, but the check scored only 46 (reason not yet looked at). Q1 was 40/50, 0.174.
+- 21:00: GPU released. ModernBERT session told by message. Smoke and browser collection continue on the CPU.
+- 21:55: a host RAM clash (observed by the ModernBERT session). Q2's 8 wllama browser workers use about 20 GB of the 31 GB of RAM, and swap was full. ModernBERT's W stopped on its memory guard; both its checkpoints resume. Agreed: W resumes after Q2's collection ends (about 23:30). Q2's grammar variant waits until W is done. Lesson: 8 browser workers do not fit beside a GPU training job on this host.
+- 22:11: a Claude desktop app restart killed Q2's browser collection, because the job was a child of the session. 581 of 1,941 records carry "Target page, context or browser has been closed" (observed in `b.*.log`). The originals are kept in `~/.cache/diagram-vss-qwen/arms/Q2/killed-2211/`. The 581 failed records were removed and the manifests deleted, so `collect_lines.mjs` resumes and runs only those 581. The 1,360 kept records are untouched. That this restart affects no scored record is an inference: same GGUF, temperature 0, same code.
+- 22:29: ModernBERT's W resumed on the host, about 1.5 h. Q2's re-collection and grammar variant start after W is done, as a job detached from the session (setsid) so another app restart cannot kill it.
+- The ModernBERT session reports a GPU crash at 22:11:56: the kernel logged Xid 120 (GSP firmware) and Xid 154 ("GPU Reset Required"). The GPU needs a reset or reboot, so W cannot run. Q2's remaining steps (re-collection, then grammar variant) are CPU and browser only and started at once, detached (`arms/Q2/resume_2240.sh`). A reboot before they end would kill them.
+
+### 23:20 — Q2 result: **miss** (the gate declared at 14:58)
+Collection complete (observed): 1,941 records, 8 shards complete, 0 failures in the re-collection. Grammar variant on `nl_a` development: 300 records. Scoring: `ARM=Q2 TDLIST=M3 CONTROLS="Q1=… M3-s0=…" ./q1_eval.sh score`, rc 0. Files: `q2/q2.score.json`, `q2/q2_calibration.json`, `q2/q2_minus_Q1.{json,log}`, `q2/q2_minus_M3-s0.{json,log}`, `q2/q2_root_causes.json`.
+- **Gate, `nl_a` development, Q2 minus Q1, at each arm's cost-10 threshold.** Opus gold: -3.57, 95% interval [-21.09, 12.30]. Either gold: -3.40 [-20.16, 11.73]. The interval is not above 0, so **Q2 misses**. Under the stop rule there is no retry. D2: Q3 (the drawing) runs only if Q2 passes, so Q3 does not run.
+- **No set below 0 (each interval includes 0):** fresh2 test -0.99 [-8.54, 6.57]; short3 test +16.20 [-1.40, 30.68].
+- **Reported, not gating:**
+  - Every request executed, `nl_a` dev (Opus): Q2 -679.8 against Q1 -631.1, diff -48.7 [-139.5, 32.8]. Same sign as the gate, not significant.
+  - Right share at the gate, `nl_a` dev: 6.1% against 4.6%, +1.5 [0, 3.1]. Every request executed: 19.1% against 16.8%, +2.3 [-0.7, 5.6].
+  - fresh2 right share at the gate: +9.7 [7.3, 12.1].
+  - collected_1 every request executed: +204.5 [26.5, 402.3].
+  - scenes_test: 4 sessions, unusable.
+- **Q2 minus M3-s0 (ModernBERT on the same list), `nl_a` dev, Opus gold:** at the gate -1.79 [-16.57, 10.95]. Every request executed: +459.4 [368.6, 561.9]. Right share every request executed: 19.1% against 11.2%.
+- **Root causes, `nl_a` dev, every request executed (Opus gold), Q2 against Q1 corrected (both read from `q2/q2_root_causes.json` and `q1/q1_root_causes.json`):**
+  - Right: 75 of 392 against 66.
+  - Wrong value: 149 against 123.
+  - Wrong act: 56 against 56.
+  - Missing: 65 against 72.
+  - Held: 38 against 70.
+  - Unreadable: 9 against 5.
+  - Extras: 125 against 131.
+  - Q2's held lines are mostly bad keys (12), "ask" values that are not legend questions (6), malformed "at" values (6), triggers not in the message (5) and label words not in the message (5).
+- **Reading:**
+  - Observed: adding the M2 folders and `nl_p1` moved requests from held or missing to produced, mostly with a wrong value. At the cost-10 threshold the paired cost score did not move.
+  - Inferred: as with Q1 and the ModernBERT arms, the limit on `nl_a` is the values the model writes for natural messages, not how many rows there are.
+- **Integrity note:** the 22:11 kill split the collection into two runs, on the same GGUF and code (merge_shards accepted all 8 shards). The resume kept each session's drawing right: `collect_lines.mjs:147` plays the gold program (`playGold`) for every item, including skipped ones, so re-collected items were checked against the correct world (observed in the code). The GPU crash at 22:11:56 came after training and the GPU fidelity check had ended (21:00).
+- D5: Qwen stays a second reader. It missed the 10 s p95 bar at Q0.7 (names 14.7 s, drawing 31.3 s).

@@ -1,0 +1,107 @@
+{
+ "nl_a/development": {
+  "messages": 300,
+  "requested": 392,
+  "right": 75,
+  "causes": {
+   "seen": {
+    "wrong value": 97,
+    "held by the validator (same act)": 20,
+    "wrong act (an extra of another act on its words)": 29,
+    "unreadable line in the output": 1,
+    "missing request (nothing on its words)": 19,
+    "held by the validator (another act)": 4
+   },
+   "unseen": {
+    "wrong act (an extra of another act on its words)": 27,
+    "missing request (nothing on its words)": 46,
+    "held by the validator (same act)": 8,
+    "unreadable line in the output": 8,
+    "wrong value": 52,
+    "held by the validator (another act)": 6
+   },
+   "unannotated": {},
+   "unpaired extras": {
+    "extra request": 125
+   }
+  },
+  "held_by_first_error": {
+   "bad key=…": 12,
+   "ask=… is not a legend question": 6,
+   "at must be two numbers x,y": 6,
+   "the trigger […] is not in the message": 5,
+   "the words of label=… superlative are neither in the message nor on the": 5,
+   "template=… is not a legend value of template": 4,
+   "the words of name=… are not in the message": 4,
+   "it uses what an earlier request would create, which could not be read": 4,
+   "topic=… is not a legend value of topic": 4,
+   "path does not take avoiding (in the training data)": 2,
+   "position=… is not a legend value of position": 2,
+   "the words of items=… are not in the message": 2,
+   "action=… is not a legend action": 2,
+   "Collections is neither on the drawing, nor written in the message, nor": 2,
+   "shape=… is not a legend value of shape": 2,
+   "style=… is not a legend value of style": 2,
+   "create does not take storage (in the training data)": 1,
+   "group does not take storage (in the training data)": 1,
+   "superlative=… is not a legend value of superlative": 1,
+   "label does not take position (in the training data)": 1,
+   "create does not take to (in the training data)": 1,
+   "check does not take aspect (in the training data)": 1,
+   "connect does not take position (in the training data)": 1,
+   "property=… is not a legend value of property": 1,
+   "create does not take shop (in the training data)": 1,
+   "forget does not take target (in the training data)": 1,
+   "the words of label=… are not in the message": 1,
+   "fact does not take from (in the training data)": 1,
+   "kind=… is not a legend value of kind": 1,
+   "label does not take style (in the training data)": 1,
+   "reachable does not take to (in the training data)": 1,
+   "count does not take from (in the training data)": 1
+  },
+  "examples": {
+   "wrong value": [
+    "nl-01-003",
+    "nl-01-005",
+    "nl-01-019",
+    "nl-01-019"
+   ],
+   "extra request": [
+    "nl-01-003",
+    "nl-01-004",
+    "nl-01-005",
+    "nl-01-014"
+   ],
+   "wrong act (an extra of another act on its words)": [
+    "nl-01-004",
+    "nl-01-014",
+    "nl-01-017",
+    "nl-01-020"
+   ],
+   "missing request (nothing on its words)": [
+    "nl-01-006",
+    "nl-01-017",
+    "nl-01-020",
+    "nl-01-023"
+   ],
+   "held by the validator (same act)": [
+    "nl-01-014",
+    "nl-01-014",
+    "nl-01-014",
+    "nl-01-033"
+   ],
+   "unreadable line in the output": [
+    "nl-01-014",
+    "nl-01-014",
+    "nl-01-014",
+    "nl-01-014"
+   ],
+   "held by the validator (another act)": [
+    "nl-04-044",
+    "nl-05-008",
+    "nl-06-044",
+    "nl-06-044"
+   ]
+  }
+ }
+}

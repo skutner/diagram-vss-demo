@@ -1,0 +1,102 @@
+{
+  "recipe": "calibrate_arm.mjs protocol with line_scores.mjs SIGNALS",
+  "signals": [
+    [
+      "score_min",
+      1
+    ],
+    [
+      "act_lp",
+      1
+    ],
+    [
+      "val_margin_min",
+      1
+    ],
+    [
+      "trigger_lp",
+      1
+    ],
+    [
+      "req_index",
+      -1
+    ],
+    [
+      "n_requests",
+      -1
+    ],
+    [
+      "msg_tokens",
+      -1
+    ]
+  ],
+  "reader": "qwen-lines",
+  "artifact": "aab91a6d329c53f5c64fdc13efbf872eabdeac188100e0b36bbe726599d0c097",
+  "calibration": {
+    "sets": [
+      "fresh2",
+      "short3",
+      "nl_a"
+    ],
+    "messages": 678,
+    "requested": 1216,
+    "produced": 1170,
+    "fitted_on": 1170,
+    "l2": 0.1,
+    "oof_auroc": 0.9307333272815299,
+    "without_confidence_signals": 0,
+    "failed_messages": 0
+  },
+  "fit_status": "fitted",
+  "levels_out_of_fold": {
+    "cost1": {
+      "threshold": 0.5909821264375917,
+      "score": 60.0328947368421,
+      "executed": 844
+    },
+    "cost2": {
+      "threshold": 0.5909821264375917,
+      "score": 55.3453947368421,
+      "executed": 844
+    },
+    "cost5": {
+      "threshold": 0.8082402820256218,
+      "score": 46.62828947368421,
+      "executed": 723
+    },
+    "cost": {
+      "threshold": 0.8803858449063141,
+      "score": 38.15789473684211,
+      "executed": 640
+    },
+    "cost20": {
+      "threshold": 0.9704248786181118,
+      "score": 27.384868421052634,
+      "executed": 438
+    }
+  },
+  "out_of_fold_at_cost10": {
+    "requested": 1216,
+    "right": 624,
+    "wrong": 11,
+    "asked": 402,
+    "unread": 179,
+    "extras": 5,
+    "executed": 640,
+    "execution_precision": 0.975,
+    "wrong_execution_share": 0.025,
+    "right_share": 0.5131578947368421,
+    "cost_score": 38.15789473684211
+  },
+  "ignored_records": {
+    "fresh2/test": 405,
+    "short3/test": 340,
+    "collected_1/all": 52,
+    "scenes_test/all": 166,
+    "nl_a/development": 300
+  },
+  "labels": "outcome against the gold of the set (Opus for nl_a), today scoring",
+  "record_files": [
+    "/home/skutner/.cache/diagram-vss-qwen/arms/Q2/q2.browser.jsonl"
+  ]
+}
