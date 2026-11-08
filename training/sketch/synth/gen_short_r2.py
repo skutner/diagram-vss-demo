@@ -6,7 +6,7 @@ ones wrapped in narration ("ok so now undo pls", "alright, make Router red pleas
 least-used first, gold written by the conventions (LABEL_CONVENTIONS.md last section, the majority of synth_rules_ext / synth_rules_ops), and
 ONLY the messages the Rules read exactly as their gold are kept (check_file.py --mode rules, which also removes every text that overlaps a
 test set: the six template sets, llm_short, fresh2, short3).
-  python3 training/sketch/synth/gen_short_r2.py [--seed 0] [--n 2400] --out <candidates.jsonl>
+  python3 training/sketch/synth/gen_short_r2.py [--seed 0] [--n 2400] [--id-prefix sr2] --out <candidates.jsonl>
   python3 training/sketch/synth/check_file.py <candidates.jsonl> training/sketch/llm_train/synth_short_r2 --mode rules
 """
 import argparse, collections, json, os, random, sys
@@ -137,7 +137,9 @@ def core(p, rng, names):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--n", type=int, default=2400); ap.add_argument("--out", required=True)
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--n", type=int, default=2400)
+    ap.add_argument("--id-prefix", default="sr2", help="ids are <prefix>-NNNNN; the default keeps seed 0's output (synth_short_r2) unchanged")
+    ap.add_argument("--out", required=True)
     a = ap.parse_args(); rng = random.Random(a.seed + 23); p = Pick(rng); out = []
     doms = sorted(G.DOMAINS)
     for i in range(a.n):
@@ -154,7 +156,7 @@ def main():
         used = [n for n in names if n in text]
         canvas = used + [n for n in names if n not in used][:2]
         if form == "tpl_items": canvas = [n for n in names if n not in used][:2]   # template items are new shapes
-        out.append({"id": f"sr2-{i:05d}", "domain": dom, "names": canvas, "text": text, "wires": [w], "meta": {"form": form, "narration": narr}})
+        out.append({"id": f"{a.id_prefix}-{i:05d}", "domain": dom, "names": canvas, "text": text, "wires": [w], "meta": {"form": form, "narration": narr}})
     with open(a.out, "w") as f:
         for r in out: f.write(json.dumps(r, ensure_ascii=False) + "\n")
     print(f"{len(out)} candidates -> {a.out}; forms: {dict(collections.Counter(r['meta']['form'] for r in out))}")
