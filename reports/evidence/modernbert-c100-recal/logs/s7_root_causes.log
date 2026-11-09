@@ -1,0 +1,6 @@
+collected_1/all [teacher_opus, today] requested 47: right 11 wrong 15 not done 21 extras 29; causes: oracle 0, teachers 0, input 0, cut 12, spurious 8, act 30, ref 11, class 4, name 0, other 0
+scenes_test/all [gold, today] requested 163: right 108 wrong 55 not done 0 extras 5; causes: oracle 20, teachers 0, input 0, cut 3, spurious 3, act 0, ref 11, class 11, name 12, other 0
+nl_a/development [opus, today] requested 392: right 51 wrong 222 not done 119 extras 197; causes: oracle 0, teachers 4, input 0, cut 146, spurious 78, act 139, ref 99, class 41, name 31, other 0
+short_synth/test [gold, today] requested 1318: right 1014 wrong 300 not done 4 extras 7; causes: oracle 0, teachers 0, input 0, cut 0, spurious 3, act 8, ref 35, class 178, name 87, other 0
+synth_short_t1/all [gold, today] requested 1793: right 1385 wrong 406 not done 2 extras 8; causes: oracle 0, teachers 0, input 0, cut 0, spurious 6, act 4, ref 51, class 248, name 107, other 0
+fresh2+short3/test [gold, today] requested 1745: right 1369 wrong 307 not done 69 extras 96; causes: oracle 12, teachers 0, input 0, cut 68, spurious 31, act 77, ref 124, class 66, name 94, other 0

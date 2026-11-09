@@ -1,0 +1,2088 @@
+{
+ "schema": "modernbert-rare-heads-verdict-v1",
+ "stage": "seed0",
+ "protocol_sha256": "b15da300cb1817ad67e446c2de80aca54ba27cae523f4ba1bab0c1bd24e25738",
+ "comparator_matrix": {
+  "W-s0": [
+   "F-s0",
+   "B-s0",
+   "C100-s0"
+  ],
+  "W-s1": [
+   "F-s1",
+   "B-s0",
+   "C100-s1"
+  ]
+ },
+ "rows": [
+  {
+   "id": "R1:W-s0:F-s0",
+   "title": "W-s0 versus F-s0 on t1_clean and the clean create subset",
+   "status": "fail",
+   "pass": false,
+   "checks": [
+    {
+     "name": "t1_clean gated cost difference F-B >= 5",
+     "value": 6.7947,
+     "ok": true,
+     "status": "pass",
+     "a": 66.6913,
+     "b": 59.8966
+    },
+    {
+     "name": "t1_clean paired interval lower end > 0",
+     "value": -1.4717,
+     "ok": false,
+     "status": "fail",
+     "ci95": [
+      -1.4717,
+      14.9606
+     ],
+     "ci95_reason": null,
+     "resampled_units": 1521
+    },
+    {
+     "name": "W-s0 executes something at its gate on t1_clean",
+     "value": 1101,
+     "ok": true,
+     "status": "pass",
+     "executed": 1101
+    },
+    {
+     "name": "F-s0 executes something at its gate on t1_clean",
+     "value": 1130,
+     "ok": true,
+     "status": "pass",
+     "executed": 1130
+    },
+    {
+     "name": "confidently wrong share does not increase (F <= B)",
+     "value": -0.009315,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.016349,
+     "comparator": 0.025664,
+     "candidate_wilson95": [
+      0.010366,
+      0.025695
+     ],
+     "comparator_wilson95": [
+      0.017927,
+      0.036614
+     ],
+     "executed": [
+      1101,
+      1130
+     ]
+    },
+    {
+     "name": "t1_clean is a supported population (W-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 500,
+      "groups_min": 100,
+      "supported": true
+     }
+    },
+    {
+     "name": "t1_clean is a supported population (F-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 500,
+      "groups_min": 100,
+      "supported": true
+     }
+    },
+    {
+     "name": "t1_clean_create is a supported population (W-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "t1_clean_create is a supported population (F-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "clean create subset gated cost: paired interval lower end > 0",
+     "value": -37.5,
+     "ok": false,
+     "status": "fail",
+     "difference": -3.4483,
+     "ci95": [
+      -37.5,
+      29.1667
+     ],
+     "ci95_reason": null
+    }
+   ]
+  },
+  {
+   "id": "R1:W-s0:B-s0",
+   "title": "W-s0 versus B-s0 on t1_clean and the clean create subset",
+   "status": "fail",
+   "pass": false,
+   "checks": [
+    {
+     "name": "t1_clean gated cost difference F-B >= 5",
+     "value": 9.8227,
+     "ok": true,
+     "status": "pass",
+     "a": 66.6913,
+     "b": 56.8685
+    },
+    {
+     "name": "t1_clean paired interval lower end > 0",
+     "value": 2.8148,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      2.8148,
+      17.1491
+     ],
+     "ci95_reason": null,
+     "resampled_units": 1521
+    },
+    {
+     "name": "W-s0 executes something at its gate on t1_clean",
+     "value": 1101,
+     "ok": true,
+     "status": "pass",
+     "executed": 1101
+    },
+    {
+     "name": "B-s0 executes something at its gate on t1_clean",
+     "value": 825,
+     "ok": true,
+     "status": "pass",
+     "executed": 825
+    },
+    {
+     "name": "confidently wrong share does not increase (F <= B)",
+     "value": 0.010287999999999999,
+     "ok": false,
+     "status": "fail",
+     "candidate": 0.016349,
+     "comparator": 0.006061,
+     "candidate_wilson95": [
+      0.010366,
+      0.025695
+     ],
+     "comparator_wilson95": [
+      0.002591,
+      0.014108
+     ],
+     "executed": [
+      1101,
+      825
+     ]
+    },
+    {
+     "name": "t1_clean is a supported population (W-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 500,
+      "groups_min": 100,
+      "supported": true
+     }
+    },
+    {
+     "name": "t1_clean is a supported population (B-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 500,
+      "groups_min": 100,
+      "supported": true
+     }
+    },
+    {
+     "name": "t1_clean_create is a supported population (W-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "t1_clean_create is a supported population (B-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "clean create subset gated cost: paired interval lower end > 0",
+     "value": -29.2683,
+     "ok": false,
+     "status": "fail",
+     "difference": -6.8966,
+     "ci95": [
+      -29.2683,
+      19.0476
+     ],
+     "ci95_reason": null
+    }
+   ]
+  },
+  {
+   "id": "R2:W-s0",
+   "title": "W-s0: fixed form capability (ungated right / all gold)",
+   "status": "fail",
+   "pass": false,
+   "checks": [
+    {
+     "name": "outline_question ungated right share >= 0.9",
+     "value": 1,
+     "ok": true,
+     "status": "pass",
+     "requested": 66,
+     "right": 66,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 66,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "outline_create ungated right share >= 0.9",
+     "value": 0.3,
+     "ok": false,
+     "status": "fail",
+     "requested": 80,
+     "right": 24,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 80,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "outline_set ungated right share >= 0.9",
+     "value": 1,
+     "ok": true,
+     "status": "pass",
+     "requested": 80,
+     "right": 80,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 80,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "label_removal ungated right share >= 0.9",
+     "value": 1,
+     "ok": true,
+     "status": "pass",
+     "requested": 78,
+     "right": 78,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 78,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "description_size ungated right share >= 0.8",
+     "value": 0.9375,
+     "ok": true,
+     "status": "pass",
+     "requested": 64,
+     "right": 60,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 64,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "bare_move ungated right share >= 0.95",
+     "value": 1,
+     "ok": true,
+     "status": "pass",
+     "requested": 148,
+     "right": 148,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 148,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "undo/redo count ungated right share >= 0.9",
+     "value": 1,
+     "ok": true,
+     "status": "pass",
+     "requested": 28,
+     "right": 28,
+     "exposure": {
+      "requests": 28,
+      "span_equals_a_training_request": 13
+     },
+     "note": "regression evidence of a finite grammar, not a generalisation test"
+    },
+    {
+     "name": "separate perfect-label absent/count and output-contract fixtures (not learned-model evidence)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "results": [
+      {
+       "name": "node-output-contract",
+       "receipt": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/evidence/node-output-contract/receipt.json",
+       "sha256": "e0b24b7b39bf2b07c75a388ef0a2c46df5f1521cdb388e1990ae222e14fc118a",
+       "count": 67,
+       "scope": "perfect-label-fixture"
+      },
+      {
+       "name": "python-output-contract",
+       "receipt": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/evidence/python-output-contract/receipt.json",
+       "sha256": "112051aeeaf710d7dcde3e59e89c255afa701298642ba6dae3b90271df830e16",
+       "count": 83,
+       "scope": "perfect-label-fixture"
+      },
+      {
+       "name": "test_batched_trainer.py",
+       "receipt": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/evidence/test_batched_trainer.py/receipt.json",
+       "sha256": "4e02ef85397d6ce0084d881d2a43a41c20fd4778adc09cac073d298f92f3d037",
+       "count": 33,
+       "scope": "source-harness-fixture"
+      },
+      {
+       "name": "test_modernbert_rare_heads.py",
+       "receipt": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/evidence/test_modernbert_rare_heads.py/receipt.json",
+       "sha256": "7d077b8bcf2c98c17df8ba5d326e63392a1116cd4b03743bad01f650bcc5a497",
+       "count": 10,
+       "scope": "source-harness-fixture"
+      },
+      {
+       "name": "test_modernbert_rare_heads_fit.py",
+       "receipt": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/evidence/test_modernbert_rare_heads_fit.py/receipt.json",
+       "sha256": "1ae6d95854de0066d911f484e5936755798ee46562d56861380c1002378ce263",
+       "count": 11,
+       "scope": "source-harness-fixture"
+      },
+      {
+       "name": "measurement-source",
+       "receipt": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/evidence/measurement-source/receipt.json",
+       "sha256": "d0c9774d3f6167f4f92467a4926f8cfd44f7237b1f33b202d4e828eba63b80a9",
+       "count": 23,
+       "scope": "source-harness-fixture"
+      },
+      {
+       "name": "test_modernbert_rare_heads_fit.mjs",
+       "receipt": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/evidence/test_modernbert_rare_heads_fit.mjs/receipt.json",
+       "sha256": "9126fbe6c4d7d5af1a0d363e17f9a4a6a80768290ef49304df3ce589aa8b0d57",
+       "count": 6,
+       "scope": "source-harness-fixture"
+      },
+      {
+       "name": "test_modernbert_rare_heads_fit_evidence.mjs",
+       "receipt": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/evidence/test_modernbert_rare_heads_fit_evidence.mjs/receipt.json",
+       "sha256": "b1992b4df1b64aba41547b80d97806515ab8367bd1b040301a17ee73828a0b89",
+       "count": 8,
+       "scope": "source-harness-fixture"
+      },
+      {
+       "name": "corpus-roundtrip",
+       "receipt": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/evidence/corpus-roundtrip/receipt.json",
+       "sha256": "e0c9704ffc8da59ed5d972e04bd1df7b254bb263655a740934d66c73391b9bef",
+       "count": 58552,
+       "scope": "perfect-label-corpus",
+       "exact_only": 0.9403265473425332,
+       "note": "fresh perfect-label representation evidence; not learned-model accuracy"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "R3:W-s0:F-s0",
+   "title": "W-s0: safety and retained capability (Guard G against F-s0 and C100-s0; label setting; lower case)",
+   "status": "fail",
+   "pass": false,
+   "checks": [
+    {
+     "name": "G W-s0 vs F-s0: fresh2_test/test cost difference >= -5",
+     "value": -9.5963,
+     "ok": false,
+     "status": "fail"
+    },
+    {
+     "name": "G W-s0 vs F-s0: fresh2_test/test paired interval upper end >= 0",
+     "value": -5.8912,
+     "ok": false,
+     "status": "fail",
+     "ci95": [
+      -17.0423,
+      -5.8912
+     ],
+     "ci95_reason": null,
+     "resampled_units": 318
+    },
+    {
+     "name": "G W-s0 vs F-s0: fresh2_test/test wrong+extras per 100 requested up by at most 1",
+     "value": -0.07616199999999995,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.53313,
+     "comparator": 0.609292
+    },
+    {
+     "name": "G W-s0 vs F-s0: short3_test/test cost difference >= -5",
+     "value": 0,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G W-s0 vs F-s0: short3_test/test paired interval upper end >= 0",
+     "value": 12.8736,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -14.8248,
+      12.8736
+     ],
+     "ci95_reason": null,
+     "resampled_units": 309
+    },
+    {
+     "name": "G W-s0 vs F-s0: short3_test/test wrong+extras per 100 requested up by at most 1",
+     "value": -0.462963,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.388889,
+     "comparator": 1.851852
+    },
+    {
+     "name": "G W-s0 vs F-s0: nl_a_development/development cost difference >= -5",
+     "value": 6.8878,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G W-s0 vs F-s0: nl_a_development/development paired interval upper end >= 0",
+     "value": 21.1302,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -3.6364,
+      21.1302
+     ],
+     "ci95_reason": null,
+     "resampled_units": 171
+    },
+    {
+     "name": "G W-s0 vs F-s0: nl_a_development/development wrong+extras per 100 requested up by at most 1",
+     "value": -0.765306,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.255102,
+     "comparator": 1.020408
+    },
+    {
+     "name": "G W-s0 vs C100-s0: fresh2_test/test cost difference >= -5",
+     "value": -5.9406,
+     "ok": false,
+     "status": "fail"
+    },
+    {
+     "name": "G W-s0 vs C100-s0: fresh2_test/test paired interval upper end >= 0",
+     "value": 2.5601,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -15.9218,
+      2.5601
+     ],
+     "ci95_reason": null,
+     "resampled_units": 318
+    },
+    {
+     "name": "G W-s0 vs C100-s0: fresh2_test/test wrong+extras per 100 requested up by at most 1",
+     "value": -0.685453,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.53313,
+     "comparator": 1.218583
+    },
+    {
+     "name": "G W-s0 vs C100-s0: short3_test/test cost difference >= -5",
+     "value": -0.2315,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G W-s0 vs C100-s0: short3_test/test paired interval upper end >= 0",
+     "value": 13.9219,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -14.9864,
+      13.9219
+     ],
+     "ci95_reason": null,
+     "resampled_units": 309
+    },
+    {
+     "name": "G W-s0 vs C100-s0: short3_test/test wrong+extras per 100 requested up by at most 1",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.388889,
+     "comparator": 1.388889
+    },
+    {
+     "name": "G W-s0 vs C100-s0: nl_a_development/development cost difference >= -5",
+     "value": 12.5,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G W-s0 vs C100-s0: nl_a_development/development paired interval upper end >= 0",
+     "value": 28.1167,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      0.2674,
+      28.1167
+     ],
+     "ci95_reason": null,
+     "resampled_units": 171
+    },
+    {
+     "name": "G W-s0 vs C100-s0: nl_a_development/development wrong+extras per 100 requested up by at most 1",
+     "value": -1.2755100000000001,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.255102,
+     "comparator": 1.530612
+    },
+    {
+     "name": "label-setting ungated right share falls by at most 2 points versus F-s0",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1,
+     "comparator": 1
+    },
+    {
+     "name": "gated empty-label outputs against nonempty gold across the evaluated views <= 0",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "all_label_errors": {
+      "gated_empty_label_on_nonempty_gold": 0,
+      "ungated_empty_label_on_nonempty_gold": 0,
+      "gated_by_reason": {},
+      "ungated_by_reason": {
+       "text:label value": 15,
+       "text:label missing": 19,
+       "text:label unwanted": 6
+      },
+      "executed_without_raw_arguments": 0
+     }
+    },
+    {
+     "name": "every executed request has its raw arguments (label errors are complete)",
+     "value": 0,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "lowercase_other_affected is a supported population (W-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 40,
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "lowercase_other_affected is a supported population (F-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 40,
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "lowercase_other_affected: ungated right share loss <= 2 points versus F-s0",
+     "value": 0.12130000000000196,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.673939,
+     "comparator": 0.675152,
+     "requested": 825
+    },
+    {
+     "name": "lowercase_other_affected: adds at most 1 confident mistake per 100 requests versus F-s0",
+     "value": -0.242424,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0,
+     "comparator": 0.242424
+    },
+    {
+     "name": "short3_lowercase is an available population with requests (W-s0)",
+     "value": 134,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "short3_lowercase is an available population with requests (F-s0)",
+     "value": 134,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "short3_lowercase: ungated right share loss <= 2 points versus F-s0",
+     "value": -14.1791,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.447761,
+     "comparator": 0.30597,
+     "requested": 134
+    },
+    {
+     "name": "short3_lowercase: adds at most 1 confident mistake per 100 requests versus F-s0",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0,
+     "comparator": 0
+    },
+    {
+     "name": "t1_clean candidate executes",
+     "value": 1101,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "t1_clean comparator executes",
+     "value": 1130,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "t1_clean risk does not exceed F-s0",
+     "value": -0.009315,
+     "ok": true,
+     "status": "pass"
+    }
+   ],
+   "guard": {
+    "vs F-s0": [
+     {
+      "view": "fresh2_test",
+      "key": "fresh2_test/test",
+      "candidate_cost": 35.795887,
+      "comparator_cost": 45.392232,
+      "measure_available": true,
+      "requested": 1313,
+      "checks": [
+       {
+        "name": "fresh2_test/test cost difference >= -5",
+        "value": -9.5963,
+        "ok": false,
+        "status": "fail"
+       },
+       {
+        "name": "fresh2_test/test paired interval upper end >= 0",
+        "value": -5.8912,
+        "ok": false,
+        "status": "fail",
+        "ci95": [
+         -17.0423,
+         -5.8912
+        ],
+        "ci95_reason": null,
+        "resampled_units": 318
+       },
+       {
+        "name": "fresh2_test/test wrong+extras per 100 requested up by at most 1",
+        "value": -0.07616199999999995,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.53313,
+        "comparator": 0.609292
+       }
+      ],
+      "clean_population_reported": {
+       "difference": -11.8936,
+       "ci95": [
+        -20.3852,
+        -4.2813
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "short3_test",
+      "key": "short3_test/test",
+      "candidate_cost": 7.87037,
+      "comparator_cost": 7.87037,
+      "measure_available": true,
+      "requested": 432,
+      "checks": [
+       {
+        "name": "short3_test/test cost difference >= -5",
+        "value": 0,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "short3_test/test paired interval upper end >= 0",
+        "value": 12.8736,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -14.8248,
+         12.8736
+        ],
+        "ci95_reason": null,
+        "resampled_units": 309
+       },
+       {
+        "name": "short3_test/test wrong+extras per 100 requested up by at most 1",
+        "value": -0.462963,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.388889,
+        "comparator": 1.851852
+       }
+      ],
+      "clean_population_reported": {
+       "difference": -1.8182,
+       "ci95": [
+        -18.5629,
+        14.8485
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "nl_a_development",
+      "key": "nl_a_development/development",
+      "candidate_cost": 0,
+      "comparator_cost": -6.887755,
+      "measure_available": true,
+      "requested": 392,
+      "checks": [
+       {
+        "name": "nl_a_development/development cost difference >= -5",
+        "value": 6.8878,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "nl_a_development/development paired interval upper end >= 0",
+        "value": 21.1302,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -3.6364,
+         21.1302
+        ],
+        "ci95_reason": null,
+        "resampled_units": 171
+       },
+       {
+        "name": "nl_a_development/development wrong+extras per 100 requested up by at most 1",
+        "value": -0.765306,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.255102,
+        "comparator": 1.020408
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 10.9145,
+       "ci95": [
+        -0.9324,
+        25.9587
+       ],
+       "ci95_reason": null
+      }
+     }
+    ],
+    "vs C100-s0": [
+     {
+      "view": "fresh2_test",
+      "key": "fresh2_test/test",
+      "candidate_cost": 35.795887,
+      "comparator_cost": 41.736481,
+      "measure_available": true,
+      "requested": 1313,
+      "checks": [
+       {
+        "name": "fresh2_test/test cost difference >= -5",
+        "value": -5.9406,
+        "ok": false,
+        "status": "fail"
+       },
+       {
+        "name": "fresh2_test/test paired interval upper end >= 0",
+        "value": 2.5601,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -15.9218,
+         2.5601
+        ],
+        "ci95_reason": null,
+        "resampled_units": 318
+       },
+       {
+        "name": "fresh2_test/test wrong+extras per 100 requested up by at most 1",
+        "value": -0.685453,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.53313,
+        "comparator": 1.218583
+       }
+      ],
+      "clean_population_reported": {
+       "difference": -5.7903,
+       "ci95": [
+        -18.7708,
+        8.8853
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "short3_test",
+      "key": "short3_test/test",
+      "candidate_cost": 7.87037,
+      "comparator_cost": 8.101852,
+      "measure_available": true,
+      "requested": 432,
+      "checks": [
+       {
+        "name": "short3_test/test cost difference >= -5",
+        "value": -0.2315,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "short3_test/test paired interval upper end >= 0",
+        "value": 13.9219,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -14.9864,
+         13.9219
+        ],
+        "ci95_reason": null,
+        "resampled_units": 309
+       },
+       {
+        "name": "short3_test/test wrong+extras per 100 requested up by at most 1",
+        "value": 0,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.388889,
+        "comparator": 1.388889
+       }
+      ],
+      "clean_population_reported": {
+       "difference": -0.9091,
+       "ci95": [
+        -18.7302,
+        17.4051
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "nl_a_development",
+      "key": "nl_a_development/development",
+      "candidate_cost": 0,
+      "comparator_cost": -12.5,
+      "measure_available": true,
+      "requested": 392,
+      "checks": [
+       {
+        "name": "nl_a_development/development cost difference >= -5",
+        "value": 12.5,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "nl_a_development/development paired interval upper end >= 0",
+        "value": 28.1167,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         0.2674,
+         28.1167
+        ],
+        "ci95_reason": null,
+        "resampled_units": 171
+       },
+       {
+        "name": "nl_a_development/development wrong+extras per 100 requested up by at most 1",
+        "value": -1.2755100000000001,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.255102,
+        "comparator": 1.530612
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 17.1091,
+       "ci95": [
+        5.0562,
+        33.8667
+       ],
+       "ci95_reason": null
+      }
+     }
+    ]
+   },
+   "original_case_controls": {
+    "view": "fresh2_test",
+    "part": "test",
+    "requested": 825,
+    "messages": 351,
+    "messages_with_requests": 351,
+    "groups": 278,
+    "available": true,
+    "unavailable_requests": 0,
+    "direction_only_scored": 21,
+    "text_case_only_mismatches": 0,
+    "extras_unattributed": 41,
+    "ungated": {
+     "requested": 825,
+     "produced": 837,
+     "executed": 832,
+     "right": 752,
+     "wrong": 51,
+     "extras": 29,
+     "structural_holds": {
+      "total": 5,
+      "by_kind": {
+       "blocked": 3,
+       "dependency": 2
+      },
+      "would_be": {
+       "right": 2,
+       "wrong": 2,
+       "extra": 1
+      }
+     },
+     "confidence_holds": {
+      "total": 0,
+      "would_be": {
+       "right": 0,
+       "wrong": 0,
+       "extra": 0
+      }
+     },
+     "unread": 18,
+     "right_share": 0.911515,
+     "cost_score": -5.818182,
+     "execution_precision": 0.903846,
+     "risk": 0.096154,
+     "risk_wilson95": [
+      0.077938,
+      0.118081
+     ],
+     "wrong_plus_extras_per_100_requested": 9.69697
+    },
+    "gated": {
+     "requested": 825,
+     "produced": 837,
+     "executed": 424,
+     "right": 422,
+     "wrong": 1,
+     "extras": 1,
+     "structural_holds": {
+      "total": 5,
+      "by_kind": {
+       "blocked": 3,
+       "dependency": 2
+      },
+      "would_be": {
+       "right": 2,
+       "wrong": 2,
+       "extra": 1
+      }
+     },
+     "confidence_holds": {
+      "total": 408,
+      "would_be": {
+       "right": 330,
+       "wrong": 50,
+       "extra": 28
+      }
+     },
+     "unread": 18,
+     "right_share": 0.511515,
+     "cost_score": 48.727273,
+     "execution_precision": 0.995283,
+     "risk": 0.004717,
+     "risk_wilson95": [
+      0.001295,
+      0.017033
+     ],
+     "wrong_plus_extras_per_100_requested": 0.242424
+    },
+    "auroc": 0.933876,
+    "without_confidence": 0,
+    "use": "evaluation"
+   }
+  },
+  {
+   "id": "R3:W-s0:B-s0",
+   "title": "W-s0: safety and retained capability (Guard G against B-s0 and C100-s0; label setting; lower case)",
+   "status": "fail",
+   "pass": false,
+   "checks": [
+    {
+     "name": "G W-s0 vs B-s0: fresh2_test/test cost difference >= -5",
+     "value": -5.4075,
+     "ok": false,
+     "status": "fail"
+    },
+    {
+     "name": "G W-s0 vs B-s0: fresh2_test/test paired interval upper end >= 0",
+     "value": -0.5464,
+     "ok": false,
+     "status": "fail",
+     "ci95": [
+      -12.6071,
+      -0.5464
+     ],
+     "ci95_reason": null,
+     "resampled_units": 318
+    },
+    {
+     "name": "G W-s0 vs B-s0: fresh2_test/test wrong+extras per 100 requested up by at most 1",
+     "value": -0.07616199999999995,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.53313,
+     "comparator": 0.609292
+    },
+    {
+     "name": "G W-s0 vs B-s0: short3_test/test cost difference >= -5",
+     "value": -0.9259,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G W-s0 vs B-s0: short3_test/test paired interval upper end >= 0",
+     "value": 12.7315,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -15.9251,
+      12.7315
+     ],
+     "ci95_reason": null,
+     "resampled_units": 309
+    },
+    {
+     "name": "G W-s0 vs B-s0: short3_test/test wrong+extras per 100 requested up by at most 1",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.388889,
+     "comparator": 1.388889
+    },
+    {
+     "name": "G W-s0 vs B-s0: nl_a_development/development cost difference >= -5",
+     "value": 7.9082,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G W-s0 vs B-s0: nl_a_development/development paired interval upper end >= 0",
+     "value": 21.9839,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -3.1026,
+      21.9839
+     ],
+     "ci95_reason": null,
+     "resampled_units": 171
+    },
+    {
+     "name": "G W-s0 vs B-s0: nl_a_development/development wrong+extras per 100 requested up by at most 1",
+     "value": -0.765306,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.255102,
+     "comparator": 1.020408
+    },
+    {
+     "name": "G W-s0 vs C100-s0: fresh2_test/test cost difference >= -5",
+     "value": -5.9406,
+     "ok": false,
+     "status": "fail"
+    },
+    {
+     "name": "G W-s0 vs C100-s0: fresh2_test/test paired interval upper end >= 0",
+     "value": 2.5601,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -15.9218,
+      2.5601
+     ],
+     "ci95_reason": null,
+     "resampled_units": 318
+    },
+    {
+     "name": "G W-s0 vs C100-s0: fresh2_test/test wrong+extras per 100 requested up by at most 1",
+     "value": -0.685453,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.53313,
+     "comparator": 1.218583
+    },
+    {
+     "name": "G W-s0 vs C100-s0: short3_test/test cost difference >= -5",
+     "value": -0.2315,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G W-s0 vs C100-s0: short3_test/test paired interval upper end >= 0",
+     "value": 13.9219,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -14.9864,
+      13.9219
+     ],
+     "ci95_reason": null,
+     "resampled_units": 309
+    },
+    {
+     "name": "G W-s0 vs C100-s0: short3_test/test wrong+extras per 100 requested up by at most 1",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.388889,
+     "comparator": 1.388889
+    },
+    {
+     "name": "G W-s0 vs C100-s0: nl_a_development/development cost difference >= -5",
+     "value": 12.5,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G W-s0 vs C100-s0: nl_a_development/development paired interval upper end >= 0",
+     "value": 28.1167,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      0.2674,
+      28.1167
+     ],
+     "ci95_reason": null,
+     "resampled_units": 171
+    },
+    {
+     "name": "G W-s0 vs C100-s0: nl_a_development/development wrong+extras per 100 requested up by at most 1",
+     "value": -1.2755100000000001,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.255102,
+     "comparator": 1.530612
+    },
+    {
+     "name": "label-setting ungated right share falls by at most 2 points versus B-s0",
+     "value": -1.9047999999999954,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1,
+     "comparator": 0.980952
+    },
+    {
+     "name": "gated empty-label outputs against nonempty gold across the evaluated views <= 0",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "all_label_errors": {
+      "gated_empty_label_on_nonempty_gold": 0,
+      "ungated_empty_label_on_nonempty_gold": 0,
+      "gated_by_reason": {},
+      "ungated_by_reason": {
+       "text:label value": 15,
+       "text:label missing": 19,
+       "text:label unwanted": 6
+      },
+      "executed_without_raw_arguments": 0
+     }
+    },
+    {
+     "name": "every executed request has its raw arguments (label errors are complete)",
+     "value": 0,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "lowercase_other_affected is a supported population (W-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 40,
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "lowercase_other_affected is a supported population (B-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 40,
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "lowercase_other_affected: ungated right share loss <= 2 points versus B-s0",
+     "value": 6.787900000000002,
+     "ok": false,
+     "status": "fail",
+     "candidate": 0.673939,
+     "comparator": 0.741818,
+     "requested": 825
+    },
+    {
+     "name": "lowercase_other_affected: adds at most 1 confident mistake per 100 requests versus B-s0",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0,
+     "comparator": 0
+    },
+    {
+     "name": "short3_lowercase is an available population with requests (W-s0)",
+     "value": 134,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "short3_lowercase is an available population with requests (B-s0)",
+     "value": 134,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "short3_lowercase: ungated right share loss <= 2 points versus B-s0",
+     "value": 2.2387999999999963,
+     "ok": false,
+     "status": "fail",
+     "candidate": 0.447761,
+     "comparator": 0.470149,
+     "requested": 134
+    },
+    {
+     "name": "short3_lowercase: adds at most 1 confident mistake per 100 requests versus B-s0",
+     "value": -0.746269,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0,
+     "comparator": 0.746269
+    },
+    {
+     "name": "t1_clean candidate executes",
+     "value": 1101,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "t1_clean comparator executes",
+     "value": 825,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "t1_clean risk does not exceed B-s0",
+     "value": 0.010287999999999999,
+     "ok": false,
+     "status": "fail"
+    }
+   ],
+   "guard": {
+    "vs B-s0": [
+     {
+      "view": "fresh2_test",
+      "key": "fresh2_test/test",
+      "candidate_cost": 35.795887,
+      "comparator_cost": 41.203351,
+      "measure_available": true,
+      "requested": 1313,
+      "checks": [
+       {
+        "name": "fresh2_test/test cost difference >= -5",
+        "value": -5.4075,
+        "ok": false,
+        "status": "fail"
+       },
+       {
+        "name": "fresh2_test/test paired interval upper end >= 0",
+        "value": -0.5464,
+        "ok": false,
+        "status": "fail",
+        "ci95": [
+         -12.6071,
+         -0.5464
+        ],
+        "ci95_reason": null,
+        "resampled_units": 318
+       },
+       {
+        "name": "fresh2_test/test wrong+extras per 100 requested up by at most 1",
+        "value": -0.07616199999999995,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.53313,
+        "comparator": 0.609292
+       }
+      ],
+      "clean_population_reported": {
+       "difference": -6.8858,
+       "ci95": [
+        -14.8368,
+        2.2436
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "short3_test",
+      "key": "short3_test/test",
+      "candidate_cost": 7.87037,
+      "comparator_cost": 8.796296,
+      "measure_available": true,
+      "requested": 432,
+      "checks": [
+       {
+        "name": "short3_test/test cost difference >= -5",
+        "value": -0.9259,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "short3_test/test paired interval upper end >= 0",
+        "value": 12.7315,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -15.9251,
+         12.7315
+        ],
+        "ci95_reason": null,
+        "resampled_units": 309
+       },
+       {
+        "name": "short3_test/test wrong+extras per 100 requested up by at most 1",
+        "value": 0,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.388889,
+        "comparator": 1.388889
+       }
+      ],
+      "clean_population_reported": {
+       "difference": -1.5152,
+       "ci95": [
+        -20.1807,
+        16.763
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "nl_a_development",
+      "key": "nl_a_development/development",
+      "candidate_cost": 0,
+      "comparator_cost": -7.908163,
+      "measure_available": true,
+      "requested": 392,
+      "checks": [
+       {
+        "name": "nl_a_development/development cost difference >= -5",
+        "value": 7.9082,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "nl_a_development/development paired interval upper end >= 0",
+        "value": 21.9839,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -3.1026,
+         21.9839
+        ],
+        "ci95_reason": null,
+        "resampled_units": 171
+       },
+       {
+        "name": "nl_a_development/development wrong+extras per 100 requested up by at most 1",
+        "value": -0.765306,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.255102,
+        "comparator": 1.020408
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 9.1445,
+       "ci95": [
+        -0.3597,
+        22.1333
+       ],
+       "ci95_reason": null
+      }
+     }
+    ],
+    "vs C100-s0": [
+     {
+      "view": "fresh2_test",
+      "key": "fresh2_test/test",
+      "candidate_cost": 35.795887,
+      "comparator_cost": 41.736481,
+      "measure_available": true,
+      "requested": 1313,
+      "checks": [
+       {
+        "name": "fresh2_test/test cost difference >= -5",
+        "value": -5.9406,
+        "ok": false,
+        "status": "fail"
+       },
+       {
+        "name": "fresh2_test/test paired interval upper end >= 0",
+        "value": 2.5601,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -15.9218,
+         2.5601
+        ],
+        "ci95_reason": null,
+        "resampled_units": 318
+       },
+       {
+        "name": "fresh2_test/test wrong+extras per 100 requested up by at most 1",
+        "value": -0.685453,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.53313,
+        "comparator": 1.218583
+       }
+      ],
+      "clean_population_reported": {
+       "difference": -5.7903,
+       "ci95": [
+        -18.7708,
+        8.8853
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "short3_test",
+      "key": "short3_test/test",
+      "candidate_cost": 7.87037,
+      "comparator_cost": 8.101852,
+      "measure_available": true,
+      "requested": 432,
+      "checks": [
+       {
+        "name": "short3_test/test cost difference >= -5",
+        "value": -0.2315,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "short3_test/test paired interval upper end >= 0",
+        "value": 13.9219,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -14.9864,
+         13.9219
+        ],
+        "ci95_reason": null,
+        "resampled_units": 309
+       },
+       {
+        "name": "short3_test/test wrong+extras per 100 requested up by at most 1",
+        "value": 0,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.388889,
+        "comparator": 1.388889
+       }
+      ],
+      "clean_population_reported": {
+       "difference": -0.9091,
+       "ci95": [
+        -18.7302,
+        17.4051
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "nl_a_development",
+      "key": "nl_a_development/development",
+      "candidate_cost": 0,
+      "comparator_cost": -12.5,
+      "measure_available": true,
+      "requested": 392,
+      "checks": [
+       {
+        "name": "nl_a_development/development cost difference >= -5",
+        "value": 12.5,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "nl_a_development/development paired interval upper end >= 0",
+        "value": 28.1167,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         0.2674,
+         28.1167
+        ],
+        "ci95_reason": null,
+        "resampled_units": 171
+       },
+       {
+        "name": "nl_a_development/development wrong+extras per 100 requested up by at most 1",
+        "value": -1.2755100000000001,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.255102,
+        "comparator": 1.530612
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 17.1091,
+       "ci95": [
+        5.0562,
+        33.8667
+       ],
+       "ci95_reason": null
+      }
+     }
+    ]
+   },
+   "original_case_controls": {
+    "view": "fresh2_test",
+    "part": "test",
+    "requested": 825,
+    "messages": 351,
+    "messages_with_requests": 351,
+    "groups": 278,
+    "available": true,
+    "unavailable_requests": 0,
+    "direction_only_scored": 21,
+    "text_case_only_mismatches": 0,
+    "extras_unattributed": 41,
+    "ungated": {
+     "requested": 825,
+     "produced": 837,
+     "executed": 832,
+     "right": 752,
+     "wrong": 51,
+     "extras": 29,
+     "structural_holds": {
+      "total": 5,
+      "by_kind": {
+       "blocked": 3,
+       "dependency": 2
+      },
+      "would_be": {
+       "right": 2,
+       "wrong": 2,
+       "extra": 1
+      }
+     },
+     "confidence_holds": {
+      "total": 0,
+      "would_be": {
+       "right": 0,
+       "wrong": 0,
+       "extra": 0
+      }
+     },
+     "unread": 18,
+     "right_share": 0.911515,
+     "cost_score": -5.818182,
+     "execution_precision": 0.903846,
+     "risk": 0.096154,
+     "risk_wilson95": [
+      0.077938,
+      0.118081
+     ],
+     "wrong_plus_extras_per_100_requested": 9.69697
+    },
+    "gated": {
+     "requested": 825,
+     "produced": 837,
+     "executed": 424,
+     "right": 422,
+     "wrong": 1,
+     "extras": 1,
+     "structural_holds": {
+      "total": 5,
+      "by_kind": {
+       "blocked": 3,
+       "dependency": 2
+      },
+      "would_be": {
+       "right": 2,
+       "wrong": 2,
+       "extra": 1
+      }
+     },
+     "confidence_holds": {
+      "total": 408,
+      "would_be": {
+       "right": 330,
+       "wrong": 50,
+       "extra": 28
+      }
+     },
+     "unread": 18,
+     "right_share": 0.511515,
+     "cost_score": 48.727273,
+     "execution_precision": 0.995283,
+     "risk": 0.004717,
+     "risk_wilson95": [
+      0.001295,
+      0.017033
+     ],
+     "wrong_plus_extras_per_100_requested": 0.242424
+    },
+    "auroc": 0.933876,
+    "without_confidence": 0,
+    "use": "evaluation"
+   }
+  },
+  {
+   "id": "P3:W-s0",
+   "title": "honest completion, objective, source and export binding",
+   "status": "pass",
+   "pass": true,
+   "checks": [
+    {
+     "name": "W-s0: full completed schedule",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: registered seed",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: unchanged recipe excluding seed and declared objective",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: same F data",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: explicit objective",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: original training source provenance present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: current training source finetune_modernbert_batched.py",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: current training source finetune_modernbert.py",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: current training source modernbert_tokenization.py",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: current training source finetune_roles.py",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: current training source make_roles.py",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: current training source make_data.py",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: current training source modernbert_class_loss.py",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: export weights bind completed run",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: export source consistency at original training/export",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: output contract",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: registered completed trajectory",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: overfit receipt identity",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: actual overfit completed execution",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: training receipt identity",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: actual training completed execution",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: export receipt identity",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0: actual export completed execution",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    }
+   ]
+  },
+  {
+   "id": "R0:W-s0",
+   "title": "fixed explicit-positive and absent fit in float and production Node q8",
+   "status": "fail",
+   "pass": false,
+   "checks": [
+    {
+     "name": "W-s0/float/outline_create: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/float/outline_create: correct >= 85/89",
+     "value": 89,
+     "ok": true,
+     "status": "pass",
+     "requested": 89
+    },
+    {
+     "name": "W-s0/float/outline_coloured_create: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/float/outline_coloured_create: correct >= 71/74",
+     "value": 74,
+     "ok": true,
+     "status": "pass",
+     "requested": 74
+    },
+    {
+     "name": "W-s0/float/outline_set: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/float/outline_set: correct >= 93/97",
+     "value": 97,
+     "ok": true,
+     "status": "pass",
+     "requested": 97
+    },
+    {
+     "name": "W-s0/float/desc_r2: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/float/desc_r2: correct >= 34/35",
+     "value": 35,
+     "ok": true,
+     "status": "pass",
+     "requested": 35
+    },
+    {
+     "name": "W-s0/float/desc_r2_canonical: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/float/desc_r2_canonical: correct >= 20/21",
+     "value": 21,
+     "ok": true,
+     "status": "pass",
+     "requested": 21
+    },
+    {
+     "name": "W-s0/float/count_size: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/float/count_size: correct >= 14/14",
+     "value": 14,
+     "ok": true,
+     "status": "pass",
+     "requested": 14
+    },
+    {
+     "name": "W-s0/float/absent_controls: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/float/absent_controls: correct >= 1440/1440",
+     "value": 1437,
+     "ok": false,
+     "status": "fail",
+     "requested": 1440
+    },
+    {
+     "name": "W-s0/ort/outline_create: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/ort/outline_create: correct >= 85/89",
+     "value": 89,
+     "ok": true,
+     "status": "pass",
+     "requested": 89
+    },
+    {
+     "name": "W-s0/ort/outline_coloured_create: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/ort/outline_coloured_create: correct >= 71/74",
+     "value": 74,
+     "ok": true,
+     "status": "pass",
+     "requested": 74
+    },
+    {
+     "name": "W-s0/ort/outline_set: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/ort/outline_set: correct >= 93/97",
+     "value": 97,
+     "ok": true,
+     "status": "pass",
+     "requested": 97
+    },
+    {
+     "name": "W-s0/ort/desc_r2: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/ort/desc_r2: correct >= 34/35",
+     "value": 35,
+     "ok": true,
+     "status": "pass",
+     "requested": 35
+    },
+    {
+     "name": "W-s0/ort/desc_r2_canonical: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/ort/desc_r2_canonical: correct >= 20/21",
+     "value": 21,
+     "ok": true,
+     "status": "pass",
+     "requested": 21
+    },
+    {
+     "name": "W-s0/ort/count_size: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/ort/count_size: correct >= 14/14",
+     "value": 14,
+     "ok": true,
+     "status": "pass",
+     "requested": 14
+    },
+    {
+     "name": "W-s0/ort/absent_controls: all frozen observations present",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "W-s0/ort/absent_controls: correct >= 1440/1440",
+     "value": 1437,
+     "ok": false,
+     "status": "fail",
+     "requested": 1440
+    },
+    {
+     "name": "W-s0: strict Python/Node q8 including padding and production decode",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    }
+   ]
+  }
+ ],
+ "bundles": {
+  "W-s0": {
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/bundle",
+   "score_sha256": "fbff1a23eceb256df796bb1715da9503664bd324fba16dea1c6505079a1e7ab2"
+  },
+  "F-s0": {
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/F-s0/bundle",
+   "score_sha256": "dd707d38e5490380999a6a64c94f92ebd796b4ba06f614f17a64484e388aff00"
+  },
+  "B-s0": {
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval",
+   "score_sha256": "f436c0b10b7e59902ef0520b5a053257ebd28c2d9372af8ea7d317402ced2e84"
+  },
+  "C100-s0": {
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/baseline/C100-s0-v2",
+   "score_sha256": "aa2198f71eedac1123f9d8291f2194c009dc5448fc5919a988a57b5fb31af7b8"
+  }
+ },
+ "pass": false
+}

@@ -1,0 +1,36 @@
+ok   reproduction: the first run, from its records, exactly
+ok   direction: growing a shape on "shrink" is right as scored today and wrong with the direction compared
+ok   direction: the rules of resizeDirection
+ok   either teacher: a request that matches only the second teacher is right; an extra only when it matches neither
+ok   either teacher with the direction: right by the second teacher needs that teacher's direction
+ok   a session or a group never crosses the calibration split
+ok   fresh2 and short3: the calibration part is SHA256(id) % 3 == 0 as calibrate_modernbert.mjs; counts of the frozen protocol
+ok   collected_1 and scenes_test: every message, no calibration part; the scenes are the sessions
+ok   a calibration part is never scored as test, and the fit never reads another part
+ok   a stored part that differs from the rule is refused
+ok   the per-message tallies add up to the stats the first fit uses
+ok   paraphrase consistency, nothing to do and sessions, on small drawings
+ok   collected_1: both teachers beside the gold; the teachers' agreement; either teacher
+ok   unreliable rows: their names are read, but they are left out of sessions and paraphrase consistency
+ok   trigger inventory: exact list and the words of the training rows
+ok   new sets: both label folders, the kinds of NL_TEST_SPEC.md, the same ids and texts
+ok   compare_arms: identical arms differ by 0; a seeded interval repeats; other messages are refused
+ok   collect_set: a stopped Rules collection resumes to the same records; a changed configuration is refused
+ok   the context names of a row include its groups
+ok   records: a truncated, unfinished, changed or out-of-date file is refused
+ok   either teacher is one to one: a teacher request fills one requested action once
+ok   compare_arms: refuses other fits, one ci95 over sessions, groups or messages
+ok   collect_set refuses an evaluated message that is in the training rows
+ok   the setup is not undoable; "more small" and "smaler" are smaller; nl_a writers
+ok   validate_rows --write clears a stale unreliable flag
+ok   sessions count only what the session changed; a reader that does nothing is the floor; questions compare answers
+ok   compare_arms: fewer than 10 units give no interval, with the reason and an exact sign-flip p-value
+ok   L2: the requests that ask for smaller, by the registered words and by the scorer's
+ok   records: stored labels, setup, session, group, kind, unreliable and the set digest are checked
+ok   training-text overlap: the numbers without the marked messages, and the comparison without them
+ok   either view: a request is judged against its own span's slot, never another span's
+31 checks passed
+
+real	0m7.030s
+user	0m7.519s
+sys	0m0.655s

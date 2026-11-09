@@ -1,0 +1,126 @@
+{
+  "config": {
+    "schema": "arm-records-v1",
+    "reader": "modernbert",
+    "model": {
+      "folder": "/home/skutner/.cache/diagram-vss-modernbert/arms/C100-s0/export/modernbert-C100-s0",
+      "files": {
+        "arm_receipt.json": "163785a194881a5cf4408b77632b0c0601f4cff04937cb87b03e866c83a2898b",
+        "config.json": "9c9f3b2f21a4a5a6180e6342d512b2144c75dd15c7c1409970c0f349d49120c4",
+        "conversion.json": "447b2ee7be184d6d8c22266e9672a9d6e2568e9749c10bf03492bd6c415799c1",
+        "export_parity.json": "4438f1c4e1e11b98a73c18232d2d7df149382b2a03d165588fdd3ed12a0ec1c4",
+        "onnx/model_quantized.onnx": "1103f4fae3197c3fd62c75269af5fa517453cbef0348331ebaf459d2bc8c30c1",
+        "onnx/model_quantized.onnx_data": "e55ad91172a2fb73cba65816af26294390298a29dd0d24358bc62b610397df53",
+        "onnx/model_quantized.onnx_data_1": "c97cbf764b6a5b4267d895b5d4696366aa29597f19417300d518021063a77010",
+        "references.json": "887a55fd232d96abe7a3230a8336e079b15892272c62a63b8f295f5ad5fe5554",
+        "special_tokens_map.json": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+        "tokenizer.json": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+        "tokenizer_config.json": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560"
+      }
+    },
+    "artifacts_sha256": "b57bedf4ebf0557ac6f469a99e60239ff89963aee0366f333a3df4a30836b7ef",
+    "train_data": {
+      "dir": "/home/skutner/.cache/diagram-vss-modernbert/arms/data/C100",
+      "train_sha256": "e43be4a8ee2d2233c869d4049e4ab5658ca55a102d9a0ff164f7d3b7578c595d",
+      "inventory": {
+        "source": "/home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/trigger_inventory.json",
+        "exact": true,
+        "triggers": 4448,
+        "sha256": "b55aa2cbc0d49e13f6d47bbc7123a0f51c85ac627649835f139ebba8aebe0cdc",
+        "definition": "make_data.split_messages annotation triggers (calibrate_modernbert.mjs trainingInventory)"
+      },
+      "text_overlap_allowed": true,
+      "text_overlap_ids": [
+        "sr2-00024",
+        "sr2-00031",
+        "sr2-00120",
+        "sr2-00132",
+        "sr2-00156",
+        "sr2-00157",
+        "sr2-00217",
+        "sr2-00338",
+        "sr2-00429",
+        "sr2-00485",
+        "sr2-00509",
+        "sr2-00519",
+        "sr2-00583",
+        "sr2-00694",
+        "sr2-01049",
+        "sr2-01050",
+        "sr2-01274",
+        "sr2-02002",
+        "sr2-02100"
+      ]
+    },
+    "sets": [
+      {
+        "name": "short_synth",
+        "messages": 1997,
+        "excluded": [],
+        "files": [
+          "../llm_train/synth_short_r2/msg_01.jsonl",
+          "../llm_train/synth_short_r2/msg_02.jsonl"
+        ],
+        "teachers": [
+          "gold"
+        ],
+        "input_sha256": "915659149302d7da7a56f4195159a2fcc4a17824a5c8b2d64cc057d362c3f3fe"
+      },
+      {
+        "name": "synth_short_t1",
+        "messages": 1793,
+        "excluded": [],
+        "files": [
+          "synth_short_t1/msg_01.jsonl",
+          "synth_short_t1/msg_02.jsonl"
+        ],
+        "teachers": [
+          "gold"
+        ],
+        "input_sha256": "d3590921634980017b180254089cd9a2491769c74f654cf9de5eec1e3b7232a5"
+      }
+    ],
+    "code": {
+      "training/neural/parity/collect_set.mjs": "6b8b21b246978062bf91bde1ae39026eaafb3cc9e512596187f34853d274b421",
+      "training/neural/parity/arm_lib.mjs": "3ebe440fad4bdc6b741a6227986e32dce0eb41f68186f27854d7e6bab06e7dc2",
+      "training/neural/parity/sets.mjs": "249f7eb6aea357ba4a61b2f7513aa3537dbc1af7a71137a6786ee09bed8da9a9",
+      "training/neural/parity/parity_lib.mjs": "e750ed25d8c8308b7d3c5ce3abd0bd2126cf20b77fde7bc3b0c48d45ff9a9b03",
+      "training/neural/calibrate_modernbert.mjs": "d109f742d0f099758a7ae153b6b23dbb9c6e3da83c4f7fd2680fdb1dc095131c",
+      "docs/js/neural.js": "d8474bb90d0adb466d4ebe5734e4f10ac4638a649f675ca1f6c229981743f65d",
+      "docs/js/neural-confidence.js": "c825a0b9d9e0c48fffe6d40e9eee1c603447510c5ac1828b2091d8022ce28fc7",
+      "docs/js/drawing-lines.js": "da81be5fa08eb9fe16b12915788ae256b48796594a17af5873c3c9e904809e45",
+      "training/neural/parity/canvas_lib.mjs": "3b6a7f6c7ea7898ab21166c8f699951c696af20ba001d8b6af4d5ceadcdf1291",
+      "docs/js/logic.js": "715da7ed6b783350d3d167f7d477fbd58cfa722b69c877904552321ce6fcdc0e",
+      "docs/js/bench-canon.js": "4e4bb98db55c2badc6725e42e04862a5893ffeb2cf4a83d2bbaf3cfc931f2cfb",
+      "docs/js/vss-composer.js": "37a012547531cdd194f9f99a5101ec328f810a11b770aced7d9e44c5b8c5a2b5",
+      "training/sketch/layer_common.mjs": "f41655370a5675e4476b0edb68b2af7576bfae7eec6723be751bfb04876fb78e"
+    },
+    "threads": "5"
+  },
+  "complete": true,
+  "runtime": {
+    "transformers_js": "3.8.1",
+    "onnxruntime": "1.21.0",
+    "node": "v24.22.2",
+    "backend": "cpu",
+    "dtype": "q8",
+    "session_options": {
+      "graphOptimizationLevel": "basic",
+      "intraOpNumThreads": 5
+    },
+    "model_type": "modernbert"
+  },
+  "started": "2026-11-08T06:10:01.654Z",
+  "records": {
+    "count": 3790,
+    "sha256": "ceb47a3653534e6198e45534cfb67cb012ce25a699dca065c2b1c39546e8dea9"
+  },
+  "expected": 3790,
+  "failed": [],
+  "finished": "2026-11-08T06:10:57.276Z",
+  "context": {
+    "session_steps_with_other_names_than_the_gold_drawing": 0,
+    "example_ids": [],
+    "gold_engine_errors": 0
+  }
+}

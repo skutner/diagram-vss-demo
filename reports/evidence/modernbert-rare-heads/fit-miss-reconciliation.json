@@ -1,0 +1,117 @@
+{
+  "training_exact_text_rows": [
+    {
+      "ordinal": 19641,
+      "id": "p2-02-015",
+      "text": "dashed",
+      "classes": {
+        "style": "dashed",
+        "fill:from": "description",
+        "fill:to": "context",
+        "desc:shape": "star"
+      },
+      "gold": {
+        "action": "set",
+        "from": "mention(shape=star)",
+        "to": "Burritos",
+        "style": "dashed"
+      }
+    },
+    {
+      "ordinal": 20028,
+      "id": "p2-08-040",
+      "text": "the herbs one dotted",
+      "classes": {
+        "style": "dotted",
+        "fill:from": "description",
+        "fill:to": "description",
+        "desc:color": "blue",
+        "desc:shape": "circle",
+        "desc2:label": "Herbs"
+      },
+      "gold": {
+        "action": "set",
+        "from": "mention(color=blue,shape=circle)",
+        "to": "mention(label=Herbs)",
+        "style": "dotted"
+      }
+    },
+    {
+      "ordinal": 56301,
+      "id": "tr-02-012",
+      "text": "dashed",
+      "classes": {
+        "style": "dashed",
+        "fill:from": "description",
+        "fill:to": "context",
+        "desc:color": "red",
+        "desc:shape": "triangle"
+      },
+      "gold": {
+        "action": "set",
+        "from": "mention(color=red,shape=triangle)",
+        "to": "Trunk",
+        "style": "dashed"
+      }
+    },
+    {
+      "ordinal": 56532,
+      "id": "tr-06-014",
+      "text": "dashed",
+      "classes": {
+        "style": "dashed",
+        "fill:from": "description",
+        "fill:to": "description",
+        "desc:quantifier": "all",
+        "desc:shape": "square",
+        "desc:size": "small",
+        "desc2:label": "Main Gate"
+      },
+      "gold": {
+        "action": "set",
+        "from": "mention(quantifier=all,shape=square,size=small)",
+        "to": "mention(label=Main Gate)",
+        "style": "dashed"
+      }
+    }
+  ],
+  "interpretation": {
+    "dashed": "two absent labels and one small label on identical input; both absent failures retained",
+    "the herbs one dotted": "absent target, predicted small; no exact-text positive found"
+  },
+  "export_diagnostic": {
+    "torch_vs_node_texts": 20,
+    "torch_vs_node_differing_text_groups": 3,
+    "fixture_ids_with_float_q8_differences": [
+      "single-06",
+      "single-13",
+      "batch-message-512",
+      "extra-08-128",
+      "extra-08-512",
+      "extra-09-512",
+      "extra-10-512"
+    ],
+    "counts": {
+      "act": {
+        "agree": 20,
+        "total": 20
+      },
+      "classes": {
+        "agree": 1040,
+        "total": 1040
+      },
+      "tags": {
+        "agree": 1931,
+        "total": 1932
+      },
+      "cuts": {
+        "agree": 18,
+        "total": 20
+      },
+      "pieces": {
+        "agree": 20,
+        "total": 20
+      }
+    }
+  }
+}

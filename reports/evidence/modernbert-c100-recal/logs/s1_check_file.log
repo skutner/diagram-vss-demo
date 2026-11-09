@@ -1,0 +1,24 @@
+check_rules: 1830 messages read
+{
+ "input": "/tmp/claude-1000/-home-skutner--claude-spares-spare-wYHbMB/9427552c-edfc-4236-96bd-71a0a98fbd3f/scratchpad/t1_dedup.jsonl",
+ "mode": "rules",
+ "messages": 1830,
+ "kept": 1793,
+ "read_exactly_by_rules": 1795,
+ "not_kept_by_cause": {
+  "Rules: requests: rules 0, gold 1": 21,
+  "Rules: act: gold question:property, rules command:set": 4,
+  "overlap (exact) with llm_short": 1,
+  "Rules: command:create: items: gold grandpa,noah,dad,aunt, rules grandma,noah,dad,aunt": 1,
+  "Rules: command:create: items: gold otter,squid,krill,heron, rules otter,squid,krill,heron if you can": 1,
+  "Rules: command:create: rules add scheme=earth; items: gold orbit,earth,cell,jupiter,saturn, rules orbit,cel": 1,
+  "Rules: command:create: rules add scheme=forest; items: gold cave,castle,forest,harbor, rules cave,castle,ha": 1,
+  "Rules: act: gold command:create, rules command:label": 1,
+  "Rules: command:create: items: gold krill,otter,shark,heron,fish, rules krill,otter,shark,heron,fish quickly": 1,
+  "Rules: command:create: rules add scheme=earth; items: gold pluto,earth,venus,mars,saturn, rules pluto,venus": 1,
+  "Rules: command:create: items: gold finance,recruiting,marketing, rules finance,recruiting,marketing quickly": 1,
+  "Rules: command:create: rules add scheme=earth; items: gold pluto,earth,mercury,moon, rules pluto,mercury,mo": 1,
+  "Rules: command:create: items: gold intern,ceo,finance, rules intern,cfo,finance": 1,
+  "overlap (exact) with short3_texts": 1
+ }
+}

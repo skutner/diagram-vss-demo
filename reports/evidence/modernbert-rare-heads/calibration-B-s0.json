@@ -1,0 +1,275 @@
+{
+  "recipe": "grouped protocol: 5 folds by SHA256(group_key) % 5 of the frozen groups; fold-local priors and percentiles; L2 grid 0.01, 0.1, 1, 10 chosen by selection OOF AUROC (first of equals); thresholds of the cost levels on out-of-fold scores (ask-everything available, ties to the higher threshold); fit unit = eligible produced request; outcome = truthful_v1",
+  "reader": "modernbert",
+  "artifact": "d0106c17b922ff3452b3352061dad3a6d5c88ab010af537cbde306f9aab9220d",
+  "calibration": {
+    "sets": [
+      "calibration"
+    ],
+    "messages": 1144,
+    "groups": 975,
+    "groups_per_fold": {
+      "0": 204,
+      "1": 188,
+      "2": 210,
+      "3": 189,
+      "4": 184
+    },
+    "requested": 1408,
+    "produced": 1537,
+    "fit_units": 1462,
+    "l2": 0.1,
+    "oof_auroc": 0.9416110170554302,
+    "selection_oof": "the AUROC that chose the L2 is a selection out-of-fold value, not an unbiased post-selection estimate",
+    "excluded_from_fit": {
+      "structural_holds": 75,
+      "no_confidence_signals": 0
+    },
+    "failed_messages": 0
+  },
+  "fit_status": "fitted",
+  "fit_available": true,
+  "selection_oof_auroc_by_l2": [
+    {
+      "l2": 0.01,
+      "selection_oof_auroc": 0.9414973664409331
+    },
+    {
+      "l2": 0.1,
+      "selection_oof_auroc": 0.9416110170554302
+    },
+    {
+      "l2": 1,
+      "selection_oof_auroc": 0.9398827439177326
+    },
+    {
+      "l2": 10,
+      "selection_oof_auroc": 0.9294229683972912
+    }
+  ],
+  "levels_out_of_fold": {
+    "cost1": {
+      "cost_weight": 1,
+      "threshold": 0.5578230155307916,
+      "requested": 1408,
+      "produced": 1537,
+      "executed": 896,
+      "right": 806,
+      "wrong": 67,
+      "extras": 23,
+      "structural_holds": {
+        "total": 75,
+        "by_kind": {
+          "blocked": 60,
+          "dependency": 15
+        },
+        "would_be": {
+          "right": 1,
+          "wrong": 37,
+          "extra": 37
+        }
+      },
+      "confidence_holds": {
+        "total": 566,
+        "would_be": {
+          "right": 80,
+          "wrong": 270,
+          "extra": 216
+        }
+      },
+      "unread": 147,
+      "right_share": 0.572443,
+      "cost_score": 50.852273,
+      "execution_precision": 0.899554,
+      "risk": 0.100446,
+      "risk_wilson95": [
+        0.082438,
+        0.121866
+      ],
+      "wrong_plus_extras_per_100_requested": 6.392045
+    },
+    "cost2": {
+      "cost_weight": 2,
+      "threshold": 0.5578230155307916,
+      "requested": 1408,
+      "produced": 1537,
+      "executed": 896,
+      "right": 806,
+      "wrong": 67,
+      "extras": 23,
+      "structural_holds": {
+        "total": 75,
+        "by_kind": {
+          "blocked": 60,
+          "dependency": 15
+        },
+        "would_be": {
+          "right": 1,
+          "wrong": 37,
+          "extra": 37
+        }
+      },
+      "confidence_holds": {
+        "total": 566,
+        "would_be": {
+          "right": 80,
+          "wrong": 270,
+          "extra": 216
+        }
+      },
+      "unread": 147,
+      "right_share": 0.572443,
+      "cost_score": 44.460227,
+      "execution_precision": 0.899554,
+      "risk": 0.100446,
+      "risk_wilson95": [
+        0.082438,
+        0.121866
+      ],
+      "wrong_plus_extras_per_100_requested": 6.392045
+    },
+    "cost5": {
+      "cost_weight": 5,
+      "threshold": 0.8915455249073567,
+      "requested": 1408,
+      "produced": 1537,
+      "executed": 589,
+      "right": 573,
+      "wrong": 10,
+      "extras": 6,
+      "structural_holds": {
+        "total": 75,
+        "by_kind": {
+          "blocked": 60,
+          "dependency": 15
+        },
+        "would_be": {
+          "right": 1,
+          "wrong": 37,
+          "extra": 37
+        }
+      },
+      "confidence_holds": {
+        "total": 873,
+        "would_be": {
+          "right": 313,
+          "wrong": 327,
+          "extra": 233
+        }
+      },
+      "unread": 147,
+      "right_share": 0.40696,
+      "cost_score": 35.014205,
+      "execution_precision": 0.972835,
+      "risk": 0.027165,
+      "risk_wilson95": [
+        0.016789,
+        0.043668
+      ],
+      "wrong_plus_extras_per_100_requested": 1.136364
+    },
+    "cost": {
+      "cost_weight": 10,
+      "threshold": 0.9149657823752421,
+      "requested": 1408,
+      "produced": 1537,
+      "executed": 536,
+      "right": 525,
+      "wrong": 6,
+      "extras": 5,
+      "structural_holds": {
+        "total": 75,
+        "by_kind": {
+          "blocked": 60,
+          "dependency": 15
+        },
+        "would_be": {
+          "right": 1,
+          "wrong": 37,
+          "extra": 37
+        }
+      },
+      "confidence_holds": {
+        "total": 926,
+        "would_be": {
+          "right": 361,
+          "wrong": 331,
+          "extra": 234
+        }
+      },
+      "unread": 147,
+      "right_share": 0.372869,
+      "cost_score": 29.474432,
+      "execution_precision": 0.979478,
+      "risk": 0.020522,
+      "risk_wilson95": [
+        0.011497,
+        0.036371
+      ],
+      "wrong_plus_extras_per_100_requested": 0.78125
+    },
+    "cost20": {
+      "cost_weight": 20,
+      "threshold": 0.9149657823752421,
+      "requested": 1408,
+      "produced": 1537,
+      "executed": 536,
+      "right": 525,
+      "wrong": 6,
+      "extras": 5,
+      "structural_holds": {
+        "total": 75,
+        "by_kind": {
+          "blocked": 60,
+          "dependency": 15
+        },
+        "would_be": {
+          "right": 1,
+          "wrong": 37,
+          "extra": 37
+        }
+      },
+      "confidence_holds": {
+        "total": 926,
+        "would_be": {
+          "right": 361,
+          "wrong": 331,
+          "extra": 234
+        }
+      },
+      "unread": 147,
+      "right_share": 0.372869,
+      "cost_score": 21.661932,
+      "execution_precision": 0.979478,
+      "risk": 0.020522,
+      "risk_wilson95": [
+        0.011497,
+        0.036371
+      ],
+      "wrong_plus_extras_per_100_requested": 0.78125
+    }
+  },
+  "ignored_records": {
+    "fresh2_test/test": 405,
+    "short3_test/test": 340,
+    "nl_a_development/development": 300,
+    "t1_all/all": 1793,
+    "lowercase_other/all": 351,
+    "t1s/all": 1791,
+    "t1raw/all": 70,
+    "t1bs/all": 1528,
+    "short3s/all": 333
+  },
+  "record_files": [
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/calibration.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/fresh2_test.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/short3_test.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/nl_a_development.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/t1_all.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/lowercase_other.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/t1s.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/t1raw.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/t1bs.jsonl",
+    "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/records/short3s.jsonl"
+  ]
+}

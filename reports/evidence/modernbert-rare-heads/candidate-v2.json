@@ -1,0 +1,23 @@
+{
+  "base": "0ab687cc142e884ed16332925c6d7cd558e1b8fb",
+  "files": {
+    "training/neural/finetune_modernbert_batched.py": "5116db7c3e164da3185f9d06af61f60050ece8f2e60b568b4a312435a019a3a9",
+    "training/neural/modernbert_class_loss.py": "5ea8e4ce7adeef4cfb877646d0788fd437811801a1f887df00dc3cf0a86f7ab3",
+    "training/neural/parity/modernbert_rare_heads.py": "e13c75de468b80e4fa3a4768ca9101b8f900f521f96c634d30de2c2b08bc2119",
+    "training/neural/parity/modernbert_rare_heads_fit.mjs": "7f808a9bce6ae2fa16d77aba78e782340cd92dbafb6f3a797705998d674a0af8",
+    "training/neural/parity/modernbert_rare_heads_fit.py": "677c2dd6c5ae41bc2bcd0ef80a44408b682806862e9623f6a546c129f6f2da13",
+    "training/neural/parity/modernbert_rare_heads_fit_evidence.mjs": "dcfa09fe7bc8203e6852736080300430d95fa6d80d46f13b80ca00694743cb04",
+    "training/neural/parity/modernbert_rare_heads_measure.mjs": "2a4d361948c38ecf413566c893042fe376c64f9c3b7a7445e177cc096340c2e1",
+    "training/neural/parity/modernbert_rare_heads_protocol.json": "aa37d3de2064626164138b390f622af7f3aef01bf72483606408dce1314b1f9e",
+    "training/neural/parity/modernbert_rare_heads_train.sh": "c6d9e3d0c0e51fa0d66a23793032bf8bd0f9f86cb421bc4b5d10e8b99944aeb6",
+    "training/neural/parity/test_batched_trainer.py": "32b5ce7cd8eec5ee89561ec2adb3f000b3b9d3a01e63c2c128c370cb868b3cad",
+    "training/neural/parity/test_modernbert_rare_heads.py": "446e5c92b5c6ec8dd7410e79cf65fe1bc79f80030bd5d415e7145e6d62be3906",
+    "training/neural/parity/test_modernbert_rare_heads_fit.mjs": "23e3b09bb1f9ee7493fd3da7b65f3e5b65747d9e3b3b262d68887ae81f564aea",
+    "training/neural/parity/test_modernbert_rare_heads_fit.py": "20914b6b57672428ca32afc6229e05304790db205e98af24ae4c4564d0b2d705",
+    "training/neural/parity/test_modernbert_rare_heads_fit_evidence.mjs": "b0781e8006720ec87dd6f9baef6dd35a8ffc35626febe989a86c0f5318a651a4",
+    "training/neural/parity/test_modernbert_rare_heads_measure.mjs": "9b825da4094279ebfd6241fb42b50a7625862561d049da4bc3760e36a158984b"
+  },
+  "candidate_sha256": "52a35fa7250204a1162ddd5d5ce9e3a22499637261881ec22a342b24c26c1b59",
+  "initial_dirty_snapshot": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/start/manifest.json",
+  "status": "objective/producers/dependency closure approved; measurement/consumer delta review pending; no production execution"
+}

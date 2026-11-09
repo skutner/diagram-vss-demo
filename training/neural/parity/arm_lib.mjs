@@ -4,7 +4,8 @@
 //    extra against the gold, the gold spans, trigger seen / unseen), plus set, part, kind, writer, session, group, the second teacher's
 //    gold and the produced requests' wires; buildRecord makes it from what a reader gave;
 //  - reading records back (the first ModernBERT's records too) and the outcome of a produced request under a teacher view and a scoring.
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { canon, canonWant } from '../../../docs/js/bench-canon.js';
 import { goldSpans, pairValue, actOf } from '../../sketch/layer_common.mjs';
 import { inputHash, digest, hashFile } from '../calibrate_modernbert.mjs';
@@ -99,6 +100,7 @@ function recordDiffers(r, it) {
   if (r.legacy_set) return null;   // the first run's records hold none of these fields
   for (const k of ['kind', 'session', 'group', 'setup']) if ((r[k] ?? null) !== (it[k] ?? null)) return k;
   if (!!r.unreliable !== !!it.unreliable) return 'unreliable';
+  if (it.group_key != null && ((r.group_key ?? null) !== it.group_key || (r.fold ?? null) !== (it.fold ?? null))) return 'group_key / fold';
   if (wiresKey(r.goldSpans) !== wiresKey(it.wires)) return 'gold wires';
   if (wiresKey(r.goldAlt) !== wiresKey(it.altWires)) return 'second teacher wires';
   if (r.input_sha256_alt != null && r.input_sha256_alt !== inputHash({ id: it.id, text: it.text, names: it.names, wires: it.altWires })) return 'input_sha256_alt';
@@ -119,16 +121,109 @@ export function buildRecord(item, run, { seen, artifactsKey = null }) {
     const exactCut = gold.some(w => m.span[0] === w.s && m.span[1] === w.e);
     return { o, g, triggerGroup: g < 0 ? 'unpaired extras' : gold[g].triggerGroup, act: m.act ?? null, pa: prods[i].act, f: m.f ?? null, src: m.src, span: m.span,
       got: prods[i].rawC, want, truncated: !!m.truncated, cause: o === 'right' ? null : !exactCut ? 'cutter' : 'heads', dependencies: m.dependencies || [], wireId: m.wireId,
-      dir: resizeDirection(m.node.args, null, false), nodes: stripNodes([...(m.mentions || []), m.node]) };
+      dir: resizeDirection(m.node.args, null, false), nodes: stripNodes([...(m.mentions || []), m.node]),
+      // the structural hold of a v2 reader (docs/js/neural.js): written only when the run carries it; an absent field is a legacy record (never blocked)
+      ...(m.blocked !== undefined ? { blocked: !!m.blocked, block_reasons: m.block_reasons || [] } : {}) };
   });
   const rec = { schema: RECORD_SCHEMA, id: item.id, set: item.set, part: item.part, kind: item.kind, writer: item.writer, session: item.session, step: item.step ?? null, group: item.group,
     setup: item.setup, reader: run.reader, input_sha256: inputHash({ id: item.id, text: item.text, names: item.names, wires: item.wires }), gold: gold.length, goldActs: gold.map(g => g.act),
     unreliable: !!item.unreliable, text: item.text, goldSpans: gold, goldAlt: alt, altPair: alt ? asReader(item.text, alt, gold).map(x => x.g) : null, teachers: item.teachers ? { opus: goldOf(item.text, item.teachers.opus, seen), gpt: goldOf(item.text, item.teachers.gpt, seen) } : null, produced, cut: run.cut ?? 'own', cutInfo: run.cutInfo ?? null, unread: run.unread || [], artifacts_sha256: artifactsKey };
   if (alt) rec.input_sha256_alt = inputHash({ id: item.id, text: item.text, names: item.names, wires: item.altWires });
+  // a message of a frozen view (views.mjs, measure): its frozen group, fold and provenance; legacy items carry none of these, so legacy records are unchanged
+  if (item.group_key != null) Object.assign(rec, { group_key: item.group_key, fold: item.fold ?? null, roles: item.roles ?? null, meta: item.meta ?? null, origin_id: item.origin_id ?? null });
   if (run.error) rec.error = String(run.error);
   return rec;
 }
 export { refsOf };
+
+// ---------------------------------------------------------------- frozen views (the ModernBERT-next campaign)
+// A view is a named list of messages written to a folder BEFORE any candidate result (modernbert_next_measure.mjs `views`): the same item shape
+// sets.mjs gives (id, set, part, kind, writer, session, step, group, setup, domain, names, groups, text, wires, ...) plus group_key, fold, roles,
+// meta, origin_id. Registering a view makes it a set: it is in PARTS and SET_ORDER (appended, so the position of every earlier set is unchanged), a
+// record of it is verified against its items, and collect_set / calibrate_arm / score_arm take it by name. Nothing registers itself: a legacy
+// invocation, which never calls registerView, sees exactly the sets of sets.mjs.
+const VIEWS = new Map();
+export const isView = name => VIEWS.has(name);
+export const viewNames = () => [...VIEWS.keys()];
+/** register a view: items (each with its own `part`), the parts the set has. Re-registering the same name with other items is an error. */
+export function registerView(name, items, parts) {
+  if (!/^[a-z][a-z0-9_]*$/.test(name)) throw new Error(`view name ${JSON.stringify(name)}: lower-case letters, digits and _ only`);
+  if (SET_ORDER.includes(name) && !VIEWS.has(name)) throw new Error(`view ${name} has the name of a set of sets.mjs`);
+  if (new Set(items.map(it => it.id)).size !== items.length) throw new Error(`view ${name}: duplicate ids`);
+  for (const it of items) { if (it.set !== name) throw new Error(`view ${name}: ${it.id} says it is in ${it.set}`); if (!parts.includes(it.part)) throw new Error(`view ${name}: ${it.id} has part ${it.part}, not one of ${parts}`); }
+  const old = VIEWS.get(name);
+  if (old && setDigest(old.items) !== setDigest(items)) throw new Error(`view ${name} is registered already with other items`);
+  VIEWS.set(name, { items, parts: parts.slice() });
+  PARTS[name] = parts.slice();
+  if (!SET_ORDER.includes(name)) SET_ORDER.push(name);
+}
+/** the items of a set or a registered view, in file order */
+export const setItems = name => (VIEWS.has(name) ? VIEWS.get(name).items : loadSets([name])[0].items);
+/** the sets and views `names` -> [{name, items, excluded, files, teachers}] in canonical order (the sets of sets.mjs first, then the views in registration order) */
+export function loadSetsOrViews(names) {
+  if (!names.some(isView)) return loadSets(names);   // sets only: exactly sets.mjs loadSets (which also refuses an id in two sets)
+  const order = [...new Set(names)].sort((a, b) => SET_ORDER.indexOf(a) - SET_ORDER.indexOf(b));
+  const sets = order.map(n => (VIEWS.has(n) ? { name: n, items: VIEWS.get(n).items, excluded: [], files: [VIEWS.get(n).items[0]?.source ?? n], teachers: ['gold'] } : loadSets([n])[0]));
+  return sets;
+}
+/** the frozen view files of a folder (`manifest.json`, written by modernbert_next_measure.mjs views), every file checked against the hash in the manifest
+ *  -> {manifest, views: [name]}. External views (the VSS-BERT data folders, reused by hash and never copied) are read from where they are. */
+export function loadViewDir(dir) {
+  const mf = resolve(dir, 'manifest.json');
+  if (!existsSync(mf)) throw new Error(`${dir}: no manifest.json: not a views folder`);
+  const manifest = JSON.parse(readFileSync(mf, 'utf8'));
+  if (manifest.schema !== 'modernbert-next-views-v1') throw new Error(`${mf}: unknown schema ${manifest.schema}`);
+  const names = [];
+  for (const v of manifest.views) {
+    const read = (path, sha) => { if (!existsSync(path)) throw new Error(`view ${v.name}: ${path} is missing`); const text = readFileSync(path); if (hashFile(path) !== sha) throw new Error(`view ${v.name}: ${path} differs from the hash in the manifest`); return text.toString('utf8'); };
+    let items;
+    if (v.kind === 'frozen') items = read(resolve(dir, v.file), v.sha256).split('\n').filter(x => x.trim()).map(l => JSON.parse(l));
+    else if (v.kind === 'external') {
+      const idx = new Map(read(resolve(dir, v.index.file), v.index.sha256).split('\n').filter(x => x.trim()).map(l => JSON.parse(l)).map(x => [x.id, x]));
+      items = [];
+      for (const f of v.external.files) for (const l of read(resolve(v.external.dir, f.path), f.sha256).split('\n')) {
+        if (!l.trim()) continue;
+        const row = JSON.parse(l), ix = idx.get(row.id);
+        if (!ix) continue;   // a row the view's index leaves out (the index is part of the frozen view)
+        if (typeof row.text !== 'string' || !Array.isArray(row.wires) || row.wires.some(w => !w.span || !row.text.includes(w.span))) throw new Error(`view ${v.name}: ${row.id}: a wire span is not in the text`);
+        items.push({ id: row.id, set: v.name, part: v.part, kind: 'short', writer: null, session: null, step: null, group: null, setup: null, domain: row.domain ?? null, names: (row.names || []).slice(), groups: {},
+          text: row.text, wires: row.wires, altWires: null, unreliable: false, source: `external:${f.path}`, group_key: ix.group_key, fold: ix.fold, roles: ix.roles, meta: row.meta ?? null, origin_id: ix.origin_id ?? null });
+      }
+      if (items.length !== idx.size) throw new Error(`view ${v.name}: ${items.length} rows found for ${idx.size} ids of the index`);
+    } else throw new Error(`view ${v.name}: unknown kind ${v.kind}`);
+    if (items.length !== v.messages) throw new Error(`view ${v.name}: ${items.length} messages, the manifest says ${v.messages}`);
+    registerView(v.name, items, v.parts || [v.part]);
+    names.push(v.name);
+  }
+  return { manifest, views: names };
+}
+
+/** the populations of a views folder (frozen lists of messages and gold request indices, each file checked against its hash) -> [{name, view, part, requests: Map(id -> Set(index))}].
+ *  A line is {id, wires: [index...]} or {id, wires: "all"} (every gold request of the message). */
+export function loadPopulations(dir) {
+  const manifest = JSON.parse(readFileSync(resolve(dir, 'manifest.json'), 'utf8')), out = [];
+  for (const pop of manifest.populations || []) {
+    const path = resolve(dir, pop.file);
+    if (!existsSync(path)) throw new Error(`population ${pop.name}: ${path} is missing`);
+    if (hashFile(path) !== pop.sha256) throw new Error(`population ${pop.name}: ${path} differs from the hash in the manifest`);
+    const items = isView(pop.view) ? new Map(setItems(pop.view).map(it => [it.id, it])) : null;
+    if (!items) throw new Error(`population ${pop.name}: the view ${pop.view} is not registered (loadViewDir first)`);
+    const requests = new Map();
+    for (const l of readFileSync(path, 'utf8').split('\n')) {
+      if (!l.trim()) continue;
+      const x = JSON.parse(l), it = items.get(x.id);
+      if (!it) throw new Error(`population ${pop.name}: ${x.id} is not a message of ${pop.view}`);
+      const idx = x.wires === 'all' ? it.wires.map((_, i) => i) : x.wires;
+      if (!Array.isArray(idx) || idx.some(i => !Number.isInteger(i) || i < 0 || i >= it.wires.length)) throw new Error(`population ${pop.name}: ${x.id}: a wire index is outside the message`);
+      if (requests.has(x.id)) throw new Error(`population ${pop.name}: ${x.id} twice`);
+      requests.set(x.id, new Set(idx));
+    }
+    const n = [...requests.values()].reduce((s, v) => s + v.size, 0);
+    if (n !== pop.requests || requests.size !== pop.messages) throw new Error(`population ${pop.name}: ${n} requests in ${requests.size} messages, the manifest says ${pop.requests} in ${pop.messages}`);
+    out.push({ name: pop.name, view: pop.view, part: pop.part ?? null, requests });
+  }
+  return out;
+}
 
 // ---------------------------------------------------------------- reading records
 /** the records of files -> {records (canonical order: set order, then file order), legacy}. Each file must have the manifest of its collection
@@ -172,7 +267,7 @@ export function loadRecords(paths, { verify = true } = {}) {
     for (const set of SET_ORDER) {
       const rs = out.filter(r => r.set === set);
       if (!rs.length) continue;
-      const items = new Map(loadSets([set])[0].items.map(it => [it.id, it]));
+      const items = new Map(setItems(set).map(it => [it.id, it]));
       for (const r of rs) {
         const it = items.get(r.id);
         if (!it) throw new Error(`record ${r.id} is not a message of ${set}`);
@@ -191,7 +286,8 @@ export function loadRecords(paths, { verify = true } = {}) {
   for (const set of SET_ORDER) {
     const rs = out.filter(r => r.set === set);
     if (!rs.length) continue;
-    const parts = assignParts(set, rs);
+    const byId = isView(set) ? new Map(setItems(set).map(it => [it.id, it])) : null;
+    const parts = byId ? rs.map(r => { const it = byId.get(r.id); if (!it) throw new Error(`record ${r.id} is not a message of the view ${set}`); return it.part; }) : assignParts(set, rs);
     rs.forEach((r, i) => { if (r.part != null && r.part !== parts[i]) throw new Error(`record ${r.id}: stored part ${r.part} differs from the rule of ${set} (${parts[i]})`); r.part = parts[i]; });
   }
   const records = out.map((r, i) => [r, i]).sort((a, b) => SET_ORDER.indexOf(a[0].set) - SET_ORDER.indexOf(b[0].set) || a[1] - b[1]).map(x => x[0]);
@@ -227,6 +323,11 @@ const fits = (x, label, scoring) => x.pa === label.act && equalWant(x.got, label
  *  scoring 'direction': a resize must also go the direction of the label it fills; `unavailable` counts resizes that fit by value and whose
  *  produced scale the records do not hold (the first run's): they are scored as today. */
 export function viewOutcomes(r, view, scoring) {
+  if (scoring === TRUTHFUL_V1) {   // the new versioned view: primary labels only (the views of the campaign have one teacher)
+    if (view !== 'primary') throw new Error(`${TRUTHFUL_V1} is read against the primary labels only`);
+    const t = truthfulOutcomes(r);
+    return { o: t.map(x => x.o), group: r.produced.map(x => x.triggerGroup), unavailable: t.filter(x => x.unavailable).length };
+  }
   const o = r.produced.map(x => x.o), group = r.produced.map(x => x.triggerGroup);
   let unavailable = 0;
   if (view !== 'either' || !r.goldAlt) {
@@ -261,6 +362,88 @@ export const goldCount = (records, view = 'primary') => records.reduce((s, r) =>
 export const goldGroups = (r, view = 'primary') => slotsOf(r, view).map(s => s.group);
 export const hasSecondTeacher = records => records.length > 0 && records.every(r => r.goldAlt);
 export { digest };
+
+// ---------------------------------------------------------------- truthful_v1 (the plan's section 5; a NEW versioned view, the three above are unchanged)
+// What `today` and `direction` leave out and this view compares, on a produced request that the pairing and bench-canon.js already call right:
+//   - resize: a gold with an explicit numeric scale needs a produced scale that is a number within SCALE_TOLERANCE (absolute); a gold with NO scale is
+//     read by direction only (reported: `direction_only`), the produced direction coming from resizeDirection of its own arguments;
+//   - the text keys (legend questions of kind `text` with no values: label, title, about), in BOTH directions: a key present in the gold and absent in
+//     the produced, or present in the produced and absent in the gold, is wrong; with both present the strings must be EQUAL (case-sensitive; an empty
+//     string is a value). equalWant of `today` reads only the keys of the gold and lower-cases every value, so it cannot say any of this;
+//   - what cannot be compared (the record holds no raw arguments of the produced request, no resize direction, or the gold scale is not a number) makes
+//     the measure UNAVAILABLE for that request: it is counted wrong (never correct) and the part says how many.
+// Structural and dependency eligibility (a request a v2 reader marks `blocked`, a truncated one, and whatever depends on one) is decided in score_arm.mjs.
+export const TRUTHFUL_V1 = 'truthful_v1';
+export const SCALE_TOLERANCE = 1e-6;
+let TEXT_KEYS = null;
+/** the legend's text keys: kind `text` and no list of values (label, title, about); read from the engine's legend, not from a list */
+export function textKeys() {
+  if (!TEXT_KEYS) TEXT_KEYS = [...K.createSystem().engine.legend.questions].filter(([, q]) => q.kind === 'text' && !q.values).map(([k]) => k).sort();
+  return TEXT_KEYS.slice();
+}
+/** the arguments of the produced request itself (the last wire of `nodes`), or null when the record holds none */
+export function rawArgsOf(x) {
+  const ns = x && Array.isArray(x.nodes) ? x.nodes : null, m = ns && ns.length ? ns[ns.length - 1] : null;
+  return m && m.type !== 'mention' && m.args && typeof m.args === 'object' ? m.args : null;
+}
+/** a scale as a number: a number, or a string that is one (no unit, no "x"); a one-element list is its element; anything else NaN */
+export function numericScale(v) {
+  if (Array.isArray(v)) { if (v.length !== 1) return NaN; v = v[0]; }
+  if (typeof v === 'number') return v;
+  if (typeof v === 'string' && /^\s*[-+]?(\d+\.?\d*|\.\d+)\s*$/.test(v)) return Number(v);
+  return NaN;
+}
+/** one produced request that the pairing calls right, against the gold request it was paired with -> {o: right | wrong, reasons, directionOnly, caseOnly}
+ *  or {unavailable: why} */
+export function truthfulJudge(x, g) {
+  const raw = rawArgsOf(x);
+  if (!raw) return { unavailable: 'the record holds no raw arguments of the produced request' };
+  const reasons = [], caseOnly = []; let directionOnly = false;
+  if (x.pa === 'command:resize' && g.args && g.args.action === 'resize') {
+    if (g.args.scale != null) {
+      const want = numericScale(g.args.scale);
+      if (!Number.isFinite(want)) return { unavailable: 'the gold scale is not a number' };
+      const got = raw.scale == null ? NaN : numericScale(raw.scale);
+      if (!Number.isFinite(got) || Math.abs(got - want) > SCALE_TOLERANCE) reasons.push('scale');
+    } else {
+      if (x.dir === undefined) return { unavailable: 'the record holds no resize direction of the produced request' };
+      directionOnly = true;
+      if (!sameDirection(x.dir, g.dirWant ?? resizeDirection(g.args, g.span, true))) reasons.push('direction');
+    }
+  }
+  for (const k of textKeys()) {
+    const gHas = g.args && g.args[k] != null, pHas = raw[k] != null;
+    if (gHas !== pHas) { reasons.push(`text:${k} ${gHas ? 'missing' : 'unwanted'}`); continue; }
+    if (!gHas) continue;
+    const a = String(g.args[k]), b = String(raw[k]);
+    if (a !== b) { reasons.push(`text:${k} value`); if (a.toLowerCase() === b.toLowerCase()) caseOnly.push(k); }
+  }
+  return { o: reasons.length ? 'wrong' : 'right', reasons, directionOnly, caseOnly };
+}
+/** the outcome of every produced request of a record under truthful_v1: [{o: right | wrong | extra, reasons, unavailable, directionOnly, caseOnly}]. Only a request
+ *  that is right under the pairing is judged again: a wrong or extra stays so. The pairing (x.g) is the stored one. */
+export function truthfulOutcomes(r) {
+  return r.produced.map(x => {
+    if (x.o !== 'right') return { o: x.o, reasons: [], unavailable: false, directionOnly: false, caseOnly: [] };
+    const j = truthfulJudge(x, r.goldSpans[x.g]);
+    if (j.unavailable) return { o: 'wrong', reasons: [j.unavailable], unavailable: true, directionOnly: false, caseOnly: [] };
+    return { o: j.o, reasons: j.reasons, unavailable: false, directionOnly: j.directionOnly, caseOnly: j.caseOnly };
+  });
+}
+/** the items of records under truthful_v1, as itemsOf: {...produced, id, wireId, mi, pi, o, triggerGroup, reasons, unavailable} (+ counts) */
+export function truthfulItemsOf(records) {
+  const items = []; let unavailable = 0, directionOnly = 0, caseOnly = 0;
+  records.forEach((r, mi) => {
+    const t = truthfulOutcomes(r);
+    r.produced.forEach((x, pi) => {
+      if (t[pi].unavailable) unavailable++;
+      if (t[pi].directionOnly) directionOnly++;
+      if (t[pi].caseOnly.length) caseOnly++;
+      items.push({ ...x, id: r.id, mi, pi, o: t[pi].o, triggerGroup: x.triggerGroup, reasons: t[pi].reasons, unavailable: t[pi].unavailable });
+    });
+  });
+  return { items, unavailable, directionOnly, caseOnly };
+}
 
 // ---------------------------------------------------------------- the engine
 /** a system with the drawing of a setup program (a short SOP Lang program), or an empty one, with empty undo and redo stacks -> {s, errors} */

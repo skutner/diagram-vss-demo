@@ -1,0 +1,42 @@
+100 of 3790 messages (rules), 0 s
+200 of 3790 messages (rules), 1 s
+300 of 3790 messages (rules), 1 s
+400 of 3790 messages (rules), 1 s
+500 of 3790 messages (rules), 1 s
+600 of 3790 messages (rules), 1 s
+700 of 3790 messages (rules), 2 s
+800 of 3790 messages (rules), 2 s
+900 of 3790 messages (rules), 2 s
+1000 of 3790 messages (rules), 2 s
+1100 of 3790 messages (rules), 2 s
+1200 of 3790 messages (rules), 3 s
+1300 of 3790 messages (rules), 3 s
+1400 of 3790 messages (rules), 3 s
+1500 of 3790 messages (rules), 3 s
+1600 of 3790 messages (rules), 4 s
+1700 of 3790 messages (rules), 4 s
+1800 of 3790 messages (rules), 4 s
+1900 of 3790 messages (rules), 4 s
+2000 of 3790 messages (rules), 4 s
+2100 of 3790 messages (rules), 5 s
+2200 of 3790 messages (rules), 5 s
+2300 of 3790 messages (rules), 5 s
+2400 of 3790 messages (rules), 5 s
+2500 of 3790 messages (rules), 5 s
+2600 of 3790 messages (rules), 6 s
+2700 of 3790 messages (rules), 6 s
+2800 of 3790 messages (rules), 6 s
+2900 of 3790 messages (rules), 6 s
+3000 of 3790 messages (rules), 6 s
+3100 of 3790 messages (rules), 7 s
+3200 of 3790 messages (rules), 7 s
+3300 of 3790 messages (rules), 7 s
+3400 of 3790 messages (rules), 7 s
+3500 of 3790 messages (rules), 7 s
+3600 of 3790 messages (rules), 7 s
+3700 of 3790 messages (rules), 8 s
+{"reader":"rules","messages":3790,"failed":0,"records":"/home/skutner/.cache/diagram-vss-modernbert/arms/C100-s0/recal/rules_ss.jsonl","manifest":"/home/skutner/.cache/diagram-vss-modernbert/arms/C100-s0/recal/rules_ss.jsonl.manifest.json","complete":true,"names_mismatch":0,"gold_engine_errors":0}
+
+real	0m8.314s
+user	0m8.901s
+sys	0m0.285s

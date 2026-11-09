@@ -659,3 +659,19 @@ Each request that pairs with gold but is wrong gets one class, checked in this o
 - Optional CPU check, to size the label noise: rerun `wrong_values.mjs` on the 61 "legend or paraphrase" requests with the second labeller's gold.
 - **Refinement from the ModernBERT session (its check, not rerun here):** `wrong_values.mjs` counts a gold value as "written" when it appears anywhere in the message. Checked against each request's own text instead, C100-s0's 80 "only values written in the message" split into 37 in the request's own words, 42 only in another sentence of the message, and 1 that moves to "a reference ($new)" (corrected by the ModernBERT session; first logged as moving to "needs the drawing"). By the request's own text, C100-s0's 222 are: drawing 61, legend or paraphrase 77, only in another sentence 42, in the request's own words 37, reference 5. So about half of that class is a value taken from the wrong request (assignment), not a value miscopied from the request's own words. The "needs the drawing" count stays 61.
 - **The owner closed the ModernBERT natural-language line (`c266319`): no more data rounds, no drawing-input run.** With Q2's miss, both lines are closed.
+
+### 2026-11-07 ~17:25 — Decisions on `training/NATURAL_LANGUAGE_NEXT_PLAN.md` (advisor, Opus, at the owner's request: "have the advisor make all these decisions")
+Context: the plan's independent review returned **revise** (Blocking: pilots C1 and C2 pass by construction against a key equal to the teachers' shared label). Decisions:
+1. **D1, a hosted model (Opus or gpt) reading messages in the product: not now.** The demo is a static GitHub Pages site, so a provider key in the browser would be exposed, and adding a backend is a product and privacy decision, not an experiment. Reversible: the owner can reopen it. gpt scored against Opus (73.0% right on `nl_a`) stays in the log as the reference ceiling.
+2. **B1, larger local Qwen models: not run, no downloads.**
+   - D5 decides it, not accuracy. Qwen3-0.6B already missed the 10 s p95 bar at Q0.7 (names 14.7 s, drawing 31.3 s).
+   - Only a 2-bit 1.7B fits the 800 MB limit, and it does about 3x the compute per token.
+   - Inferred: no size above 0.6B can meet D5 on the reference machine, so a rising curve would change no decision.
+3. **No answer-key work.** 0a, 0b and 0c, the C1/C2 pilots, the "ask" outcome and the context filler behind the neural readers are all dropped.
+   - Opus gold stays, with the "either teacher" view as the cross-check.
+   - The AGENTS.md cost formula and the fitted thresholds are unchanged.
+4. **The demo is unchanged:** its current readers, which ask when unsure.
+5. **The plan file is not revised.** Its owner (the ModernBERT session) appends these decisions, marks it "closed, not run", and does not restart its implementer.
+
+Natural-language work stops here. Nothing new runs.
+- **Outcome (17:35):** the plan's author session had a direct, conflicting instruction from the owner to implement the whole plan. The owner settled it with "go with your suggestion". Points 1–4 above stand, with one exception: A1 runs on CPU on existing records (does each held request's question name the words it could not read?). Recorded in `training/NATURAL_LANGUAGE_NEXT_PLAN.md` section 9, commit `60b5f7c`. A1 belongs to that session, not to this one.

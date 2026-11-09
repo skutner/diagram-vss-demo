@@ -1,0 +1,689 @@
+{
+  "acceptance": {
+    "J0": {
+      "action_and_complete_tags": true,
+      "all_classes": 52,
+      "fill_outline": [
+        57,
+        57
+      ],
+      "outline_without_fill": [
+        32,
+        32
+      ],
+      "runtimes": [
+        "float",
+        "ort"
+      ]
+    },
+    "P1": {
+      "all_heads": 52,
+      "corpus_mean_tolerance": 1e-12,
+      "freeze_verify": true,
+      "historical_writes": 0,
+      "unknown_values_fail": true
+    },
+    "P2": {
+      "default_loss_gradient_bitwise": true,
+      "exact_resume": true,
+      "nonzero_tests": true,
+      "roundtrip": {
+        "compare_rows": true,
+        "contract": "diagram-reader-v2",
+        "exact_only_displayed": true,
+        "gate": [
+          95,
+          1
+        ],
+        "messages": true,
+        "preparation": "ModernBERT"
+      },
+      "weighted_closed_form": true
+    },
+    "P3": {
+      "actual_execution_receipts": true,
+      "complete": true,
+      "epoch": 8,
+      "export_exit2_is_pass": false,
+      "export_weights_bound": true,
+      "fixture_model_claims": false,
+      "float_node_q8_atol": 0.001,
+      "float_node_q8_rtol": 0.001,
+      "full_schedule": true,
+      "max_updates": 0,
+      "updates": 14640
+    },
+    "P4": {
+      "R_F_failures_preserved": true,
+      "reconcile": [
+        "wrongs",
+        "extras",
+        "unread/held"
+      ],
+      "root_causes": [
+        "data/labels",
+        "representation",
+        "cuts",
+        "actions",
+        "values/roles",
+        "preprocessing",
+        "calibration"
+      ],
+      "tables": [
+        "confidently_wrong",
+        "right/requested",
+        "wrong/extras",
+        "asked/unread",
+        "risk/coverage",
+        "AUROC",
+        "exposure",
+        "seen/unseen triggers"
+      ]
+    },
+    "R0": {
+      "absent_controls": [
+        1440,
+        1440
+      ],
+      "count_size": [
+        14,
+        14
+      ],
+      "desc_r2": [
+        34,
+        35
+      ],
+      "desc_r2_canonical": [
+        20,
+        21
+      ],
+      "outline_coloured_create": [
+        71,
+        74
+      ],
+      "outline_create": [
+        85,
+        89
+      ],
+      "outline_set": [
+        93,
+        97
+      ],
+      "publish_positives": 259,
+      "quality_measure_even_if_miss": true,
+      "runtimes": [
+        "float",
+        "ort"
+      ],
+      "separate_desc_old": 24
+    },
+    "R1": {
+      "clean_create_ci_low_strictly_gt": 0,
+      "comparisons": [
+        [
+          "J-s0",
+          "F-s0"
+        ],
+        [
+          "J-s0",
+          "B-s0"
+        ]
+      ],
+      "executions_each_min": 1,
+      "risk_nonincreasing": true,
+      "t1_clean_ci_low_strictly_gt": 0,
+      "t1_clean_cost_min_gain": 5
+    },
+    "R2": {
+      "bare_move": 0.95,
+      "denominator": "all-gold",
+      "description_size": 0.8,
+      "exposure_displayed": true,
+      "finite_grammar_count": true,
+      "label_removal": 0.9,
+      "outline_create": 0.9,
+      "outline_question": 0.9,
+      "outline_set": 0.9,
+      "undo_redo_count": 0.9
+    },
+    "R3": {
+      "all_label_errors": true,
+      "clean_subsets": true,
+      "gated_empty_nonempty_gold_max": 0,
+      "guard_ci_high_min": 0,
+      "guard_cost_min_diff": -5,
+      "guard_wrong_extras_per100_max_increase": 1,
+      "label_max_drop_points": 2,
+      "lowercase_max_drop_points": 2,
+      "lowercase_wrong_per100_max_increase": 1,
+      "original_case_controls": true,
+      "raw_argument_completeness": true,
+      "risk_anchors": [
+        "matched",
+        "B-s0"
+      ],
+      "views": [
+        "fresh2_test",
+        "short3_test",
+        "nl_a_development"
+      ]
+    }
+  },
+  "arms": {
+    "B-s0": {
+      "arm": "B",
+      "bundle": {
+        "path": "next-2026-11-08/B-s0/eval"
+      },
+      "model": {
+        "path": "next-2026-11-08/B-s0/export/modernbert-B-s0"
+      },
+      "objective": "ordinary-ce-v1",
+      "seed": 0,
+      "train_data": {
+        "path": "next-2026-11-08/data/B"
+      },
+      "training": {
+        "path": "next-2026-11-08/B-s0/run"
+      }
+    },
+    "C100-s0": {
+      "arm": "C100",
+      "bundle": {
+        "path": "next-2026-11-08/baseline/C100-s0-v2"
+      },
+      "model": {
+        "path": "arms/C100-s0/export/modernbert-C100-s0"
+      },
+      "objective": "ordinary-ce-v1",
+      "seed": 0,
+      "train_data": {
+        "path": "arms/data/C100"
+      },
+      "training": {
+        "path": "arms/C100-s0/run"
+      }
+    },
+    "F-s0": {
+      "arm": "F",
+      "bundle": {
+        "path": "forms-2026-11-08/F-s0/bundle"
+      },
+      "model": {
+        "path": "forms-2026-11-08/F-s0/export/modernbert-F-s0"
+      },
+      "objective": "ordinary-ce-v1",
+      "seed": 0,
+      "train_data": {
+        "path": "forms-2026-11-08/data-v2/F"
+      },
+      "training": {
+        "path": "forms-2026-11-08/F-s0/run"
+      }
+    },
+    "J-s0": {
+      "arm": "J",
+      "bundle": {
+        "path": "request-weighting-2026-11-09/J-s0/bundle"
+      },
+      "model": {
+        "path": "request-weighting-2026-11-09/J-s0/export/modernbert-J-s0"
+      },
+      "objective": "request-max-positive-sqrt-v1",
+      "seed": 0,
+      "train_data": {
+        "path": "forms-2026-11-08/data-v2/F"
+      },
+      "training": {
+        "path": "request-weighting-2026-11-09/J-s0/run"
+      }
+    },
+    "W-s0": {
+      "arm": "W",
+      "bundle": {
+        "path": "rare-heads-2026-11-09/W-s0/bundle"
+      },
+      "model": {
+        "path": "rare-heads-2026-11-09/W-s0/export/modernbert-W-s0"
+      },
+      "objective": "sqrt-positive-absent-v1",
+      "seed": 0,
+      "train_data": {
+        "path": "forms-2026-11-08/data-v2/F"
+      },
+      "training": {
+        "path": "rare-heads-2026-11-09/W-s0/run"
+      }
+    }
+  },
+  "budget": {
+    "confirmation": false,
+    "evaluation_seconds_max": 7200,
+    "export_seconds_max": 3600,
+    "fit_seconds_max": 1800,
+    "max_trajectories": 1,
+    "overfit": {
+      "batch": 16,
+      "invocations_max": 1,
+      "per_head_share_min": 0.99,
+      "repeat_identical_completed_gate": false,
+      "rows": 200,
+      "seconds_max": 300,
+      "updates_max": 400
+    },
+    "restart_or_replacement": false,
+    "training_aggregate_seconds_max": 10800,
+    "training_invocations_max": 2,
+    "trajectories": [
+      "J-s0"
+    ],
+    "verdict_seconds_max": 900,
+    "verification_seconds_max": 300
+  },
+  "calibration": {
+    "contract": "truthful_v1",
+    "cost": "100*(right-10*(wrong+extras))/requested",
+    "denominators": "full-gold",
+    "folds": 5,
+    "l2_grid": [
+      0.01,
+      0.1,
+      1,
+      10
+    ],
+    "minimum_groups": 10,
+    "resample_seed": 20261105,
+    "resamples": 1000,
+    "risk": "executed-error",
+    "selection": "selection-OOF AUROC",
+    "structural_dependency_holds": true,
+    "threshold": "cost-10 OOF argmax; ask-all; higher-threshold ties"
+  },
+  "campaign": "modernbert-request-weighting-2026-11-09",
+  "comparators": {
+    "J-s0": {
+      "benefit": [
+        "F-s0",
+        "B-s0"
+      ],
+      "explanatory": [
+        "W-s0"
+      ],
+      "labels_case": [
+        "F-s0",
+        "B-s0"
+      ],
+      "matched": "F-s0",
+      "safety": [
+        "F-s0",
+        "B-s0",
+        "C100-s0"
+      ]
+    }
+  },
+  "controls": {
+    "F-s0": {
+      "artifact_identity": "c6d554be58a87928af3e9ad378a051f5cea9eb280c3c8f518abded2e03518efd",
+      "refit_confidence": false,
+      "resume_historical_training": false
+    }
+  },
+  "data": {
+    "path": "forms-2026-11-08/data-v2/F"
+  },
+  "date": "2026-11-09",
+  "inputs": {
+    "alignment_fixture": {
+      "base": "repo",
+      "path": "training/neural/fixtures/modernbert_alignment.json",
+      "sha256": "e68541d85324b8f88a2a66c6ebc8947fe67001d5f2362986b464f84df5ec56ac"
+    },
+    "data_manifest": {
+      "path": "forms-2026-11-08/data-v2/F.manifest.json",
+      "sha256": "d6250c7082e3eccd3788ed55c894f131c4d557f9fa60b327f635dc500e21d7c3"
+    },
+    "diagnostic_cases": {
+      "path": "diagnostics-2026-11-09/inputs/cases-v2.json",
+      "sha256": "aca89f7a3d4bef2fbfc0fbc050982b4eaf4a1ef592892b6d8b2d53ae5cecac37"
+    },
+    "diagnostic_report": {
+      "base": "repo",
+      "path": "reports/modernbert-diagnostics-2026-11-09.md",
+      "sha256": "99dbed6096f6eb432ee2e5377ec812b64c51708584eeeac1a0e852b38a2eb20e"
+    },
+    "forms_protocol": {
+      "path": "forms-2026-11-08/protocol-v2/protocol.json",
+      "sha256": "61524cc13da0f20a0212def83b7f0855e6bad557fdfd99b3ceb3e36b857d2f39"
+    },
+    "label_membership": {
+      "path": "diagnostics-2026-11-09/verify/labels-membership-v2.json",
+      "sha256": "8163b72b93e37bb93fe0746c01f89469ab01b50209f6def4184465414f32eb0b"
+    },
+    "reader": {
+      "path": "forms-2026-11-08/data-v2/F/reader.json",
+      "sha256": "5abf1240d90852f26239ff8c7077bfcdeef44a6f6612112db8973fc213756046"
+    },
+    "roundtrip_tokenizer_assets": {
+      "config.json": {
+        "base": "repo",
+        "path": "docs/model/neural/modernbert-c100/config.json",
+        "sha256": "9c9f3b2f21a4a5a6180e6342d512b2144c75dd15c7c1409970c0f349d49120c4"
+      },
+      "special_tokens_map.json": {
+        "base": "repo",
+        "path": "docs/model/neural/modernbert-c100/special_tokens_map.json",
+        "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049"
+      },
+      "tokenizer.json": {
+        "base": "repo",
+        "path": "docs/model/neural/modernbert-c100/tokenizer.json",
+        "sha256": "6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30"
+      },
+      "tokenizer_config.json": {
+        "base": "repo",
+        "path": "docs/model/neural/modernbert-c100/tokenizer_config.json",
+        "sha256": "2966a59b9e9cf122279aec1249e22e5bc7ad8430c754e95031b13fd128d4e560"
+      }
+    },
+    "train": {
+      "path": "forms-2026-11-08/data-v2/F/train.jsonl",
+      "sha256": "bfdb92373d8eecdc7902d23e309c68d29fc610ed63334ddad7f18213fb90c7ce"
+    },
+    "training_selections": {
+      "path": "diagnostics-2026-11-09/inputs/training-v2.json",
+      "sha256": "7adde40a06ac6d630a291bf7f9d66fd7662c652f7cbe3b559e0e22eb8373c723"
+    },
+    "w_float_rows": {
+      "path": "rare-heads-2026-11-09/W-s0/fit-float/rows.jsonl",
+      "sha256": "3af4e39e320b27a1321aa1bf2c5b34719d368e849740730ddaecdc6f72d15f37"
+    },
+    "w_protocol": {
+      "path": "rare-heads-2026-11-09/frozen/protocol.json",
+      "sha256": "b15da300cb1817ad67e446c2de80aca54ba27cae523f4ba1bab0c1bd24e25738"
+    },
+    "w_q8_rows": {
+      "path": "rare-heads-2026-11-09/W-s0/fit-ort/rows.jsonl",
+      "sha256": "a677a1b48daac3c803232baeb821a0dff39dbad3f34d2ac8eb3eb44659bb846f"
+    },
+    "w_score": {
+      "path": "rare-heads-2026-11-09/W-s0/bundle/eval/score.truthful.json",
+      "sha256": "fbff1a23eceb256df796bb1715da9503664bd324fba16dea1c6505079a1e7ab2"
+    },
+    "w_verdict": {
+      "path": "rare-heads-2026-11-09/verdict/seed0/verdict.json",
+      "sha256": "eb0b81633700a17eb04eba89ed00e1f281bf80ffeca232b404ec07fbe3a18f5c"
+    }
+  },
+  "inventory_roots": [
+    {
+      "path": "forms-2026-11-08/protocol-v2"
+    },
+    {
+      "path": "next-2026-11-08/protocol-v2"
+    },
+    {
+      "path": "next-2026-11-08/views"
+    },
+    {
+      "path": "next-2026-11-08/frozen-lists"
+    },
+    {
+      "path": "forms-2026-11-08/F-s0/run"
+    },
+    {
+      "path": "forms-2026-11-08/F-s0/export/modernbert-F-s0"
+    },
+    {
+      "path": "forms-2026-11-08/F-s0/bundle"
+    },
+    {
+      "path": "next-2026-11-08/B-s0/run"
+    },
+    {
+      "path": "next-2026-11-08/B-s0/export/modernbert-B-s0"
+    },
+    {
+      "path": "next-2026-11-08/B-s0/eval"
+    },
+    {
+      "path": "arms/C100-s0"
+    },
+    {
+      "path": "next-2026-11-08/baseline/C100-s0-v2"
+    },
+    {
+      "path": "hf/models--answerdotai--ModernBERT-base/snapshots/8949b909ec900327062f0ebf497f51aef5e6f0c8"
+    },
+    {
+      "path": "forms-2026-11-08/roundtrip"
+    },
+    {
+      "path": "forms-2026-11-08/data"
+    },
+    {
+      "path": "rare-heads-2026-11-09/frozen"
+    },
+    {
+      "path": "rare-heads-2026-11-09/W-s0/run"
+    },
+    {
+      "path": "rare-heads-2026-11-09/W-s0/export/modernbert-W-s0"
+    },
+    {
+      "path": "rare-heads-2026-11-09/W-s0/bundle"
+    },
+    {
+      "path": "rare-heads-2026-11-09/W-s0/fit-float"
+    },
+    {
+      "path": "rare-heads-2026-11-09/W-s0/fit-ort"
+    }
+  ],
+  "objective": {
+    "absent_target": 0,
+    "aggregation": "max-positive-with-floor-one",
+    "all_class_heads": true,
+    "arithmetic_references": {
+      "all_absent_rows": 2900,
+      "max": 64.3043022406042,
+      "mean_normalized": 1.0,
+      "mean_raw": 3.747515515618729,
+      "min": 0.26684345824113187,
+      "p50": 0.6041502951051457,
+      "p90": 1.6813559579264168,
+      "p95": 2.665262057691674,
+      "p99": 5.525854059149545,
+      "raw_sum": 219424.52847050782,
+      "selected_fill_outline": 4.4886137801464265
+    },
+    "class_term_only": true,
+    "corpus_mean_tolerance": 1e-12,
+    "degenerate_weights": 1,
+    "formula": "request-max-positive-sqrt-v1",
+    "normalization": "full-corpus-raw-mean-one; minibatch-arithmetic-mean; all-heads-equal",
+    "positive_target": "Layout.class_targets(row) > 0; literal none at index >=1 is populated"
+  },
+  "plan": {
+    "base": "repo",
+    "path": "reports/modernbert-request-weighting-plan-2026-11-09_codex.md",
+    "sha256": "6c459736f0353040265ff6f39d905404706036febd5982dfab67ad4af9d63cfc"
+  },
+  "plan_review": {
+    "base": "repo",
+    "path": "reports/modernbert-request-weighting-plan-review-2026-11-09_codex.md",
+    "sha256": "de741d58898842a00deb71e1ac19e31f963840e52558c73134bb424cafd6131b"
+  },
+  "recipe": {
+    "attn": "sdpa",
+    "autocast": "bfloat16",
+    "batch": 32,
+    "canvas": false,
+    "clip": 1,
+    "cut_batch": 8,
+    "epochs": 8,
+    "expected_heads": 52,
+    "expected_messages": 28330,
+    "expected_requests": 58552,
+    "expected_updates": 14640,
+    "final_batch_rows": 24,
+    "gradient_checkpointing": false,
+    "head_lr": 6e-05,
+    "lr": 6e-05,
+    "max_updates": 0,
+    "message_cap": 512,
+    "request_cap": 128,
+    "revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+    "warmup": 0.06,
+    "weight_decay": 0.01,
+    "weights": "float32"
+  },
+  "registered_outputs": {
+    "applicability": "applicability/NAME/applicability.json",
+    "budget": "budget.json",
+    "compatibility": "frozen/compatibility.json",
+    "evidence": "evidence",
+    "fit_float": "NAME/fit-float",
+    "fit_ort": "NAME/fit-ort",
+    "frozen": "frozen/protocol.json",
+    "joint_populations": "frozen/joint-populations.json",
+    "joint_selections": "frozen/joint-selections.json",
+    "objective": "frozen/class-loss-manifest.json",
+    "populations": "frozen/populations.json",
+    "row_weights": "frozen/row-weights.jsonl",
+    "selections": "frozen/selections.json",
+    "verdict": "verdict-seed0/verdict.json"
+  },
+  "resources": {
+    "available_floor_gib": 2,
+    "cpu_available_floor_gib": 4,
+    "cpu_heavy_serial": true,
+    "cpu_inference_rss_gib": 12,
+    "cpu_lock": "cpu.lock",
+    "cpu_threads": 2,
+    "finite_invocation_deadline": true,
+    "gpu_allocator_gib": 5,
+    "gpu_lock": "shared GPU UUID",
+    "hardware_slowdown_stop": true,
+    "host_rss_gib": 8,
+    "nonfinite_stop": true,
+    "offline_local_only": true,
+    "stop_celsius": 90,
+    "work_lock": ".run.lock"
+  },
+  "roundtrip": {
+    "claim_scope": "perfect-label corpus representation; exact-only percentage remains displayed; no learned-model claim",
+    "command": {
+      "path": "forms-2026-11-08/roundtrip/run.sh"
+    },
+    "exit_status": {
+      "path": "forms-2026-11-08/roundtrip/rc.txt"
+    },
+    "log": {
+      "path": "forms-2026-11-08/roundtrip/F.log"
+    },
+    "messages": {
+      "path": "forms-2026-11-08/data/F.messages.jsonl"
+    },
+    "original_rows": {
+      "path": "forms-2026-11-08/data/F"
+    },
+    "result": {
+      "path": "forms-2026-11-08/roundtrip/F/roundtrip.json"
+    }
+  },
+  "source_paths": [
+    "training/neural/parity/test_output_contract.py",
+    "training/neural/parity/test_output_contract.mjs",
+    "docs/js/bench-canon.js",
+    "training/sketch/layer_common.mjs",
+    "docs/js/vss-composer.js",
+    "docs/js/front.js",
+    "docs/js/vss-adapter.js",
+    "docs/js/vss-context.js",
+    "docs/js/vss.js",
+    "docs/js/vss/reader.js",
+    "docs/js/vss/soplang.js",
+    "docs/js/vss/routebook.js",
+    "docs/js/vss/loader.js",
+    "docs/js/vss/stars.js",
+    "training/neural/parity/modernbert_request_weight_fit_evidence.mjs",
+    "training/neural/parity/test_modernbert_request_weight_fit_evidence.mjs",
+    "training/neural/export_modernbert.py",
+    "training/neural/modernbert_weight_only.py",
+    "training/neural/modernbert_parity.mjs",
+    "training/neural/finetune_modernbert_batched.py",
+    "training/neural/modernbert_class_loss.py",
+    "training/neural/finetune_modernbert.py",
+    "training/neural/finetune_roles.py",
+    "training/neural/modernbert_tokenization.py",
+    "training/neural/make_roles.py",
+    "training/neural/make_data.py",
+    "training/neural/calibrate_modernbert.mjs",
+    "training/neural/parity/modernbert_request_weight.py",
+    "training/neural/parity/modernbert_request_weight_fit.py",
+    "training/neural/parity/modernbert_request_weight_fit.mjs",
+    "training/neural/parity/modernbert_request_weight_measure.mjs",
+    "training/neural/parity/modernbert_request_weight_train.sh",
+    "training/neural/parity/test_modernbert_request_weight.py",
+    "training/neural/parity/test_batched_trainer.py",
+    "training/neural/parity/test_modernbert_request_weight_fit.py",
+    "training/neural/parity/test_modernbert_request_weight_measure.mjs",
+    "training/neural/parity/modernbert_forms_measure.mjs",
+    "training/neural/parity/modernbert_next_measure.mjs",
+    "training/neural/parity/modernbert_forms_data.py",
+    "training/neural/parity/modernbert_next_data.py",
+    "training/neural/parity/arm_export.py",
+    "training/neural/parity/arm_lib.mjs",
+    "training/neural/parity/collect_set.mjs",
+    "training/neural/parity/calibrate_arm.mjs",
+    "training/neural/parity/score_arm.mjs",
+    "training/neural/parity/sets.mjs",
+    "training/neural/parity/root_causes.mjs",
+    "training/neural/parity/compare_arms.mjs",
+    "training/neural/parity/shipped_decode_check.mjs",
+    "docs/js/neural.js",
+    "docs/js/neural-confidence.js",
+    "docs/js/logic.js",
+    "training/laptop/package-lock.json",
+    "training/laptop/node_modules/@huggingface/transformers/package.json",
+    "training/laptop/node_modules/onnxruntime-node/package.json",
+    "training/neural/parity/test_modernbert_request_weight_fit.mjs",
+    "training/neural/roles_roundtrip.py",
+    "training/neural/roles_roundtrip.mjs",
+    "training/neural/modernbert_request_class_loss.py",
+    "training/neural/parity/test_modernbert_request_class_loss.py",
+    "training/neural/parity/parity_lib.mjs",
+    "docs/js/drawing-lines.js",
+    "training/neural/parity/canvas_lib.mjs",
+    "training/neural/parity/modernbert_request_weight_protocol.json"
+  ],
+  "source_review": {
+    "path": "request-weighting-implementation-2026-11-09/review/source-review.json"
+  },
+  "source_review_scopes": {
+    "campaign-fit": [
+      "training/neural/parity/modernbert_request_weight.py",
+      "training/neural/parity/modernbert_request_weight_protocol.json",
+      "training/neural/parity/modernbert_request_weight_measure.mjs",
+      "training/neural/parity/modernbert_request_weight_train.sh",
+      "training/neural/parity/test_modernbert_request_weight.py",
+      "training/neural/parity/test_modernbert_request_weight_measure.mjs",
+      "training/neural/parity/modernbert_request_weight_fit.py",
+      "training/neural/parity/modernbert_request_weight_fit.mjs",
+      "training/neural/parity/modernbert_request_weight_fit_evidence.mjs",
+      "training/neural/parity/test_modernbert_request_weight_fit.py",
+      "training/neural/parity/test_modernbert_request_weight_fit.mjs",
+      "training/neural/parity/test_modernbert_request_weight_fit_evidence.mjs"
+    ],
+    "objective-trainer": [
+      "training/neural/modernbert_request_class_loss.py",
+      "training/neural/finetune_modernbert_batched.py",
+      "training/neural/parity/test_batched_trainer.py",
+      "training/neural/parity/test_modernbert_request_class_loss.py"
+    ]
+  },
+  "task_root": {
+    "path": "request-weighting-2026-11-09"
+  },
+  "version": "modernbert-request-weight-protocol-v1"
+}

@@ -58,10 +58,12 @@ export function signals(result, si) {
   const vp = [], vm = [], np = [], fp = [], fm = [], tp = [], tm = [], dp = [], dm = [];
   const low = { val: null, none: null, fill: null, tag: null, desc: null }, lower = (slot, p, x) => { if (!low[slot] || p < low[slot].p) low[slot] = Object.assign({ p }, x); };
   let ctx = 0, nRoles = 0; const drawn = [];
+  const v2 = RD.output_contract === "diagram-reader-v2";   // output contract (docs/js/neural.js V2): a text key's state head text:<key> is one more value head
   for (const k of keys) {
     const r = a.keys[k];
-    // the value head of this key: its class head, or the head for a value the request does not write (implied:<key>, only in a model built with it), read the same way
-    const vk = clsIdx[k] != null ? k : clsIdx["implied:" + k] != null ? "implied:" + k : null, cls = vk ? headOf(vk) : null;
+    // the value head of this key: its class head, or the head for a value the request does not write (implied:<key>, only in a model built with it), or (v2)
+    // the state of a text key (text:<key>: absent counts as none, empty or written as a value; a written text's words also count in the tags below), read the same way
+    const vk = clsIdx[k] != null ? k : clsIdx["implied:" + k] != null ? "implied:" + k : v2 && clsIdx["text:" + k] != null ? "text:" + k : null, cls = vk ? headOf(vk) : null;
     if (cls) {
       const pr = softmax(cls), bi = argmax(pr), [x1, x2] = top2(pr);
       if (bi === 0) { np.push(pr[0]); lower("none", pr[0], { key: k }); } else { vp.push(pr[bi]); vm.push(x1 - x2); lower("val", pr[bi], { key: k, value: RD.classes[clsIdx[vk]][1][bi] }); }
@@ -257,12 +259,24 @@ export function reasons(spec, sig) {
   return order.filter(([, v], i) => i === 0 || (i < REASON_MAX && v >= REASON_MIN)).map(([g, v]) => ({ group: g, pull: v, text: sentence(g, sig, spec, parts.get(g)) }));
 }
 
+/* ---------------------------------------------------------------- structural holds (output contract diagram-reader-v2) */
+const BLOCK_TEXT = {
+  "unresolved-reference": (k) => `it names ${roleWord(k)} with several shapes, descriptions or references together, which this reader cannot write down exactly; say them one at a time`,
+  "text-state": (k) => `the ${keyWord(k)} text could not be read consistently (whether there is one, and which words it is)`,
+  "malformed-output": (k) => (k === "output_contract" ? "the model's output does not follow an output contract this page knows" : `the model's output for the ${keyWord(k)} does not follow its output contract`),
+};
+/** the reasons of a request held by its own reading (docs/js/neural.js: analysis.blocked, analysis.block_reasons [{kind, key, source_span}]) */
+export const blockReasons = (unit) => (unit.block_reasons || []).map((b) => ({ group: b.kind, pull: 0, kind: b.kind, key: b.key,
+  text: (BLOCK_TEXT[b.kind] || ((k) => `it cannot be read completely (${b.kind}: ${k})`))(b.key) }));
+
 /* ---------------------------------------------------------------- the gate */
 /** the gate over one neural.js formalizeJoint result, the shape of vss-confidence.js gate (docs/js/ui.js GATES): every request that gave
  *  wires gets its confidence; it executes when the confidence >= the level's threshold, and only when every request of the message it
  *  refers to ({ref} to a wire of another request) executes. spec null (the file could not be loaded): every request is asked (level "all":
- *  executed). -> {level, effective, label, threshold, cutFrom, units: [{index, unit, src, act, conf, signals, execute, nodes, reasons,
- *  dependsOn}], executed (wires, message order), held} */
+ *  executed). A request held by its own reading (unit.blocked: output contract diagram-reader-v2) never executes, at any level, and is marked
+ *  blocked (docs/js/ui.js offers no "Do it anyway" for it); so is every request that uses what it would have made (reason "depends").
+ *  -> {level, effective, label, threshold, cutFrom, units: [{index, unit, src, act, conf, signals, execute, nodes, reasons,
+ *  dependsOn, blocked (only when true)}], executed (wires, message order), held} */
 export function gate(spec, result, level) {
   level = String(level == null ? defaultLevel(spec) : level);
   const t = level === "all" ? -Infinity : spec ? threshold(spec, level) : Infinity, byUnit = new Map(), owner = new Map();
@@ -285,9 +299,12 @@ export function gate(spec, result, level) {
     for (const n of nodes) for (const r of Object.values(n.args || {}).flatMap(refsOf)) { const o = owner.get(r); if (o && o !== u && !g.dependsOn.includes(o)) g.dependsOn.push(o); }
     G.push(g); gu.set(u, g);
   }
+  for (const g of G) if (g.unit.blocked) Object.assign(g, { sure: false, execute: false, blocked: true, reasons: blockReasons(g.unit) });
   for (const g of G) {      // message order: a request's dependencies come before it
-    const off = g.dependsOn.map((o) => gu.get(o)).filter((d) => d && !d.execute);
-    if (g.execute && off.length) { g.execute = false; g.reasons = off.map((d) => ({ group: "depends", pull: 0, text: `it uses what “${d.src}” would have made, which was not done` })); }
+    const off = g.dependsOn.map((o) => gu.get(o)).filter((d) => d && !d.execute), stuck = off.filter((d) => d.blocked);   // here blocked is only structural (transitive)
+    if (!g.blocked && stuck.length) Object.assign(g, { sure: false, execute: false, blocked: true,
+      reasons: stuck.map((d) => ({ group: "depends", pull: 0, kind: "depends", text: `it uses what “${d.src}” would have made, which cannot be done` })) });
+    else if (g.execute && off.length) { g.execute = false; g.reasons = off.map((d) => ({ group: "depends", pull: 0, text: `it uses what “${d.src}” would have made, which was not done` })); }
   }
   const run = new Set(G.filter((g) => g.execute).flatMap((g) => g.nodes));
   const effective = level === "all" ? "all" : spec ? effectiveLevel(spec, level) : null;

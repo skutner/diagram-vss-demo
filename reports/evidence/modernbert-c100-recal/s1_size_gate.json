@@ -1,0 +1,36 @@
+{
+ "dir": "training/sketch/llm_bench/synth_short_t1",
+ "messages": 1793,
+ "per_form": {
+  "move": 172,
+  "delete": 172,
+  "connect": 171,
+  "set": 171,
+  "create": 166,
+  "outline_create": 80,
+  "outline_set": 80,
+  "arrow_style": 80,
+  "arrow_label": 79,
+  "at_xy": 78,
+  "arrow_unlabel": 78,
+  "tpl_items": 71,
+  "outline_q": 69,
+  "size_desc": 67,
+  "free_text": 40,
+  "redo": 38,
+  "undo": 37,
+  "every_arrow": 36,
+  "tpl_count": 33,
+  "undo_count": 28,
+  "layout_op": 27,
+  "count_arrows": 20
+ },
+ "gate": {
+  "min_total": 1500,
+  "min_form": {
+   "create": 120
+  }
+ },
+ "met": true,
+ "reasons": []
+}

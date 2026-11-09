@@ -1,0 +1,9 @@
+{
+ "exit_status": 0,
+ "signal": null,
+ "reason": null,
+ "rss_peak_bytes": 1448824832,
+ "phase": "cpu",
+ "rss_limit_bytes": 12884901888,
+ "available_floor_bytes": 4294967296
+}

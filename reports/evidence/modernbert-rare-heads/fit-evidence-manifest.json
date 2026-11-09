@@ -1,0 +1,52 @@
+{
+  "fit-float-summary.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/fit-float/summary.json",
+    "sha256": "876673d94de47dd03ce75be1a29b03b5abb9cf09e2e262ade1258ac5ae795852"
+  },
+  "fit-ort-summary.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/fit-ort/summary.json",
+    "sha256": "72b547603c17657552d10c1d4ee53731bd237c337c8598bbc3e55e237cfa04f8"
+  },
+  "actual-fit-verification.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/verification/actual-fit-v1/report.json",
+    "sha256": "42b824a45c51b89bea14f333ff08c2fc2f356e0ef74a0f2c53f52e5c658b411e"
+  },
+  "fit-miss-reconciliation.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/verification/actual-fit-v1/reconciliation.json",
+    "sha256": "78ee0bf43cb1d11d41e1389652df4c62b6410e45512bea39dce83eb2f08c3db1"
+  },
+  "training-complete.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/run/complete.json",
+    "sha256": "0608f356b7e18fcd8e974ed06f4def034353f6ca32fd4f848a0ea7d600338e61"
+  },
+  "runner-result.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-runner-result-v1.json",
+    "sha256": "817defdc1c162a7d36bcedd550cc4324ad4c24114eab0738b1dad58e73c96f94"
+  },
+  "fit-float-command.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-fit-float-command-v1.json",
+    "sha256": "edb8f4c4ccb685c0b484661d456bbefd4c1130fd432a0f3ffecc8170db165745"
+  },
+  "fit-ort-command.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-fit-ort-command-v1.json",
+    "sha256": "4ea6ef87759912aa90e31247e63b47c41265cc77c633e87817ad3ee01616dab0"
+  },
+  "candidate-v2.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/review/candidate-v2.json",
+    "sha256": "f78f9e73c3b8b8408f19e853673589b8da93c46bde6a923e7e6b408257129a60"
+  },
+  "training-fit-observations.jsonl": {
+    "sources": [
+      "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/fit-float/rows.jsonl",
+      "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/fit-ort/rows.jsonl"
+    ],
+    "source_sha256": [
+      "3af4e39e320b27a1321aa1bf2c5b34719d368e849740730ddaecdc6f72d15f37",
+      "a677a1b48daac3c803232baeb821a0dff39dbad3f34d2ac8eb3eb44659bb846f"
+    ],
+    "sha256": "eb5f31905be9aac14c05df21ac17e628549d2a4ba82ff089dc4b3e15a321aa0b",
+    "observations": 1699,
+    "positives": 259,
+    "absents": 1440
+  }
+}

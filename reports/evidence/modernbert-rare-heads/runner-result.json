@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "bash",
+    "training/neural/parity/modernbert_rare_heads_train.sh",
+    "W",
+    "0"
+  ],
+  "cwd": "/home/skutner/browserLLM/diagram-vss-demo",
+  "started": "2026-11-09T07:50:46.332498+00:00",
+  "pid": 335881,
+  "stop_at": "2026-11-09 11:50",
+  "outer_timeout_seconds": 10800,
+  "candidate": "52a35fa7250204a1162ddd5d5ce9e3a22499637261881ec22a342b24c26c1b59",
+  "protocol_sha256": "b15da300cb1817ad67e446c2de80aca54ba27cae523f4ba1bab0c1bd24e25738",
+  "log": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-runner-v1.log",
+  "ended": "2026-11-09T08:40:37.293825+00:00",
+  "exit_status": 0,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,2 @@
+test part (DEP=names): cost score 36.4, confidently wrong 1.7% of executed, done right 43.9%; held by the name rule: s3-0088 held_right “connect Done to Plan”; s3-0146 held_wrong “connect Api to Db”; s3-0261 held_wrong “connect Check to Fail with label "no"”
+test part: 1745 gold, executed 779 (766 right, 13 wrong or extra), done right 43.9% (combined.json test: executed 761, done right 42.8%)

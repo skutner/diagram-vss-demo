@@ -4,21 +4,34 @@
 // create().formalize (formalizeJoint: act_keys, fill:<key> / desc:<key>, the shared context rule nextContext of docs/js/vss-composer.js, as
 // the collector training/sketch/fresh2/collect_sop.mjs passes it). The wires are compared with the gold wires in bench-canon form
 // (docs/js/bench-canon.js canon / canonWant), paired as llm_score.mjs PAIR=value (layer_common.mjs pairValue), as job 072 scores.
-//   node training/neural/roles_roundtrip.mjs <reader.json> <messages.jsonl> <out.jsonl> [<tokenizer folder, default docs/model/neural/sop-bert>]
+//   node training/neural/roles_roundtrip.mjs <reader.json> <messages.jsonl> <out.jsonl> [<tokenizer folder, default docs/model/neural/sop-bert>] [--prep sop|modernbert]
+// --prep modernbert (default sop): the pinned ModernBERT preparation of the published reader in the tokenizer folder (its config.json reader.tokenization,
+//   wordwise-bpe-prefix-space-v1, with its caps 128 / 512): word pieces with the prefix space, whole words only within the cap, the rest unread
+//   (makeReader prep, the same code the browser runs). The word pieces of every text come from makeReader's own prepare(), in both modes.
+// Every produced request is put through the product gate (neural.js gateReader with neural-confidence.js gate) at a confidence that clears every
+// threshold, so the requests it still holds are the structural ones: a truncated request, a hold of output contract diagram-reader-v2, a request that
+// uses one. A gold request paired with such a request is "held" (with the reasons' kinds), one beyond the cut's unread text "held" (limit).
+// <out.jsonl>.meta.json: the preparation and the tokenizer's hash.
 // messages.jsonl (written by roles_roundtrip.py): {id, text, names, wires (gold, non-pending), cut: [B/I/O per word], words,
 //   rows: [{text, words, tags, act, ct: [class target per class head], wi: gold wire index}]}
 // IMPLIED_SCALE=1 (make_roles.py): `scale` is compared as well, by its number and on either side; bench-canon.js, which skips it, stays as it is.
-// out.jsonl: {id, gold: [{o: right|wrong|missing, miss: [[key, got, want]], got}], extra: [{act, got, src}], units, unitsNoRow, wordsDiffer}
+// out.jsonl: {id, gold: [{o: right|wrong|missing|held, miss: [[key, got, want]], got, held: [kind]}], extra: [{act, got, src, held}], units, unitsNoRow, wordsDiffer}
+//   (held: only on a held gold request or extra wire)
 import { readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, basename, resolve } from "node:path";
-const [readerPath, inPath, outPath, tokArg] = process.argv.slice(2);
+const argv = process.argv.slice(2), flag = (n, d) => { const i = argv.indexOf(n); return i < 0 ? d : argv.splice(i, 2)[1]; };
+const PREP = flag("--prep", "sop");
+if (!["sop", "modernbert"].includes(PREP)) throw new Error("--prep sop or modernbert");
+const [readerPath, inPath, outPath, tokArg] = argv;
 const require = createRequire(import.meta.url);
 const T = await import(pathToFileURL(fileURLToPath(new URL("../laptop/node_modules/@huggingface/transformers/dist/transformers.node.mjs", import.meta.url))).href);
 const K = require("../../docs/js/logic.js");
 globalThis.SOPKit = K;
 const NeuralKit = require("../../docs/js/neural.js");
+const NC = await import("../../docs/js/neural-confidence.js");
 const { nextContext } = await import("../../docs/js/vss-composer.js");
 const { canon, canonWant } = await import("../../docs/js/bench-canon.js");
 const { pairValue } = await import("../sketch/layer_common.mjs");
@@ -29,32 +42,32 @@ const realTok = await T.AutoTokenizer.from_pretrained(basename(TOK), { local_fil
 const memo = new Map();
 const tokenizer = {   // the real tokenizer, memoised (makeReader encodes word by word)
   encode(t, o) { const key = (o && o.add_special_tokens === false ? "0" : "1") + t; let v = memo.get(key); if (!v) { v = realTok.encode(t, o); memo.set(key, v); } return v; },
-  model: realTok.model, unk_token_id: realTok.unk_token_id,
+  model: realTok.model, unk_token_id: realTok.unk_token_id, pad_token_id: realTok.pad_token_id,
 };
 const R = JSON.parse(readFileSync(readerPath, "utf8"));
 R.max_length = R.max_length || 128;
+const meta = { prep: PREP, tokenizer: TOK, tokenizer_sha256: createHash("sha256").update(readFileSync(TOK + "/tokenizer.json")).digest("hex") };
+if (PREP === "modernbert") {   // the published reader's preparation and caps (makeReader: modern), never the rows' own
+  const pub = JSON.parse(readFileSync(TOK + "/config.json", "utf8")).reader || {};
+  if (pub.tokenization !== "wordwise-bpe-prefix-space-v1") throw new Error(`--prep modernbert: ${TOK}/config.json reader.tokenization is ${pub.tokenization}, not wordwise-bpe-prefix-space-v1`);
+  R.tokenization = pub.tokenization; R.max_length = Math.min(pub.max_length || 128, 128); R.cut = Object.assign({}, R.cut, { max_length: Math.min((pub.cut && pub.cut.max_length) || 512, 512) });
+  Object.assign(meta, { tokenization: R.tokenization, max_length: R.max_length, cut_max_length: R.cut.max_length });
+}
 const nA = R.acts.length, nT = R.tags.length, nC = R.classes.reduce((s, [, v]) => s + v.length, 0), offs = [];
 { let o = nA; for (const [, v] of R.classes) { offs.push(o); o += v.length; } }
 const HI = 20;   // the one-hot logit
 const CMP_SCALE = process.env.IMPLIED_SCALE === "1";
 const scaleOf = (a) => (a && a.scale != null ? +a.scale : null);
 
-// makeReader's prep(): the position of each word's first word piece (the same loop, the same limit)
-function firsts(text, limit) {
-  const ws = NeuralKit.wordsOf(text), sp = tokenizer.encode(""), first = new Map(); let n = 1;
-  for (let i = 0; i < ws.length && n < limit - 1; i++) {
-    const p = tokenizer.encode(ws[i].w, { add_special_tokens: false });
-    for (let j = 0; j < p.length && n < limit - 1; j++) { if (j === 0) first.set(i, n); n++; }
-  }
-  return { ws, first, n: n + 1, sp };
-}
+// the position of each word's first word piece: makeReader's own prep() (reader below; the same loop, the same limit, the same preparation)
+const firsts = (text, limit) => reader.prepare(text, limit);
 class Tensor { constructor(type, data, dims) { this.type = type; this.data = data; this.dims = dims; } }
 let MODE = null;   // {kind: "cut", msg} | {kind: "read", rows: [row | null]}
 const fake = async ({ input_ids }) => {
   const [B, n] = input_ids.dims;
   const tok = new Float32Array(B * n * nT), seq = new Float32Array(B * (nA + nC)), cut = new Float32Array(B * n * 3);
   if (MODE.kind === "cut") {
-    const { first } = firsts(MODE.msg.text, (R.cut && R.cut.max_length) || 512), CI = { O: 0, B: 1, I: 2 };
+    const { first } = firsts(MODE.msg.text, (R.cut && R.cut.max_length) || 512), CI = { O: 0, B: 1, I: 2 };   // makeReader caps the cut at the same length
     MODE.msg.cut.forEach((t, i) => { const p = first.get(i); if (p != null) cut[p * 3 + CI[t]] = HI; });
   } else {
     MODE.rows.forEach((row, b) => {
@@ -96,6 +109,19 @@ const nsys = K.createSystem(), neural = NeuralKit.create(nsys.engine, () => { th
 neural.setModels(m); neural.setStrategy("finetuned");
 
 const actOf = (type, args) => `${type}:${args.action || args.ask || ""}`;
+// the product gate at a confidence that clears every threshold: what it still holds is held structurally (see the head of the file)
+const SURE = { reader: "roundtrip", intercept: 0, features: [], tables: {}, act_prior: {}, act_prior_default: 0, operating_level: "cost", levels_out_of_fold: { cost: { threshold: -1e9 } } };
+const STRUCTURAL = new Set(["limit", "text-state", "unresolved-reference", "malformed-output", "depends"]);
+let notStructural = 0;   // a hold for any other reason (missing logits or cut output, no reason): never counted as an abstention; the run fails
+function heldBy(res, id) {   // wire -> the kinds of why its request is held (structural only), for the wires that are not executed
+  const g = NeuralKit.gateReader(NC, SURE, res, "cost"), out = new Map();
+  for (const u of g.units) if (!u.execute) {
+    const kinds = [...new Set(u.reasons.map((x) => x.kind || x.group))];
+    if (!kinds.length || kinds.some((k) => !STRUCTURAL.has(k))) { notStructural++; console.error(`${id}: “${u.src}” held for a reason that is not structural: ${JSON.stringify(u.reasons)}`); continue; }
+    for (const n of u.nodes) out.set(n, kinds);
+  }
+  return out;
+}
 function pairUp(mains, gold, row) {   // llm_score.mjs pairUp, PAIR=value
   const used = new Set(), G = row.wires.map((w, j) => {
     let s0 = -1;
@@ -119,17 +145,23 @@ for (const r of msgs) {
   } catch (e) { out.push({ id: r.id, error: String(e && e.message || e), gold: r.wires.map(() => ({ o: "missing", miss: [] })), extra: [], units: 0, unitsNoRow: 0, wordsDiffer }); continue; }
   const nodes = res.nodes, mains = nodes.filter((n) => n.type !== "mention").map((n) => ({ act: actOf(n.type, n.args), got: canon(n, nodes), n }));
   const gold = r.wires.map((w) => ({ act: actOf(w.type, w.args || {}), want: canonWant(w.type, w.args || {}) }));
-  const pairs = pairUp(mains, gold, r), G = gold.map(() => ({ o: "missing", miss: [] })), usedP = new Set();
+  const pairs = pairUp(mains, gold, r), G = gold.map(() => ({ o: "missing", miss: [] })), usedP = new Set(), held = heldBy(res, r.id);
   for (const [i, j] of pairs) {
     usedP.add(i);
+    if (held.has(mains[i].n)) { G[j] = { o: "held", miss: [], got: mains[i].got, held: held.get(mains[i].n) }; continue; }
     const miss = Object.entries(gold[j].want).filter(([k, v]) => (mains[i].got[k] ?? "∅") !== v).map(([k, v]) => [k, mains[i].got[k] ?? "∅", v]);
     if (CMP_SCALE) { const g = scaleOf(mains[i].n.args), w = scaleOf(r.wires[j].args); if (g !== w) miss.push(["scale", g == null ? "∅" : String(g), w == null ? "∅" : String(w)]); }
     const extraKeys = Object.keys(mains[i].got).filter((k) => !(k in gold[j].want));   // produced keys the gold does not have (not scored; reported)
     G[j] = { o: miss.length ? "wrong" : "right", miss, got: mains[i].got, extraKeys };
   }
-  const extra = mains.filter((_, i) => !usedP.has(i)).map((x) => ({ act: x.act, got: x.got, src: x.n.span ? r.text.slice(x.n.span[0], x.n.span[1]) : "" }));
+  // a gold request beyond the text the cut could read (the message exceeds the cut's cap) is held by the limit, not lost by the cut
+  const ci = m.cutInfo ? m.cutInfo(r.text) : null;
+  if (ci && ci.truncated) r.wires.forEach((w, j) => { if (G[j].o === "missing" && w.span && r.text.indexOf(w.span) >= ci.unreadFrom) G[j] = { o: "held", miss: [], held: ["limit"] }; });
+  const extra = mains.filter((_, i) => !usedP.has(i)).map((x) => Object.assign({ act: x.act, got: x.got, src: x.n.span ? r.text.slice(x.n.span[0], x.n.span[1]) : "" }, held.has(x.n) ? { held: held.get(x.n) } : {}));
   out.push({ id: r.id, gold: G, extra, units: res.analyses.length, unitsNoRow: MSG.unitsNoRow, unitNotRow: MSG.unitNotRow, wordsDiffer });
   if (++done % 5000 === 0) console.error(`${done}/${msgs.length} messages`);
 }
 writeFileSync(outPath, out.map((x) => JSON.stringify(x)).join("\n") + "\n");
+writeFileSync(outPath + ".meta.json", JSON.stringify(meta, null, 1) + "\n");
+if (notStructural) { console.error(`${notStructural} request(s) held for a reason that is not structural: the oracle cannot count them`); process.exit(2); }
 console.error(`decoded ${out.length} messages`);

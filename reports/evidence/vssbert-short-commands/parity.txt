@@ -1,0 +1,1 @@
+PARITY HOLDS: 10 probes x 4 readers (40 readings): corrected text, units, readings, decisions equal; confidences within 0.002

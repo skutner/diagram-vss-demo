@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "/home/skutner/.cache/diagram-vss-modernbert/venv/bin/python",
+    "-B",
+    "training/neural/parity/modernbert_rare_heads.py",
+    "fit",
+    "--protocol",
+    "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/frozen/protocol.json",
+    "--name",
+    "W-s0",
+    "--runtime",
+    "float",
+    "--out",
+    "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/fit-float"
+  ],
+  "cwd": "/home/skutner/browserLLM/diagram-vss-demo",
+  "started": "2026-11-09T10:41:01.334875+02:00",
+  "ended": "2026-11-09T10:44:36.486830+02:00",
+  "pid": 354467,
+  "exit_status": 1,
+  "log": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-fit-float-command-v1.log",
+  "log_sha256": "6ff5f80678cd036345d70ca83fc5508fe672548d2cae473c41004699465d0668"
+}

@@ -1,0 +1,1043 @@
+{
+ "plan": "VSSBERT_SHORT_COMMANDS_PLAN.md section 7",
+ "bars": {
+  "C_cw_share": 0.0158,
+  "B_right_share": 0.95,
+  "B_form_right_share": 0.9,
+  "B_form_min_requests": 30,
+  "A_right_share": 0.95,
+  "A_held_right_share": 0.2
+ },
+ "paired_interval": {
+  "resamples": 1000,
+  "seed": 20261105,
+  "min_units": 10
+ },
+ "filters": {
+  "V": "t1bs; forms create set move delete connect; no seen_text, span_lost or spelling change",
+  "t1s": "no seen_text or span_lost (spelling-changed rows kept)",
+  "short3s_test": "part test; no seen_text or span_lost",
+  "r2b": "as V, for A's replication"
+ },
+ "sizes": {
+  "V": 734,
+  "t1s": 1791,
+  "short3s_test": 329,
+  "r2b": 586
+ },
+ "outcomes": {
+  "C": {
+   "triggered": true,
+   "bar": 0.0158,
+   "values": [
+    {
+     "view": "V",
+     "executed": 617,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.006187503792382013
+     ],
+     "lower_above_bar": false,
+     "note": null
+    },
+    {
+     "view": "t1s",
+     "executed": 908,
+     "cw_share": 0.05286343612334802,
+     "cw_wilson95": [
+      0.04010196994086726,
+      0.06939234829707264
+     ],
+     "lower_above_bar": true,
+     "note": null
+    },
+    {
+     "view": "short3s_test",
+     "executed": 130,
+     "cw_share": 0.038461538461538464,
+     "cw_wilson95": [
+      0.016538426255463985,
+      0.08687839986843529
+     ],
+     "lower_above_bar": true,
+     "note": null
+    }
+   ],
+   "note": "VSS-BERT's confidently-wrong share, 95% Wilson interval entirely above the bar, on any of the three views"
+  },
+  "B": {
+   "triggered": false,
+   "values": {
+    "V_all": {
+     "requested": 734,
+     "right": 734,
+     "right_share": 1,
+     "bar": 0.95,
+     "below": false
+    },
+    "forms": {
+     "create": {
+      "requested": 93,
+      "right_share": 1,
+      "below_bar": false
+     },
+     "set": {
+      "requested": 170,
+      "right_share": 1,
+      "below_bar": false
+     },
+     "move": {
+      "requested": 155,
+      "right_share": 1,
+      "below_bar": false
+     },
+     "delete": {
+      "requested": 150,
+      "right_share": 1,
+      "below_bar": false
+     },
+     "connect": {
+      "requested": 166,
+      "right_share": 1,
+      "below_bar": false
+     }
+    },
+    "form_bar": 0.9,
+    "form_min_requests": 30
+   }
+  },
+  "A": {
+   "triggered": false,
+   "values": {
+    "right_share_all_V": 1,
+    "right_share_bar": 0.95,
+    "condition_right_share": true,
+    "held_right_share_V": 0.15940054495912806,
+    "held_right_bar": 0.2,
+    "condition_held_right": false,
+    "cost_score_all_minus_cost_V": {
+     "a": 100,
+     "b": 84.0599455040872,
+     "difference": 15.940054495912804,
+     "ci95": [
+      13.351498637602177,
+      18.801089918256125
+     ],
+     "units": 734,
+     "ci_above_zero": true,
+     "ci_note": null
+    },
+    "condition_interval_above_zero": true,
+    "r2b": {
+     "held_right_share": 0.1416382252559727,
+     "cost_score_all": 98.12286689419795,
+     "cost_score_cost": 85.6655290102389,
+     "condition_points_agree": false
+    }
+   }
+  },
+  "D": {
+   "triggered": false,
+   "values": {
+    "short3s_test": {
+     "VSS_minus_VSS_BERT": {
+      "a": 10.952380952380953,
+      "b": 17.857142857142858,
+      "difference": -6.904761904761905,
+      "ci95": [
+       -22.14111922141119,
+       7.962529274004686
+      ],
+      "units": 329,
+      "ci_above_zero": false,
+      "ci_note": null
+     },
+     "SOP_BERT_minus_VSS_BERT": {
+      "a": 19.047619047619047,
+      "b": 17.857142857142858,
+      "difference": 1.1904761904761898,
+      "ci95": [
+       -5.813953488372093,
+       8.515815085158152
+      ],
+      "units": 329,
+      "ci_above_zero": false,
+      "ci_note": null
+     }
+    },
+    "reported_only": {
+     "V": {
+      "VSS": {
+       "a": 99.45504087193461,
+       "b": 84.0599455040872,
+       "difference": 15.395095367847418,
+       "ci95": [
+        12.80653950953679,
+        18.119891008174406
+       ],
+       "units": 734,
+       "ci_above_zero": true,
+       "ci_note": null
+      },
+      "SOP-BERT": {
+       "a": 70.708446866485,
+       "b": 84.0599455040872,
+       "difference": -13.351498637602191,
+       "ci95": [
+        -16.212534059945497,
+        -10.217983651226163
+       ],
+       "units": 734,
+       "ci_above_zero": false,
+       "ci_note": null
+      }
+     },
+     "t1s_by_gold_span": {
+      "VSS": {
+       "a": 25.125628140703515,
+       "b": 21.21719709659408,
+       "difference": 3.9084310441094345,
+       "ci95": [
+        -2.6726057906458784,
+        11.560364464692482
+       ],
+       "units": 1537,
+       "ci_above_zero": false,
+       "ci_note": null
+      },
+      "SOP-BERT": {
+       "a": 14.963707426018985,
+       "b": 21.21719709659408,
+       "difference": -6.253489670575096,
+       "ci95": [
+        -14.960182025028441,
+        3.0567685589519673
+       ],
+       "units": 1537,
+       "ci_above_zero": false,
+       "ci_note": null
+      }
+     }
+    }
+   },
+   "note": "decided on short3s test only; part of the tabs' advantage can be the Rules' vote in their gates (section 2)"
+  }
+ },
+ "precedence": null,
+ "omitted_rules": {
+  "V": {
+   "VSS-BERT": {
+    "requested": 734,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0,
+    "omitted_over_2pct": false
+   },
+   "VSS": {
+    "requested": 734,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0,
+    "omitted_over_2pct": false
+   },
+   "SOP-BERT": {
+    "requested": 734,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0,
+    "omitted_over_2pct": false
+   },
+   "Rules": {
+    "requested": 734,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0,
+    "omitted_over_2pct": false
+   }
+  },
+  "t1s": {
+   "VSS-BERT": {
+    "requested": 1791,
+    "multi_request_messages": 191,
+    "multi_requests": 382,
+    "destructive_described_in_single": 6,
+    "omitted_share": 0.2166387493020659,
+    "omitted_over_2pct": true
+   },
+   "VSS": {
+    "requested": 1791,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0,
+    "omitted_over_2pct": false
+   },
+   "SOP-BERT": {
+    "requested": 1791,
+    "multi_request_messages": 1,
+    "multi_requests": 2,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0.0011166945840312675,
+    "omitted_over_2pct": false
+   },
+   "Rules": {
+    "requested": 1791,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 13,
+    "omitted_share": 0.0072585147962032385,
+    "omitted_over_2pct": false
+   }
+  },
+  "short3s_test": {
+   "VSS-BERT": {
+    "requested": 420,
+    "multi_request_messages": 127,
+    "multi_requests": 272,
+    "destructive_described_in_single": 3,
+    "omitted_share": 0.6547619047619048,
+    "omitted_over_2pct": true
+   },
+   "VSS": {
+    "requested": 420,
+    "multi_request_messages": 57,
+    "multi_requests": 119,
+    "destructive_described_in_single": 2,
+    "omitted_share": 0.28809523809523807,
+    "omitted_over_2pct": true
+   },
+   "SOP-BERT": {
+    "requested": 420,
+    "multi_request_messages": 72,
+    "multi_requests": 150,
+    "destructive_described_in_single": 1,
+    "omitted_share": 0.3595238095238095,
+    "omitted_over_2pct": true
+   },
+   "Rules": {
+    "requested": 420,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 10,
+    "omitted_share": 0.023809523809523808,
+    "omitted_over_2pct": true
+   }
+  },
+  "r2b": {
+   "VSS-BERT": {
+    "requested": 586,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0,
+    "omitted_over_2pct": false
+   },
+   "VSS": {
+    "requested": 586,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0,
+    "omitted_over_2pct": false
+   },
+   "SOP-BERT": {
+    "requested": 586,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0,
+    "omitted_over_2pct": false
+   },
+   "Rules": {
+    "requested": 586,
+    "multi_request_messages": 0,
+    "multi_requests": 0,
+    "destructive_described_in_single": 0,
+    "omitted_share": 0,
+    "omitted_over_2pct": false
+   }
+  }
+ },
+ "views": {
+  "V": {
+   "VSS-BERT": {
+    "all": {
+     "requested": 734,
+     "right": 734,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 734,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.005206347291897045
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    },
+    "cost": {
+     "requested": 734,
+     "right": 617,
+     "wrong": 0,
+     "held_right": 117,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 617,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.006187503792382013
+     ],
+     "right_share": 0.840599455040872,
+     "cost_score": 84.0599455040872,
+     "auroc": null
+    }
+   },
+   "VSS": {
+    "all": {
+     "requested": 734,
+     "right": 734,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 734,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.005206347291897045
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    },
+    "cost": {
+     "requested": 734,
+     "right": 730,
+     "wrong": 0,
+     "held_right": 4,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 730,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.00523472588636803
+     ],
+     "right_share": 0.9945504087193461,
+     "cost_score": 99.45504087193461,
+     "auroc": null
+    }
+   },
+   "SOP-BERT": {
+    "all": {
+     "requested": 734,
+     "right": 734,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 734,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.005206347291897045
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    },
+    "cost": {
+     "requested": 734,
+     "right": 519,
+     "wrong": 0,
+     "held_right": 215,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 519,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.007347272898969076
+     ],
+     "right_share": 0.7070844686648501,
+     "cost_score": 70.708446866485,
+     "auroc": null
+    }
+   },
+   "Rules": {
+    "all": {
+     "requested": 734,
+     "right": 734,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 734,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.005206347291897045
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    },
+    "cost": {
+     "requested": 734,
+     "right": 734,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 734,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.005206347291897045
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    }
+   }
+  },
+  "t1s": {
+   "VSS-BERT": {
+    "all": {
+     "requested": 1791,
+     "right": 1364,
+     "wrong": 425,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 2,
+     "extras_executed": 193,
+     "extras_held": 0,
+     "executed": 1982,
+     "cw_share": 0.31180625630676084,
+     "cw_wilson95": [
+      0.2917931782404058,
+      0.33254742726782466
+     ],
+     "right_share": 0.7615857063093244,
+     "cost_score": -268.9000558347292,
+     "auroc": 0.8874372443508053
+    },
+    "cost": {
+     "requested": 1791,
+     "right": 860,
+     "wrong": 48,
+     "held_right": 504,
+     "held_wrong": 377,
+     "missed": 2,
+     "extras_executed": 0,
+     "extras_held": 193,
+     "executed": 908,
+     "cw_share": 0.05286343612334802,
+     "cw_wilson95": [
+      0.04010196994086726,
+      0.06939234829707264
+     ],
+     "right_share": 0.480178671133445,
+     "cost_score": 21.21719709659408,
+     "auroc": 0.8874372443508053
+    }
+   },
+   "VSS": {
+    "all": {
+     "requested": 1791,
+     "right": 1271,
+     "wrong": 291,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 229,
+     "extras_executed": 168,
+     "extras_held": 0,
+     "executed": 1730,
+     "cw_share": 0.2653179190751445,
+     "cw_wilson95": [
+      0.24504989424187465,
+      0.28662585624807146
+     ],
+     "right_share": 0.7096594081518705,
+     "cost_score": -185.31546621998882,
+     "auroc": 0.9589296335721106
+    },
+    "cost": {
+     "requested": 1791,
+     "right": 820,
+     "wrong": 37,
+     "held_right": 451,
+     "held_wrong": 254,
+     "missed": 229,
+     "extras_executed": 0,
+     "extras_held": 168,
+     "executed": 857,
+     "cw_share": 0.043173862310385065,
+     "cw_wilson95": [
+      0.031482935724907624,
+      0.05894191321586556
+     ],
+     "right_share": 0.45784477945281965,
+     "cost_score": 25.125628140703515,
+     "auroc": 0.9589296335721106
+    }
+   },
+   "SOP-BERT": {
+    "all": {
+     "requested": 1791,
+     "right": 1363,
+     "wrong": 406,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 22,
+     "extras_executed": 23,
+     "extras_held": 0,
+     "executed": 1792,
+     "cw_share": 0.23939732142857142,
+     "cw_wilson95": [
+      0.22021119565804456,
+      0.2596983501535176
+     ],
+     "right_share": 0.7610273590173088,
+     "cost_score": -163.428252372976,
+     "auroc": 0.8948945405291701
+    },
+    "cost": {
+     "requested": 1791,
+     "right": 828,
+     "wrong": 56,
+     "held_right": 535,
+     "held_wrong": 350,
+     "missed": 22,
+     "extras_executed": 0,
+     "extras_held": 23,
+     "executed": 884,
+     "cw_share": 0.06334841628959276,
+     "cw_wilson95": [
+      0.049103935114178425,
+      0.08137145294357159
+     ],
+     "right_share": 0.4623115577889447,
+     "cost_score": 14.963707426018985,
+     "auroc": 0.8948945405291701
+    }
+   },
+   "Rules": {
+    "all": {
+     "requested": 1791,
+     "right": 1791,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 1791,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.002140277550581173
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    },
+    "cost": {
+     "requested": 1791,
+     "right": 1791,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 1791,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.002140277550581173
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    }
+   }
+  },
+  "short3s_test": {
+   "VSS-BERT": {
+    "all": {
+     "requested": 420,
+     "right": 298,
+     "wrong": 92,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 30,
+     "extras_executed": 84,
+     "extras_held": 0,
+     "executed": 474,
+     "cw_share": 0.37130801687763715,
+     "cw_wilson95": [
+      0.32900985944469097,
+      0.4156753332432318
+     ],
+     "right_share": 0.7095238095238096,
+     "cost_score": -348.0952380952381,
+     "auroc": 0.8480590298962782
+    },
+    "cost": {
+     "requested": 420,
+     "right": 125,
+     "wrong": 5,
+     "held_right": 173,
+     "held_wrong": 87,
+     "missed": 30,
+     "extras_executed": 0,
+     "extras_held": 84,
+     "executed": 130,
+     "cw_share": 0.038461538461538464,
+     "cw_wilson95": [
+      0.016538426255463985,
+      0.08687839986843529
+     ],
+     "right_share": 0.2976190476190476,
+     "cost_score": 17.857142857142858,
+     "auroc": 0.8480590298962782
+    }
+   },
+   "VSS": {
+    "all": {
+     "requested": 420,
+     "right": 215,
+     "wrong": 78,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 127,
+     "extras_executed": 55,
+     "extras_held": 0,
+     "executed": 348,
+     "cw_share": 0.382183908045977,
+     "cw_wilson95": [
+      0.3326800654787005,
+      0.4342604188498816
+     ],
+     "right_share": 0.5119047619047619,
+     "cost_score": -265.4761904761905,
+     "auroc": 0.9214198286413708
+    },
+    "cost": {
+     "requested": 420,
+     "right": 116,
+     "wrong": 5,
+     "held_right": 99,
+     "held_wrong": 73,
+     "missed": 127,
+     "extras_executed": 2,
+     "extras_held": 53,
+     "executed": 123,
+     "cw_share": 0.056910569105691054,
+     "cw_wilson95": [
+      0.027837979430977634,
+      0.11282154182218651
+     ],
+     "right_share": 0.2761904761904762,
+     "cost_score": 10.952380952380953,
+     "auroc": 0.9214198286413708
+    }
+   },
+   "SOP-BERT": {
+    "all": {
+     "requested": 420,
+     "right": 290,
+     "wrong": 85,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 45,
+     "extras_executed": 32,
+     "extras_held": 0,
+     "executed": 407,
+     "cw_share": 0.28746928746928746,
+     "cw_wilson95": [
+      0.24564826130199482,
+      0.333264732359668
+     ],
+     "right_share": 0.6904761904761905,
+     "cost_score": -209.52380952380955,
+     "auroc": 0.8355142941349838
+    },
+    "cost": {
+     "requested": 420,
+     "right": 130,
+     "wrong": 5,
+     "held_right": 160,
+     "held_wrong": 80,
+     "missed": 45,
+     "extras_executed": 0,
+     "extras_held": 32,
+     "executed": 135,
+     "cw_share": 0.037037037037037035,
+     "cw_wilson95": [
+      0.01592191367286979,
+      0.08377063488447362
+     ],
+     "right_share": 0.30952380952380953,
+     "cost_score": 19.047619047619047,
+     "auroc": 0.8355142941349838
+    }
+   },
+   "Rules": {
+    "all": {
+     "requested": 420,
+     "right": 235,
+     "wrong": 50,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 135,
+     "extras_executed": 40,
+     "extras_held": 0,
+     "executed": 325,
+     "cw_share": 0.27692307692307694,
+     "cw_wilson95": [
+      0.23109436868105224,
+      0.32796366343787964
+     ],
+     "right_share": 0.5595238095238095,
+     "cost_score": -158.33333333333331,
+     "auroc": null
+    },
+    "cost": {
+     "requested": 420,
+     "right": 235,
+     "wrong": 50,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 135,
+     "extras_executed": 40,
+     "extras_held": 0,
+     "executed": 325,
+     "cw_share": 0.27692307692307694,
+     "cw_wilson95": [
+      0.23109436868105224,
+      0.32796366343787964
+     ],
+     "right_share": 0.5595238095238095,
+     "cost_score": -158.33333333333331,
+     "auroc": null
+    }
+   }
+  },
+  "r2b": {
+   "VSS-BERT": {
+    "all": {
+     "requested": 586,
+     "right": 585,
+     "wrong": 1,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 586,
+     "cw_share": 0.0017064846416382253,
+     "cw_wilson95": [
+      0.00030129997906917175,
+      0.009602138976162997
+     ],
+     "right_share": 0.9982935153583617,
+     "cost_score": 98.12286689419795,
+     "auroc": 1
+    },
+    "cost": {
+     "requested": 586,
+     "right": 502,
+     "wrong": 0,
+     "held_right": 83,
+     "held_wrong": 1,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 502,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.007594195402234639
+     ],
+     "right_share": 0.856655290102389,
+     "cost_score": 85.6655290102389,
+     "auroc": 1
+    }
+   },
+   "VSS": {
+    "all": {
+     "requested": 586,
+     "right": 586,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 586,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.00651269730781858
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    },
+    "cost": {
+     "requested": 586,
+     "right": 584,
+     "wrong": 0,
+     "held_right": 2,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 584,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.0065348553138912125
+     ],
+     "right_share": 0.9965870307167235,
+     "cost_score": 99.65870307167235,
+     "auroc": null
+    }
+   },
+   "SOP-BERT": {
+    "all": {
+     "requested": 586,
+     "right": 585,
+     "wrong": 1,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 586,
+     "cw_share": 0.0017064846416382253,
+     "cw_wilson95": [
+      0.00030129997906917175,
+      0.009602138976162997
+     ],
+     "right_share": 0.9982935153583617,
+     "cost_score": 98.12286689419795,
+     "auroc": 1
+    },
+    "cost": {
+     "requested": 586,
+     "right": 413,
+     "wrong": 0,
+     "held_right": 172,
+     "held_wrong": 1,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 413,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.009215635343964029
+     ],
+     "right_share": 0.7047781569965871,
+     "cost_score": 70.4778156996587,
+     "auroc": 1
+    }
+   },
+   "Rules": {
+    "all": {
+     "requested": 586,
+     "right": 586,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 586,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.00651269730781858
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    },
+    "cost": {
+     "requested": 586,
+     "right": 586,
+     "wrong": 0,
+     "held_right": 0,
+     "held_wrong": 0,
+     "missed": 0,
+     "extras_executed": 0,
+     "extras_held": 0,
+     "executed": 586,
+     "cw_share": 0,
+     "cw_wilson95": [
+      0,
+      0.00651269730781858
+     ],
+     "right_share": 1,
+     "cost_score": 100,
+     "auroc": null
+    }
+   }
+  }
+ },
+ "inputs": {
+  "/home/skutner/.cache/diagram-vss-shortcmd/rows/t1s.json": {
+   "set": "t1s",
+   "sha256": "2a098e17960df3974bfa99150c4d8e04f4a4a3fa78fb25a7a1f2e109b969f705"
+  },
+  "/home/skutner/.cache/diagram-vss-shortcmd/rows/t1raw.json": {
+   "set": "t1raw",
+   "sha256": "b17e46a83252c595d48a9372b20c91e1936eeaee7a079d30cca05c1cc5e990f1"
+  },
+  "/home/skutner/.cache/diagram-vss-shortcmd/rows/t1bs.json": {
+   "set": "t1bs",
+   "sha256": "98855b68a30f408d485370a4755f16b84f5498868f90a74e29fe384f62dcac44"
+  },
+  "/home/skutner/.cache/diagram-vss-shortcmd/rows/r2bs.json": {
+   "set": "r2bs",
+   "sha256": "57f448ffd82c1f601dbea67cd465352bf3bba901d0c0470028e6283aba8ed18d"
+  },
+  "/home/skutner/.cache/diagram-vss-shortcmd/rows/short3s.json": {
+   "set": "short3s",
+   "sha256": "07e1c43335f7a351adb7a8f50ae94de77c86d018690666fc875b89f9a6444f7f"
+  },
+  "/home/skutner/.cache/diagram-vss-shortcmd/rows/bench_s.json": {
+   "set": "bench_s",
+   "sha256": "b1b8c60b406bc23554bc187089cfed6660e6f5c388ed99ff3a0027953acc8f1e"
+  }
+ },
+ "ignored_files": []
+}

@@ -12,7 +12,7 @@ import { tmpdir, homedir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { fitCalibrationRecipe, isCalibration, stats } from '../calibrate_modernbert.mjs';
 import { goldProgram } from './parity_lib.mjs';
-import { loadSet, loadSets, assignParts, sha256Mod, NL_KINDS, contextNames, PARTS, CALIBRATION_SETS } from './sets.mjs';
+import { loadSet, loadSets, assignParts, sha256Mod, NL_KINDS, contextNames, PARTS, CALIBRATION_SETS, SET_ORDER } from './sets.mjs';
 import { buildRecord, loadRecords, itemsOf, resizeDirection, SHRINK_RE, seenFunction, ngramInventory } from './arm_lib.mjs';
 import { calibrateArm } from './calibrate_arm.mjs';
 import { scoreArm, scorePart, allStats, resizeSmaller } from './score_arm.mjs';
@@ -437,6 +437,43 @@ test('either view: a request is judged against its own span\'s slot, never anoth
   // and a request at the gpt-only span that is not what gpt wrote is an extra, not a wrong
   const extra = rec(item, [main(node('n1', 'command', { action: 'create', shape: 'circle', color: 'red' }), [0, 16]), main(node('n2', 'command', { action: 'create', shape: 'star' }), [23, 36])]);
   assert.deepEqual(itemsOf([extra], 'either', 'today').items.map(x => x.o), ['right', 'extra']);
+});
+
+// ---------------------------------------------------------------- MODERNBERT_RECAL_PLAN.md S2: the sets short_synth and synth_short_t1
+test('short_synth and synth_short_t1: counts, parts, order; the counts of the existing sets do not move', () => {
+  assert.deepEqual(SET_ORDER, ['fresh2', 'short3', 'collected_1', 'scenes_test', 'nl_a', 'nl_b', 'short_synth', 'synth_short_t1']);   // appended after every existing set
+  assert.deepEqual(PARTS.short_synth, ['calibration', 'test']); assert.deepEqual(PARTS.synth_short_t1, ['all']);
+  assert.deepEqual(CALIBRATION_SETS, ['fresh2', 'short3', 'nl_a', 'short_synth']);   // t1 and nl_b are never in a fit
+  const ss = loadSet('short_synth'), t1 = loadSet('synth_short_t1'), count = (s, p) => s.items.filter(i => i.part === p).length;
+  assert.equal(ss.items.length, 1997); assert.deepEqual([count(ss, 'calibration'), count(ss, 'test')], [679, 1318]);
+  for (const it of ss.items) assert.equal(it.part === 'calibration', isCalibration(it.id));   // the rule of fresh2 and short3: SHA256(id) % 3 == 0
+  assert.ok(ss.items.every(i => i.id.startsWith('sr2-') && i.kind === 'short' && i.session == null && i.group == null));
+  assert.equal(t1.items.length, 1793); assert.ok(t1.items.every(i => i.part === 'all' && i.id.startsWith('st1-') && i.kind === 'short' && i.wires.length === 1));
+  // the fresh set shares no id (loadSets throws) and no text, up to case and spacing, with the set the confidence is fitted on
+  const norm = t => t.toLowerCase().split(/\s+/).filter(Boolean).join(' '), seen = new Set(ss.items.map(i => norm(i.text)));
+  assert.deepEqual(t1.items.filter(i => seen.has(norm(i.text))).map(i => i.id), []);
+  loadSets(['fresh2', 'short3', 'nl_a', 'short_synth', 'synth_short_t1']);
+  // the existing sets: counts as before
+  const old = loadSets(['fresh2', 'short3']).flatMap(s => s.items);
+  assert.deepEqual([old.length, old.filter(i => i.part === 'calibration').length, old.filter(i => i.part === 'test').length], [1113, 368, 745]);
+  // a folder without a msg_NN.jsonl is an error, not an empty set
+  assert.throws(() => loadSet('synth_short_t1', { root: TMP + '/no-such-root' }), /holds no msg_NN\.jsonl/);
+});
+test('the calibration records of the existing sets keep their positions (and so their folds) when short_synth records are added', () => {
+  // calibrate_arm.mjs: fold = index in the pooled calibration list (records in SET_ORDER, then file order) % 5. The first 678 must be the same list.
+  const mk = (it, reader) => ({ id: it.id, set: it.set, session: it.session, group: it.group, reader, produced: [] });
+  const base = loadSets(['fresh2', 'short3', 'nl_a']).flatMap(s => s.items).map(it => mk(it, 'x')), extra = loadSet('short_synth').items.map(it => mk(it, 'x'));
+  const write = (f, rs) => { writeFileSync(f, rs.map(r => JSON.stringify(r) + '\n').join('')); return f; };
+  const A = write(TMP + '/ord-base.jsonl', base), B = write(TMP + '/ord-ss.jsonl', extra);
+  const cal = recs => recs.filter(r => CALIBRATION_SETS.includes(r.set) && r.part === 'calibration').map(r => r.set + '/' + r.id);
+  const without = cal(loadRecords([A], { verify: false }).records);
+  assert.equal(without.length, 678);   // 368 of fresh2 + short3, 310 of nl_a
+  for (const order of [[A, B], [B, A]]) {   // the order of the files given does not matter: SET_ORDER does
+    const withSS = cal(loadRecords(order, { verify: false }).records);
+    assert.equal(withSS.length, 678 + 679);
+    assert.deepEqual(withSS.slice(0, 678), without);
+    assert.ok(withSS.slice(678).every(x => x.startsWith('short_synth/')));
+  }
 });
 
 rmSync(TMP, { recursive: true, force: true });

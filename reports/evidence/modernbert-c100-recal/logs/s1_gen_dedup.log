@@ -1,0 +1,30 @@
+++ python3 training/sketch/synth/gen_short_r2.py --seed 1 --n 2400 --id-prefix st1 --out /tmp/claude-1000/-home-skutner--claude-spares-spare-wYHbMB/9427552c-edfc-4236-96bd-71a0a98fbd3f/scratchpad/t1_cand.jsonl
+2400 candidates -> /tmp/claude-1000/-home-skutner--claude-spares-spare-wYHbMB/9427552c-edfc-4236-96bd-71a0a98fbd3f/scratchpad/t1_cand.jsonl; forms: {'tpl_items': 80, 'create': 171, 'at_xy': 80, 'connect': 171, 'tpl_count': 80, 'set': 172, 'move': 172, 'undo_count': 80, 'delete': 172, 'outline_create': 80, 'redo': 171, 'every_arrow': 80, 'undo': 171, 'arrow_label': 80, 'outline_set': 80, 'layout_op': 80, 'outline_q': 80, 'arrow_style': 80, 'count_arrows': 80, 'size_desc': 80, 'free_text': 80, 'arrow_unlabel': 80}
+++ echo exit=0
+exit=0
+++ python3 training/sketch/synth/dedup_against.py /tmp/claude-1000/-home-skutner--claude-spares-spare-wYHbMB/9427552c-edfc-4236-96bd-71a0a98fbd3f/scratchpad/t1_cand.jsonl /tmp/claude-1000/-home-skutner--claude-spares-spare-wYHbMB/9427552c-edfc-4236-96bd-71a0a98fbd3f/scratchpad/t1_dedup.jsonl --report /home/skutner/.cache/diagram-vss-modernbert/arms/C100-s0/recal/s1_dedup_report.json --against training/sketch/llm_train/synth_short_r2 --against /home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/train.jsonl --against /home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/cut_train.jsonl --against training/sketch/llm_bench/nl_a/opus --against training/sketch/llm_bench/nl_a/gpt --against training/sketch/llm_bench/nl_b/opus --against training/sketch/llm_bench/nl_b/gpt
+{
+ "input": "/tmp/claude-1000/-home-skutner--claude-spares-spare-wYHbMB/9427552c-edfc-4236-96bd-71a0a98fbd3f/scratchpad/t1_cand.jsonl",
+ "output": "/tmp/claude-1000/-home-skutner--claude-spares-spare-wYHbMB/9427552c-edfc-4236-96bd-71a0a98fbd3f/scratchpad/t1_dedup.jsonl",
+ "messages": 2400,
+ "kept": 1830,
+ "dropped_by_cause": {
+  "text of training/sketch/llm_train/synth_short_r2": 481,
+  "duplicate text within the file": 54,
+  "text of /home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/train.jsonl": 34,
+  "text of /home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/cut_train.jsonl": 1
+ },
+ "against_rows_read": {
+  "training/sketch/llm_train/synth_short_r2": 1997,
+  "/home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/train.jsonl": 57135,
+  "/home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/cut_train.jsonl": 26913,
+  "training/sketch/llm_bench/nl_a/opus": 610,
+  "training/sketch/llm_bench/nl_a/gpt": 610,
+  "training/sketch/llm_bench/nl_b/opus": 601,
+  "training/sketch/llm_bench/nl_b/gpt": 601
+ },
+ "against_distinct_texts": 73563,
+ "against_distinct_ids": 30121
+}
+++ echo exit=0
+exit=0

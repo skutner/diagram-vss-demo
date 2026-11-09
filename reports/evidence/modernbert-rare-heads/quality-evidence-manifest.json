@@ -1,0 +1,88 @@
+{
+  "created_at": "2026-11-09T11:52:32.612791+02:00",
+  "protocol_sha256": "b15da300cb1817ad67e446c2de80aca54ba27cae523f4ba1bab0c1bd24e25738",
+  "candidate_sha256": "52a35fa7250204a1162ddd5d5ce9e3a22499637261881ec22a342b24c26c1b59",
+  "files": {
+    "score-W-s0.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/bundle/eval/score.truthful.json",
+      "sha256": "fbff1a23eceb256df796bb1715da9503664bd324fba16dea1c6505079a1e7ab2"
+    },
+    "calibration-W-s0.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/bundle/eval/calibration.json",
+      "sha256": "843fbfbd0e1685f0ecb13004992ce69d40f67d6c508708ae1f4022c43a3f438f"
+    },
+    "score-F-s0.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/F-s0/bundle/eval/score.truthful.json",
+      "sha256": "dd707d38e5490380999a6a64c94f92ebd796b4ba06f614f17a64484e388aff00"
+    },
+    "calibration-F-s0.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/F-s0/bundle/eval/calibration.json",
+      "sha256": "caaeda6af4609b36a96b07f9bbddcbce10e8d76a4ee186d2c0fb11df2bf370ca"
+    },
+    "score-B-s0.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/score.truthful.json",
+      "sha256": "f436c0b10b7e59902ef0520b5a053257ebd28c2d9372af8ea7d317402ced2e84"
+    },
+    "calibration-B-s0.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval/calibration.json",
+      "sha256": "28a868436e628c94c73a33d27bcb572a86dc129a9c21dda87d321b32a65ef997"
+    },
+    "score-C100-s0.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/baseline/C100-s0-v2/score.truthful.json",
+      "sha256": "aa2198f71eedac1123f9d8291f2194c009dc5448fc5919a988a57b5fb31af7b8"
+    },
+    "calibration-C100-s0.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/baseline/C100-s0-v2/calibration.json",
+      "sha256": "4b36cd62e6d705b32bd2845f2e7434cdd96721f162fff719f1ed541655c7ea3a"
+    },
+    "seed0-verdict.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/verdict/seed0/verdict.json",
+      "sha256": "eb0b81633700a17eb04eba89ed00e1f281bf80ffeca232b404ec07fbe3a18f5c"
+    },
+    "verdict-command.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-verdict-command-v1.json",
+      "sha256": "3e37dba28e3e7e6791d256a97262a92e0ac51bd5af7a01e05fd6c92a034b10f3"
+    },
+    "quality-command.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-quality-command-v1.json",
+      "sha256": "ed53462f0a72e71617fc28010a771a29ce74dd67ebf9c050a356238f89c29994"
+    },
+    "quality-receipt.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/evaluation-executions/1794214422457/receipt.json",
+      "sha256": "c1710fed933424751b9459f5111a6e4fd8f83e1eb56a9c236d67cb06d9a8c0c6"
+    },
+    "quality-resource-result.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/evaluation-executions/1794214422457/resource-result.json",
+      "sha256": "c3c47ca50fc2f16f2ab7ccb7454bef4f1179a6e9f3a1560127ed82532a21d9e0"
+    },
+    "quality-seal.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/bundle/rare_seal.json",
+      "sha256": "6af665c0e3b73f061ac89bdcfc7cfddbe88061ac85f0c496f09d0317f68e04d7"
+    },
+    "receipt.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/bundle/root-cause-attempts/1794217397590/receipt.json",
+      "sha256": "6e6c119d9ac7621921adb8742f1791862be912e4c30ff2d893660fd97c31ce6c"
+    },
+    "root-causes.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/bundle/root-cause-attempts/1794217397590/root-causes.json",
+      "sha256": "9d4209767659e9e7ef7dc30b4fcedc8a7bd40df2bb2034fda514b579ae5f565d"
+    },
+    "root-causes.md": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/bundle/root-cause-attempts/1794217397590/root-causes.md",
+      "sha256": "048c31a1754871a94d5283d6e5ed1048229001f1cef0ccbbc7e822a6b4b9ecbf"
+    },
+    "apparatus-takeover.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/apparatus-takeover-v2.json",
+      "sha256": "e17d71eb1d658568a000fb831d5fb4baf038a33aeb6e26d5b2b63018c51f1273"
+    },
+    "quality-metrics.csv": {
+      "derived_from": "score-{W-s0,F-s0,B-s0,C100-s0}.json",
+      "sha256": "14e23629d5a7fe27e53937c84eb480fbe34933c4746fc213f4d119dff3915c4f",
+      "rows": 360
+    },
+    "quality-tables.md": {
+      "derived_from": "source files listed in this manifest",
+      "sha256": "49a4a18249164c9adac0c402fd5793161f2cd9392a36b95e447445ed12c52a39"
+    }
+  }
+}

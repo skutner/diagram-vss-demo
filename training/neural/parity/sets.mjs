@@ -5,6 +5,11 @@
 //   scenes_test      every step of the 4 scenes, part `all`; the session of a step is its scene (the file)
 //   nl_a             folder with opus/*.jsonl and gpt/*.jsonl (the same rows, each teacher's labels); calibration = SHA256(split key) % 2 == 0,
 //                    the rest `development`. The split key is the row's session or group, else its id; a session or a group never crosses
+//   short_synth     training/sketch/llm_train/synth_short_r2 (synthetic short commands, gold = the Rules' reading); calibration = SHA256(id) % 3 == 0 as
+//                    fresh2 and short3, the rest `test`. Appended after every other set (MODERNBERT_RECAL_PLAN.md), so the folds of calibrate_arm.mjs
+//                    of the messages of the earlier sets do not move.
+//   synth_short_t1   training/sketch/llm_bench/synth_short_t1 (a fresh set of the same generator, another seed, cleaned): every message, part `all`, no
+//                    calibration part, never used in a fit (the deciding test of MODERNBERT_RECAL_PLAN.md). Its files are the msg_NN.jsonl of the folder.
 //   nl_b             the same layout as nl_a, one part, `all` (pure test: no calibration part, never used in a fit); read once, at M5.
 //                    LLM_BENCH_ROOT (a folder holding nl_b/{opus,gpt}) redirects ONLY this set, for testing the tools on a synthetic copy; the manifest of a
 //                    collection then shows that root in its files
@@ -16,9 +21,9 @@ import { resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const BENCH = fileURLToPath(new URL('../../sketch/llm_bench/', import.meta.url));
-export const SET_ORDER = ['fresh2', 'short3', 'collected_1', 'scenes_test', 'nl_a', 'nl_b'];
+export const SET_ORDER = ['fresh2', 'short3', 'collected_1', 'scenes_test', 'nl_a', 'nl_b', 'short_synth', 'synth_short_t1'];
 /** the parts a set has; the part scored as the test is never the calibration part */
-export const PARTS = { fresh2: ['calibration', 'test'], short3: ['calibration', 'test'], collected_1: ['all'], scenes_test: ['all'], nl_a: ['calibration', 'development'], nl_b: ['all'] };
+export const PARTS = { fresh2: ['calibration', 'test'], short3: ['calibration', 'test'], collected_1: ['all'], scenes_test: ['all'], nl_a: ['calibration', 'development'], nl_b: ['all'], short_synth: ['calibration', 'test'], synth_short_t1: ['all'] };
 export const CALIBRATION_SETS = SET_ORDER.filter(s => PARTS[s].includes('calibration'));
 
 /** the kinds of the new sets, fixed by training/sketch/llm_bench/NL_TEST_SPEC.md */
@@ -35,6 +40,9 @@ const SPECS = {
   scenes_test: { files: [1, 2, 3, 4].map(i => `scenes_test/batch_0${i}.jsonl`), kind: 'session', session: f => 'scenes_test/' + basename(f, '.jsonl') },
   nl_a: { dual: 'nl_a', writer: f => nlWriter(f) },
   nl_b: { dual: 'nl_b', writer: f => nlbWriter(f) },
+  // `dir`: every msg_NN.jsonl of the folder (relative to the llm_bench root), in name order
+  short_synth: { dir: '../llm_train/synth_short_r2', kind: 'short' },
+  synth_short_t1: { dir: 'synth_short_t1', kind: 'short' },
 };
 
 /** SHA256(s) % n, as calibrate_modernbert.mjs isCalibration (n = 3) */
@@ -46,7 +54,7 @@ export const splitKey = row => row.session ?? row.group ?? row.id;
  *  smallest split key among them), so that not even a row with both a session and a group can bring a session or a group across the split. */
 export function assignParts(setName, rows) {
   if (!PARTS[setName]) throw new Error('Unknown set ' + setName);
-  if (setName === 'fresh2' || setName === 'short3') return rows.map(r => (sha256Mod(r.id, 3) === 0 ? 'calibration' : 'test'));
+  if (setName === 'fresh2' || setName === 'short3' || setName === 'short_synth') return rows.map(r => (sha256Mod(r.id, 3) === 0 ? 'calibration' : 'test'));
   if (setName === 'nl_a') {
     const parent = new Map(), find = x => { while (parent.get(x) !== x) { parent.set(x, parent.get(parent.get(x))); x = parent.get(x); } return x; };
     const labelsOf = r => (r.session == null && r.group == null ? ['I:' + r.id] : [r.session != null ? 'S:' + r.session : null, r.group != null ? 'G:' + r.group : null].filter(Boolean));
@@ -99,7 +107,13 @@ export function loadSet(name, { root = name === 'nl_b' && process.env.LLM_BENCH_
     const shown = root === BENCH ? '' : root + '/';
     files.push(shown + spec.dual + '/opus', ...(alt ? [shown + spec.dual + '/gpt'] : []));
   } else {
-    for (const f of spec.files) {
+    let list = spec.files;
+    if (spec.dir) {
+      const d = resolve(root, spec.dir);
+      list = existsSync(d) ? readdirSync(d).filter(f => /^msg_\d+\.jsonl$/.test(f)).sort().map(f => spec.dir + '/' + f) : [];
+      if (!list.length) throw new Error(`${name}: ${d} holds no msg_NN.jsonl`);
+    }
+    for (const f of list) {
       const p = resolve(root, f);
       if (!existsSync(p)) throw new Error(`${name}: ${p} is missing`);
       files.push(f);

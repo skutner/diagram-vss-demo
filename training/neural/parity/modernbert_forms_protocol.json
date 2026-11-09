@@ -1,0 +1,284 @@
+{
+ "about": "ModernBERT forms: F = B + nonreserved synth_short_r2 whole messages (plan section 'Frozen data'); the old campaign's split is consumed read-only",
+ "budget": {
+  "max_trajectories": 3,
+  "restart_or_replacement": false,
+  "trajectories": [
+   "F-s0",
+   "B-s1",
+   "F-s1"
+  ]
+ },
+ "campaign": "modernbert-forms-2026-11-08",
+ "comparisons": [
+  {
+   "candidate": "F-s0",
+   "comparator": "B-s0",
+   "id": "F1"
+  },
+  {
+   "also": "C100 (common protocol)",
+   "candidate": "F-s0",
+   "comparator": "B-s0",
+   "id": "F3"
+  },
+  {
+   "candidate": "B-s1",
+   "comparator": "C100-s1",
+   "guard": "G",
+   "id": "P3"
+  },
+  {
+   "candidate": "F-s1",
+   "comparator": "B-s1",
+   "id": "F4"
+  }
+ ],
+ "date": "2026-11-08",
+ "f_rule": {
+  "contract": "diagram-reader-v2",
+  "disjoint": true,
+  "excluded": [
+   "r2_reserved",
+   "restored_only (R minus B)",
+   "calibration",
+   "t1_all",
+   "guard evaluation (fresh2_test, short3_test, nl_a_development)"
+  ],
+  "expected_count": 28330,
+  "expected_parts": {
+   "B": 26913,
+   "r2_nonreserved": 1417
+  },
+  "name": "F",
+  "note": "nothing is recomputed: groups, folds, calibration, views and conservative exclusions are the old campaign's",
+  "roles_allowed": [
+   "train_c100",
+   "r2"
+  ],
+  "source_order": [
+   "llm_train/sonnet_msg",
+   "llm_train/haiku_msg",
+   "llm_train/sonnet_msg2",
+   "llm_train/haiku_msg2",
+   "llm_train/sonnet_long",
+   "llm_bench/fresh1/sonnet",
+   "llm_bench/fresh1/haiku",
+   "llm_train/sonnet_short",
+   "llm_train/haiku_short",
+   "llm_train/opus_train_a",
+   "llm_train/opus_train_b",
+   "llm_train/opus_train_c",
+   "llm_train/opus_train_d",
+   "llm_train/opus_gen_1",
+   "llm_train/opus_gen_2",
+   "llm_train/synth_rules",
+   "llm_train/synth_rules_ops",
+   "llm_train/synth_rules_ext",
+   "llm_train/ops_formulations",
+   "llm_train/opus_ext_1",
+   "llm_train/synth_combo",
+   "llm_train/synth_short_r2",
+   "llm_train/nl_p1",
+   "llm_train/nl_p2",
+   "llm_bench/sonnet_spans",
+   "llm_bench/haiku_spans"
+  ],
+  "union": [
+   "B",
+   "r2_nonreserved"
+  ]
+ },
+ "old_docs": [
+  {
+   "base": "repo",
+   "path": "reports/modernbert-next-plan-2026-11-08_codex.md",
+   "sha256": "0ef29893509256a11f2859fb4b2fbfab45ca2ae448db26795315ceeab26c587b"
+  },
+  {
+   "base": "repo",
+   "path": "reports/modernbert-next-plan-review-2026-11-08_codex.md",
+   "sha256": "c07121d2ccd10ddb84c735955957c755de86a63d47a0140d90d7a7b138c8b6c1"
+  },
+  {
+   "base": "repo",
+   "path": "reports/modernbert-next-grouping-amendment-2026-11-08_codex.md",
+   "sha256": "ff9a2eabf63e108dec65c0adc8e3499045568d203edbe6eb24a249eb1abd778b"
+  },
+  {
+   "base": "repo",
+   "path": "reports/modernbert-next-grouping-amendment-review-2026-11-08_codex.md",
+   "sha256": "b4fef95aa33948f65e28a268b72221340254930f3b363a4b6a25dc7a9e1aef6f"
+  }
+ ],
+ "old_root": "next-2026-11-08",
+ "parents": {
+  "addendum": {
+   "path": "next-2026-11-08/frozen-lists/decision-rules-addendum.json",
+   "sha256": "304a1be5fb5a27f944ce588a24e16e39676b497a860f4fd3a153b955dcdc1b19"
+  },
+  "audit": {
+   "path": "next-2026-11-08/protocol-v2/audit.json",
+   "sha256": "378becf2e258f1bd85b49520c0c517ab47c4f2a100022799669f91439fac5343"
+  },
+  "groups": {
+   "path": "next-2026-11-08/protocol-v2/groups.jsonl",
+   "sha256": "a407e2327be5f2cb007d2f3ecec2c168bb2b133fd27904571e54d7ae22e49724"
+  },
+  "groups_multi": {
+   "path": "next-2026-11-08/protocol-v2/groups_multi.jsonl",
+   "sha256": "4b369b03a04503d98d5a171ed59ae3146c7c0f74152a394d497e7dba33445081"
+  },
+  "membership": {
+   "B": {
+    "count": 26913,
+    "path": "next-2026-11-08/protocol-v2/membership/B.ids",
+    "sha256": "bd9f6a4a51d83c9d0548fb1ae11810af07e7a8f9c626d7be5abfd07bd749ff4f"
+   },
+   "R": {
+    "count": 29645,
+    "path": "next-2026-11-08/protocol-v2/membership/R.ids",
+    "sha256": "a42212b51510306c1f65d145a547ce4c66ba3e489f681663c490bce8ca8c4689"
+   },
+   "S": {
+    "count": 31062,
+    "path": "next-2026-11-08/protocol-v2/membership/S.ids",
+    "sha256": "ba23f377d0048863e9b84a067b8df207c3cc65fcd79c3ca361444739c33b3183"
+   },
+   "calibration": {
+    "count": 1144,
+    "path": "next-2026-11-08/protocol-v2/membership/calibration.ids",
+    "sha256": "62717551d9f00a23b642e30b396982d2025bbd0aa8ef0b2450359d83e8137110"
+   },
+   "fresh2_test": {
+    "count": 405,
+    "path": "next-2026-11-08/protocol-v2/membership/fresh2_test.ids",
+    "sha256": "b867c9c47882e57564b52f74b6ebf607ada4c9c32ee73ba1892c31b0ceb3596f"
+   },
+   "fresh2_test_other_drawings": {
+    "count": 389,
+    "path": "next-2026-11-08/protocol-v2/membership/fresh2_test_other_drawings.ids",
+    "sha256": "b7d840ec7bff0876ccaa10cc143a2d528583fd1feaea617476266fcf61079565"
+   },
+   "nl_a_development": {
+    "count": 300,
+    "path": "next-2026-11-08/protocol-v2/membership/nl_a_development.ids",
+    "sha256": "355dfced69aa46ad0f1ffead3850e231f7c4c57e11de0936b9957fa6322beb8e"
+   },
+   "r2_nonreserved": {
+    "count": 1417,
+    "path": "next-2026-11-08/protocol-v2/membership/r2_nonreserved.ids",
+    "sha256": "7b97c08a10029a9374d30799972e94a42cff217a46badc769e26ac8854e7e326"
+   },
+   "r2_reserved": {
+    "count": 580,
+    "path": "next-2026-11-08/protocol-v2/membership/r2_reserved.ids",
+    "sha256": "dffa3902f2ca4b0b9badcbadc6a24ba60bf528f7373692d51f8f67cd8b5a1a71"
+   },
+   "short3_test": {
+    "count": 340,
+    "path": "next-2026-11-08/protocol-v2/membership/short3_test.ids",
+    "sha256": "5f072b3b88ad376b83034dae25d7101ddb96abbbae404fd884e836eea64561f2"
+   },
+   "t1_all": {
+    "count": 1793,
+    "path": "next-2026-11-08/protocol-v2/membership/t1_all.ids",
+    "sha256": "cabc95f6eaf4ed38bf4036b62aa19c5a746e6b032454060aac9826a984ff4aa8"
+   },
+   "t1_clean": {
+    "count": 1354,
+    "path": "next-2026-11-08/protocol-v2/membership/t1_clean.ids",
+    "sha256": "8dd70d778cdbaeeea439f7315f12acf4ae2bd56a7516b89e87518edab419591d"
+   }
+  },
+  "overlay": {
+   "base": "repo",
+   "path": "training/neural/parity/LABEL_FIXES_SHORT.jsonl",
+   "sha256": "f1a95f7d598672d7241718bd8bce5767cc7b7ae2d7e7c4f1b8e51ac9ba3e5a1e"
+  },
+  "overlay_changes": {
+   "path": "next-2026-11-08/protocol-v2/overlay_changes.json",
+   "sha256": "80e82644f5140a872fadedde6b4c9d06868c443b34954d1029dac743af21e15e"
+  },
+  "protocol": {
+   "path": "next-2026-11-08/protocol-v2/protocol.json",
+   "sha256": "3999991890f1a92b811fbe0cde86ccdf35ca38e71606b45d0ec14ea5dc872e78"
+  },
+  "sha256sums": {
+   "path": "next-2026-11-08/protocol-v2/SHA256SUMS",
+   "sha256": "fa173474b17d398c9acfadf178d88e70ce3bfb82a1c5623e7701ecaaba145d22"
+  },
+  "views_manifest": {
+   "path": "next-2026-11-08/views/manifest.json",
+   "sha256": "df4abeeeec0e1948e3b8220d6c670d259cebe938e4765921d0f161ff0506cf5a"
+  }
+ },
+ "plan": {
+  "base": "repo",
+  "path": "reports/modernbert-forms-plan-2026-11-08_codex.md",
+  "sha256": "0635a2470ad387c79d41e06ec89ac1f31cc3da9c43e4c95f0569d25f3e937f1c"
+ },
+ "plan_review": {
+  "base": "repo",
+  "path": "reports/modernbert-forms-plan-review-2026-11-08_codex.md",
+  "sha256": "f80acb37b7564169cb6d77a36bf71612fc635961fdd719e953b29c8d5e809f0c"
+ },
+ "required_r2_cells": [
+  "outline_question",
+  "fill_and_outline_colours",
+  "outline_gold",
+  "desc_size_huge_in_mention",
+  "undo_redo_count",
+  "bare_move"
+ ],
+ "support": {
+  "calibration_groups_min": 100,
+  "calibration_groups_per_fold_min": 10,
+  "clean_create_groups_min": 10,
+  "family_min_groups": 1,
+  "form_groups_min": 10,
+  "form_requests_min": 20,
+  "r2_cell_min_requests": 1,
+  "r2_cell_thin_requests": 20,
+  "t1_clean_groups_min": 100,
+  "t1_clean_requests_min": 500
+ },
+ "tools": {
+  "LABEL_FIXES_L2.jsonl": {
+   "base": "repo",
+   "path": "training/neural/parity/LABEL_FIXES_L2.jsonl",
+   "sha256": "2e1aa05f1aecd8c49ae12e7176acd748228a314c6be6503d1cc8a1579a531dea"
+  },
+  "logic.js": {
+   "base": "repo",
+   "path": "docs/js/logic.js",
+   "sha256": "715da7ed6b783350d3d167f7d477fbd58cfa722b69c877904552321ce6fcdc0e"
+  },
+  "make_data.py": {
+   "base": "repo",
+   "path": "training/neural/make_data.py",
+   "sha256": "b81b1c6a3ed75d3d2affbfd14eb6f0d0326c081557997b23789d4f4478f828de"
+  },
+  "make_roles.py": {
+   "base": "repo",
+   "path": "training/neural/make_roles.py",
+   "sha256": "83c104274de57efdfd2c7b6f2dca9b965afc60d0d3a28541c6d8330b287582f3"
+  },
+  "modernbert_next_data.py": {
+   "base": "repo",
+   "path": "training/neural/parity/modernbert_next_data.py",
+   "sha256": "f6cf3899b536f854c8b1c63b9bd0b00e85099af752e807a1a3b8ee56ecda2ddf"
+  },
+  "neural.js": {
+   "base": "repo",
+   "path": "docs/js/neural.js",
+   "sha256": "c0faac042f883313e50e452ca7c730fb92e71f205be9cac79cdc13bd03179b00"
+  },
+  "sample1000_ids.txt": {
+   "base": "repo",
+   "path": "training/neural/sample1000_ids.txt",
+   "sha256": "6220cdf03e87a5730911831b41f3fc8d5c9be573cf72c36842a1015cec2246d2"
+  }
+ },
+ "version": "modernbert-forms-protocol-v1"
+}

@@ -1,7 +1,13 @@
 """CPU export of a finished run of finetune_modernbert_batched.py into a folder that docs/js/neural.js makeReader reads through Transformers.js, with
 dtype q8 and graphOptimizationLevel basic, as the published docs/model/neural/modernbert is read. For experiment arms: it takes any head layout, from the run's reader.json.
 
-python training/neural/parity/arm_export.py --work RUN --data DATA --out FOLDER [--epoch N] [--allow-partial]
+python training/neural/parity/arm_export.py --work RUN --data DATA --out FOLDER [--epoch N] [--allow-partial] [--protocol FILE]
+
+Output contract (make_roles.py --output-contract; reports/modernbert-next-plan-2026-11-08_codex.md "Interfaces / contracts" 3): the run's reader.json
+carries output_contract and text_state_keys into config.json reader as they are; config.json reader.contract_binding and the receipt's "contract" bind
+them: the contract, its text state keys, the SHA-256 of the head layout that decodes them (contract_sha256) and, with --protocol, the SHA-256 of the
+campaign's frozen protocol file. A reader that declares a contract this file does not know, or diagram-reader-v2 without its heads, is refused; a v2
+reader needs --protocol. A legacy reader (no output_contract) is exported as before, with contract "legacy" recorded.
 
 Steps: PyTorch (eager, FP32) -> float ONNX, checked against PyTorch -> dynamic q8 -> the weight-only conversion -> shards under 90 MiB.
 Checks, written to FOLDER/arm_receipt.json:
@@ -82,6 +88,29 @@ try {
   try { if (model) await model.dispose(); } finally { rmSync(cache, { recursive: true, force: true }); }
 }
 """
+
+
+V2 = "diagram-reader-v2"
+
+
+def contract_binding(R, protocol=None):
+    """the output contract of a head layout, checked, with the hashes that bind it (see the head of the file); SystemExit when it does not hold"""
+    contract = R.get("output_contract")
+    if contract not in (None, V2): raise SystemExit(f"Unknown output contract in reader.json: {contract!r}")
+    if contract == V2:
+        keys, cls = R.get("text_state_keys"), dict((k, v) for k, v in R["classes"])
+        if not isinstance(keys, list) or any(cls.get("text:" + k) != ["absent", "empty", "written"] for k in keys):
+            raise SystemExit(f"{V2}: text_state_keys {keys!r} without their text:<key> heads (absent, empty, written)")
+        if any("unresolved" not in cls.get("fill:" + k, []) for k in R.get("ref_keys", [])): raise SystemExit(f"{V2}: a fill:<key> head lacks unresolved")
+        if protocol is None: raise SystemExit(f"A {V2} reader is exported for a campaign: --protocol FILE (the frozen protocol it belongs to)")
+    layout = {k: R.get(k) for k in ("output_contract", "text_state_keys", "acts", "tags", "classes", "act_keys", "ref_keys", "desc_keys", "desc2_keys")}
+    out = {"output_contract": contract or "legacy", "text_state_keys": R.get("text_state_keys", []),
+           "contract_sha256": hashlib.sha256(json.dumps(layout, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()}
+    if protocol is not None:
+        protocol = Path(protocol)
+        if not protocol.is_file(): raise SystemExit(f"--protocol {protocol}: no such file")
+        out["protocol"] = {"path": str(protocol.resolve()), "sha256": sha(protocol)}
+    return out
 
 
 def load_run(a):
@@ -222,6 +251,7 @@ def main():
     ap.add_argument("--out", required=True, type=Path, help="a new folder, outside the repository")
     ap.add_argument("--epoch", type=int, help="export epoch_N.pt instead of the last weights")
     ap.add_argument("--allow-partial", action="store_true", help="export a dry run; marked in the config and the receipt")
+    ap.add_argument("--protocol", type=Path, help="the campaign's frozen protocol file, bound by its SHA-256 (required for a diagram-reader-v2 reader)")
     a = ap.parse_args()
     if a.out.resolve().is_relative_to(REPO): raise SystemExit("Arms export outside the repository; only an adopted one enters docs/model")
     if a.out.exists(): raise SystemExit("Use a new output folder")
@@ -232,6 +262,7 @@ def main():
     from onnxruntime.quantization import QuantType, quantize_dynamic
     R = json.loads((a.data / "reader.json").read_text()); layout = Layout(R)
     if sha(a.data / "reader.json") != meta["data"]["files"]["reader.json"]: raise ValueError("Reader layout hash mismatch")
+    binding = contract_binding(R, a.protocol)
 
     def reader(attn):
         cfg = ModernBertConfig.from_pretrained(a.work / "encoder_config", local_files_only=True)
@@ -296,7 +327,7 @@ def main():
     config = cfg.to_dict(); config["architectures"] = ["ModernBertModel"]
     config["reader"] = dict(R, max_length=128, tokenization=POLICY, export_mode=MODE, arithmetic="8-bit weights, float32 arithmetic", execution_policy=EXECUTION_POLICY,
                             training_manifest=dict(meta["data"], message_ids=sorted(train_ids), message_ids_sha256=hashlib.sha256(("\n".join(sorted(train_ids)) + "\n").encode()).hexdigest()),
-                            training_provenance=provenance, cut=dict(R.get("cut", {}), max_length=512))
+                            training_provenance=provenance, cut=dict(R.get("cut", {}), max_length=512), contract_binding=binding)
     if "canvas" in meta["settings"]:   # arm M4: trained with the second read (--canvas-rows); docs/js/neural.js reads the drawing only for a reader with this
         config["reader"]["drawing"] = dict(format="drawing-lines-v1", max_length=meta["settings"]["canvas"]["cap"], canvas_rows=meta["settings"]["canvas"])
     config["transformers.js_config"] = {"use_external_data_format": len(chunks)}
@@ -337,7 +368,7 @@ def main():
                "weights": {"sha256": weights_sha, **provenance["completed"]}, "export_mode": MODE, "execution_policy": EXECUTION_POLICY,
                "torch_vs_node": {"texts": len(texts), "counts": counts, "differences": differences, "per_text": per_text},
                "python_ort_vs_node": node["checks"], "float_vs_torch_max_abs": maxima, "sdpa_vs_eager_max_abs": sdpa_max, "tolerance": {"atol": ATOL, "rtol": RTOL},
-               "cases_where_q8_decodes_differently_from_float": changes, "conversion": {"blocks": blocks, "quantizers": quantizers},
+               "cases_where_q8_decodes_differently_from_float": changes, "conversion": {"blocks": blocks, "quantizers": quantizers}, "contract": binding,
                "float_graph_files": float_files, "shards": chunks, "files": files, "source_changes_since_training": source_changes,
                "runtime": {**node["runtime"], "python": platform.python_version(), "python_onnxruntime": ort.__version__}}
     atomic_json(a.out / "arm_receipt.json", receipt)

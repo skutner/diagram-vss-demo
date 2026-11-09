@@ -1,0 +1,47 @@
+{
+  "preserved_at": "2026-11-09T11:54:47.231065+02:00",
+  "artifacts": {
+    "verify.mjs": {
+      "source": "/tmp/rare-quality-verify.VgJw1v/verify.mjs",
+      "sha256": "67e82852c4a9d0e5af1b2af6293dbbbe80d681631a53af0f84cddddf5a200c9a"
+    },
+    "stdout.log": {
+      "source": "/tmp/rare-quality-verify.VgJw1v/stdout.log",
+      "sha256": "23aa3dec106d04e8983d304f6db07dcf10cb2c4d9ab8183106e49ae8a3174e87"
+    },
+    "stderr.log": {
+      "source": "/tmp/rare-quality-verify.VgJw1v/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "report.json": {
+      "source": "/tmp/rare-quality-verify.VgJw1v/report.json",
+      "sha256": "8986e3204ca2111dd04b3ec5919e1f9729b2d142a31e46a5311ecf084904efb2"
+    },
+    "records.mjs": {
+      "source": "/tmp/rare-quality-verify.VgJw1v/records.mjs",
+      "sha256": "4c1825b55fab4036b1ed760b92a2cd518c560485f9e98783e42f062f774ffc3d"
+    },
+    "records-stdout.log": {
+      "source": "/tmp/rare-quality-verify.VgJw1v/records-stdout.log",
+      "sha256": "c522e86ecd9c27366f5b0d93f6e61c3ac5ad89ae83795f360b76cec4a2ecfc29"
+    },
+    "records-stderr.log": {
+      "source": "/tmp/rare-quality-verify.VgJw1v/records-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "records-report.json": {
+      "source": "/tmp/rare-quality-verify.VgJw1v/records-report.json",
+      "sha256": "9f38a48f868b70b4b5d1584c95d2abb4a71e13971d47cef5c6cdb11d82c74c43"
+    },
+    "quality-verification.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/verification/quality-v1/report.json",
+      "sha256": "8986e3204ca2111dd04b3ec5919e1f9729b2d142a31e46a5311ecf084904efb2"
+    },
+    "quality-records-verification.json": {
+      "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/verification/quality-v1/records-report.json",
+      "sha256": "9f38a48f868b70b4b5d1584c95d2abb4a71e13971d47cef5c6cdb11d82c74c43"
+    }
+  },
+  "scope": "New quality/verdict/root causes; source suites and fit/model probes reused",
+  "parent_inspection": "Inspected stdout/stderr, all check ok fields, decisive comparison values and recorded scope; did not rerun completed verification"
+}

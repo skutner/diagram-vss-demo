@@ -1,0 +1,355 @@
+{
+ "created": "2026-11-08",
+ "head": "0ab687cc142e884ed16332925c6d7cd558e1b8fb",
+ "scoped_diff_cmd": "git diff --binary HEAD -- . ':!training/qwen'",
+ "scoped_diff_sha256": "8b2eab735d23c353bd0eac212ed2f596c9d314e35d8dc57e2f0fa60e97173cfd",
+ "excluded": [
+  "training/qwen/* (concurrent, not owned)"
+ ],
+ "plan_sha256": "0ef29893509256a11f2859fb4b2fbfab45ca2ae448db26795315ceeab26c587b",
+ "plan_review_sha256": "c07121d2ccd10ddb84c735955957c755de86a63d47a0140d90d7a7b138c8b6c1",
+ "files": [
+  {
+   "path": "training/neural/MODERNBERT_RUNLOG.md",
+   "status": "tracked-modified",
+   "sha256": "eecc34291cea6c924f1c63a98b2642c97b57a52efdf7f5bd39d72b73357f6c69"
+  },
+  {
+   "path": "training/neural/parity/sets.mjs",
+   "status": "tracked-modified",
+   "sha256": "249f7eb6aea357ba4a61b2f7513aa3537dbc1af7a71137a6786ee09bed8da9a9"
+  },
+  {
+   "path": "training/neural/parity/test_score_tools.mjs",
+   "status": "tracked-modified",
+   "sha256": "974bdcdb70893e725d44ceb526db7d8d07ca2e35ef05e705fd3fa8cbf022d86a"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/README.md",
+   "status": "untracked",
+   "sha256": "c4bdcbe193f36096291f3bca8e62896cba8dacc949ef7232428b929c1e76e28e"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/compare.json",
+   "status": "untracked",
+   "sha256": "3fb42ba150a1100ebf5e863b725bdc8468afb4877032ca5e97fd862fff04e5e5"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/ctrl.calibration.json",
+   "status": "untracked",
+   "sha256": "f6d107f22041d8f281e68f052f8a82f5701ec8c999e18819c1fef6414ad9995c"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s0_baseline.log",
+   "status": "untracked",
+   "sha256": "a50af8737540f6a3dce8ba0e63036916330269f9e12fa755e120c49b68561511"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s1_check_file.log",
+   "status": "untracked",
+   "sha256": "4c72f035b6a522f7541d6c587affc342cfc05271a3d6eaaf671ca89161b7f17e"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s1_gen_dedup.log",
+   "status": "untracked",
+   "sha256": "f58d9eebee75169280b65b2a98e1af62716f43371c6860442ba1b44693fc0b12"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s2_rules_collect.log",
+   "status": "untracked",
+   "sha256": "86573809e61674f72a13ddf6f776aee15b1db79398d9b808a3948a0c44004b1d"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s2_rules_score.log",
+   "status": "untracked",
+   "sha256": "7691d720adcba1cb1b1eeffe37a21129758f1a66d35b028cf8a2523b17091d25"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s4_ctrl_calibrate.log",
+   "status": "untracked",
+   "sha256": "fd9960f0410f0ce0b0faee0770a48c4195b56bacfecd52ad326190fafc54f2ba"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s5_collect_ss.log",
+   "status": "untracked",
+   "sha256": "36bb6a1fa95888a7db0216b20759c43e4929bfca3e33bb33447c476f67170fa6"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s6_compare.log",
+   "status": "untracked",
+   "sha256": "f5fc5aa3335122ef7b520d92dd0d163649b62b5549af546b744396072d860591"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s6_ctrl_score.log",
+   "status": "untracked",
+   "sha256": "88907041f10063487c08e71d53e5992549e7c3c489007dc4cb8b7bce04c0546f"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s6_short_calibrate.log",
+   "status": "untracked",
+   "sha256": "ce3ee15d45d6f10237566a7a82f2e68bf0fec197119d9af6122dc3bed4a4e4e0"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s6_short_score.log",
+   "status": "untracked",
+   "sha256": "d66c3eb6684a7a26887c87d6c7ea430e31ed9583a60f1724c8143920a28f5051"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s7_recal_report.log",
+   "status": "untracked",
+   "sha256": "32fcbdd6067019a30f669480cf16752f8639177a21ba3b27cf5eecf5be2131d4"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/logs/s7_root_causes.log",
+   "status": "untracked",
+   "sha256": "b18f6f99f2872f34ca1c38d72a21d8dccc6ff9e4f9d8839a7534ca2ca775a645"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/rec_ss.manifest.json",
+   "status": "untracked",
+   "sha256": "1eecd8dfba42878015c383832210e5c06be853ba2e8fe376d3444933c04b86fa"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/recal_report.mjs",
+   "status": "untracked",
+   "sha256": "182bcaacc36ec445e96f840de96336d65ff472b2f412c38cb133529e873dfac2"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/root_causes.json",
+   "status": "untracked",
+   "sha256": "c3260713c2e55fe977581521f9459869edf020864dcec7320d5c6ebcfe916d73"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/root_causes.md",
+   "status": "untracked",
+   "sha256": "743ef2aed7cf19bf13ea9c6c9abea37503a86b3f80fa4091071476933b7ecb4d"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/rules_ss.score.json",
+   "status": "untracked",
+   "sha256": "4a1359143cc4feb98961c741c472454b90dc982db9a56e5a9c0817ae3c4fa42a"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/s1_dedup_report.json",
+   "status": "untracked",
+   "sha256": "86e9ab2463474ae95b83feacdf381fa10996bd41c3562788f5bebf16b42bad42"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/s1_size_gate.json",
+   "status": "untracked",
+   "sha256": "62fa7c0ab37eca9ea3a5ed06aecfcd0677adb885cf972e6354de37af3462d457"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/short.calibration.json",
+   "status": "untracked",
+   "sha256": "9dd0fa0a80909e8395bcca884f8d10511d674bc25ba7d92fb895f2a2f305f94e"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/short.confidence.json",
+   "status": "untracked",
+   "sha256": "3b3120fc61c518d1703c281accab0a216cc8aa8a06c579aee1a2aeee71a26f2a"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/short_probe.ctrl.txt",
+   "status": "untracked",
+   "sha256": "0c63fa7c71e99997ffa3763e1196698de1cb57e03090832fbc444d99ce324b31"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/short_probe.short.txt",
+   "status": "untracked",
+   "sha256": "c4be71086fc360d773f2581615cee0ea72293aa75aed1ab6991a724355e8cc58"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/summary.json",
+   "status": "untracked",
+   "sha256": "f0a4edb111e849af93fcb6299b9f4f946b11becbfb83ebe0971974364c9078ec"
+  },
+  {
+   "path": "reports/evidence/modernbert-c100-recal/summary.md",
+   "status": "untracked",
+   "sha256": "32fcbdd6067019a30f669480cf16752f8639177a21ba3b27cf5eecf5be2131d4"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/README.md",
+   "status": "untracked",
+   "sha256": "065e1fd5d5ec285135dd3d57e7a634d04fa6650d6cea6e4611f2c50c28e7fda9"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/browser_probes.json",
+   "status": "untracked",
+   "sha256": "e8ead0f1c2fc6ec9da1c058d4e41b4a5255f482f956794227beb524e030bc664"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/inputs.sha256",
+   "status": "untracked",
+   "sha256": "4c68cbbd65bdbd933708a3d01bd86d54f5f19abd8e56c5e9188a495124ea925f"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/make_tables.mjs",
+   "status": "untracked",
+   "sha256": "f1dcc6ef02993796f41a535f0d0137ff333be11c06d4b7b2fc27fd897c140318"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/outcomes.json",
+   "status": "untracked",
+   "sha256": "0bb30b9fbc8549d57911ae12761bfc648d7fcd52b57e6bbdcace7f31887f3596"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/parity.txt",
+   "status": "untracked",
+   "sha256": "bd9480a18fd37a7f42b8a99f44b2a3dce5c6352a83e09c171eaa204ae984a613"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/repro.md",
+   "status": "untracked",
+   "sha256": "4e8373c03fa6b638b60ce10b2d981ef9324c221d4e80b8db48354f1aec33139d"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/repro_failures.txt",
+   "status": "untracked",
+   "sha256": "029081ed93ad02ffd65e8dab3c0f2417d7abdc57aec2b9886ea59bc4cc75dc98"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/root_causes.md",
+   "status": "untracked",
+   "sha256": "3701cb71cba374b816528a27d072a96a0caaadd5736e943ffef289842f567e06"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/tables.md",
+   "status": "untracked",
+   "sha256": "de0f67cfa23a28d7b4aded3ca5e7ad044ed8b201cfb91b24fd20a12383fc4f2a"
+  },
+  {
+   "path": "reports/evidence/vssbert-short-commands/views.md",
+   "status": "untracked",
+   "sha256": "2f0ca4f9798f386db67050cfad75ecb2d2a6bb628f4c19afbe493566987023a9"
+  },
+  {
+   "path": "reports/modernbert-next-plan-2026-11-08_codex.md",
+   "status": "untracked",
+   "sha256": "0ef29893509256a11f2859fb4b2fbfab45ca2ae448db26795315ceeab26c587b"
+  },
+  {
+   "path": "reports/modernbert-next-plan-review-2026-11-08_codex.md",
+   "status": "untracked",
+   "sha256": "c07121d2ccd10ddb84c735955957c755de86a63d47a0140d90d7a7b138c8b6c1"
+  },
+  {
+   "path": "reports/modernbert-review-claude-2026-11-08.md",
+   "status": "untracked",
+   "sha256": "4015e5db21555acc15e88c8eb5f232abeb68be0b2ba7c82d2c444d6cfc86c1ad"
+  },
+  {
+   "path": "reports/modernbert-review-codex-2026-11-08_codex.md",
+   "status": "untracked",
+   "sha256": "b9cd00104df2d339ad7d7dc88b2b9ead5a1d7b7dfbb219ed8e71ce60fabf5528"
+  },
+  {
+   "path": "reports/modernbert-review-prompt.md",
+   "status": "untracked",
+   "sha256": "b673c09d817e31031aa5ffb4ebc13c092b4220f29ee38f860ba80d3da9e675ff"
+  },
+  {
+   "path": "reports/modernbert-status-2026-11-08.md",
+   "status": "untracked",
+   "sha256": "1e5a7ed001ac664aaa099e183094308932b7deb4b0867c756f2b51387b9e8ee5"
+  },
+  {
+   "path": "training/neural/MODERNBERT_RECAL_HANDOFF.md",
+   "status": "untracked",
+   "sha256": "81bac5032318c030ce5749243d7d0e59be4e85f162b30a39de177082c5f77d44"
+  },
+  {
+   "path": "training/neural/MODERNBERT_RECAL_PLAN.md",
+   "status": "untracked",
+   "sha256": "a6a46adfc02dc951424143b6279b30f162f80fcd52e30c788f5b0f323afa62b2"
+  },
+  {
+   "path": "training/neural/parity/compare_fits.mjs",
+   "status": "untracked",
+   "sha256": "46236c4cc66d38da3875748a43e99b443bb9ae55f55aea51013e0beae6edc2dc"
+  },
+  {
+   "path": "training/neural/parity/test_compare_fits.mjs",
+   "status": "untracked",
+   "sha256": "d0750303462ed4d9d6011dd78cbfbf682c7779172c7cbef33747103fd4d9afea"
+  },
+  {
+   "path": "training/sketch/VSSBERT_SHORT_COMMANDS_PLAN.md",
+   "status": "untracked",
+   "sha256": "a6c36d2529a57ebe7cc37dfcf782919163149b2e06d2510ab09bbecb48af05a8"
+  },
+  {
+   "path": "training/sketch/shortcmd/apply_gates.mjs",
+   "status": "untracked",
+   "sha256": "f12abd2ece01cc06bb3f3363715daed2082d98b7d96c8d7cc767757d69500ee9"
+  },
+  {
+   "path": "training/sketch/shortcmd/bare_view.py",
+   "status": "untracked",
+   "sha256": "b2aad6638b6082d24ed787e28729e312324fddf398948cdd66fd899f54f2504e"
+  },
+  {
+   "path": "training/sketch/shortcmd/bench_rows.mjs",
+   "status": "untracked",
+   "sha256": "8ea74f77143ae9c990bb15f80164bc7abe41d42159ba991a962d0f1623f448fb"
+  },
+  {
+   "path": "training/sketch/shortcmd/outcomes.mjs",
+   "status": "untracked",
+   "sha256": "3ac2e330fe4c1192725719941d6f947e8f5e9e619ccb81993779719714c5dce5"
+  },
+  {
+   "path": "training/sketch/shortcmd/parity.mjs",
+   "status": "untracked",
+   "sha256": "061d1b4917e9395f03fc206271ad5a54f328335e3edb8b0c84a44336afb97028"
+  },
+  {
+   "path": "training/sketch/shortcmd/probes/msg_01.jsonl",
+   "status": "untracked",
+   "sha256": "9de3041e5e2c4a691bfdffe08a43cdc5ebaf6b3671b71410841cf1618c7f39c8"
+  },
+  {
+   "path": "training/sketch/shortcmd/root_causes.mjs",
+   "status": "untracked",
+   "sha256": "c357aaf08593912c14d959b347d8bb7e687b1447c3c7f7c017541a9e05b558f1"
+  },
+  {
+   "path": "training/sketch/shortcmd/spell_view.mjs",
+   "status": "untracked",
+   "sha256": "fe2b0d4f797cf80ad416991f0cb666817d84c514093d55fd882cb3f1d4a95ba9"
+  },
+  {
+   "path": "training/sketch/shortcmd/test_bare_view.py",
+   "status": "untracked",
+   "sha256": "a6fd9a44033d502f9612727a1f63a4a6e9650b2c05dd287ceae89d45d846878a"
+  },
+  {
+   "path": "training/sketch/shortcmd/test_shortcmd.mjs",
+   "status": "untracked",
+   "sha256": "8bd5a88813242c964ed44ced422105b55c0ad5e9f301057be829884ca3102fc8"
+  },
+  {
+   "path": "training/sketch/synth/synth_short_r2_bare_check.json",
+   "status": "untracked",
+   "sha256": "cf6c6e9a05bc9181013d0e0a22cad35166e19a4deac740a4baad097f57f6560a"
+  },
+  {
+   "path": "training/sketch/synth/synth_short_t1_bare_check.json",
+   "status": "untracked",
+   "sha256": "a89b78ef0aad65eb6160f314eac307377b17d8427a6fb34682d30c8b4296b7ba"
+  },
+  {
+   "path": "training/laptop/node_modules",
+   "status": "untracked",
+   "symlink": "/home/skutner/.cache/diagram-vss-modernbert/source/training/laptop/node_modules",
+   "sha256": null,
+   "note": "symlink to shared node_modules cache, not hashed"
+  }
+ ],
+ "reused_cache": {
+  "C100-s0/run/complete.json": "0581fa51cb6a36f2ab9c8b1649476c5bbedd97dd7fe0641f63d4ce07366f8e9f",
+  "expected-data-manifest.json": "c9ef9e4989b4dfa91bb5005a8cbfd459069394655c0ba0e2ba42af0ce89955c8"
+ },
+ "base_model_revision": "answerdotai/ModernBERT-base@8949b909ec900327062f0ebf497f51aef5e6f0c8"
+}

@@ -18,7 +18,19 @@ Under make_roles.py ROLE_TOO_RICH=context a role too rich for one description is
 Under make_roles.py IMPLIED_SCALE=1 the rows are built with the same switches and `scale` is compared too, here and in roles_roundtrip.mjs (bench-canon.js skips it); LABEL_FIXES
 applies to the gold of this comparison as it does to the rows.
 --gate MIN_RT MAX_SILENT (job 071): exit 1 if a TRAINED folder's round trip is below MIN_RT % or its silent wrong-label share is above MAX_SILENT %.
+Output contract and frozen input (reports/modernbert-next-plan-2026-11-08_codex.md, acceptance B13 and B14):
+  --messages FILE.jsonl, --output-contract diagram-reader-v2: passed to make_roles.py (see there); with --messages the trained requests are the file's
+    messages, grouped in the tables by their source (a "source" field, else the id's prefix: messages:<prefix>).
+  --prep modernbert [--tokenizer DIR, default docs/model/neural/modernbert-c100]: roles_roundtrip.mjs decodes with the published ModernBERT reader's
+    preparation (wordwise word pieces with the prefix space, caps 128 / 512, the rest unread), not the SOP tokenizer (the default, --prep sop).
+  Every gold request gets one outcome class (second table, "outcome classes"): exact (decoded right), legitimate context (only a reference the
+  shared context rule fills, NOT_LABEL), structural abstention (the engine refuses it, ASKED; or the request is held structurally: a v2 hold, a
+  truncated request, a request that uses one, a request beyond the cut's unread text: "held"), unrepresentable (decoded wrong because the
+  layout cannot hold the gold, UNREP) and wrong (other). The exact-only share is printed and saved. The gate counts exact + legitimate context
+  + structural abstention. Under v2 a row trained as unresolved, or as a written text with no tag, is held by the decoder: counted with the
+  rows the layout cannot hold, never as a silent wrong label.
 Run: EXTRA_DIRS="..." python3 training/neural/roles_roundtrip.py [--work DIR] [--compare-rows ROWS_DIR] [--gate 95 1] [--md PREFIX: writes PREFIX.table]
+     [--messages FILE.jsonl] [--output-contract diagram-reader-v2] [--prep modernbert] [--tokenizer DIR]
 """
 import argparse, collections, json, os, re, subprocess, sys
 
@@ -39,6 +51,9 @@ NOT_LABEL = ("context:", "$new vs the created name")
 # Scene3,Intake name Intake; one word takes one tag, so the target comes back as Scene3 alone and logic.js refuses a group of one shape)
 ONE_WORD = "one word for two keys (the group name is also a target)"
 ASKED = ('label=""', ONE_WORD)
+# causes of a wrong request that are limits of the layout (the gold cannot be held), not of the labels' content: "unrepresentable"
+UNREP = ("value with no class", "key not in the legend", "key of a legend kind not learned", "key not read for this act", "implied value with no class",
+         "description mixed with names", "description: several mentions")
 
 
 _LAYOUT = []
@@ -138,6 +153,7 @@ def silent(row, R, LEG, number_words):
     """the ways this row's label states something other than its gold (a list of reasons; empty: the label is the gold)"""
     out = []; gold = row["gold"]; ck = {k: v for k, v in R["classes"]}
     tgt = dict(zip([k for k, _ in R["classes"]], class_targets(row, R["classes"])))   # what the loss trains
+    v2 = R.get("output_contract") == MR.V2; tsk = R.get("text_state_keys") or []
     for k, v in gold.items():
         if k in ("action", "ask"): continue
         if k not in ck and k not in R["span_keys"] and not (k == "scale" and not MR.IMPLIED_SCALE):
@@ -154,12 +170,21 @@ def silent(row, R, LEG, number_words):
             elif tgt[k] == 0: out.append(f"{k}: value 'none' trained as absent")
             continue
         kind = LEG[k]["kind"]; ps = MR.parts(v)
+        if v2 and k in tsk:   # the text's state head (make_roles.py --output-contract); a written text with no tag is held by the decoder
+            state, tagged = row["classes"].get("text:" + k), bool(spans_of(row["tags"]).get(k))
+            if str(v) == "":
+                if state != "empty": out.append(f'{k}="" not trained as empty ({state})')
+                elif tagged: out.append(f'{k}="" trained as empty with a tag')
+                continue
+            if state != "written": out.append(f"{k}: written text not trained as written ({state})"); continue
+            if not tagged: out.append(f"{k}: written text with no tag (held)"); continue
         if not ps:
             if str(v) == "": out.append(f'{k}="" trained as absent')
             continue
         spans = [" ".join(row["words"][i:j]).lower() for i, j in spans_of(row["tags"]).get(k, [])]
         fill = row["classes"].get("fill:" + k)
         if kind == "names" and fill == "context": continue          # a reference the shared rule fills: the label is "context", which is right
+        if kind == "names" and fill == "unresolved": out.append(f"{k}: unresolved (held)"); continue   # v2: the decoder holds it, no target
         if kind == "names" and fill == "description":
             if any(not p.startswith("mention(") for p in ps): out.append(f"{k}: names beside a description dropped")
             if sum(1 for p in ps if p.startswith("mention(")) > 1: out.append(f"{k}: several descriptions in one role (one learned)")
@@ -216,11 +241,16 @@ def main():
     ap.add_argument("--gate", nargs=2, type=float, default=None, metavar=("MIN_RT", "MAX_SILENT"))
     ap.add_argument("--compare-rows", default=None, help="a make_roles.py --all output (job 071's): its train.jsonl and reader.json must equal the ones built here")
     ap.add_argument("--examples", type=int, default=3)
+    ap.add_argument("--messages", default=None, help="make_roles.py --messages: the frozen training messages (JSONL)")
+    ap.add_argument("--output-contract", default="legacy", choices=["legacy", MR.V2], help="make_roles.py --output-contract")
+    ap.add_argument("--prep", default="sop", choices=["sop", "modernbert"], help="roles_roundtrip.mjs --prep: the decoder's word-piece preparation")
+    ap.add_argument("--tokenizer", default=None, help="the tokenizer folder (default: docs/model/neural/sop-bert, or modernbert-c100 with --prep modernbert)")
     a = ap.parse_args()
     os.makedirs(a.work, exist_ok=True)
     rows_dir = os.path.join(a.work, "rows")
     fixes = MR.load_label_fixes(MR.LABEL_FIXES) if MR.LABEL_FIXES else None
-    subprocess.run([sys.executable, os.path.join(HERE, "make_roles.py"), "--all", "--out", rows_dir, "--also", *ALSO], check=True, stdout=subprocess.DEVNULL)
+    extra = (["--messages", a.messages] if a.messages else []) + (["--output-contract", a.output_contract] if a.output_contract != "legacy" else [])
+    subprocess.run([sys.executable, os.path.join(HERE, "make_roles.py"), "--all", "--out", rows_dir, *extra, "--also", *ALSO], check=True, stdout=subprocess.DEVNULL)
     if a.compare_rows:
         for f in ("train.jsonl", "reader.json"):
             if open(os.path.join(rows_dir, f), "rb").read() != open(os.path.join(a.compare_rows, f), "rb").read():
@@ -236,11 +266,19 @@ def main():
             if l.strip(): r = json.loads(l); by[r["id"]].append(r)
         return by
     trained = load_rows(os.path.join(rows_dir, "train.jsonl"))
-    folders = [(d, True) for d in MD.DIRS + MD.SAMPLE_DIRS] + [(d, False) for d in ALSO]
+    if a.messages:   # the frozen training messages, as make_roles.py --messages reads them, grouped by source
+        given = [json.loads(l) for l in open(a.messages, encoding="utf8") if l.strip()]; MR.apply_label_fixes(given, fixes)
+        groups = collections.OrderedDict()
+        for m in given: groups.setdefault(str(m.get("source") or "messages:" + m["id"].split("-")[0]), []).append(m)
+        folders = [(d, True, ms) for d, ms in groups.items()]
+    else:
+        folders = [(d, True, None) for d in MD.DIRS + MD.SAMPLE_DIRS]
+    folders += [(d, False, None) for d in ALSO]
     msgs_out, meta = [], {}
-    for d, is_train in folders:
+    for d, is_train, given_msgs in folders:
         by = trained if is_train else load_rows(os.path.join(rows_dir, "also_" + d.replace("/", "__") + ".jsonl"))
-        msgs = MD.messages([d]); MR.apply_label_fixes(msgs, fixes)
+        if given_msgs is None: msgs = MD.messages([d]); MR.apply_label_fixes(msgs, fixes)
+        else: msgs = given_msgs
         for m in msgs:
             wires = [w for w in m.get("wires", []) if "pending" not in w]
             rows = by.get(m["id"], []); k = 0; mrows = []; dropped = {}
@@ -260,7 +298,11 @@ def main():
     with open(inp, "w", encoding="utf8") as f:
         for x in msgs_out: f.write(json.dumps(x, ensure_ascii=False) + "\n")
     print(f"{len(msgs_out)} messages -> node (docs/js/neural.js decoding)", flush=True)
-    subprocess.run(["node", os.path.join(HERE, "roles_roundtrip.mjs"), os.path.join(rows_dir, "reader.json"), inp, outp], check=True)
+    tok = a.tokenizer or (os.path.join(MD.REPO, "docs", "model", "neural", "modernbert-c100") if a.prep == "modernbert" else None)
+    subprocess.run(["node", os.path.join(HERE, "roles_roundtrip.mjs"), os.path.join(rows_dir, "reader.json"), inp, outp, *([tok] if tok else []),
+                    *(["--prep", a.prep] if a.prep != "sop" else [])], check=True)
+    oracle = json.load(open(outp + ".meta.json"))
+    print("decoder preparation: " + json.dumps(oracle), flush=True)
 
     T = collections.OrderedDict()
     causes = collections.Counter(); cause_ex = collections.defaultdict(list); key_causes = collections.Counter()
@@ -274,7 +316,10 @@ def main():
             act = MD.act_of(w.get("type"), w.get("args", {}))
             if g["o"] == "right": continue
             row = byw.get(j)
-            if row is None: c, k = dropped[j], ""
+            if g["o"] == "held":   # structural abstention: never decoded into a wire that runs (see the head of the file)
+                for kd in g.get("held") or ["held"]: t["h:" + kd] += 1
+                c, k = "held: " + ", ".join(g.get("held") or ["held"]), ""
+            elif row is None: c, k = dropped[j], ""
             elif g["o"] == "missing": c, k = "missing: the cut tags lost or merged the span", ""
             else:
                 cs = [(category(kk, act, got, want, row, R, LEG), kk) for kk, got, want in g["miss"]]
@@ -284,6 +329,7 @@ def main():
                 c, k = next(((cc, kk) for cc, kk in cs if cc != "class decoded differently"), cs[0])
                 if all(cc.startswith(NOT_LABEL) or (cc == "class decoded differently" and len(cs) > 1) for cc, _ in cs): t["right_or_ref"] += 1
                 elif all(cc.startswith(NOT_LABEL + ASKED) or (cc == "class decoded differently" and len(cs) > 1) for cc, _ in cs): t["asked"] += 1
+                elif c.startswith(UNREP): t["unrepresentable"] += 1
             grp = group_of(c, k, act); t["c:" + grp] += 1; causes[(grp, c)] += 1
             if len(cause_ex[(grp, c)]) < a.examples: cause_ex[(grp, c)].append(f'{o["id"]} "{w.get("span")}" {json.dumps(w.get("args"))} -> {g.get("miss") or g["o"]}')
         t["extra"] += len(o["extra"])
@@ -291,7 +337,7 @@ def main():
             t["rows"] += 1; s = silent(r, R, LEG, number_words)
             # label="" (remove a label) has no word to tag: the row trains "no label", so the decoded label request has no text and the
             # engine asks for it (logic.js: "What should the label say?"); not done, never done wrong: counted apart from the silent labels
-            asks = [x for x in s if x.endswith('="" trained as absent') or ONE_WORD in x]
+            asks = [x for x in s if x.endswith('="" trained as absent') or ONE_WORD in x or x.endswith("(held)")]
             if asks: t["asks"] += 1
             if len(asks) < len(s):
                 t["silent"] += 1
@@ -312,6 +358,16 @@ def main():
                      + " | ".join(pc(t['c:' + g], t['gold']) for g in used_groups) + " |")
     table = "\n".join(lines)
     print(table)
+    # the outcome classes (see the head of the file): every gold request in exactly one
+    oc = ["| folder | trained | requests | exact | legitimate context | structural abstention | unrepresentable | wrong (other) | missing | exact + context + abstention | held, by kind |",
+          "|---|---|---|---|---|---|---|---|---|---|---|"]
+    for d, t in list(T.items()) + [("ALL trained folders", totT), ("ALL", tot)]:
+        other = t["wrong"] - t["right_or_ref"] - t["asked"] - t["unrepresentable"]
+        kinds = ", ".join(f"{k[2:]} {v}" for k, v in sorted(t.items()) if k.startswith("h:"))
+        oc.append(f"| {d} | {'yes' if t['train'] else 'no'} | {t['gold']} | {pc(t['right'], t['gold'])} | {pc(t['right_or_ref'], t['gold'])} | {pc(t['asked'] + t['held'], t['gold'])} | "
+                  f"{pc(t['unrepresentable'], t['gold'])} | {pc(other, t['gold'])} | {pc(t['missing'], t['gold'])} | {pc(t['right'] + t['right_or_ref'] + t['asked'] + t['held'], t['gold'])} | {kinds or '-'} |")
+    outcomes = "\n".join(oc)
+    print("\noutcome classes (exact-only share: the column exact):\n" + outcomes)
     print("\ncauses of the requests that do not round-trip (all folders; first wrong key):")
     cl = []
     for (g, c), n in causes.most_common():
@@ -325,14 +381,17 @@ def main():
     print("\n".join(sl))
     res = {"table": {d: dict(t) for d, t in T.items()}, "causes": {f"{g} / {c}": n for (g, c), n in causes.items()},
            "keys": {f"{k} / {c}": n for (k, c), n in key_causes.items()}, "silent": {f"{w} / {k}": n for (w, k), n in sil_reasons.items()}}
+    if a.prep != "sop" or a.messages or a.output_contract != "legacy":   # the historical invocation keeps its file as it was
+        res["oracle"] = dict(oracle, output_contract=R.get("output_contract", "legacy"), messages=a.messages)
+        res["exact_only"] = {d: (t["right"] / t["gold"] if t["gold"] else None) for d, t in list(T.items()) + [("ALL trained folders", totT), ("ALL", tot)]}
     json.dump(res, open(os.path.join(a.work, "roundtrip.json"), "w"), indent=1)
     if a.md:
-        with open(a.md + ".table", "w", encoding="utf8") as f: f.write(table + "\n\n### Causes\n\n" + "\n".join(cl) + "\n\n### Silent wrong labels\n\n" + "\n".join(sl) + "\n")
+        with open(a.md + ".table", "w", encoding="utf8") as f: f.write(table + "\n\n### Outcome classes\n\n" + outcomes + "\n\n### Causes\n\n" + "\n".join(cl) + "\n\n### Silent wrong labels\n\n" + "\n".join(sl) + "\n")
     if a.gate:
         lo, hi = a.gate; bad = []
         for d, t in T.items():
             if not t["train"] or not t["gold"]: continue
-            rt, sw = (t["right"] + t["right_or_ref"] + t["asked"]) / t["gold"] * 100, t["silent"] / max(t["rows"], 1) * 100
+            rt, sw = (t["right"] + t["right_or_ref"] + t["asked"] + t["held"]) / t["gold"] * 100, t["silent"] / max(t["rows"], 1) * 100
             if rt < lo: bad.append(f"{d}: round trip (right, reference only or asked) {rt:.1f}% < {lo}%")
             if sw > hi: bad.append(f"{d}: silent wrong labels {sw:.2f}% > {hi}%")
         if bad: print("GATE FAILED:\n  " + "\n  ".join(bad)); sys.exit(1)

@@ -1,0 +1,1349 @@
+{
+ "tool": "modernbert_forms_measure diagnose",
+ "campaign": "modernbert-forms-2026-11-08",
+ "protocol_sha256": "0e8dc86f525a1754a28e0bae6e4c38e72a1c13bfd88d9895e21b90894b34e6f0",
+ "plan_sha256": "0635a2470ad387c79d41e06ec89ac1f31cc3da9c43e4c95f0569d25f3e937f1c",
+ "views_manifest_sha256": "df4abeeeec0e1948e3b8220d6c670d259cebe938e4765921d0f161ff0506cf5a",
+ "arms": [
+  {
+   "name": "C100",
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/baseline/C100-s0-v2",
+   "confidence_sha256": "08783c357d8a4dd33f9f4d41c2ca0621596211cfc198358278cb60c00f571dab",
+   "score_sha256": "aa2198f71eedac1123f9d8291f2194c009dc5448fc5919a988a57b5fb31af7b8"
+  },
+  {
+   "name": "B",
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval",
+   "confidence_sha256": "58feb5b50d2c30afc66f69007b0a8858f954816fd64629ed3b6dcf9e20013e63",
+   "score_sha256": "f436c0b10b7e59902ef0520b5a053257ebd28c2d9372af8ea7d317402ced2e84"
+  },
+  {
+   "name": "R",
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/R-s0/eval",
+   "confidence_sha256": "c4b456dc774b05f2b08894f4253c146618fd83fba130068afbfc24e2d9bfc345",
+   "score_sha256": "7224f2893b844a325e45c7f757701650cd00e7ca07e4fcf836baaca43e19e1a6"
+  }
+ ],
+ "views_dir": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/views",
+ "reconciliation": [
+  {
+   "arm": "C100",
+   "population": "lowercase_other_affected",
+   "ok": true,
+   "ungated_requested": 825,
+   "right_ungated": 603
+  },
+  {
+   "arm": "C100",
+   "population": "lowercase_other_affected_original_case",
+   "ok": true,
+   "ungated_requested": 825,
+   "right_ungated": 754
+  },
+  {
+   "arm": "C100",
+   "population": "short3_lowercase",
+   "ok": true,
+   "ungated_requested": 134,
+   "right_ungated": 53
+  },
+  {
+   "arm": "C100",
+   "population": "nl_a_development (part)",
+   "ok": true,
+   "ungated_requested": 392,
+   "right_ungated": 50
+  },
+  {
+   "arm": "B",
+   "population": "lowercase_other_affected",
+   "ok": true,
+   "ungated_requested": 825,
+   "right_ungated": 612
+  },
+  {
+   "arm": "B",
+   "population": "lowercase_other_affected_original_case",
+   "ok": true,
+   "ungated_requested": 825,
+   "right_ungated": 746
+  },
+  {
+   "arm": "B",
+   "population": "short3_lowercase",
+   "ok": true,
+   "ungated_requested": 134,
+   "right_ungated": 63
+  },
+  {
+   "arm": "B",
+   "population": "nl_a_development (part)",
+   "ok": true,
+   "ungated_requested": 392,
+   "right_ungated": 44
+  },
+  {
+   "arm": "R",
+   "population": "lowercase_other_affected",
+   "ok": true,
+   "ungated_requested": 825,
+   "right_ungated": 629
+  },
+  {
+   "arm": "R",
+   "population": "lowercase_other_affected_original_case",
+   "ok": true,
+   "ungated_requested": 825,
+   "right_ungated": 766
+  },
+  {
+   "arm": "R",
+   "population": "short3_lowercase",
+   "ok": true,
+   "ungated_requested": 134,
+   "right_ungated": 102
+  },
+  {
+   "arm": "R",
+   "population": "nl_a_development (part)",
+   "ok": true,
+   "ungated_requested": 392,
+   "right_ungated": 49
+  }
+ ],
+ "reconciliation_ok": true,
+ "case_gap": {
+  "C100": {
+   "requests": 825,
+   "ungated_right_share_original_pct": 91.4,
+   "ungated_right_share_lowercase_pct": 73.1,
+   "gated_right_share_original_pct": 67.9,
+   "gated_right_share_lowercase_pct": 27.5,
+   "ungated_gap_points": 18.3,
+   "gated_gap_points": 40.4,
+   "ungated_transitions_original_to_lowercase": {
+    "right -> right": 597,
+    "right -> unread": 14,
+    "right -> wrong": 143,
+    "unread -> unread": 18,
+    "wrong -> right": 6,
+    "wrong -> unread": 4,
+    "wrong -> wrong": 43
+   },
+   "gated_transitions_original_to_lowercase": {
+    "held-confidence -> held-confidence": 232,
+    "held-confidence -> right": 2,
+    "held-confidence -> unread": 9,
+    "right -> held-confidence": 325,
+    "right -> right": 225,
+    "right -> unread": 9,
+    "right -> wrong": 1,
+    "unread -> unread": 18,
+    "wrong -> held-confidence": 3,
+    "wrong -> wrong": 1
+   },
+   "gated_confident_mistakes_per_100_requested": {
+    "original": 0.727273,
+    "lowercase": 0.363636
+   },
+   "names_right_in_original_wrong_in_lowercase": {
+    "Me": 6,
+    "ApiGw": 4,
+    "PrivateSubnet": 4,
+    "Router": 4,
+    "Closed": 3,
+    "Cloud": 3,
+    "Cloudfront": 3,
+    "Core": 3,
+    "Eks": 3,
+    "Entrance": 3,
+    "NatGw": 3,
+    "Off": 3,
+    "Open": 3,
+    "PublicSubnet": 3,
+    "Ready": 3,
+    "Ringing": 3,
+    "Users": 3,
+    "Advocate": 2,
+    "Alert": 2,
+    "Algae": 2,
+    "App": 2,
+    "BlueBase": 2,
+    "Booting": 2,
+    "Cells": 2,
+    "Child1": 2
+   }
+  },
+  "B": {
+   "requests": 825,
+   "ungated_right_share_original_pct": 90.4,
+   "ungated_right_share_lowercase_pct": 74.2,
+   "gated_right_share_original_pct": 59.6,
+   "gated_right_share_lowercase_pct": 21.1,
+   "ungated_gap_points": 16.2,
+   "gated_gap_points": 38.5,
+   "ungated_transitions_original_to_lowercase": {
+    "held-structural -> wrong": 2,
+    "right -> held-structural": 1,
+    "right -> right": 603,
+    "right -> unread": 17,
+    "right -> wrong": 125,
+    "unread -> unread": 16,
+    "unread -> wrong": 1,
+    "wrong -> held-structural": 1,
+    "wrong -> right": 9,
+    "wrong -> unread": 3,
+    "wrong -> wrong": 47
+   },
+   "gated_transitions_original_to_lowercase": {
+    "held-confidence -> held-confidence": 302,
+    "held-confidence -> held-structural": 1,
+    "held-confidence -> unread": 9,
+    "held-structural -> held-confidence": 2,
+    "right -> held-confidence": 306,
+    "right -> held-structural": 1,
+    "right -> right": 174,
+    "right -> unread": 11,
+    "unread -> held-confidence": 1,
+    "unread -> unread": 16,
+    "wrong -> held-confidence": 2
+   },
+   "gated_confident_mistakes_per_100_requested": {
+    "original": 0.484848,
+    "lowercase": 0
+   },
+   "names_right_in_original_wrong_in_lowercase": {
+    "Earth": 5,
+    "Me": 5,
+    "ApiGw": 3,
+    "Closed": 3,
+    "Cool": 3,
+    "EdgeFw": 3,
+    "EdgeRouter": 3,
+    "Ended": 3,
+    "NewService": 3,
+    "Open": 3,
+    "Phone": 3,
+    "Price": 3,
+    "PrivateSubnet": 3,
+    "Review": 3,
+    "Advocate": 2,
+    "Alert": 2,
+    "AuthSvc": 2,
+    "Ball": 2,
+    "Bar": 2,
+    "BlueBase": 2,
+    "Cells": 2,
+    "CloseBtn": 2,
+    "Closing": 2,
+    "Core": 2,
+    "CoreSw": 2
+   }
+  },
+  "R": {
+   "requests": 825,
+   "ungated_right_share_original_pct": 92.8,
+   "ungated_right_share_lowercase_pct": 76.2,
+   "gated_right_share_original_pct": 66.8,
+   "gated_right_share_lowercase_pct": 37,
+   "ungated_gap_points": 16.6,
+   "gated_gap_points": 29.8,
+   "ungated_transitions_original_to_lowercase": {
+    "held-structural -> held-structural": 2,
+    "held-structural -> wrong": 1,
+    "right -> held-structural": 6,
+    "right -> right": 627,
+    "right -> unread": 19,
+    "right -> wrong": 114,
+    "unread -> right": 1,
+    "unread -> unread": 12,
+    "wrong -> held-structural": 2,
+    "wrong -> right": 1,
+    "wrong -> unread": 3,
+    "wrong -> wrong": 37
+   },
+   "gated_transitions_original_to_lowercase": {
+    "held-confidence -> held-confidence": 233,
+    "held-confidence -> held-structural": 8,
+    "held-confidence -> right": 4,
+    "held-confidence -> unread": 10,
+    "held-structural -> held-confidence": 1,
+    "held-structural -> held-structural": 2,
+    "right -> held-confidence": 234,
+    "right -> right": 301,
+    "right -> unread": 12,
+    "right -> wrong": 4,
+    "unread -> held-confidence": 1,
+    "unread -> unread": 12,
+    "wrong -> held-confidence": 3
+   },
+   "gated_confident_mistakes_per_100_requested": {
+    "original": 0.484848,
+    "lowercase": 0.727273
+   },
+   "names_right_in_original_wrong_in_lowercase": {
+    "Me": 10,
+    "ApiGw": 4,
+    "Entrance": 4,
+    "Algae": 3,
+    "Closed": 3,
+    "Cloudfront": 3,
+    "Dad": 3,
+    "EdgeRouter": 3,
+    "Fish": 3,
+    "Light": 3,
+    "Open": 3,
+    "Price": 3,
+    "Users": 3,
+    "Archived": 2,
+    "AuthSvc": 2,
+    "Ball": 2,
+    "Cells": 2,
+    "Climate": 2,
+    "Cold": 2,
+    "Cool": 2,
+    "CoreSw": 2,
+    "Crops": 2,
+    "Cto": 2,
+    "Dc": 2,
+    "EdgeFw": 2
+   }
+  },
+  "cross_arm": {
+   "C100 -> B": {
+    "ungated_original": {
+     "right -> right": 732,
+     "right -> unread": 3,
+     "right -> wrong": 19,
+     "unread -> right": 6,
+     "unread -> unread": 11,
+     "unread -> wrong": 1,
+     "wrong -> held-structural": 2,
+     "wrong -> right": 8,
+     "wrong -> unread": 3,
+     "wrong -> wrong": 40
+    },
+    "ungated_lowercase": {
+     "right -> held-structural": 1,
+     "right -> right": 537,
+     "right -> unread": 6,
+     "right -> wrong": 59,
+     "unread -> right": 3,
+     "unread -> unread": 25,
+     "unread -> wrong": 8,
+     "wrong -> held-structural": 1,
+     "wrong -> right": 72,
+     "wrong -> unread": 5,
+     "wrong -> wrong": 108
+    },
+    "gated_original": {
+     "held-confidence -> held-confidence": 207,
+     "held-confidence -> held-structural": 2,
+     "held-confidence -> right": 28,
+     "held-confidence -> unread": 5,
+     "held-confidence -> wrong": 1,
+     "right -> held-confidence": 98,
+     "right -> right": 461,
+     "right -> unread": 1,
+     "unread -> held-confidence": 4,
+     "unread -> right": 3,
+     "unread -> unread": 11,
+     "wrong -> held-confidence": 3,
+     "wrong -> wrong": 1
+    },
+    "gated_lowercase": {
+     "held-confidence -> held-confidence": 508,
+     "held-confidence -> held-structural": 2,
+     "held-confidence -> right": 41,
+     "held-confidence -> unread": 9,
+     "right -> held-confidence": 92,
+     "right -> right": 133,
+     "right -> unread": 2,
+     "unread -> held-confidence": 11,
+     "unread -> unread": 25,
+     "wrong -> held-confidence": 2
+    }
+   },
+   "B -> R": {
+    "ungated_original": {
+     "held-structural -> wrong": 2,
+     "right -> right": 740,
+     "right -> unread": 2,
+     "right -> wrong": 4,
+     "unread -> right": 6,
+     "unread -> unread": 8,
+     "unread -> wrong": 3,
+     "wrong -> held-structural": 3,
+     "wrong -> right": 20,
+     "wrong -> unread": 3,
+     "wrong -> wrong": 34
+    },
+    "ungated_lowercase": {
+     "held-structural -> held-structural": 1,
+     "held-structural -> wrong": 1,
+     "right -> held-structural": 4,
+     "right -> right": 555,
+     "right -> unread": 8,
+     "right -> wrong": 45,
+     "unread -> right": 11,
+     "unread -> unread": 16,
+     "unread -> wrong": 9,
+     "wrong -> held-structural": 5,
+     "wrong -> right": 63,
+     "wrong -> unread": 10,
+     "wrong -> wrong": 97
+    },
+    "gated_original": {
+     "held-confidence -> held-confidence": 207,
+     "held-confidence -> held-structural": 3,
+     "held-confidence -> right": 96,
+     "held-confidence -> unread": 4,
+     "held-confidence -> wrong": 2,
+     "held-structural -> held-confidence": 2,
+     "right -> held-confidence": 39,
+     "right -> right": 452,
+     "right -> unread": 1,
+     "unread -> held-confidence": 6,
+     "unread -> right": 3,
+     "unread -> unread": 8,
+     "wrong -> held-confidence": 1,
+     "wrong -> wrong": 1
+    },
+    "gated_lowercase": {
+     "held-confidence -> held-confidence": 431,
+     "held-confidence -> held-structural": 9,
+     "held-confidence -> right": 152,
+     "held-confidence -> unread": 18,
+     "held-confidence -> wrong": 3,
+     "held-structural -> held-confidence": 1,
+     "held-structural -> held-structural": 1,
+     "right -> held-confidence": 22,
+     "right -> right": 151,
+     "right -> wrong": 1,
+     "unread -> held-confidence": 18,
+     "unread -> right": 2,
+     "unread -> unread": 16
+    }
+   }
+  }
+ },
+ "short3_lowercase": {
+  "note": "these short3 messages are written in lower case in the realistic data: there is no original-case twin, so no case gap is computed here (a synthetic twin was deliberately not built)",
+  "requests": 134,
+  "per_arm": {
+   "C100": {
+    "ungated_right_share_pct": 39.6,
+    "gated_right_share_pct": 11.9,
+    "ungated_states": {
+     "right -> x": 53,
+     "unread -> x": 17,
+     "wrong -> x": 64
+    },
+    "gated_wrong_plus_extras_per_100_requested": 0.746269
+   },
+   "B": {
+    "ungated_right_share_pct": 47,
+    "gated_right_share_pct": 13.4,
+    "ungated_states": {
+     "right -> x": 63,
+     "unread -> x": 20,
+     "wrong -> x": 51
+    },
+    "gated_wrong_plus_extras_per_100_requested": 0.746269
+   },
+   "R": {
+    "ungated_right_share_pct": 76.1,
+    "gated_right_share_pct": 50,
+    "ungated_states": {
+     "held-structural -> x": 2,
+     "right -> x": 102,
+     "unread -> x": 12,
+     "wrong -> x": 18
+    },
+    "gated_wrong_plus_extras_per_100_requested": 0.746269
+   }
+  },
+  "cross_arm": {
+   "C100 -> B": {
+    "ungated": {
+     "right -> right": 44,
+     "right -> unread": 5,
+     "right -> wrong": 4,
+     "unread -> unread": 11,
+     "unread -> wrong": 6,
+     "wrong -> right": 19,
+     "wrong -> unread": 4,
+     "wrong -> wrong": 41
+    },
+    "gated": {
+     "held-confidence -> held-confidence": 83,
+     "held-confidence -> right": 7,
+     "held-confidence -> unread": 9,
+     "held-confidence -> wrong": 1,
+     "right -> held-confidence": 6,
+     "right -> right": 10,
+     "unread -> held-confidence": 6,
+     "unread -> unread": 11,
+     "wrong -> right": 1
+    }
+   },
+   "B -> R": {
+    "ungated": {
+     "right -> right": 61,
+     "right -> unread": 1,
+     "right -> wrong": 1,
+     "unread -> right": 9,
+     "unread -> unread": 9,
+     "unread -> wrong": 2,
+     "wrong -> held-structural": 2,
+     "wrong -> right": 32,
+     "wrong -> unread": 2,
+     "wrong -> wrong": 15
+    },
+    "gated": {
+     "held-confidence -> held-confidence": 42,
+     "held-confidence -> held-structural": 2,
+     "held-confidence -> right": 47,
+     "held-confidence -> unread": 3,
+     "held-confidence -> wrong": 1,
+     "right -> held-confidence": 1,
+     "right -> right": 17,
+     "unread -> held-confidence": 8,
+     "unread -> right": 3,
+     "unread -> unread": 9,
+     "wrong -> held-confidence": 1
+    }
+   }
+  }
+ },
+ "nl_a": {
+  "executed_mistakes": {
+   "C100": {
+    "threshold": 0.870735,
+    "wrong": 2,
+    "extras": 4,
+    "wrong_plus_extras": 6
+   },
+   "B": {
+    "threshold": 0.914966,
+    "wrong": 1,
+    "extras": 3,
+    "wrong_plus_extras": 4
+   },
+   "R": {
+    "threshold": 0.858758,
+    "wrong": 2,
+    "extras": 7,
+    "wrong_plus_extras": 9
+   }
+  },
+  "joins": {
+   "C100": [
+    {
+     "id": "nl-01-026",
+     "span": [
+      29,
+      56
+     ],
+     "src": "start takes Idle to Running",
+     "reading": {
+      "action": "connect",
+      "from": "start,idle",
+      "to": "running"
+     },
+     "outcome": "wrong",
+     "reasons": [],
+     "own_confidence": 0.889315,
+     "own_threshold": 0.870735,
+     "own_decision": "executed",
+     "others": {
+      "B": {
+       "state": "a different reading of an overlapping span",
+       "same_reading": false,
+       "readings": [
+        {
+         "span": [
+          29,
+          56
+         ],
+         "reading": {
+          "action": "connect",
+          "from": "idle,running"
+         },
+         "execute": false,
+         "outcome": "extra",
+         "confidence": 0.391337
+        }
+       ]
+      },
+      "R": {
+       "state": "a different reading of an overlapping span",
+       "same_reading": false,
+       "readings": [
+        {
+         "span": [
+          29,
+          56
+         ],
+         "reading": {
+          "action": "connect",
+          "from": "idle",
+          "to": "running"
+         },
+         "execute": false,
+         "outcome": "wrong",
+         "confidence": 0.690809
+        }
+       ]
+      }
+     }
+    },
+    {
+     "id": "nl-01-029",
+     "span": [
+      0,
+      20
+     ],
+     "src": "Paused is still blue",
+     "reading": {
+      "color": "blue",
+      "target": "paused"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.870909,
+     "own_threshold": 0.870735,
+     "own_decision": "executed",
+     "others": {
+      "B": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.818912,
+       "threshold": 0.914966,
+       "outcome": "extra"
+      },
+      "R": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.887087,
+       "threshold": 0.858758,
+       "outcome": "extra"
+      }
+     }
+    },
+    {
+     "id": "nl-03-015",
+     "span": [
+      208,
+      229
+     ],
+     "src": "put Sam beside Martin",
+     "reading": {
+      "action": "move",
+      "anchor": "martin",
+      "position": "near",
+      "target": "sam"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.979407,
+     "own_threshold": 0.870735,
+     "own_decision": "executed",
+     "others": {
+      "B": {
+       "state": "a different reading of an overlapping span",
+       "same_reading": false,
+       "readings": [
+        {
+         "span": [
+          198,
+          229
+         ],
+         "reading": {
+          "action": "move",
+          "anchor": "martin",
+          "position": "near",
+          "target": "sam"
+         },
+         "execute": false,
+         "outcome": "extra",
+         "confidence": 0.904475
+        }
+       ]
+      },
+      "R": {
+       "state": "a different reading of an overlapping span",
+       "same_reading": false,
+       "readings": [
+        {
+         "span": [
+          198,
+          229
+         ],
+         "reading": {
+          "action": "move",
+          "anchor": "martin",
+          "position": "near",
+          "target": "sam"
+         },
+         "execute": true,
+         "outcome": "extra",
+         "confidence": 0.879796
+        }
+       ]
+      }
+     }
+    },
+    {
+     "id": "nl-09-053",
+     "span": [
+      0,
+      39
+     ],
+     "src": "The post office goes next to the bakery",
+     "reading": {
+      "action": "move",
+      "anchor": "bakery",
+      "position": "near",
+      "target": "post,office"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.90838,
+     "own_threshold": 0.870735,
+     "own_decision": "executed",
+     "others": {
+      "B": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.581319,
+       "threshold": 0.914966,
+       "outcome": "extra"
+      },
+      "R": {
+       "state": "a different reading of an overlapping span",
+       "same_reading": false,
+       "readings": [
+        {
+         "span": [
+          0,
+          39
+         ],
+         "reading": {
+          "action": "move",
+          "anchor": "bakery",
+          "position": "near",
+          "target": "post"
+         },
+         "execute": false,
+         "outcome": "extra",
+         "confidence": 0.783895
+        }
+       ]
+      }
+     }
+    },
+    {
+     "id": "nl-10-016",
+     "span": [
+      0,
+      28
+     ],
+     "src": "Make the tasks in Done green",
+     "reading": {
+      "action": "set",
+      "color": "green",
+      "target": "done"
+     },
+     "outcome": "wrong",
+     "reasons": [],
+     "own_confidence": 0.945862,
+     "own_threshold": 0.870735,
+     "own_decision": "executed",
+     "others": {
+      "B": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.784253,
+       "threshold": 0.914966,
+       "outcome": "wrong"
+      },
+      "R": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.963933,
+       "threshold": 0.858758,
+       "outcome": "wrong"
+      }
+     }
+    },
+    {
+     "id": "nl-11-025",
+     "span": [
+      11,
+      50
+     ],
+     "src": "Library goes between market and station",
+     "reading": {
+      "action": "move",
+      "anchor": "market,station",
+      "position": "between",
+      "target": "library"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.978116,
+     "own_threshold": 0.870735,
+     "own_decision": "executed",
+     "others": {
+      "B": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.951304,
+       "threshold": 0.914966,
+       "outcome": "extra"
+      },
+      "R": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.987299,
+       "threshold": 0.858758,
+       "outcome": "extra"
+      }
+     }
+    }
+   ],
+   "B": [
+    {
+     "id": "nl-05-027",
+     "span": [
+      7,
+      28
+     ],
+     "src": "vault left of archive",
+     "reading": {
+      "action": "move",
+      "anchor": "archive",
+      "position": "leftof",
+      "target": "vault"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.92776,
+     "own_threshold": 0.914966,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.730373,
+       "threshold": 0.870735,
+       "outcome": "extra"
+      },
+      "R": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.888654,
+       "threshold": 0.858758,
+       "outcome": "extra"
+      }
+     }
+    },
+    {
+     "id": "nl-11-025",
+     "span": [
+      11,
+      50
+     ],
+     "src": "Library goes between market and station",
+     "reading": {
+      "action": "move",
+      "anchor": "market,station",
+      "position": "between",
+      "target": "library"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.951304,
+     "own_threshold": 0.914966,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.978116,
+       "threshold": 0.870735,
+       "outcome": "extra"
+      },
+      "R": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.987299,
+       "threshold": 0.858758,
+       "outcome": "extra"
+      }
+     }
+    },
+    {
+     "id": "nl-11-028",
+     "span": [
+      0,
+      25
+     ],
+     "src": "put 7 min on depot-market",
+     "reading": {
+      "action": "label",
+      "label": "7 min",
+      "target": "depot,market"
+     },
+     "outcome": "wrong",
+     "reasons": [],
+     "own_confidence": 0.919744,
+     "own_threshold": 0.914966,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "a different reading of an overlapping span",
+       "same_reading": false,
+       "readings": [
+        {
+         "span": [
+          0,
+          25
+         ],
+         "reading": {
+          "action": "label",
+          "label": "7 min"
+         },
+         "execute": false,
+         "outcome": "wrong",
+         "confidence": 0.031112
+        }
+       ]
+      },
+      "R": {
+       "state": "a different reading of an overlapping span",
+       "same_reading": false,
+       "readings": [
+        {
+         "span": [
+          0,
+          25
+         ],
+         "reading": {
+          "action": "label",
+          "label": "7 min"
+         },
+         "execute": false,
+         "outcome": "wrong",
+         "confidence": 0.210665
+        }
+       ]
+      }
+     }
+    },
+    {
+     "id": "nl-12-026",
+     "span": [
+      0,
+      61
+     ],
+     "src": "can you get from Mill to Keep without going through the Swamp",
+     "reading": {
+      "ask": "path",
+      "from": "mill",
+      "to": "keep"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.932136,
+     "own_threshold": 0.914966,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.773942,
+       "threshold": 0.870735,
+       "outcome": "extra"
+      },
+      "R": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.885628,
+       "threshold": 0.858758,
+       "outcome": "extra"
+      }
+     }
+    }
+   ],
+   "R": [
+    {
+     "id": "nl-01-029",
+     "span": [
+      0,
+      20
+     ],
+     "src": "Paused is still blue",
+     "reading": {
+      "color": "blue",
+      "target": "paused"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.887087,
+     "own_threshold": 0.858758,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.870909,
+       "threshold": 0.870735,
+       "outcome": "extra"
+      },
+      "B": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.818912,
+       "threshold": 0.914966,
+       "outcome": "extra"
+      }
+     }
+    },
+    {
+     "id": "nl-03-015",
+     "span": [
+      198,
+      229
+     ],
+     "src": "Could you put Sam beside Martin",
+     "reading": {
+      "action": "move",
+      "anchor": "martin",
+      "position": "near",
+      "target": "sam"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.879796,
+     "own_threshold": 0.858758,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "a different reading of an overlapping span",
+       "same_reading": false,
+       "readings": [
+        {
+         "span": [
+          208,
+          229
+         ],
+         "reading": {
+          "action": "move",
+          "anchor": "martin",
+          "position": "near",
+          "target": "sam"
+         },
+         "execute": true,
+         "outcome": "extra",
+         "confidence": 0.979407
+        }
+       ]
+      },
+      "B": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.904475,
+       "threshold": 0.914966,
+       "outcome": "extra"
+      }
+     }
+    },
+    {
+     "id": "nl-05-027",
+     "span": [
+      7,
+      28
+     ],
+     "src": "vault left of archive",
+     "reading": {
+      "action": "move",
+      "anchor": "archive",
+      "position": "leftof",
+      "target": "vault"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.888654,
+     "own_threshold": 0.858758,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.730373,
+       "threshold": 0.870735,
+       "outcome": "extra"
+      },
+      "B": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.92776,
+       "threshold": 0.914966,
+       "outcome": "extra"
+      }
+     }
+    },
+    {
+     "id": "nl-09-030",
+     "span": [
+      347,
+      365
+     ],
+     "src": "Some should be red",
+     "reading": {
+      "action": "set",
+      "color": "red",
+      "target": "some"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.860645,
+     "own_threshold": 0.858758,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "a different reading of an overlapping span",
+       "same_reading": false,
+       "readings": [
+        {
+         "span": [
+          347,
+          365
+         ],
+         "reading": {
+          "action": "set",
+          "color": "red",
+          "target": "$new"
+         },
+         "execute": false,
+         "outcome": "extra",
+         "confidence": 0.244481
+        }
+       ]
+      },
+      "B": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.902483,
+       "threshold": 0.914966,
+       "outcome": "extra"
+      }
+     }
+    },
+    {
+     "id": "nl-09-030",
+     "span": [
+      636,
+      654
+     ],
+     "src": "what the rules are",
+     "reading": {
+      "ask": "rules"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.895012,
+     "own_threshold": 0.858758,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "nothing produced there",
+       "same_reading": false
+      },
+      "B": {
+       "state": "nothing produced there",
+       "same_reading": false
+      }
+     }
+    },
+    {
+     "id": "nl-10-016",
+     "span": [
+      0,
+      28
+     ],
+     "src": "Make the tasks in Done green",
+     "reading": {
+      "action": "set",
+      "color": "green",
+      "target": "done"
+     },
+     "outcome": "wrong",
+     "reasons": [],
+     "own_confidence": 0.963933,
+     "own_threshold": 0.858758,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.945862,
+       "threshold": 0.870735,
+       "outcome": "wrong"
+      },
+      "B": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.784253,
+       "threshold": 0.914966,
+       "outcome": "wrong"
+      }
+     }
+    },
+    {
+     "id": "nl-11-025",
+     "span": [
+      11,
+      50
+     ],
+     "src": "Library goes between market and station",
+     "reading": {
+      "action": "move",
+      "anchor": "market,station",
+      "position": "between",
+      "target": "library"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.987299,
+     "own_threshold": 0.858758,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.978116,
+       "threshold": 0.870735,
+       "outcome": "extra"
+      },
+      "B": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.951304,
+       "threshold": 0.914966,
+       "outcome": "extra"
+      }
+     }
+    },
+    {
+     "id": "nl-11-033",
+     "span": [
+      0,
+      18
+     ],
+     "src": "write Zone 2 on it",
+     "reading": {
+      "action": "label",
+      "label": "zone 2",
+      "target": "rectangle1"
+     },
+     "outcome": "wrong",
+     "reasons": [],
+     "own_confidence": 0.933172,
+     "own_threshold": 0.858758,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.515038,
+       "threshold": 0.870735,
+       "outcome": "wrong"
+      },
+      "B": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.668819,
+       "threshold": 0.914966,
+       "outcome": "wrong"
+      }
+     }
+    },
+    {
+     "id": "nl-12-026",
+     "span": [
+      0,
+      61
+     ],
+     "src": "can you get from Mill to Keep without going through the Swamp",
+     "reading": {
+      "ask": "path",
+      "from": "mill",
+      "to": "keep"
+     },
+     "outcome": "extra",
+     "reasons": [],
+     "own_confidence": 0.885628,
+     "own_threshold": 0.858758,
+     "own_decision": "executed",
+     "others": {
+      "C100": {
+       "state": "held by confidence (same reading)",
+       "same_reading": true,
+       "held": true,
+       "confidence": 0.773942,
+       "threshold": 0.870735,
+       "outcome": "extra"
+      },
+      "B": {
+       "state": "executed (same reading)",
+       "same_reading": true,
+       "held": false,
+       "confidence": 0.932136,
+       "threshold": 0.914966,
+       "outcome": "extra"
+      }
+     }
+    }
+   ]
+  },
+  "parent_claim": {
+   "text": "five of R's nine executed mistakes were identical wrong readings B held",
+   "R_executed_mistakes": 9,
+   "B_same_reading_held": 5,
+   "B_same_reading_held_by_confidence": 5,
+   "B_same_reading_held_structurally": 0,
+   "B_same_reading_executed": 3,
+   "B_different_reading_same_span": 0,
+   "B_nothing_produced": 1,
+   "claim_checks_out": true
+  }
+ }
+}

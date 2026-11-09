@@ -1,0 +1,7 @@
+## F_ctrl  cost threshold 0.9228
+HOLD conf=0.672  "draw a circle"                    -> @n1 command action=create shape=circle
+RUN  conf=0.992  "make Start red"                   -> @n1 command action=set color=red target=Start
+RUN  conf=0.980  "connect Start to Process"         -> @n1 command action=connect from=Start to=Process
+RUN  conf=0.953  "add a big blue square"            -> @n1 command action=create shape=square size=large color=blue
+RUN  conf=0.994  "move Done below Check"            -> @n1 command action=move target=Done position=below anchor=Check
+executed 4/5

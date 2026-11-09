@@ -24,8 +24,8 @@ import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve, dirname } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
-import { loadRecords, viewOutcomes, itemsOf, teacherRecord, asReader, sameDirection, seenFunction } from './arm_lib.mjs';
-import { scoredItems } from './score_arm.mjs';
+import { loadRecords, viewOutcomes, itemsOf, teacherRecord, asReader, sameDirection, seenFunction, truthfulJudge, truthfulItemsOf, rawArgsOf, TRUTHFUL_V1, loadViewDir } from './arm_lib.mjs';
+import { scoredItems, decideTruthful, truthfulStats } from './score_arm.mjs';
 import { decisions } from '../calibrate_modernbert.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -76,6 +76,33 @@ export function needsKeys(args, text, span) {
           if (!subset(wordSet(mv), W)) m = true;
           if (!subset(wordSet(mv), S)) s = true;
         }
+      } else { if (!subset(wordSet(p), W)) m = true; if (!subset(wordSet(p), S)) s = true; }
+    }
+    if (m) msg.push(k);
+    if (s || m) sp.push(k);
+  }
+  return { msg, span: sp };
+}
+
+/** needsKeys for the truthful_v1 analysis: the same rule for plain names (a name the request does not write is a reference it does not write), but a DESCRIPTION
+ *  (a mention) is not called an unwritten reference when the request writes it: the message or span holds the words of at least one of its enum values (the other
+ *  values may be a paraphrase of a legend value, a class error, not a missing reference), or the reader itself read it as a description (`got` holds a mention for
+ *  that key: a written description whose values it got wrong). Only a mention with no written value and no description read, or a free-text `label` of it that is
+ *  not written, stays an unwritten reference. */
+export function needsKeysV1(args, text, span, got) {
+  const W = wordSet(text), S = wordSet(span ?? text), msg = [], sp = [];
+  for (const [k, v] of Object.entries(args || {})) {
+    if (!NAME_KEYS.includes(k)) continue;
+    let m = false, s = false;
+    const readAsDescription = String(got?.[k] ?? '').includes('mention(');
+    for (const p of partsOf(v)) {
+      if (p === '$new') continue;
+      if (p.startsWith('mention(')) {
+        const kvs = partsOf(p.slice('mention('.length, -1)).map(kv => { const i = kv.indexOf('='); return [(i < 0 ? kv : kv.slice(0, i)).trim(), i < 0 ? '' : kv.slice(i + 1)]; }).filter(([mk]) => mk !== 'quantifier' && mk !== 'recency');
+        if (!kvs.length) continue;
+        const unwritten = words => kvs.some(([mk, mv]) => mk === 'label' && !subset(wordSet(mv), words)) || (!readAsDescription && !kvs.some(([, mv]) => subset(wordSet(mv), words)));
+        if (unwritten(W)) m = true;
+        if (unwritten(S)) s = true;
       } else { if (!subset(wordSet(p), W)) m = true; if (!subset(wordSet(p), S)) s = true; }
     }
     if (m) msg.push(k);
@@ -137,8 +164,12 @@ const cut = (s, n = 110) => { s = String(s).replace(/\s+/g, ' '); return s.lengt
 
 /** the keys of a request that differ from what is wanted, as equalWant of arm_lib.mjs (only the keys of `want`; a key the reader did not write reads as ∅);
  *  under `direction` a resize that has the right value but the wrong direction: ['scale (direction)'] */
-export function wrongKeys(x, want, dirWant, scoring) {
+export function wrongKeys(x, want, dirWant, scoring, goldSpan) {
   const keys = Object.entries(want || {}).filter(([k, v]) => (x.got?.[k] ?? '∅') !== v).map(([k]) => k);
+  if (scoring === TRUTHFUL_V1) {   // what truthful_v1 compares beyond the pairing: the scale / direction of a resize and the text keys (presence and exact value)
+    if (!keys.length && goldSpan) { const j = truthfulJudge(x, goldSpan); for (const why of j.reasons || []) keys.push(why.startsWith('text:') ? why.split(' ')[0].slice(5) : why === 'direction' ? 'scale (direction)' : why); if (j.unavailable) keys.push('(measure unavailable)'); }
+    return keys;
+  }
   if (!keys.length && scoring === 'direction' && x.pa === 'command:resize' && x.dir !== undefined && !sameDirection(x.dir, dirWant)) keys.push('scale (direction)');
   return keys;
 }
@@ -162,7 +193,7 @@ export function classifyRecord(r, ctx) {
     const item = { id: r.id, gi, pi, group: g.triggerGroup, act: g.act, span: g.span, want: g.want, got: p ? p.got : null, readAct: p ? p.pa : null, status: o === 'right' ? 'right' : o === 'notdone' ? 'notdone' : 'wrong' };
     golds.push(item);
     if (o === 'right') return;
-    const keys = p ? wrongKeys(p, g.want, g.dirWant, scoring) : [];
+    const keys = p ? wrongKeys(p, g.want, g.dirWant, scoring, g) : [];
     const verdict = oracleVerdict(oracle, r, gi);
     const set = (cause, ks, detail) => { item.cause = cause; item.keys = ks && ks.length ? ks : ['(' + (p ? g.act : g.act) + ')']; item.detail = detail || null; item.oracle = verdict.status; };
     // 1: the oracle (the layout cannot hold it), or a key the layout does not read
@@ -203,7 +234,7 @@ export function classifyRecord(r, ctx) {
       return set('act', [g.act + ' read as ' + u.pa], 'read as ' + u.pa);
     }
     // 5: a reference the request does not write
-    const need = needsKeys(g.args, r.text, g.span), refKeys = keys.filter(k => need.span.includes(k));
+    const need = scoring === TRUTHFUL_V1 ? needsKeysV1(g.args, r.text, g.span, p.got) : needsKeys(g.args, r.text, g.span), refKeys = keys.filter(k => need.span.includes(k));
     // 6 / 7: the value, per key, by the head that reads it
     const mention = k => String(p.got?.[k] ?? '').includes('mention(') || String(g.want[k] ?? '').includes('mention(');
     const classOf = k => layout.classKeys.includes(k) || k === 'scale (direction)' || mention(k);
@@ -313,6 +344,89 @@ export function analyzePart(records, { scoring, layout, oracle, spec, threshold,
   return out;
 }
 
+// ---------------------------------------------------------------- truthful_v1: the analysis of a part, reconciled with the scorer
+// The causes above are the first cause that explains a miss; PLAN_CATEGORIES groups them in the plan's seven (data, labels, output limitations, cuts, actions,
+// values/roles, calibration) plus preprocessing, so that none is mixed with another. `labels` (an annotation that is wrong) cannot be seen from a record: the
+// corrections of the reviewed overlay are listed in the views manifest and the count here is "not measured", never 0. `calibration` is what the threshold
+// decides: a wrong or extra request it lets through, a right request it holds.
+export const PLAN_CATEGORIES = ['data', 'labels', 'output limitations', 'cuts', 'actions', 'values/roles', 'calibration', 'preprocessing', 'unexplained'];
+export const CAUSE_CATEGORY = { oracle: 'output limitations', teachers: 'data', input: 'preprocessing', cut: 'cuts', spurious: 'cuts', act: 'actions', ref: 'values/roles', class: 'values/roles', name: 'values/roles', other: 'unexplained' };
+const sumWould = w => w.right + w.wrong + w.extra;
+/** records of one part (primary view), the confidence spec and threshold, the scorer's truthful block `expect` of the same part -> the analysis. Every total is asserted equal to the scorer's:
+ *  at the every-request level (executed + structurally held, by outcome), at the threshold (executed wrong, extras, structural holds, confidence holds) and the unread requests. */
+export function analyzePartTruthful(records, { layout, oracle, spec, threshold, expect, seenCheck }) {
+  const base = analyzePart(records, { scoring: TRUTHFUL_V1, layout, oracle, spec: null, threshold: null, expect: null, seenCheck });
+  const { items } = truthfulItemsOf(records), scored = scoredItems(items, spec), gateOn = !!spec && Number.isFinite(threshold);
+  const ungated = decideTruthful(scored, null), gated = gateOn ? decideTruthful(scored, threshold) : null;
+  const G = records.reduce((n, r) => n + r.gold, 0), out = { ...base, requested_total: G, reconciliation: [], categories: {}, gate_rows: null };
+  const check = (what, mine, theirs) => { out.reconciliation.push({ what, analysis: mine, scorer: theirs, ok: mine === theirs }); if (mine !== theirs) throw new Error(`${what}: the analysis counts ${mine}, the scorer ${theirs}`); };
+  // the first-cause table is over every produced request: right + wrong + not done + extras (base.all); the scorer's blocks split the same requests by eligibility
+  const u = truthfulStats(ungated, G);
+  if (expect) {
+    check('requested', G, expect.requested);
+    check('ungated: right + would-be right of structural holds = right of every request executed', u.right + u.structural_holds.would_be.right, base.all.right);
+    check('ungated: wrong + would-be wrong of structural holds = wrong of every request executed', u.wrong + u.structural_holds.would_be.wrong, base.all.wrong);
+    check('ungated: extras + would-be extras of structural holds = extras of every request executed', u.extras + u.structural_holds.would_be.extra, base.all.extras);
+    check('ungated: unread = requested - paired', u.unread, G - items.filter(x => x.g >= 0).length);
+    for (const k of ['right', 'wrong', 'extras', 'unread']) check(`ungated ${k} equals the score file`, u[k], expect.ungated[k]);
+    check('ungated structural holds equal the score file', u.structural_holds.total, expect.ungated.structural_holds.total);
+    check('every produced request is executed, structurally held or (gated) confidence-held', u.executed + u.structural_holds.total, items.length);
+  }
+  if (gated) {
+    const g = truthfulStats(gated, G), by = { executed_wrong: emptyTable(), held_right: emptyTable(), structural: emptyTable() };
+    const clsOf = new Map(); records.forEach((r, mi) => clsOf.set(mi, classifyRecord(r, { scoring: TRUTHFUL_V1, layout, oracle })));
+    const rows = { executed_wrong: 0, executed_extra: 0, held_right_by_confidence: 0, held_wrong_or_extra_by_confidence: 0, structural_holds: g.structural_holds.total, structural_by_kind: g.structural_holds.by_kind, would_be_right_among_structural: g.structural_holds.would_be.right };
+    for (const x of gated) {
+      const r = records[x.mi], p = r.produced[x.pi], c = clsOf.get(x.mi);
+      if (x.execute) {
+        if (x.o === 'right') continue;
+        const cause = c.byProduced.get(x.pi) ?? 'other', gold = x.o === 'wrong' ? c.golds[p.g] : null, ex = x.o === 'extra' ? c.extras.find(e => e.pi === x.pi) : null;
+        if (x.o === 'wrong') rows.executed_wrong++; else rows.executed_extra++;
+        add(by.executed_wrong, cause, gold ? gold.keys : ex ? ex.keys : ['?'], { id: x.id, text: cut(p.src), gold: gold ? cut(compact(gold.want), 120) : '-', read: (x.o === 'extra' ? 'extra ' : '') + p.pa + ' ' + cut(compact(p.got), 100), detail: `confidence ${Number(x.c).toFixed(3)}; ${x.o}` });
+      } else if (x.hold === 'structural') {
+        add(by.structural, x.structural, (p.block_reasons || []).map(b => b.kind), { id: x.id, text: cut(p.src), gold: p.want ? cut(compact(p.want), 120) : '-', read: p.pa + ' ' + cut(compact(p.got), 100), detail: `would be ${x.o}; ${(p.block_reasons || []).map(b => b.kind + (b.key ? ':' + b.key : '')).join(', ') || x.structural}` });
+      } else if (x.o === 'right') { rows.held_right_by_confidence++; add(by.held_right, 'held', [p.pa], { id: x.id, text: cut(p.src), gold: cut(compact(p.want), 120), read: p.pa + ' ' + cut(compact(p.got), 100), detail: `confidence ${Number.isFinite(x.c) ? x.c.toFixed(3) : 'none'}` }); }
+      else rows.held_wrong_or_extra_by_confidence++;
+    }
+    if (expect?.gated) {
+      check('gated: executed wrong equals the score file', rows.executed_wrong, expect.gated.wrong); check('gated: executed extras equals the score file', rows.executed_extra, expect.gated.extras);
+      check('gated: structural holds equal the score file', g.structural_holds.total, expect.gated.structural_holds.total); check('gated: confidence holds equal the score file', g.confidence_holds.total, expect.gated.confidence_holds.total);
+      check('gated: right executed equals the score file', g.right, expect.gated.right); check('gated: unread equals the score file', g.unread, expect.gated.unread);
+      check('gated: held right + held wrong or extra = confidence holds', rows.held_right_by_confidence + rows.held_wrong_or_extra_by_confidence, g.confidence_holds.total);
+    }
+    out.gate_rows = { threshold, ...rows, by, stats: g };
+  }
+  // the plan's categories: the first causes of every miss (not right, extras), then the threshold's own category
+  for (const c of PLAN_CATEGORIES) out.categories[c] = 0;
+  for (const grp of Object.values(base.groups)) for (const [cause, n] of Object.entries(grp.counts)) out.categories[CAUSE_CATEGORY[cause] ?? 'unexplained'] += n;
+  out.categories.labels = null;   // not measured: see the views manifest for the corrections of the reviewed overlay
+  if (out.gate_rows) out.categories.calibration = out.gate_rows.executed_wrong + out.gate_rows.executed_extra + out.gate_rows.held_right_by_confidence;
+  out.structural_note = 'a structural hold (a blocked output, a truncated request, a dependent of one) is an output limitation: counted apart from the first causes above, which describe the requests the reader read as an executable output';
+  return out;
+}
+export function reportMarkdownTruthful(meta, parts) {
+  const L = [`# Root causes (${TRUTHFUL_V1}): ${meta.reader} (${meta.artifactShort})`, '', `Score: \`${meta.score}\`; training data: \`${meta.trainData}\`; oracle: ${meta.oracle}.`, '',
+    `Each request that is not right and each extra gets the first cause that explains it (as root_causes.mjs); the causes are then grouped in the plan's categories. ${TRUTHFUL_V1} compares the resize direction and explicit scale and the text keys (presence and exact value) beside the pairing; a written description is not called an unwritten reference (needsKeysV1).`, ''];
+  for (const { key, part, res, n } of parts) {
+    const a = res.all;
+    L.push(`## ${key} / ${part} (${n} messages, ${res.requested_total} requested: right ${a.right}, wrong ${a.wrong}, not done ${a.not_done}, extras ${a.extras}; every request executed, structural holds included)`, '');
+    L.push('| plan category | misses and extras |', '|---|---:|', ...PLAN_CATEGORIES.map(c => `| ${c} | ${res.categories[c] == null ? 'not measured' : res.categories[c]} |`), '');
+    L.push('Reconciliation with the score file: ' + (res.reconciliation.length ? res.reconciliation.map(r => `${r.ok ? 'ok' : 'MISMATCH'} (${r.what}: ${r.analysis})`).join('; ') : 'no score block given'), '');
+    const tot = emptyTable(); for (const g of GROUPS) for (const c of CAUSE_IDS) tot.counts[c] = (tot.counts[c] || 0) + (res.groups[g].counts[c] || 0);
+    L.push('| first cause | place | ' + GROUPS.join(' | ') + ' | all |', '|---|---|' + GROUPS.map(() => '---:').join('|') + '|---:|');
+    for (const c of CAUSES) if (tot.counts[c.id]) L.push(`| ${c.label} | ${c.place} | ${GROUPS.map(g => res.groups[g].counts[c.id] || 0).join(' | ')} | ${tot.counts[c.id]} |`);
+    L.push('');
+    for (const g of GROUPS) if (res.groups[g].total) L.push(...causeTable(`${key} / ${part}, trigger ${g}`, res.groups[g]));
+    if (res.gate_rows) {
+      const g = res.gate_rows;
+      L.push(`### ${key} / ${part} at the cost-10 threshold (${g.threshold.toFixed(4)})`, '', `Executed: right ${g.stats.right}, wrong ${g.executed_wrong}, extras ${g.executed_extra}. Structural holds ${g.structural_holds} (${JSON.stringify(g.structural_by_kind)}; ${g.would_be_right_among_structural} of them would have been right). Confidence holds ${g.stats.confidence_holds.total}: right ${g.held_right_by_confidence}, wrong or extra ${g.held_wrong_or_extra_by_confidence}. Unread ${g.stats.unread}.`, '');
+      L.push(...causeTable('Executed wrong, by first cause', g.by.executed_wrong), ...causeTable('Right but held by confidence', g.by.held_right), ...causeTable('Structural holds', g.by.structural));
+    }
+  }
+  L.push('## Notes', '', ...meta.notes.map(x => '- ' + x), '');
+  return L.join('\n');
+}
+
 // ---------------------------------------------------------------- the report
 const KEYS_SHOWN = 8;   // keys listed per cause in the markdown (the JSON has all)
 const pct = (n, d) => d ? (100 * n / d).toFixed(1) + '%' : '-';
@@ -363,8 +477,10 @@ function main(argv) {
   const opts = Object.fromEntries(argv.filter(a => a.startsWith('--')).map(a => { const i = a.indexOf('='); return i < 0 ? [a.slice(2), true] : [a.slice(2, i), a.slice(i + 1)]; }));
   const [scorePath, trainDir, outMd, outJson] = argv.filter(a => !a.startsWith('--'));
   if (!scorePath || !trainDir || !outMd) throw new Error('usage: root_causes.mjs SCORE.json TRAIN_DATA_DIR OUT.md [OUT.json] [--scoring=direction|today] [--oracle=DIR] [--confidence=FILE]');
-  const score = JSON.parse(readFileSync(scorePath, 'utf8')), scoring = opts.scoring || 'direction';
-  if (!['today', 'direction'].includes(scoring)) throw new Error('--scoring is today or direction');
+  const score = JSON.parse(readFileSync(scorePath, 'utf8')), truthful = score.scoring === TRUTHFUL_V1, scoring = truthful ? TRUTHFUL_V1 : opts.scoring || 'direction';
+  if (!truthful && !['today', 'direction'].includes(scoring)) throw new Error('--scoring is today or direction');
+  if (truthful && opts.views) loadViewDir(opts.views);
+  if (truthful && !opts.views) throw new Error('a truthful_v1 score file needs --views=DIR (the frozen views its records are of)');
   const { records } = loadRecords(score.record_files);
   const invFile = resolve(trainDir, 'trigger_inventory.json');
   const inv = existsSync(invFile) ? JSON.parse(readFileSync(invFile, 'utf8')) : null;
@@ -382,6 +498,22 @@ function main(argv) {
   if (!layout.known) notes.push('no reader.json in the training data: the class / token split of the keys is the default of the M2n layout (DEFAULT_LAYOUT), not this arm\'s own');
   const keys = Object.entries(score.sets).filter(([k]) => !((k === 'fresh2' || k === 'short3') && score.sets['fresh2+short3']));
   const parts = [];
+  if (truthful) {
+    for (const [key, ps] of keys) for (const [part, sp] of Object.entries(ps)) {
+      if (sp.use !== 'evaluation') continue;
+      const recs = records.filter(r => r.set === key && r.part === part);
+      if (recs.length !== sp.messages) throw new Error(`${key}/${part}: ${recs.length} records, the score file ${sp.messages} messages`);
+      if (!sp.available) { notes.push(`${key}/${part}: the ${TRUTHFUL_V1} measure is unavailable (${sp.unavailable_requests} requests): not analysed`); continue; }
+      const res = analyzePartTruthful(recs, { layout, oracle: null, spec, threshold, expect: sp, seenCheck });
+      parts.push({ key, part, res, n: recs.length, view: 'gold', scoring });
+    }
+    notes.push('views: every view of the campaign is read against one teacher\'s labels; the oracle (cause 1) is not measured for these views except through the keys the layout does not read');
+    const meta = { reader: score.reader, artifactShort: String(score.artifact).slice(0, 12), view: 'gold', scoring, score: scorePath, trainData: trainDir, inventory: inv ? `${inv.triggers.length} triggers` : 'none', layout: layout.known ? layout.file : 'default (M2n)', oracle: 'none', notes };
+    writeFileSync(outMd, reportMarkdownTruthful(meta, parts));
+    if (outJson) writeFileSync(outJson, JSON.stringify({ schema: 'root-causes-truthful-v1', ...meta, record_files: score.record_files, parts: parts.map(p => ({ key: p.key, part: p.part, messages: p.n, ...p.res })) }, null, 1) + '\n');
+    for (const p of parts) console.log(`${p.key}/${p.part} [${TRUTHFUL_V1}] requested ${p.res.requested_total}: every request executed right ${p.res.all.right} wrong ${p.res.all.wrong} not done ${p.res.all.not_done} extras ${p.res.all.extras}; categories ` + PLAN_CATEGORIES.map(c => `${c} ${p.res.categories[c] ?? 'n/m'}`).join(', ') + `; reconciled ${p.res.reconciliation.every(r => r.ok) ? p.res.reconciliation.length + ' checks' : 'FAILED'}`);
+    return;
+  }
   for (const [key, ps] of keys) for (const [part, sp] of Object.entries(ps)) {
     if (sp.use !== 'evaluation' && !opts['all-parts']) continue;
     const sets = key.split('+');

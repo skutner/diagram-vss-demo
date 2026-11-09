@@ -10,6 +10,8 @@ import tempfile
 import time
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
+from contextlib import nullcontext
 
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 HERE = Path(__file__).resolve().parent
@@ -104,6 +106,136 @@ class Base(unittest.TestCase):
     def tearDown(self): self.temp.cleanup()
 
 
+class RequestClassObjective(Base):
+    def test_all_52_heads_analytic_gradients_and_global_short_batches(self):
+        from modernbert_request_class_loss import RequestClassWeights
+        reader = dict(READER, classes=[[f"head-{i}", ["none", "none", "yes"]] for i in range(52)])
+        layout = Layout(reader)
+        part = [dict(row(i), idx=i, classes={"head-0": "none", "head-1": "yes"} if i < 2 else {}) for i in range(5)]
+        weights = RequestClassWeights((4., 2.) + (1.,) * 50, 1.7)
+        logits = torch.nn.Parameter(torch.linspace(-2, 3, 5 * 159).reshape(5, 159))
+        tag_logits = torch.nn.Parameter(torch.linspace(-1, 1, 15).reshape(5, 1, 3))
+        class Model:
+            def __call__(self, input_ids, attention_mask):
+                ids = input_ids[:, 0]
+                return tag_logits[ids], logits[ids], None
+        def encoding(tok, rows, *ignored):
+            ids = torch.tensor([[r["idx"]] for r in rows])
+            return dict(input_ids=ids, attention_mask=torch.ones_like(ids)), ids % 3, []
+        targets = torch.tensor([layout.class_targets(r) for r in part])
+        actions = torch.tensor([layout.act_id[r["act"]] for r in part])
+        q = torch.tensor([4 / 1.7, 4 / 1.7, 1 / 1.7, 1 / 1.7, 1 / 1.7], dtype=torch.float32)
+        with patch.object(F, "encode", encoding), patch.object(F, "autocast", lambda b: nullcontext()):
+            loss = F.request_loss(Model(), None, part, layout, self.backend, request_class_weights=weights)[0]
+            loss.backward()
+            for h, (start, size) in enumerate(zip(layout.offsets[:-1], layout.class_sizes)):
+                analytic = logits[:, start:start + size].softmax(1)
+                analytic[range(5), targets[:, h]] -= 1
+                analytic *= q[:, None] / (5 * 52)
+                torch.testing.assert_close(logits.grad[:, start:start + size], analytic, atol=1e-8, rtol=1e-6)
+            # Action and tag gradients do not acquire q, even on the rare rows.
+            action_grad = logits[:, :3].softmax(1); action_grad[range(5), actions] -= 1
+            torch.testing.assert_close(logits.grad[:, :3], action_grad / 5)
+            tag_grad = tag_logits[:, 0].softmax(1); tag_grad[range(5), torch.arange(5) % 3] -= 1
+            torch.testing.assert_close(tag_logits.grad[:, 0], tag_grad / 5)
+            split = sum(F.request_loss(Model(), None, batch, layout, self.backend, request_class_weights=weights)[0] * len(batch)
+                        for batch in (part[:4], part[4:])) / 5
+            torch.testing.assert_close(split, loss, atol=1e-6, rtol=0)
+            for batch in ([part[0]], [part[-1]]):
+                weighted = F.request_loss(Model(), None, batch, layout, self.backend, request_class_weights=weights)[0]
+                plain = F.request_loss(Model(), None, batch, layout, self.backend)[0]
+                self.assertNotEqual(weighted.item(), plain.item())
+
+    def test_exclusive_cli_and_direct_calls_before_build(self):
+        from modernbert_request_class_loss import RequestClassWeights
+        with self.assertRaisesRegex(ValueError, "mutually exclusive"), patch.object(F, "encode") as encoding:
+            F.request_loss(None, None, [], Layout(READER), self.backend, class_weights=[(1, 1)] * 2,
+                           request_class_weights=RequestClassWeights((1., 1.), 1.))
+        encoding.assert_not_called()
+        both = args(self.dir / "no-work", self.data, class_loss_manifest=Path("W"), request_class_loss_manifest=Path("J"))
+        with patch.object(F, "prepare_model") as prepare:
+            for function in (F.run, F.overfit_gate):
+                with self.assertRaisesRegex(ValueError, "mutually exclusive"): function(both, self.backend, hooks())
+        prepare.assert_not_called()
+        self.assertFalse(both.work.exists())
+        with self.assertRaises(SystemExit) as error:
+            F.parse_args(["--data", "x", "--work", "y", "--seed", "0", "--gpu-uuid", "fixture", "--stop-at", "2026-11-09 12:00",
+                          "--class-loss-manifest", "W", "--request-class-loss-manifest", "J"])
+        self.assertEqual(error.exception.code, 2)
+
+    def test_request_weighted_unicode_caps_and_cut_are_unchanged(self):
+        from modernbert_request_class_loss import RequestClassWeights
+        layout = Layout(READER)
+        long = row(0); long["text"] = "draw șape 東京 " + "one " * 600
+        long["words"] = [w["w"] for w in words_of(long["text"])]; long["tags"] = ["O"] * len(long["words"])
+        _, model = tiny_build(layout, args(self.dir / "unused", self.data))
+        loss, request_tokens = F.request_loss(model, TOK, [long], layout, self.backend, request_class_weights=RequestClassWeights((2., 1.), 1.7))
+        self.assertEqual(request_tokens, 128); self.assertTrue(torch.isfinite(loss))
+        cut, cut_tokens = F.cut_loss(model, TOK, [long], layout, self.backend)
+        self.assertEqual(cut_tokens, 512); self.assertTrue(torch.isfinite(cut))
+        (loss + cut).backward()
+        for p in model.parameters():
+            if p.grad is not None: self.assertTrue(torch.isfinite(p.grad).all())
+
+    def manifest(self):
+        from modernbert_request_class_loss import build_manifest
+        rows, _, identity = F.data_manifest(self.data)
+        path = self.dir / "request-class-loss.json"
+        path.write_text(json.dumps(build_manifest(rows, Layout(READER), identity)))
+        return path
+
+    def test_weighted_exact_resume_and_objective_refusals(self):
+        manifest = self.manifest(); whole, part = self.dir / "whole", self.dir / "part"
+        a = dict(epochs=2, request_class_loss_manifest=manifest)
+        self.assertEqual(F.run(args(whole, self.data, **a), self.backend, hooks()), 0)
+        F.run(args(part, self.data, stop_at_ts=50., **a), self.backend, hooks(now=ClockAfter(4)))
+        with self.assertRaisesRegex(RuntimeError, "Resume contract changed: settings"):
+            F.run(args(part, self.data, resume=True, epochs=2), self.backend, hooks())
+        original = manifest.read_text(); manifest.write_text(original + "\n")
+        with self.assertRaisesRegex(RuntimeError, "Resume contract changed: settings"):
+            F.run(args(part, self.data, resume=True, **a), self.backend, hooks())
+        manifest.write_text(original)
+        metadata_of = F.metadata_of
+        def changed_source(*args):
+            value = metadata_of(*args); value["sources"]["modernbert_request_class_loss.py"] = "0" * 64
+            return value
+        with patch.object(F, "metadata_of", changed_source), self.assertRaisesRegex(RuntimeError, "Resume contract changed: sources"):
+            F.run(args(part, self.data, resume=True, **a), self.backend, hooks())
+        self.assertEqual(F.run(args(part, self.data, resume=True, **a), self.backend, hooks()), 0)
+        self.assertEqual(losses(whole), losses(part))
+        for name in ("checkpoint.pt", "epoch_2.pt"):
+            x, y = [torch.load(d / name, map_location="cpu", weights_only=False)["model"] for d in (whole, part)]
+            for key in x: self.assertTrue(torch.equal(x[key], y[key]), key)
+        complete = json.loads((whole / "complete.json").read_text())
+        self.assertEqual(complete["metadata"]["settings"]["request_class_loss"]["sha256"], F.sha(manifest))
+        self.assertIn("modernbert_request_class_loss.py", complete["metadata"]["sources"])
+
+    def test_weights_reach_preflight_and_gate_and_unknown_fails_before_build(self):
+        manifest = self.manifest()
+        from modernbert_request_class_loss import validate_manifest
+        full_rows, _, data_identity = F.data_manifest(self.data)
+        expected, _ = validate_manifest(manifest, full_rows, Layout(READER), data_identity)
+        with patch.object(F, "request_loss", wraps=F.request_loss) as request:
+            F.run(args(self.dir / "run", self.data, max_updates=1, request_class_loss_manifest=manifest), self.backend, hooks())
+            self.assertEqual(request.call_count, 2)  # update and longest-row preflight
+            self.assertIsNotNone(request.call_args_list[0].kwargs["request_class_weights"])
+            self.assertEqual(request.call_args_list[0].kwargs["request_class_weights"], request.call_args_list[1].kwargs["request_class_weights"])
+            self.assertEqual(request.call_args_list[0].kwargs["request_class_weights"], expected)
+        with patch.object(F, "GATE_UPDATES", 1), patch.object(F, "fixed_rows", return_value=(full_rows, full_rows[:2])), patch.object(F, "request_loss", wraps=F.request_loss) as request:
+            F.run(args(self.dir / "gate", self.data, overfit_gate=True, request_class_loss_manifest=manifest), self.backend, hooks())
+            self.assertIsNotNone(request.call_args.kwargs["request_class_weights"])
+            self.assertEqual(request.call_args.kwargs["request_class_weights"], expected)
+            self.assertEqual(len(request.call_args.args[2]), 2)
+            self.assertEqual(len(request.call_args.args), 5)  # gate still omits action weights
+        gate = json.loads((self.dir / "gate/overfit_gate.json").read_text())
+        self.assertEqual(gate["request_class_loss"]["sha256"], F.sha(manifest))
+        rows = (self.data / "train.jsonl").read_text().splitlines(); bad = json.loads(rows[0]); bad["classes"]["color"] = "unknown"; rows[0] = json.dumps(bad)
+        (self.data / "train.jsonl").write_text("\n".join(rows) + "\n")
+        with patch.object(F, "prepare_model") as prepare, self.assertRaisesRegex(ValueError, "Unknown populated"):
+            F.run(args(self.dir / "bad", self.data, request_class_loss_manifest=manifest), self.backend, hooks())
+        prepare.assert_not_called()
+
+
 class Schedule(Base):
     def test_learning_rate_schedule(self):
         work = self.dir / "w"
@@ -164,6 +296,163 @@ class Resume(Base):
         F.run(args(work, self.data, stop_at_ts=50.), self.backend, hooks(now=ClockAfter(2)))
         with self.assertRaisesRegex(RuntimeError, "empty work directory"):
             F.run(args(work, self.data), self.backend, hooks())
+
+
+class ClassObjective(Base):
+    def manifest(self):
+        from modernbert_class_loss import build_manifest
+        rows, _, identity = F.data_manifest(self.data)
+        path = self.dir / "class-loss.json"
+        path.write_text(json.dumps(build_manifest(rows, Layout(READER), identity)))
+        return path
+
+    def test_default_loss_and_all_parameter_gradients_are_bitwise_original(self):
+        # Retain the exact original expression independently of request_loss.
+        part, layout = [row(i) for i in range(5)], Layout(READER)
+        _, model = tiny_build(layout, args(self.dir / "unused", self.data))
+        weight = F.act_weights(part, layout, "cpu")
+        torch.manual_seed(31)
+        x, lab, _ = encode(TOK, part, layout, F.REQUEST_CAP, "cpu")
+        with F.autocast(self.backend): tl, sl, _ = model(**x)
+        tl, sl = tl.float(), sl.float(); ce = torch.nn.functional.cross_entropy
+        ya = torch.tensor([layout.act_id[r["act"]] for r in part])
+        yc = torch.tensor([layout.class_targets(r) for r in part])
+        original = ce(sl[:, :len(layout.acts)], ya, weight=weight)
+        original = original + sum(ce(sl[:, s:s + c], yc[:, i]) for i, (s, c) in enumerate(zip(layout.offsets[:-1], layout.class_sizes))) / len(layout.class_sizes)
+        if bool((lab != -100).any()): original = original + ce(tl.flatten(0, 1), lab.flatten(), ignore_index=-100)
+        original.backward()
+        gradients = {n: p.grad.clone() if p.grad is not None else None for n, p in model.named_parameters()}
+        model.zero_grad(set_to_none=True); torch.manual_seed(31)
+        actual, _ = F.request_loss(model, TOK, part, layout, self.backend, weight)
+        actual.backward()
+        self.assertTrue(torch.equal(original, actual))
+        for n, p in model.named_parameters():
+            if gradients[n] is None: self.assertIsNone(p.grad, n)
+            else: self.assertTrue(torch.equal(gradients[n], p.grad), n)
+        self.assertNotIn("class_loss", F.settings_of(args(self.dir / "unused", self.data)))
+
+    def test_W_loss_and_all_parameter_gradients_are_bitwise_original(self):
+        # Retain the exact original expression independently of request_loss.
+        part, layout = [row(i) for i in range(5)], Layout(READER)
+        _, model = tiny_build(layout, args(self.dir / "unused", self.data))
+        weight = F.act_weights(part, layout, "cpu")
+        torch.manual_seed(31)
+        x, lab, _ = encode(TOK, part, layout, F.REQUEST_CAP, "cpu")
+        with F.autocast(self.backend): tl, sl, _ = model(**x)
+        tl, sl = tl.float(), sl.float(); ce = torch.nn.functional.cross_entropy
+        ya = torch.tensor([layout.act_id[r["act"]] for r in part])
+        yc = torch.tensor([layout.class_targets(r) for r in part])
+        original = ce(sl[:, :len(layout.acts)], ya, weight=weight)
+        class_weights = [(0.4, 2.1), (1., 1.)]
+        ws = torch.as_tensor(class_weights, dtype=sl.dtype)
+        original = original + sum((ce(sl[:, s:s + c], yc[:, i], reduction="none") * ws[i][(yc[:, i] > 0).long()]).mean()
+                                  for i, (s, c) in enumerate(zip(layout.offsets[:-1], layout.class_sizes))) / len(layout.class_sizes)
+        if bool((lab != -100).any()): original = original + ce(tl.flatten(0, 1), lab.flatten(), ignore_index=-100)
+        original.backward()
+        gradients = {n: p.grad.clone() if p.grad is not None else None for n, p in model.named_parameters()}
+        model.zero_grad(set_to_none=True); torch.manual_seed(31)
+        actual, _ = F.request_loss(model, TOK, part, layout, self.backend, weight, class_weights)
+        actual.backward()
+        self.assertTrue(torch.equal(original, actual))
+        for n, p in model.named_parameters():
+            if gradients[n] is None: self.assertIsNone(p.grad, n)
+            else: self.assertTrue(torch.equal(gradients[n], p.grad), n)
+        self.assertNotIn("class_loss", F.settings_of(args(self.dir / "unused", self.data)))
+
+    def test_weighted_closed_form_gradient_and_split_final_short_batches(self):
+        layout = Layout(READER)
+        part = [dict(row(i), idx=i) for i in range(5)]
+        logits = torch.nn.Parameter(torch.arange(50, dtype=torch.float32).reshape(5, 10) / 7)
+        class Model:
+            def __call__(self, input_ids, attention_mask):
+                s = logits[input_ids[:, 0]]
+                return torch.zeros(len(s), 1, len(layout.tags)), s, None
+        def encoding(tok, rows, *ignored):
+            ids = torch.tensor([[r["idx"]] for r in rows])
+            return dict(input_ids=ids, attention_mask=torch.ones_like(ids)), torch.full_like(ids, -100), []
+        weights = [(0.4, 2.1), (1., 1.)]
+        with patch.object(F, "encode", encoding), patch.object(F, "autocast", lambda b: nullcontext()):
+            actual, _ = F.request_loss(Model(), None, part, layout, self.backend, class_weights=weights)
+            targets = torch.tensor([layout.class_targets(r) for r in part])
+            actions = torch.tensor([layout.act_id[r["act"]] for r in part])
+            expected = -logits[:, :3].log_softmax(1)[range(5), actions].mean()
+            analytic = torch.zeros_like(logits)
+            analytic[:, :3] = logits[:, :3].softmax(1)
+            analytic[range(5), actions] -= 1
+            analytic[:, :3] /= 5
+            for h, (start, size) in enumerate(zip(layout.offsets[:-1], layout.class_sizes)):
+                w = torch.tensor([weights[h][int(t > 0)] for t in targets[:, h]])
+                expected += (-logits[:, start:start + size].log_softmax(1)[range(5), targets[:, h]] * w).sum() / 10
+                grad = logits[:, start:start + size].softmax(1)
+                grad[range(5), targets[:, h]] -= 1
+                analytic[:, start:start + size] = grad * w[:, None] / 10
+            torch.testing.assert_close(actual, expected, atol=1e-6, rtol=0)
+            actual.backward(); torch.testing.assert_close(logits.grad, analytic, atol=1e-7, rtol=1e-6)
+            split = sum(F.request_loss(Model(), None, batch, layout, self.backend, class_weights=weights)[0] * len(batch) for batch in (part[:4], part[4:])) / 5
+            torch.testing.assert_close(split, actual, atol=1e-6, rtol=0)
+            for rows in ([part[0]], [part[2]]):  # positive-only and absent-only one-row batches
+                weighted = F.request_loss(Model(), None, rows, layout, self.backend, class_weights=weights)[0]
+                plain = F.request_loss(Model(), None, rows, layout, self.backend)[0]
+                self.assertNotEqual(weighted.item(), plain.item())  # weight-sum renormalization would erase it
+
+    def test_weighted_exact_resume_and_objective_refusals(self):
+        manifest = self.manifest(); whole, part = self.dir / "whole", self.dir / "part"
+        a = dict(epochs=2, class_loss_manifest=manifest)
+        self.assertEqual(F.run(args(whole, self.data, **a), self.backend, hooks()), 0)
+        F.run(args(part, self.data, stop_at_ts=50., **a), self.backend, hooks(now=ClockAfter(4)))
+        with self.assertRaisesRegex(RuntimeError, "Resume contract changed: settings"):
+            F.run(args(part, self.data, resume=True, epochs=2), self.backend, hooks())
+        original = manifest.read_text(); manifest.write_text(original + "\n")
+        with self.assertRaisesRegex(RuntimeError, "Resume contract changed: settings"):
+            F.run(args(part, self.data, resume=True, **a), self.backend, hooks())
+        manifest.write_text(original)
+        metadata_of = F.metadata_of
+        def changed_source(*args):
+            value = metadata_of(*args); value["sources"]["modernbert_class_loss.py"] = "0" * 64
+            return value
+        with patch.object(F, "metadata_of", changed_source), self.assertRaisesRegex(RuntimeError, "Resume contract changed: sources"):
+            F.run(args(part, self.data, resume=True, **a), self.backend, hooks())
+        self.assertEqual(F.run(args(part, self.data, resume=True, **a), self.backend, hooks()), 0)
+        self.assertEqual(losses(whole), losses(part))
+        for name in ("checkpoint.pt", "epoch_2.pt"):
+            x, y = [torch.load(d / name, map_location="cpu", weights_only=False)["model"] for d in (whole, part)]
+            for key in x: self.assertTrue(torch.equal(x[key], y[key]), key)
+        complete = json.loads((whole / "complete.json").read_text())
+        self.assertEqual(complete["metadata"]["settings"]["class_loss"]["sha256"], F.sha(manifest))
+        self.assertIn("modernbert_class_loss.py", complete["metadata"]["sources"])
+
+    def test_weights_reach_preflight_and_gate_and_unknown_fails_before_build(self):
+        manifest = self.manifest()
+        with patch.object(F, "request_loss", wraps=F.request_loss) as request:
+            F.run(args(self.dir / "run", self.data, max_updates=1, class_loss_manifest=manifest), self.backend, hooks())
+            self.assertEqual(request.call_count, 2)  # update and longest-row preflight
+            self.assertIsNotNone(request.call_args_list[0].args[-1])
+            self.assertEqual(request.call_args_list[0].args[-1], request.call_args_list[1].args[-1])
+        with patch.object(F, "GATE_UPDATES", 1), patch.object(F, "request_loss", wraps=F.request_loss) as request:
+            F.run(args(self.dir / "gate", self.data, overfit_gate=True, class_loss_manifest=manifest), self.backend, hooks())
+            self.assertIsNotNone(request.call_args.kwargs["class_weights"])
+            self.assertEqual(len(request.call_args.args), 5)  # gate still omits action weights
+        gate = json.loads((self.dir / "gate/overfit_gate.json").read_text())
+        self.assertEqual(gate["class_loss"]["sha256"], F.sha(manifest))
+        rows = (self.data / "train.jsonl").read_text().splitlines(); bad = json.loads(rows[0]); bad["classes"]["color"] = "unknown"; rows[0] = json.dumps(bad)
+        (self.data / "train.jsonl").write_text("\n".join(rows) + "\n")
+        with patch.object(F, "prepare_model") as prepare, self.assertRaisesRegex(ValueError, "Unknown populated"):
+            F.run(args(self.dir / "bad", self.data, class_loss_manifest=manifest), self.backend, hooks())
+        prepare.assert_not_called()
+
+    def test_weighted_unicode_and_request_message_caps(self):
+        layout = Layout(READER)
+        long = row(0); long["text"] = "draw șape 東京 " + "one " * 600
+        long["words"] = [w["w"] for w in words_of(long["text"])]; long["tags"] = ["O"] * len(long["words"])
+        _, model = tiny_build(layout, args(self.dir / "unused", self.data))
+        loss, request_tokens = F.request_loss(model, TOK, [long], layout, self.backend, class_weights=[(.5, 2), (1, 1)])
+        self.assertEqual(request_tokens, 128); self.assertTrue(torch.isfinite(loss))
+        long["tags"] = ["O"] * len(long["words"])
+        cut, cut_tokens = F.cut_loss(model, TOK, [long], layout, self.backend)
+        self.assertEqual(cut_tokens, 512); self.assertTrue(torch.isfinite(cut))
+        (loss + cut).backward()
+        for p in model.parameters():
+            if p.grad is not None: self.assertTrue(torch.isfinite(p.grad).all())
 
 
 class Stops(Base):

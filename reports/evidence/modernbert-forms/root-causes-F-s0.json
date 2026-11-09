@@ -1,0 +1,262 @@
+{
+ "experiment": "F-s0 vs B-s0, seed 0; truthful_v1; cost-10 gate. Source: records/score files under F-s0/bundle/eval and next-2026-11-08/B-s0/eval; no inference run.",
+ "thresholds_cost10": {
+  "B": 0.9149657823752421,
+  "F": 0.8757649662501259,
+  "calibration_oof_auroc": {
+   "B": 0.9416110170554302,
+   "F": 0.9470943316857714
+  },
+  "calibration_oof_at_threshold": {
+   "B": {
+    "executed": 536,
+    "right": 525,
+    "wrong": 6,
+    "extras": 5
+   },
+   "F": {
+    "executed": 698,
+    "right": 676,
+    "wrong": 13,
+    "extras": 9
+   }
+  }
+ },
+ "q1": {
+  "outline_create": {
+   "requests": 80,
+   "ungated": {
+    "F": {
+     "right": 15,
+     "wrong": 65
+    },
+    "B": {
+     "right": 3,
+     "wrong": 77
+    }
+   },
+   "F_wrong_by_key": {
+    "action_wrong": 0,
+    "outline = copy of the color value": 35,
+    "outline = copy of color and color value also wrong": 1,
+    "outline other value": 10,
+    "outline other value + color wrong": 1,
+    "outline missing": 16,
+    "outline missing + color wrong": 2
+   },
+   "F_executed_at_gate": {
+    "right": 9,
+    "wrong": 17,
+    "held": 54
+   },
+   "B_wrong_by_key": {
+    "outline missing": 50,
+    "outline value wrong": 11,
+    "color wrong + outline missing": 14,
+    "color+outline missing": 2
+   },
+   "training_rows_F_create_with_outline_value": {
+    "total": 74,
+    "r2": 57,
+    "B": 17,
+    "none_value_rows": 15
+   },
+   "held_out_r2_in_calibration": {
+    "F": "3 right of 22 (19 wrong)",
+    "B": "1 right of 22"
+   }
+  },
+  "outline_set": {
+   "requests": 80,
+   "ungated": {
+    "F": {
+     "right": 67,
+     "wrong": 13
+    },
+    "B": {
+     "right": 26,
+     "wrong": 54
+    }
+   },
+   "F_wrong": {
+    "outline missing": 6,
+    "outline other value": 7
+   },
+   "wrong_gold_values": {
+    "green": "0 of 4 right",
+    "orange": "3 of 8 right",
+    "pink": "3 of 7 right"
+   },
+   "all_other_values": "right 61 of 61 (every gold value except green, orange, pink)",
+   "training_rows_F_set_with_outline_value": {
+    "total": 97,
+    "r2": 59,
+    "green": 3,
+    "orange": 4,
+    "pink": 2
+   },
+   "phrasing_template_in_r2": {
+    "in r2": {
+     "n": 57,
+     "right": 48,
+     "wrong": 9
+    },
+    "not in r2": {
+     "n": 23,
+     "right": 19,
+     "wrong": 4
+    }
+   }
+  },
+  "description_size": {
+   "requests": 64,
+   "ungated": {
+    "F": {
+     "right": 15,
+     "wrong": 49
+    },
+    "B": {
+     "right": 3,
+     "wrong": 61
+    }
+   },
+   "by_form_F": {
+    "count question with size": "14 of 14 right (B 3 of 14)",
+    "commands on 'the SIZE SHAPEs' (set 19, move 19, delete 12)": "1 of 50 right (delete); B 0 of 50"
+   },
+   "F_wrong_by_key": {
+    "size dropped from the mention target": 44,
+    "wrong size value": 5,
+    "action wrong": 0
+   },
+   "training": {
+    "rows_desc_size_F": 59,
+    "r2": 35,
+    "B": 24,
+    "count_with_size_class_F": 14,
+    "count_with_size_r2": 12
+   }
+  },
+  "r2_calibration_ids_overlap_with_F_ids": 0
+ },
+ "q3": {
+  "lowercase_other_affected": {
+   "requests": 825,
+   "transitions_B_to_F": {
+    "right->right": 518,
+    "right->wrong": 88,
+    "right->unread": 6,
+    "wrong->right": 34,
+    "unread->right": 7,
+    "wrong->wrong": 135,
+    "unread->wrong": 10,
+    "wrong->unread": 8,
+    "unread->unread": 19
+   },
+   "right_B": 612,
+   "right_F_my_pairing": 559,
+   "right_F_score_file": 557,
+   "original_case_twin_fresh2_test": {
+    "B_right": 746,
+    "F_right": 749,
+    "of": 825
+   }
+  },
+  "short3_lowercase": {
+   "requests": 134,
+   "transitions_B_to_F": {
+    "right->right": 36,
+    "right->wrong": 25,
+    "right->unread": 2,
+    "wrong->right": 4,
+    "unread->right": 1,
+    "wrong->wrong": 38,
+    "unread->wrong": 4,
+    "wrong->unread": 9,
+    "unread->unread": 15
+   },
+   "right_B": 63,
+   "right_F": 41
+  },
+  "first_cause_of_B_right_F_not_right": {
+   "lowercase_other_affected": {
+    "n": 94,
+    "name-role key missing": 25,
+    "name-role value wrong": 37,
+    "name-role keys missing+wrong": 3,
+    "name-role plus other keys": 19,
+    "unread": 6,
+    "no name-role key differs": 4
+   },
+   "short3_lowercase": {
+    "n": 27,
+    "name-role key missing": 14,
+    "name-role value wrong": 2,
+    "name-role keys missing+wrong": 4,
+    "name-role plus other keys": 5,
+    "unread": 2
+   }
+  },
+  "r2_name_case": {
+   "r2_name_role_spans": 1220,
+   "r2_capitalised": 1220,
+   "r2_lowercase": 0,
+   "B_name_role_spans": 58021,
+   "B_lowercase_initial": 1078,
+   "F_lowercase_initial_share": "1078/59241=1.82%",
+   "B_share": "1078/58021=1.86%",
+   "r2_all_lowercase_text_rows": 572,
+   "r2_lowercase_text_rows_with_name_span": 0,
+   "B_lowercase_text_rows_with_name_span": 549
+  },
+  "name_key_split_per_key": {
+   "lowercase_other_affected": {
+    "another name inside the request span (tag/cut)": 4,
+    "key missing (tag head or fill head: not separable from the records)": 47,
+    "name from elsewhere in the message (context fill)": 11,
+    "got $new (fill head)": 14,
+    "name list shortened (tag/cut)": 11,
+    "got mention(...) (fill head)": 4
+   },
+   "short3_lowercase": {
+    "name from elsewhere in the message (context fill)": 3,
+    "got mention(...) (fill head)": 1,
+    "key missing (tag head or fill head: not separable from the records)": 31,
+    "key added where gold has none": 2,
+    "another name inside the request span (tag/cut)": 1
+   }
+  }
+ },
+ "q4": {
+  "F_confidently_wrong_t1_clean": 29,
+  "B": 5,
+  "F_by_cause": {
+   "outline create: outline = copy of color word": 13,
+   "outline create: other outline value": 4,
+   "outline set: other outline value": 6,
+   "outline set: outline missing": 1,
+   "description size dropped from mention": 5
+  },
+  "B_by_cause": {
+   "description size dropped from mention": 5
+  },
+  "B_view_of_F_29": {
+   "same reading in B": 6,
+   "  executed by B": 1,
+   "  held by B": 5,
+   "different reading in B": 23,
+   "  B right and held": 5,
+   "  B wrong and held": 18,
+   "total": 29
+  },
+  "F_wrong_with_conf_ge_B_threshold": 19,
+  "F_wrong_conf_range": [
+   0.8818,
+   0.9822
+  ],
+  "B_wrong_conf_range": [
+   0.9204,
+   0.9843
+  ]
+ }
+}

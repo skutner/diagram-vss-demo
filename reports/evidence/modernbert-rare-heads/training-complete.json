@@ -1,0 +1,1451 @@
+{
+  "complete": true,
+  "full_schedule": true,
+  "max_updates": 0,
+  "state": {
+    "epoch": 8,
+    "update": 14640,
+    "elapsed": 2643.309606807001,
+    "total": 14640
+  },
+  "metadata": {
+    "base": "answerdotai/ModernBERT-base",
+    "revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+    "settings": {
+      "seed": 0,
+      "epochs": 8,
+      "lr": 6e-05,
+      "head_lr": 6e-05,
+      "batch": 32,
+      "cut_batch": 8,
+      "weight_decay": 0.01,
+      "warmup": 0.06,
+      "clip": 1.0,
+      "request_cap": 128,
+      "message_cap": 512,
+      "attn": "sdpa",
+      "autocast": "bfloat16",
+      "weights": "float32",
+      "gradient_checkpointing": false,
+      "max_updates": 0,
+      "class_loss": {
+        "formula": "sqrt-positive-absent-v1",
+        "sha256": "9235a6428920c5da96dacbaf5c36ba1106098be180ae6c48799cedeff4973735",
+        "manifest": {
+          "version": "modernbert-class-loss-manifest-v1",
+          "formula": "sqrt-positive-absent-v1",
+          "normalization": "per-head-corpus-mean-one; minibatch-arithmetic-mean",
+          "data": {
+            "messages": 28330,
+            "requests": 58552,
+            "files": {
+              "coverage.json": "7e323085c028b598de27afa78dc882bb12f650d3bcae5731befb8f87c152ce75",
+              "cut_eval_sample1000.jsonl": "038401927d529e3872365c95dc7ec2b443b5171b18ccc67c0669945552957cc1",
+              "cut_heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "cut_train.jsonl": "3ab73ef23454d223814178db573f8f82af21dc5097928c079b0721db71043c42",
+              "eval_blind.jsonl": "74041c3c37da54d88b39d7203ab5b5eb7422e7a0427e0b19c8181ec8e8b2ffd1",
+              "eval_broad.jsonl": "2e48302deef8b522839ee37ea0420683c144c811953f435adeac3419c0e90f7c",
+              "eval_hand.jsonl": "554b6c1a6f2a75ee89725521d7c28c8ce531bb27731e41f256e4f1305d977062",
+              "eval_heldout_formulations.jsonl": "8f611f52bf2ad7e11ee498b68a00ea6a3d69df0af46f79caec45b1839b5d19ac",
+              "eval_new_identities.jsonl": "8c1561981efb5fd715f780b624125e27d608b9e19e998731871cc677ee298876",
+              "eval_sample1000.jsonl": "eea42ce686b12829d733cf08d20794091a7142c542d563ab9809c914205ce458",
+              "eval_seen.jsonl": "109f2e5cd426db06e5bdbf4666961f11c621918d53c082087127199ac3f8d785",
+              "heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "reader.json": "5abf1240d90852f26239ff8c7077bfcdeef44a6f6612112db8973fc213756046",
+              "train.jsonl": "bfdb92373d8eecdc7902d23e309c68d29fc610ed63334ddad7f18213fb90c7ce",
+              "trigger_inventory.json": "4f894bc7061e789ffa011063200471c0435dc6a041035ccbcdb5101df43b7ae0"
+            },
+            "extra_dirs": [
+              "llm_train/opus_train_a",
+              "llm_train/opus_train_b",
+              "llm_train/opus_train_c",
+              "llm_train/opus_train_d",
+              "llm_train/opus_gen_1",
+              "llm_train/opus_gen_2",
+              "llm_train/synth_rules",
+              "llm_train/synth_rules_ops",
+              "llm_train/synth_rules_ext",
+              "llm_train/ops_formulations",
+              "llm_train/opus_ext_1",
+              "llm_train/synth_combo",
+              "llm_train/synth_short_r2",
+              "llm_train/nl_p1",
+              "llm_train/nl_p2"
+            ]
+          },
+          "rows": 58552,
+          "heads": [
+            {
+              "name": "arrow",
+              "values": [
+                "none",
+                "both",
+                "forward",
+                "none"
+              ],
+              "positive": 1409,
+              "absent": 57143,
+              "weights": {
+                "absent": 0.8855951954469548,
+                "positive": 5.639768450372364
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "aspect",
+              "values": [
+                "none",
+                "can",
+                "example",
+                "how",
+                "overview",
+                "values"
+              ],
+              "positive": 759,
+              "absent": 57793,
+              "weights": {
+                "absent": 0.9089659088551267,
+                "positive": 7.931664334039084
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "axis",
+              "values": [
+                "none",
+                "horizontal",
+                "vertical"
+              ],
+              "positive": 1407,
+              "absent": 57145,
+              "weights": {
+                "absent": 0.8856516395319094,
+                "positive": 5.644233872742743
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "color",
+              "values": [
+                "none",
+                "black",
+                "blue",
+                "brown",
+                "cyan",
+                "gold",
+                "gray",
+                "green",
+                "indigo",
+                "lime",
+                "magenta",
+                "navy",
+                "orange",
+                "pink",
+                "purple",
+                "red",
+                "teal",
+                "white",
+                "yellow"
+              ],
+              "positive": 12078,
+              "absent": 46474,
+              "weights": {
+                "absent": 0.83447770823664,
+                "positive": 1.636900396374432
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "comparison",
+              "values": [
+                "none",
+                "bigger",
+                "smaller"
+              ],
+              "positive": 705,
+              "absent": 57847,
+              "weights": {
+                "absent": 0.9115550995373184,
+                "positive": 8.257123627042185
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "direction",
+              "values": [
+                "none",
+                "down",
+                "left",
+                "right",
+                "up"
+              ],
+              "positive": 1154,
+              "absent": 57398,
+              "weights": {
+                "absent": 0.8934240339261514,
+                "positive": 6.300907539607238
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "fill",
+              "values": [
+                "none",
+                "faint",
+                "light",
+                "none"
+              ],
+              "positive": 11,
+              "absent": 58541,
+              "weights": {
+                "absent": 0.9866629700859388,
+                "positive": 71.9784607453686
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "kind",
+              "values": [
+                "none",
+                "edge",
+                "group"
+              ],
+              "positive": 466,
+              "absent": 58086,
+              "weights": {
+                "absent": 0.9251572714214115,
+                "positive": 10.329001571278749
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "layer",
+              "values": [
+                "none",
+                "background",
+                "zone"
+              ],
+              "positive": 9,
+              "absent": 58543,
+              "weights": {
+                "absent": 0.9879047833174431,
+                "positive": 79.67669669410219
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "layout",
+              "values": [
+                "none",
+                "circle",
+                "column",
+                "grid",
+                "layers",
+                "organic",
+                "radial",
+                "row",
+                "tree"
+              ],
+              "positive": 1565,
+              "absent": 56987,
+              "weights": {
+                "absent": 0.8813988816396694,
+                "positive": 5.318672161022468
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "notColor",
+              "values": [
+                "none",
+                "black",
+                "blue",
+                "brown",
+                "cyan",
+                "gold",
+                "gray",
+                "green",
+                "indigo",
+                "lime",
+                "magenta",
+                "navy",
+                "orange",
+                "pink",
+                "purple",
+                "red",
+                "teal",
+                "white",
+                "yellow"
+              ],
+              "positive": 408,
+              "absent": 58144,
+              "weights": {
+                "absent": 0.929181479708595,
+                "positive": 11.09233344074375
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "object",
+              "values": [
+                "none",
+                "door",
+                "eye",
+                "flower",
+                "house",
+                "lake",
+                "moon",
+                "pond",
+                "river",
+                "roof",
+                "sun",
+                "tree",
+                "wall",
+                "walls",
+                "window"
+              ],
+              "positive": 38,
+              "absent": 58514,
+              "weights": {
+                "absent": 0.9757828919143465,
+                "positive": 38.29052269799813
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "outline",
+              "values": [
+                "none",
+                "black",
+                "blue",
+                "brown",
+                "cyan",
+                "gold",
+                "gray",
+                "green",
+                "indigo",
+                "lime",
+                "magenta",
+                "navy",
+                "none",
+                "orange",
+                "pink",
+                "purple",
+                "red",
+                "teal",
+                "white",
+                "yellow"
+              ],
+              "positive": 186,
+              "absent": 58366,
+              "weights": {
+                "absent": 0.9495813682630693,
+                "positive": 16.821149784718767
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "pairing",
+              "values": [
+                "none",
+                "all",
+                "chain",
+                "next"
+              ],
+              "positive": 1873,
+              "absent": 56679,
+              "weights": {
+                "absent": 0.8741402528282128,
+                "positive": 4.808651687106099
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "position",
+              "values": [
+                "none",
+                "above",
+                "below",
+                "between",
+                "bottom",
+                "bottomLeft",
+                "bottomRight",
+                "center",
+                "inside",
+                "left",
+                "leftOf",
+                "near",
+                "onTop",
+                "right",
+                "rightOf",
+                "top",
+                "topLeft",
+                "topRight"
+              ],
+              "positive": 10756,
+              "absent": 47796,
+              "weights": {
+                "absent": 0.8308826780399274,
+                "positive": 1.7514997694685404
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "position2",
+              "values": [
+                "none",
+                "above",
+                "below",
+                "leftOf",
+                "rightOf"
+              ],
+              "positive": 120,
+              "absent": 58432,
+              "weights": {
+                "absent": 0.9586118465039231,
+                "positive": 21.153271542356368
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "property",
+              "values": [
+                "none",
+                "color",
+                "label",
+                "name",
+                "outline",
+                "position",
+                "shape",
+                "size"
+              ],
+              "positive": 1213,
+              "absent": 57339,
+              "weights": {
+                "absent": 0.8914901467242206,
+                "positive": 6.1293045976751195
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "quantifier",
+              "values": [
+                "none",
+                "all"
+              ],
+              "positive": 125,
+              "absent": 58427,
+              "weights": {
+                "absent": 0.9578357954718972,
+                "positive": 20.70822382370765
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "region",
+              "values": [
+                "none",
+                "bottom",
+                "bottomLeft",
+                "bottomRight",
+                "top",
+                "topLeft",
+                "topRight"
+              ],
+              "positive": 65,
+              "absent": 58487,
+              "weights": {
+                "absent": 0.9688139702724573,
+                "positive": 29.061189548842883
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "scheme",
+              "values": [
+                "none",
+                "bold",
+                "calm",
+                "classic",
+                "cool",
+                "earth",
+                "forest",
+                "love",
+                "mono",
+                "ocean",
+                "rainbow",
+                "sunset",
+                "warm"
+              ],
+              "positive": 228,
+              "absent": 58324,
+              "weights": {
+                "absent": 0.9448347542876804,
+                "positive": 15.111656977742694
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "shape",
+              "values": [
+                "none",
+                "any",
+                "circle",
+                "diamond",
+                "ellipse",
+                "hexagon",
+                "rectangle",
+                "square",
+                "star",
+                "text",
+                "triangle"
+              ],
+              "positive": 10517,
+              "absent": 48035,
+              "weights": {
+                "absent": 0.8303917157204233,
+                "positive": 1.7746633008813806
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "size",
+              "values": [
+                "none",
+                "huge",
+                "large",
+                "medium",
+                "small",
+                "tiny"
+              ],
+              "positive": 4739,
+              "absent": 53813,
+              "weights": {
+                "absent": 0.8390661640532597,
+                "positive": 2.8274599100658255
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "style",
+              "values": [
+                "none",
+                "dashed",
+                "dotted",
+                "solid"
+              ],
+              "positive": 1110,
+              "absent": 57442,
+              "weights": {
+                "absent": 0.8949207187426624,
+                "positive": 6.437805472057639
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "superlative",
+              "values": [
+                "none",
+                "biggest",
+                "bottommost",
+                "closest",
+                "farthest",
+                "leastConnected",
+                "leftmost",
+                "mostConnected",
+                "rightmost",
+                "smallest",
+                "topmost"
+              ],
+              "positive": 2809,
+              "absent": 55743,
+              "weights": {
+                "absent": 0.8578258742331739,
+                "positive": 3.8213642907156213
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "template",
+              "values": [
+                "none",
+                "balance",
+                "bridge",
+                "burst",
+                "cycle",
+                "funnel",
+                "heart",
+                "hierarchy",
+                "hourglass",
+                "hub",
+                "list",
+                "matrix",
+                "mountain",
+                "pillars",
+                "process",
+                "pyramid",
+                "road",
+                "spiral",
+                "steps",
+                "sunrise",
+                "target",
+                "timeline",
+                "tree",
+                "venn",
+                "wave"
+              ],
+              "positive": 1674,
+              "absent": 56878,
+              "weights": {
+                "absent": 0.8786874325813221,
+                "positive": 5.121873482460903
+              },
+              "corpus_mean": 0.9999999999999998,
+              "missing_population": null
+            },
+            {
+              "name": "topic",
+              "values": [
+                "none",
+                "align",
+                "arrange",
+                "balance",
+                "black",
+                "blue",
+                "bridge",
+                "brown",
+                "burst",
+                "check",
+                "circle",
+                "color",
+                "connect",
+                "connected",
+                "connections",
+                "count",
+                "create",
+                "cyan",
+                "cycle",
+                "dashed",
+                "delete",
+                "describe",
+                "diamond",
+                "disconnect",
+                "distribute",
+                "dotted",
+                "duplicate",
+                "ellipse",
+                "equalize",
+                "fill",
+                "fit",
+                "flip",
+                "forget",
+                "funnel",
+                "general",
+                "gold",
+                "gray",
+                "green",
+                "group",
+                "groups",
+                "heart",
+                "hexagon",
+                "hierarchy",
+                "history",
+                "horizontal",
+                "hourglass",
+                "hub",
+                "improve",
+                "indigo",
+                "label",
+                "layer",
+                "layers",
+                "layout",
+                "lime",
+                "list",
+                "magenta",
+                "matrix",
+                "mountain",
+                "move",
+                "navy",
+                "nearest",
+                "neighbors",
+                "orange",
+                "outline",
+                "pillars",
+                "pink",
+                "position",
+                "process",
+                "purple",
+                "pyramid",
+                "queries",
+                "reachable",
+                "rectangle",
+                "red",
+                "redo",
+                "rename",
+                "resize",
+                "respace",
+                "reverse",
+                "road",
+                "rules",
+                "scheme",
+                "set",
+                "shape",
+                "size",
+                "snap",
+                "sort",
+                "spiral",
+                "square",
+                "star",
+                "steps",
+                "straighten",
+                "style",
+                "sunrise",
+                "swap",
+                "target",
+                "teal",
+                "template",
+                "text",
+                "timeline",
+                "toFront",
+                "tree",
+                "triangle",
+                "undo",
+                "ungroup",
+                "untangle",
+                "venn",
+                "wave",
+                "white",
+                "yellow",
+                "zone"
+              ],
+              "positive": 618,
+              "absent": 57934,
+              "weights": {
+                "absent": 0.9160547277992909,
+                "positive": 8.869393850608212
+              },
+              "corpus_mean": 0.9999999999999998,
+              "missing_population": null
+            },
+            {
+              "name": "fill:anchor",
+              "values": [
+                "none",
+                "written",
+                "context",
+                "description",
+                "unresolved"
+              ],
+              "positive": 9382,
+              "absent": 49170,
+              "weights": {
+                "absent": 0.8287826527677091,
+                "positive": 1.8973307358145104
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "fill:anchor2",
+              "values": [
+                "none",
+                "written",
+                "context",
+                "description",
+                "unresolved"
+              ],
+              "positive": 120,
+              "absent": 58432,
+              "weights": {
+                "absent": 0.9586118465039231,
+                "positive": 21.153271542356368
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "fill:from",
+              "values": [
+                "none",
+                "written",
+                "context",
+                "description",
+                "unresolved"
+              ],
+              "positive": 9226,
+              "absent": 49326,
+              "weights": {
+                "absent": 0.8286601207169126,
+                "positive": 1.916053640311898
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "fill:linked",
+              "values": [
+                "none",
+                "written",
+                "context",
+                "description",
+                "unresolved"
+              ],
+              "positive": 101,
+              "absent": 58451,
+              "weights": {
+                "absent": 0.9617494287212224,
+                "positive": 23.136476651641853
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "fill:target",
+              "values": [
+                "none",
+                "written",
+                "context",
+                "description",
+                "unresolved"
+              ],
+              "positive": 31605,
+              "absent": 26947,
+              "weights": {
+                "absent": 1.0431458678029095,
+                "positive": 0.963213045414175
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "fill:to",
+              "values": [
+                "none",
+                "written",
+                "context",
+                "description",
+                "unresolved"
+              ],
+              "positive": 6938,
+              "absent": 51614,
+              "weights": {
+                "absent": 0.8300835751692273,
+                "positive": 2.2640626046721675
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "desc:anchor",
+              "values": [
+                "none",
+                "Late",
+                "Walken",
+                "mention(label=Laptop)"
+              ],
+              "positive": 4,
+              "absent": 58548,
+              "weights": {
+                "absent": 0.9918699278807552,
+                "positive": 119.99986560938646
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "desc:color",
+              "values": [
+                "none",
+                "black",
+                "blue",
+                "brown",
+                "cyan",
+                "gold",
+                "gray",
+                "green",
+                "indigo",
+                "lime",
+                "magenta",
+                "navy",
+                "orange",
+                "pink",
+                "purple",
+                "red",
+                "teal",
+                "white",
+                "yellow"
+              ],
+              "positive": 2930,
+              "absent": 55622,
+              "weights": {
+                "absent": 0.8561727621712828,
+                "positive": 3.73036130461055
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "desc:label",
+              "values": [
+                "none",
+                "0",
+                "10p",
+                "6",
+                "Advice only",
+                "Alfie's Theatre",
+                "Amina and Jo",
+                "Call customer",
+                "Chair",
+                "Close as false alarm",
+                "Close ticket",
+                "Closing",
+                "Cold liquor tank",
+                "Compost",
+                "Compost bays",
+                "Dad's side",
+                "Design changes",
+                "Desk",
+                "Door",
+                "Entrance Hall",
+                "Escalate to lead",
+                "FLAMMABLE",
+                "Freeze branch",
+                "Gate",
+                "Guitar DI",
+                "Harbour office",
+                "Headphone amp",
+                "Headphones",
+                "Herbs",
+                "Hot liquor tank",
+                "Kids' bikes",
+                "Kitchen tent",
+                "Laptop",
+                "Main Gate",
+                "Mic stand",
+                "Next show: 3 o'clock",
+                "No Idea",
+                "Oak Lane",
+                "Opening",
+                "Oven on",
+                "Page on-call",
+                "Path",
+                "Peg 3",
+                "Peppers",
+                "Pickle",
+                "Poem",
+                "Read ticket",
+                "Round 1",
+                "Round 2",
+                "Run tests",
+                "SF 82",
+                "Send design",
+                "Send template",
+                "Shed",
+                "Skull Cove",
+                "Stile",
+                "Straw",
+                "Strawberries",
+                "THE HARBOUR GAZETTE",
+                "Tap",
+                "Wake up",
+                "Welcome desk",
+                "agree",
+                "apple",
+                "arm",
+                "ballot box",
+                "bench",
+                "benches",
+                "bird aviary",
+                "books",
+                "boss room",
+                "bulk tank",
+                "check the whiteboards?",
+                "clothes rail",
+                "coaching launch",
+                "compost heap",
+                "drive",
+                "drive gates",
+                "eights",
+                "erg room",
+                "fetch gates",
+                "folding table",
+                "foot bath",
+                "fuel store",
+                "greenhouse",
+                "hatch",
+                "intensive care",
+                "leak check",
+                "mat",
+                "musicians",
+                "pear",
+                "photo",
+                "places",
+                "pontoon",
+                "quay",
+                "shedding ring",
+                "singles",
+                "sitter",
+                "slippery boards",
+                "speakers",
+                "tanker comes twice a week",
+                "teat dip",
+                "toilet check",
+                "turn water back on",
+                "water tank"
+              ],
+              "positive": 158,
+              "absent": 58394,
+              "weights": {
+                "absent": 0.953127047213547,
+                "positive": 18.323412689950214
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "desc:layer",
+              "values": [
+                "none",
+                "zone"
+              ],
+              "positive": 2,
+              "absent": 58550,
+              "weights": {
+                "absent": 0.9942233643889112,
+                "positive": 170.11100751461964
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "desc:notColor",
+              "values": [
+                "none",
+                "black",
+                "blue",
+                "brown",
+                "cyan",
+                "gold",
+                "gray",
+                "green",
+                "indigo",
+                "lime",
+                "magenta",
+                "navy",
+                "orange",
+                "pink",
+                "purple",
+                "red",
+                "teal",
+                "white",
+                "yellow"
+              ],
+              "positive": 496,
+              "absent": 58056,
+              "weights": {
+                "absent": 0.9232102967214901,
+                "positive": 9.988110914389448
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "desc:position",
+              "values": [
+                "none",
+                "bottom",
+                "center",
+                "left",
+                "leftOf",
+                "right",
+                "rightOf",
+                "top",
+                "topLeft"
+              ],
+              "positive": 14,
+              "absent": 58538,
+              "weights": {
+                "absent": 0.985006209849885,
+                "positive": 63.693320557674035
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "desc:quantifier",
+              "values": [
+                "none",
+                "all"
+              ],
+              "positive": 4277,
+              "absent": 54275,
+              "weights": {
+                "absent": 0.8423421047791273,
+                "positive": 3.0006738983195853
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "desc:recency",
+              "values": [
+                "none",
+                "newest",
+                "oldest"
+              ],
+              "positive": 1684,
+              "absent": 56868,
+              "weights": {
+                "absent": 0.8784469614750721,
+                "positive": 5.104797027812111
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "desc:shape",
+              "values": [
+                "none",
+                "circle",
+                "diamond",
+                "ellipse",
+                "hexagon",
+                "rectangle",
+                "square",
+                "star",
+                "text",
+                "triangle"
+              ],
+              "positive": 5726,
+              "absent": 52826,
+              "weights": {
+                "absent": 0.8338602596532189,
+                "positive": 2.5327450093536608
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "desc:size",
+              "values": [
+                "none",
+                "huge",
+                "large",
+                "small",
+                "tiny"
+              ],
+              "positive": 59,
+              "absent": 58493,
+              "weights": {
+                "absent": 0.9701957086310935,
+                "positive": 30.548176526126223
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "desc2:color",
+              "values": [
+                "none",
+                "black",
+                "blue",
+                "brown",
+                "cyan",
+                "gold",
+                "gray",
+                "green",
+                "indigo",
+                "lime",
+                "magenta",
+                "navy",
+                "orange",
+                "pink",
+                "purple",
+                "red",
+                "teal",
+                "white",
+                "yellow"
+              ],
+              "positive": 69,
+              "absent": 58483,
+              "weights": {
+                "absent": 0.9679326464064191,
+                "positive": 28.17963826396214
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "desc2:label",
+              "values": [
+                "none",
+                "Call customer",
+                "Cold liquor tank",
+                "Herbs",
+                "Main Gate",
+                "Opening",
+                "Read ticket",
+                "Send template",
+                "Skull Cove",
+                "Straw",
+                "benches",
+                "books"
+              ],
+              "positive": 15,
+              "absent": 58537,
+              "weights": {
+                "absent": 0.9844966678116489,
+                "positive": 61.50123708730122
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "desc2:position",
+              "values": [
+                "none",
+                "bottom"
+              ],
+              "positive": 1,
+              "absent": 58551,
+              "weights": {
+                "absent": 0.9959013275543082,
+                "positive": 240.98137036770044
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "desc2:quantifier",
+              "values": [
+                "none",
+                "all"
+              ],
+              "positive": 32,
+              "absent": 58520,
+              "weights": {
+                "absent": 0.9776844366842541,
+                "positive": 41.80958641367029
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "desc2:recency",
+              "values": [
+                "none",
+                "newest",
+                "oldest"
+              ],
+              "positive": 53,
+              "absent": 58499,
+              "weights": {
+                "absent": 0.971659242534279,
+                "positive": 32.281244735607615
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            },
+            {
+              "name": "desc2:shape",
+              "values": [
+                "none",
+                "circle",
+                "diamond",
+                "ellipse",
+                "hexagon",
+                "rectangle",
+                "square",
+                "star",
+                "triangle"
+              ],
+              "positive": 129,
+              "absent": 58423,
+              "weights": {
+                "absent": 0.95722814466637,
+                "positive": 20.371008559354053
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "implied:scale",
+              "values": [
+                "none",
+                "0.5",
+                "0.67",
+                "0.8",
+                "1.25",
+                "2"
+              ],
+              "positive": 542,
+              "absent": 58010,
+              "weights": {
+                "absent": 0.9203790836345017,
+                "positive": 9.521788484063775
+              },
+              "corpus_mean": 1.0000000000000002,
+              "missing_population": null
+            },
+            {
+              "name": "text:about",
+              "values": [
+                "absent",
+                "empty",
+                "written"
+              ],
+              "positive": 152,
+              "absent": 58400,
+              "weights": {
+                "absent": 0.9539357487978075,
+                "positive": 18.69837019873709
+              },
+              "corpus_mean": 1.0,
+              "missing_population": null
+            },
+            {
+              "name": "text:label",
+              "values": [
+                "absent",
+                "empty",
+                "written"
+              ],
+              "positive": 3562,
+              "absent": 54990,
+              "weights": {
+                "absent": 0.8487579142207439,
+                "positive": 3.3348686965191705
+              },
+              "corpus_mean": 0.9999999999999998,
+              "missing_population": null
+            },
+            {
+              "name": "text:title",
+              "values": [
+                "absent",
+                "empty",
+                "written"
+              ],
+              "positive": 277,
+              "absent": 58275,
+              "weights": {
+                "absent": 0.9399491334671503,
+                "positive": 13.633444935746596
+              },
+              "corpus_mean": 0.9999999999999999,
+              "missing_population": null
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "messages": 28330,
+      "requests": 58552,
+      "files": {
+        "coverage.json": "7e323085c028b598de27afa78dc882bb12f650d3bcae5731befb8f87c152ce75",
+        "cut_eval_sample1000.jsonl": "038401927d529e3872365c95dc7ec2b443b5171b18ccc67c0669945552957cc1",
+        "cut_heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cut_train.jsonl": "3ab73ef23454d223814178db573f8f82af21dc5097928c079b0721db71043c42",
+        "eval_blind.jsonl": "74041c3c37da54d88b39d7203ab5b5eb7422e7a0427e0b19c8181ec8e8b2ffd1",
+        "eval_broad.jsonl": "2e48302deef8b522839ee37ea0420683c144c811953f435adeac3419c0e90f7c",
+        "eval_hand.jsonl": "554b6c1a6f2a75ee89725521d7c28c8ce531bb27731e41f256e4f1305d977062",
+        "eval_heldout_formulations.jsonl": "8f611f52bf2ad7e11ee498b68a00ea6a3d69df0af46f79caec45b1839b5d19ac",
+        "eval_new_identities.jsonl": "8c1561981efb5fd715f780b624125e27d608b9e19e998731871cc677ee298876",
+        "eval_sample1000.jsonl": "eea42ce686b12829d733cf08d20794091a7142c542d563ab9809c914205ce458",
+        "eval_seen.jsonl": "109f2e5cd426db06e5bdbf4666961f11c621918d53c082087127199ac3f8d785",
+        "heldout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reader.json": "5abf1240d90852f26239ff8c7077bfcdeef44a6f6612112db8973fc213756046",
+        "train.jsonl": "bfdb92373d8eecdc7902d23e309c68d29fc610ed63334ddad7f18213fb90c7ce",
+        "trigger_inventory.json": "4f894bc7061e789ffa011063200471c0435dc6a041035ccbcdb5101df43b7ae0"
+      },
+      "extra_dirs": [
+        "llm_train/opus_train_a",
+        "llm_train/opus_train_b",
+        "llm_train/opus_train_c",
+        "llm_train/opus_train_d",
+        "llm_train/opus_gen_1",
+        "llm_train/opus_gen_2",
+        "llm_train/synth_rules",
+        "llm_train/synth_rules_ops",
+        "llm_train/synth_rules_ext",
+        "llm_train/ops_formulations",
+        "llm_train/opus_ext_1",
+        "llm_train/synth_combo",
+        "llm_train/synth_short_r2",
+        "llm_train/nl_p1",
+        "llm_train/nl_p2"
+      ]
+    },
+    "tokenization": "wordwise-bpe-prefix-space-v1",
+    "device": "cuda",
+    "platform": "Linux-7.0.0-43-generic-x86_64-with-glibc2.43",
+    "python": "3.12.16 (main, Oct 26 2026, 14:08:45) [Clang 23.1.3 ]",
+    "gpu_uuid": "GPU-905b8484-3b1e-30f6-defd-05d44f00f692",
+    "gpu_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_driver": "595.99.02",
+    "gpu_recovery_action": "None",
+    "cuda_total": 6088359936,
+    "cuda_allocator_limit": 5368709120.0,
+    "cuda_capability": [
+      8,
+      6
+    ],
+    "cuda_runtime": "13.2",
+    "versions": {
+      "torch": "2.15.0+cu132",
+      "transformers": "4.57.6",
+      "tokenizers": "0.22.2",
+      "numpy": "2.5.4",
+      "onnx": "1.23.2",
+      "onnxruntime": "1.29.0",
+      "psutil": "7.2.2"
+    },
+    "torch_build": "PyTorch built with:\n  - GCC 13.3\n  - C++ Version: 202002\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.13.3 (Git Hash b38f97eb6f2173513112f15a0481750b8a66e901)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX2\n  - CUDA Runtime 13.2\n  - NVCC architecture flags: -gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120\n  - CuDNN 92.6  (built against CUDA 13.4)\n  - Magma 2.6.1\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=d0f2af8b66b20da4baa50644c0cd3f887a2eae2e, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all -DONNX_NAMESPACE=onnx_torch -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100 -gencode arch=compute_120,code=sm_120 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -Xfatbin -compress-all --threads 2 -compress-mode=size -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CUDA_VERSION=13.2, CUDNN_VERSION=9.26.0, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DHAS_CUPTI -DUSE_FBGEMM -DUSE_MSLK -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.15.0, USE_CUDA=1, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_HIPSPARSELT=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, \n",
+    "numerics": {
+      "weights": "float32",
+      "autocast": "bfloat16",
+      "attn": "sdpa",
+      "grad_scaler": false
+    },
+    "sources": {
+      "finetune_modernbert_batched.py": "5116db7c3e164da3185f9d06af61f60050ece8f2e60b568b4a312435a019a3a9",
+      "finetune_modernbert.py": "129ad900ea2235895517c98edc45c57a9db0e4e16907f62c10ec2f166c2e167f",
+      "modernbert_tokenization.py": "98f760e6382b6544d52f743cfdbc3cef2f360887ccb04a2e50f4871bc3036757",
+      "finetune_roles.py": "cc9f1352439bc319180b3098b941f7b5812b494287cb92ba99bbb2214894f51c",
+      "make_roles.py": "83c104274de57efdfd2c7b6f2dca9b965afc60d0d3a28541c6d8330b287582f3",
+      "make_data.py": "b81b1c6a3ed75d3d2affbfd14eb6f0d0326c081557997b23789d4f4478f828de",
+      "modernbert_class_loss.py": "5ea8e4ce7adeef4cfb877646d0788fd437811801a1f887df00dc3cf0a86f7ab3"
+    }
+  },
+  "memory": {
+    "rss_gib": 1.106,
+    "available_gib": 23.645,
+    "peak_allocated_gib": 3.991,
+    "peak_reserved_gib": 4.486
+  }
+}

@@ -1,0 +1,2055 @@
+{
+ "schema": "modernbert-forms-verdict-v1",
+ "tool": "modernbert_forms_measure verdict",
+ "stage": "seed0",
+ "pass": false,
+ "status": "fail",
+ "campaign": "modernbert-forms-2026-11-08",
+ "plan_sha256": "0635a2470ad387c79d41e06ec89ac1f31cc3da9c43e4c95f0569d25f3e937f1c",
+ "forms_protocol_sha256": "61524cc13da0f20a0212def83b7f0855e6bad557fdfd99b3ceb3e36b857d2f39",
+ "membership_sha256": "57a5242c11d428b7b463a6afa45355b5a5d924cf9a6a9af6d79e49e4f5ca53d8",
+ "parent": {
+  "protocol_sha256": "3999991890f1a92b811fbe0cde86ccdf35ca38e71606b45d0ec14ea5dc872e78",
+  "views_manifest_sha256": "df4abeeeec0e1948e3b8220d6c670d259cebe938e4765921d0f161ff0506cf5a",
+  "addendum_sha256": "304a1be5fb5a27f944ce588a24e16e39676b497a860f4fd3a153b955dcdc1b19"
+ },
+ "rules": {
+  "guard": {
+   "cost_diff_min": -5,
+   "wrong_extras_per_100_max_increase": 1
+  },
+  "f1_t1_clean_cost_min_gain": 5,
+  "form_bars": {
+   "outline_question": 0.9,
+   "outline_create": 0.9,
+   "outline_set": 0.9,
+   "label_removal": 0.9,
+   "description_size": 0.8,
+   "bare_move": 0.95
+  },
+  "undo_redo_count_min": 0.9,
+  "label_setting_max_drop_points": 2,
+  "label_gated_empty_on_nonempty_max": 0,
+  "lowercase_max_drop_points": 2,
+  "lowercase_max_confident_mistakes_per_100_increase": 1
+ },
+ "bundles": {
+  "F-s0": {
+   "kind": "forms",
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/F-s0/bundle",
+   "identity_sha256": "49b782282822eb5ce590a6cc42ce304333835a56883efb545406adeddbaad6e6",
+   "score_sha256": "dd707d38e5490380999a6a64c94f92ebd796b4ba06f614f17a64484e388aff00",
+   "artifacts_sha256": "c6d554be58a87928af3e9ad378a051f5cea9eb280c3c8f518abded2e03518efd",
+   "train_sha256": "bfdb92373d8eecdc7902d23e309c68d29fc610ed63334ddad7f18213fb90c7ce"
+  },
+  "B-s0": {
+   "kind": "reused",
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/eval",
+   "identity_sha256": "ff391a460029a60fc97457182d852c57fc0a6a59f8e4239c029df0c73cd6203d",
+   "score_sha256": "f436c0b10b7e59902ef0520b5a053257ebd28c2d9372af8ea7d317402ced2e84",
+   "artifacts_sha256": "d0106c17b922ff3452b3352061dad3a6d5c88ab010af537cbde306f9aab9220d",
+   "train_sha256": "f0a539a06e8701c39e8a9a6e2c143f04e822cf0bd0699b84bceadd154aab5e97",
+   "applicability_file": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/applicability/B-s0.json"
+  },
+  "C100-s0": {
+   "kind": "reused",
+   "dir": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/baseline/C100-s0-v2",
+   "identity_sha256": "c49b2bc447cc10c55529fa4fc58505e4d977a1bb9135338c13c5ac082c2bf4d7",
+   "score_sha256": "aa2198f71eedac1123f9d8291f2194c009dc5448fc5919a988a57b5fb31af7b8",
+   "artifacts_sha256": "b57bedf4ebf0557ac6f469a99e60239ff89963aee0366f333a3df4a30836b7ef",
+   "train_sha256": "e43be4a8ee2d2233c869d4049e4ab5658ca55a102d9a0ff164f7d3b7578c595d",
+   "applicability_file": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/applicability/C100-s0.json"
+  }
+ },
+ "evidence": {
+  "F-s0": {
+   "path": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/evidence/F-s0.json",
+   "sha256": "cb45ad86c76ce5b6fec3b529e92c01d59c624727c34968fb766e9c1a15b7f321"
+  },
+  "B-s0": {
+   "path": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/evidence/B-s0.json",
+   "sha256": "8d2d2bef233bea91733bcc75915d078ade9e5eaf4295e195248c20f12320ac9c"
+  }
+ },
+ "training": {
+  "F-s0": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/F-s0",
+  "B-s0": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0"
+ },
+ "passes": {},
+ "rows": [
+  {
+   "id": "P3",
+   "title": "B-s0 passes Guard G against C100-s0 and the output-contract conditions",
+   "status": "pass",
+   "pass": true,
+   "checks": [
+    {
+     "name": "G B-s0 vs C100-s0: fresh2_test/test cost difference >= -5",
+     "value": -0.5331,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G B-s0 vs C100-s0: fresh2_test/test paired interval upper end >= 0",
+     "value": 9.7724,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -9.359,
+      9.7724
+     ],
+     "ci95_reason": null,
+     "resampled_units": 318
+    },
+    {
+     "name": "G B-s0 vs C100-s0: fresh2_test/test wrong+extras per 100 requested up by at most 1",
+     "value": -0.609291,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.609292,
+     "comparator": 1.218583
+    },
+    {
+     "name": "G B-s0 vs C100-s0: short3_test/test cost difference >= -5",
+     "value": 0.6944,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G B-s0 vs C100-s0: short3_test/test paired interval upper end >= 0",
+     "value": 15.7754,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -14.4,
+      15.7754
+     ],
+     "ci95_reason": null,
+     "resampled_units": 309
+    },
+    {
+     "name": "G B-s0 vs C100-s0: short3_test/test wrong+extras per 100 requested up by at most 1",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.388889,
+     "comparator": 1.388889
+    },
+    {
+     "name": "G B-s0 vs C100-s0: nl_a_development/development cost difference >= -5",
+     "value": 4.5918,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G B-s0 vs C100-s0: nl_a_development/development paired interval upper end >= 0",
+     "value": 22.191,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -10.0543,
+      22.191
+     ],
+     "ci95_reason": null,
+     "resampled_units": 171
+    },
+    {
+     "name": "G B-s0 vs C100-s0: nl_a_development/development wrong+extras per 100 requested up by at most 1",
+     "value": -0.5102040000000001,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.020408,
+     "comparator": 1.530612
+    },
+    {
+     "name": "B-s0: output contract (acceptance 9-14), evidence bound to this arm",
+     "value": [
+      "9:pass",
+      "10:pass",
+      "11:pass",
+      "12:pass",
+      "13:pass",
+      "14:pass"
+     ],
+     "ok": true,
+     "status": "pass",
+     "entries": [
+      {
+       "id": "9",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py (83) && node training/neural/parity/test_output_contract.mjs (67)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_py.log",
+       "sha256": "744650c82941ae47c3c84695a0f2a7e3cc32a33787f90a9edf02aee33d7d2de7"
+      },
+      {
+       "id": "10",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py (perfect-label fixtures: text states, undo/redo counts, outline/description values, moves)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_py.log",
+       "sha256": "744650c82941ae47c3c84695a0f2a7e3cc32a33787f90a9edf02aee33d7d2de7"
+      },
+      {
+       "id": "11",
+       "status": "pass",
+       "command": "node training/neural/parity/test_output_contract.mjs (compound references held)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_mjs.log",
+       "sha256": "f4e5b4086e8476939c3c8e4c210ce1b7df67c232ece8e847c9b105a42e91fd37"
+      },
+      {
+       "id": "12",
+       "status": "pass",
+       "command": "node training/neural/parity/test_output_contract.mjs (blocked unit held, independent executes)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_mjs.log",
+       "sha256": "f4e5b4086e8476939c3c8e4c210ce1b7df67c232ece8e847c9b105a42e91fd37"
+      },
+      {
+       "id": "13",
+       "status": "pass",
+       "command": "roles_roundtrip.py --messages <arm messages> --output-contract diagram-reader-v2 --prep modernbert --compare-rows <arm data> --gate 95 1",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/roundtrip/B.log",
+       "sha256": "87825dfcc4d4a4463d0368f6022a409d95425bd9e423a14aed8b5386d5e66e4e"
+      },
+      {
+       "id": "14",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py (ModernBERT preparation, 128/512 boundaries, Unicode)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_py.log",
+       "sha256": "744650c82941ae47c3c84695a0f2a7e3cc32a33787f90a9edf02aee33d7d2de7"
+      }
+     ]
+    }
+   ],
+   "guard": {
+    "vs C100-s0": [
+     {
+      "view": "fresh2_test",
+      "key": "fresh2_test/test",
+      "candidate_cost": 41.203351,
+      "comparator_cost": 41.736481,
+      "measure_available": true,
+      "requested": 1313,
+      "checks": [
+       {
+        "name": "fresh2_test/test cost difference >= -5",
+        "value": -0.5331,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "fresh2_test/test paired interval upper end >= 0",
+        "value": 9.7724,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -9.359,
+         9.7724
+        ],
+        "ci95_reason": null,
+        "resampled_units": 318
+       },
+       {
+        "name": "fresh2_test/test wrong+extras per 100 requested up by at most 1",
+        "value": -0.609291,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.609292,
+        "comparator": 1.218583
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 1.0955,
+       "ci95": [
+        -12.4194,
+        16.9468
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "short3_test",
+      "key": "short3_test/test",
+      "candidate_cost": 8.796296,
+      "comparator_cost": 8.101852,
+      "measure_available": true,
+      "requested": 432,
+      "checks": [
+       {
+        "name": "short3_test/test cost difference >= -5",
+        "value": 0.6944,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "short3_test/test paired interval upper end >= 0",
+        "value": 15.7754,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -14.4,
+         15.7754
+        ],
+        "ci95_reason": null,
+        "resampled_units": 309
+       },
+       {
+        "name": "short3_test/test wrong+extras per 100 requested up by at most 1",
+        "value": 0,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.388889,
+        "comparator": 1.388889
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 0.6061,
+       "ci95": [
+        -18.0982,
+        20.1923
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "nl_a_development",
+      "key": "nl_a_development/development",
+      "candidate_cost": -7.908163,
+      "comparator_cost": -12.5,
+      "measure_available": true,
+      "requested": 392,
+      "checks": [
+       {
+        "name": "nl_a_development/development cost difference >= -5",
+        "value": 4.5918,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "nl_a_development/development paired interval upper end >= 0",
+        "value": 22.191,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -10.0543,
+         22.191
+        ],
+        "ci95_reason": null,
+        "resampled_units": 171
+       },
+       {
+        "name": "nl_a_development/development wrong+extras per 100 requested up by at most 1",
+        "value": -0.5102040000000001,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.020408,
+        "comparator": 1.530612
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 7.9646,
+       "ci95": [
+        -7.7295,
+        28.1967
+       ],
+       "ci95_reason": null
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "F1",
+   "title": "F-s0 versus B-s0 on t1_clean and the clean create subset",
+   "status": "fail",
+   "pass": false,
+   "checks": [
+    {
+     "name": "t1_clean gated cost difference F-B >= 5",
+     "value": 3.0281,
+     "ok": false,
+     "status": "fail",
+     "a": 59.8966,
+     "b": 56.8685
+    },
+    {
+     "name": "t1_clean paired interval lower end > 0",
+     "value": -6.094,
+     "ok": false,
+     "status": "fail",
+     "ci95": [
+      -6.094,
+      11.7438
+     ],
+     "ci95_reason": null,
+     "resampled_units": 1521
+    },
+    {
+     "name": "F-s0 executes something at its gate on t1_clean",
+     "value": 1130,
+     "ok": true,
+     "status": "pass",
+     "executed": 1130
+    },
+    {
+     "name": "B-s0 executes something at its gate on t1_clean",
+     "value": 825,
+     "ok": true,
+     "status": "pass",
+     "executed": 825
+    },
+    {
+     "name": "confidently wrong share does not increase (F <= B)",
+     "value": 0.019603,
+     "ok": false,
+     "status": "fail",
+     "candidate": 0.025664,
+     "comparator": 0.006061,
+     "candidate_wilson95": [
+      0.017927,
+      0.036614
+     ],
+     "comparator_wilson95": [
+      0.002591,
+      0.014108
+     ],
+     "executed": [
+      1130,
+      825
+     ]
+    },
+    {
+     "name": "t1_clean is a supported population (F-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 500,
+      "groups_min": 100,
+      "supported": true
+     }
+    },
+    {
+     "name": "t1_clean is a supported population (B-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 500,
+      "groups_min": 100,
+      "supported": true
+     }
+    },
+    {
+     "name": "t1_clean_create is a supported population (F-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "t1_clean_create is a supported population (B-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "clean create subset gated cost: paired interval lower end > 0",
+     "value": -23.0769,
+     "ok": false,
+     "status": "fail",
+     "difference": -3.4483,
+     "ci95": [
+      -23.0769,
+      14.2857
+     ],
+     "ci95_reason": null
+    }
+   ]
+  },
+  {
+   "id": "F2",
+   "title": "F-s0: fixed form capability (ungated right / all gold)",
+   "status": "fail",
+   "pass": false,
+   "checks": [
+    {
+     "name": "outline_question ungated right share >= 0.9",
+     "value": 1,
+     "ok": true,
+     "status": "pass",
+     "requested": 66,
+     "right": 66,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 66,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "outline_create ungated right share >= 0.9",
+     "value": 0.1875,
+     "ok": false,
+     "status": "fail",
+     "requested": 80,
+     "right": 15,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 80,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "outline_set ungated right share >= 0.9",
+     "value": 0.8375,
+     "ok": false,
+     "status": "fail",
+     "requested": 80,
+     "right": 67,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 80,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "label_removal ungated right share >= 0.9",
+     "value": 1,
+     "ok": true,
+     "status": "pass",
+     "requested": 78,
+     "right": 78,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 78,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "description_size ungated right share >= 0.8",
+     "value": 0.234375,
+     "ok": false,
+     "status": "fail",
+     "requested": 64,
+     "right": 15,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 64,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "bare_move ungated right share >= 0.95",
+     "value": 1,
+     "ok": true,
+     "status": "pass",
+     "requested": 148,
+     "right": 148,
+     "structural_holds": 0,
+     "unread": 0,
+     "supported": true,
+     "exposure": {
+      "requests": 148,
+      "span_equals_a_training_request": 0
+     },
+     "denominator": "all frozen gold requested actions of the clean population"
+    },
+    {
+     "name": "undo/redo count ungated right share >= 0.9",
+     "value": 1,
+     "ok": true,
+     "status": "pass",
+     "requested": 28,
+     "right": 28,
+     "exposure": {
+      "requests": 28,
+      "span_equals_a_training_request": 13
+     },
+     "note": "regression evidence of a finite grammar, not a generalisation test"
+    },
+    {
+     "name": "F-s0: absent/count oracle for undo/redo counts, evidence bound to this arm",
+     "value": [
+      "19:pass"
+     ],
+     "ok": true,
+     "status": "pass",
+     "entries": [
+      {
+       "id": "19",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py (undo/redo absent vs count distinction)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_py.log",
+       "sha256": "744650c82941ae47c3c84695a0f2a7e3cc32a33787f90a9edf02aee33d7d2de7"
+      }
+     ]
+    }
+   ],
+   "group_exposure": {
+    "t1_clean_outline_question": {
+     "messages": 66,
+     "groups": 65,
+     "B": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "F": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "C100": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     }
+    },
+    "t1_clean_outline_create": {
+     "messages": 80,
+     "groups": 79,
+     "B": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "F": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "C100": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     }
+    },
+    "t1_clean_outline_set": {
+     "messages": 80,
+     "groups": 80,
+     "B": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "F": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "C100": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     }
+    },
+    "t1_clean_label_removal": {
+     "messages": 78,
+     "groups": 78,
+     "B": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "F": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "C100": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     }
+    },
+    "t1_clean_description_size": {
+     "messages": 64,
+     "groups": 58,
+     "B": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "F": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "C100": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     }
+    },
+    "t1_clean_bare_move": {
+     "messages": 148,
+     "groups": 132,
+     "B": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "F": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "C100": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     }
+    },
+    "t1_all_undo_redo_count": {
+     "messages": 28,
+     "groups": 14,
+     "B": {
+      "messages_sharing_group": 3,
+      "groups_sharing_group": 2
+     },
+     "F": {
+      "messages_sharing_group": 13,
+      "groups_sharing_group": 8
+     },
+     "C100": {
+      "messages_sharing_group": 3,
+      "groups_sharing_group": 2
+     }
+    }
+   }
+  },
+  {
+   "id": "contract:F-s0",
+   "title": "F-s0: output-contract conditions (bound evidence)",
+   "status": "pass",
+   "pass": true,
+   "checks": [
+    {
+     "name": "F-s0: output contract (acceptance 9-14), evidence bound to this arm",
+     "value": [
+      "9:pass",
+      "10:pass",
+      "11:pass",
+      "12:pass",
+      "13:pass",
+      "14:pass"
+     ],
+     "ok": true,
+     "status": "pass",
+     "entries": [
+      {
+       "id": "9",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py (83) && node training/neural/parity/test_output_contract.mjs (67)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_py.log",
+       "sha256": "744650c82941ae47c3c84695a0f2a7e3cc32a33787f90a9edf02aee33d7d2de7"
+      },
+      {
+       "id": "10",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py (perfect-label fixtures: text states, undo/redo counts, outline/description values, moves)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_py.log",
+       "sha256": "744650c82941ae47c3c84695a0f2a7e3cc32a33787f90a9edf02aee33d7d2de7"
+      },
+      {
+       "id": "11",
+       "status": "pass",
+       "command": "node training/neural/parity/test_output_contract.mjs (compound references held)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_mjs.log",
+       "sha256": "f4e5b4086e8476939c3c8e4c210ce1b7df67c232ece8e847c9b105a42e91fd37"
+      },
+      {
+       "id": "12",
+       "status": "pass",
+       "command": "node training/neural/parity/test_output_contract.mjs (blocked unit held, independent executes)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_mjs.log",
+       "sha256": "f4e5b4086e8476939c3c8e4c210ce1b7df67c232ece8e847c9b105a42e91fd37"
+      },
+      {
+       "id": "13",
+       "status": "pass",
+       "command": "roles_roundtrip.py --messages <arm messages> --output-contract diagram-reader-v2 --prep modernbert --compare-rows <arm data> --gate 95 1",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/roundtrip/F.log",
+       "sha256": "880d67103cd14de38ba9930f6452137975287f77acdba587adfc92fa948b021c"
+      },
+      {
+       "id": "14",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py (ModernBERT preparation, 128/512 boundaries, Unicode)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/contract-evidence/test_output_contract_py.log",
+       "sha256": "744650c82941ae47c3c84695a0f2a7e3cc32a33787f90a9edf02aee33d7d2de7"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "F3",
+   "title": "F-s0: safety and retained capability (Guard G against B-s0 and C100-s0; label setting; lower case)",
+   "status": "fail",
+   "pass": false,
+   "checks": [
+    {
+     "name": "G F-s0 vs B-s0: fresh2_test/test cost difference >= -5",
+     "value": 4.1889,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G F-s0 vs B-s0: fresh2_test/test paired interval upper end >= 0",
+     "value": 10.1574,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -0.2158,
+      10.1574
+     ],
+     "ci95_reason": null,
+     "resampled_units": 318
+    },
+    {
+     "name": "G F-s0 vs B-s0: fresh2_test/test wrong+extras per 100 requested up by at most 1",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.609292,
+     "comparator": 0.609292
+    },
+    {
+     "name": "G F-s0 vs B-s0: short3_test/test cost difference >= -5",
+     "value": -0.9259,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G F-s0 vs B-s0: short3_test/test paired interval upper end >= 0",
+     "value": 15.3453,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -16.1804,
+      15.3453
+     ],
+     "ci95_reason": null,
+     "resampled_units": 309
+    },
+    {
+     "name": "G F-s0 vs B-s0: short3_test/test wrong+extras per 100 requested up by at most 1",
+     "value": 0.462963,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.851852,
+     "comparator": 1.388889
+    },
+    {
+     "name": "G F-s0 vs B-s0: nl_a_development/development cost difference >= -5",
+     "value": 1.0204,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G F-s0 vs B-s0: nl_a_development/development paired interval upper end >= 0",
+     "value": 10.8642,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -9.571,
+      10.8642
+     ],
+     "ci95_reason": null,
+     "resampled_units": 171
+    },
+    {
+     "name": "G F-s0 vs B-s0: nl_a_development/development wrong+extras per 100 requested up by at most 1",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.020408,
+     "comparator": 1.020408
+    },
+    {
+     "name": "G F-s0 vs C100-s0: fresh2_test/test cost difference >= -5",
+     "value": 3.6558,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G F-s0 vs C100-s0: fresh2_test/test paired interval upper end >= 0",
+     "value": 14.0845,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -4.3146,
+      14.0845
+     ],
+     "ci95_reason": null,
+     "resampled_units": 318
+    },
+    {
+     "name": "G F-s0 vs C100-s0: fresh2_test/test wrong+extras per 100 requested up by at most 1",
+     "value": -0.609291,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.609292,
+     "comparator": 1.218583
+    },
+    {
+     "name": "G F-s0 vs C100-s0: short3_test/test cost difference >= -5",
+     "value": -0.2315,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G F-s0 vs C100-s0: short3_test/test paired interval upper end >= 0",
+     "value": 14.5251,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -14.5497,
+      14.5251
+     ],
+     "ci95_reason": null,
+     "resampled_units": 309
+    },
+    {
+     "name": "G F-s0 vs C100-s0: short3_test/test wrong+extras per 100 requested up by at most 1",
+     "value": 0.462963,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.851852,
+     "comparator": 1.388889
+    },
+    {
+     "name": "G F-s0 vs C100-s0: nl_a_development/development cost difference >= -5",
+     "value": 5.6122,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "G F-s0 vs C100-s0: nl_a_development/development paired interval upper end >= 0",
+     "value": 19.6319,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -6.3712,
+      19.6319
+     ],
+     "ci95_reason": null,
+     "resampled_units": 171
+    },
+    {
+     "name": "G F-s0 vs C100-s0: nl_a_development/development wrong+extras per 100 requested up by at most 1",
+     "value": -0.5102040000000001,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.020408,
+     "comparator": 1.530612
+    },
+    {
+     "name": "label-setting ungated right share falls by at most 2 points versus B-s0",
+     "value": -1.9047999999999954,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1,
+     "comparator": 0.980952
+    },
+    {
+     "name": "gated empty-label outputs against nonempty gold across the evaluated views <= 0",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "all_label_errors": {
+      "gated_empty_label_on_nonempty_gold": 0,
+      "ungated_empty_label_on_nonempty_gold": 0,
+      "gated_by_reason": {},
+      "ungated_by_reason": {
+       "text:label value": 16,
+       "text:label unwanted": 4,
+       "text:label missing": 21
+      },
+      "executed_without_raw_arguments": 0
+     }
+    },
+    {
+     "name": "every executed request has its raw arguments (label errors are complete)",
+     "value": 0,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "lowercase_other_affected is a supported population (F-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 40,
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "lowercase_other_affected is a supported population (B-s0)",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "support": {
+      "requests_min": 40,
+      "groups_min": 10,
+      "supported": true
+     }
+    },
+    {
+     "name": "lowercase_other_affected: ungated right share loss <= 2 points versus B-s0",
+     "value": 6.666600000000001,
+     "ok": false,
+     "status": "fail",
+     "candidate": 0.675152,
+     "comparator": 0.741818,
+     "requested": 825
+    },
+    {
+     "name": "lowercase_other_affected: adds at most 1 confident mistake per 100 requests versus B-s0",
+     "value": 0.242424,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.242424,
+     "comparator": 0
+    },
+    {
+     "name": "short3_lowercase is an available population with requests (F-s0)",
+     "value": 134,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "short3_lowercase is an available population with requests (B-s0)",
+     "value": 134,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "short3_lowercase: ungated right share loss <= 2 points versus B-s0",
+     "value": 16.417899999999996,
+     "ok": false,
+     "status": "fail",
+     "candidate": 0.30597,
+     "comparator": 0.470149,
+     "requested": 134
+    },
+    {
+     "name": "short3_lowercase: adds at most 1 confident mistake per 100 requests versus B-s0",
+     "value": -0.746269,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0,
+     "comparator": 0.746269
+    }
+   ],
+   "guard": {
+    "vs B-s0": [
+     {
+      "view": "fresh2_test",
+      "key": "fresh2_test/test",
+      "candidate_cost": 45.392232,
+      "comparator_cost": 41.203351,
+      "measure_available": true,
+      "requested": 1313,
+      "checks": [
+       {
+        "name": "fresh2_test/test cost difference >= -5",
+        "value": 4.1889,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "fresh2_test/test paired interval upper end >= 0",
+        "value": 10.1574,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -0.2158,
+         10.1574
+        ],
+        "ci95_reason": null,
+        "resampled_units": 318
+       },
+       {
+        "name": "fresh2_test/test wrong+extras per 100 requested up by at most 1",
+        "value": 0,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.609292,
+        "comparator": 0.609292
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 5.0078,
+       "ci95": [
+        -2.719,
+        13.0709
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "short3_test",
+      "key": "short3_test/test",
+      "candidate_cost": 7.87037,
+      "comparator_cost": 8.796296,
+      "measure_available": true,
+      "requested": 432,
+      "checks": [
+       {
+        "name": "short3_test/test cost difference >= -5",
+        "value": -0.9259,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "short3_test/test paired interval upper end >= 0",
+        "value": 15.3453,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -16.1804,
+         15.3453
+        ],
+        "ci95_reason": null,
+        "resampled_units": 309
+       },
+       {
+        "name": "short3_test/test wrong+extras per 100 requested up by at most 1",
+        "value": 0.462963,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.851852,
+        "comparator": 1.388889
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 0.303,
+       "ci95": [
+        -19.5846,
+        18.9911
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "nl_a_development",
+      "key": "nl_a_development/development",
+      "candidate_cost": -6.887755,
+      "comparator_cost": -7.908163,
+      "measure_available": true,
+      "requested": 392,
+      "checks": [
+       {
+        "name": "nl_a_development/development cost difference >= -5",
+        "value": 1.0204,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "nl_a_development/development paired interval upper end >= 0",
+        "value": 10.8642,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -9.571,
+         10.8642
+        ],
+        "ci95_reason": null,
+        "resampled_units": 171
+       },
+       {
+        "name": "nl_a_development/development wrong+extras per 100 requested up by at most 1",
+        "value": 0,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.020408,
+        "comparator": 1.020408
+       }
+      ],
+      "clean_population_reported": {
+       "difference": -1.7699,
+       "ci95": [
+        -13.4483,
+        7.4499
+       ],
+       "ci95_reason": null
+      }
+     }
+    ],
+    "vs C100-s0": [
+     {
+      "view": "fresh2_test",
+      "key": "fresh2_test/test",
+      "candidate_cost": 45.392232,
+      "comparator_cost": 41.736481,
+      "measure_available": true,
+      "requested": 1313,
+      "checks": [
+       {
+        "name": "fresh2_test/test cost difference >= -5",
+        "value": 3.6558,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "fresh2_test/test paired interval upper end >= 0",
+        "value": 14.0845,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -4.3146,
+         14.0845
+        ],
+        "ci95_reason": null,
+        "resampled_units": 318
+       },
+       {
+        "name": "fresh2_test/test wrong+extras per 100 requested up by at most 1",
+        "value": -0.609291,
+        "ok": true,
+        "status": "pass",
+        "candidate": 0.609292,
+        "comparator": 1.218583
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 6.1033,
+       "ci95": [
+        -7.2131,
+        23.0294
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "short3_test",
+      "key": "short3_test/test",
+      "candidate_cost": 7.87037,
+      "comparator_cost": 8.101852,
+      "measure_available": true,
+      "requested": 432,
+      "checks": [
+       {
+        "name": "short3_test/test cost difference >= -5",
+        "value": -0.2315,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "short3_test/test paired interval upper end >= 0",
+        "value": 14.5251,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -14.5497,
+         14.5251
+        ],
+        "ci95_reason": null,
+        "resampled_units": 309
+       },
+       {
+        "name": "short3_test/test wrong+extras per 100 requested up by at most 1",
+        "value": 0.462963,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.851852,
+        "comparator": 1.388889
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 0.9091,
+       "ci95": [
+        -17.6471,
+        19.3452
+       ],
+       "ci95_reason": null
+      }
+     },
+     {
+      "view": "nl_a_development",
+      "key": "nl_a_development/development",
+      "candidate_cost": -6.887755,
+      "comparator_cost": -12.5,
+      "measure_available": true,
+      "requested": 392,
+      "checks": [
+       {
+        "name": "nl_a_development/development cost difference >= -5",
+        "value": 5.6122,
+        "ok": true,
+        "status": "pass"
+       },
+       {
+        "name": "nl_a_development/development paired interval upper end >= 0",
+        "value": 19.6319,
+        "ok": true,
+        "status": "pass",
+        "ci95": [
+         -6.3712,
+         19.6319
+        ],
+        "ci95_reason": null,
+        "resampled_units": 171
+       },
+       {
+        "name": "nl_a_development/development wrong+extras per 100 requested up by at most 1",
+        "value": -0.5102040000000001,
+        "ok": true,
+        "status": "pass",
+        "candidate": 1.020408,
+        "comparator": 1.530612
+       }
+      ],
+      "clean_population_reported": {
+       "difference": 6.1947,
+       "ci95": [
+        -7.2948,
+        22.1212
+       ],
+       "ci95_reason": null
+      }
+     }
+    ]
+   },
+   "group_exposure": {
+    "t1_clean_label_setting": {
+     "messages": 105,
+     "groups": 99,
+     "B": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "F": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     },
+     "C100": {
+      "messages_sharing_group": 0,
+      "groups_sharing_group": 0
+     }
+    },
+    "lowercase_other_affected": {
+     "messages": 351,
+     "groups": 278,
+     "B": {
+      "messages_sharing_group": 90,
+      "groups_sharing_group": 17
+     },
+     "F": {
+      "messages_sharing_group": 90,
+      "groups_sharing_group": 17
+     },
+     "C100": {
+      "messages_sharing_group": 90,
+      "groups_sharing_group": 17
+     }
+    },
+    "short3_lowercase": {
+     "messages": 109,
+     "groups": 105,
+     "B": {
+      "messages_sharing_group": 6,
+      "groups_sharing_group": 2
+     },
+     "F": {
+      "messages_sharing_group": 8,
+      "groups_sharing_group": 4
+     },
+     "C100": {
+      "messages_sharing_group": 6,
+      "groups_sharing_group": 2
+     }
+    },
+    "fresh2_test (full guard view)": {
+     "messages": 405,
+     "groups": 318,
+     "B": {
+      "messages_sharing_group": 109,
+      "groups_sharing_group": 22
+     },
+     "F": {
+      "messages_sharing_group": 109,
+      "groups_sharing_group": 22
+     },
+     "C100": {
+      "messages_sharing_group": 109,
+      "groups_sharing_group": 22
+     }
+    },
+    "short3_test (full guard view)": {
+     "messages": 340,
+     "groups": 309,
+     "B": {
+      "messages_sharing_group": 49,
+      "groups_sharing_group": 19
+     },
+     "F": {
+      "messages_sharing_group": 51,
+      "groups_sharing_group": 21
+     },
+     "C100": {
+      "messages_sharing_group": 49,
+      "groups_sharing_group": 19
+     }
+    },
+    "nl_a_development (full guard view)": {
+     "messages": 300,
+     "groups": 171,
+     "B": {
+      "messages_sharing_group": 43,
+      "groups_sharing_group": 5
+     },
+     "F": {
+      "messages_sharing_group": 44,
+      "groups_sharing_group": 6
+     },
+     "C100": {
+      "messages_sharing_group": 43,
+      "groups_sharing_group": 5
+     }
+    }
+   }
+  },
+  {
+   "id": "P4",
+   "title": "honest completion and export of every accepted training run",
+   "status": "pass",
+   "pass": true,
+   "checks": [
+    {
+     "name": "F-s0 binding: training folder is the registered one",
+     "value": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/F-s0",
+     "ok": true,
+     "status": "pass",
+     "want": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/F-s0"
+    },
+    {
+     "name": "F-s0 binding: model folder is F-s0's registered export",
+     "value": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/F-s0/export/modernbert-F-s0",
+     "ok": true,
+     "status": "pass",
+     "want": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/F-s0/export/modernbert-F-s0"
+    },
+    {
+     "name": "F-s0 binding: training data folder is F's registered one",
+     "value": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/data-v2/F",
+     "ok": true,
+     "status": "pass",
+     "want": "/home/skutner/.cache/diagram-vss-modernbert/forms-2026-11-08/data-v2/F"
+    },
+    {
+     "name": "F-s0 binding: F data manifest exists and is of arm F",
+     "value": "F",
+     "ok": true,
+     "status": "pass",
+     "want": "F"
+    },
+    {
+     "name": "F-s0 binding: F data manifest is of this campaign",
+     "value": "modernbert-forms-2026-11-08",
+     "ok": true,
+     "status": "pass",
+     "want": "modernbert-forms-2026-11-08"
+    },
+    {
+     "name": "F-s0 binding: F data manifest binds this protocol's F membership sha256",
+     "value": "57a5242c11d428b7b463a6afa45355b5a5d924cf9a6a9af6d79e49e4f5ca53d8",
+     "ok": true,
+     "status": "pass",
+     "want": "57a5242c11d428b7b463a6afa45355b5a5d924cf9a6a9af6d79e49e4f5ca53d8"
+    },
+    {
+     "name": "F-s0 binding: F data manifest binds this forms protocol file",
+     "value": "61524cc13da0f20a0212def83b7f0855e6bad557fdfd99b3ceb3e36b857d2f39",
+     "ok": true,
+     "status": "pass",
+     "want": "61524cc13da0f20a0212def83b7f0855e6bad557fdfd99b3ceb3e36b857d2f39"
+    },
+    {
+     "name": "F-s0 binding: run/complete.json exists",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "want": true
+    },
+    {
+     "name": "F-s0 binding: run is complete with the full schedule",
+     "value": [
+      true,
+      true
+     ],
+     "ok": true,
+     "status": "pass",
+     "want": [
+      true,
+      true
+     ]
+    },
+    {
+     "name": "F-s0 binding: run seed is 0",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "want": 0
+    },
+    {
+     "name": "F-s0 binding: run trained on this data (train.jsonl sha256)",
+     "value": "bfdb92373d8eecdc7902d23e309c68d29fc610ed63334ddad7f18213fb90c7ce",
+     "ok": true,
+     "status": "pass",
+     "want": "bfdb92373d8eecdc7902d23e309c68d29fc610ed63334ddad7f18213fb90c7ce"
+    },
+    {
+     "name": "F-s0 binding: export receipt weights sha256 equals the sha256 of the run's weights file",
+     "value": "95e9a5043620a05595eeb009aa1b7c8e97737f74abaf97b756182980e7d07d34",
+     "ok": true,
+     "status": "pass",
+     "want": "95e9a5043620a05595eeb009aa1b7c8e97737f74abaf97b756182980e7d07d34"
+    },
+    {
+     "name": "F-s0 training: complete === true",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: full_schedule === true",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: max_updates === 0",
+     "value": 0,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: seed equals the bundle's",
+     "value": 0,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: recipe (settings without the seed) equals the reference recipe",
+     "value": {
+      "epochs": 8,
+      "lr": 0.00006,
+      "head_lr": 0.00006,
+      "batch": 32,
+      "cut_batch": 8,
+      "weight_decay": 0.01,
+      "warmup": 0.06,
+      "clip": 1,
+      "request_cap": 128,
+      "message_cap": 512,
+      "attn": "sdpa",
+      "autocast": "bfloat16",
+      "weights": "float32",
+      "gradient_checkpointing": false,
+      "max_updates": 0
+     },
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: update === total > 0 and epoch === epochs",
+     "value": [
+      14640,
+      14640,
+      8
+     ],
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: training data train.jsonl sha256 equals the bundle's",
+     "value": "bfdb92373d8eecdc7902d23e309c68d29fc610ed63334ddad7f18213fb90c7ce",
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: data requests equal the rows of train.jsonl",
+     "value": [
+      58552,
+      58552
+     ],
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: data messages / requests equal the data manifest",
+     "value": [
+      28330,
+      58552,
+      28330,
+      58552
+     ],
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: export receipt: weights full_schedule === true",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: export receipt: weights update/total equal the run's",
+     "value": [
+      14640,
+      14640,
+      8
+     ],
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: export receipt: no source change since training",
+     "value": [],
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 training: export receipt: output contract bound to the parent protocol",
+     "value": "3999991890f1a92b811fbe0cde86ccdf35ca38e71606b45d0ec14ea5dc872e78",
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "F-s0 export record (reported, not a parity claim): receipt passed=false",
+     "value": false,
+     "ok": true,
+     "status": "pass",
+     "note": "passed=false with exit 2 records float/quantized decode differences on near ties (plan P4); quality decisions use this exact quantized artifact"
+    },
+    {
+     "name": "B-s0 binding: training folder is the registered one",
+     "value": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0",
+     "ok": true,
+     "status": "pass",
+     "want": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0"
+    },
+    {
+     "name": "B-s0 binding: model folder is B-s0's registered export",
+     "value": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/export/modernbert-B-s0",
+     "ok": true,
+     "status": "pass",
+     "want": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/B-s0/export/modernbert-B-s0"
+    },
+    {
+     "name": "B-s0 binding: training data folder is B's registered one",
+     "value": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/data/B",
+     "ok": true,
+     "status": "pass",
+     "want": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/data/B"
+    },
+    {
+     "name": "B-s0 binding: B data manifest is of arm B",
+     "value": "B",
+     "ok": true,
+     "status": "pass",
+     "want": "B"
+    },
+    {
+     "name": "B-s0 binding: B data manifest sha256 is the pinned one",
+     "value": "2b102ef3f901eb25e3e38e49b6daa664ac740c5376b1b11a8aba806bd6bfa7e6",
+     "ok": true,
+     "status": "pass",
+     "want": "2b102ef3f901eb25e3e38e49b6daa664ac740c5376b1b11a8aba806bd6bfa7e6"
+    },
+    {
+     "name": "B-s0 binding: run/complete.json exists",
+     "value": true,
+     "ok": true,
+     "status": "pass",
+     "want": true
+    },
+    {
+     "name": "B-s0 binding: run is complete with the full schedule",
+     "value": [
+      true,
+      true
+     ],
+     "ok": true,
+     "status": "pass",
+     "want": [
+      true,
+      true
+     ]
+    },
+    {
+     "name": "B-s0 binding: run seed is 0",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "want": 0
+    },
+    {
+     "name": "B-s0 binding: run trained on this data (train.jsonl sha256)",
+     "value": "f0a539a06e8701c39e8a9a6e2c143f04e822cf0bd0699b84bceadd154aab5e97",
+     "ok": true,
+     "status": "pass",
+     "want": "f0a539a06e8701c39e8a9a6e2c143f04e822cf0bd0699b84bceadd154aab5e97"
+    },
+    {
+     "name": "B-s0 binding: export receipt weights sha256 equals the sha256 of the run's weights file",
+     "value": "08095e865e9e81b82a434b0fec822bab581704c023ad6b467bdbc2196ef5244f",
+     "ok": true,
+     "status": "pass",
+     "want": "08095e865e9e81b82a434b0fec822bab581704c023ad6b467bdbc2196ef5244f"
+    },
+    {
+     "name": "B-s0 training: complete === true",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: full_schedule === true",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: max_updates === 0",
+     "value": 0,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: seed equals the bundle's",
+     "value": 0,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: recipe (settings without the seed) equals the reference recipe",
+     "value": {
+      "epochs": 8,
+      "lr": 0.00006,
+      "head_lr": 0.00006,
+      "batch": 32,
+      "cut_batch": 8,
+      "weight_decay": 0.01,
+      "warmup": 0.06,
+      "clip": 1,
+      "request_cap": 128,
+      "message_cap": 512,
+      "attn": "sdpa",
+      "autocast": "bfloat16",
+      "weights": "float32",
+      "gradient_checkpointing": false,
+      "max_updates": 0
+     },
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: update === total > 0 and epoch === epochs",
+     "value": [
+      14288,
+      14288,
+      8
+     ],
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: training data train.jsonl sha256 equals the bundle's",
+     "value": "f0a539a06e8701c39e8a9a6e2c143f04e822cf0bd0699b84bceadd154aab5e97",
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: data requests equal the rows of train.jsonl",
+     "value": [
+      57135,
+      57135
+     ],
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: export receipt: weights full_schedule === true",
+     "value": true,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: export receipt: weights update/total equal the run's",
+     "value": [
+      14288,
+      14288,
+      8
+     ],
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: export receipt: no source change since training",
+     "value": [],
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 training: export receipt: output contract bound to the parent protocol",
+     "value": "3999991890f1a92b811fbe0cde86ccdf35ca38e71606b45d0ec14ea5dc872e78",
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "B-s0 export record (reported, not a parity claim): receipt passed=false",
+     "value": false,
+     "ok": true,
+     "status": "pass",
+     "note": "passed=false with exit 2 records float/quantized decode differences on near ties (plan P4); quality decisions use this exact quantized artifact"
+    }
+   ]
+  }
+ ],
+ "group_exposure_note": "display only, no bar: population messages / groups that share a frozen group with the arm's training membership (B, F, C100 = train_c100 role)",
+ "group_exposure": {
+  "t1_clean_outline_question": {
+   "messages": 66,
+   "groups": 65,
+   "B": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "F": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "C100": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   }
+  },
+  "t1_clean_outline_create": {
+   "messages": 80,
+   "groups": 79,
+   "B": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "F": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "C100": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   }
+  },
+  "t1_clean_outline_set": {
+   "messages": 80,
+   "groups": 80,
+   "B": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "F": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "C100": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   }
+  },
+  "t1_clean_label_removal": {
+   "messages": 78,
+   "groups": 78,
+   "B": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "F": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "C100": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   }
+  },
+  "t1_clean_description_size": {
+   "messages": 64,
+   "groups": 58,
+   "B": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "F": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "C100": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   }
+  },
+  "t1_clean_bare_move": {
+   "messages": 148,
+   "groups": 132,
+   "B": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "F": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "C100": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   }
+  },
+  "t1_all_undo_redo_count": {
+   "messages": 28,
+   "groups": 14,
+   "B": {
+    "messages_sharing_group": 3,
+    "groups_sharing_group": 2
+   },
+   "F": {
+    "messages_sharing_group": 13,
+    "groups_sharing_group": 8
+   },
+   "C100": {
+    "messages_sharing_group": 3,
+    "groups_sharing_group": 2
+   }
+  },
+  "t1_clean_label_setting": {
+   "messages": 105,
+   "groups": 99,
+   "B": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "F": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   },
+   "C100": {
+    "messages_sharing_group": 0,
+    "groups_sharing_group": 0
+   }
+  },
+  "lowercase_other_affected": {
+   "messages": 351,
+   "groups": 278,
+   "B": {
+    "messages_sharing_group": 90,
+    "groups_sharing_group": 17
+   },
+   "F": {
+    "messages_sharing_group": 90,
+    "groups_sharing_group": 17
+   },
+   "C100": {
+    "messages_sharing_group": 90,
+    "groups_sharing_group": 17
+   }
+  },
+  "short3_lowercase": {
+   "messages": 109,
+   "groups": 105,
+   "B": {
+    "messages_sharing_group": 6,
+    "groups_sharing_group": 2
+   },
+   "F": {
+    "messages_sharing_group": 8,
+    "groups_sharing_group": 4
+   },
+   "C100": {
+    "messages_sharing_group": 6,
+    "groups_sharing_group": 2
+   }
+  },
+  "fresh2_test (full guard view)": {
+   "messages": 405,
+   "groups": 318,
+   "B": {
+    "messages_sharing_group": 109,
+    "groups_sharing_group": 22
+   },
+   "F": {
+    "messages_sharing_group": 109,
+    "groups_sharing_group": 22
+   },
+   "C100": {
+    "messages_sharing_group": 109,
+    "groups_sharing_group": 22
+   }
+  },
+  "short3_test (full guard view)": {
+   "messages": 340,
+   "groups": 309,
+   "B": {
+    "messages_sharing_group": 49,
+    "groups_sharing_group": 19
+   },
+   "F": {
+    "messages_sharing_group": 51,
+    "groups_sharing_group": 21
+   },
+   "C100": {
+    "messages_sharing_group": 49,
+    "groups_sharing_group": 19
+   }
+  },
+  "nl_a_development (full guard view)": {
+   "messages": 300,
+   "groups": 171,
+   "B": {
+    "messages_sharing_group": 43,
+    "groups_sharing_group": 5
+   },
+   "F": {
+    "messages_sharing_group": 44,
+    "groups_sharing_group": 6
+   },
+   "C100": {
+    "messages_sharing_group": 43,
+    "groups_sharing_group": 5
+   }
+  }
+ },
+ "code": {
+  "training/neural/parity/modernbert_forms_measure.mjs": "23d4cba2bf02ee346947d48c48377fc8fd980bc2ddd96447c16f49b575ab721a",
+  "training/neural/parity/modernbert_next_measure.mjs": "84f9686030e5c68654142705fc4e2dc887d1a2581200b9df851479348c542845",
+  "training/neural/parity/arm_lib.mjs": "aefc82901d83e46d7dba75dc5b46607b6b300201be5b4fa0fe60e93ec6dc0a5b",
+  "training/neural/parity/collect_set.mjs": "eb921efdb0c6e1ddd3f1d7d9773a92be6b3c82965f0cd09bc1b0910646079b58",
+  "training/neural/parity/calibrate_arm.mjs": "88c1b34e59a3fd4ebd05b932d77f4e4b64038f285ef778ea500b24b379fb6dd2",
+  "training/neural/parity/score_arm.mjs": "a799529e6c251b2168eeae8137d53d4c34d6e0a46c0fd9efc99da645362a8cdc",
+  "training/neural/parity/root_causes.mjs": "fce843ca65520aff9070988f95f587955561cbdcf1c337bec042c731f573a1aa",
+  "training/neural/parity/compare_arms.mjs": "317f41c0c3b08ccaa59671bea7eea17fd76f1fdeaca6c7099214b68f808d6f9d",
+  "training/neural/parity/sets.mjs": "249f7eb6aea357ba4a61b2f7513aa3537dbc1af7a71137a6786ee09bed8da9a9",
+  "training/neural/calibrate_modernbert.mjs": "5b50dbc7cd154a5636f6d275acb05454baeee23996e5d6b4ad141f5298e02d1c",
+  "docs/js/neural.js": "c0faac042f883313e50e452ca7c730fb92e71f205be9cac79cdc13bd03179b00",
+  "docs/js/neural-confidence.js": "8ec9ccf04976e54f4753073bf865ae6e450482fa0f4dc8cd51d40dd15ef34e40",
+  "docs/js/bench-canon.js": "4e4bb98db55c2badc6725e42e04862a5893ffeb2cf4a83d2bbaf3cfc931f2cfb",
+  "training/neural/parity/parity_lib.mjs": "e750ed25d8c8308b7d3c5ce3abd0bd2126cf20b77fde7bc3b0c48d45ff9a9b03",
+  "docs/js/drawing-lines.js": "da81be5fa08eb9fe16b12915788ae256b48796594a17af5873c3c9e904809e45",
+  "training/neural/parity/canvas_lib.mjs": "3b6a7f6c7ea7898ab21166c8f699951c696af20ba001d8b6af4d5ceadcdf1291",
+  "docs/js/logic.js": "715da7ed6b783350d3d167f7d477fbd58cfa722b69c877904552321ce6fcdc0e",
+  "docs/js/vss-composer.js": "37a012547531cdd194f9f99a5101ec328f810a11b770aced7d9e44c5b8c5a2b5",
+  "training/sketch/layer_common.mjs": "f41655370a5675e4476b0edb68b2af7576bfae7eec6723be751bfb04876fb78e"
+ },
+ "runtime": {
+  "node": "v24.22.2",
+  "transformers_js": "3.8.1",
+  "onnxruntime_node": "1.21.0"
+ },
+ "parent_rules_checked": true
+}

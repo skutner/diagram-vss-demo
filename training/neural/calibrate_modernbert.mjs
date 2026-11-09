@@ -218,7 +218,8 @@ export function decisions(items, threshold) {
     if(out.has(x))return out.get(x);
     if(active.has(x))return false;
     active.add(x);
-    const yes=Number.isFinite(x.c)&&x.c>=threshold&&!x.truncated&&(x.dependencies||[]).every(id=>{
+    // blocked: a structural hold (output contract diagram-reader-v2, docs/js/neural-confidence.js gate); absent in older records: as before
+    const yes=Number.isFinite(x.c)&&x.c>=threshold&&!x.truncated&&!x.blocked&&(x.dependencies||[]).every(id=>{
       const dep=keys.get(x.id+'\0'+id);return dep&&run(dep);
     });
     active.delete(x);out.set(x,yes);return yes;
@@ -245,7 +246,7 @@ export function fitCalibrationRecipe(records) {
   const cal=records.filter(r=>isCalibration(r.id)), test=records.filter(r=>!isCalibration(r.id));
   if(!cal.length || !test.length)throw new Error('Both calibration and test messages are required');
   const items=rs=>rs.flatMap((r,mi)=>r.modernbert.map(x=>({...x,id:r.id,mi})));
-  const train=items(cal).filter(x=>!x.truncated), tst=items(test), G=cal.reduce((s,r)=>s+r.gold,0), GT=test.reduce((s,r)=>s+r.gold,0);
+  const train=items(cal).filter(x=>!x.truncated&&!x.blocked)/* structural holds: not fitted; they stay requested and not done */, tst=items(test), G=cal.reduce((s,r)=>s+r.gold,0), GT=test.reduce((s,r)=>s+r.gold,0);
   const both=xs=>xs.some(x=>x.o==='right')&&xs.some(x=>x.o!=='right');
   const fitAvailable=both(train)&&[0,1,2,3,4].every(fold=>both(train.filter(x=>x.mi%5!==fold)));
   let best=null;
@@ -283,7 +284,7 @@ export function calibrate(records,manifest,recordsPath) {
   }
   const causes={},examples={};
   for(const x of scored.filter(x=>x.o!=='right')) {
-    const cause=x.truncated?'tokenizer':(x.cause||'heads');
+    const cause=x.truncated?'tokenizer':x.blocked?'structural hold':(x.cause||'heads');
     causes[cause]=(causes[cause]||0)+1;(examples[cause]||=[]);if(examples[cause].length<5)examples[cause].push({id:x.id,src:x.src,got:x.got,want:x.want,outcome:x.o});
   }
   for(const r of test)for(let i=0;i<r.gold;i++)if(!r.modernbert.some(x=>x.g===i)) {

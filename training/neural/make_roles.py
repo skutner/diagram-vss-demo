@@ -62,10 +62,29 @@ Switches of the parity plan's label arms (MODERNBERT_PARITY_PLAN.md L1, L2; pari
                    as written when digits, a number with a unit or the table find it: such a row keeps its tag and has no value on the head; co-occurrence does not tag a scale, since
                    "bit" cannot say both 0.8 and 1.25. docs/js/neural.js reads the head only when the model's reader has it and the request has no tagged number.
 
+Frozen input and output contract (reports/modernbert-next-plan-2026-11-08_codex.md "Interfaces / contracts" 3; both unset: every output byte for byte as before).
+  --messages FILE.jsonl  the training messages, whole and annotated, one per line exactly as in their source files (an overlay already applied by
+                   training/neural/parity/modernbert_next_data.py). It replaces the folder discovery (make_data.split_messages) and needs --all: no held-out,
+                   eval_sample1000 = the given messages whose id is in --sample-ids, in the file's order. Ids and texts are used as given. EXTRA_DIRS must be
+                   unset (the file decides the data); --also folders, the docs/bench sets and LABEL_FIXES work as before. coverage.json records the file's hash.
+  --output-contract diagram-reader-v2   (default legacy) reader.json carries output_contract and text_state_keys, and:
+    * text state: for each legend key of kind text that the training rows use as a span key (text_state_keys), a class head "text:<key>" over
+      absent / empty / written (TEXT_STATES; index 0, absent, is the usual "no value"): a key absent from the gold has no class; a gold "" (explicit
+      text removal) is "empty" with no tag; any other value is "written" with its B / I tags as before (a written value not found in the request
+      keeps "written" with no tag: docs/js/neural.js then holds the request, it is never turned into empty or absent);
+    * fill:<key> takes "unresolved" (FILL_V2) for a name-role value that fill / desc / tags cannot hold completely (role_structure): a mention
+      beside another part (names beside a description, several descriptions in one role), a description key not in the legend, written names
+      beside an unwritten reference ("align it with Logo": the context rule would replace the written Logo by the last shape), and a described
+      role beyond the description heads (desc:, and desc2: when the training rows have a second described role). Such a role has no B / I tag
+      and no desc / desc2 value; docs/js/neural.js holds the request (never a substituted target). "context" keeps its meaning: a reference
+      the request does not write. ROLE_TOO_RICH must be unset (v2 encodes those roles as unresolved).
+    Undo / redo counts, outline and description values need no rule here: act_keys and class values come from the training gold, so an
+    annotation that states them is learned once the training rows hold it.
+
 Words: the request split by WORD_RE (letters/digits runs, every other non-space character alone), the same split docs/js/neural.js
 uses (WORD_RE there). Output (default ~/vss-box/ft/roles): train.jsonl, heldout.jsonl, eval_<set>.jsonl, reader.json (the head layout
 the model folder's config.json carries: acts, tags, class keys and values, act_keys, number_words, word_re), coverage.json.
-Run: python3 training/neural/make_roles.py [--out DIR] [--sample-ids FILE] [--seed 0]
+Run: python3 training/neural/make_roles.py [--out DIR] [--sample-ids FILE] [--seed 0] [--all] [--messages FILE.jsonl] [--output-contract diagram-reader-v2]
 """
 import argparse, collections, json, os, re, subprocess, sys
 
@@ -77,6 +96,9 @@ WORD_RE = r"[^\W_]+|[^\w\s]|_"          # docs/js/neural.js WORD_RE: /[\p{L}\p{N
 WORD = re.compile(WORD_RE)
 ACT_KEYS = {"action", "ask"}
 FILL = ["none", "written", "context", "description"]
+V2 = "diagram-reader-v2"                 # --output-contract (see the head of the file); docs/js/neural.js decodes by reader.output_contract
+FILL_V2 = FILL + ["unresolved"]
+TEXT_STATES = ["absent", "empty", "written"]
 
 
 def is_list(v):
@@ -109,6 +131,25 @@ def too_rich(v):
 def rich_context(k, args, ref_keys):
     """ROLE_TOO_RICH=context and this name-role's gold value is too rich: learned as context"""
     return ROLE_TOO_RICH == "context" and k in ref_keys and k in args and too_rich(str(args[k]))
+
+
+def written_part(ws, p, created):
+    """one part of a name-role's gold value is written in the request (filler_kind's rule: a name, or $new whose created name is written)"""
+    if p == "$new": return any(find_seq(ws, [w[0].lower() for w in words(n)], set()) is not None for n in created)
+    return find_seq(ws, [w[0].lower() for w in words(p)], set()) is not None
+
+
+def role_structure(v, ws, created, dkey):
+    """--output-contract diagram-reader-v2: why one name-role's gold value cannot be held completely by fill / desc / tags (None: it can).
+    dkey: the legend keys, lower-cased -> key. The described-role capacity is checked per request (unresolved_roles)."""
+    ps = parts(v); ms = [p for p in ps if p.startswith("mention(")]
+    if len(ms) > 1: return "several descriptions in one role"
+    if ms and len(ps) > 1: return "names beside a description"
+    if ms and any(dk.lower() not in dkey for dk in mention_args(ms[0])): return "a description key not in the legend"
+    if len(ps) > 1:
+        w = [written_part(ws, p, created) for p in ps]
+        if any(w) and not all(w): return "written names beside an unwritten reference"
+    return None
 SPAN_KINDS = {"names", "name", "text", "number", "texts", "point"}   # texts: a list of texts (items, items2, parents of a template, LEGEND_EXT.md): one B-/I- span per item, joined with "," by docs/js/neural.js; point (at "x,y"): one span per coordinate
 
 
@@ -355,6 +396,36 @@ class Cooc:
         return i if self.best_value(k, ws[i][0].lower(), values) == v else None
 
 
+def frozen_messages(path, sample_ids, fixes):
+    """--messages: the given whole messages as the training data (make_data.split_messages with --all, from a file) ->
+    (train_msgs sorted by id, held-out ids (none), sample messages in the file's order, sample ids not in the file, the input's record)"""
+    import hashlib
+    raw = open(path, "rb").read(); msgs = []
+    for n, line in enumerate(raw.decode("utf8").split("\n"), 1):
+        if not line.strip(): continue
+        try: m = json.loads(line)
+        except ValueError as e: raise SystemExit(f"--messages {path} line {n}: not JSON: {e}")
+        if not isinstance(m, dict) or not isinstance(m.get("id"), str) or not isinstance(m.get("text"), str) or not isinstance(m.get("wires", []), list):
+            raise SystemExit(f"--messages {path} line {n}: not an annotated message (id, text, wires)")
+        msgs.append(m)
+    ids = [m["id"] for m in msgs]
+    if len(ids) != len(set(ids)): raise SystemExit(f"--messages {path}: message ids are not unique")
+    # a LABEL_FIXES line on a wire that the given message already gives a scale: the same scale is accepted (applied once), another one stops
+    by = {m["id"]: m for m in msgs}
+    for mid, ws in (fixes or {}).items():
+        for w, scale in ws.items():
+            m = by.get(mid)
+            if m is None: continue
+            wire = m["wires"][w] if w < len(m.get("wires", [])) else None
+            if wire is None or wire.get("type") != "command" or wire.get("args", {}).get("action") != "resize":
+                raise SystemExit(f"--messages: LABEL_FIXES names {mid} wire {w}, which is not a resize in the given messages")
+            if "scale" in wire["args"] and num(str(wire["args"]["scale"])) != num(scale):
+                raise SystemExit(f"--messages: {mid} wire {w} has scale {wire['args']['scale']} in the given messages, LABEL_FIXES says {scale}")
+    sample = set(l.strip() for l in open(sample_ids) if l.strip()) if sample_ids else set()
+    record = {"file": os.path.basename(path), "sha256": hashlib.sha256(raw).hexdigest(), "messages": len(msgs)}
+    return sorted(msgs, key=lambda m: m["id"]), set(), [m for m in msgs if m["id"] in sample], sample - set(ids), record
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.expanduser("~/vss-box/ft/roles"))
@@ -363,14 +434,23 @@ def main():
     ap.add_argument("--none-rows", action="store_true", help="comparison only: also the act \"none\" (segments of the rules' segmenter outside every span); the model cuts by itself now")
     ap.add_argument("--all", action="store_true", help="all data (ALL_DATA.md): no sample removed, no held-out (heldout.jsonl empty); eval_sample1000 is then a fit-on-train check")
     ap.add_argument("--also", nargs="*", default=[], help="roles_roundtrip.py: more folders (relative to training/sketch) labelled with the training layout as also_<folder>.jsonl; not training data")
+    ap.add_argument("--messages", default=None, help="frozen whole annotated training messages (JSONL) in place of the folder discovery; needs --all (see the head of the file)")
+    ap.add_argument("--output-contract", default="legacy", choices=["legacy", V2], help="the reader's output contract (see the head of the file)")
     a = ap.parse_args()
+    v2 = a.output_contract == V2
+    if v2 and ROLE_TOO_RICH: raise SystemExit(f"--output-contract {V2} encodes a role too rich for one description as fill = unresolved: unset ROLE_TOO_RICH")
+    if a.messages and not a.all: raise SystemExit("--messages needs --all: the given messages are the training data, with no held-out (the trainer's held-out files stay empty)")
+    if a.messages and os.environ.get("EXTRA_DIRS", "").strip(): raise SystemExit("--messages: unset EXTRA_DIRS (the file decides the training data)")
     if LABEL_FIXES and not IMPLIED_SCALE: raise SystemExit("LABEL_FIXES needs IMPLIED_SCALE=1: the scales it adds are not written, and co-occurrence would tag other words for them")
     fixes = load_label_fixes(LABEL_FIXES) if LABEL_FIXES else None
     os.makedirs(a.out, exist_ok=True)
     LEG = legend()
     ACTION, ASK = MD.acts_from_neural_js(); ACTS = ACTION + ASK + ["fact", "rule"] + (["none"] if a.none_rows else [])
     skipped = collections.Counter()
-    train_msgs, held, sample_msgs, missing = MD.split_messages(a.sample_ids, a.seed, a.all)
+    if a.messages:
+        train_msgs, held, sample_msgs, missing, messages_input = frozen_messages(a.messages, a.sample_ids, fixes)
+    else:
+        train_msgs, held, sample_msgs, missing = MD.split_messages(a.sample_ids, a.seed, a.all); messages_input = None
     fixed = apply_label_fixes(train_msgs, fixes); apply_label_fixes(sample_msgs, fixes)
     pools = {"train": [m for m in train_msgs if m["id"] not in held], "heldout": [m for m in train_msgs if m["id"] in held], "eval_sample1000": sample_msgs}
     sets = {n: requests(ms, ACTS, skipped) for n, ms in pools.items()}
@@ -408,10 +488,17 @@ def main():
     # who fills each name-role (FILL) and the description's own keys (see the head of the file)
     ref_keys = [k for k in span_keys if LEG[k]["kind"] == "names"]
     DKEY = {k.lower(): k for k in LEG}
+
+    def structure(x):
+        """--output-contract v2: {name-role: why fill / desc / tags cannot hold its gold value} (role_structure; the capacity is in unresolved_roles)"""
+        if not v2: return {}
+        ws = words(x[1])
+        return {k: r for k in ref_keys if k in x[3] for r in [role_structure(str(x[3][k]), ws, x[5], DKEY)] if r}
     dvals = collections.defaultdict(set); dunknown = collections.Counter()
     for x in train:
+        st = structure(x)
         for k in ref_keys:
-            if rich_context(k, x[3], ref_keys): continue   # ROLE_TOO_RICH=context: no description heads from it
+            if rich_context(k, x[3], ref_keys) or k in st: continue   # ROLE_TOO_RICH=context, or unresolved (v2): no description heads from it
             for p in parts(x[3].get(k, "")) if k in x[3] else []:
                 if not p.startswith("mention("): continue
                 for dk, dv in mention_args(p).items():
@@ -423,11 +510,23 @@ def main():
     # its own, desc2:<key>; with one set of heads both roles were decoded with the first role's description (ROLES_ROUNDTRIP.md)
     dvals2 = collections.defaultdict(set)
     for x in train:
-        ds = [next(p for p in parts(x[3][k]) if p.startswith("mention(")) for k in ref_keys if k in x[3] and any(p.startswith("mention(") for p in parts(x[3][k])) and not rich_context(k, x[3], ref_keys)]
+        st = structure(x)
+        ds = [next(p for p in parts(x[3][k]) if p.startswith("mention(")) for k in ref_keys if k in x[3] and any(p.startswith("mention(") for p in parts(x[3][k])) and not rich_context(k, x[3], ref_keys) and k not in st]
         for dk, dv in (mention_args(ds[1]).items() if len(ds) > 1 else []):
             if dk.lower() in DKEY: dvals2[DKEY[dk.lower()]].add(dv)
     desc2_keys = sorted(dvals2)
-    fill_classes = [["fill:" + k, FILL] for k in ref_keys] + [["desc:" + k, ["none"] + sorted(dvals[k])] for k in desc_keys] + [["desc2:" + k, ["none"] + sorted(dvals2[k])] for k in desc2_keys]
+    fill_classes = [["fill:" + k, FILL_V2 if v2 else FILL] for k in ref_keys] + [["desc:" + k, ["none"] + sorted(dvals[k])] for k in desc_keys] + [["desc2:" + k, ["none"] + sorted(dvals2[k])] for k in desc2_keys]
+    cap = 2 if desc2_keys else 1   # described roles one request can hold: desc:, and desc2: when the training rows have a second one
+
+    def unresolved_roles(x):
+        """--output-contract v2: {name-role: why it is fill = unresolved} of one request (structure, and a described role beyond the heads)"""
+        st = structure(x)
+        if v2:
+            described = [k for k in ref_keys if k in x[3] and k not in st and any(p.startswith("mention(") for p in parts(x[3][k]))]
+            for k in described[cap:]: st[k] = "a described role beyond the description heads"
+        return st
+    # the legend keys of kind text whose answer is a span of the request: their state (absent / empty / written) is a class head of its own (v2)
+    text_state_keys = [k for k in span_keys if LEG[k]["kind"] == "text"] if v2 else []
 
     # co-occurrence on the training rows: number words (count / distance written as a word) and, as evidence, every class key
     co = Cooc()
@@ -443,9 +542,12 @@ def main():
     def label(row, cov, numword):
         rid, sp, typ, args, act, created = row
         ws = words(sp); tag = ["O"] * len(ws); taken = {}; implied = {}
+        unres = unresolved_roles(row)   # v2 only (else empty)
         for k in sorted(span_keys, key=lambda k: LEG[k]["kind"] == "number"):   # numbers last: a number word found by co-occurrence never takes a name ("Slide Day to the left")
             if k not in args: continue
             if rich_context(k, args, ref_keys): cov[k]["values"] += len(parts(args[k])); cov[k]["too rich: learned as context (ROLE_TOO_RICH)"] += 1; continue
+            if k in unres: cov[k]["values"] += len(parts(args[k])); cov[k]["unresolved (v2): " + unres[k]] += 1; continue
+            if k in text_state_keys and str(args[k]) == "": cov[k]["values"] += 1; cov[k]["empty text (v2: state empty, no tag)"] += 1; continue
             after = 0   # the parts of a list are looked for in their order (find_part)
             # a text (a label, a title) is one value even when it holds a comma ("label Persona 'Maria, 34'"); every other kind is a list
             for p in ([str(args[k])] if str(args[k]) else []) if LEG[k]["kind"] == "text" else parts(args[k]):
@@ -480,11 +582,13 @@ def main():
         classes ={k: str(args[k]) for k in class_keys if k in args}
         for k, v in implied.items(): classes["implied:" + k] = v
         for k in ref_keys:
-            if k in args: classes["fill:" + k] = "context" if rich_context(k, args, ref_keys) else filler_kind(ws, str(args[k]), created)
-        ds = [next(p for p in parts(args[k]) if p.startswith("mention(")) for k in ref_keys if k in args and any(p.startswith("mention(") for p in parts(args[k])) and not rich_context(k, args, ref_keys)]
+            if k in args: classes["fill:" + k] = "unresolved" if k in unres else "context" if rich_context(k, args, ref_keys) else filler_kind(ws, str(args[k]), created)
+        ds = [next(p for p in parts(args[k]) if p.startswith("mention(")) for k in ref_keys if k in args and any(p.startswith("mention(") for p in parts(args[k])) and not rich_context(k, args, ref_keys) and k not in unres]
         for pre, keys, d in zip(("desc:", "desc2:"), (desc_keys, desc2_keys), ds):   # the first described role -> desc:, the second -> desc2:
             for dk, dv in mention_args(d).items():
                 if DKEY.get(dk.lower()) in keys: classes[pre + DKEY[dk.lower()]] = dv
+        for k in text_state_keys:   # v2: the text's state; absent has no class (index 0)
+            if k in args: classes["text:" + k] = "empty" if str(args[k]) == "" else "written"
         return {"id": rid, "text": sp, "words": [w[0] for w in ws], "tags": tag, "act": act, "classes": classes, "gold": args}
 
     def fillers(rows, out):
@@ -528,12 +632,18 @@ def main():
                 if i is not None: al += 1; pairs[(ws[i][0].lower(), v)] += 1
             ccov[k] = {"values": n, "one word expresses it (co-occurrence, both directions)": al, "top word->value": [f"{w}->{v} {c}" for (w, v), c in pairs.most_common(8)]}
         coverage[name] = {"span keys": {k: dict(v) for k, v in cov.items()}, "class keys": ccov, "rows": len(out), "fillers": fillers(rows, out)}
+        if v2: coverage[name]["output contract"] = {
+            "text states": dict(collections.Counter(f"{k[5:]}={v}" for o in out for k, v in o["classes"].items() if k.startswith("text:"))),
+            "unresolved roles": dict(collections.Counter(f"{k}: {kk[len('unresolved (v2): '):]}" for k, c in cov.items() for kk, n in c.items() if kk.startswith("unresolved (v2): ") for _ in range(n)))}
     number_words = {w: c.most_common(1)[0][0] for w, c in numword.items()}
     if NUM_TABLE: number_words = dict({w: v for w, v in number_words.items() if w not in table_words()}, **table_words())   # the table wins for its words
     implied_classes = [["implied:" + k, ["none"] + sorted(implied_values[k])] for k in IMPLIED_KEYS if implied_values[k]]
     reader = {"cut": {"tags": ["O", "B", "I"], "max_length": 512}, "acts": ACTS, "tags": tags, "span_keys": span_keys, "ref_keys": ref_keys, "desc_keys": desc_keys, "desc2_keys": desc2_keys,
               "classes": [[k, ["none"] + values[k]] for k in class_keys] + fill_classes + implied_classes,
               "act_keys": act_keys, "number_words": number_words, **({"number_words_from": "table"} if NUM_TABLE else {}), "word_re": "[\\p{L}\\p{N}]+|[^\\s\\p{L}\\p{N}]", "max_length": 128}
+    if v2:   # after every legacy head, so the legacy heads keep their offsets
+        reader["classes"] += [["text:" + k, TEXT_STATES] for k in text_state_keys]
+        reader.update(output_contract=V2, text_state_keys=text_state_keys)
     json.dump(reader, open(os.path.join(a.out, "reader.json"), "w"), indent=1)
     cutn = {}
     for n, ms in pools.items():
@@ -548,6 +658,10 @@ def main():
     print("cut rows (whole messages, B/I/O per word): " + ", ".join(f"{n} {c['messages']} messages {c['spans']} spans" for n, c in cutn.items()))
     coverage["none"] = {n: {"requests": nreq[n], "none": len(sets[n]) - nreq[n], "none share": round((len(sets[n]) - nreq[n]) / max(len(sets[n]), 1), 4)} for n in nreq}
     coverage["skipped"] = dict(skipped); coverage["sample1000_missing"] = len(missing)
+    if messages_input is not None: coverage["messages_input"] = messages_input
+    if v2:
+        coverage["output_contract"] = {"contract": V2, "text_state_keys": text_state_keys, "described roles per request (capacity)": cap}
+        print(f"output contract {V2}: text_state_keys {text_state_keys}; described-role capacity {cap}; train " + json.dumps(coverage["train"]["output contract"]))
     if fixes is not None:
         coverage["label_fixes"] = {"file": os.path.basename(LABEL_FIXES), "lines": sum(len(v) for v in fixes.values()), "applied to this data": fixed}
         print(f"label fixes: {fixed} of {coverage['label_fixes']['lines']} lines are in this data list")

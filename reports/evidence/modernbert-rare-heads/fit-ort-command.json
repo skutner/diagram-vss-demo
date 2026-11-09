@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "/home/skutner/.cache/diagram-vss-modernbert/venv/bin/python",
+    "-B",
+    "training/neural/parity/modernbert_rare_heads.py",
+    "fit",
+    "--protocol",
+    "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/frozen/protocol.json",
+    "--name",
+    "W-s0",
+    "--runtime",
+    "ort",
+    "--out",
+    "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/fit-ort"
+  ],
+  "cwd": "/home/skutner/browserLLM/diagram-vss-demo",
+  "started": "2026-11-09T10:44:53.999254+02:00",
+  "ended": "2026-11-09T10:49:49.245109+02:00",
+  "pid": 355301,
+  "exit_status": 1,
+  "log": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-fit-ort-command-v1.log",
+  "log_sha256": "5752c96ae74dd576564fddae83173ac6a4618c903d668bf2da0dd1ec7b90ddfd"
+}

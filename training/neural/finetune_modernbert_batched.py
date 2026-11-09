@@ -118,15 +118,30 @@ def autocast(backend):
     return torch.autocast(backend.name, dtype=torch.bfloat16)
 
 
-def request_loss(model, tok, part, layout, backend, act_weight=None):
+def request_loss(model, tok, part, layout, backend, act_weight=None, class_weights=None, request_class_weights=None):
     """The loss of finetune_roles.py without the cut: act + mean of the class heads + word tags."""
+    if class_weights is not None and request_class_weights is not None:
+        raise ValueError("Class and request class objectives are mutually exclusive")
     x, lab, _ = encode(tok, part, layout, REQUEST_CAP, backend.name)
     with autocast(backend): tl, sl, _ = model(**x)
     tl, sl = tl.float(), sl.float(); ce = nn.functional.cross_entropy
     ya = torch.tensor([layout.act_id[r["act"]] for r in part], device=backend.name)
     yc = torch.tensor([layout.class_targets(r) for r in part], device=backend.name)
     loss = ce(sl[:, :len(layout.acts)], ya, weight=act_weight)
-    loss = loss + sum(ce(sl[:, s:s + c], yc[:, i]) for i, (s, c) in enumerate(zip(layout.offsets[:-1], layout.class_sizes))) / len(layout.class_sizes)
+    if request_class_weights is not None:
+        # Divide in binary64 before conversion, using the frozen full-corpus mean.
+        q = torch.tensor([request_class_weights.normalized(layout.class_targets(r)) for r in part], dtype=sl.dtype, device=backend.name)
+        per_row = torch.stack([ce(sl[:, s:s + c], yc[:, i], reduction="none")
+                               for i, (s, c) in enumerate(zip(layout.offsets[:-1], layout.class_sizes))], dim=1).mean(dim=1)
+        loss = loss + (per_row * q).mean()
+    elif class_weights is None:
+        loss = loss + sum(ce(sl[:, s:s + c], yc[:, i]) for i, (s, c) in enumerate(zip(layout.offsets[:-1], layout.class_sizes))) / len(layout.class_sizes)
+    else:
+        weights = torch.as_tensor(class_weights, dtype=sl.dtype, device=backend.name)
+        if weights.shape != (len(layout.class_sizes), 2) or not torch.isfinite(weights).all() or not (weights > 0).all():
+            raise ValueError("Class weights must be finite positive absent/positive pairs for every head")
+        loss = loss + sum((ce(sl[:, s:s + c], yc[:, i], reduction="none") * weights[i][(yc[:, i] > 0).long()]).mean()
+                          for i, (s, c) in enumerate(zip(layout.offsets[:-1], layout.class_sizes))) / len(layout.class_sizes)
     if bool((lab != -100).any()): loss = loss + ce(tl.flatten(0, 1), lab.flatten(), ignore_index=-100)
     return loss, int(x["input_ids"].numel())
 
@@ -296,20 +311,48 @@ class Hooks:
 
 
 def settings_of(a):
+    check_objectives(a)
     s = dict(seed=a.seed, epochs=a.epochs, lr=a.lr, head_lr=a.head_lr, batch=a.batch, cut_batch=a.cut_batch, weight_decay=WEIGHT_DECAY, warmup=WARMUP, clip=CLIP,
              request_cap=REQUEST_CAP, message_cap=MESSAGE_CAP, attn="sdpa", autocast="bfloat16", weights="float32", gradient_checkpointing=False, max_updates=a.max_updates)
     if getattr(a, "canvas_rows", None) is not None:   # only with --canvas-rows: the default settings stay as they were
         s["canvas"] = dict(getattr(a, "canvas_identity", {}), tokens=a.canvas_tokens, cap=CANVAS_CAP)
+    if getattr(a, "class_loss_manifest", None) is not None:
+        s["class_loss"] = a.class_loss_identity
+    if getattr(a, "request_class_loss_manifest", None) is not None:
+        s["request_class_loss"] = a.request_class_loss_identity
     return s
 
 
 def metadata_of(a, backend, manifest, device_metadata):
+    sources = SOURCES + (("modernbert_class_loss.py",) if getattr(a, "class_loss_manifest", None) is not None else ())
+    if getattr(a, "request_class_loss_manifest", None) is not None: sources += ("modernbert_request_class_loss.py",)
     return {"base": BASE, "revision": REVISION, "settings": settings_of(a), "data": manifest, "tokenization": POLICY, "device": backend.name,
             "platform": platform.platform(), "python": sys.version, **device_metadata,
             "versions": {p: importlib.metadata.version(p) for p in ("torch", "transformers", "tokenizers", "numpy", "onnx", "onnxruntime", "psutil")},
             "torch_build": torch.__config__.show(),
             "numerics": {"weights": "float32", "autocast": "bfloat16", "attn": "sdpa", "grad_scaler": False},
-            "sources": {n: sha(Path(__file__).with_name(n)) for n in SOURCES}}
+            "sources": {n: sha(Path(__file__).with_name(n)) for n in sources}}
+
+
+def load_class_weights(a, rows, layout, manifest):
+    check_objectives(a)
+    if getattr(a, "class_loss_manifest", None) is None: return None
+    from modernbert_class_loss import validate_manifest
+    weights, a.class_loss_identity = validate_manifest(a.class_loss_manifest, rows, layout, manifest)
+    return weights
+
+
+def check_objectives(a):
+    if getattr(a, "class_loss_manifest", None) is not None and getattr(a, "request_class_loss_manifest", None) is not None:
+        raise ValueError("Class and request class objectives are mutually exclusive")
+
+
+def load_request_class_weights(a, rows, layout, manifest):
+    check_objectives(a)
+    if getattr(a, "request_class_loss_manifest", None) is None: return None
+    from modernbert_request_class_loss import validate_manifest
+    weights, a.request_class_loss_identity = validate_manifest(a.request_class_loss_manifest, rows, layout, manifest)
+    return weights
 
 
 def parameter_groups(model, lr, head_lr):
@@ -367,14 +410,14 @@ def largest(rows, tok, cap, n):
     return [rows[i] for i in order[:n]], len(prepared[order[0]]["ids"]), sum(p["truncated"] for p in prepared)
 
 
-def preflight(model, tok, opt, rows, cuts, layout, backend, hooks, a, act_weight, canvas=None):
+def preflight(model, tok, opt, rows, cuts, layout, backend, hooks, a, act_weight, canvas=None, class_weights=None, request_class_weights=None):
     """One worst-case step with the optimizer state already in memory: the longest requests, then the longest messages padded together. Random batches
     reach this size only once every few thousand steps; better to fail in the first minute than in the third hour. Nothing changes: no optimizer step, generators restored."""
     state = rng_state(backend)
     top_requests, long_request, cut_requests = largest(rows, tok, REQUEST_CAP, a.batch)
     top_messages, long_message, cut_messages = largest(cuts, tok, MESSAGE_CAP, a.cut_batch)
     opt.zero_grad(set_to_none=True)
-    rl, tokens_r = request_loss(model, tok, top_requests, layout, backend, act_weight); rl.backward(); rv = rl.item(); del rl
+    rl, tokens_r = request_loss(model, tok, top_requests, layout, backend, act_weight, class_weights, request_class_weights=request_class_weights); rl.backward(); rv = rl.item(); del rl
     cl, tokens_c = cut_loss(model, tok, top_messages, layout, backend); cl.backward(); cv = cl.item(); del cl
     extra = {}
     if canvas is not None:   # the canvas pass's worst case: the longest rows, packed under the budget
@@ -392,9 +435,12 @@ def preflight(model, tok, opt, rows, cuts, layout, backend, hooks, a, act_weight
 
 def overfit_gate(a, backend, hooks):
     """From the base weights, the 200 rows of first_run_fit.py, batch 16, a constant learning rate, the request loss only."""
+    check_objectives(a)
     device_metadata = hooks.configure(backend); apply_allocator_limit(backend, hooks)
     rows, _, manifest = data_manifest(a.data, a.expect_manifest)
     layout = Layout(json.loads((a.data / "reader.json").read_text()))
+    class_weights = load_class_weights(a, rows, layout, manifest)
+    request_class_weights = load_request_class_weights(a, rows, layout, manifest)
     backend.seed(a.seed)
     tok, model = prepare_model(a, backend, hooks, layout)
     opt = make_optimizer(model, a, backend)
@@ -407,7 +453,7 @@ def overfit_gate(a, backend, hooks):
         if status.get("stop"): reason = status["stop"]; break
         if len(order) < GATE_BATCH: order = rng.sample(range(len(few)), len(few))
         part = [few[order.pop()] for _ in range(min(GATE_BATCH, len(few)))]
-        loss, _ = request_loss(model, tok, part, layout, backend)
+        loss, _ = request_loss(model, tok, part, layout, backend, class_weights=class_weights, request_class_weights=request_class_weights)
         if not torch.isfinite(loss).item(): raise NonFinite("Non-finite request loss")
         opt.zero_grad(set_to_none=True); loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), CLIP, error_if_nonfinite=True); opt.step()
@@ -417,7 +463,9 @@ def overfit_gate(a, backend, hooks):
             log.append(dict(update=update, loss=loss.item(), elapsed=time.monotonic() - start, **fit, failures=failures))
             print(json.dumps({"update": update, "loss": round(loss.item(), 4), "value_right": fit["value_right"], "value_rows": fit["value_rows"], "act": fit["act"], "word_tags": fit["word_tags"], "passed": passed}), flush=True)
             if passed: break
-    atomic_json(a.work / "overfit_gate.json", {"passed": passed, "stopped_by": reason, "lr": a.lr, "head_lr": a.head_lr, "rows": len(few), "data": manifest, **device_metadata,
+    objective = {"class_loss": a.class_loss_identity} if class_weights is not None else {}
+    if request_class_weights is not None: objective["request_class_loss"] = a.request_class_loss_identity
+    atomic_json(a.work / "overfit_gate.json", {"passed": passed, "stopped_by": reason, "lr": a.lr, "head_lr": a.head_lr, "rows": len(few), "data": manifest, **device_metadata, **objective,
                                                "memory": peak_memory(backend, hooks), "log": log})
     print(json.dumps({"overfit_gate": "passed" if passed else "failed", "stopped_by": reason, "updates": log[-1]["update"] if log else 0, "failures": failures, "memory": peak_memory(backend, hooks)}), flush=True)
     return 0 if passed else 1
@@ -425,6 +473,7 @@ def overfit_gate(a, backend, hooks):
 
 def run(a, backend, hooks):
     """The training loop. Positions move only after opt.step(): a stop at a step boundary is exact, and a failure mid-step keeps the last durable checkpoint."""
+    check_objectives(a)
     a.work.mkdir(parents=True, exist_ok=True)
     if a.overfit_gate: return overfit_gate(a, backend, hooks)
     if not a.resume and any(p.name not in WORK_FILES_ALLOWED_FRESH for p in a.work.iterdir()):
@@ -432,6 +481,8 @@ def run(a, backend, hooks):
     device_metadata = hooks.configure(backend); apply_allocator_limit(backend, hooks)
     rows, cuts, manifest = data_manifest(a.data, a.expect_manifest)
     layout = Layout(json.loads((a.data / "reader.json").read_text()))
+    class_weights = load_class_weights(a, rows, layout, manifest)
+    request_class_weights = load_request_class_weights(a, rows, layout, manifest)
     canvas_rows = None
     if getattr(a, "canvas_rows", None) is not None: canvas_rows, a.canvas_identity = canvas_data(a.canvas_rows)
     metadata = metadata_of(a, backend, manifest, device_metadata)
@@ -519,7 +570,7 @@ def run(a, backend, hooks):
                 shuffler.shuffle(cut_order); cut_pos = 0
             crow = [cuts[i] for i in cut_order[cut_pos:cut_pos + a.cut_batch]]
             opt.zero_grad(set_to_none=True)
-            rl, tokens_r = request_loss(model, tok, part, layout, backend, weight)
+            rl, tokens_r = request_loss(model, tok, part, layout, backend, weight, class_weights, request_class_weights=request_class_weights)
             if not torch.isfinite(rl).item(): raise NonFinite("Non-finite request loss")
             rl.backward(); rv = rl.item(); del rl
             cl, tokens_c = cut_loss(model, tok, crow, layout, backend)
@@ -547,7 +598,7 @@ def run(a, backend, hooks):
             if state["update"] % MEMORY_EVERY == 0: row["memory"] = peak_memory(backend, hooks)
             log.write(json.dumps(row, allow_nan=False) + "\n")
             if not done_preflight:
-                info = preflight(model, tok, opt, rows, cuts, layout, backend, hooks, a, weight, canvas)
+                info = preflight(model, tok, opt, rows, cuts, layout, backend, hooks, a, weight, canvas, class_weights, request_class_weights=request_class_weights)
                 atomic_json(a.work / "preflight.json", info); done_preflight = True
                 print(json.dumps({"preflight": info}), flush=True)
             if state["pos"] >= len(rows):
@@ -589,6 +640,9 @@ def parse_args(argv=None):
     ap.add_argument("--cut-batch", type=int, default=8)
     ap.add_argument("--resume", action="store_true")
     ap.add_argument("--expect-manifest", type=Path)
+    objective = ap.add_mutually_exclusive_group()
+    objective.add_argument("--class-loss-manifest", type=Path, default=None, help="opt-in frozen sqrt positive/absent class objective; recomputed before optimization")
+    objective.add_argument("--request-class-loss-manifest", type=Path, default=None, help="opt-in frozen whole-request class objective; recomputed before optimization")
     ap.add_argument("--overfit-gate", action="store_true")
     ap.add_argument("--max-updates", type=int, default=0, help="finish after N updates of the full schedule (dry run); the run is marked full_schedule false")
     ap.add_argument("--gpu-limit-gib", type=float, default=5., help="allocator limit. 4 is too tight: the longest batches of the first run's data (8 x 302 pieces) peak at 3.98 GiB allocated, 4.40 reserved")

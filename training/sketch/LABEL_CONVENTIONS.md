@@ -11,7 +11,7 @@ LATER: "from now on circles are orange").
 Commands, by `action` (other keys as listed; leave out what the sentence does not say):
 - `create`: shape, color, size, name, label, count (only when 2 or more), position, anchor
 - `delete`: target
-- `move`: target, then either position (+ anchor) or direction (+ distance in pixels)
+- `move`: target, then either position (+ anchor) or direction (+ distance in pixels); which of the two: see "Decisions of 2026-11-08" at the end
 - `set`: target and the new color / shape / size (size only as tiny, small, medium, large, huge)
 - `resize`: target ("make X bigger / smaller", "enlarge", "shrink")
 - `rename`: target, name; `label`: target, label (the text written on the shape)
@@ -149,3 +149,34 @@ section 7 (free text, templates, help), the coordinator's decisions of 2026-11-0
 - **Help questions** -> `question ask=help [topic] [aspect] [about]` (LEGEND_EXT.md section 7: topic = the most specific legend thing named,
   aspect how / can / values / example / overview, about = the words the legend does not know). A question about the drawing written with a
   help lead stays a drawing question ("which shapes can be reached from the rect?" -> reachable; "tell me about the hexagon" -> describe).
+
+## Decisions of 2026-11-08 (ModernBERT-next, plan `reports/modernbert-next-plan-2026-11-08_codex.md` section 2)
+
+These decide only how an annotation is written. They are applied to existing data ONLY through the reviewed overlay
+`training/neural/parity/LABEL_FIXES_SHORT.jsonl` (source file, its SHA-256, id, wire index, expected span, expected args, replacement args, reason); message
+texts are never rewritten and no rule is applied to unseen text. The scan, every overlay line and every left-as-is case are in
+`~/.cache/diagram-vss-modernbert/next-2026-11-08/overlay-scan/` (outside git). The Rules reader (`docs/js/logic.js`) is not changed to match them: where it reads a
+text differently the difference stays visible (the scan lists the Rules' reading of each overlay line).
+
+| Meaning | Annotation |
+|---|---|
+| Bare displacement: "move Fan3 left", "move Keeper to the left" (a motion verb, no edge or anchor qualification) | `direction=left`; an explicit distance is kept (`distance`). Same for right. Up / down are already `direction`. |
+| Explicit canvas location: "to the far left", "to the left edge", "to the left side of the canvas" | `position=left` (right, top, bottom alike). Placement wording ("put X at / on the left", "X on the left side") is a location, not a displacement: `position`. |
+| "to the left of Goal" (an existing shape as the reference) | `position=leftOf`, `anchor=Goal` (rightOf, above, below alike). |
+| Verbless "Start left" (no verb at all) | `position=left` is kept. |
+| Undo / redo with an expressed count: "twice", "three times", "3 times", "the last two changes" | `count` as digits ("2", "3"). No expressed count = no `count` key (the existing default of one). "once", "once more" = the default. |
+| An existing canvas shape, also when the text writes its name in lower case ("move keeper left") | the canonical name as in `names` ("target": "Keeper"). Writing it in lower case never changes the value. |
+| Explicit label / says / saying / text wording ("label it Done", "should say Offset", "a box saying Cool"), also one word | label semantics: `label`, not `name` or `rename`. A name given by "called / named" stays `name`. |
+| Explicit text removal ("remove the label of A", "unlabel A", "clear the text") | the key `label` present with the empty string; distinct from an absent key (no wording about text = no key). The literal word "none" or "empty" written as a label stays that text. |
+
+Reading rules that follow from the table (no word lists are applied to new text; these say how the existing annotations were reviewed):
+- "Far left" is a recommended annotation decision, not a claim about the Rules: the Rules read "move X to the far left" as `direction=left`, and this stays a visible
+  disagreement. The realistic text is not relabelled to match a generator defect.
+- The decisions are written for left and are applied symmetrically to right. There is no `direction` value top or bottom, so "move X to the top / bottom" stays
+  `position=top / bottom` (a canvas place); "move X up / down" is `direction`.
+- Genuine ambiguity is left as it is and listed, not forced: placement wording with a bare direction and no edge or side ("Park Mom left", "Violins go left"),
+  verbless "X to the left" (the data holds both), "off to the right", "over to the left", wishes that give a direction without a verb ("take it more down"),
+  "N pixels to the left of it" (displacement with distance, or leftOf with distance), colloquial "say X" = "call it X", a group "labelled X" (the group has no label
+  key), and a describe without target whose words may be a shape name or a common word. Each is listed with its reason in the scan.
+- Two relations in one request ("above Camp and right of Tower"), self-corrections ("left of A, no, right of B") and several places in one request cannot be written
+  in one wire; they are not changed here.

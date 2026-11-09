@@ -1,0 +1,23 @@
+{
+ "input": "/tmp/claude-1000/-home-skutner--claude-spares-spare-wYHbMB/9427552c-edfc-4236-96bd-71a0a98fbd3f/scratchpad/t1_cand.jsonl",
+ "output": "/tmp/claude-1000/-home-skutner--claude-spares-spare-wYHbMB/9427552c-edfc-4236-96bd-71a0a98fbd3f/scratchpad/t1_dedup.jsonl",
+ "messages": 2400,
+ "kept": 1830,
+ "dropped_by_cause": {
+  "text of training/sketch/llm_train/synth_short_r2": 481,
+  "duplicate text within the file": 54,
+  "text of /home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/train.jsonl": 34,
+  "text of /home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/cut_train.jsonl": 1
+ },
+ "against_rows_read": {
+  "training/sketch/llm_train/synth_short_r2": 1997,
+  "/home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/train.jsonl": 57135,
+  "/home/skutner/.cache/diagram-vss-modernbert/arms/data/C100/cut_train.jsonl": 26913,
+  "training/sketch/llm_bench/nl_a/opus": 610,
+  "training/sketch/llm_bench/nl_a/gpt": 610,
+  "training/sketch/llm_bench/nl_b/opus": 601,
+  "training/sketch/llm_bench/nl_b/gpt": 601
+ },
+ "against_distinct_texts": 73563,
+ "against_distinct_ids": 30121
+}

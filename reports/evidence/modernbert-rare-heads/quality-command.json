@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "node",
+    "training/neural/parity/modernbert_rare_heads_measure.mjs",
+    "evaluate",
+    "--protocol",
+    "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/frozen/protocol.json",
+    "--name",
+    "W-s0",
+    "--model",
+    "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/export/modernbert-W-s0",
+    "--training",
+    "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/run",
+    "--out",
+    "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/bundle"
+  ],
+  "cwd": "/home/skutner/browserLLM/diagram-vss-demo",
+  "started": "2026-11-09T10:52:59.696194+02:00",
+  "ended": "2026-11-09T11:43:39.772265+02:00",
+  "pid": 357229,
+  "exit_status": 0,
+  "log": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-quality-command-v1.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

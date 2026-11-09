@@ -1,0 +1,450 @@
+{
+ "protocol_sha256": "3999991890f1a92b811fbe0cde86ccdf35ca38e71606b45d0ec14ea5dc872e78",
+ "addendum": {
+  "file": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/frozen-lists/decision-rules-addendum.json",
+  "sha256": "304a1be5fb5a27f944ce588a24e16e39676b497a860f4fd3a153b955dcdc1b19"
+ },
+ "evidence_schema": "modernbert-next-evidence-v1",
+ "rows": [
+  {
+   "id": "15",
+   "title": "B-s0 passes Guard G against C100-s0 (common grouped calibration) and the output-contract conditions",
+   "status": "pass",
+   "pass": true,
+   "checks": [
+    {
+     "name": "fresh2_test/test cost difference >= -5",
+     "value": -0.5331,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "fresh2_test/test paired interval upper end >= 0",
+     "value": 9.7724,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -9.359,
+      9.7724
+     ],
+     "ci95_reason": null,
+     "resampled_units": 318
+    },
+    {
+     "name": "fresh2_test/test wrong+extras per 100 requested up by at most 1",
+     "value": -0.609291,
+     "ok": true,
+     "status": "pass",
+     "candidate": 0.609292,
+     "comparator": 1.218583
+    },
+    {
+     "name": "short3_test/test cost difference >= -5",
+     "value": 0.6944,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "short3_test/test paired interval upper end >= 0",
+     "value": 15.7754,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -14.4,
+      15.7754
+     ],
+     "ci95_reason": null,
+     "resampled_units": 309
+    },
+    {
+     "name": "short3_test/test wrong+extras per 100 requested up by at most 1",
+     "value": 0,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.388889,
+     "comparator": 1.388889
+    },
+    {
+     "name": "nl_a_development/development cost difference >= -5",
+     "value": 4.5918,
+     "ok": true,
+     "status": "pass"
+    },
+    {
+     "name": "nl_a_development/development paired interval upper end >= 0",
+     "value": 22.191,
+     "ok": true,
+     "status": "pass",
+     "ci95": [
+      -10.0543,
+      22.191
+     ],
+     "ci95_reason": null,
+     "resampled_units": 171
+    },
+    {
+     "name": "nl_a_development/development wrong+extras per 100 requested up by at most 1",
+     "value": -0.5102040000000001,
+     "ok": true,
+     "status": "pass",
+     "candidate": 1.020408,
+     "comparator": 1.530612
+    },
+    {
+     "name": "output contract (acceptance 9-14)",
+     "value": [
+      "9:pass",
+      "10:pass",
+      "11:pass",
+      "12:pass",
+      "13:pass",
+      "14:pass"
+     ],
+     "ok": true,
+     "status": "pass",
+     "entries": [
+      {
+       "id": "9",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py && node training/neural/parity/test_output_contract.mjs",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/contract-evidence/b9_tests.log",
+       "sha256": "f659b0fc6fd9d5b42a81fbf4dfdb9df6d4b98d5cfff2097471d0736da1fbd872"
+      },
+      {
+       "id": "10",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py (perfect-label fixtures: absent/empty/written text, undo/redo counts, outline/description values, relative/absolute moves)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/contract-evidence/test_output_contract.py.log",
+       "sha256": "744650c82941ae47c3c84695a0f2a7e3cc32a33787f90a9edf02aee33d7d2de7"
+      },
+      {
+       "id": "11",
+       "status": "pass",
+       "command": "node training/neural/parity/test_output_contract.mjs (compound references held at cost and execute all, canvas unchanged)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/contract-evidence/test_output_contract.mjs.log",
+       "sha256": "f4e5b4086e8476939c3c8e4c210ce1b7df67c232ece8e847c9b105a42e91fd37"
+      },
+      {
+       "id": "12",
+       "status": "pass",
+       "command": "node training/neural/parity/test_output_contract.mjs (blocked -> \"make it red\" held, independent \"make Ball gold\" executes)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/contract-evidence/test_output_contract.mjs.log",
+       "sha256": "f4e5b4086e8476939c3c8e4c210ce1b7df67c232ece8e847c9b105a42e91fd37"
+      },
+      {
+       "id": "13",
+       "status": "pass",
+       "command": "roles_roundtrip.py --messages TASK/data/B.messages.jsonl --output-contract diagram-reader-v2 --prep modernbert --compare-rows TASK/data/B --gate 95 1 (TASK/roundtrip/run.sh)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/roundtrip/B.log",
+       "sha256": "87825dfcc4d4a4463d0368f6022a409d95425bd9e423a14aed8b5386d5e66e4e"
+      },
+      {
+       "id": "14",
+       "status": "pass",
+       "command": "python3 -B training/neural/parity/test_output_contract.py (pinned ModernBERT preparation, 128/512 boundaries, Python/JS Unicode agreement)",
+       "evidence": "/home/skutner/.cache/diagram-vss-modernbert/next-2026-11-08/contract-evidence/test_output_contract.py.log",
+       "sha256": "744650c82941ae47c3c84695a0f2a7e3cc32a33787f90a9edf02aee33d7d2de7"
+      }
+     ]
+    }
+   ],
+   "guard": [
+    {
+     "view": "fresh2_test",
+     "key": "fresh2_test/test",
+     "candidate_cost": 41.203351,
+     "comparator_cost": 41.736481,
+     "measure_available": true,
+     "requested": 1313,
+     "checks": [
+      {
+       "name": "fresh2_test/test cost difference >= -5",
+       "value": -0.5331,
+       "ok": true,
+       "status": "pass"
+      },
+      {
+       "name": "fresh2_test/test paired interval upper end >= 0",
+       "value": 9.7724,
+       "ok": true,
+       "status": "pass",
+       "ci95": [
+        -9.359,
+        9.7724
+       ],
+       "ci95_reason": null,
+       "resampled_units": 318
+      },
+      {
+       "name": "fresh2_test/test wrong+extras per 100 requested up by at most 1",
+       "value": -0.609291,
+       "ok": true,
+       "status": "pass",
+       "candidate": 0.609292,
+       "comparator": 1.218583
+      }
+     ],
+     "clean_population_reported": {
+      "difference": 1.0955,
+      "ci95": [
+       -12.4194,
+       16.9468
+      ],
+      "ci95_reason": null
+     }
+    },
+    {
+     "view": "short3_test",
+     "key": "short3_test/test",
+     "candidate_cost": 8.796296,
+     "comparator_cost": 8.101852,
+     "measure_available": true,
+     "requested": 432,
+     "checks": [
+      {
+       "name": "short3_test/test cost difference >= -5",
+       "value": 0.6944,
+       "ok": true,
+       "status": "pass"
+      },
+      {
+       "name": "short3_test/test paired interval upper end >= 0",
+       "value": 15.7754,
+       "ok": true,
+       "status": "pass",
+       "ci95": [
+        -14.4,
+        15.7754
+       ],
+       "ci95_reason": null,
+       "resampled_units": 309
+      },
+      {
+       "name": "short3_test/test wrong+extras per 100 requested up by at most 1",
+       "value": 0,
+       "ok": true,
+       "status": "pass",
+       "candidate": 1.388889,
+       "comparator": 1.388889
+      }
+     ],
+     "clean_population_reported": {
+      "difference": 0.6061,
+      "ci95": [
+       -18.0982,
+       20.1923
+      ],
+      "ci95_reason": null
+     }
+    },
+    {
+     "view": "nl_a_development",
+     "key": "nl_a_development/development",
+     "candidate_cost": -7.908163,
+     "comparator_cost": -12.5,
+     "measure_available": true,
+     "requested": 392,
+     "checks": [
+      {
+       "name": "nl_a_development/development cost difference >= -5",
+       "value": 4.5918,
+       "ok": true,
+       "status": "pass"
+      },
+      {
+       "name": "nl_a_development/development paired interval upper end >= 0",
+       "value": 22.191,
+       "ok": true,
+       "status": "pass",
+       "ci95": [
+        -10.0543,
+        22.191
+       ],
+       "ci95_reason": null,
+       "resampled_units": 171
+      },
+      {
+       "name": "nl_a_development/development wrong+extras per 100 requested up by at most 1",
+       "value": -0.5102040000000001,
+       "ok": true,
+       "status": "pass",
+       "candidate": 1.020408,
+       "comparator": 1.530612
+      }
+     ],
+     "clean_population_reported": {
+      "difference": 7.9646,
+      "ci95": [
+       -7.7295,
+       28.1967
+      ],
+      "ci95_reason": null
+     }
+    }
+   ]
+  },
+  {
+   "id": "16",
+   "title": "R-s0 versus B-s0",
+   "status": "pending",
+   "pass": false,
+   "checks": [
+    {
+     "name": "bundles",
+     "value": null,
+     "ok": false,
+     "status": "pending",
+     "reason": "the evaluated arms this criterion compares were not given"
+    }
+   ]
+  },
+  {
+   "id": "17",
+   "title": "S-s0 versus R-s0",
+   "status": "pending",
+   "pass": false,
+   "checks": [
+    {
+     "name": "bundles",
+     "value": null,
+     "ok": false,
+     "status": "pending",
+     "reason": "the evaluated arms this criterion compares were not given"
+    }
+   ]
+  },
+  {
+   "id": "18",
+   "title": "per-form bars of S",
+   "status": "pending",
+   "pass": false,
+   "checks": [
+    {
+     "name": "bundles",
+     "value": null,
+     "ok": false,
+     "status": "pending",
+     "reason": "the evaluated arms this criterion compares were not given"
+    }
+   ]
+  },
+  {
+   "id": "19",
+   "title": "undo/redo counts of S",
+   "status": "pending",
+   "pass": false,
+   "checks": [
+    {
+     "name": "bundles",
+     "value": null,
+     "ok": false,
+     "status": "pending",
+     "reason": "the evaluated arms this criterion compares were not given"
+    }
+   ]
+  },
+  {
+   "id": "20",
+   "title": "label setting of S",
+   "status": "pending",
+   "pass": false,
+   "checks": [
+    {
+     "name": "bundles",
+     "value": null,
+     "ok": false,
+     "status": "pending",
+     "reason": "the evaluated arms this criterion compares were not given"
+    }
+   ]
+  },
+  {
+   "id": "21",
+   "title": "S against R and C100",
+   "status": "pending",
+   "pass": false,
+   "checks": [
+    {
+     "name": "bundles",
+     "value": null,
+     "ok": false,
+     "status": "pending",
+     "reason": "the evaluated arms this criterion compares were not given"
+    }
+   ]
+  },
+  {
+   "id": "22",
+   "title": "two-seed confirmation",
+   "status": "pending",
+   "pass": false,
+   "checks": [
+    {
+     "name": "all six bundles",
+     "value": null,
+     "ok": false,
+     "status": "pending",
+     "reason": "missing R0, R1, S0, S1, C1"
+    }
+   ]
+  },
+  {
+   "id": "23",
+   "title": "product-path S-s0 versus shipped C100 (Guard G and a positive paired gated t1_clean cost, bound evidence of the product-path step)",
+   "status": "pending",
+   "pass": false,
+   "checks": [
+    {
+     "name": "product-path evidence",
+     "value": null,
+     "ok": false,
+     "status": "pending",
+     "reason": "the evidence of another step was not given"
+    }
+   ]
+  }
+ ],
+ "all_pass": false,
+ "statuses": {
+  "15": "pass",
+  "16": "pending",
+  "17": "pending",
+  "18": "pending",
+  "19": "pending",
+  "20": "pending",
+  "21": "pending",
+  "22": "pending",
+  "23": "pending"
+ },
+ "thresholds": {
+  "decision_rules": {
+   "R_vs_B": {
+    "lowercase_other_right_share_min_gain_points": 10,
+    "short3_lowercase_right_share_min_gain_points": 20,
+    "lowercase_population_max_confident_mistakes_per_100_increase": 1
+   },
+   "S_vs_R": {
+    "t1_clean_cost_min_gain": 5
+   },
+   "form_bars": {
+    "bare_move": 0.95,
+    "description_size": 0.8,
+    "label_removal": 0.9,
+    "outline_create": 0.9,
+    "outline_question": 0.9,
+    "outline_set": 0.9
+   },
+   "guard": {
+    "cost_diff_min": -5,
+    "cost_threshold": 10,
+    "wrong_extras_per_100_max_increase": 1
+   },
+   "undo_redo_count_min": 0.9,
+   "label_setting_max_drop_points": 2,
+   "label_setting_gated_wrong_empty_on_nonempty_max": 0,
+   "lowercase_max_drop_points": 2,
+   "word_names_interval_requests_min": 40,
+   "word_names_interval_groups_min": 10
+  }
+ }
+}

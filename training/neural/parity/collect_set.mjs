@@ -1,6 +1,9 @@
 // collect_set.mjs: a reader on named sets, one record per message (arm_lib.mjs buildRecord: the format of collect_modernbert.mjs, plus set,
 // part, kind, writer, session, group, the second teacher's gold, the wires of every produced request).
-//   READER=modernbert|sop|rules [MODEL=folder] [THREADS=n] node collect_set.mjs --train-data DIR [--allow-text-overlap] OUT.jsonl SET...
+//   READER=modernbert|sop|rules [MODEL=folder] [THREADS=n] node collect_set.mjs --train-data DIR [--allow-text-overlap] [--views=DIR] OUT.jsonl SET...
+// --views=DIR: a folder of frozen views (modernbert_next_measure.mjs `views`; manifest.json and one file per view, every file checked against its hash):
+// SET may then also be the name of a view (calibration, fresh2_test, ..., lowercase_other). The views folder's manifest hash is bound into the
+// collection's manifest, so a resume after the views changed is refused. Without the flag nothing changes.
 // Refuses a message whose id, or whose text up to case and spacing, is in DIR/train.jsonl or DIR/cut_train.jsonl (the arm trained on it);
 // --allow-text-overlap accepts a text overlap (not an id overlap) and marks each such record train_text_overlap and lists them in the manifest.
 // MODEL: any folder with config.json, tokenizer files and onnx/, in or outside docs/model (modernbert, sop). SET: fresh2 short3 collected_1
@@ -26,8 +29,8 @@ import { signals } from '../../../docs/js/neural-confidence.js';
 import { nextContext } from '../../../docs/js/vss-composer.js';
 import { hashFile, digest, atomicJSON, inputHash } from '../calibrate_modernbert.mjs';
 import { EXECUTION_POLICY } from '../modernbert_parity.mjs';
-import { loadSets, contextNames } from './sets.mjs';
-import { buildRecord, setDigest, seenFunction, ngramInventory, startSystem, playGold, refsOf, RECORD_SCHEMA } from './arm_lib.mjs';
+import { contextNames } from './sets.mjs';
+import { buildRecord, setDigest, seenFunction, ngramInventory, startSystem, playGold, refsOf, RECORD_SCHEMA, loadSetsOrViews, loadViewDir } from './arm_lib.mjs';
 import { namesState } from './canvas_lib.mjs';
 const DL = createRequire(import.meta.url)('../../../docs/js/drawing-lines.js');
 
@@ -41,7 +44,7 @@ export function filesOf(dir) {
   walk(dir);
   return out;
 }
-function trainData(dir) {
+export function trainData(dir) {
   const train = resolve(dir, 'train.jsonl');
   if (!existsSync(train)) throw new Error(`--train-data ${dir}: train.jsonl is missing`);
   const invFile = resolve(dir, 'trigger_inventory.json');
@@ -83,14 +86,15 @@ function readFileRecords(path, items) {
   let end = buf.length, repaired = false;
   if (end && buf[end - 1] !== 10) { end = buf.lastIndexOf(10) + 1; repaired = true; }
   if (repaired) { truncateSync(path, end); console.error(`${path}: the last record was cut in half by a stop; removed it, it is read again`); }
-  const want = new Map(items.map(it => [it.id, it])), recs = [], seen = new Set();
+  // keyed by set AND id: the same id may be in two views (a bare or spelled view of a message), never twice in one set (the ids of the sets of sets.mjs are unique across sets, so for them this is the old key)
+  const want = new Map(items.map(it => [it.set + '\0' + it.id, it])), recs = [], seen = new Set();
   buf.subarray(0, end).toString('utf8').split('\n').filter(l => l.trim()).forEach((l, i) => {
     let r; try { r = JSON.parse(l); } catch { throw new Error(`${path}:${i + 1}: not JSON; not a file of this collection (move it away and collect again)`); }
-    const it = want.get(r.id);
-    if (!it || r.set !== it.set) throw new Error(`${path}:${i + 1}: record ${r.id} is not in the sets of this run`);
-    if (seen.has(r.id)) throw new Error(`${path}:${i + 1}: duplicate record ${r.id}`);
+    const it = want.get(r.set + '\0' + r.id);
+    if (!it) throw new Error(`${path}:${i + 1}: record ${r.id} is not in the sets of this run`);
+    if (seen.has(r.set + '\0' + r.id)) throw new Error(`${path}:${i + 1}: duplicate record ${r.id}`);
     if (r.input_sha256 !== inputHash({ id: it.id, text: it.text, names: it.names, wires: it.wires })) throw new Error(`${path}:${i + 1}: record ${r.id} was made from other input than the set holds now`);
-    seen.add(r.id); recs.push(r);
+    seen.add(r.set + '\0' + r.id); recs.push(r);
   });
   return { recs, repaired };
 }
@@ -114,16 +118,25 @@ export async function loadNeural(folder) {
   return { neural, m, runtime, dispose: async () => { try { await model.dispose(); } finally { rmSync(cache, { recursive: true, force: true }); } } };
 }
 
+/** the structural hold of a v2 reader (docs/js/neural.js; shared contract of reports/modernbert-next-implementation-checkpoint.md: `blocked`, `block_reasons: [{kind, key, source_span}]`)
+ *  of the request node n of analysis si -> {blocked, block_reasons}, or null when the reader writes none (a legacy reader: never blocked, the record carries no field).
+ *  Where the reader puts the field is its writer's choice; this looks on the node, its unit, the joint read and the analysis, and nowhere else. */
+export function blockOf(result, n, si) {
+  for (const o of [n, n.unit, si >= 0 ? result.joint?.reads?.[si] : null, si >= 0 ? result.analyses?.[si] : null]) {
+    if (o && o.blocked !== undefined) return { blocked: !!o.blocked, block_reasons: Array.isArray(o.block_reasons) ? o.block_reasons : [] };
+  }
+  return null;
+}
 const unitOf = (n, text) => { if (n.span) return [n.span[0], n.span[1]]; const k = n.src ? text.indexOf(n.src) : -1; return k < 0 ? [0, 0] : [k, k + n.src.length]; };
-function runOfNeural(result, m, text) {
+export function runOfNeural(result, m, text) {
   const nodes = result.nodes, owner = new Map(nodes.map(n => [n.id, n.unit?.id])), byId = new Map(nodes.map(n => [n.id, n]));
   const mains = nodes.filter(n => n.type !== 'mention').map(n => {
     const si = result.analyses.indexOf(n.unit), sig = si >= 0 ? signals(result, si) : null;
     let f = sig && !sig.detail.noCut ? sig.f : null;
     if (f && Object.values(f).some(v => v != null && !Number.isFinite(v))) f = null;   // never executed at a threshold: fail closed
-    const refs = [...new Set(Object.values(n.args || {}).flatMap(refsOf))];
+    const refs = [...new Set(Object.values(n.args || {}).flatMap(refsOf))], blocked = blockOf(result, n, si);
     return { node: n, mentions: refs.map(id => byId.get(id)).filter(x => x && x.type === 'mention'), span: unitOf(n, text), src: n.unit?.src ?? n.src ?? '', f, act: f ? sig.act : null,
-      truncated: !!result.joint.reads[si]?.truncated || !!n.unit?.drawingCut, wireId: n.unit.id, dependencies: [...new Set(refs.map(id => owner.get(id)).filter(id => id && id !== n.unit.id))] };
+      truncated: !!result.joint.reads[si]?.truncated || !!n.unit?.drawingCut, wireId: n.unit.id, dependencies: [...new Set(refs.map(id => owner.get(id)).filter(id => id && id !== n.unit.id))], ...(blocked || {}) };
   });
   return { mains, allNodes: nodes, unread: result.unread || [], cutInfo: m.cutInfo(text) };
 }
@@ -137,19 +150,20 @@ function runOfRules(nodes, text) {
 }
 
 async function main() {
-  const args = process.argv.slice(2), pos = []; let dataDir = null, allowText = false;
-  for (let i = 0; i < args.length; i++) { if (args[i] === '--train-data') dataDir = args[++i]; else if (args[i] === '--allow-text-overlap') allowText = true; else if (args[i].startsWith('--train-data=')) dataDir = args[i].slice(13); else if (args[i].startsWith('--')) throw new Error('Unknown flag ' + args[i]); else pos.push(args[i]); }
+  const args = process.argv.slice(2), pos = []; let dataDir = null, allowText = false, viewsDir = null;
+  for (let i = 0; i < args.length; i++) { if (args[i] === '--train-data') dataDir = args[++i]; else if (args[i] === '--allow-text-overlap') allowText = true; else if (args[i].startsWith('--train-data=')) dataDir = args[i].slice(13); else if (args[i].startsWith('--views=')) viewsDir = args[i].slice(8); else if (args[i].startsWith('--')) throw new Error('Unknown flag ' + args[i]); else pos.push(args[i]); }
   const [out, ...setNames] = pos, reader = process.env.READER;
   if (!READERS.includes(reader) || !out || !setNames.length || !dataDir) throw new Error('READER=modernbert|sop|rules [MODEL=folder] node collect_set.mjs --train-data DIR OUT.jsonl SET...');
   const folder = reader === 'rules' ? null : process.env.MODEL ? resolve(process.env.MODEL) : null;
   if (reader !== 'rules' && !folder) throw new Error('MODEL=folder is required for READER=' + reader);
   if (folder && !existsSync(folder + '/config.json')) throw new Error(`MODEL=${folder}: no config.json`);
-  const sets = loadSets(setNames), items = sets.flatMap(s => s.items), td = trainData(dataDir), overlap = trainOverlap(items, dataDir, allowText), overlapIds = new Set(overlap.text), manifestPath = out + '.manifest.json', lockPath = out + '.lock';
+  const views = viewsDir ? loadViewDir(viewsDir) : null, viewsSha = viewsDir ? hashFile(resolve(viewsDir, 'manifest.json')) : null;
+  const sets = loadSetsOrViews(setNames), items = sets.flatMap(s => s.items), td = trainData(dataDir), overlap = trainOverlap(items, dataDir, allowText), overlapIds = new Set(overlap.text), manifestPath = out + '.manifest.json', lockPath = out + '.lock';
   const modelFiles = folder ? filesOf(folder) : null, artifacts = modelFiles ? digest(JSON.stringify(modelFiles)) : 'rules:' + digest(readFileSync(ROOT + '/docs/js/logic.js', 'utf8'));
   const codeHashes = Object.fromEntries(CODE.map(p => [p, hashFile(resolve(ROOT, p))]));
   const config = { schema: RECORD_SCHEMA, reader, model: folder ? { folder, files: modelFiles } : null, artifacts_sha256: artifacts,
     train_data: { dir: td.dir, train_sha256: td.train_sha256, inventory: td.inventory, text_overlap_allowed: allowText, text_overlap_ids: overlap.text }, sets: sets.map(s => ({ name: s.name, messages: s.items.length, excluded: s.excluded, files: s.files, teachers: s.teachers, input_sha256: setDigest(s.items) })),
-    code: codeHashes, threads: process.env.THREADS || null };
+    code: codeHashes, threads: process.env.THREADS || null, ...(views ? { views: { dir: resolve(viewsDir), manifest_sha256: viewsSha, names: views.views } } : {}) };
   const sameConfig = m => JSON.stringify(m.config) === JSON.stringify(config);
   if (existsSync(lockPath)) { const pid = +readFileSync(lockPath, 'utf8'); let alive = false; try { process.kill(pid, 0); alive = true; } catch { /* gone */ } if (alive) throw new Error(`${out} is being written by process ${pid}`); unlinkSync(lockPath); }
   writeFileSync(lockPath, String(process.pid), { flag: 'wx' });

@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-09T11:58:09.605287+02:00",
+  "checks": [
+    {
+      "check": "fit-evidence-manifest.json",
+      "files": 10,
+      "ok": true
+    },
+    {
+      "check": "quality-evidence-manifest.json",
+      "files": 20,
+      "ok": true
+    },
+    {
+      "check": "quality-analysis-manifest.json",
+      "files": 2,
+      "ok": true
+    },
+    {
+      "check": "quality-verification-manifest.json",
+      "files": 10,
+      "ok": true
+    },
+    {
+      "check": "all quality CSV rows match sealed score copies, including unavailable risk and holds",
+      "rows": 360,
+      "ok": true
+    },
+    {
+      "check": "report links resolve, verification complete, forbidden next-arm paths absent",
+      "links": 9,
+      "ok": true
+    }
+  ],
+  "report_sha256": "874528898fb1c7442898a3b6bbebaa93d2d74257af8a8c8a2bb647bef13fd9e5",
+  "runlog_sha256": "95c637b3c65acdfdab407be479838ad65ba798faf01e8ca106a8d79480d3e6ea",
+  "command": "parent read-only manifest/CSV/document validation; no evaluation or suite repetition",
+  "campaign_pass": false,
+  "evidence_integrity": "PASS"
+}

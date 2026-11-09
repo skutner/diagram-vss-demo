@@ -1,0 +1,677 @@
+{
+ "schema": "arm-score-v1",
+ "reader": "rules",
+ "artifact": "rules:715da7ed6b783350d3d167f7d477fbd58cfa722b69c877904552321ce6fcdc0e",
+ "threshold_cost10": null,
+ "calibrated_on": [],
+ "sets": {
+  "short_synth": {
+   "calibration": {
+    "messages": 679,
+    "requested": 679,
+    "produced": 679,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 679,
+        "right": 679,
+        "wrong": 0,
+        "not_done": 0,
+        "extras": 0,
+        "executed": 679,
+        "execution_precision": 1,
+        "right_share": 1,
+        "cost_score": 100
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 655,
+          "right": 655,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 655,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 24,
+          "right": 24,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 24,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 679,
+          "right": 679,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 679,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        }
+       },
+       "by_writer": {}
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 679,
+        "right": 679,
+        "wrong": 0,
+        "not_done": 0,
+        "extras": 0,
+        "executed": 679,
+        "execution_precision": 1,
+        "right_share": 1,
+        "cost_score": 100
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 655,
+          "right": 655,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 655,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 24,
+          "right": 24,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 24,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 679,
+          "right": 679,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 679,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        }
+       },
+       "by_writer": {}
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 6,
+    "excluding_train_text_overlap": {
+     "messages": 673,
+     "requested": 673,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "gold": {
+       "today": {
+        "all_executed": {
+         "requested": 673,
+         "right": 673,
+         "wrong": 0,
+         "not_done": 0,
+         "extras": 0,
+         "executed": 673,
+         "execution_precision": 1,
+         "right_share": 1,
+         "cost_score": 100
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 673,
+         "right": 673,
+         "wrong": 0,
+         "not_done": 0,
+         "extras": 0,
+         "executed": 673,
+         "execution_precision": 1,
+         "right_share": 1,
+         "cost_score": 100
+        }
+       }
+      }
+     }
+    },
+    "use": "calibration-part"
+   },
+   "test": {
+    "messages": 1318,
+    "requested": 1318,
+    "produced": 1318,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 1318,
+        "right": 1318,
+        "wrong": 0,
+        "not_done": 0,
+        "extras": 0,
+        "executed": 1318,
+        "execution_precision": 1,
+        "right_share": 1,
+        "cost_score": 100
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 1261,
+          "right": 1261,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 1261,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 57,
+          "right": 57,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 57,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 1318,
+          "right": 1318,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 1318,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        }
+       },
+       "by_writer": {}
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 1318,
+        "right": 1318,
+        "wrong": 0,
+        "not_done": 0,
+        "extras": 0,
+        "executed": 1318,
+        "execution_precision": 1,
+        "right_share": 1,
+        "cost_score": 100
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 1261,
+          "right": 1261,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 1261,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 57,
+          "right": 57,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 57,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 1318,
+          "right": 1318,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 1318,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        }
+       },
+       "by_writer": {}
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 13,
+    "excluding_train_text_overlap": {
+     "messages": 1305,
+     "requested": 1305,
+     "note": "the same numbers on the messages the arm's training rows do not hold (records marked train_text_overlap left out)",
+     "views": {
+      "gold": {
+       "today": {
+        "all_executed": {
+         "requested": 1305,
+         "right": 1305,
+         "wrong": 0,
+         "not_done": 0,
+         "extras": 0,
+         "executed": 1305,
+         "execution_precision": 1,
+         "right_share": 1,
+         "cost_score": 100
+        }
+       },
+       "direction": {
+        "all_executed": {
+         "requested": 1305,
+         "right": 1305,
+         "wrong": 0,
+         "not_done": 0,
+         "extras": 0,
+         "executed": 1305,
+         "execution_precision": 1,
+         "right_share": 1,
+         "cost_score": 100
+        }
+       }
+      }
+     }
+    },
+    "use": "evaluation"
+   }
+  },
+  "synth_short_t1": {
+   "all": {
+    "messages": 1793,
+    "requested": 1793,
+    "produced": 1793,
+    "failed_messages": 0,
+    "views": {
+     "gold": {
+      "today": {
+       "all_executed": {
+        "requested": 1793,
+        "right": 1793,
+        "wrong": 0,
+        "not_done": 0,
+        "extras": 0,
+        "executed": 1793,
+        "execution_precision": 1,
+        "right_share": 1,
+        "cost_score": 100
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 1715,
+          "right": 1715,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 1715,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 78,
+          "right": 78,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 78,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 1793,
+          "right": 1793,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 1793,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        }
+       },
+       "by_writer": {}
+      },
+      "direction": {
+       "all_executed": {
+        "requested": 1793,
+        "right": 1793,
+        "wrong": 0,
+        "not_done": 0,
+        "extras": 0,
+        "executed": 1793,
+        "execution_precision": 1,
+        "right_share": 1,
+        "cost_score": 100
+       },
+       "by_trigger": {
+        "seen": {
+         "all_executed": {
+          "requested": 1715,
+          "right": 1715,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 1715,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unseen": {
+         "all_executed": {
+          "requested": 78,
+          "right": 78,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 78,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        },
+        "unannotated": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        },
+        "unpaired extras": {
+         "all_executed": {
+          "requested": 0,
+          "right": 0,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 0,
+          "execution_precision": null,
+          "right_share": null,
+          "cost_score": null
+         }
+        }
+       },
+       "by_kind": {
+        "short": {
+         "all_executed": {
+          "requested": 1793,
+          "right": 1793,
+          "wrong": 0,
+          "not_done": 0,
+          "extras": 0,
+          "executed": 1793,
+          "execution_precision": 1,
+          "right_share": 1,
+          "cost_score": 100
+         }
+        }
+       },
+       "by_writer": {}
+      }
+     }
+    },
+    "resize_smaller": {
+     "registered": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     },
+     "scorer": {
+      "requested": 0,
+      "executed_smaller": 0,
+      "right_with_direction": 0,
+      "gate_smaller": null,
+      "unavailable": 0
+     }
+    },
+    "train_text_overlap_messages": 0,
+    "use": "evaluation"
+   }
+  }
+ },
+ "notes": [
+  "Sessions here: each reader's executed requests, read in the gold context of every step (names from the row, last = what the gold of the previous step touched), are played on the reader's own drawing. Shares count only what the session changed beyond its setup; questions: the answers of the gold's question steps. The reader reading its own drawing is free_run_set.mjs.",
+  "Paraphrase: same_effect_share = largest set of wordings of a group whose drawings on the row's setup are the same (parity_lib diffs, loose), over all wordings; changed_nothing_share and same_effect_as_gold_share are beside it because a reader that does nothing is consistent."
+ ],
+ "per_message": {
+  "file": "/home/skutner/.cache/diagram-vss-modernbert/arms/C100-s0/recal/rules_ss.score.per_message.json",
+  "sha256": "63536ac9805be175d6dc2a5db22ec1cb8048f37a50b89a5792d76957a34f7a3e"
+ },
+ "confidence_file": null,
+ "record_files": [
+  "/home/skutner/.cache/diagram-vss-modernbert/arms/C100-s0/recal/rules_ss.jsonl"
+ ]
+}

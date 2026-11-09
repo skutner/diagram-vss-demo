@@ -777,3 +777,115 @@ everywhere) is fixed.
 **Left to the owner:** the five-reader run on GitHub Pages, and whether to remove `docs/model/neural/modernbert/`
 and `docs/model/confidence/modernbert.json` (no longer read by the page; `parity/readers.mjs`, `shipped_decode_check.mjs`, `canvas_lib.mjs`
 and `training/qwen/check_deployed.mjs` still name them, as the model they measured).
+
+### Refit of C100's confidence with short commands (2026-11-08): result **Miss** (bar G3); nothing published
+
+Plan: `training/neural/MODERNBERT_RECAL_PLAN.md` (bars fixed before any result; decisions D1-D3 taken by the owner: "no need for my approval"). Same model
+(`arms/C100-s0/export/modernbert-C100-s0`, artifacts `b57bedf4…`), same 24 signals, same fitting code (`parity/calibrate_arm.mjs`), same cost-10 rule; only the
+calibration data got a fourth source, the calibration part of `synth_short_r2` (679 short commands, set `short_synth`). One fit (F_short), no second fit, no
+other mix, no moved bar. F_ctrl (the published fit rebuilt from the cached records) is byte-identical to `docs/model/confidence/modernbert-c100.json` and its
+score blocks equal the published score file with 0 differences (`reports/evidence/modernbert-c100-recal/summary.md`).
+
+**Deciding test:** `training/sketch/llm_bench/synth_short_t1` (1,793 template-made short commands, another seed, its own ids, no text in `synth_short_r2`, in C100's
+`train.jsonl` / `cut_train.jsonl`, `nl_a` or `nl_b`; 166 of form `create`; size gate met). Read once by C100 (3,790 messages with `short_synth`; 0 failed;
+19 texts shared with C100's training rows, all in `short_synth`, 6 of them in its calibration part).
+
+| bar | measure | F_short | F_ctrl | rule | result |
+|---|---|---|---|---|---|
+| P1 | cost difference, `synth_short_t1/all`, paired (span as the unit, 1,539 units) | +30.12, ci95 [+22.28, +37.73] | | ci95[0] > 0 | pass |
+| P2 | confidently wrong share, same set | 0.010076 (8 of 794 executed) | 0.065546 (39 of 595) | F_short <= F_ctrl | pass |
+| P3 | cost difference, messages of form `create` (166, 96 units) | +23.49, ci95 [+16.29, +31.01] | | ci95[0] > 0 | pass |
+| G1 | `short3/test`, 432 requested | +6.48, ci95 [0, +11.11]; confident mistakes 6 | 5 | ci95[1] >= 0, difference >= -5, mistakes <= 9 | pass |
+| G2 | `fresh2/test`, 1,313 requested | -0.23, ci95 [-4.52, +3.58]; confident mistakes 13 | 8 | the same, mistakes <= 21 | pass |
+| G3 | `nl_a/development`, view `opus`, 392 requested | **-6.89**, ci95 [-17.87, +0.58]; confident mistakes 4 | 1 | the same, mistakes <= 4 | **miss** |
+
+Verdict: **MISS** (G3). The interval's upper end (+0.58) and the confident-mistake limit (4 <= 4.92) are met; the point loss of 6.89 is below the bar's -5.
+On `nl_a` development F_short executes 14 actions (10 right, 4 wrong or extra) where F_ctrl executes 8 (7 right, 1 extra): cost -7.65 against -0.77. The
+numbers: `compare.json`. Per the plan (and AGENTS.md "Experiments") nothing is published: `docs/model/confidence/modernbert-c100.json` is unchanged and the tab
+keeps the first fit. A negative result is a result; no variant of the bar is tried.
+
+**Reported, not deciding.**
+- Cost-10 thresholds: F_ctrl 0.9228, F_short 0.8984. `act_prior` of create: 0.3269 (F_ctrl) -> 0.5302 (F_short); `act_prior_default`: 0.5386 -> 0.6267. Out-of-fold
+  AUROC 0.940 -> 0.925, L2 0.1 -> 0.01.
+- `synth_short_t1`, per 1,793 requested: executed right 556 -> 786; confident mistakes 39 -> 8. Creates (166): executed right 29 -> 68. `short_synth/test`: executed right
+  414 -> 569, confident mistakes 24 -> 5; creates (104): 19 -> 37.
+- "draw a circle" is still held after the refit: confidence 0.672 (F_ctrl) -> 0.622 (F_short), threshold 0.8984 (`short_probe.{ctrl,short}.txt`; F_ctrl's numbers on the
+  five browser-check messages equal the browser check of the C100 entry). The other four are executed by both fits.
+- Per form on `synth_short_t1`: F_short executes less than F_ctrl on `arrow_label` (42 -> 4 of 79), `arrow_style` (35 -> 30 of 80) and `connect` (162 -> 154 of 171); more on
+  `delete` (29 -> 141 of 172), `move` (25 -> 82 of 172), `create`, `undo`, `redo`, `at_xy`, `every_arrow`. Outline questions (`outline_q`, 69; right 0 of 69 for the model): F_ctrl
+  executed 37 of them wrong, F_short none. Full tables: `reports/evidence/modernbert-c100-recal/summary.md`.
+- `collected_1` (44 requested; too few) and `scenes_test`: F_short is lower than F_ctrl (-45.5 [-113.6, 0], and -14.7 with no interval); `nothing_to_do` in `nl_a`
+  development: 0 executions per 100 for both fits at the threshold.
+
+**Root causes** (`root_causes.md`, `summary.md`; AGENTS.md after every evaluation):
+- What F_short still executes wrong on the two short sets (13 requests, all place: model): `move X right` / `move X left` with words around it, read as
+  `position=right` where the gold is `direction=right` (12 of 13: 8 on `synth_short_t1`, 4 on `short_synth/test`; confidence 0.909-0.950); a class-head reading, cut right. The 13th
+  is "now undo two times" read without its count. On `synth_short_t1` the model reads `outline_create` (1 of 80), `outline_q` (0 of 69), `arrow_unlabel` (0 of 78) and `undo_count` (0 of 28) right
+  almost never, and `outline_set` 24 of 80 (the model, not the confidence), which is why those forms stay held.
+- The G3 miss: of the 4 confident mistakes on `nl_a` development, 3 are extras, `move` read from placement wording ("put Sam beside Martin", "Library goes between market
+  and station", "The post office goes next to the bakery": act head / cut head, confidences 0.903-0.966) and one is a reference ("Make the tasks in Done green" read with target=done:
+  front end, the drawing is not in the input). Inference, not tested: F_short's lower threshold (0.8984 against 0.9228) lets more of `nl_a`'s wordings through, and the added short commands
+  do not look like those long natural-language messages; the confidences F_ctrl gave these four requests were not compared.
+- Where the cause sits: the confidence's calibration data (fixed by this plan: short commands pull the threshold down for everything) and the model (class head on direction
+  words); not the tools (the Rules dry run scored 100% on both new sets).
+
+**Correction (plan section 2).** The model README (`docs/model/neural/modernbert-c100/README.md`) says C100's training data "lacks" outline, label removal, undo counts and sizes in
+descriptions. Counted in C100's `train.jsonl` (57,135 rows): 70 requests set an outline, 146 remove a label (`label=""`), 0 ask about an outline, 0 give an undo or redo count.
+Outline questions and undo counts are absent; outline setting and label removal are present but rare. The README is not edited here: any edit changes the folder's version in
+`versions.json` and every returning visitor would download the 156 MB model again; it is corrected the next time the model files change. The entry above (the tab reads C100-s0)
+says 18 texts of `synth_short_r2` occur in C100's training rows: the count is 19 (`collect_set.mjs` also checks `cut_train.jsonl`).
+
+**Tools and files added** (`reports/evidence/modernbert-c100-recal/README.md` lists the commands): `training/neural/parity/compare_fits.mjs` (paired comparison of two fits and the six bars; a null
+or missing value is a miss; `test_compare_fits.mjs`, 11 checks), `sets.mjs` (`short_synth`, `synth_short_t1`, appended after every set; `test_score_tools.mjs` 33 checks),
+`training/sketch/synth/{dedup_against.py,size_gate.py,test_dedup_against.py}`, `gen_short_r2.py --id-prefix`. No tool defect needed a re-run.
+
+## 2026-11-08: modernbert-next campaign (plan `reports/modernbert-next-plan-2026-11-08_codex.md`, sha256 0ef29893…; grouping amendment ff9a2eab…): STOPPED at R-s0 on a measured C16 miss
+
+Checkpoint with every command, hash and review: `reports/modernbert-next-implementation-checkpoint.md`. Work under `~/.cache/diagram-vss-modernbert/next-2026-11-08/`.
+
+- Repaired output contract (`diagram-reader-v2`: absent/empty/written text states, `unresolved` references, structural holds), 20 reviewed label overlays, grouped calibration and `truthful_v1` scoring; all independently reviewed. Legacy decoding unchanged (shipped_decode_check: SOP-BERT and modernbert-c100 1,130/1,130 messages identical).
+- B-s0 (C100 membership, v2 contract; 8 epochs, 1,960 s): C15 PASS. Gated cost-10 vs C100-s0 under the common grouped calibration: fresh2 test 41.20 vs 41.74, short3 test 8.80 vs 8.10, nl_a dev -7.91 vs -12.50; confident mistakes per 100 requested 0.61/1.39/1.02 vs 1.22/1.39/1.53.
+- R-s0 (B + the eight restored folders; 2,830 s): C16 FAIL. lowercase_other ungated right share 74.2% -> 76.2% (+2.1 points, bar +10); nl_a dev Guard G cost difference -10.2 (bar -5) and +1.28 confident mistakes per 100 (bar +1). Passed: short3_lowercase +29.1 points (bar +20), lowercase_other paired gated cost CI [2.83, 16.60], fresh2 and short3 guards (short3 +20.8).
+- Root causes (root_causes.mjs, reconciled) and the case gap: on the 825 lower-cased requests of drawings other than Start/Process/Check/Done, ungated right share original case vs lower case is B 90.4% vs 74.2% (gap 16.2 points), R 92.8% vs 76.2% (gap 16.6): R closed none of the case gap there; its +2.1 came equally on original case. On the familiar drawing (short3_lowercase) R rose 47.0% -> 76.1%. The first cause of misses in the whole lowercase_other view (1,102 requests) stays "wrong words tagged for a name" (B 116, R 113). Inference: the restored data taught lower-case names on the familiar drawing, not on others. nl_a: R's cost-10 threshold is lower (0.859 vs 0.915); at it R executes statements that are not requests ("Paused is still blue", "Some should be red") as extras: 9 confident mistakes vs 4 (cut/act heads; the calibration threshold does not carry over to nl_a's narrative text).
+- Per the plan's stop rule: no S-s0, R-s1, S-s1, no publication. 2 of 5 runs used. Nothing published; the optional tab still reads modernbert-c100.
+
+## 2026-11-09: modernbert-forms campaign (plan `reports/modernbert-forms-plan-2026-11-08_codex.md`, sha256 0635a247…): STOPPED at F-s0 on a measured seed-0 miss
+
+A new, separate experiment, not a continuation of modernbert-next (whose R C16 failure stands). Checkpoint with every command, hash and review: `reports/modernbert-forms-implementation-checkpoint.md`; evidence `reports/evidence/modernbert-forms/`. Work under `~/.cache/diagram-vss-modernbert/forms-2026-11-08/`.
+
+- F = B membership + the 1,417 nonreserved `synth_short_r2` whole messages = 28,330 messages, 58,552 training rows (the 580 reserved r2 messages, groups, folds, calibration and views of modernbert-next kept unchanged). Layout from F training messages only; round trip 94.0% exact, 99.9% exact + context + asked, gate 95/1 passed. New tools (independently reviewed): `training/neural/parity/modernbert_forms_{protocol.json,data.py,measure.mjs}` and their tests.
+- F-s0 (8 epochs, same recipe, 14,640 updates; one stop by the trainer's hardware-slowdown guard at update 200, resumed identically). Seed-0 verdict vs B-s0 (reused, applicability checked) and C100-s0: **fail**.
+  - t1_clean gated cost-10: F 59.90 vs B 56.87 (+3.03, bar +5; paired interval [-6.09, 11.74]); confidently wrong share 29/1,130 vs 5/825 (bar: no increase).
+  - Clean forms, ungated right / all gold: outline question 66/66 (B 0/66), label removal 78/78, bare move 148/148, undo/redo counts 28/28 pass; outline create 15/80 (bar 90%), outline set 67/80 (bar 90%), description size 15/64 (bar 80%) fail.
+  - Lower case: lowercase_other_affected 67.5% vs B 74.2% (−6.7 points, bar −2); short3_lowercase 30.6% vs 47.0% (−16.4, bar −2). Original case unchanged (90.5% vs 90.4%).
+  - Passed: Guard G against B-s0 and C100-s0 on fresh2 test, short3 test and nl_a dev; label setting F 1.9 points above B (bar: loss ≤ 2); no gated empty label against nonempty gold.
+- Root causes (independently recomputed, no tool defect; `reports/evidence/modernbert-forms/root-causes-F-s0.md`):
+  - outline create: in 36 of 65 wrongs the model writes the fill colour as the outline (model, class head; 57 r2 training rows of this form, labels correct).
+  - description size: in 44 of 49 wrongs on "the SIZE SHAPEs" the size is dropped (35 r2 rows of this exact form).
+  - outline set misses are all green/orange/pink.
+  - The 29 confident mistakes are all in these three forms. 19 of them are above B's threshold.
+  - The lower-case loss is mostly name roles (keys missing, wrong fill). r2 name spans are all capitalised, but the share of lower-case names in training barely moved (1.86% → 1.82%), so the data does not clearly explain it; one seed per arm cannot exclude a seed effect.
+- Per the stop rule: no B-s1, no C100-s1 evaluation, no F-s1. 1 of 3 runs used. Nothing published or committed.
+- Gated outcomes at each arm's own cost-10 threshold (F 0.8758, B 0.9150; selection OOF AUROC F 0.947, B 0.941), right / wrong / extras / unread of requested. On t1_clean: F 1101/29/0/0 of 1,354; B 820/5/0/15. On the clean subsets of the guard sets:
+  - fresh2: F 350/3/1/12 of 639; B 318/2/2/15.
+  - short3: F 89/5/1/40 of 330; B 78/4/1/29.
+  - nl_a: F 11/2/2/100 of 339; B 7/1/2/114.
+
+  The rest of each requested total is asked (held below the threshold). Misses split by whether the trigger word was seen in training are in `reports/evidence/modernbert-forms/root_causes-tool-F-s0.md`. On fresh2 test, F has 204 misses with a seen trigger and 28 with an unseen one; on short3 test, 172 and 43.
+
+## 2026-11-09: modernbert-rare-heads — measured seed-zero failure; confirmation stopped
+
+Report: `reports/modernbert-rare-heads-2026-11-09.md`; compact evidence: `reports/evidence/modernbert-rare-heads/`; task artifacts: `~/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/`. Approved plan: `reports/modernbert-rare-heads-plan-2026-11-09_codex.md`. Base `0ab687cc142e884ed16332925c6d7cd558e1b8fb`, preserved dirty tree; source candidate v2 aggregate `52a35fa7250204a1162ddd5d5ce9e3a22499637261881ec22a342b24c26c1b59`, protocol `b15da300cb1817ad67e446c2de80aca54ba27cae523f4ba1bab0c1bd24e25738`.
+
+- W-s0 changes only class-loss weighting (`sqrt-positive-absent-v1`) on unchanged F data: 28,330 messages, 58,552 requests, 52 heads, eight epochs/14,640 updates. One of three allowed trajectories used. Prior R/F failures remain stopped.
+- Actual float and production Node-q8 fit each measured 1,699 observations: all 259 positive targets correct; absent controls **1,437/1,440**, so R0 fails. The three `desc:size=small` overpredictions comprise “the herbs one dotted” and two “dashed” observations; an identical “dashed” positive label creates a documented contradiction. No labels or bars changed. Strict Python/Node q8 parity passed all 197 batches, including padding. Export exit 2 records seven float/q8 decode-difference fixture IDs; it is not float/q8 equivalence. Completed source/fixture checks and independent actual-model fit/raw-inference verification were reused.
+- The original quality evaluation completed at 11:43:39 EET, exit 0, all ten collections; supervisor elapsed 2,975.973 s, peak RSS 1,448,824,832 bytes. Automatic root causes completed once: nine parts, 162 successful scorer reconciliations, 33 sealed outputs. The sole public verdict ended 11:51:18 EET, exit 1 without signal/tool error: R0, both R1 rows, R2 and both R3 rows fail; P3 provenance passes. New independent quality verification also completed; its evidence is recorded below.
+- Clean t1 (1,354 requested), W/F/B: executed right 1,083/1,101/820; wrong 18/29/5; extras 0/0/0; confidently wrong 1.63%/2.57%/0.61%; cost 66.69/59.90/56.87. W−F gain +6.7947 has paired 95% CI [−1.4717, 14.9606]; W−B +9.8227 [2.8148, 17.1491], but risk exceeds B. Both clean-create interval lower endpoints are negative. AUROC on clean t1 W/F/B is 0.883940/0.930616/0.961311, distinct from selection OOF AUROC.
+- Rare-form ungated correctness improves: outline set W/F/B 80/67/26 of 80; description size 60/15/3 of 64. Outline create remains 24/80 (F15, B3), below 90%. All 18 W clean-t1 confident mistakes are outline-create class errors (fill/outline color confusion); that form executes eight correct and 18 wrong. Outline questions, label removal, bare move and undo/redo count meet their bars. Recovered values often remain held: W executes only 26 outline sets and eight description-size requests correctly.
+- Guard G fails full fresh2 against F (cost −9.5963, CI [−17.0423, −5.8912]), B (−5.4075, [−12.6071, −0.5464]) and C100 (−5.9406, [−15.9218, 2.5601]); short3 and nl_a pass against all three. W has no increase beyond the confident-mistake allowance, but loses correct execution coverage on fresh2.
+- Lowercase affected requests W/F/B 556/557/612 of 825; original-case controls 752/747/746 of 825. W retains the gap against B. Short3 lowercase 60/41/63 of 134 improves against F but is still 2.24 points below B. Clean label setting W105/105, F105/105, B103/105; W has no gated empty label on nonempty gold, no missing raw arguments, and no gated label errors. Ungated reasons: 15 wrong label values, 19 missing, six unwanted. Full label/case, exposure, seen/unseen, asked/held/unread and risk/coverage tables are in the report appendix. Zero mistakes on the selected affected-lowercase population do not erase three extras in the full lowercase view.
+- Root causes are first-explaining-category attribution, not isolated causal proof. Rare exposure was unchanged; this one-seed result does not distinguish exposure limits from other optimization limits. R0 already forbids C100-s1 evaluation, F-s1 and W-s1. No tuning, replacement seed, repeated root-cause run, commit, push or deployment; release/browser/Settings gates remain pending.
+
+Completion update: independent quality verification subsequently finished with both scripts exiting 0. Integrity PASS, campaign FAIL: 3,416 assertions, 22 independently recomputed paired comparisons, 162 root reconciliations and nine adversarial probes; same-function scoring of saved records reproduced 8,055 records/ten views/17 populations/27 sidecars and 10,499 threshold decisions. These artifact checks are distinct from the reused actual-model fit verification. Evidence: `quality-verification.json` (SHA `8986e3204ca2111dd04b3ec5919e1f9729b2d142a31e46a5311ecf084904efb2`), `quality-records-verification.json` (SHA `9f38a48f868b70b4b5d1584c95d2abb4a71e13971d47cef5c6cdb11d82c74c43`) and their manifest in the report evidence directory. Root analysis used `oracle=none`, so round-trip output limitations were unmeasured beyond unsupported layout keys, and `categories.labels=null` means unmeasured. Zero data/output-limit categories do not establish absence of those causes. The completed report retains these limits; no acceptance gate was relaxed.
+
+Resource closure, 11:55:24 EET: original task processes ended, no task CPU/budget/trajectory lock held, W-s0 remains the sole completed trajectory. All 15 candidate files, 58 frozen sources, protocol and HEAD still match. Receipt: `reports/evidence/modernbert-rare-heads/final-resources.json`.

@@ -285,11 +285,46 @@ function create(engine, rulesFormalize, options = {}) {
     return out;
   }
 
+  /* ---- output contract diagram-reader-v2 (reports/modernbert-next-plan-2026-11-08_codex.md "Interfaces / contracts" 3; training/neural/make_roles.py
+     --output-contract). A reader without reader.output_contract decodes exactly as before. Under v2: a text key of reader.text_state_keys is read from
+     its state head text:<key> (absent: no argument; empty: ""; written: the one tagged span, exactly) and fill:<key> may say "unresolved". A state
+     that contradicts the tags, a missing head, "unresolved", or a contract this file does not know is a STRUCTURAL HOLD of the whole request
+     (analysis.blocked, analysis.block_reasons [{kind, key, source_span}]): nothing is substituted for it (no context, last shape, first mention,
+     default or empty text); its wire stays in the result, never executed (neural-confidence.js gate, gateReader: at every level, also "execute
+     all", and "Do it anyway" is refused), and the context after it points to it, so a later "it" is held with it; a later request that writes
+     its names is read as usual. */
+  const V2 = 'diagram-reader-v2';
+  /** what the reader's head layout breaks of its declared output contract, for every request (null: nothing; legacy readers: null) */
+  function contractProblem(RD) {
+    if (RD.output_contract == null) return null;
+    if (RD.output_contract !== V2) return `the model declares the output contract “${RD.output_contract}”, which this page does not know`;
+    if (!Array.isArray(RD.text_state_keys)) return 'the model declares diagram-reader-v2 without text_state_keys';
+    const cls = new Map(RD.classes.map(([k, v]) => [k, v]));
+    const bad = (RD.ref_keys || []).filter(k => !cls.has('fill:' + k) || !cls.get('fill:' + k).includes('unresolved'));
+    return bad.length ? `the model's fill heads (${bad.join(', ')}) lack the state unresolved of diagram-reader-v2` : null;
+  }
+  /** v2: a text key from its state head and its tags -> the shape role() returns, with block {kind, key, why} when the two disagree */
+  function textRole(key, q, R) {
+    const h = R.classes['text:' + key], sp = R.spans[key] || [];
+    const out = { q, span: sp.map(s => s.text).join(' | '), score: h ? h.score : 0, value: null, source: 'neural (text state)', state: h ? h.value || 'absent' : null };
+    const hold = (kind, why) => Object.assign(out, { block: { kind, key, why } });
+    if (!h) return hold('malformed-output', `the model has no text:${key} head`);
+    if (h.value == null) return sp.length ? hold('text-state', `the ${key} is read as absent, but words are tagged as its text`) : out;
+    if (h.value === 'empty') return sp.length ? hold('text-state', `the ${key} is read as empty, but words are tagged as its text`) : Object.assign(out, { value: '' });
+    if (h.value !== 'written') return hold('malformed-output', `the ${key} has the unknown text state ${h.value}`);
+    if (sp.length !== 1) return hold('text-state', sp.length ? `the ${key} text is tagged in ${sp.length} separate places` : `the ${key} is read as written, but no words are tagged as its text`);
+    return Object.assign(out, { value: sp[0].text, score: Math.min(h.score, sp[0].score) });
+  }
+
   /** SOP-BERT, one name-role of one read() -> {q, span, score, value, source, fill} (the shape answer() returns). c: the context
-      ({names, last, refs}); mention(args) adds a mention wire and returns the reference to it */
-  function jointRole(key, act, R, c, mention, nDesc) {
+      ({names, last, refs}); mention(args) adds a mention wire and returns the reference to it. v2: the reader's output contract is
+      diagram-reader-v2 (text state heads, fill unresolved; a structural hold comes back as block {kind, key, why}) */
+  function jointRole(key, act, R, c, mention, nDesc, v2) {
     const q = (WORDING[act] && WORDING[act][key]) || WORDING._[key] || (L.get(key) && L.get(key).ask) || key + '?';
     const f = R.classes['fill:' + key], fill = f ? f.value : null;
+    if (v2 && st.models.reader.text_state_keys.includes(key)) return textRole(key, q, R);
+    if (v2 && fill === 'unresolved')   // an explicit target the reader cannot write down (several descriptions, names beside a description or a reference): no value
+      return { q, span: '', score: f.score, value: null, source: 'unresolved reference', fill, block: { kind: 'unresolved-reference', key, why: `${key} names several shapes, descriptions or references together, which this reader cannot write down` } };
     if (fill === 'context') {   // a pronoun or a vague reference: the shared context rule's last shape
       const v = c.last.length === 1 ? c.last[0] : c.last.length ? c.last.slice() : null;
       return { q, span: '', score: f.score, value: v, source: 'context (last shape created or named)', fill };
@@ -381,6 +416,7 @@ function create(engine, rulesFormalize, options = {}) {
     const unread = cutInfo && cutInfo.truncated ? [text.slice(cutInfo.unreadFrom)] : [];
     if (unread.length) notes.push('Message token limit reached; the remaining text was not read.');
     const draw = drawingInput(ctx, st.models);   // null unless the model reads the drawing and the caller gives it
+    const contract = contractProblem(st.models.reader), v2 = !contract && st.models.reader.output_contract === V2;   // legacy: null, false
     const one = (seg, si) => {
       const R = reads[si], id = 'n' + (++n), a = { id, src: seg.src, rules: null, keys: {} };
       if (R.truncated) a.truncated = true;
@@ -389,11 +425,14 @@ function create(engine, rulesFormalize, options = {}) {
       if (type === 'none') { notRequest.push(seg.src); analyses.push(a); return; }
       const args = {}; if (actKey) args[actKey] = act;
       const mentions = [], mention = ma => { const mid = 'm' + (++m); mentions.push({ id: mid, type: 'mention', args: ma }); return { ref: mid }; };
+      const blocks = contract ? [{ kind: 'malformed-output', key: 'output_contract', why: contract }] : [];   // v2 / unknown contract only (see V2)
       for (const k of st.models.reader.act_keys[act || type] || []) {
-        const r = jointRole(k, act || type, R, c, mention, mentions.length); a.keys[k] = r;
+        const r = jointRole(k, act || type, R, c, mention, mentions.length, v2); a.keys[k] = r;
+        if (r.block) { blocks.push(r.block); continue; }
         if (draw) drawnRole(draw, si, k, r, a);
         if (r.value != null) args[k] = r.value;
       }
+      if (blocks.length) { a.blocked = true; a.block_reasons = blocks.map(b => ({ kind: b.kind, key: b.key, source_span: seg.src })); }
       if (args.notColor && args.color === args.notColor) delete args.color;
       if (args.position && !['center', 'top', 'bottom', 'left', 'right', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'].includes(args.position) && args.anchor == null) delete args.position;
       if (args.anchor != null && !args.position && !['nearest', 'connected', 'check', 'arrange', 'equalize'].includes(act)) delete args.anchor;   // arrange: the root of a tree; equalize: the model (HIGH_LEVEL_OPS.md)
@@ -406,6 +445,7 @@ function create(engine, rulesFormalize, options = {}) {
       Object.defineProperty(a, 'span', { value: [seg.c0, seg.c1], enumerable: false, configurable: true });
       nodes.push(...mine, node); analyses.push(a);
       update(c, node);
+      if (a.blocked) c.last = [{ ref: node.id }];   // a later "it" means what this held request would have touched: it is held with it (V2)
     };
     if (draw) for (let si = 0; si < segs.length; si++) { await secondRead(draw, segs[si], reads[si], si, c); one(segs[si], si); }
     else segs.forEach(one);
@@ -651,7 +691,8 @@ function makeReader(T, tokenizer, model) {
   return { read, readMany, prepare: prep, act: async text => (await read(text)).acts, reader: R, unk, ...(cutLen ? { cut, cutProbs, cutInfo } : {}), ...(drawLen ? { readDrawing, pieceCount, drawingCap: drawLen } : {}) };
 }
 
-/** ModernBERT's own confidence: missing calibration/thresholds and truncated requests always hold, even at execute all. */
+/** ModernBERT's own confidence: missing calibration/thresholds and truncated requests always hold, even at execute all; so do the structural
+    holds of output contract diagram-reader-v2 and the requests that use them (neural-confidence.js gate marks them blocked). */
 function gateReader(NC, spec, result, level = 'cost') {
   const valid = spec && Number.isFinite(NC.threshold(spec, 'cost'));
   const g = NC.gate(valid ? spec : null, result, valid ? level : 'cost');

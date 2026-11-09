@@ -1,0 +1,56 @@
+{
+  "format": "browser_probes/1",
+  "page": "http://localhost:8765/ (docs/ served by python3 -m http.server from the working tree at 0ab687c; the Claude desktop app's browser, Chromium; a fresh page load per probe, all readers ready, the start message answered; captured by the coordinator on 2026-11-08 from each message's details panel)",
+  "probes": {
+    "probe-01": {"corrected": "draw a circle", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "draw a circle", "wires": ["@w1 command action=create shape=circle"], "confidence": 0.938, "executed": false}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=create shape=circle"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "draw a circle", "wires": ["@s1 command action=create shape=circle"], "confidence": 0.928, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "draw a circle", "wires": ["@n1 command action=create shape=circle"], "confidence": 0.952, "executed": false}]}}},
+    "probe-02": {"corrected": "make Start red", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "make Start red", "wires": ["@w1 command action=set color=red target=Start"], "confidence": 0.977, "executed": true}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=set color=red target=Start"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "make Start red", "wires": ["@s1 command action=set color=red target=Start"], "confidence": 0.949, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "make Start red", "wires": ["@n1 command action=set color=red target=Start"], "confidence": 0.98, "executed": true}]}}},
+    "probe-03": {"corrected": "connect Start to Process", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "connect Start to Process", "wires": ["@w1 command action=connect from=Start to=Process"], "confidence": 0.976, "executed": true}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=connect from=Start to=Process"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "connect Start to Process", "wires": ["@s1 command action=connect from=Start to=Process"], "confidence": 0.94, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "connect Start to Process", "wires": ["@n1 command action=connect from=Start to=Process"], "confidence": 0.991, "executed": true}]}}},
+    "probe-04": {"corrected": "add a big blue square", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "add a big blue square", "wires": ["@w1 command action=create shape=square size=large color=blue"], "confidence": 0.973, "executed": true}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=create shape=square size=large color=blue"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "add a big blue square", "wires": ["@s1 command action=create shape=square size=large color=blue"], "confidence": 0.941, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "add a big blue square", "wires": ["@n1 command action=create shape=square size=large color=blue"], "confidence": 0.987, "executed": true}]}}},
+    "probe-05": {"corrected": "move Done below Check", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "move Done below Check", "wires": ["@w1 command action=move target=Done position=below anchor=Check"], "confidence": 0.987, "executed": true}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=move target=Done position=below anchor=Check"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "move Done below Check", "wires": ["@s1 command action=move target=Done position=below anchor=Check"], "confidence": 0.951, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "move Done below Check", "wires": ["@n1 command action=move target=Done position=below anchor=Check"], "confidence": 0.983, "executed": true}]}}},
+    "probe-06": {"corrected": "delete Check", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "delete Check", "wires": ["@w1 command action=delete target=Check"], "confidence": 0.96, "executed": true}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=delete target=Check"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "delete Check", "wires": ["@s1 command action=delete target=Check"], "confidence": 0.936, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "delete Check", "wires": ["@n1 command action=delete target=Check"], "confidence": 0.949, "executed": false}]}}},
+    "probe-07": {"corrected": "move Process left", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "move Process left", "wires": ["@w1 command action=move target=Process direction=left"], "confidence": 0.923, "executed": false}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=move target=Process direction=left"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "move Process left", "wires": ["@s1 command action=move target=Process direction=left"], "confidence": 0.949, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "move Process left", "wires": ["@n1 command action=move target=Process direction=left"], "confidence": 0.904, "executed": false}]}}},
+    "probe-08": {"corrected": "add a cyan triangle", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "add a cyan triangle", "wires": ["@w1 command action=create shape=triangle color=cyan"], "confidence": 0.973, "executed": true}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=create shape=triangle color=cyan"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "add a cyan triangle", "wires": ["@s1 command action=create shape=triangle color=cyan"], "confidence": 0.93, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "add a cyan triangle", "wires": ["@n1 command action=create shape=triangle color=cyan"], "confidence": 0.988, "executed": true}]}}},
+    "probe-09": {"corrected": "connect Done to Start", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "connect Done to Start", "wires": ["@w1 command action=connect from=Done to=Start"], "confidence": 0.98, "executed": true}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=connect from=Done to=Start"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "connect Done to Start", "wires": ["@s1 command action=connect from=Done to=Start"], "confidence": 0.94, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "connect Done to Start", "wires": ["@n1 command action=connect from=Done to=Start"], "confidence": 0.992, "executed": true}]}}},
+    "probe-10": {"corrected": "right, make Done green please", "readers": {
+      "VSS-BERT": {"requests": [{"unit": "make Done green", "wires": ["@w1 command action=set color=green target=Done"], "confidence": 0.978, "executed": true}]},
+      "Rules": {"requests": [{"unit": null, "wires": ["@s1 command action=set color=green target=Done"], "confidence": null, "executed": true}]},
+      "VSS": {"requests": [{"unit": "make Done green", "wires": ["@s1 command action=set color=green target=Done"], "confidence": 0.93, "executed": true}]},
+      "SOP-BERT": {"requests": [{"unit": "make Done green", "wires": ["@n1 command action=set color=green target=Done"], "confidence": 0.978, "executed": true}]}}}
+  }
+}

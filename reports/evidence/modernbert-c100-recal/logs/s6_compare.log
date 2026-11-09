@@ -1,0 +1,7 @@
+P1 pass: cost difference, paired, synth_short_t1/all; difference 30.1171 ci95 [22.2841,37.7327]
+P2 pass: confidently wrong share (wrong_execution_share), synth_short_t1/all; share F_short 0.010076 F_ctrl 0.065546
+P3 pass: cost difference, paired, synth_short_t1/all, messages of form create; difference 23.494 ci95 [16.2921,31.0127]
+G1 pass: guard, short3/test, view gold; difference 6.4815 ci95 [0,11.1111]; confident mistakes F_short 6 F_ctrl 5 limit 9.32
+G2 pass: guard, fresh2/test, view gold; difference -0.2285 ci95 [-4.519,3.577]; confident mistakes F_short 13 F_ctrl 8 limit 21.130000000000003
+G3 MISS: guard, nl_a/development, view opus; difference -6.8878 ci95 [-17.8667,0.5764]; confident mistakes F_short 4 F_ctrl 1 limit 4.92 (difference -6.8878 is below -5)
+verdict: MISS (miss: G3)

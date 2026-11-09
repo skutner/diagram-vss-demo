@@ -1,0 +1,10 @@
+{
+  "quality-analysis.json": {
+    "source": "/tmp/rare-heads-quality-analysis.json",
+    "sha256": "f1b00199c49b944db1574eac9583558dc5f05cc2bf9b4dc2edf74254bca29f8d"
+  },
+  "quality-completion-inspection.json": {
+    "source": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/quality-completion-inspection-v1.json",
+    "sha256": "ff6b472c95dafda88e7f31cc66f47942830eb503d5f170996f9f1a29f4dce943"
+  }
+}

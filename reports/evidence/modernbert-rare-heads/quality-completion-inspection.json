@@ -1,0 +1,95 @@
+{
+  "checked_at": "2026-11-09T11:44:37.444710+02:00",
+  "evaluation": {
+    "scope": "actual-model-evaluation",
+    "started": "2026-11-09T08:54:03.753Z",
+    "ended": "2026-11-09T09:43:39.726Z",
+    "elapsed_ms": 2975973,
+    "exit_status": 0,
+    "signal": null,
+    "error": null,
+    "resource_guard": {
+      "exit_status": 0,
+      "signal": null,
+      "reason": null,
+      "rss_peak_bytes": 1448824832,
+      "phase": "cpu",
+      "rss_limit_bytes": 12884901888,
+      "available_floor_bytes": 4294967296
+    },
+    "unchanged": true
+  },
+  "root_cause": {
+    "parts": 9,
+    "checks": 162,
+    "exit_status": 0
+  },
+  "collections": [
+    {
+      "view": "calibration",
+      "count": 1144
+    },
+    {
+      "view": "fresh2_test",
+      "count": 405
+    },
+    {
+      "view": "lowercase_other",
+      "count": 351
+    },
+    {
+      "view": "nl_a_development",
+      "count": 300
+    },
+    {
+      "view": "short3_test",
+      "count": 340
+    },
+    {
+      "view": "short3s",
+      "count": 333
+    },
+    {
+      "view": "t1_all",
+      "count": 1793
+    },
+    {
+      "view": "t1bs",
+      "count": 1528
+    },
+    {
+      "view": "t1raw",
+      "count": 70
+    },
+    {
+      "view": "t1s",
+      "count": 1791
+    }
+  ],
+  "sealed_outputs": 33,
+  "outer": {
+    "argv": [
+      "node",
+      "training/neural/parity/modernbert_rare_heads_measure.mjs",
+      "evaluate",
+      "--protocol",
+      "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/frozen/protocol.json",
+      "--name",
+      "W-s0",
+      "--model",
+      "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/export/modernbert-W-s0",
+      "--training",
+      "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/run",
+      "--out",
+      "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/W-s0/bundle"
+    ],
+    "cwd": "/home/skutner/browserLLM/diagram-vss-demo",
+    "started": "2026-11-09T10:52:59.696194+02:00",
+    "ended": "2026-11-09T11:43:39.772265+02:00",
+    "pid": 357229,
+    "exit_status": 0,
+    "log": "/home/skutner/.cache/diagram-vss-modernbert/rare-heads-2026-11-09/logs/W-s0-quality-command-v1.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "pending": "public seed0 verdict and independent quality verification"
+}
